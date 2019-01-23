@@ -48,7 +48,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="UserManager">
-      <HintPath>..\..\..\..\..\..\..\Desktop\Librerie_Alten\UserManager.dll</HintPath>
+      <HintPath>..\Librerie_Alten\UserManager.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

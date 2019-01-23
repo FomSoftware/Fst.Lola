@@ -56,9 +56,8 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CommonCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Desktop\Librerie_Alten\CommonCore.dll</HintPath>
+    <Reference Include="CommonCore">
+      <HintPath>..\Librerie_Alten\CommonCore.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -178,12 +177,11 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="UserManager, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Desktop\Librerie_Alten\UserManager.dll</HintPath>
+    <Reference Include="UserManager">
+      <HintPath>..\Librerie_Alten\UserManager.dll</HintPath>
     </Reference>
     <Reference Include="UserManagerApi">
-      <HintPath>\\Itabrefil001.decinf.it\bi\Components\BI\UserManagerApi\1.2.0.0\UserManagerApi.dll</HintPath>
+      <HintPath>..\Librerie_Alten\UserManagerApi.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>

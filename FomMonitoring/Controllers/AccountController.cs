@@ -124,44 +124,15 @@ namespace FomMonitoring.Controllers
                 model.Password = ApplicationSettingService.GetWebConfigKey("DefaultPassword");
             }
             AccountService accountService = new AccountService();
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && accountService.Login(model.Username, model.Password, true).Result)
             {
-                /* REMOTE LOGIN */
-                IJsonAPIClientService jsonAPIClientService = new JsonAPIClientService();
-                string method = ApplicationSettingService.GetWebConfigKey("RemoteLogin");
-                string remoteLoginJson = jsonAPIClientService.GetJsonData(method);
-                if (!string.IsNullOrEmpty(remoteLoginJson))
+                FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
+                if (ContextService.InitializeContext())
                 {
-                    enLoginResult loginResult = jsonAPIClientService.ElaborateLoginJsonData(remoteLoginJson);
-                    switch (loginResult)
-                    {
-                        case enLoginResult.Ok:
-                        case enLoginResult.NotExists:
-                            if (loginResult == enLoginResult.Ok)
-                            {
-                                model.Password = ApplicationSettingService.GetWebConfigKey("DefaultPassword");
-                            }
-                            if (accountService.Login(model.Username, model.Password, true).Result)
-                            {
-                                FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
-                                if (ContextService.InitializeContext())
-                                {
-                                    return RedirectToLocal(returnUrl);
-                                }
-                                ModelState.AddModelError("", Resource.LoginProblem);
-                            }
-                            break;
-                        case enLoginResult.Disabled:
-                            ModelState.AddModelError("", Resource.UserExpired);
-                            break;
-                        case enLoginResult.WrongPassword:
-                            ModelState.AddModelError("", Resource.PassNotValid);
-                            break;
-                        default:
-                            break;
-                    }
-                    return View(model);
+                    return RedirectToLocal(returnUrl);
                 }
+                ModelState.AddModelError("", Resource.LoginProblem);
+                return View(model);
             }
             ModelState.AddModelError("", Resource.UserPassNotValid);
             return View(model);

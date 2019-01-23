@@ -36,7 +36,7 @@ namespace FomMonitoringCore.Service
             LoggedUser.Username = User.Username;
             LoggedUser.FirstName = User.FirstName;
             LoggedUser.LastName = User.LastName;
-            LoggedUser.Roles = User.Roles_Users.Select(s => (enRole)s.Roles.IdRole).ToList();
+            LoggedUser.Roles = loggedUserServices.GetLoggedUserRoles().Select(s => (enRole)s.IdRole).ToList();
             LoggedUser.Language = User.Languages;
 
             return LoggedUser;
@@ -67,7 +67,7 @@ namespace FomMonitoringCore.Service
         {
             // Controllo delle credenziali
             var loginServices = new LoginServices();
-            if (!loginServices.LoginUser(username, password, out message))
+            if (!loginServices.LoginUser(username, password, out message, true))
                 return false;
 
             UserModel User = new AccountService().GetLoggedUser();
