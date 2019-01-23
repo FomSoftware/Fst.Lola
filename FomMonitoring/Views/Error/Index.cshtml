@@ -1,0 +1,41 @@
+﻿@{Layout = null;}
+@using FomMonitoringResources;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8">
+
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
+    <title>Login</title>
+
+    @Styles.Render("~/Content/FomMonitoringStylesLOGIN")
+    @Scripts.Render("~/Scripts/FomMonitoringScriptsLOGIN")
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4 col-md-12 col-sm-12">
+                <div class="container-login">
+                    <div class="header">
+                        <div>@string.Concat(Resource.Error, " ", ViewBag.Error)</div>
+                        <img class="logo" src="~/Images/logo/Lola-lg.png">
+                    </div>
+                    @using (Html.BeginForm("Login", "Account", FormMethod.Get, new { @class = "login-form" }))
+                    {
+                        <div class="form-actions">
+                            <div class="form-actions">
+                                <button type="submit">@Resource.BackToLogin</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿
+/* latin */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Roboto Mono Thin'), local('RobotoMono-Thin'), 
+        url(../fonts/RobotoMono-Thin.eot) format('embedded-opentype'),
+        url(../fonts/RobotoMono-Thin.woff2) format('woff2'),
+        url(../fonts/RobotoMono-Thin.ttf) format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Mono Light'), local('RobotoMono-Light'), 
+        url(../fonts/RobotoMono-Light.eot) format('embedded-opentype'),
+        url(../fonts/RobotoMono-Light.woff2) format('woff2'),
+        url(../fonts/RobotoMono-Light.ttf) format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Mono'), local('RobotoMono-Regular'), 
+        url(../fonts/RobotoMono-Regular.eot) format('embedded-opentype'),
+        url(../fonts/RobotoMono-Regular.woff2) format('woff2'),
+        url(../fonts/RobotoMono-Regular.ttf) format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Mono Medium'), local('RobotoMono-Medium'), 
+        url(../fonts/RobotoMono-Medium.eot) format('embedded-opentype'),
+        url(../fonts/RobotoMono-Medium.woff2) format('woff2'),
+        url(../fonts/RobotoMono-Medium.ttf) format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Mono Bold'), local('RobotoMono-Bold'), 
+      url(../fonts/RobotoMono-Bold.eot) format('embedded-opentype'),
+      url(../fonts/RobotoMono-Bold.woff2) format('woff2'),
+      url(../fonts/RobotoMono-Bold.ttf) format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}

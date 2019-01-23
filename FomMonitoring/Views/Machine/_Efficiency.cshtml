@@ -1,0 +1,159 @@
+﻿@model FomMonitoringBLL.ViewModel.EfficiencyViewModel
+@using FomMonitoringResources
+
+<div id="CardEfficiency" class="portlet">
+    <div class="portlet-title">
+        <div class="portlet-kpi" v-cloak>
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
+                <i class="fa icofom-efficiency fa-stack-1x fa-inverse"></i>
+            </span>
+        </div>
+        <div class="title-kpi" v-cloak>
+            <span>@Resource.Efficiency</span>
+            <span v-if="kpi != null" class="value-kpi" v-bind:class="colorKPI" v-cloak>{{ kpi.value | round }}<small>%</small></span>
+            <div class="sub-period js-period"></div>
+        </div>
+        <div class="portlet-details" v-show="showDetails">
+            <div class="dropdown" onclick="SharedManager.handlerDropdown($(this))">
+                <div class="button drop-btn"><i class="icon-options-vertical"></i></div>
+                <div class="dropdown-content right">
+                    <div class="dd-item js-unflip active" data-group="efficiency">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Dashboard</span>
+                    </div>
+                    <div class="dd-item js-flip slide-history" data-group="efficiency" v-show="show.historical">
+                        <i class="fa fa-history"></i>
+                        <span>@Resource.Historical</span>
+                    </div>
+                    <div class="dd-item js-flip slide-operator" data-group="efficiency" v-show="show.operators">
+                        <i class="fa fa-user"></i>
+                        <span>@Resource.Operators</span>
+                    </div>
+                    <div class="dd-item js-flip slide-turni" data-group="efficiency" v-show="show.shifts">
+                        <i class="fa fa-sun-o"></i>
+                        <span>@Resource.Shifts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="card-portlet card-efficiency" v-cloak>
+            <div class="front">
+                <div class="row" v-if="states != null">
+                    <div class="col-xs-11">
+                        <!-- MACHINE STATES -->
+                        <div class="use-states">
+                            <div class="progress-label clearfix">
+                                <div class="progress-title">
+                                    @Resource.MachineStates
+                                </div>
+                                <div class="progress-time">
+                                    <div class="icon fa fa-clock-o"></div>
+                                    <div>
+                                        <div class="title-time">@Resource.TimeOn</div>
+                                        <div class="value-time">
+                                            <time-span v-bind:duration="total.on"></time-span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="progress">
+                                <div v-for="state in states" class="progress-bar" v-bind:class="'bg-' + state.code" v-bind:aria-valuenow="state.perc">
+                                    <i v-if="state.active" class="fa fa-check-circle"></i>
+                                </div>
+                            </div>
+                            <table class="table-legend">
+                                <tbody>
+                                    <tr v-for="state in states">
+                                        <td>
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x" v-bind:class="'cr-' + state.code"></i>
+                                                <i class="fa fa-stack-1x fa-inverse" v-bind:class="icon(state)"></i>
+                                            </span>
+                                            <span class="icon-label font-medium">
+                                                {{ state.text }}
+                                                <i v-if="state.active" class="fa fa-check-circle"></i>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            {{ state.perc | round }}<em>%</em>
+                                        </td>
+                                        <td>
+                                            <time-span v-bind:duration="state.time"></time-span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- OFF STATE -->
+                            <div class="progress-label clearfix">
+                                <div class="progress-title">
+                                    <span class="fa-stack v-middle font-normal">
+                                        <i class="fa fa-square fa-stack-2x cr-stop"></i>
+                                        <i class="fa fa-remove fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                    <span class="v-middle">
+                                        @Resource.StateOff
+                                    </span>
+                                </div>
+                                <div class="progress-time margin-top-5" style="margin-bottom: 0px;">
+                                    <div class="icon fa fa-power-off"></div>
+                                    <div>
+                                        <div class="title-time">@Resource.TimeOff</div>
+                                        <div class="value-time">
+                                            <time-span v-bind:duration="total.off"></time-span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 no-padding-left text-center">
+                        <!-- OVERFEED -->
+                        <div class="overfeed">
+                            <div class="overfeed-progress">
+                                <div class="overfeed-title">
+                                    overfeed <b>{{ overfeed.value | round }}<em>%</em></b>
+                                </div>
+                                <div class="overfeed-bar" v-bind:class="bgOverfeed" v-bind:aria-valuenow="overfeed.value"></div>
+                                <div class="overfeed-threshold" v-bind:style="{ bottom: overfeed.threshold.green + '%'}"></div>
+                                <div class="overfeed-threshold" v-bind:style="{ bottom: overfeed.threshold.yellow + '%'}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <no-data v-else></no-data>
+            </div>
+            <div class="back">
+                <div class="swiper-container efficiency">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div id="efc_historical_chart"></div>
+                            <no-data v-if="!show.historical"></no-data>
+                        </div>
+                        <div class="swiper-slide">
+                            <div id="efc_operators_chart"></div>
+                            <no-data v-if="!show.operators"></no-data>
+                        </div>
+                        <div class="swiper-slide">
+                            <div id="efc_shifts_chart"></div>
+                            <no-data v-if="!show.shifts"></no-data>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        var data = @Html.Raw(Json.Encode(Model));
+        Efficiency.init(data);
+    });
+
+</script>

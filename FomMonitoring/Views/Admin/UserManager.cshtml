@@ -1,0 +1,109 @@
+﻿@{Layout = "~/Views/Shared/_LayoutApp.cshtml";}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="button-addUser" onclick="UserManager.addClickEvent()">
+            <i class="icon-plus"></i>Aggiungi utente
+        </div>
+    </div>
+</div>
+
+<div>
+    <table class="table data-table" id="users-table"></table>
+</div>
+
+    <div class="modal fade" id="user-modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" onClick="UserManager.clearActualUser()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title pull-left margin-top-5"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <!--todo-->
+                    </div>
+
+                    <form class="form-horizontal" id="user-modal-form">
+                        <fieldset>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="username-input">Username</label>
+                                <div class="col-md-6">
+                                    <input v-model="actual.Username" name="username-input" class="form-control input-md modal-input" id="username-input" type="text" placeholder="Username" required>
+                                    <div v-show="missing.Username" class="validation">X This field is required.</div>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="name-input">Nome</label>
+                                <div class="col-md-6">
+                                    <input v-model="actual.FirstName" name="name-input" class="form-control input-md modal-input" id="name-input" type="text" placeholder="Nome" required>
+                                    <div v-show="missing.FirstName" class="validation">X This field is required.</div>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="lastname-input">Cognome</label>
+                                <div class="col-md-6">
+                                    <input v-model="actual.LastName" name="lastname-input" class="form-control input-md modal-input" id="lastname-input" type="text" placeholder="Cognome" required>
+                                    <div v-show="missing.LastName" class="validation">X This field is required.</div>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="email-input">Email</label>
+                                <div class="col-md-6">
+                                    <input v-model="actual.Email" name="email-input" class="form-control input-md modal-input" id="email-input" type="text" placeholder="Email" required>
+                                    <div v-show="missing.Email" class="validation">X This field is required.</div>
+                                </div>
+                            </div>
+
+                            <!-- Select Basic -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="role-input">Ruolo</label>
+                                <div class="col-md-6">
+                                    <select v-model="roles.active" class="form-control input-md modal-input" id="role-input" type="text" placeholder="Ruolo" required>
+                                        <option v-for="role in roles.all" v-bind:value="role.ID">{{role.Name}}</option>
+                                    </select>
+                                    <div v-show="missing.Role" class="validation">X This field is required.</div>
+                                </div>
+                            </div>
+
+                            <!-- Password input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="password-input">Password</label>
+                                <div class="col-md-6">
+                                    <input v-model="actual.Password" name="password-input" class="form-control input-md modal-input" id="password-input" type="password" placeholder="Password" required>
+                                    <div v-show="missing.Password" class="validation">X This field is required.</div>
+                                </div>
+                            </div>
+                            <!-- Password input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="password-input">Repeat password</label>
+                                <div class="col-md-6">
+                                    <input v-model="actual.RepeatPassword" name="password-input" class="form-control input-md modal-input" id="password-repeat-input" type="password" placeholder="Password" required>
+                                    <div v-show="missing.RepeatPassword" class="validation">X This field is required.</div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-annulla" onclick="UserManager.clearActualUser()">Annulla</button>
+                    <button type="button" onClick="UserManager.addUser()" class="btn btn-confirm js-add display-none">OK</button>
+                    <button type="button" onClick="UserManager.modifyUser()" class="btn btn-confirm js-modify display-none">OK</button>
+                </div>
+            </div>
+        </div>
+
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        var userManagerAPI = "@Url.HttpRouteUrl("UserManagerApi", new { Controller = "UserManagerApi" })";
+        UserManager.init(userManagerAPI);
+    });
+</script>

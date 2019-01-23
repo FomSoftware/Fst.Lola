@@ -1,0 +1,411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="LastUpdate" xml:space="preserve">
+    <value>Last update</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Efficiency" xml:space="preserve">
+    <value>Efficienza</value>
+  </data>
+  <data name="Alarms" xml:space="preserve">
+    <value>Alarmas</value>
+  </data>
+  <data name="MachineStates" xml:space="preserve">
+    <value>estados máquina</value>
+  </data>
+  <data name="TimeOn" xml:space="preserve">
+    <value>tiempo on tot</value>
+  </data>
+  <data name="TimeOff" xml:space="preserve">
+    <value>tiempo off tot</value>
+  </data>
+  <data name="StateOff" xml:space="preserve">
+    <value>estado fuera</value>
+  </data>
+  <data name="Productivity" xml:space="preserve">
+    <value>Productividad</value>
+  </data>
+  <data name="Made" xml:space="preserve">
+    <value>Hecho</value>
+  </data>
+  <data name="Used" xml:space="preserve">
+    <value>Angustiado</value>
+  </data>
+  <data name="Phases" xml:space="preserve">
+    <value>Fases</value>
+  </data>
+  <data name="Pieces" xml:space="preserve">
+    <value>Piezas</value>
+  </data>
+  <data name="Material" xml:space="preserve">
+    <value>Material</value>
+  </data>
+  <data name="GrossTime" xml:space="preserve">
+    <value>Tiempo Bruto</value>
+  </data>
+  <data name="ErrorStates" xml:space="preserve">
+    <value>Estados de error</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duración</value>
+  </data>
+  <data name="Completion" xml:space="preserve">
+    <value>Terminación</value>
+  </data>
+  <data name="Spindles" xml:space="preserve">
+    <value>Husillos</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Instrumentos</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Pedidos</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Papel</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="UserManager" xml:space="preserve">
+    <value>Administrador de usuario</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Cambio Password</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Cerrar Sesión</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="Machine" xml:space="preserve">
+    <value>Máquina</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Período</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Modelo</value>
+  </data>
+  <data name="Serial" xml:space="preserve">
+    <value>De Serie</value>
+  </data>
+  <data name="Install" xml:space="preserve">
+    <value>Instalación</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="ProductType" xml:space="preserve">
+    <value>Tipo de Producto</value>
+  </data>
+  <data name="ProductVersion" xml:space="preserve">
+    <value>Version Producto</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Hoy</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Ayer</value>
+  </data>
+  <data name="Last7Days" xml:space="preserve">
+    <value>Los últimos 7 Días</value>
+  </data>
+  <data name="Last30Days" xml:space="preserve">
+    <value>Los últimos 30 Días</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>Este Mes</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>El mes pasado</value>
+  </data>
+  <data name="ApplyLabel" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="CancelLabel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="CustomRangeLabel" xml:space="preserve">
+    <value>Período</value>
+  </data>
+  <data name="Historical" xml:space="preserve">
+    <value>Histórico</value>
+  </data>
+  <data name="Operators" xml:space="preserve">
+    <value>Operadores</value>
+  </data>
+  <data name="Shifts" xml:space="preserve">
+    <value>Turnos</value>
+  </data>
+  <data name="UntilNow" xml:space="preserve">
+    <value>Hasta Ahora</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Hecho</value>
+  </data>
+  <data name="Redone" xml:space="preserve">
+    <value>Rehacer</value>
+  </data>
+  <data name="Bars" xml:space="preserve">
+    <value>Bares</value>
+  </data>
+  <data name="Cutoff" xml:space="preserve">
+    <value>Cortar</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="AverageSpeed" xml:space="preserve">
+    <value>Velocidad Media</value>
+  </data>
+  <data name="TimeToLive" xml:space="preserve">
+    <value>Tiempo Restante</value>
+  </data>
+  <data name="Overpower" xml:space="preserve">
+    <value>Dominar</value>
+  </data>
+  <data name="OverVibrating" xml:space="preserve">
+    <value>Vibración</value>
+  </data>
+  <data name="Overhating" xml:space="preserve">
+    <value>Sobrecalefacción</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Cambio</value>
+  </data>
+  <data name="Maintenance" xml:space="preserve">
+    <value>Mantenimiento</value>
+  </data>
+  <data name="UsageTime" xml:space="preserve">
+    <value>Tiempo de uso</value>
+  </data>
+  <data name="Usury" xml:space="preserve">
+    <value>Usura</value>
+  </data>
+  <data name="Breaking" xml:space="preserve">
+    <value>Ruptura</value>
+  </data>
+  <data name="Replacement" xml:space="preserve">
+    <value>Reemplazo</value>
+  </data>
+  <data name="Production" xml:space="preserve">
+    <value>Producción</value>
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value>Pausa</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Manual" xml:space="preserve">
+    <value>Manual</value>
+  </data>
+  <data name="Working" xml:space="preserve">
+    <value>Transformación</value>
+  </data>
+  <data name="Trim" xml:space="preserve">
+    <value>Título</value>
+  </data>
+  <data name="Cut" xml:space="preserve">
+    <value>Cortar</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>Otros</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Hora</value>
+  </data>
+  <data name="Progress" xml:space="preserve">
+    <value>Progreso</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="Typology" xml:space="preserve">
+    <value>Tipología</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>Datos no disponibles</value>
+  </data>
+  <data name="Shift" xml:space="preserve">
+    <value>Cambio</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
+  <data name="NetTime" xml:space="preserve">
+    <value>Tiempo Neto</value>
+  </data>
+  <data name="SpeedRanges" xml:space="preserve">
+    <value>Rangos de Velocidad</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Orden</value>
+  </data>
+  <data name="Operator" xml:space="preserve">
+    <value>Operador</value>
+  </data>
+  <data name="AlarmsNumber" xml:space="preserve">
+    <value>Número de alarmas</value>
+  </data>
+  <data name="BackToLogin" xml:space="preserve">
+    <value>Regrese a Login</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>No se le permite acceder a esta sección del tablero</value>
+  </data>
+  <data name="SessionTimeout" xml:space="preserve">
+    <value>La sesión ha caducado o se ha interrumpido</value>
+  </data>
+  <data name="NoPlant" xml:space="preserve">
+    <value>Usted no está asociado con ninguna planta</value>
+  </data>
+  <data name="NoMachine" xml:space="preserve">
+    <value>Usted no está asociado con cualquier coche</value>
+  </data>
+  <data name="UserPassNotValid" xml:space="preserve">
+    <value>Usuario o contraseña incorrectos</value>
+  </data>
+  <data name="LoginProblem" xml:space="preserve">
+    <value>Hubo un problema con el acceso</value>
+  </data>
+  <data name="Plant" xml:space="preserve">
+    <value>Fábrica</value>
+  </data>
+  <data name="PassNotValid" xml:space="preserve">
+    <value>Contraseña incorrecta</value>
+  </data>
+  <data name="UserExpired" xml:space="preserve">
+    <value>Usuario caducado</value>
+  </data>
+</root>

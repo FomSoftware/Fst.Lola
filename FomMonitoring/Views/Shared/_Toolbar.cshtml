@@ -1,0 +1,139 @@
+﻿@model FomMonitoringBLL.ViewModel.ToolbarViewModel
+@using FomMonitoringResources
+
+<div class="toolbar">
+    @if (Model.page == enPage.Machine)
+    {
+        <div class="row row-toolbar">
+            <div class="col-md-8 col-sm-7 col-xs-11 col-padding">
+                <div id="machines-filter" v-cloak>
+                    @if (Model.role != enRole.Operator)
+                    {
+                        <a class="btn btn-toolbar" href="@Url.Action("Index", "Mes")">
+                            <i class="fa fa-arrow-circle-left color-corporate fa-lg"></i>
+                        </a>
+                    }
+                    <!-- #region filter machine -->
+                    <div class="toolbar-filter">
+                        <span class="title-small">@Resource.Machine</span>
+                        <select id="machine_select" class="bs-select show-menu-arrow show-tick display-none machine-select">
+                            <option v-for="m in machines"
+                                    v-bind:value="m.id"
+                                    v-bind:selected="m.serial == selected.machine.serial"
+                                    v-bind:data-icon="'icofom-' + m.icon">
+                                {{ m.description || m.model }}
+                            </option>
+                        </select>
+                    </div>
+                    <!-- #endregion -->
+                    <!-- #region info machine -->
+                    <div class="dropdown dropdown-toolbar" onclick="SharedManager.handlerDropdown($(this))">
+                        <div class="btn btn-toolbar only-icon">
+                            <div class="icon-btn visible-sm visible-xs">
+                                <i class="icon-info color-corporate"></i>
+                            </div>
+                            <div class="info-macchina hidden-sm hidden-xs">
+                                <div>
+                                    <span class="title-small">@Resource.Type</span>
+                                    <span>{{selected.machine.mtype}}</span>
+                                </div>
+                                <div>
+                                    <span class="title-small">@Resource.Model</span>
+                                    <span>{{selected.machine.model}}</span>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="icon-arrow-down hidden-sm hidden-xs"></span>
+                            </div>
+                        </div>
+                        <div class="dropdown-content">
+                            <table class="table table-info">
+                                <tr>
+                                    <td>
+                                        <div>{{selected.machine.serial || empty}}</div>
+                                        <small class="title-small">@Resource.Serial</small>
+                                    </td>
+                                    <td>
+                                        <div>{{selected.machine.installation || empty}}</div>
+                                        <small class="title-small">@Resource.Install</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div>{{selected.machine.mtype || empty}}</div>
+                                        <small class="title-small">@Resource.Type</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>{{selected.machine.model || empty}}</div>
+                                        <small class="title-small">@Resource.Model</small>
+                                    </td>
+                                    <td>
+                                        <div>{{selected.machine.description || empty}}</div>
+                                        <small class="title-small">@Resource.Description</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>{{selected.machine.product_type || empty}}</div>
+                                        <small class="title-small">@Resource.ProductType</small>
+                                    </td>
+                                    <td>
+                                        <div>{{selected.machine.product_version || empty}}</div>
+                                        <small class="title-small">@Resource.ProductVersion</small>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- #endregion -->
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-5 col-xs-1 col-padding">
+                <div id="calendar" class="btn-toolbar pull-right">
+                    <div class="icon-btn">
+                        <i class="icon-calendar color-corporate"></i>
+                    </div>
+                    <div class="title-btn hidden-xs">
+                        <div class="text-period"></div>
+                        <small class="title-small">
+                            @Resource.Period
+                        </small>
+                    </div>
+                    <div class="hidden-xs">
+                        <i class="icon-arrow-down"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.page == enPage.Mes)
+    {
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="plants-filter" class="toolbar-filter" v-cloak>
+                    <i class="icofom-productivity" v-cloak></i>
+                    <span class="title-small">@Resource.Plant</span>
+                    <select id="plant_select" class="bs-select show-menu-arrow show-tick display-none plant-select">
+                        <option v-for="plant in plants"
+                                v-bind:value="plant.id"
+                                v-bind:selected="plant.id == selected.plant.id">
+                            {{ plant.name }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        var data = @Html.Raw(Json.Encode(Model));
+        SharedManager.initToolbar(data);
+    });
+
+</script>

@@ -1,0 +1,60 @@
+﻿
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Lato Hairline'), local('Lato-Hairline'), 
+        url(../fonts/Lato-Hairline.eot) format('embedded-opentype'),
+        url(../fonts/Lato-Hairline.woff2) format('woff2'),
+        url(../fonts/Lato-Hairline.ttf) format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Lato Light'), local('Lato-Light'), 
+      url(../fonts/Lato-Light.eot) format('embedded-opentype'),
+      url(../fonts/Lato-Light.woff2) format('woff2'),
+      url(../fonts/Lato-Light.ttf) format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), 
+      url(../fonts/Lato-Regular.eot) format('embedded-opentype'),
+      url(../fonts/Lato-Regular.woff2) format('woff2'),
+      url(../fonts/Lato-Regular.ttf) format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), 
+      url(../fonts/Lato-Bold.eot) format('embedded-opentype'),
+      url(../fonts/Lato-Bold.woff2) format('woff2'),
+      url(../fonts/Lato-Bold.ttf) format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Lato Black'), local('Lato-Black'), 
+      url(../fonts/Lato-Black.eot) format('embedded-opentype'),
+      url(../fonts/Lato-Black.woff2) format('woff2'),
+      url(../fonts/Lato-Black.ttf) format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}

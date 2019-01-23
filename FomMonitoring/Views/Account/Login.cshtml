@@ -1,0 +1,56 @@
+﻿@{Layout = null;}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8">
+
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
+    <title>Login</title>
+
+    @Styles.Render("~/Content/FomMonitoringStylesLOGIN")
+    @Scripts.Render("~/Scripts/FomMonitoringScriptsLOGIN")
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4 col-md-12 col-sm-12">
+                <div class="container-login">
+                    <div class="header">
+                        <div>Welcome</div>
+                        <img class="logo" src="~/Images/logo/Lola-lg.png">
+                        @*<div class="title-small">Dashboard</div>*@
+                    </div>
+                    <div class="content">
+                        @using (Html.BeginForm("/Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <i class="fa fa-user-o fa-lg" aria-hidden="true"></i>
+                                <input class="form-control username" type="text" placeholder="Username" name="username" />
+                            </div>
+                            <div class="form-group">
+                                <i class="icon-lock fa-lg" aria-hidden="true"></i>
+                                <input class="form-control password" type="password" placeholder="Password" name="password" />
+                            </div>
+                            if (ViewData.ModelState.Keys.Any(k => ViewData.ModelState[k].Errors.Any()))
+                            {
+                                <div class="alert validation">
+                                    @Html.ValidationSummary(true, "", new { @class = "alert-danger ptb-10" })
+                                </div>
+                            }
+                            <div class="form-actions">
+                                <button type="submit">LOGIN</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

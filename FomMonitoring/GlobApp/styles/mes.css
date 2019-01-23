@@ -1,0 +1,398 @@
+﻿
+#MesLevel {
+    opacity: 0;
+}
+
+    #MesLevel.show {
+        opacity: 1;
+        -moz-transition: opacity 3s;
+        -o-transition: opacity 3s;
+        -webkit-transition: opacity 3s;
+        transition: opacity 3s;
+    }
+
+/*#region portlet mes */
+
+.portlet-mes {
+    height: auto;
+    margin-bottom: 25px;
+}
+
+    .portlet-mes .portlet-title {
+        position: relative;
+        padding: 0px;
+        line-height: 1.15;
+        height: auto;
+        background-color: transparent;
+        font-size: 13px;
+    }
+
+        .portlet-mes .portlet-title .portlet-ribbon {
+            clear: none;
+            margin: -2px 0px 0 10px;
+            padding-top: 0.7em;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 7px;
+            border-radius: 0px 0px 3px 3px;
+            position: absolute;
+            background-color: #6DB1B2;
+            color: #fff;
+            /*background-color: #1F282B;
+            color: #6DB1B2;*/
+        }
+
+        .portlet-mes .portlet-title .portlet-machine {
+            padding: 5px 0 7px 50px;
+            display: block;
+        }
+
+            .portlet-mes .portlet-title .portlet-machine .pull-right {
+                font-size: 8px;
+                text-transform: lowercase;
+                font-weight: 300;
+            }
+
+    .portlet-mes .card-portlet {
+        height: 215px;
+    }
+
+        .portlet-mes .card-portlet .front,
+        .portlet-mes .card-portlet .back {
+            padding: 0px;
+        }
+
+/*#endregion */
+
+
+.row-title {
+    background-color: #2A373B;
+    padding: 6px 5px 3px 10px;
+    color: #6DB1B2;
+    color: #fff;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 300;
+    line-height: 1;
+    text-align: right;
+}
+
+    .row-title .pull-left {
+        letter-spacing: 0.5px;
+        font-size: 9px;
+    }
+
+
+
+.row-data {
+    position: relative;
+    height: 65px;
+    border-bottom: solid 1px #2A373B;
+}
+
+    .row-data .row {
+        margin: 0px -10px;
+    }
+
+    .row-data:last-child {
+        border-bottom: solid 2px #2A373B;
+    }
+
+.ribbon {
+    margin: 10px 0 0 -1px;
+    clear: left;
+    position: absolute;
+    height: 30px;
+    width: 5px;
+    background-color: rgba(109, 177, 178, 0.5);
+    background: #2A373B;
+    color: #eee;
+}
+
+    .ribbon.right {
+        right: 9px;
+    }
+
+.ribbon-title {
+    padding: 10px 0 7px 5px;
+    color: #aaa;
+}
+
+.text-right .ribbon-title {
+    padding: 10px 5px 7px 0px;
+}
+
+.worder {
+    padding-left: 38px !important;
+    position: relative;
+}
+
+    .worder .worder-icon {
+        left: 7px;
+        top: 0px;
+    }
+
+    .worder .worder-info .pull-left,
+    .worder .worder-info .pull-right {
+        line-height: 1.5;
+    }
+
+    .worder .worder-info .pull-right {
+        margin-top: 0px;
+    }
+
+
+/*#region dashboard item */
+
+.db-item .item-icon {
+    font-size: 1.5em;
+}
+
+.db-item .item-icon,
+.db-item .item-body {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.db-item .item-body {
+    line-height: 1.2;
+}
+
+    .db-item .item-body .item-value {
+        font-size: 13px;
+    }
+
+    .db-item .item-body .item-title {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+
+.db-item.item-piece-todo {
+    margin-top: 3px;
+}
+
+    .db-item.item-piece-todo .item-icon {
+        font-size: 1.2em;
+        margin-left: 2px;
+    }
+
+    .db-item.item-piece-todo .item-body .item-value {
+        margin-left: 3px;
+    }
+
+/*#endregion */
+
+
+/*#region table KPI */
+
+.table-kpi {
+    width: 100%;
+    margin-top: 5px;
+}
+
+    .table-kpi tr td:first-child {
+        padding-left: 10px;
+        padding: 2px 10px;
+    }
+
+    .table-kpi tr td:nth-child(2) {
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+/*#endregion */
+
+
+/*#region portlet machine */
+
+.box-machine {
+    background-color: #1F282B;
+    margin-bottom: 15px;
+    box-shadow: 0px 2px 7px rgba(0,0,0,0.25);
+    position: relative;
+}
+
+@media (min-width: 768px) {
+
+    .box-machine {
+        margin-bottom: 25px;
+    }
+}
+
+.box-machine .box-overlay {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    background-color: rgba(31, 40, 43, 0.5);
+    z-index: 4;
+    cursor: pointer;
+}
+
+.box-machine .status {
+    height: 5px;
+}
+
+.box-machine .box-title {
+    background-color: #2A373B;
+    margin: 0px;
+    /*padding: 7px 15px 10px;*/
+    height: 65px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 1.4;
+}
+
+    .box-machine .box-title .row {
+        margin: 0px;
+    }
+
+    .box-machine .box-title .col-icon {
+        padding: 13px 15px 10px 15px;
+        height: 65px;
+    }
+
+    .box-machine .box-title .col-info {
+        padding: 7px 0px 10px 5px;
+        height: 65px;
+    }
+
+    .box-machine .box-title .col-button {
+        padding: 0 0 0 5px;
+    }
+
+    /*.box-machine .box-title .hover-link:hover {
+        transition:background-color 1s;    
+        background-color: rgba(255, 255, 255, 0.1);
+    }*/
+
+    .box-machine .box-title:hover {
+        cursor: pointer;
+        transition: all 0.5s ease-out;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /*.box-machine .box-title:hover .col-button .btn-circle{
+       background-color: #2A373B;
+       background-color: #243033;
+    }*/
+
+
+
+    .box-machine .box-title .icofom-size {
+        font-size: 2.6em;
+    }
+
+.box-machine .box-body .card-portlet {
+    height: auto;
+}
+
+    .box-machine .box-body .card-portlet .front,
+    .box-machine .box-body .card-portlet .back {
+        padding: 0px;
+    }
+
+.box-machine .box-body .row {
+    margin: 0px;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    border-bottom: solid 1px #2A373B;
+}
+
+.box-machine .box-body .back .row {
+    padding-top: 5px;
+    padding-bottom: 3px;
+}
+
+.box-machine .box-body .row .fa-lg {
+    font-size: 1.15em;
+}
+
+.box-machine .box-body .item-label {
+    line-height: 1.4;
+    margin-top: 4px;
+    font-size: 14px;
+    clear: both;
+}
+
+    .box-machine .box-body .item-label .small {
+        font-size: 9px;
+        color: #aaa;
+        letter-spacing: 1px;
+        text-transform: lowercase;
+    }
+
+
+/*#endregion */
+
+
+/*#region machine header */
+
+.machine-header {
+    position: relative;
+}
+
+    .machine-header .machine-info .text-lowercase {
+        font-size: 12px;
+        color: #aaa;
+        letter-spacing: 0px;
+    }
+
+    .machine-header .btn-circle {
+        position: absolute;
+        right: 7px;
+        top: 0px;
+    }
+
+.btn-circle {
+    width: 100%;
+    height: 65px;
+    text-align: center;
+    padding: 5px 0;
+    padding-top: 15px;
+    font-size: 14px;
+    line-height: 2;
+    color: #aaa;
+    background-color: #2A373B;
+    border-left: solid 2px #243033;
+    border-radius: 0px;
+}
+
+    .btn-circle .icon-refresh {
+        margin-left: 3px;
+    }
+
+    .btn-circle:hover {
+        color: #fff;
+    }
+
+/*#endregion */
+
+.border-top {
+    border-top: solid 2px #2A373B;
+}
+
+
+/*#region responsive */
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+    .box-machine {
+        margin-bottom: 25px;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/*#endregion */
+
+
+

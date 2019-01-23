@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E28AB72B-8E73-4A94-94B4-85C23498DDA0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FomMonitoringCore</RootNamespace>
+    <AssemblyName>FomMonitoringCore</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonCore">
+      <HintPath>..\..\..\..\..\..\..\Desktop\Librerie_Alten\CommonCore.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mapster, Version=3.1.8.0, Culture=neutral, PublicKeyToken=2f39883af23c29a8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mapster.3.1.8\lib\net45\Mapster.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.5\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.5\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.5\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.6\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.6\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UserManager">
+      <HintPath>..\..\..\..\..\..\..\Desktop\Librerie_Alten\UserManager.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAL\AlarmMachine.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Bar.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\CurrentState.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\FomMonitoringModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FomMonitoringModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\FomMonitoringModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\FomMonitoringModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\HistoryAlarm.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\HistoryBar.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\HistoryJob.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\HistoryPiece.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\HistoryState.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\JsonData.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Machine.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\MachineModel.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\MachineType.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Piece.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Plant.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Spindle.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\State.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\StateMachine.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\ToolMachine.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\UserCustomerMapping.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\UserMachineMapping.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\UserPlantMapping.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\usp_AggregationAlarm_Result.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\usp_AggregationBar_Result.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\usp_AggregationJob_Result.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\usp_AggregationPiece_Result.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\usp_AggregationState_Result.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\usp_MesUserMachines_Result.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL_SQLite\bar.cs">
+      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL_SQLite\error.cs">
+      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL_SQLite\FomMonitoringModelSQLite.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FomMonitoringModelSQLite.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL_SQLite\FomMonitoringModelSQLite.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL_SQLite\FomMonitoringModelSQLite.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FomMonitoringModelSQLite.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL_SQLite\historyAlarm.cs">
+      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL_SQLite\historyBar.cs">
+      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL_SQLite\historyJob.cs">
+      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL_SQLite\historyPiece.cs">
+      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL_SQLite\historyState.cs">
+      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL_SQLite\info.cs">
+      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL_SQLite\piece.cs">
+      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL_SQLite\spindle.cs">
+      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL_SQLite\state.cs">
+      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL_SQLite\tool.cs">
+      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\Common\Attributes.cs" />
+    <Compile Include="Framework\Common\Common.cs" />
+    <Compile Include="Framework\Common\Enumerators.cs" />
+    <Compile Include="Framework\Common\ExtensionMethods.cs" />
+    <Compile Include="Framework\Config\MapsterConfig.cs" />
+    <Compile Include="Framework\Model\AlarmMachineModel.cs" />
+    <Compile Include="Framework\Model\BarModel.cs" />
+    <Compile Include="Framework\Model\ContextModel.cs" />
+    <Compile Include="Framework\Model\CurrentStateModel.cs" />
+    <Compile Include="Framework\Model\HistoryAlarmModel.cs" />
+    <Compile Include="Framework\Model\HistoryBarModel.cs" />
+    <Compile Include="Framework\Model\HistoryPieceModel.cs" />
+    <Compile Include="Framework\Model\HistoryStateModel.cs" />
+    <Compile Include="Framework\Model\HistoryJobModel.cs" />
+    <Compile Include="Framework\Model\JsonCustomersModel.cs" />
+    <Compile Include="Framework\Model\JsonDataModel.cs" />
+    <Compile Include="Framework\Model\JsonLoginModel.cs" />
+    <Compile Include="Framework\Model\LoginModel.cs" />
+    <Compile Include="Framework\Model\MachineInfoModel.cs" />
+    <Compile Include="Framework\Model\MachineModelModel.cs" />
+    <Compile Include="Framework\Model\MachineTypeModel.cs" />
+    <Compile Include="Framework\Model\PeriodModel.cs" />
+    <Compile Include="Framework\Model\PieceModel.cs" />
+    <Compile Include="Framework\Model\MesUserMachinesModel.cs" />
+    <Compile Include="Framework\Model\PlantModel.cs" />
+    <Compile Include="Framework\Model\ResponseModel.cs" />
+    <Compile Include="Framework\Model\SpindleModel.cs" />
+    <Compile Include="Framework\Model\StateMachineModel.cs" />
+    <Compile Include="Framework\Model\StateModel.cs" />
+    <Compile Include="Framework\Model\ToolMachineModel.cs" />
+    <Compile Include="Framework\Model\UserIdentityModel.cs" />
+    <Compile Include="Framework\Model\UserPlantMappingModel.cs" />
+    <Compile Include="Framework\Model\UserMachineMappingModel.cs" />
+    <Compile Include="Framework\Model\UserModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\AccountService.cs" />
+    <Compile Include="Service\AjaxService.cs" />
+    <Compile Include="Service\AlarmService.cs" />
+    <Compile Include="Service\API\Concrete\JsonDataService.cs" />
+    <Compile Include="Service\API\IBasicManager.cs" />
+    <Compile Include="Service\API\Concrete\AddChallengeOnUnauthorizedResult.cs" />
+    <Compile Include="Service\API\Concrete\AuthenticationFailureResult.cs" />
+    <Compile Include="Service\API\Concrete\BasicManager.cs" />
+    <Compile Include="Service\API\Concrete\JwtManager.cs" />
+    <Compile Include="Service\API\IJsonDataService.cs" />
+    <Compile Include="Service\API\IJwtManager.cs" />
+    <Compile Include="Service\APIClient\Concrete\AsyncHelpersService.cs" />
+    <Compile Include="Service\BarService.cs" />
+    <Compile Include="Service\ContextService.cs" />
+    <Compile Include="Service\APIClient\Concrete\CUrlService.cs" />
+    <Compile Include="Service\DataMapping\JsonToSQLiteService.cs" />
+    <Compile Include="Service\DataMapping\SQLiteToSQLServerService.cs" />
+    <Compile Include="Service\JobService.cs" />
+    <Compile Include="Service\MachineService.cs" />
+    <Compile Include="Service\PeriodService.cs" />
+    <Compile Include="Service\PieceService.cs" />
+    <Compile Include="Service\MesService.cs" />
+    <Compile Include="Service\ToolService.cs" />
+    <Compile Include="Service\SpindleService.cs" />
+    <Compile Include="Service\StateService.cs" />
+    <Compile Include="Service\APIClient\Concrete\JsonAPIClientService.cs" />
+    <Compile Include="Service\APIClient\IJsonAPIClientService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="DAL\FomMonitoringModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FomMonitoringModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DAL\FomMonitoringModel.edmx.diagram">
+      <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="DAL_SQLite\FomMonitoringModelSQLite.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FomMonitoringModelSQLite.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DAL_SQLite\FomMonitoringModelSQLite.edmx.diagram">
+      <DependentUpon>FomMonitoringModelSQLite.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FomMonitoringResources\FomMonitoringResources.csproj">
+      <Project>{D55F7E93-771C-4180-83DE-353B98DAA2B5}</Project>
+      <Name>FomMonitoringResources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DAL\FomMonitoringModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
+      <LastGenOutput>FomMonitoringModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DAL\FomMonitoringModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
+      <LastGenOutput>FomMonitoringModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="DAL_SQLite\FomMonitoringModelSQLite.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FomMonitoringModelSQLite.edmx</DependentUpon>
+      <LastGenOutput>FomMonitoringModelSQLite.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DAL_SQLite\FomMonitoringModelSQLite.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FomMonitoringModelSQLite.edmx</DependentUpon>
+      <LastGenOutput>FomMonitoringModelSQLite.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

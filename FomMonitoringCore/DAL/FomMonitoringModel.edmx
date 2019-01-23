@@ -1,0 +1,2133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FST_FomMonitoringModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="JsonData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ElaborationDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="IsCumulative" Type="bit" Nullable="false" />
+          <Property Name="IsElaborated" Type="bit" Nullable="false" />
+          <Property Name="IsLoaded" Type="bit" Nullable="false" />
+          <Property Name="Json" Type="ntext" />
+        </EntityType>
+        <EntityType Name="AlarmMachine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Day" Type="datetime" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="ElapsedTime" Type="bigint" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="Operator" Type="varchar" MaxLength="100" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="StateId" Type="int" />
+        </EntityType>
+        <EntityType Name="Bar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BadAreas" Type="varchar(max)" />
+          <Property Name="Color" Type="varchar" MaxLength="100" />
+          <Property Name="IdOld" Type="int" />
+          <Property Name="Index" Type="int" />
+          <Property Name="IsOffcut" Type="bit" />
+          <Property Name="Length" Type="float" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="ProfileCode" Type="varchar" MaxLength="100" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="System" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CurrentState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobCode" Type="varchar" MaxLength="100" />
+          <Property Name="JobProducedPieces" Type="int" />
+          <Property Name="JobTotalPieces" Type="int" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="NextMaintenanceService" Type="datetime" />
+          <Property Name="Operator" Type="varchar" MaxLength="100" />
+          <Property Name="Plant" Type="varchar" MaxLength="100" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="StateTransitionCode" Type="varchar" MaxLength="100" />
+          <Property Name="StateTransitionDescription" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="HistoryAlarm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Day" Type="datetime" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="ElapsedTime" Type="bigint" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="Period" Type="int" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="TypeHistory" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="HistoryBar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Day" Type="datetime" />
+          <Property Name="Length" Type="float" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="OffcutCount" Type="int" />
+          <Property Name="OffcutLength" Type="int" />
+          <Property Name="Period" Type="int" />
+          <Property Name="System" Type="varchar" MaxLength="100" />
+          <Property Name="TypeHistory" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="HistoryJob">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Day" Type="datetime" />
+          <Property Name="ElapsedTime" Type="bigint" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="Period" Type="int" />
+          <Property Name="PiecesProduced" Type="int" />
+          <Property Name="PiecesProducedDay" Type="int" />
+          <Property Name="TotalPieces" Type="int" />
+          <Property Name="TypeHistory" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="HistoryPiece">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompletedCount" Type="int" />
+          <Property Name="Day" Type="datetime" />
+          <Property Name="ElapsedTime" Type="bigint" />
+          <Property Name="ElapsedTimeProducing" Type="bigint" />
+          <Property Name="ElapsedTimeCut" Type="bigint" />
+          <Property Name="ElapsedTimeWorking" Type="bigint" />
+          <Property Name="ElapsedTimeTrim" Type="bigint" />
+          <Property Name="ElapsedTimeAnuba" Type="bigint" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="Operator" Type="varchar" MaxLength="100" />
+          <Property Name="Period" Type="int" />
+          <Property Name="PieceLengthSum" Type="int" />
+          <Property Name="RedoneCount" Type="int" />
+          <Property Name="Shift" Type="int" />
+          <Property Name="System" Type="varchar" MaxLength="100" />
+          <Property Name="TypeHistory" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="HistoryState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Day" Type="datetime" />
+          <Property Name="ElapsedTime" Type="bigint" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="Operator" Type="varchar" MaxLength="100" />
+          <Property Name="OverfeedAvg" Type="float" />
+          <Property Name="Period" Type="int" />
+          <Property Name="Shift" Type="int" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="TypeHistory" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Machine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="FirmwareVersion" Type="varchar" MaxLength="100" />
+          <Property Name="InstallationDate" Type="datetime" />
+          <Property Name="KeyId" Type="varchar(max)" />
+          <Property Name="LoginDate" Type="datetime" />
+          <Property Name="MachineModelId" Type="int" />
+          <Property Name="MachineTypeId" Type="int" />
+          <Property Name="NextMaintenanceService" Type="datetime" />
+          <Property Name="PlantId" Type="int" />
+          <Property Name="PlcVersion" Type="varchar" MaxLength="100" />
+          <Property Name="Product" Type="varchar" MaxLength="100" />
+          <Property Name="ProductVersion" Type="varchar" MaxLength="100" />
+          <Property Name="Serial" Type="varchar" MaxLength="100" />
+          <Property Name="Shift1" Type="time" Precision="0" />
+          <Property Name="Shift2" Type="time" Precision="0" />
+          <Property Name="Shift3" Type="time" Precision="0" />
+          <Property Name="BarsProductivityGreenThreshold" Type="float" />
+          <Property Name="BarsProductivityYellowThreshold" Type="float" />
+          <Property Name="LastUpdate" Type="datetime" />
+          <Property Name="OverfeedGreenThreshold" Type="float" />
+          <Property Name="OverfeedYellowThreshold" Type="float" />
+          <Property Name="PiecesProductivityGreenThreshold" Type="float" />
+          <Property Name="PiecesProductivityYellowThreshold" Type="float" />
+          <Property Name="StateProductivityGreenThreshold" Type="float" />
+          <Property Name="StateProductivityYellowThreshold" Type="float" />
+          <Property Name="UTC" Type="float" />
+        </EntityType>
+        <EntityType Name="MachineModel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="MachineType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Image" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Piece">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BarId" Type="int" />
+          <Property Name="Day" Type="datetime" />
+          <Property Name="ElapsedTime" Type="bigint" />
+          <Property Name="ElapsedTimeProducing" Type="bigint" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="FrameId" Type="varchar" MaxLength="100" />
+          <Property Name="Index" Type="int" />
+          <Property Name="IsCompleted" Type="bit" />
+          <Property Name="IsRedone" Type="bit" />
+          <Property Name="JobId" Type="int" />
+          <Property Name="Length" Type="float" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="Operator" Type="varchar" MaxLength="100" />
+          <Property Name="RedoneReason" Type="varchar(max)" />
+          <Property Name="Shift" Type="int" />
+          <Property Name="System" Type="varchar" MaxLength="100" />
+          <Property Name="TipologyCode" Type="varchar" MaxLength="100" />
+          <Property Name="StartTimeCut" Type="datetime" />
+          <Property Name="EndTimeCut" Type="datetime" />
+          <Property Name="ElapsedTimeCut" Type="bigint" />
+          <Property Name="StartTimeWorking" Type="datetime" />
+          <Property Name="EndTimeWorking" Type="datetime" />
+          <Property Name="ElapsedTimeWorking" Type="bigint" />
+          <Property Name="StartTimeTrim" Type="datetime" />
+          <Property Name="EndTimeTrim" Type="datetime" />
+          <Property Name="ElapsedTimeTrim" Type="bigint" />
+          <Property Name="StartTimeAnuba" Type="datetime" />
+          <Property Name="EndTimeAnuba" Type="datetime" />
+          <Property Name="ElapsedTimeAnuba" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Plant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Address" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Spindle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="ElapsedTimeWorkTotal" Type="bigint" />
+          <Property Name="ElapsedTimeWork3K" Type="bigint" />
+          <Property Name="ElapsedTimeWork6K" Type="bigint" />
+          <Property Name="ElapsedTimeWork9K" Type="bigint" />
+          <Property Name="ElapsedTimeWork12K" Type="bigint" />
+          <Property Name="ElapsedTimeWork15K" Type="bigint" />
+          <Property Name="ElapsedTimeWork18K" Type="bigint" />
+          <Property Name="ExpectedWorkTime" Type="bigint" />
+          <Property Name="WorkOverheatingCount" Type="int" />
+          <Property Name="WorkOverPowerCount" Type="int" />
+          <Property Name="WorkOverVibratingCount" Type="int" />
+          <Property Name="InstallDate" Type="datetime" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="ReplacedDate" Type="datetime" />
+          <Property Name="Serial" Type="varchar" MaxLength="100" />
+          <Property Name="ToolChangedCount" Type="int" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StateMachine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Day" Type="datetime" />
+          <Property Name="ElapsedTime" Type="bigint" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="OperatorLevel" Type="int" />
+          <Property Name="Operator" Type="varchar" MaxLength="100" />
+          <Property Name="Overfeed" Type="float" />
+          <Property Name="Reason" Type="varchar(max)" />
+          <Property Name="Shift" Type="int" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="StateId" Type="int" />
+        </EntityType>
+        <EntityType Name="ToolMachine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrokenEventsCount" Type="int" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="CurrentLife" Type="bigint" />
+          <Property Name="DateLoaded" Type="datetime" />
+          <Property Name="DateReplaced" Type="datetime" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="ExpectedLife" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsBroken" Type="bit" Nullable="false" />
+          <Property Name="IsRevised" Type="bit" Nullable="false" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="RevisedEventsCount" Type="int" />
+        </EntityType>
+        <EntityType Name="UserCustomerMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserMachineMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MachineId" Type="int" Nullable="false" />
+          <Property Name="ExpirationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPlantMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlantId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AlarmMachine_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
+          <End Role="AlarmMachine" Type="Self.AlarmMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlarmMachine">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlarmMachine_State">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="AlarmMachine" Type="Self.AlarmMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlarmMachine">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bar_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
+          <End Role="Bar" Type="Self.Bar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bar">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrentState_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
+          <End Role="CurrentState" Type="Self.CurrentState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrentState">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrentState_State">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="CurrentState" Type="Self.CurrentState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrentState">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryAlarm_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
+          <End Role="HistoryAlarm" Type="Self.HistoryAlarm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryAlarm">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryAlarm_State">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="HistoryAlarm" Type="Self.HistoryAlarm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryAlarm">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryBar_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
+          <End Role="HistoryBar" Type="Self.HistoryBar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryBar">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryJob_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
+          <End Role="HistoryJob" Type="Self.HistoryJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryJob">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryPiece_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
+          <End Role="HistoryPiece" Type="Self.HistoryPiece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryPiece">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryState_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
+          <End Role="HistoryState" Type="Self.HistoryState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryState">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryState_State">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="HistoryState" Type="Self.HistoryState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryState">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_MachineModel">
+          <End Role="MachineModel" Type="Self.MachineModel" Multiplicity="0..1" />
+          <End Role="Machine" Type="Self.Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineModel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="MachineModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_MachineType">
+          <End Role="MachineType" Type="Self.MachineType" Multiplicity="0..1" />
+          <End Role="Machine" Type="Self.Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="MachineTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_Plant">
+          <End Role="Plant" Type="Self.Plant" Multiplicity="0..1" />
+          <End Role="Machine" Type="Self.Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="PlantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Piece_Bar">
+          <End Role="Bar" Type="Self.Bar" Multiplicity="0..1" />
+          <End Role="Piece" Type="Self.Piece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Piece">
+              <PropertyRef Name="BarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Piece_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
+          <End Role="Piece" Type="Self.Piece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Piece">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Spindle_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
+          <End Role="Spindle" Type="Self.Spindle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Spindle">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StateMachine_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
+          <End Role="StateMachine" Type="Self.StateMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StateMachine">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StateMachine_State">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="StateMachine" Type="Self.StateMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StateMachine">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ToolMachine_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
+          <End Role="ToolMachine" Type="Self.ToolMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ToolMachine">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMachineMapping_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="1" />
+          <End Role="UserMachineMapping" Type="Self.UserMachineMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMachineMapping">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPlantMapping_Plant">
+          <End Role="Plant" Type="Self.Plant" Multiplicity="1" />
+          <End Role="UserPlantMapping" Type="Self.UserPlantMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPlantMapping">
+              <PropertyRef Name="PlantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="usp_HistoricizingAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
+          <Parameter Name="machineId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_AggregationAlarm" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="machineId" Type="int" Mode="In" />
+          <Parameter Name="startDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
+          <Parameter Name="aggregation" Type="int" Mode="In" />
+          <Parameter Name="dataType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_AggregationBar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="machineId" Type="int" Mode="In" />
+          <Parameter Name="startDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
+          <Parameter Name="aggregation" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_AggregationJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="machineId" Type="int" Mode="In" />
+          <Parameter Name="startDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
+          <Parameter Name="aggregation" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_AggregationPiece" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="machineId" Type="int" Mode="In" />
+          <Parameter Name="startDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
+          <Parameter Name="aggregation" Type="int" Mode="In" />
+          <Parameter Name="dataType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_AggregationState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="machineId" Type="int" Mode="In" />
+          <Parameter Name="startDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
+          <Parameter Name="aggregation" Type="int" Mode="In" />
+          <Parameter Name="dataType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_CleanMachineData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="machineId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_MesUserMachines" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="plantId" Type="int" Mode="In" />
+          <Parameter Name="date" Type="datetime" Mode="In" />
+        </Function>
+        <EntityContainer Name="FST_FomMonitoringModelStoreContainer">
+          <EntitySet Name="JsonData" EntityType="Self.JsonData" Schema="api" store:Type="Tables" />
+          <EntitySet Name="AlarmMachine" EntityType="Self.AlarmMachine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bar" EntityType="Self.Bar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurrentState" EntityType="Self.CurrentState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoryAlarm" EntityType="Self.HistoryAlarm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoryBar" EntityType="Self.HistoryBar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoryJob" EntityType="Self.HistoryJob" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoryPiece" EntityType="Self.HistoryPiece" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoryState" EntityType="Self.HistoryState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Machine" EntityType="Self.Machine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MachineModel" EntityType="Self.MachineModel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MachineType" EntityType="Self.MachineType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Piece" EntityType="Self.Piece" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plant" EntityType="Self.Plant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Spindle" EntityType="Self.Spindle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StateMachine" EntityType="Self.StateMachine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ToolMachine" EntityType="Self.ToolMachine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserCustomerMapping" EntityType="Self.UserCustomerMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMachineMapping" EntityType="Self.UserMachineMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPlantMapping" EntityType="Self.UserPlantMapping" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AlarmMachine_Machine" Association="Self.FK_AlarmMachine_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="AlarmMachine" EntitySet="AlarmMachine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlarmMachine_State" Association="Self.FK_AlarmMachine_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="AlarmMachine" EntitySet="AlarmMachine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bar_Machine" Association="Self.FK_Bar_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="Bar" EntitySet="Bar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrentState_Machine" Association="Self.FK_CurrentState_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="CurrentState" EntitySet="CurrentState" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrentState_State" Association="Self.FK_CurrentState_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="CurrentState" EntitySet="CurrentState" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryAlarm_Machine" Association="Self.FK_HistoryAlarm_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="HistoryAlarm" EntitySet="HistoryAlarm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryAlarm_State" Association="Self.FK_HistoryAlarm_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="HistoryAlarm" EntitySet="HistoryAlarm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryBar_Machine" Association="Self.FK_HistoryBar_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="HistoryBar" EntitySet="HistoryBar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryJob_Machine" Association="Self.FK_HistoryJob_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="HistoryJob" EntitySet="HistoryJob" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryPiece_Machine" Association="Self.FK_HistoryPiece_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="HistoryPiece" EntitySet="HistoryPiece" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryState_Machine" Association="Self.FK_HistoryState_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="HistoryState" EntitySet="HistoryState" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryState_State" Association="Self.FK_HistoryState_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="HistoryState" EntitySet="HistoryState" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_MachineModel" Association="Self.FK_Machine_MachineModel">
+            <End Role="MachineModel" EntitySet="MachineModel" />
+            <End Role="Machine" EntitySet="Machine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_MachineType" Association="Self.FK_Machine_MachineType">
+            <End Role="MachineType" EntitySet="MachineType" />
+            <End Role="Machine" EntitySet="Machine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_Plant" Association="Self.FK_Machine_Plant">
+            <End Role="Plant" EntitySet="Plant" />
+            <End Role="Machine" EntitySet="Machine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Piece_Bar" Association="Self.FK_Piece_Bar">
+            <End Role="Bar" EntitySet="Bar" />
+            <End Role="Piece" EntitySet="Piece" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Piece_Machine" Association="Self.FK_Piece_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="Piece" EntitySet="Piece" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Spindle_Machine" Association="Self.FK_Spindle_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="Spindle" EntitySet="Spindle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StateMachine_Machine" Association="Self.FK_StateMachine_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="StateMachine" EntitySet="StateMachine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StateMachine_State" Association="Self.FK_StateMachine_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="StateMachine" EntitySet="StateMachine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ToolMachine_Machine" Association="Self.FK_ToolMachine_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="ToolMachine" EntitySet="ToolMachine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMachineMapping_Machine" Association="Self.FK_UserMachineMapping_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="UserMachineMapping" EntitySet="UserMachineMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPlantMapping_Plant" Association="Self.FK_UserPlantMapping_Plant">
+            <End Role="Plant" EntitySet="Plant" />
+            <End Role="UserPlantMapping" EntitySet="UserPlantMapping" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FST_FomMonitoringModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FST_FomMonitoringEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AlarmMachine" EntityType="FST_FomMonitoringModel.AlarmMachine" />
+          <EntitySet Name="HistoryAlarm" EntityType="FST_FomMonitoringModel.HistoryAlarm" />
+          <EntitySet Name="MachineModel" EntityType="FST_FomMonitoringModel.MachineModel" />
+          <EntitySet Name="State" EntityType="FST_FomMonitoringModel.State" />
+          <AssociationSet Name="FK_AlarmMachine_State" Association="FST_FomMonitoringModel.FK_AlarmMachine_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="AlarmMachine" EntitySet="AlarmMachine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryAlarm_State" Association="FST_FomMonitoringModel.FK_HistoryAlarm_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="HistoryAlarm" EntitySet="HistoryAlarm" />
+          </AssociationSet>
+          <EntitySet Name="HistoryBar" EntityType="FST_FomMonitoringModel.HistoryBar" />
+          <EntitySet Name="HistoryState" EntityType="FST_FomMonitoringModel.HistoryState" />
+          <EntitySet Name="StateMachine" EntityType="FST_FomMonitoringModel.StateMachine" />
+          <AssociationSet Name="FK_HistoryState_State" Association="FST_FomMonitoringModel.FK_HistoryState_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="HistoryState" EntitySet="HistoryState" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StateMachine_State" Association="FST_FomMonitoringModel.FK_StateMachine_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="StateMachine" EntitySet="StateMachine" />
+          </AssociationSet>
+          <FunctionImport Name="usp_AggregationState" ReturnType="Collection(FST_FomMonitoringModel.usp_AggregationState_Result)">
+            <Parameter Name="machineId" Mode="In" Type="Int32" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+            <Parameter Name="aggregation" Mode="In" Type="Int32" />
+            <Parameter Name="dataType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Piece" EntityType="FST_FomMonitoringModel.Piece" />
+          <EntitySet Name="Bar" EntityType="FST_FomMonitoringModel.Bar" />
+          <AssociationSet Name="FK_Piece_Bar" Association="FST_FomMonitoringModel.FK_Piece_Bar">
+            <End Role="Bar" EntitySet="Bar" />
+            <End Role="Piece" EntitySet="Piece" />
+          </AssociationSet>
+          <EntitySet Name="HistoryPiece" EntityType="FST_FomMonitoringModel.HistoryPiece" />
+          <FunctionImport Name="usp_AggregationPiece" ReturnType="Collection(FST_FomMonitoringModel.usp_AggregationPiece_Result)">
+            <Parameter Name="machineId" Mode="In" Type="Int32" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+            <Parameter Name="aggregation" Mode="In" Type="Int32" />
+            <Parameter Name="dataType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_AggregationBar" ReturnType="Collection(FST_FomMonitoringModel.usp_AggregationBar_Result)">
+            <Parameter Name="machineId" Mode="In" Type="Int32" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+            <Parameter Name="aggregation" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_AggregationAlarm" ReturnType="Collection(FST_FomMonitoringModel.usp_AggregationAlarm_Result)">
+            <Parameter Name="machineId" Mode="In" Type="Int32" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+            <Parameter Name="aggregation" Mode="In" Type="Int32" />
+            <Parameter Name="dataType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="CurrentState" EntityType="FST_FomMonitoringModel.CurrentState" />
+          <AssociationSet Name="FK_CurrentState_State" Association="FST_FomMonitoringModel.FK_CurrentState_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="CurrentState" EntitySet="CurrentState" />
+          </AssociationSet>
+          <EntitySet Name="ToolMachine" EntityType="FST_FomMonitoringModel.ToolMachine" />
+          <EntitySet Name="MachineType" EntityType="FST_FomMonitoringModel.MachineType" />
+          <EntitySet Name="Machine" EntityType="FST_FomMonitoringModel.Machine" />
+          <EntitySet Name="Plant" EntityType="FST_FomMonitoringModel.Plant" />
+          <AssociationSet Name="FK_AlarmMachine_Machine" Association="FST_FomMonitoringModel.FK_AlarmMachine_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="AlarmMachine" EntitySet="AlarmMachine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrentState_Machine" Association="FST_FomMonitoringModel.FK_CurrentState_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="CurrentState" EntitySet="CurrentState" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryAlarm_Machine" Association="FST_FomMonitoringModel.FK_HistoryAlarm_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="HistoryAlarm" EntitySet="HistoryAlarm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryBar_Machine" Association="FST_FomMonitoringModel.FK_HistoryBar_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="HistoryBar" EntitySet="HistoryBar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryPiece_Machine" Association="FST_FomMonitoringModel.FK_HistoryPiece_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="HistoryPiece" EntitySet="HistoryPiece" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryState_Machine" Association="FST_FomMonitoringModel.FK_HistoryState_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="HistoryState" EntitySet="HistoryState" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_MachineModel" Association="FST_FomMonitoringModel.FK_Machine_MachineModel">
+            <End Role="MachineModel" EntitySet="MachineModel" />
+            <End Role="Machine" EntitySet="Machine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_MachineType" Association="FST_FomMonitoringModel.FK_Machine_MachineType">
+            <End Role="MachineType" EntitySet="MachineType" />
+            <End Role="Machine" EntitySet="Machine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_Plant" Association="FST_FomMonitoringModel.FK_Machine_Plant">
+            <End Role="Plant" EntitySet="Plant" />
+            <End Role="Machine" EntitySet="Machine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Piece_Machine" Association="FST_FomMonitoringModel.FK_Piece_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="Piece" EntitySet="Piece" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StateMachine_Machine" Association="FST_FomMonitoringModel.FK_StateMachine_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="StateMachine" EntitySet="StateMachine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ToolMachine_Machine" Association="FST_FomMonitoringModel.FK_ToolMachine_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="ToolMachine" EntitySet="ToolMachine" />
+          </AssociationSet>
+          <EntitySet Name="HistoryJob" EntityType="FST_FomMonitoringModel.HistoryJob" />
+          <EntitySet Name="UserCustomerMapping" EntityType="FST_FomMonitoringModel.UserCustomerMapping" />
+          <EntitySet Name="UserPlantMapping" EntityType="FST_FomMonitoringModel.UserPlantMapping" />
+          <AssociationSet Name="FK_HistoryJob_Machine" Association="FST_FomMonitoringModel.FK_HistoryJob_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="HistoryJob" EntitySet="HistoryJob" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPlantMapping_Plant" Association="FST_FomMonitoringModel.FK_UserPlantMapping_Plant">
+            <End Role="Plant" EntitySet="Plant" />
+            <End Role="UserPlantMapping" EntitySet="UserPlantMapping" />
+          </AssociationSet>
+          <FunctionImport Name="usp_AggregationJob" ReturnType="Collection(FST_FomMonitoringModel.usp_AggregationJob_Result)">
+            <Parameter Name="machineId" Mode="In" Type="Int32" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+            <Parameter Name="aggregation" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_MesUserMachines" ReturnType="Collection(FST_FomMonitoringModel.usp_MesUserMachines_Result)">
+            <Parameter Name="plantId" Mode="In" Type="Int32" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <AssociationSet Name="FK_Bar_Machine" Association="FST_FomMonitoringModel.FK_Bar_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="Bar" EntitySet="Bar" />
+          </AssociationSet>
+          <EntitySet Name="Spindle" EntityType="FST_FomMonitoringModel.Spindle" />
+          <AssociationSet Name="FK_Spindle_Machine" Association="FST_FomMonitoringModel.FK_Spindle_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="Spindle" EntitySet="Spindle" />
+          </AssociationSet>
+          <FunctionImport Name="usp_CleanMachineData" ReturnType="Collection(Int32)">
+          <Parameter Name="machineId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="JsonData" EntityType="FST_FomMonitoringModel.JsonData" />
+          <FunctionImport Name="usp_HistoricizingAll">
+          <Parameter Name="machineId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="UserMachineMapping" EntityType="FST_FomMonitoringModel.UserMachineMapping" />
+          <AssociationSet Name="FK_UserMachineMapping_Machine" Association="FST_FomMonitoringModel.FK_UserMachineMapping_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="UserMachineMapping" EntitySet="UserMachineMapping" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="AlarmMachine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Day" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ElapsedTime" Type="Int64" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="Operator" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="StateId" Type="Int32" />
+          <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_AlarmMachine_State" FromRole="AlarmMachine" ToRole="State" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_AlarmMachine_Machine" FromRole="AlarmMachine" ToRole="Machine" />
+        </EntityType>
+        <EntityType Name="HistoryAlarm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Day" Type="DateTime" Precision="3" />
+          <Property Name="ElapsedTime" Type="Int64" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="Period" Type="Int32" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="TypeHistory" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_HistoryAlarm_State" FromRole="HistoryAlarm" ToRole="State" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_HistoryAlarm_Machine" FromRole="HistoryAlarm" ToRole="Machine" />
+        </EntityType>
+        <EntityType Name="MachineModel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_Machine_MachineModel" FromRole="MachineModel" ToRole="Machine" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AlarmMachine" Relationship="FST_FomMonitoringModel.FK_AlarmMachine_State" FromRole="State" ToRole="AlarmMachine" />
+          <NavigationProperty Name="HistoryAlarm" Relationship="FST_FomMonitoringModel.FK_HistoryAlarm_State" FromRole="State" ToRole="HistoryAlarm" />
+          <NavigationProperty Name="HistoryState" Relationship="FST_FomMonitoringModel.FK_HistoryState_State" FromRole="State" ToRole="HistoryState" />
+          <NavigationProperty Name="StateMachine" Relationship="FST_FomMonitoringModel.FK_StateMachine_State" FromRole="State" ToRole="StateMachine" />
+          <NavigationProperty Name="CurrentState" Relationship="FST_FomMonitoringModel.FK_CurrentState_State" FromRole="State" ToRole="CurrentState" />
+          </EntityType>
+        <Association Name="FK_AlarmMachine_State">
+          <End Type="FST_FomMonitoringModel.State" Role="State" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.AlarmMachine" Role="AlarmMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlarmMachine">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryAlarm_State">
+          <End Type="FST_FomMonitoringModel.State" Role="State" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.HistoryAlarm" Role="HistoryAlarm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryAlarm">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HistoryBar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Day" Type="DateTime" Precision="3" />
+          <Property Name="Length" Type="Double" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="OffcutCount" Type="Int32" />
+          <Property Name="OffcutLength" Type="Int32" />
+          <Property Name="Period" Type="Int32" />
+          <Property Name="System" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TypeHistory" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_HistoryBar_Machine" FromRole="HistoryBar" ToRole="Machine" />
+        </EntityType>
+        <EntityType Name="HistoryState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Day" Type="DateTime" Precision="3" />
+          <Property Name="ElapsedTime" Type="Int64" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="Operator" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OverfeedAvg" Type="Double" />
+          <Property Name="Period" Type="Int32" />
+          <Property Name="Shift" Type="Int32" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="TypeHistory" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_HistoryState_State" FromRole="HistoryState" ToRole="State" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_HistoryState_Machine" FromRole="HistoryState" ToRole="Machine" />
+        </EntityType>
+        <EntityType Name="StateMachine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Day" Type="DateTime" Precision="3" />
+          <Property Name="ElapsedTime" Type="Int64" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="OperatorLevel" Type="Int32" />
+          <Property Name="Operator" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Overfeed" Type="Double" />
+          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Shift" Type="Int32" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="StateId" Type="Int32" />
+          <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_StateMachine_State" FromRole="StateMachine" ToRole="State" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_StateMachine_Machine" FromRole="StateMachine" ToRole="Machine" />
+        </EntityType>
+        <Association Name="FK_HistoryState_State">
+          <End Type="FST_FomMonitoringModel.State" Role="State" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.HistoryState" Role="HistoryState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryState">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StateMachine_State">
+          <End Type="FST_FomMonitoringModel.State" Role="State" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.StateMachine" Role="StateMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StateMachine">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="usp_AggregationState_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="DateTime" Name="Day" Nullable="true" Precision="23" />
+          <Property Type="Int64" Name="ElapsedTime" Nullable="true" />
+          <Property Type="Int32" Name="MachineId" Nullable="true" />
+          <Property Type="String" Name="Operator" Nullable="true" MaxLength="100" />
+          <Property Type="Double" Name="OverfeedAvg" Nullable="true" />
+          <Property Type="Int32" Name="Period" Nullable="true" />
+          <Property Type="Int32" Name="Shift" Nullable="true" />
+          <Property Type="Int32" Name="StateId" Nullable="true" />
+          <Property Type="String" Name="TypeHistory" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <EntityType Name="Piece">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BarId" Type="Int32" />
+          <Property Name="Day" Type="DateTime" Precision="3" />
+          <Property Name="ElapsedTime" Type="Int64" />
+          <Property Name="ElapsedTimeProducing" Type="Int64" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="FrameId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Index" Type="Int32" />
+          <Property Name="IsCompleted" Type="Boolean" />
+          <Property Name="IsRedone" Type="Boolean" />
+          <Property Name="JobId" Type="Int32" />
+          <Property Name="Length" Type="Double" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="Operator" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RedoneReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Shift" Type="Int32" />
+          <Property Name="System" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TipologyCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StartTimeCut" Type="DateTime" Precision="3" />
+          <Property Name="EndTimeCut" Type="DateTime" Precision="3" />
+          <Property Name="ElapsedTimeCut" Type="Int64" />
+          <Property Name="StartTimeWorking" Type="DateTime" Precision="3" />
+          <Property Name="EndTimeWorking" Type="DateTime" Precision="3" />
+          <Property Name="ElapsedTimeWorking" Type="Int64" />
+          <Property Name="StartTimeTrim" Type="DateTime" Precision="3" />
+          <Property Name="EndTimeTrim" Type="DateTime" Precision="3" />
+          <Property Name="ElapsedTimeTrim" Type="Int64" />
+          <Property Name="StartTimeAnuba" Type="DateTime" Precision="3" />
+          <Property Name="EndTimeAnuba" Type="DateTime" Precision="3" />
+          <Property Name="ElapsedTimeAnuba" Type="Int64" />
+          <NavigationProperty Name="Bar" Relationship="FST_FomMonitoringModel.FK_Piece_Bar" FromRole="Piece" ToRole="Bar" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_Piece_Machine" FromRole="Piece" ToRole="Machine" />
+        </EntityType>
+        <EntityType Name="Bar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BadAreas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Color" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdOld" Type="Int32" />
+          <Property Name="Index" Type="Int32" />
+          <Property Name="IsOffcut" Type="Boolean" />
+          <Property Name="Length" Type="Double" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="ProfileCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="System" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Piece" Relationship="FST_FomMonitoringModel.FK_Piece_Bar" FromRole="Bar" ToRole="Piece" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_Bar_Machine" FromRole="Bar" ToRole="Machine" />
+        </EntityType>
+        <Association Name="FK_Piece_Bar">
+          <End Type="FST_FomMonitoringModel.Bar" Role="Bar" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.Piece" Role="Piece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Piece">
+              <PropertyRef Name="BarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HistoryPiece">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompletedCount" Type="Int32" />
+          <Property Name="Day" Type="DateTime" Precision="3" />
+          <Property Name="ElapsedTime" Type="Int64" />
+          <Property Name="ElapsedTimeProducing" Type="Int64" />
+          <Property Name="ElapsedTimeCut" Type="Int64" />
+          <Property Name="ElapsedTimeWorking" Type="Int64" />
+          <Property Name="ElapsedTimeTrim" Type="Int64" />
+          <Property Name="ElapsedTimeAnuba" Type="Int64" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="Operator" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Period" Type="Int32" />
+          <Property Name="PieceLengthSum" Type="Int32" />
+          <Property Name="RedoneCount" Type="Int32" />
+          <Property Name="Shift" Type="Int32" />
+          <Property Name="System" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TypeHistory" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_HistoryPiece_Machine" FromRole="HistoryPiece" ToRole="Machine" />
+        </EntityType>
+        <ComplexType Name="usp_AggregationPiece_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="CompletedCount" Nullable="true" />
+          <Property Type="DateTime" Name="Day" Nullable="true" Precision="23" />
+          <Property Type="Int64" Name="ElapsedTime" Nullable="true" />
+          <Property Type="Int64" Name="ElapsedTimeProducing" Nullable="true" />
+          <Property Type="Int64" Name="ElapsedTimeCut" Nullable="true" />
+          <Property Type="Int64" Name="ElapsedTimeWorking" Nullable="true" />
+          <Property Type="Int64" Name="ElapsedTimeTrim" Nullable="true" />
+          <Property Type="Int64" Name="ElapsedTimeAnuba" Nullable="true" />
+          <Property Type="Int32" Name="MachineId" Nullable="true" />
+          <Property Type="String" Name="Operator" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Period" Nullable="true" />
+          <Property Type="Int32" Name="PieceLengthSum" Nullable="true" />
+          <Property Type="Int32" Name="RedoneCount" Nullable="true" />
+          <Property Type="Int32" Name="Shift" Nullable="true" />
+          <Property Type="String" Name="System" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TypeHistory" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="usp_AggregationBar_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="Count" Nullable="true" />
+          <Property Type="DateTime" Name="Day" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="Length" Nullable="true" />
+          <Property Type="Int32" Name="MachineId" Nullable="true" />
+          <Property Type="Int32" Name="OffcutCount" Nullable="true" />
+          <Property Type="Int32" Name="OffcutLength" Nullable="true" />
+          <Property Type="Int32" Name="Period" Nullable="true" />
+          <Property Type="String" Name="System" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TypeHistory" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="usp_AggregationAlarm_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Count" Nullable="true" />
+          <Property Type="DateTime" Name="Day" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="ElapsedTime" Nullable="true" />
+          <Property Type="Int32" Name="MachineId" Nullable="true" />
+          <Property Type="Int32" Name="Period" Nullable="true" />
+          <Property Type="Int32" Name="StateId" Nullable="true" />
+          <Property Type="String" Name="TypeHistory" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <EntityType Name="CurrentState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="JobProducedPieces" Type="Int32" />
+          <Property Name="JobTotalPieces" Type="Int32" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="NextMaintenanceService" Type="DateTime" Precision="3" />
+          <Property Name="Operator" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Plant" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="StateTransitionCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StateTransitionDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_CurrentState_State" FromRole="CurrentState" ToRole="State" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_CurrentState_Machine" FromRole="CurrentState" ToRole="Machine" />
+        </EntityType>
+        <Association Name="FK_CurrentState_State">
+          <End Type="FST_FomMonitoringModel.State" Role="State" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.CurrentState" Role="CurrentState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrentState">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ToolMachine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrokenEventsCount" Type="Int32" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentLife" Type="Int64" />
+          <Property Name="DateLoaded" Type="DateTime" Precision="3" />
+          <Property Name="DateReplaced" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ExpectedLife" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="RevisedEventsCount" Type="Int32" />
+          <Property Name="IsBroken" Type="Boolean" Nullable="false" />
+          <Property Name="IsRevised" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_ToolMachine_Machine" FromRole="ToolMachine" ToRole="Machine" />
+        </EntityType>
+        <EntityType Name="MachineType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_Machine_MachineType" FromRole="MachineType" ToRole="Machine" />
+        </EntityType>
+        <EntityType Name="Machine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FirmwareVersion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InstallationDate" Type="DateTime" Precision="3" />
+          <Property Name="KeyId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LoginDate" Type="DateTime" Precision="3" />
+          <Property Name="MachineModelId" Type="Int32" />
+          <Property Name="MachineTypeId" Type="Int32" />
+          <Property Name="NextMaintenanceService" Type="DateTime" Precision="3" />
+          <Property Name="PlantId" Type="Int32" />
+          <Property Name="PlcVersion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Product" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Serial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Shift1" Type="Time" Precision="0" />
+          <Property Name="Shift2" Type="Time" Precision="0" />
+          <Property Name="Shift3" Type="Time" Precision="0" />
+          <Property Name="BarsProductivityGreenThreshold" Type="Double" />
+          <Property Name="BarsProductivityYellowThreshold" Type="Double" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+          <Property Name="OverfeedGreenThreshold" Type="Double" />
+          <Property Name="OverfeedYellowThreshold" Type="Double" />
+          <Property Name="PiecesProductivityGreenThreshold" Type="Double" />
+          <Property Name="PiecesProductivityYellowThreshold" Type="Double" />
+          <Property Name="StateProductivityGreenThreshold" Type="Double" />
+          <Property Name="StateProductivityYellowThreshold" Type="Double" />
+          <Property Name="UTC" Type="Double" />
+          <NavigationProperty Name="AlarmMachine" Relationship="FST_FomMonitoringModel.FK_AlarmMachine_Machine" FromRole="Machine" ToRole="AlarmMachine" />
+          <NavigationProperty Name="CurrentState" Relationship="FST_FomMonitoringModel.FK_CurrentState_Machine" FromRole="Machine" ToRole="CurrentState" />
+          <NavigationProperty Name="HistoryAlarm" Relationship="FST_FomMonitoringModel.FK_HistoryAlarm_Machine" FromRole="Machine" ToRole="HistoryAlarm" />
+          <NavigationProperty Name="HistoryBar" Relationship="FST_FomMonitoringModel.FK_HistoryBar_Machine" FromRole="Machine" ToRole="HistoryBar" />
+          <NavigationProperty Name="HistoryPiece" Relationship="FST_FomMonitoringModel.FK_HistoryPiece_Machine" FromRole="Machine" ToRole="HistoryPiece" />
+          <NavigationProperty Name="HistoryState" Relationship="FST_FomMonitoringModel.FK_HistoryState_Machine" FromRole="Machine" ToRole="HistoryState" />
+          <NavigationProperty Name="MachineModel" Relationship="FST_FomMonitoringModel.FK_Machine_MachineModel" FromRole="Machine" ToRole="MachineModel" />
+          <NavigationProperty Name="MachineType" Relationship="FST_FomMonitoringModel.FK_Machine_MachineType" FromRole="Machine" ToRole="MachineType" />
+          <NavigationProperty Name="Plant" Relationship="FST_FomMonitoringModel.FK_Machine_Plant" FromRole="Machine" ToRole="Plant" />
+          <NavigationProperty Name="Piece" Relationship="FST_FomMonitoringModel.FK_Piece_Machine" FromRole="Machine" ToRole="Piece" />
+          <NavigationProperty Name="StateMachine" Relationship="FST_FomMonitoringModel.FK_StateMachine_Machine" FromRole="Machine" ToRole="StateMachine" />
+          <NavigationProperty Name="ToolMachine" Relationship="FST_FomMonitoringModel.FK_ToolMachine_Machine" FromRole="Machine" ToRole="ToolMachine" />
+          <NavigationProperty Name="HistoryJob" Relationship="FST_FomMonitoringModel.FK_HistoryJob_Machine" FromRole="Machine" ToRole="HistoryJob" />
+          <NavigationProperty Name="Bar" Relationship="FST_FomMonitoringModel.FK_Bar_Machine" FromRole="Machine" ToRole="Bar" />
+          <NavigationProperty Name="Spindle" Relationship="FST_FomMonitoringModel.FK_Spindle_Machine" FromRole="Machine" ToRole="Spindle" />
+          <NavigationProperty Name="UserMachineMapping" Relationship="FST_FomMonitoringModel.FK_UserMachineMapping_Machine" FromRole="Machine" ToRole="UserMachineMapping" />
+        </EntityType>
+        <EntityType Name="Plant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_Machine_Plant" FromRole="Plant" ToRole="Machine" />
+          <NavigationProperty Name="UserPlantMapping" Relationship="FST_FomMonitoringModel.FK_UserPlantMapping_Plant" FromRole="Plant" ToRole="UserPlantMapping" />
+        </EntityType>
+        <Association Name="FK_AlarmMachine_Machine">
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.AlarmMachine" Role="AlarmMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlarmMachine">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrentState_Machine">
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.CurrentState" Role="CurrentState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrentState">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryAlarm_Machine">
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.HistoryAlarm" Role="HistoryAlarm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryAlarm">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryBar_Machine">
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.HistoryBar" Role="HistoryBar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryBar">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryPiece_Machine">
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.HistoryPiece" Role="HistoryPiece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryPiece">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryState_Machine">
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.HistoryState" Role="HistoryState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryState">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_MachineModel">
+          <End Type="FST_FomMonitoringModel.MachineModel" Role="MachineModel" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineModel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="MachineModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_MachineType">
+          <End Type="FST_FomMonitoringModel.MachineType" Role="MachineType" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="MachineTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_Plant">
+          <End Type="FST_FomMonitoringModel.Plant" Role="Plant" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="PlantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Piece_Machine">
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.Piece" Role="Piece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Piece">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StateMachine_Machine">
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.StateMachine" Role="StateMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StateMachine">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ToolMachine_Machine">
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.ToolMachine" Role="ToolMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ToolMachine">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HistoryJob">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Day" Type="DateTime" Precision="3" />
+          <Property Name="ElapsedTime" Type="Int64" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="Period" Type="Int32" />
+          <Property Name="PiecesProduced" Type="Int32" />
+          <Property Name="PiecesProducedDay" Type="Int32" />
+          <Property Name="TotalPieces" Type="Int32" />
+          <Property Name="TypeHistory" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_HistoryJob_Machine" FromRole="HistoryJob" ToRole="Machine" />
+        </EntityType>
+        <EntityType Name="UserCustomerMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPlantMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlantId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Plant" Relationship="FST_FomMonitoringModel.FK_UserPlantMapping_Plant" FromRole="UserPlantMapping" ToRole="Plant" />
+        </EntityType>
+        <Association Name="FK_HistoryJob_Machine">
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.HistoryJob" Role="HistoryJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryJob">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPlantMapping_Plant">
+          <End Type="FST_FomMonitoringModel.Plant" Role="Plant" Multiplicity="1" />
+          <End Type="FST_FomMonitoringModel.UserPlantMapping" Role="UserPlantMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPlantMapping">
+              <PropertyRef Name="PlantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="usp_AggregationJob_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="Day" Nullable="true" Precision="23" />
+          <Property Type="Int64" Name="ElapsedTime" Nullable="true" />
+          <Property Type="Int32" Name="MachineId" Nullable="true" />
+          <Property Type="Int32" Name="Period" Nullable="true" />
+          <Property Type="Int32" Name="PiecesProduced" Nullable="true" />
+          <Property Type="Int32" Name="PiecesProducedDay" Nullable="true" />
+          <Property Type="Int32" Name="TotalPieces" Nullable="true" />
+          <Property Type="String" Name="TypeHistory" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="usp_MesUserMachines_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="MachineId" Nullable="false" />
+          <Property Type="Double" Name="StateEfficiency" Nullable="true" />
+          <Property Type="Double" Name="StateOverfeedAvg" Nullable="true" />
+          <Property Type="Int32" Name="PieceCompletedCount" Nullable="true" />
+          <Property Type="Int64" Name="PieceElapsedTime" Nullable="true" />
+          <Property Type="Int64" Name="PieceElapsedTimeProducing" Nullable="true" />
+          <Property Type="Int32" Name="PieceRedoneCount" Nullable="true" />
+          <Property Type="Int32" Name="AlarmCount" Nullable="true" />
+          <Property Type="Int64" Name="AlarmElapsedTime" Nullable="true" />
+          <Property Type="Int32" Name="ActualStateId" Nullable="true" />
+          <Property Type="String" Name="ActualStateCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ActualJobCode" Nullable="true" MaxLength="100" />
+          <Property Type="Double" Name="ActualJobPerc" Nullable="true" />
+          <Property Type="String" Name="ActualOperator" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <Association Name="FK_Bar_Machine">
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.Bar" Role="Bar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bar">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Spindle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ElapsedTimeWorkTotal" Type="Int64" />
+          <Property Name="ElapsedTimeWork3K" Type="Int64" />
+          <Property Name="ElapsedTimeWork6K" Type="Int64" />
+          <Property Name="ElapsedTimeWork9K" Type="Int64" />
+          <Property Name="ElapsedTimeWork12K" Type="Int64" />
+          <Property Name="ElapsedTimeWork15K" Type="Int64" />
+          <Property Name="ElapsedTimeWork18K" Type="Int64" />
+          <Property Name="ExpectedWorkTime" Type="Int64" />
+          <Property Name="WorkOverheatingCount" Type="Int32" />
+          <Property Name="WorkOverPowerCount" Type="Int32" />
+          <Property Name="WorkOverVibratingCount" Type="Int32" />
+          <Property Name="InstallDate" Type="DateTime" Precision="3" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="ReplacedDate" Type="DateTime" Precision="3" />
+          <Property Name="Serial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ToolChangedCount" Type="Int32" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_Spindle_Machine" FromRole="Spindle" ToRole="Machine" />
+        </EntityType>
+        <Association Name="FK_Spindle_Machine">
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.Spindle" Role="Spindle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Spindle">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="JsonData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ElaborationDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="IsCumulative" Type="Boolean" Nullable="false" />
+          <Property Name="IsElaborated" Type="Boolean" Nullable="false" />
+          <Property Name="IsLoaded" Type="Boolean" Nullable="false" />
+          <Property Name="Json" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserMachineMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="MachineId" Type="Int32" Nullable="false" />
+          <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_UserMachineMapping_Machine" FromRole="UserMachineMapping" ToRole="Machine" />
+        </EntityType>
+        <Association Name="FK_UserMachineMapping_Machine">
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="1" />
+          <End Type="FST_FomMonitoringModel.UserMachineMapping" Role="UserMachineMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMachineMapping">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FST_FomMonitoringModelStoreContainer" CdmEntityContainer="FST_FomMonitoringEntities">
+          <EntitySetMapping Name="AlarmMachine">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.AlarmMachine">
+              <MappingFragment StoreEntitySet="AlarmMachine">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryAlarm">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.HistoryAlarm">
+              <MappingFragment StoreEntitySet="HistoryAlarm">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MachineModel">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.MachineModel">
+              <MappingFragment StoreEntitySet="MachineModel">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="State">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryBar">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.HistoryBar">
+              <MappingFragment StoreEntitySet="HistoryBar">
+                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
+                <ScalarProperty Name="System" ColumnName="System" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="OffcutLength" ColumnName="OffcutLength" />
+                <ScalarProperty Name="OffcutCount" ColumnName="OffcutCount" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryState">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.HistoryState">
+              <MappingFragment StoreEntitySet="HistoryState">
+                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Shift" ColumnName="Shift" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="OverfeedAvg" ColumnName="OverfeedAvg" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateMachine">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.StateMachine">
+              <MappingFragment StoreEntitySet="StateMachine">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Shift" ColumnName="Shift" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Overfeed" ColumnName="Overfeed" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="OperatorLevel" ColumnName="OperatorLevel" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_AggregationState" FunctionName="FST_FomMonitoringModel.Store.usp_AggregationState">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FST_FomMonitoringModel.usp_AggregationState_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="OverfeedAvg" ColumnName="OverfeedAvg" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Shift" ColumnName="Shift" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Piece">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.Piece">
+              <MappingFragment StoreEntitySet="Piece">
+                <ScalarProperty Name="ElapsedTimeAnuba" ColumnName="ElapsedTimeAnuba" />
+                <ScalarProperty Name="EndTimeAnuba" ColumnName="EndTimeAnuba" />
+                <ScalarProperty Name="StartTimeAnuba" ColumnName="StartTimeAnuba" />
+                <ScalarProperty Name="ElapsedTimeTrim" ColumnName="ElapsedTimeTrim" />
+                <ScalarProperty Name="EndTimeTrim" ColumnName="EndTimeTrim" />
+                <ScalarProperty Name="StartTimeTrim" ColumnName="StartTimeTrim" />
+                <ScalarProperty Name="ElapsedTimeWorking" ColumnName="ElapsedTimeWorking" />
+                <ScalarProperty Name="EndTimeWorking" ColumnName="EndTimeWorking" />
+                <ScalarProperty Name="StartTimeWorking" ColumnName="StartTimeWorking" />
+                <ScalarProperty Name="ElapsedTimeCut" ColumnName="ElapsedTimeCut" />
+                <ScalarProperty Name="EndTimeCut" ColumnName="EndTimeCut" />
+                <ScalarProperty Name="StartTimeCut" ColumnName="StartTimeCut" />
+                <ScalarProperty Name="TipologyCode" ColumnName="TipologyCode" />
+                <ScalarProperty Name="System" ColumnName="System" />
+                <ScalarProperty Name="Shift" ColumnName="Shift" />
+                <ScalarProperty Name="RedoneReason" ColumnName="RedoneReason" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="IsRedone" ColumnName="IsRedone" />
+                <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+                <ScalarProperty Name="Index" ColumnName="Index" />
+                <ScalarProperty Name="FrameId" ColumnName="FrameId" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="ElapsedTimeProducing" ColumnName="ElapsedTimeProducing" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="BarId" ColumnName="BarId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bar">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.Bar">
+              <MappingFragment StoreEntitySet="Bar">
+                <ScalarProperty Name="System" ColumnName="System" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="ProfileCode" ColumnName="ProfileCode" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="IsOffcut" ColumnName="IsOffcut" />
+                <ScalarProperty Name="Index" ColumnName="Index" />
+                <ScalarProperty Name="IdOld" ColumnName="IdOld" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="BadAreas" ColumnName="BadAreas" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryPiece">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.HistoryPiece">
+              <MappingFragment StoreEntitySet="HistoryPiece">
+                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
+                <ScalarProperty Name="System" ColumnName="System" />
+                <ScalarProperty Name="Shift" ColumnName="Shift" />
+                <ScalarProperty Name="RedoneCount" ColumnName="RedoneCount" />
+                <ScalarProperty Name="PieceLengthSum" ColumnName="PieceLengthSum" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="ElapsedTimeAnuba" ColumnName="ElapsedTimeAnuba" />
+                <ScalarProperty Name="ElapsedTimeTrim" ColumnName="ElapsedTimeTrim" />
+                <ScalarProperty Name="ElapsedTimeWorking" ColumnName="ElapsedTimeWorking" />
+                <ScalarProperty Name="ElapsedTimeCut" ColumnName="ElapsedTimeCut" />
+                <ScalarProperty Name="ElapsedTimeProducing" ColumnName="ElapsedTimeProducing" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="CompletedCount" ColumnName="CompletedCount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_AggregationPiece" FunctionName="FST_FomMonitoringModel.Store.usp_AggregationPiece">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FST_FomMonitoringModel.usp_AggregationPiece_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CompletedCount" ColumnName="CompletedCount" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="ElapsedTimeProducing" ColumnName="ElapsedTimeProducing" />
+                <ScalarProperty Name="ElapsedTimeCut" ColumnName="ElapsedTimeCut" />
+                <ScalarProperty Name="ElapsedTimeWorking" ColumnName="ElapsedTimeWorking" />
+                <ScalarProperty Name="ElapsedTimeTrim" ColumnName="ElapsedTimeTrim" />
+                <ScalarProperty Name="ElapsedTimeAnuba" ColumnName="ElapsedTimeAnuba" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="PieceLengthSum" ColumnName="PieceLengthSum" />
+                <ScalarProperty Name="RedoneCount" ColumnName="RedoneCount" />
+                <ScalarProperty Name="Shift" ColumnName="Shift" />
+                <ScalarProperty Name="System" ColumnName="System" />
+                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_AggregationBar" FunctionName="FST_FomMonitoringModel.Store.usp_AggregationBar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FST_FomMonitoringModel.usp_AggregationBar_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="OffcutCount" ColumnName="OffcutCount" />
+                <ScalarProperty Name="OffcutLength" ColumnName="OffcutLength" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="System" ColumnName="System" />
+                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_AggregationAlarm" FunctionName="FST_FomMonitoringModel.Store.usp_AggregationAlarm">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FST_FomMonitoringModel.usp_AggregationAlarm_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="CurrentState">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.CurrentState">
+              <MappingFragment StoreEntitySet="CurrentState">
+                <ScalarProperty Name="StateTransitionDescription" ColumnName="StateTransitionDescription" />
+                <ScalarProperty Name="StateTransitionCode" ColumnName="StateTransitionCode" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Plant" ColumnName="Plant" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="NextMaintenanceService" ColumnName="NextMaintenanceService" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="JobTotalPieces" ColumnName="JobTotalPieces" />
+                <ScalarProperty Name="JobProducedPieces" ColumnName="JobProducedPieces" />
+                <ScalarProperty Name="JobCode" ColumnName="JobCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ToolMachine">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.ToolMachine">
+              <MappingFragment StoreEntitySet="ToolMachine">
+                <ScalarProperty Name="IsRevised" ColumnName="IsRevised" />
+                <ScalarProperty Name="IsBroken" ColumnName="IsBroken" />
+                <ScalarProperty Name="RevisedEventsCount" ColumnName="RevisedEventsCount" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExpectedLife" ColumnName="ExpectedLife" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DateReplaced" ColumnName="DateReplaced" />
+                <ScalarProperty Name="DateLoaded" ColumnName="DateLoaded" />
+                <ScalarProperty Name="CurrentLife" ColumnName="CurrentLife" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="BrokenEventsCount" ColumnName="BrokenEventsCount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MachineType">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.MachineType">
+              <MappingFragment StoreEntitySet="MachineType">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Machine">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.Machine">
+              <MappingFragment StoreEntitySet="Machine">
+                <ScalarProperty Name="UTC" ColumnName="UTC" />
+                <ScalarProperty Name="StateProductivityYellowThreshold" ColumnName="StateProductivityYellowThreshold" />
+                <ScalarProperty Name="StateProductivityGreenThreshold" ColumnName="StateProductivityGreenThreshold" />
+                <ScalarProperty Name="PiecesProductivityYellowThreshold" ColumnName="PiecesProductivityYellowThreshold" />
+                <ScalarProperty Name="PiecesProductivityGreenThreshold" ColumnName="PiecesProductivityGreenThreshold" />
+                <ScalarProperty Name="OverfeedYellowThreshold" ColumnName="OverfeedYellowThreshold" />
+                <ScalarProperty Name="OverfeedGreenThreshold" ColumnName="OverfeedGreenThreshold" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="BarsProductivityYellowThreshold" ColumnName="BarsProductivityYellowThreshold" />
+                <ScalarProperty Name="BarsProductivityGreenThreshold" ColumnName="BarsProductivityGreenThreshold" />
+                <ScalarProperty Name="Shift3" ColumnName="Shift3" />
+                <ScalarProperty Name="Shift2" ColumnName="Shift2" />
+                <ScalarProperty Name="Shift1" ColumnName="Shift1" />
+                <ScalarProperty Name="Serial" ColumnName="Serial" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="PlcVersion" ColumnName="PlcVersion" />
+                <ScalarProperty Name="PlantId" ColumnName="PlantId" />
+                <ScalarProperty Name="NextMaintenanceService" ColumnName="NextMaintenanceService" />
+                <ScalarProperty Name="MachineTypeId" ColumnName="MachineTypeId" />
+                <ScalarProperty Name="MachineModelId" ColumnName="MachineModelId" />
+                <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
+                <ScalarProperty Name="KeyId" ColumnName="KeyId" />
+                <ScalarProperty Name="InstallationDate" ColumnName="InstallationDate" />
+                <ScalarProperty Name="FirmwareVersion" ColumnName="FirmwareVersion" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plant">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.Plant">
+              <MappingFragment StoreEntitySet="Plant">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryJob">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.HistoryJob">
+              <MappingFragment StoreEntitySet="HistoryJob">
+                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
+                <ScalarProperty Name="TotalPieces" ColumnName="TotalPieces" />
+                <ScalarProperty Name="PiecesProducedDay" ColumnName="PiecesProducedDay" />
+                <ScalarProperty Name="PiecesProduced" ColumnName="PiecesProduced" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserCustomerMapping">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.UserCustomerMapping">
+              <MappingFragment StoreEntitySet="UserCustomerMapping">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPlantMapping">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.UserPlantMapping">
+              <MappingFragment StoreEntitySet="UserPlantMapping">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PlantId" ColumnName="PlantId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_AggregationJob" FunctionName="FST_FomMonitoringModel.Store.usp_AggregationJob">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FST_FomMonitoringModel.usp_AggregationJob_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="PiecesProduced" ColumnName="PiecesProduced" />
+                <ScalarProperty Name="PiecesProducedDay" ColumnName="PiecesProducedDay" />
+                <ScalarProperty Name="TotalPieces" ColumnName="TotalPieces" />
+                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_MesUserMachines" FunctionName="FST_FomMonitoringModel.Store.usp_MesUserMachines">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FST_FomMonitoringModel.usp_MesUserMachines_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="StateEfficiency" ColumnName="StateEfficiency" />
+                <ScalarProperty Name="StateOverfeedAvg" ColumnName="StateOverfeedAvg" />
+                <ScalarProperty Name="PieceCompletedCount" ColumnName="PieceCompletedCount" />
+                <ScalarProperty Name="PieceElapsedTime" ColumnName="PieceElapsedTime" />
+                <ScalarProperty Name="PieceElapsedTimeProducing" ColumnName="PieceElapsedTimeProducing" />
+                <ScalarProperty Name="PieceRedoneCount" ColumnName="PieceRedoneCount" />
+                <ScalarProperty Name="AlarmCount" ColumnName="AlarmCount" />
+                <ScalarProperty Name="AlarmElapsedTime" ColumnName="AlarmElapsedTime" />
+                <ScalarProperty Name="ActualStateId" ColumnName="ActualStateId" />
+                <ScalarProperty Name="ActualStateCode" ColumnName="ActualStateCode" />
+                <ScalarProperty Name="ActualJobCode" ColumnName="ActualJobCode" />
+                <ScalarProperty Name="ActualJobPerc" ColumnName="ActualJobPerc" />
+                <ScalarProperty Name="ActualOperator" ColumnName="ActualOperator" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Spindle">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.Spindle">
+              <MappingFragment StoreEntitySet="Spindle">
+                <ScalarProperty Name="ToolChangedCount" ColumnName="ToolChangedCount" />
+                <ScalarProperty Name="Serial" ColumnName="Serial" />
+                <ScalarProperty Name="ReplacedDate" ColumnName="ReplacedDate" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="InstallDate" ColumnName="InstallDate" />
+                <ScalarProperty Name="WorkOverVibratingCount" ColumnName="WorkOverVibratingCount" />
+                <ScalarProperty Name="WorkOverPowerCount" ColumnName="WorkOverPowerCount" />
+                <ScalarProperty Name="WorkOverheatingCount" ColumnName="WorkOverheatingCount" />
+                <ScalarProperty Name="ExpectedWorkTime" ColumnName="ExpectedWorkTime" />
+                <ScalarProperty Name="ElapsedTimeWork18K" ColumnName="ElapsedTimeWork18K" />
+                <ScalarProperty Name="ElapsedTimeWork15K" ColumnName="ElapsedTimeWork15K" />
+                <ScalarProperty Name="ElapsedTimeWork12K" ColumnName="ElapsedTimeWork12K" />
+                <ScalarProperty Name="ElapsedTimeWork9K" ColumnName="ElapsedTimeWork9K" />
+                <ScalarProperty Name="ElapsedTimeWork6K" ColumnName="ElapsedTimeWork6K" />
+                <ScalarProperty Name="ElapsedTimeWork3K" ColumnName="ElapsedTimeWork3K" />
+                <ScalarProperty Name="ElapsedTimeWorkTotal" ColumnName="ElapsedTimeWorkTotal" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_CleanMachineData" FunctionName="FST_FomMonitoringModel.Store.usp_CleanMachineData" />
+          <EntitySetMapping Name="JsonData">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.JsonData">
+              <MappingFragment StoreEntitySet="JsonData">
+                <ScalarProperty Name="Json" ColumnName="Json" />
+                <ScalarProperty Name="IsLoaded" ColumnName="IsLoaded" />
+                <ScalarProperty Name="IsElaborated" ColumnName="IsElaborated" />
+                <ScalarProperty Name="IsCumulative" ColumnName="IsCumulative" />
+                <ScalarProperty Name="ElaborationDate" ColumnName="ElaborationDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_HistoricizingAll" FunctionName="FST_FomMonitoringModel.Store.usp_HistoricizingAll" />
+          <EntitySetMapping Name="UserMachineMapping">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.UserMachineMapping">
+              <MappingFragment StoreEntitySet="UserMachineMapping">
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

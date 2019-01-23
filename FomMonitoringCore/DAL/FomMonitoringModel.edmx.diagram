@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="13d8bd6ff76b464c804b04dfa7328890" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.AlarmMachine" Width="1.5" PointX="8.25" PointY="28.5" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryAlarm" Width="1.5" PointX="5.25" PointY="27.5" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.MachineModel" Width="1.5" PointX="0.75" PointY="30" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.State" Width="1.5" PointX="3" PointY="25.875" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_AlarmMachine_State" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryAlarm_State" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryBar" Width="1.5" PointX="5.25" PointY="19.5" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryState" Width="1.5" PointX="8.25" PointY="32.5" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.StateMachine" Width="1.5" PointX="5.25" PointY="37.25" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryState_State" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_StateMachine_State" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.Piece" Width="1.5" PointX="7.5" PointY="40.5" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.Bar" Width="1.5" PointX="5.25" PointY="55" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_Piece_Bar" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryPiece" Width="1.5" PointX="5.25" PointY="73.125" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.CurrentState" Width="1.5" PointX="5.25" PointY="32.25" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_CurrentState_State" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.ToolMachine" Width="1.5" PointX="5.25" PointY="68.625" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.MachineType" Width="1.5" PointX="0.75" PointY="36.375" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.Machine" Width="1.5" PointX="3" PointY="29.5" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.Plant" Width="1.5" PointX="0.75" PointY="33.125" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_AlarmMachine_Machine" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_CurrentState_Machine" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryAlarm_Machine" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryBar_Machine" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryPiece_Machine" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryState_Machine" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_Machine_MachineModel" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_Machine_MachineType" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_Machine_Plant" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_Piece_Machine" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_StateMachine_Machine" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_ToolMachine_Machine" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryJob" Width="1.5" PointX="5.25" PointY="64.75" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.UserCustomerMapping" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.UserPlantMapping" Width="1.5" PointX="3" PointY="63.125" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryJob_Machine" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_UserPlantMapping_Plant" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_Bar_Machine" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.Spindle" Width="1.5" PointX="5.25" PointY="59.375" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_Spindle_Machine" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.JsonData" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.UserMachineMapping" Width="1.5" PointX="5.25" PointY="52.375" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_UserMachineMapping_Machine" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

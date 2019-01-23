@@ -1,0 +1,94 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringApi", "FomMonitoringApi\FomMonitoringApi.csproj", "{CFCA9282-5898-47D4-81AA-124AEDFA00DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringApi.Tests", "FomMonitoringApi.Tests\FomMonitoringApi.Tests.csproj", "{F069D035-8EC2-4DE8-A9CC-BB673B54CF4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringCore", "FomMonitoringCore\FomMonitoringCore.csproj", "{E28AB72B-8E73-4A94-94B4-85C23498DDA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringCore.Tests", "FomMonitoringCore.Tests\FomMonitoringCore.Tests.csproj", "{97C1DE40-EECD-4055-9FB3-F9F20991904A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringResources", "FomMonitoringResources\FomMonitoringResources.csproj", "{D55F7E93-771C-4180-83DE-353B98DAA2B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringDatabaseMapping", "FomMonitoringDatabaseMapping\FomMonitoringDatabaseMapping.csproj", "{51AD95BF-D424-4B72-A096-B0D3FEE552BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringUpdateUsers", "FomMonitoringUpdateUsers\FomMonitoringUpdateUsers.csproj", "{4E2FBA7B-70EC-46B5-92D6-36B407BB107F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIUpdateUsers", "APIUpdateUsers\APIUpdateUsers.csproj", "{076D01EA-895B-4B02-AFDA-DD12A7DBE944}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFCA9282-5898-47D4-81AA-124AEDFA00DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFCA9282-5898-47D4-81AA-124AEDFA00DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFCA9282-5898-47D4-81AA-124AEDFA00DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFCA9282-5898-47D4-81AA-124AEDFA00DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F069D035-8EC2-4DE8-A9CC-BB673B54CF4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F069D035-8EC2-4DE8-A9CC-BB673B54CF4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F069D035-8EC2-4DE8-A9CC-BB673B54CF4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F069D035-8EC2-4DE8-A9CC-BB673B54CF4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E28AB72B-8E73-4A94-94B4-85C23498DDA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E28AB72B-8E73-4A94-94B4-85C23498DDA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E28AB72B-8E73-4A94-94B4-85C23498DDA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E28AB72B-8E73-4A94-94B4-85C23498DDA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97C1DE40-EECD-4055-9FB3-F9F20991904A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97C1DE40-EECD-4055-9FB3-F9F20991904A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97C1DE40-EECD-4055-9FB3-F9F20991904A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97C1DE40-EECD-4055-9FB3-F9F20991904A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D55F7E93-771C-4180-83DE-353B98DAA2B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D55F7E93-771C-4180-83DE-353B98DAA2B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D55F7E93-771C-4180-83DE-353B98DAA2B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D55F7E93-771C-4180-83DE-353B98DAA2B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51AD95BF-D424-4B72-A096-B0D3FEE552BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51AD95BF-D424-4B72-A096-B0D3FEE552BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51AD95BF-D424-4B72-A096-B0D3FEE552BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51AD95BF-D424-4B72-A096-B0D3FEE552BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E2FBA7B-70EC-46B5-92D6-36B407BB107F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E2FBA7B-70EC-46B5-92D6-36B407BB107F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E2FBA7B-70EC-46B5-92D6-36B407BB107F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E2FBA7B-70EC-46B5-92D6-36B407BB107F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{076D01EA-895B-4B02-AFDA-DD12A7DBE944}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{076D01EA-895B-4B02-AFDA-DD12A7DBE944}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{076D01EA-895B-4B02-AFDA-DD12A7DBE944}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{076D01EA-895B-4B02-AFDA-DD12A7DBE944}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfsbs01.decinf.it:8080/tfs/fom
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = FomMonitoringApi\\FomMonitoringApi.csproj
+		SccProjectName1 = FomMonitoringApi
+		SccLocalPath1 = FomMonitoringApi
+		SccProjectUniqueName2 = FomMonitoringApi.Tests\\FomMonitoringApi.Tests.csproj
+		SccProjectName2 = FomMonitoringApi.Tests
+		SccLocalPath2 = FomMonitoringApi.Tests
+		SccProjectUniqueName3 = FomMonitoringCore\\FomMonitoringCore.csproj
+		SccProjectName3 = FomMonitoringCore
+		SccLocalPath3 = FomMonitoringCore
+		SccProjectUniqueName4 = FomMonitoringCore.Tests\\FomMonitoringCore.Tests.csproj
+		SccProjectName4 = FomMonitoringCore.Tests
+		SccLocalPath4 = FomMonitoringCore.Tests
+		SccProjectUniqueName5 = FomMonitoringResources\\FomMonitoringResources.csproj
+		SccProjectName5 = FomMonitoringResources
+		SccLocalPath5 = FomMonitoringResources
+		SccProjectUniqueName6 = FomMonitoringDatabaseMapping\\FomMonitoringDatabaseMapping.csproj
+		SccProjectName6 = FomMonitoringDatabaseMapping
+		SccLocalPath6 = FomMonitoringDatabaseMapping
+		SccProjectUniqueName7 = FomMonitoringUpdateUsers\\FomMonitoringUpdateUsers.csproj
+		SccProjectName7 = FomMonitoringUpdateUsers
+		SccLocalPath7 = FomMonitoringUpdateUsers
+		SccProjectUniqueName8 = APIUpdateUsers\\APIUpdateUsers.csproj
+		SccProjectName8 = APIUpdateUsers
+		SccLocalPath8 = APIUpdateUsers
+	EndGlobalSection
+EndGlobal
