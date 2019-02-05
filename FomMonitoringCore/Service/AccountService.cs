@@ -36,7 +36,7 @@ namespace FomMonitoringCore.Service
             LoggedUser.Username = User.Username;
             LoggedUser.FirstName = User.FirstName;
             LoggedUser.LastName = User.LastName;
-            LoggedUser.Roles = loggedUserServices.GetLoggedUserRoles().Select(s => (enRole)s.IdRole).ToList();
+            LoggedUser.Roles = User.Roles_Users.Select(s => (enRole)s.Roles.IdRole).ToList();
             LoggedUser.Language = User.Languages;
 
             return LoggedUser;
@@ -67,10 +67,19 @@ namespace FomMonitoringCore.Service
         {
             // Controllo delle credenziali
             var loginServices = new LoginServices();
-            if (!loginServices.LoginUser(username, password, out message, true))
+            if (!loginServices.LoginUser(username, password, out message))
                 return false;
 
-            UserModel User = new AccountService().GetLoggedUser();
+            Users LoggedUser = new LoggedUserServices().GetLoggedUser();
+            UserModel User = new UserModel();
+
+            User.ID = LoggedUser.ID;
+            User.Username = LoggedUser.Username;
+            User.FirstName = LoggedUser.FirstName;
+            User.LastName = LoggedUser.LastName;
+            User.Roles = LoggedUser.Roles_Users.Select(s => (enRole)s.Roles.IdRole).ToList();
+            User.Language = LoggedUser.Languages;
+
             string userId = User.ID.Adapt<string>();
             string serializedUser = JsonConvert.SerializeObject(User);
 
@@ -89,26 +98,6 @@ namespace FomMonitoringCore.Service
             HttpContext.Current.Response.Cookies.Add(authCookie);
 
             return true;
-        }
-
-        public static UserModel GetUser(string username, string password)
-        {
-            UserModel UserModel = new UserModel();
-
-            UserServices userServices = new UserServices();
-            Users User = userServices.GetUser(username, password);
-
-            if (!User.Enabled)
-                return UserModel;
-
-            UserModel.ID = User.ID;
-            UserModel.Username = User.Username;
-            UserModel.FirstName = User.FirstName;
-            UserModel.LastName = User.LastName;
-            UserModel.Roles = User.Roles_Users.Select(s => (enRole)s.Roles.IdRole).ToList();
-            UserModel.Language = User.Languages;
-
-            return UserModel;
         }
 
         /// <summary>

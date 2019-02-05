@@ -15,10 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringResources", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringDatabaseMapping", "FomMonitoringDatabaseMapping\FomMonitoringDatabaseMapping.csproj", "{51AD95BF-D424-4B72-A096-B0D3FEE552BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringUpdateUsers", "FomMonitoringUpdateUsers\FomMonitoringUpdateUsers.csproj", "{4E2FBA7B-70EC-46B5-92D6-36B407BB107F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIUpdateUsers", "APIUpdateUsers\APIUpdateUsers.csproj", "{076D01EA-895B-4B02-AFDA-DD12A7DBE944}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,20 +45,12 @@ Global
 		{51AD95BF-D424-4B72-A096-B0D3FEE552BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51AD95BF-D424-4B72-A096-B0D3FEE552BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51AD95BF-D424-4B72-A096-B0D3FEE552BB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E2FBA7B-70EC-46B5-92D6-36B407BB107F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E2FBA7B-70EC-46B5-92D6-36B407BB107F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E2FBA7B-70EC-46B5-92D6-36B407BB107F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E2FBA7B-70EC-46B5-92D6-36B407BB107F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{076D01EA-895B-4B02-AFDA-DD12A7DBE944}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{076D01EA-895B-4B02-AFDA-DD12A7DBE944}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{076D01EA-895B-4B02-AFDA-DD12A7DBE944}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{076D01EA-895B-4B02-AFDA-DD12A7DBE944}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 9
+		SccNumberOfProjects = 7
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://tfsbs01.decinf.it:8080/tfs/fom
 		SccLocalPath0 = .
@@ -84,11 +72,5 @@ Global
 		SccProjectUniqueName6 = FomMonitoringDatabaseMapping\\FomMonitoringDatabaseMapping.csproj
 		SccProjectName6 = FomMonitoringDatabaseMapping
 		SccLocalPath6 = FomMonitoringDatabaseMapping
-		SccProjectUniqueName7 = FomMonitoringUpdateUsers\\FomMonitoringUpdateUsers.csproj
-		SccProjectName7 = FomMonitoringUpdateUsers
-		SccLocalPath7 = FomMonitoringUpdateUsers
-		SccProjectUniqueName8 = APIUpdateUsers\\APIUpdateUsers.csproj
-		SccProjectName8 = APIUpdateUsers
-		SccLocalPath8 = APIUpdateUsers
 	EndGlobalSection
 EndGlobal

@@ -3,8 +3,6 @@ using FomMonitoring.Models;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
-using FomMonitoringCore.Service.APIClient;
-using FomMonitoringCore.Service.APIClient.Concrete;
 using FomMonitoringResources;
 using System;
 using System.Collections.Generic;
@@ -83,8 +81,6 @@ namespace FomMonitoring.Controllers
                     redirect = RedirectToAction("Login", new { returnUrl = returnUrl });
                     break;
                 case 1:
-                case 3:
-                case 4:
                     redirect = RedirectToAction("Login", new { returnUrl = string.Empty, exception = exception });
                     break;
                 case 2:
@@ -121,7 +117,7 @@ namespace FomMonitoring.Controllers
             string isTest = ApplicationSettingService.GetWebConfigKey("Test");
             if (bool.Parse(isTest))
             {
-                model.Password = ApplicationSettingService.GetWebConfigKey("DefaultPassword");
+                model.Password = ApplicationSettingService.GetWebConfigKey("PasswordInterna");
             }
             AccountService accountService = new AccountService();
             if (ModelState.IsValid && accountService.Login(model.Username, model.Password, true).Result)
@@ -170,13 +166,12 @@ namespace FomMonitoring.Controllers
                         result = RedirectToAction("Index", "Machine");
                         break;
                     default:
-                        result = RedirectToAction("Logout", new { exception = 1 });
                         break;
                 }
 
                 return result;
             }
-            return RedirectToAction("Logout");
+            return RedirectToAction("Logout", "Account");
         }
 
         #endregion

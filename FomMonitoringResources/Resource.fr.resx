@@ -402,10 +402,4 @@
   <data name="Plant" xml:space="preserve">
     <value>Fabrique</value>
   </data>
-  <data name="PassNotValid" xml:space="preserve">
-    <value>Mot de passe incorrect</value>
-  </data>
-  <data name="UserExpired" xml:space="preserve">
-    <value>Expiration de l'utilisateur</value>
-  </data>
 </root>

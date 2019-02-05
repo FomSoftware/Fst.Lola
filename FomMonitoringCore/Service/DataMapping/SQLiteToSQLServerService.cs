@@ -127,7 +127,7 @@ namespace FomMonitoringCore.Service.DataMapping
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog());
+                string errMessage = string.Format("{0}()", Common.GetStringLog());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -249,7 +249,7 @@ namespace FomMonitoringCore.Service.DataMapping
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog());
+                string errMessage = string.Format("{0}()", Common.GetStringLog());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;

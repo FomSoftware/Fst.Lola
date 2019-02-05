@@ -26,10 +26,10 @@ namespace FomMonitoringCore.DAL
             this.Piece = new HashSet<Piece>();
             this.StateMachine = new HashSet<StateMachine>();
             this.ToolMachine = new HashSet<ToolMachine>();
+            this.UserMachineMapping = new HashSet<UserMachineMapping>();
             this.HistoryJob = new HashSet<HistoryJob>();
             this.Bar = new HashSet<Bar>();
             this.Spindle = new HashSet<Spindle>();
-            this.UserMachineMapping = new HashSet<UserMachineMapping>();
         }
     
         public int Id { get; set; }
@@ -82,12 +82,12 @@ namespace FomMonitoringCore.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ToolMachine> ToolMachine { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserMachineMapping> UserMachineMapping { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoryJob> HistoryJob { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bar> Bar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Spindle> Spindle { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserMachineMapping> UserMachineMapping { get; set; }
     }
 }

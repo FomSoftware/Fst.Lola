@@ -529,15 +529,6 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incorrect password.
-        /// </summary>
-        public static string PassNotValid {
-            get {
-                return ResourceManager.GetString("PassNotValid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Pause.
         /// </summary>
         public static string Pause {
@@ -867,15 +858,6 @@ namespace FomMonitoringResources {
         public static string User {
             get {
                 return ResourceManager.GetString("User", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to User expired.
-        /// </summary>
-        public static string UserExpired {
-            get {
-                return ResourceManager.GetString("UserExpired", resourceCulture);
             }
         }
         

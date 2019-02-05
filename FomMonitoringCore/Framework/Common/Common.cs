@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace FomMonitoringCore.Framework.Common
 {
@@ -11,6 +14,20 @@ namespace FomMonitoringCore.Framework.Common
         public const string HeadWorkshop = "ede02f346410664d40c90884131c4ed86aa5fe2b6ea6d711b4c02d6f0282c1df";
         public const string Assistance = "1b451b10ab6a95f1e24e659edc7315c7fd2930d8db77cbeea3315fdf4fe6a5c6";
         public const string Customer = "bf3763383aaf43069885db20b386631c6d5d8b8481df2a26769e9de5fe2f9c82";
+
+        /// <summary>
+        /// Get string with current class and method
+        /// </summary>
+        /// <returns>String with current class and method</returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static string GetStringLog()
+        {
+            StackTrace st = new StackTrace();
+            StackFrame sf = st.GetFrame(1);
+            MethodBase method = sf.GetMethod();
+            string result = string.Concat(method.DeclaringType.Name, " => ", method.Name);
+            return result;
+        }
 
         /// <summary>
         /// Get the startOfWeek date of the specified year and week number
@@ -52,12 +69,12 @@ namespace FomMonitoringCore.Framework.Common
         {
             decimal result = 0;
 
-            if (value != null && total != null)
+            if(value != null && total != null)
             {
                 if (total != 0)
                     result = (decimal)value * 100 / (decimal)total;
             }
-
+         
             return result;
         }
 
@@ -85,7 +102,7 @@ namespace FomMonitoringCore.Framework.Common
         {
             int? result = null;
 
-            if (pieces != null && time != null)
+            if(pieces != null && time != null)
             {
                 if (time == 0)
                     result = 0;

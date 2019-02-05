@@ -34,9 +34,10 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(),
-                    machine.Id.ToString(),
-                    string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString()));
+                string errMessage = string.Format("{0}(machineId = '{1}', startDate = '{2}', endDate = '{3}', typePeriod = '{4}')",
+                    Common.GetStringLog(), machine.Id.ToString(),
+                    period.StartDate.ToString(),
+                    period.EndDate.ToString(), period.Aggregation.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -67,9 +68,10 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(),
-                    machine.Id.ToString(),
-                    string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString()));
+                string errMessage = string.Format("{0}(machineId = '{1}', startDate = '{2}', endDate = '{3}', typePeriod = '{4}')",
+                    Common.GetStringLog(), machine.Id.ToString(),
+                    period.StartDate.ToString(),
+                    period.EndDate.ToString(), period.Aggregation.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -97,7 +99,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), jobCode.ToString(), machineId.ToString());
+                string errMessage = string.Format("{0}(jobCode = '{1}')", Common.GetStringLog(), jobCode.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;

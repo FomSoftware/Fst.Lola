@@ -316,7 +316,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="MachineId" Type="int" Nullable="false" />
-          <Property Name="ExpirationDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="UserPlantMapping">
           <Key>
@@ -769,6 +768,7 @@
           <EntitySet Name="HistoryAlarm" EntityType="FST_FomMonitoringModel.HistoryAlarm" />
           <EntitySet Name="MachineModel" EntityType="FST_FomMonitoringModel.MachineModel" />
           <EntitySet Name="State" EntityType="FST_FomMonitoringModel.State" />
+          <EntitySet Name="UserMachineMapping" EntityType="FST_FomMonitoringModel.UserMachineMapping" />
           <AssociationSet Name="FK_AlarmMachine_State" Association="FST_FomMonitoringModel.FK_AlarmMachine_State">
             <End Role="State" EntitySet="State" />
             <End Role="AlarmMachine" EntitySet="AlarmMachine" />
@@ -879,6 +879,10 @@
             <End Role="Machine" EntitySet="Machine" />
             <End Role="ToolMachine" EntitySet="ToolMachine" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserMachineMapping_Machine" Association="FST_FomMonitoringModel.FK_UserMachineMapping_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="UserMachineMapping" EntitySet="UserMachineMapping" />
+          </AssociationSet>
           <EntitySet Name="HistoryJob" EntityType="FST_FomMonitoringModel.HistoryJob" />
           <EntitySet Name="UserCustomerMapping" EntityType="FST_FomMonitoringModel.UserCustomerMapping" />
           <EntitySet Name="UserPlantMapping" EntityType="FST_FomMonitoringModel.UserPlantMapping" />
@@ -914,13 +918,8 @@
           </FunctionImport>
           <EntitySet Name="JsonData" EntityType="FST_FomMonitoringModel.JsonData" />
           <FunctionImport Name="usp_HistoricizingAll">
-          <Parameter Name="machineId" Mode="In" Type="Int32" />
+            <Parameter Name="machineId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="UserMachineMapping" EntityType="FST_FomMonitoringModel.UserMachineMapping" />
-          <AssociationSet Name="FK_UserMachineMapping_Machine" Association="FST_FomMonitoringModel.FK_UserMachineMapping_Machine">
-            <End Role="Machine" EntitySet="Machine" />
-            <End Role="UserMachineMapping" EntitySet="UserMachineMapping" />
-          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AlarmMachine">
           <Key>
@@ -976,6 +975,15 @@
           <NavigationProperty Name="StateMachine" Relationship="FST_FomMonitoringModel.FK_StateMachine_State" FromRole="State" ToRole="StateMachine" />
           <NavigationProperty Name="CurrentState" Relationship="FST_FomMonitoringModel.FK_CurrentState_State" FromRole="State" ToRole="CurrentState" />
           </EntityType>
+        <EntityType Name="UserMachineMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="MachineId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_UserMachineMapping_Machine" FromRole="UserMachineMapping" ToRole="Machine" />
+        </EntityType>
         <Association Name="FK_AlarmMachine_State">
           <End Type="FST_FomMonitoringModel.State" Role="State" Multiplicity="0..1" />
           <End Type="FST_FomMonitoringModel.AlarmMachine" Role="AlarmMachine" Multiplicity="*" />
@@ -1323,10 +1331,10 @@
           <NavigationProperty Name="Piece" Relationship="FST_FomMonitoringModel.FK_Piece_Machine" FromRole="Machine" ToRole="Piece" />
           <NavigationProperty Name="StateMachine" Relationship="FST_FomMonitoringModel.FK_StateMachine_Machine" FromRole="Machine" ToRole="StateMachine" />
           <NavigationProperty Name="ToolMachine" Relationship="FST_FomMonitoringModel.FK_ToolMachine_Machine" FromRole="Machine" ToRole="ToolMachine" />
+          <NavigationProperty Name="UserMachineMapping" Relationship="FST_FomMonitoringModel.FK_UserMachineMapping_Machine" FromRole="Machine" ToRole="UserMachineMapping" />
           <NavigationProperty Name="HistoryJob" Relationship="FST_FomMonitoringModel.FK_HistoryJob_Machine" FromRole="Machine" ToRole="HistoryJob" />
           <NavigationProperty Name="Bar" Relationship="FST_FomMonitoringModel.FK_Bar_Machine" FromRole="Machine" ToRole="Bar" />
           <NavigationProperty Name="Spindle" Relationship="FST_FomMonitoringModel.FK_Spindle_Machine" FromRole="Machine" ToRole="Spindle" />
-          <NavigationProperty Name="UserMachineMapping" Relationship="FST_FomMonitoringModel.FK_UserMachineMapping_Machine" FromRole="Machine" ToRole="UserMachineMapping" />
         </EntityType>
         <EntityType Name="Plant">
           <Key>
@@ -1482,6 +1490,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserMachineMapping_Machine">
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="1" />
+          <End Type="FST_FomMonitoringModel.UserMachineMapping" Role="UserMachineMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMachineMapping">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="HistoryJob">
           <Key>
             <PropertyRef Name="Id" />
@@ -1627,28 +1647,6 @@
           <Property Name="IsLoaded" Type="Boolean" Nullable="false" />
           <Property Name="Json" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="UserMachineMapping">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="MachineId" Type="Int32" Nullable="false" />
-          <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_UserMachineMapping_Machine" FromRole="UserMachineMapping" ToRole="Machine" />
-        </EntityType>
-        <Association Name="FK_UserMachineMapping_Machine">
-          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="1" />
-          <End Type="FST_FomMonitoringModel.UserMachineMapping" Role="UserMachineMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Machine">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserMachineMapping">
-              <PropertyRef Name="MachineId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1699,6 +1697,15 @@
               <MappingFragment StoreEntitySet="State">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMachineMapping">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.UserMachineMapping">
+              <MappingFragment StoreEntitySet="UserMachineMapping">
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2097,16 +2104,6 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="usp_HistoricizingAll" FunctionName="FST_FomMonitoringModel.Store.usp_HistoricizingAll" />
-          <EntitySetMapping Name="UserMachineMapping">
-            <EntityTypeMapping TypeName="FST_FomMonitoringModel.UserMachineMapping">
-              <MappingFragment StoreEntitySet="UserMachineMapping">
-                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
-                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

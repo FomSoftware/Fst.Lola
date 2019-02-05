@@ -8,8 +8,7 @@ namespace FomMonitoringCore.Framework.Common
         Operator = 1,
         HeadWorkshop = 2,
         Assistance = 3,
-        Customer = 4,
-        UserApi = 5
+        Customer = 4
     }
 
     public enum enPage
@@ -102,18 +101,6 @@ namespace FomMonitoringCore.Framework.Common
     {
         Machine = 1,
         Plant = 2
-    }
-
-    public enum enLoginResult
-    {
-        [Description("OK")]
-        Ok,
-        [Description("NOT EXISTS")]
-        NotExists,
-        [Description("DISABLED")]
-        Disabled,
-        [Description("WRONG PASSWORD")]
-        WrongPassword
     }
 
 }

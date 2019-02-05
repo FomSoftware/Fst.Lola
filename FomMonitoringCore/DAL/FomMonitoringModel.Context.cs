@@ -31,6 +31,7 @@ namespace FomMonitoringCore.DAL
         public virtual DbSet<HistoryAlarm> HistoryAlarm { get; set; }
         public virtual DbSet<MachineModel> MachineModel { get; set; }
         public virtual DbSet<State> State { get; set; }
+        public virtual DbSet<UserMachineMapping> UserMachineMapping { get; set; }
         public virtual DbSet<HistoryBar> HistoryBar { get; set; }
         public virtual DbSet<HistoryState> HistoryState { get; set; }
         public virtual DbSet<StateMachine> StateMachine { get; set; }
@@ -47,7 +48,6 @@ namespace FomMonitoringCore.DAL
         public virtual DbSet<UserPlantMapping> UserPlantMapping { get; set; }
         public virtual DbSet<Spindle> Spindle { get; set; }
         public virtual DbSet<JsonData> JsonData { get; set; }
-        public virtual DbSet<UserMachineMapping> UserMachineMapping { get; set; }
     
         public virtual ObjectResult<usp_AggregationState_Result> usp_AggregationState(Nullable<int> machineId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<int> aggregation, Nullable<int> dataType)
         {

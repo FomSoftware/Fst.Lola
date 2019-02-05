@@ -29,7 +29,7 @@ namespace FomMonitoringCore.Service.DataMapping
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog());
+                string errMessage = string.Format("{0}()", Common.GetStringLog());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -172,7 +172,7 @@ namespace FomMonitoringCore.Service.DataMapping
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), jsonDataModel.Id.ToString());
+                string errMessage = string.Format("{0}(jsonDataModel = '{1}')", Common.GetStringLog(), jsonDataModel.Id.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -303,7 +303,7 @@ namespace FomMonitoringCore.Service.DataMapping
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), jsonDataModel.Id.ToString());
+                string errMessage = string.Format("{0}(jsonDataModel = '{1}')", Common.GetStringLog(), jsonDataModel.Id.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -327,7 +327,7 @@ namespace FomMonitoringCore.Service.DataMapping
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), id.ToString(), IsLoaded.ToString());
+                string errMessage = string.Format("{0}(id = '{1}', IsLoaded = '{2}')", Common.GetStringLog(), id.ToString(), IsLoaded.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;

@@ -23,7 +23,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                LogService.WriteLog(ex.GetStringLog(), LogService.TypeLevel.Error, ex);
+                LogService.WriteLog(Common.GetStringLog(), LogService.TypeLevel.Error, ex);
             }
 
             return result;

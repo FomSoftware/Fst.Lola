@@ -43,9 +43,10 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(),
-                    machine.Id.ToString(),
-                    string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString()));
+                string errMessage = string.Format("{0}(machineId = '{1}', startDate = '{2}', endDate = '{3}', typePeriod = '{4}')",
+                    Common.GetStringLog(), machine.Id.ToString(),
+                    period.StartDate.ToString(),
+                    period.EndDate.ToString(), period.Aggregation.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -73,10 +74,10 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(),
-                    machine.Id.ToString(),
-                    string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString()),
-                    dataType.ToString());
+                string errMessage = string.Format("{0}(machineId = '{1}', startDate = '{2}', endDate = '{3}', typePeriod = '{4}')",
+                    Common.GetStringLog(), machine.Id.ToString(),
+                    period.StartDate.ToString(),
+                    period.EndDate.ToString(), period.Aggregation.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -106,7 +107,8 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), machineId.ToString(), dateFrom.ToString(), dateTo.ToString(), typePeriod.ToString());
+                string errMessage = string.Format("{0}(machineId = '{1}', dateFrom = '{2}', dateTo = '{3}', typePeriod = '{4}')",
+                    Common.GetStringLog(), machineId.ToString(), dateFrom.ToString(), dateTo.ToString(), typePeriod.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -135,7 +137,8 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), machineId.ToString(), stateId.ToString(), dateFrom.ToString(), dateTo.ToString(), typePeriod.ToString());
+                string errMessage = string.Format("{0}(machineId = '{1}', stateId = '{2}', dateFrom = '{3}', dateTo = '{4}', typePeriod = '{5}')",
+                    Common.GetStringLog(), machineId.ToString(), stateId.ToString(), dateFrom.ToString(), dateTo.ToString(), typePeriod.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -164,7 +167,8 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), machineId.ToString(), operatorName, dateFrom.ToString(), dateTo.ToString(), typePeriod.ToString());
+                string errMessage = string.Format("{0}(machineId = '{1}', operatorName = '{2}', dateFrom = '{3}', dateTo = '{4}', typePeriod = '{5}')",
+                    Common.GetStringLog(), machineId.ToString(), operatorName, dateFrom.ToString(), dateTo.ToString(), typePeriod.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -194,7 +198,8 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), machineId.ToString(), stateId.ToString(), operatorName, dateFrom.ToString(), dateTo.ToString(), typePeriod.ToString());
+                string errMessage = string.Format("{0}(machineId = '{1}', stateId = '{2}', operatorName = '{3}', dateFrom = '{4}', dateTo = '{5}', typePeriod = '{6}')",
+                    Common.GetStringLog(), machineId.ToString(), stateId.ToString(), operatorName, dateFrom.ToString(), dateTo.ToString(), typePeriod.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -219,7 +224,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), machineId.ToString(), typePeriod.ToString());
+                string errMessage = string.Format("{0}(machineId = '{1}', typePeriod = '{2}')", Common.GetStringLog(), machineId.ToString(), typePeriod.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;

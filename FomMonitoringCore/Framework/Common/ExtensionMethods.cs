@@ -3,13 +3,10 @@ using FomMonitoringCore.Service.API.Concrete;
 using FomMonitoringResources;
 using Mapster;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http.Headers;
-using System.Reflection;
 using System.Resources;
 using System.Security.Cryptography;
 using System.Text;
@@ -86,8 +83,7 @@ namespace FomMonitoringCore.Framework.Common
         }
 
         /// <summary>
-        /// Get enumerator from enumerator attribute value. Example: 
-        /// <para>stringVariable.GetValueFromAttribute&#60;enumTypeName, DescriptionAttribute>(a => a.Description);</para>
+        /// Get enumerator from enumerator attribute value
         /// </summary>
         /// <param name="text"></param>
         /// <param name="valueFunc"></param>
@@ -281,36 +277,6 @@ namespace FomMonitoringCore.Framework.Common
             CultureInfo cultureInfo = CultureInfo.GetCultureInfo(ContextService.GetContext().ActualLanguage.InitialsLanguage);
             string resourceValue = rm.GetString(enumerator.ToString(), cultureInfo);
             return string.IsNullOrEmpty(resourceValue) || string.IsNullOrWhiteSpace(resourceValue) ? string.Format("{0}", enumerator.ToString().Trim()) : resourceValue;
-        }
-
-        /// <summary>
-        /// Get error string with current class, method and parameters
-        /// </summary>
-        /// <param name="ex"></param>
-        /// <returns>Error string with current class, method and parameters</returns>
-        public static string GetStringLog(this Exception ex)
-        {
-            StackTrace st = new StackTrace(ex, true);
-            StackFrame sf = st.GetFrames().Last();
-            MethodBase method = sf.GetMethod();
-            string parametersString = string.Empty;
-            List<string> parameters = method.GetParameters().Length > 0 ? method.GetParameters().Select(s => s.Name).ToList() : new List<string>();
-            int cont = 0;
-            foreach (string parameter in parameters)
-            {
-                parametersString = string.Concat(parametersString, parameter, " = '{", cont++, "}', ");
-            }
-            parametersString = !string.IsNullOrEmpty(parametersString) ? parametersString.Substring(0, parametersString.Length - 2) : parametersString;
-            string result = string.Concat(method.DeclaringType.Name,
-                " => ", method.Name,
-                "(",
-                parametersString,
-                ") at row ",
-                sf.GetFileLineNumber().ToString(),
-                " and column ",
-                sf.GetFileColumnNumber().ToString()
-            );
-            return result;
         }
 
         public static int MonthDifference(this DateTime lValue, DateTime rValue)

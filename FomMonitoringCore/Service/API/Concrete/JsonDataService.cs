@@ -31,7 +31,7 @@ namespace FomMonitoringCore.Service.API.Concrete
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), json, isCumulative.ToString());
+                string errMessage = string.Format("{0}(json = '{1}', isCumulative = '{2}')", Common.GetStringLog(), json, isCumulative.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -85,7 +85,7 @@ namespace FomMonitoringCore.Service.API.Concrete
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), json);
+                string errMessage = string.Format("{0}(json = '{1}')", Common.GetStringLog(), json);
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -121,7 +121,7 @@ namespace FomMonitoringCore.Service.API.Concrete
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), json);
+                string errMessage = string.Format("{0}(json = '{1}')", Common.GetStringLog(), json);
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;

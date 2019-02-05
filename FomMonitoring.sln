@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringWeb", "FomMonitoring\FomMonitoringWeb.csproj", "{978F6A98-772B-44EA-9C52-0FE127A22A3D}"
 EndProject
@@ -51,6 +51,29 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		RESX_PrefixTranslations = False
-		SolutionGuid = {A41E2FCD-25E6-451B-9B21-8347DFD3F83B}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfsbs01:8080/tfs/fom
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = FomMonitoringCore\\FomMonitoringCore.csproj
+		SccProjectName1 = FomMonitoringCore
+		SccLocalPath1 = FomMonitoringCore
+		SccProjectUniqueName2 = FomMonitoring\\FomMonitoringWeb.csproj
+		SccProjectName2 = FomMonitoring
+		SccLocalPath2 = FomMonitoring
+		SccProjectUniqueName3 = FomMonitoring.Tests\\FomMonitoringWeb.Tests.csproj
+		SccProjectName3 = FomMonitoring.Tests
+		SccLocalPath3 = FomMonitoring.Tests
+		SccProjectUniqueName4 = FomMonitoringCore.Tests\\FomMonitoringCore.Tests.csproj
+		SccProjectName4 = FomMonitoringCore.Tests
+		SccLocalPath4 = FomMonitoringCore.Tests
+		SccProjectUniqueName5 = FomMonitoringResources\\FomMonitoringResources.csproj
+		SccProjectName5 = FomMonitoringResources
+		SccLocalPath5 = FomMonitoringResources
+		SccProjectUniqueName6 = FomMonitoringBLL\\FomMonitoringBLL.csproj
+		SccProjectName6 = FomMonitoringBLL
+		SccLocalPath6 = FomMonitoringBLL
 	EndGlobalSection
 EndGlobal

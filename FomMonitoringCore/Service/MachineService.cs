@@ -39,7 +39,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), modelName.ToString());
+                string errMessage = string.Format("{0}(modelName = '{1}')", Common.GetStringLog(), modelName.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -65,7 +65,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), typeName.ToString());
+                string errMessage = string.Format("{0}(typeName = '{1}')", Common.GetStringLog(), typeName.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -87,7 +87,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), machineSerial);
+                string errMessage = string.Format("{0}(machineSerial = '{1}')", Common.GetStringLog(), machineSerial);
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -118,7 +118,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), machineId.ToString(), Convert.ToString(startTime));
+                string errMessage = string.Format("{0}(machineId = '{1}', startTime = '{2}')", Common.GetStringLog(), machineId.ToString(), startTime.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -144,7 +144,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), modelName.ToString());
+                string errMessage = string.Format("{0}(modelName = '{1}')", Common.GetStringLog(), modelName.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -168,7 +168,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), PlantID.ToString());
+                string errMessage = string.Format("{0}(PlantID = '{1}')", Common.GetStringLog(), PlantID.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -189,7 +189,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), UserID.ToString());
+                string errMessage = string.Format("{0}(UserID = '{1}')", Common.GetStringLog(), UserID.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -210,7 +210,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), MachineID.ToString());
+                string errMessage = string.Format("{0}(MachineID = '{1}')", Common.GetStringLog(), MachineID.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 

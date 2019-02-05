@@ -30,7 +30,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), machine.Id.ToString());
+                string errMessage = string.Format("{0}(machineId = '{1}')", Common.GetStringLog(), machine.Id.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 

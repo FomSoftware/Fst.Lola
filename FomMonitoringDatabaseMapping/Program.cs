@@ -52,14 +52,14 @@ namespace FomMonitoringDatabaseMapping
                     catch (Exception ex)
                     {
                         JsonToSQLiteService.SaveElaboration(jsonDataModel.Id, false);
-                        string errMessage = string.Format(ex.GetStringLog(), string.Join(", ", args), jsonDataModel.Id);
+                        string errMessage = string.Format("{0}(args = '{1}') - jsonDataModel = '{2}'", Common.GetStringLog(), string.Join(", ", args), jsonDataModel.Id);
                         LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
                     }
                 }
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), string.Join(", ", args));
+                string errMessage = string.Format("{0}(args = '{1}')", Common.GetStringLog(), string.Join(", ", args));
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;

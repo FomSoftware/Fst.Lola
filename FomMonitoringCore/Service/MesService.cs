@@ -38,7 +38,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), plantName, plantAddress);
+                string errMessage = string.Format("{0}(plantName = '{1}', plantAddress = '{2}')", Common.GetStringLog(), plantName, plantAddress);
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -65,7 +65,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), plantName, plantAddress);
+                string errMessage = string.Format("{0}(plantName = '{1}', plantAddress = '{2}')", Common.GetStringLog(), plantName, plantAddress);
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -83,13 +83,13 @@ namespace FomMonitoringCore.Service
             {
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
-                    var query = ent.UserMachineMapping.Where(w => w.UserId == UserID).Select(s => s.Machine.Plant).ToList();
+                    var query = ent.UserPlantMapping.Where(w => w.UserId == UserID).Select(s => s.Plant).ToList();
                     result = query.Adapt<List<PlantModel>>();
                 }
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), UserID.ToString());
+                string errMessage = string.Format("{0}(UserID = '{1}')", Common.GetStringLog(), UserID.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -110,7 +110,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format("{0} (PlantID = '{1}')", ex.GetStringLog(), plant.Id);
+                string errMessage = string.Format("{0} (PlantID = '{1}')", Common.GetStringLog(), plant.Id);
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
