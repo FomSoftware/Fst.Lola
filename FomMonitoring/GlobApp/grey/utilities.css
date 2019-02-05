@@ -72,7 +72,7 @@ em,
     font-style: normal;
     font-size: 11px;
     margin-left: 3px;
-    color: #999;
+   /* color: #999;*/
 }
 
 .title-small {
@@ -159,7 +159,7 @@ em,
 .color-yellow {
     color: #B7B327;
     color: #DCD427;
-    color: #ec0;
+    color: #fbe45a;
 }
 
 .bg-yellow {
@@ -212,7 +212,7 @@ em,
 }
 
 .color-aaa {
-    color: #aaa;
+    color: #403D3D;
 }
 
 .color-999 {
@@ -225,7 +225,7 @@ em,
 /*#region dropdown */
 
 .drop-btn {
-    background-color: #ddd;
+    background-color: #403D3D;
     color: #999;
     font-size: 16px;
     cursor: pointer;
@@ -446,9 +446,11 @@ em,
 
 .bootstrap-select .btn.btn-default {
     border-radius: 0px;
-    background-color: #e6e6e6;
+    background-color: #CBCACA;
     border: none;
-    border-top: solid 2px #eee;
+    border-top: solid 2px #676767;
+	border-right: solid 2px #676767;
+	border-left: solid 2px #676767;
     padding: 0px 25px 5px 10px;
     height: 35px;
     margin-left: 0px;
@@ -546,7 +548,7 @@ em,
 }
 
 .value-title {
-    color: #999;
+    color: #403D3D;
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 1px;

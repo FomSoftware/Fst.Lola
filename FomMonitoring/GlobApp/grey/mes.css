@@ -238,13 +238,14 @@
 }
 
 .box-machine .box-title {
-    background-color: #ddd;
+    background-color: #403D3D;
     margin: 0px;
     /*padding: 7px 15px 10px;*/
     height: 65px;
     font-size: 15px;
     letter-spacing: 1px;
     line-height: 1.4;
+	color:white;
 }
 
     .box-machine .box-title .row {
@@ -268,7 +269,7 @@
     .box-machine .box-title:hover {
         cursor: pointer;
         transition: all 0.5s ease-out;
-        background-color: rgba(190, 190, 190, 0.5);
+        background-color: rgba(103, 103, 103, 0.8);
     }
 
     .box-machine .box-title .icofom-size {
@@ -289,6 +290,8 @@
     padding-top: 5px;
     padding-bottom: 3px;
     border-bottom: solid 1px #ddd;
+	background-color: #cbcaca;
+    color: #403D3D;
 }
 
 .box-machine .box-body .back .row {
@@ -344,8 +347,8 @@
     padding-top: 15px;
     font-size: 14px;
     line-height: 2;
-    color: #aaa;
-    background-color: #ddd;
+    /*color: #aaa;
+    background-color: #ddd;*/
     border-left: solid 2px #eee;
     border-radius: 0px;
 }

@@ -24,9 +24,11 @@
     border: none;
     padding: 7px 10px 5px 10px;
     height: 35px;
-    margin-left: 0px;
-    background-color: #e6e6e6;
-    border-top: solid 2px #eee;
+    margin-left: 0px;    
+	background-color: #CBCACA;    
+    border-top: solid 2px #676767;
+	border-right: solid 2px #676767;
+	border-left: solid 2px #676767;
 }
 
     .btn-toolbar:hover {

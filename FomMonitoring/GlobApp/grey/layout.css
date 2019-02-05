@@ -3,8 +3,8 @@
     font-size: 13px;
     line-height: 1.2;
     font-weight: 400;
-    color: #676767;
-    background-color: #bfcad1;
+    color: #403D3D;
+    background-color: #676767;
 }
 
 header {
@@ -15,10 +15,12 @@ header {
 }
 
     header .header {
-        height: 40px;
+        height: 50px;
         position: relative;
         border-top: solid 2px #B33157;
-        background-color: #ddd;
+        background-color: #CBCACA;
+		margin-top: 5px;
+		
     }
 
     header .pull-left {
@@ -31,13 +33,14 @@ header {
         }
 
     header img.logo {
-        margin-top: -5px;
+        margin-top: 3px;
     }
 
     header img.logo,
-    header img.scritta {
+    header img.scritta {		
         height: 35px;
         width: auto;
+		
     }
 
     header img.flag {
@@ -110,7 +113,7 @@ header {
 
     header .toolbar {
         height: 35px;
-        background-color: #eee;
+        background-color: #CBCACA;
         border-bottom: solid 1px #ddd;
         box-shadow: 0px 2px 3px rgba(42, 55, 59, 0.2);
     }

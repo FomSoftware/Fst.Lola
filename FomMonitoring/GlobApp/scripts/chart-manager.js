@@ -354,13 +354,13 @@
                     //text: 'Efficienza (%)',
                     text: options.yTitle,
                     style: {
-                        color: '#A5CC48',
+                        color: '#c0f73c',
                     },
                     x: 5
                 },
                 labels: {
                     style: {
-                        color: '#A5CC48'
+                        color: '#c0f73c'
                     },
                     x: -3,
                     y: 4
@@ -375,13 +375,13 @@
                     //text: 'Produttività (p/h)',
                     text: options.yTitle2,
                     style: {
-                        color: '#AEDFDE',
+                        color: '#a2f3f0',
                     },
                     x: -5
                 },
                 labels: {
                     style: {
-                        color: '#AEDFDE',
+                        color: '#a2f3f0',
                     },
                     x: 3,
                     y: 4
@@ -469,12 +469,12 @@
                     //text: 'Efficienza (%)',
                     text: options.yTitle,
                     style: {
-                        color: '#A5CC48',
+                        color: '#c0f73c',
                     }
                 },
                 labels: {
                     style: {
-                        color: '#A5CC48',
+                        color: '#c0f73c',
                     },
                     x: 0,
                     y: 11
@@ -488,13 +488,13 @@
                     //text: 'Produttività (p/h)',
                     text: options.yTitle2,
                     style: {
-                        color: '#AEDFDE',
+                        color: '#a2f3f0',
                     },
                     y: 15
                 },
                 labels: {
                     style: {
-                        color: '#AEDFDE',
+                        color: '#a2f3f0',
                     },
                     x: 0,
                     y: -5
