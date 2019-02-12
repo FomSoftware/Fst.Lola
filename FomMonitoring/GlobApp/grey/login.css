@@ -3,9 +3,9 @@
     font-size: 13px;
     line-height: 1.2;
     font-weight: 300;
-    color: #fff;
+    /*color: #fff;*/
     overflow: hidden;
-    background: #ddd;
+    background: #676767;
     /*background: linear-gradient(to bottom, #6a8790, #2A373B);*/
 }
 
@@ -22,9 +22,10 @@
     height: 100%;
     margin-top: 0px;
     padding: 50px;
-    background: #D1839A;
+    background: #cbc9c9;
+    /*background: #D1839A;
     background: -webkit-linear-gradient(to top, #D1839A, #862541);
-    background: linear-gradient(to top, #D1839A, #B33157);
+    background: linear-gradient(to top, #D1839A, #B33157);*/
     /*background: rgba(221, 221, 221, 0.1);
     border: solid 1px #ddd;*/
 }
@@ -42,7 +43,7 @@
 .header {
     text-align: center;
     font-size: 37px;
-    line-height: 2em;
+    /*line-height: 2em;*/
     margin-bottom: 60px;
     margin-top: 35px;
 }
@@ -62,17 +63,17 @@
         position: absolute;
         top: 12px;
         left: 10px;
-        color: #ddd;
+        /*color: #ddd;*/
     }
 
     .form-group .form-control {
         padding: 10px 7px 7px 35px;
-        border: none;
-        border-bottom: 1px solid #ddd;
+        /*border: none;*/
+        border: 1px solid black;
         color: #fff;
         font-size: 14px;
         border-radius: 0 !important;
-        background-color: transparent;
+        /*background-color: transparent;*/
         height: auto;
         box-shadow: none;
     }
@@ -116,14 +117,15 @@ input:-webkit-autofill:focus input:-webkit-autofill {
 }
 
     .form-actions button {
-        color: #ddd;
-        border: solid 1px #ddd;
+        /*color: #ddd;*/
+        border: solid 1px ;
         padding: 10px 30px;
         background-color: transparent;
         font-size: 15px;
         letter-spacing: 2px;
         font-weight: 500;
         border-radius: 3px;
+        border-style:double;
     }
 
 
@@ -172,7 +174,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     }
 
     .container-login {
-        padding: 30px 50px;
+        padding: 30px 20px;
         border-radius: 5px;
         /*background: none;
         background-color: rgba(109, 177, 178, 0.5);
@@ -180,11 +182,11 @@ input:-webkit-autofill:focus input:-webkit-autofill {
         margin: auto;
         margin-top: 70px;
         box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 7px;
-        max-width: 465px;
+        max-width: 450px;
     }
 
         .container-login .content {
-            padding: 0px 30px;
+            padding: 0px 10px;
         }
 }
 

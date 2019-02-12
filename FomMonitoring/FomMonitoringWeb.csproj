@@ -17,10 +17,10 @@
     <AssemblyName>FomMonitoring</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>62186</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -438,8 +438,10 @@
     <Content Include="Images\flags\fr.png" />
     <Content Include="Images\flags\it.png" />
     <Content Include="Images\logo\Icon-35.png" />
+    <Content Include="Images\logo\Log_On_Live_Automation-600x100px.png" />
     <Content Include="Images\logo\Lola-35.png" />
     <Content Include="Images\logo\Lola-lg.png" />
+    <Content Include="Images\logo\Powered_by_FOM-350x200px.png" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
@@ -771,7 +773,9 @@
     <Content Include="fonts\Lato-Hairline.ttf" />
     <Content Include="fonts\Lato-Light.ttf" />
     <Content Include="fonts\Lato-Regular.ttf" />
-    <None Include="Properties\PublishProfiles\Alten.pubxml" />
+    <None Include="Properties\PublishProfiles\Alten.pubxml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
