@@ -101,7 +101,7 @@
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus input:-webkit-autofill {
-    border-bottom: 1px solid #fff !important;
+    border-bottom: 1px solid black !important;
     /*-webkit-text-fill-color: #fff;*/
     -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.1) inset !important;
     box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.1) inset !important;
