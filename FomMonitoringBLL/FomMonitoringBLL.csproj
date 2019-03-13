@@ -61,6 +61,7 @@
     <Compile Include="ViewModel\ProductivityViewModel.cs" />
     <Compile Include="ViewModel\SpindleViewModel.cs" />
     <Compile Include="ViewModel\ToolViewModel.cs" />
+    <Compile Include="ViewModel\UserManagerViewModel.cs" />
     <Compile Include="ViewServices\AlarmsViewService.cs" />
     <Compile Include="ViewServices\CommonViewService.cs" />
     <Compile Include="ViewServices\MachineViewService.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="ViewServices\SharedViewService.cs" />
     <Compile Include="ViewServices\SpindlesViewService.cs" />
     <Compile Include="ViewServices\ToolsViewService.cs" />
+    <Compile Include="ViewServices\UserManagerViewService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

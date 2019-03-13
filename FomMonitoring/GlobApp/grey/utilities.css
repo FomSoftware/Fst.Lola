@@ -441,7 +441,7 @@ em,
     }
 
     .bootstrap-select {
-        z-index: 1;
+       /* z-index: 1; */
     }
 
 .bootstrap-select .btn.btn-default {
@@ -617,10 +617,14 @@ em,
     padding-left: 0px !important;
 }
 
+.modal-body{
+    padding: 0px; 
+}
+
 .form-control {
     margin-right: 0px;
     background-color: #111;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
     border: 1px solid #B33157;
     color: white;
     font-weight: 400;
@@ -645,7 +649,7 @@ em,
     margin-top: 5px;
     margin-right: 0px;
     background-color: #eee;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
     margin-right: 10px;
     border: none;
     color: white;
@@ -691,7 +695,26 @@ em,
         outline: none;
         border-color: #fff;
     }
+	
+	.input-read-only{
+        pointer-events: none;
+        background-color: #ddd !important;
+        cursor: not-allowed;
+    }
 
+    .select-option-disabled{
+        background-color: #ddd;
+        pointer-events: none;
+        cursor: not-allowed;
+    }
+    .select-option-disabledr:hover:before{
+        visibility:hidden;
+    }
+
+    .background-disabled{
+        background-color: #ddd !important;
+    }
+	
 @media screen and (min-width: 640px) and (max-width : 1204px) {
 
     .form-horizontal {

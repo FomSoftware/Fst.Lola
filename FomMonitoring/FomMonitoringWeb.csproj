@@ -52,9 +52,6 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CommonCore">
-      <HintPath>..\FomMonitoringCore\Libraries\CommonCore.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -174,9 +171,6 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="UserManager">
       <HintPath>..\FomMonitoringCore\Libraries\UserManager.dll</HintPath>
-    </Reference>
-    <Reference Include="UserManagerApi">
-      <HintPath>..\FomMonitoringCore\Libraries\UserManagerApi.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -394,6 +388,7 @@
     <Content Include="GlobApp\grey\machine.css" />
     <Content Include="GlobApp\grey\mes.css" />
     <Content Include="GlobApp\grey\toolbar.css" />
+    <Content Include="GlobApp\grey\user-manager.css" />
     <Content Include="GlobApp\grey\utilities.css" />
     <Content Include="GlobApp\plugins\daterangepicker\daterangepicker.css" />
     <Content Include="GlobApp\plugins\daterangepicker\daterangepicker.js" />
@@ -808,6 +803,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\MapsterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -815,10 +811,10 @@
     <Compile Include="Controllers\MesController.cs" />
     <Compile Include="Controllers\MachineController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
+    <Compile Include="Controllers\UserManagerApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
