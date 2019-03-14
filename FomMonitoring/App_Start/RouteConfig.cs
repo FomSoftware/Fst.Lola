@@ -41,6 +41,15 @@ namespace FomMonitoring
                     id = UrlParameter.Optional
                 }
             );
+
+            routes.MapHttpRoute(
+                name: "AjaxApi",
+                routeTemplate: UrlPrefix + "/{controller}/{action}/{id}",
+                defaults: new
+                {
+                    id = RouteParameter.Optional
+                }
+            );
         }
     }
 }

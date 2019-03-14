@@ -1,4 +1,5 @@
-﻿using FomMonitoringCore.Framework.Common;
+﻿using CommonCore.Service;
+using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using System;
 

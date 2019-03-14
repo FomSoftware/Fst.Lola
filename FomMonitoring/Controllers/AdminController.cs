@@ -1,24 +1,17 @@
-﻿using FomMonitoringBLL.ViewModel;
-using FomMonitoringBLL.ViewServices;
-using FomMonitoringCore.Framework.Common;
-using FomMonitoringCore.Framework.Model;
-using FomMonitoringCore.Service;
+﻿using FomMonitoringCore.Framework.Common;
 using System.Web.Mvc;
 
 namespace FomMonitoring.Controllers
 {
     [SessionWeb]
-    [Authorize(Roles = Common.Administrator + "," + Common.Customer)]
+    [Authorize(Roles = Common.Administrator)]
     public class AdminController : Controller
     {
         // GET: Account
-        [Route("{lang}/UserManager")]
+        // [Route("{lang}/UserManager")]
         public ActionResult UserManager()
         {
-            ContextModel context = ContextService.GetContext();
-            HeaderViewModel header = SharedViewService.GetHeader(context);
-
-            return View(header);
+            return View();
         }
     }
 }

@@ -1,10 +1,6 @@
 ﻿using FomMonitoringCore.Framework.Common;
-using FomMonitoringCore.Framework.Model;
-using System;
-using System.Collections.Generic;
+using FomMonitoringCore.Model;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FomMonitoringCore.Service.API.Concrete
 {
@@ -12,8 +8,7 @@ namespace FomMonitoringCore.Service.API.Concrete
     {
         public bool ValidateCredentials(LoginModel login)
         {
-            var user = AccountService.LoginApi(login.Username, login.Password);
-            return (user == null) ? false : user.Role == enRole.UserApi;
+            return AccountService.GetUser(login.Username, login.Password).Roles.Any(a => a == enRole.UserApi);
         }
     }
 }

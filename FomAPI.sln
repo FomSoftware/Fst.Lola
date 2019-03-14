@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.438
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringApi", "FomMonitoringApi\FomMonitoringApi.csproj", "{CFCA9282-5898-47D4-81AA-124AEDFA00DB}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringDatabaseMapping", "FomMonitoringDatabaseMapping\FomMonitoringDatabaseMapping.csproj", "{51AD95BF-D424-4B72-A096-B0D3FEE552BB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringUpdateUsers", "FomMonitoringUpdateUsers\FomMonitoringUpdateUsers.csproj", "{4E2FBA7B-70EC-46B5-92D6-36B407BB107F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIUpdateUsers", "APIUpdateUsers\APIUpdateUsers.csproj", "{076D01EA-895B-4B02-AFDA-DD12A7DBE944}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,11 +53,42 @@ Global
 		{4E2FBA7B-70EC-46B5-92D6-36B407BB107F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E2FBA7B-70EC-46B5-92D6-36B407BB107F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E2FBA7B-70EC-46B5-92D6-36B407BB107F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{076D01EA-895B-4B02-AFDA-DD12A7DBE944}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{076D01EA-895B-4B02-AFDA-DD12A7DBE944}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{076D01EA-895B-4B02-AFDA-DD12A7DBE944}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{076D01EA-895B-4B02-AFDA-DD12A7DBE944}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {F19CA50F-7599-43AF-963B-85E10E41DD8A}
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfsbs01.decinf.it:8080/tfs/fom
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = FomMonitoringApi\\FomMonitoringApi.csproj
+		SccProjectName1 = FomMonitoringApi
+		SccLocalPath1 = FomMonitoringApi
+		SccProjectUniqueName2 = FomMonitoringApi.Tests\\FomMonitoringApi.Tests.csproj
+		SccProjectName2 = FomMonitoringApi.Tests
+		SccLocalPath2 = FomMonitoringApi.Tests
+		SccProjectUniqueName3 = FomMonitoringCore\\FomMonitoringCore.csproj
+		SccProjectName3 = FomMonitoringCore
+		SccLocalPath3 = FomMonitoringCore
+		SccProjectUniqueName4 = FomMonitoringCore.Tests\\FomMonitoringCore.Tests.csproj
+		SccProjectName4 = FomMonitoringCore.Tests
+		SccLocalPath4 = FomMonitoringCore.Tests
+		SccProjectUniqueName5 = FomMonitoringResources\\FomMonitoringResources.csproj
+		SccProjectName5 = FomMonitoringResources
+		SccLocalPath5 = FomMonitoringResources
+		SccProjectUniqueName6 = FomMonitoringDatabaseMapping\\FomMonitoringDatabaseMapping.csproj
+		SccProjectName6 = FomMonitoringDatabaseMapping
+		SccLocalPath6 = FomMonitoringDatabaseMapping
+		SccProjectUniqueName7 = FomMonitoringUpdateUsers\\FomMonitoringUpdateUsers.csproj
+		SccProjectName7 = FomMonitoringUpdateUsers
+		SccLocalPath7 = FomMonitoringUpdateUsers
+		SccProjectUniqueName8 = APIUpdateUsers\\APIUpdateUsers.csproj
+		SccProjectName8 = APIUpdateUsers
+		SccLocalPath8 = APIUpdateUsers
 	EndGlobalSection
 EndGlobal

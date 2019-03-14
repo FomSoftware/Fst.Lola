@@ -1,5 +1,4 @@
 ﻿using FomMonitoringCore.Framework.Common;
-using System;
 using System.ComponentModel;
 
 namespace FomMonitoringCore.Framework.Model
@@ -7,12 +6,15 @@ namespace FomMonitoringCore.Framework.Model
     public class JsonLoginModel
     {
         public string result { get; set; }
-
-        public enLoginResult? enResult
+        public enLoginResult enResult
         {
             get
             {
-                return result.GetValueFromAttribute<enLoginResult, DescriptionAttribute>(a => a.Description);
+                return enResult;
+            }
+            private set
+            {
+                enResult = result.GetValueFromAttribute<enLoginResult, DescriptionAttribute>(a => a.Description);
             }
         }
     }

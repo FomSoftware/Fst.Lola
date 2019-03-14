@@ -15,16 +15,9 @@ namespace FomMonitoringCore.Framework.Model
 
         public string LastName { get; set; }
 
-        public string Email { get; set; }
-
-        public string CustomerName { get; set; }
-
-        public enRole Role { get; set; }
+        public List<enRole> Roles { get; set; }
 
         public Languages Language { get; set; }
 
-        public List<MachineInfoModel> Machines { get; set; }
-
-        public bool Enabled { get; set; }
     }
 }

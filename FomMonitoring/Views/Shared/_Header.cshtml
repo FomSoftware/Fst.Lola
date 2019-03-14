@@ -3,7 +3,7 @@
 
 <div class="header clearfix">
     <div class="pull-left">
-        <div class="header-logo">
+        <div>
             <img class="logo" src="~/Images/logo/Icon-35.png" />
             <img class="scritta" src="~/Images/logo/Lola-35.png" />
         </div>
@@ -74,20 +74,17 @@
                                     <div class="title-small">@Resource.Username</div>
                                 </td>
                                 <td>
-                                    <div>@Html.Raw(Model.User.Role.ToString())</div>
+                                    <div>@Html.Raw(string.Join(", ", Model.User.Roles.Select(s => s.ToString())))</div>
                                     <div class="title-small">@Resource.Role</div>
                                 </td>
                             </tr>
                         </table>
                     </div>
-                    @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer)
-                    {
-                        <a class="dd-item" href="@Url.Action("UserManager", "Admin")">
-                            <i class="fa fa-user fa-lg color-corporate"></i>
-                            <span>@Resource.UserManager</span>
-                        </a>
-                    }
-                    <div class="dd-item" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
+                    @*<a class="dd-item" href="@Url.Action("UserManager", "Admin")">
+                        <i class="fa fa-user fa-lg color-corporate"></i>
+                        <span>@Resource.UserManager</span>
+                    </a>*@
+                    <div class="dd-item" data-toggle="modal" data-target="#change-password-modal">
                         <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
                         <span>@Resource.ChangePassword</span>
                     </div>
@@ -103,14 +100,9 @@
         <div class="btn btn-menu btn-mobile js-open-menu display-none">
             <i class="fa fa-bars fa-lg"></i>
         </div>
-
         <nav id="mobile-menu" class="mobile-menu">
             <a href="javascript:void(0)" class="close-btn js-close-menu">&times;</a>
             <ul class="main-menu">
-                <li class="dd-logo">
-                    <img class="logo" src="/Images/logo/Icon-35.png">
-                    <img class="scritta" src="/Images/logo/Lola-35.png">
-                </li>
                 <li class="dd-item-user">
                     <table class="table table-info">
                         <tr>
@@ -129,7 +121,7 @@
                                 <div class="title-small">@Resource.Username</div>
                             </td>
                             <td>
-                                <div>@Html.Raw(Model.User.Role.ToString())</div>
+                                <div>@Html.Raw(string.Join(", ", Model.User.Roles.Select(s => s.ToString())))</div>
                                 <div class="title-small">@Resource.Role</div>
                             </td>
                         </tr>
@@ -153,49 +145,39 @@
                         }
                     </ul>
                 </li>
-                @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer)
-                {
-                    <li>
-                        <a href="@Url.Action("UserManager", "Admin")">
-                            <i class="fa fa-user color-corporate fa-lg"></i>
-                            <span>@Resource.UserManager</span>
-                        </a>
-                    </li>
-                }
-                    <li>
-                        <a href="#" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
-                            <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
-                            <span>@Resource.ChangePassword</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Logout", "Account")">
-                            <i class="fa fa-power-off color-corporate fa-lg"></i>
-                            <span>@Resource.Logout</span>
-                        </a>
-                    </li>
-                </ul>
+                @*<li>
+                    <a href="@Url.Action("UserManager", "Admin")">
+                        <i class="fa fa-user color-corporate fa-lg"></i>
+                        <span>@Resource.UserManager</span>
+                    </a>
+                </li>*@
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#change-password-modal">
+                        <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
+                        <span>@Resource.ChangePassword</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Logout", "Account")">
+                        <i class="fa fa-power-off color-corporate fa-lg"></i>
+                        <span>@Resource.Logout</span>
+                    </a>
+                </li>
+            </ul>
         </nav>
         <!-- #endregion -->
     </div>
 </div>
+
+
+
+
 
 <script type="text/javascript">
 
     $(document).ready(function ()
     {
         var data = @Html.Raw(Json.Encode(Model.ActualPeriod));
-        var user = @Html.Raw(Json.Encode(Model.User));
-
-        var resource = {
-            Error: '@Resource.Error',
-            EnterPassword: '@Resource.EnterPasswords',
-            PasswordNotSame: '@Resource.PasswordNotSame',
-            ChangePasswordSuccessfully: '@Resource.ChangePasswordSuccessfully',
-            PasswordSamePrevious:'@Resource.PasswordSamePrevious',
-        };
-
-        UserManager.initChangePassword(user, "@ViewBag.BaseUrl", resource);
         SharedManager.initHeader(data.LastUpdate);
     });
 

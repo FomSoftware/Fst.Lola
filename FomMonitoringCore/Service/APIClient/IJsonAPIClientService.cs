@@ -4,8 +4,8 @@ namespace FomMonitoringCore.Service.APIClient
 {
     public interface IJsonAPIClientService
     {
-        enLoginResult ValidateCredentialsViaRemoteApi(string username, string password);
-
-        bool UpdateActiveCustomersAndMachines();
+        string GetJsonData(string method);
+        bool ElaborateUpdateUsersJsonData(string json);
+        enLoginResult ElaborateLoginJsonData(string json);
     }
 }

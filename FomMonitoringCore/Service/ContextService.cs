@@ -1,11 +1,12 @@
-﻿using FomMonitoringCore.Framework.Common;
+﻿using CommonCore.Service;
+using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Web;
+using UserManager.Service.Concrete;
 
 namespace FomMonitoringCore.Service
 {
@@ -25,16 +26,16 @@ namespace FomMonitoringCore.Service
                 ContextModel context = new ContextModel();
                 context.User = ActualUser;
 
-                context.AllLanguages = UserManagerService.GetLanguages().OrderBy(o => o.IdLanguage).ToList();
+                context.AllLanguages = new LanguageServices().GetLanguages().OrderBy(o => o.IdLanguage).ToList();
                 context.ActualLanguage = context.User.Language == null ? context.AllLanguages.FirstOrDefault() : context.User.Language;
 
                 SetContext(context);
 
 
-                UserIdentityModel UserIdentity = new UserIdentityModel(ActualUser.Username, new List<string> { ActualUser.Role.ToString().SHA256Encript() });
+                UserIdentityModel UserIdentity = new UserIdentityModel(ActualUser.Username, ActualUser.Roles.Select(s => s.ToString().SHA256Encript()).ToList());
                 HttpContext.Current.User = UserIdentity;
 
-                HttpCookie cookie = new HttpCookie(ActualUser.Username, ActualUser.Role.ToString().SHA256Encript());
+                HttpCookie cookie = new HttpCookie(ActualUser.Username, string.Join(",", ActualUser.Roles.Select(s => s.ToString().SHA256Encript())));
                 HttpContext.Current.Response.Cookies.Add(cookie);
 
                 contextIsSet = true;

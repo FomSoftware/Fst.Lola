@@ -1,4 +1,5 @@
-﻿using FomMonitoringCore.DAL;
+﻿using CommonCore.Service;
+using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using Mapster;

@@ -218,7 +218,7 @@
 
     $(document).ready(function ()
     {
-        var urlMachineAPI = '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineViewModel" })';
+        var urlMachineAPI = '@Url.HttpRouteUrl("AjaxApi", new { controller = "AppApi", action = "GetMachineViewModel" })';
         MachineManager.init(urlMachineAPI);
     });
 

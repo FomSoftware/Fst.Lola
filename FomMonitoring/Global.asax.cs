@@ -1,5 +1,4 @@
 ﻿using FomMonitoring.App_Start;
-using FomMonitoringCore.Framework.Common;
 using Mapster;
 using System;
 using System.Globalization;
@@ -12,10 +11,11 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.SessionState;
+using UserManagerApi;
 
 namespace FomMonitoring
 {
-    public class MvcApplication : HttpApplication
+    public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
         {
@@ -25,7 +25,6 @@ namespace FomMonitoring
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ControllerBuilder.Current.SetControllerFactory(new DefaultControllerFactory(new I18nControllerActivator()));
             TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetAssembly(typeof(MapsterConfig)));
-            GlobalFilters.Filters.Add(new AjaxBaseUrlActionFilter(), 0);
             log4net.Config.XmlConfigurator.Configure();
         }
 
