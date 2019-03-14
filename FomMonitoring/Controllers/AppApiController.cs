@@ -11,7 +11,7 @@ using System.Web.Http;
 namespace FomMonitoring.Controllers
 {
     [SessionApi]
-    [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator)]
+    [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
     public class AppApiController : ApiController
     {
         [HttpPost]

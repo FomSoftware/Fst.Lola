@@ -36,7 +36,7 @@ namespace FomMonitoringCore.Service
             LoggedUser.Username = User.Username;
             LoggedUser.FirstName = User.FirstName;
             LoggedUser.LastName = User.LastName;
-            LoggedUser.Roles = User.Roles_Users.Select(s => (enRole)s.Roles.IdRole).ToList();
+            LoggedUser.Role = User.Roles_Users.Select(s => (enRole)s.Roles.IdRole).FirstOrDefault();
             LoggedUser.Language = User.Languages;
 
             return LoggedUser;
@@ -49,10 +49,38 @@ namespace FomMonitoringCore.Service
         /// <param name="password">The password.</param>
         /// <param name="rememberMe">The remember me.</param>
         /// <returns></returns>
-        public ResponseModel Login(string username, string password, bool rememberMe)
+        public ResponseModel Login(string username, string password, bool rememberMe, bool remoteAuthentication = false)
         {
             string message;
-            bool result = ValidateUser(username, password, rememberMe, out message);
+            bool result = false;
+
+            // Controllo delle credenziali
+            var loginServices = new LoginServices();
+            if (remoteAuthentication)
+                result = loginServices.ManageLoginUserWithoutPassword(username, out message, true);
+            else
+                result = loginServices.LoginUserWithEncryptedPassword(username, password, out message, true);
+
+            if (result)
+            {
+                UserModel User = new AccountService().GetLoggedUser();
+                string userId = User.ID.Adapt<string>();
+                string serializedUser = JsonConvert.SerializeObject(User);
+
+                var authTicket = new FormsAuthenticationTicket(
+                    1, // version
+                    userId, // user name or user id
+                    DateTime.Now, // created
+                    DateTime.Now.AddMinutes(120), // expires
+                    rememberMe, // persistent?
+                    serializedUser // can be used to store user data
+                    );
+
+                var encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+
+                var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                HttpContext.Current.Response.Cookies.Add(authCookie);
+            }
 
             ResponseModel response = new ResponseModel
             {
@@ -63,52 +91,15 @@ namespace FomMonitoringCore.Service
             return response;
         }
 
-        public static bool ValidateUser(string username, string password, bool persistentCookie, out string message)
+        public static UserModel LoginApi(string username, string password)
         {
-            // Controllo delle credenziali
+            string message;
+
             var loginServices = new LoginServices();
-            if (!loginServices.LoginUser(username, password, out message))
-                return false;
+            if (loginServices.LoginUserWithEncryptedPassword(username, password, out message, true))
+                return new AccountService().GetLoggedUser();
 
-            UserModel User = new AccountService().GetLoggedUser();
-            string userId = User.ID.Adapt<string>();
-            string serializedUser = JsonConvert.SerializeObject(User);
-
-            var authTicket = new FormsAuthenticationTicket(
-                1, // version
-                userId, // user name or user id
-                DateTime.Now, // created
-                DateTime.Now.AddMinutes(120), // expires
-                persistentCookie, // persistent?
-                serializedUser // can be used to store user data
-                );
-
-            var encryptedTicket = FormsAuthentication.Encrypt(authTicket);
-
-            var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-            HttpContext.Current.Response.Cookies.Add(authCookie);
-
-            return true;
-        }
-
-        public static UserModel GetUser(string username, string password)
-        {
-            UserModel UserModel = new UserModel();
-
-            UserServices userServices = new UserServices();
-            Users User = userServices.GetUser(username, password);
-
-            if (!User.Enabled)
-                return UserModel;
-
-            UserModel.ID = User.ID;
-            UserModel.Username = User.Username;
-            UserModel.FirstName = User.FirstName;
-            UserModel.LastName = User.LastName;
-            UserModel.Roles = User.Roles_Users.Select(s => (enRole)s.Roles.IdRole).ToList();
-            UserModel.Language = User.Languages;
-
-            return UserModel;
+            return null;
         }
 
         /// <summary>

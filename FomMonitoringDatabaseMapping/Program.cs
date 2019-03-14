@@ -1,6 +1,6 @@
-﻿using CommonCore.Service;
-using FomMonitoringCore.Framework.Common;
+﻿using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
+using FomMonitoringCore.Service;
 using FomMonitoringCore.Service.DataMapping;
 using Mapster;
 using System;
@@ -27,25 +27,21 @@ namespace FomMonitoringDatabaseMapping
                         if (!jsonDataModel.IsCumulative)
                         {
                             if (!JsonToSQLiteService.MappingJsonDetailsToSQLite(jsonDataModel))
-                            {
                                 throw new Exception("JSON to SQLite Error:");
-                            }
+
                             if (!SQLiteToSQLServerService.MappingSQLiteDetailsToSQLServer())
-                            {
                                 throw new Exception("SQLite to SQLServer Error:");
-                            }
                         }
+
                         if (jsonDataModel.IsCumulative)
                         {
                             if (!JsonToSQLiteService.MappingJsonHistoryToSQLite(jsonDataModel))
-                            {
                                 throw new Exception("JSON to SQLite Error:");
-                            }
+
                             if (!SQLiteToSQLServerService.MappingSQLiteHistoryToSQLServer())
-                            {
                                 throw new Exception("SQLite to SQLServer Error:");
-                            }
                         }
+
                         JsonToSQLiteService.SaveElaboration(jsonDataModel.Id, true);
                         result--;
                     }

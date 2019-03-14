@@ -1,4 +1,4 @@
-﻿using FomMonitoringCore.Model;
+﻿using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using FomMonitoringCore.Service.API.Concrete;
 using System;
@@ -293,6 +293,20 @@ namespace FomMonitoringCore.Framework.Common
                 parameter = "realm=\"" + Realm + "\"";
 
             context.ChallengeWith("Basic", parameter);
+        }
+    }
+
+    /// <summary>
+    /// Filtro per creare nella viewbg il baseurl dell'applicazione
+    /// </summary>
+    public class AjaxBaseUrlActionFilter : System.Web.Mvc.ActionFilterAttribute
+    {
+        public override void OnResultExecuting(ResultExecutingContext filterContext)
+        {
+            var applicationPath = System.Web.HttpContext.Current.Request.ApplicationPath;
+            if (applicationPath == "/") applicationPath = "";
+
+            filterContext.Controller.ViewBag.BaseUrl = System.Web.HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + applicationPath;
         }
     }
 }

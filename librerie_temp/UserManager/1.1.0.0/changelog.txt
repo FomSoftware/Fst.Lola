@@ -1,1 +1,0 @@
-- aggiornato entity framework dalla versione 4 alla 6

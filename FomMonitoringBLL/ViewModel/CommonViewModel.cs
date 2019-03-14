@@ -60,5 +60,4 @@ namespace FomMonitoringBLL.ViewModel
 
         public List<int> data { get; set; }
     }
-
 }

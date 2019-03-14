@@ -408,4 +408,127 @@
   <data name="UserExpired" xml:space="preserve">
     <value>Utenza scaduta</value>
   </data>
+  <data name="RepeatPassword" xml:space="preserve">
+    <value>Ripeti password</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancella</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modifica</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>Disabilita</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Abilita</value>
+  </data>
+  <data name="AddUser" xml:space="preserve">
+    <value>Aggiungi utente</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Cerca</value>
+  </data>
+  <data name="NoRecordsAvailable" xml:space="preserve">
+    <value>Non ci sono dati da visualizzare</value>
+  </data>
+  <data name="NothingFound" xml:space="preserve">
+    <value>Non è stato trovato nulla</value>
+  </data>
+  <data name="ComeBack" xml:space="preserve">
+    <value>No, torna indietro</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Si, continua</value>
+  </data>
+  <data name="DisableUser" xml:space="preserve">
+    <value>Utente disabilitato</value>
+  </data>
+  <data name="EnableUser" xml:space="preserve">
+    <value>Utente abilitato</value>
+  </data>
+  <data name="ModifyUser" xml:space="preserve">
+    <value>Modifica utente</value>
+  </data>
+  <data name="LastPassword" xml:space="preserve">
+    <value>Vecchia password</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Nuova password</value>
+  </data>
+  <data name="RepeatNewPassword" xml:space="preserve">
+    <value>Ripetere nuova password</value>
+  </data>
+  <data name="EmailNotValid" xml:space="preserve">
+    <value>Email non valida</value>
+  </data>
+  <data name="PasswordShort" xml:space="preserve">
+    <value>Password troppo corta</value>
+  </data>
+  <data name="PasswordsNotSame" xml:space="preserve">
+    <value>Le password inserite non sono uguali</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Cliente</value>
+  </data>
+  <data name="FieldRequired" xml:space="preserve">
+    <value>Questo campo è richiesto</value>
+  </data>
+  <data name="NothingSelected" xml:space="preserve">
+    <value>Nessuna selezione</value>
+  </data>
+  <data name="Machines" xml:space="preserve">
+    <value>Macchine</value>
+  </data>
+  <data name="CreatedUser" xml:space="preserve">
+    <value>Utente creato correttamente</value>
+  </data>
+  <data name="ErrorOccurred" xml:space="preserve">
+    <value>Si è verificato un errore</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="UserSuccessfullyModify" xml:space="preserve">
+    <value>Utente aggiornato correttamente</value>
+  </data>
+  <data name="PasswordSuccessfullyReseted" xml:space="preserve">
+    <value>Reset password avvenuto con successo</value>
+  </data>
+  <data name="ResetUserPassword" xml:space="preserve">
+    <value>Vuoi resettare la password di questo utente?</value>
+  </data>
+  <data name="ChangePasswordSuccessfully" xml:space="preserve">
+    <value>Password modificata con successo</value>
+  </data>
+  <data name="EnterPasswords" xml:space="preserve">
+    <value>Inserire password</value>
+  </data>
+  <data name="PasswordNotSame" xml:space="preserve">
+    <value>Le nuove password inserite non sono uguali</value>
+  </data>
+  <data name="PasswordSamePrevious" xml:space="preserve">
+    <value>La vecchia password non è corretta</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Resetta password</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Elimina</value>
+  </data>
+  <data name="DeleteUser" xml:space="preserve">
+    <value>Sei sicuro di voler eliminare questo utente?</value>
+  </data>
+  <data name="UserSuccessfullyDeleted" xml:space="preserve">
+    <value>Utente eliminato con successo</value>
+  </data>
+  <data name="UsernameExists" xml:space="preserve">
+    <value>Un utente con questo username esiste già</value>
+  </data>
 </root>

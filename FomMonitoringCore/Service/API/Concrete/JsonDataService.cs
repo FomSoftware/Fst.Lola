@@ -1,5 +1,4 @@
-﻿using CommonCore.Service;
-using FomMonitoringCore.DAL;
+﻿using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;

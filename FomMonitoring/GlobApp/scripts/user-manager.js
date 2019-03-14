@@ -1,393 +1,462 @@
-﻿var UserManager = function ()
-{
-    var userManagerAPI;
+﻿var UserManager = function () {
     var vmUsers;
+    var resource;
+    var contextUser;
+    var roleUser;
+    var table;
+    var baseApiUrl;
 
-    var init = function (urlAPI)
-    {
-        userManagerAPI = urlAPI;
+    // change password
+    var dataPassword;
+    var resourceChangePassword;
 
-        initVueModelUser();
-        getUsers();
+    var enRoles = {
+        Administrator: 0,
+        Operator: 1,
+        HeadWorkshop: 2,
+        Assistance: 3,
+        Customer: 4,
+        UserApi: 5
     }
 
-    var initVueModelUser = function ()
-    {
+    var enAction = {
+        add: 0,
+        modify: 1
+    };
+
+    var init = function (user, baseUrl, resourceText) {
+        baseApiUrl = baseUrl + "/ajax/UserManagerApi";
+        resource = resourceText;
+        contextUser = user;
+        roleUser = user.Role;
+
+        initVueModelUser();
+        getData();
+    }
+
+    var initVueModelUser = function () {
         vmUsers = new Vue({
             el: '#user-modal-form',
-            data : {
+            data: {
                 users: {},
                 actual: {},
                 roles: {
                     active: '',
                     all: []
                 },
-                missing : {
+                customers: {
+                    active: '',
+                    all: []
+                },
+                machines: {
+                    active: [],
+                    all: []
+                },
+                languages: {
+                    active: '',
+                    all: [],
+                },
+                missing: {
                     Username: false,
                     Firstname: false,
                     LastName: false,
                     Email: false,
                     Role: false,
-                    Password: false,
-                    RepeatPassword : false
-                }
+                    Customer: false,
+                    Machines: false,
+                    Languages: false
+                },
+                enRoles: enRoles
             },
-            methods : {
-                formValidation: function ()
-                {
+            methods: {
+                formValidation: function () {
                     this.actual.Username == undefined || this.actual.Username == null || this.actual.Username.trim() == "" ? this.missing.Username = true : this.missing.Username = false
-                    this.actual.FirstName == undefined || this.actual.FirstName == null || this.actual.FirstName.trim() == "" ? this.missing.FirstName = true  : this.missing.FirstName = false
-                    this.actual.LastName == undefined || this.actual.LastName == null || this.actual.LastName.trim() == "" ? this.missing.LastName = true  : this.missing.LastName = false
-                    this.actual.Email == undefined || this.actual.Email == null || this.actual.Email.trim() == "" ? this.missing.Email = true  : this.missing.Email = false
-                    this.roles.active == "" ? this.missing.Role = true  : this.missing.Role = false
-                    this.actual.Password == undefined || this.actual.Password == null || this.actual.Password.trim() == "" ? this.missing.Password = true : this.missing.Password = false
-                    this.actual.RepeatPassword == undefined || this.actual.RepeatPassword == null || this.actual.RepeatPassword.trim() == "" ? this.missing.RepeatPassword = true : this.missing.RepeatPassword = false
-                }
-            }
+                    this.actual.FirstName == undefined || this.actual.FirstName == null || this.actual.FirstName.trim() == "" ? this.missing.FirstName = true : this.missing.FirstName = false
+                    this.actual.LastName == undefined || this.actual.LastName == null || this.actual.LastName.trim() == "" ? this.missing.LastName = true : this.missing.LastName = false
+                    this.actual.Email == undefined || this.actual.Email == null || this.actual.Email.trim() == "" ? this.missing.Email = true : this.missing.Email = false
+                    this.roles.active == "" && this.roles.active != 0 ? this.missing.Role = true : this.missing.Role = false
+                    this.customers.active == "" && roleUser != enRoles.Customer ? this.missing.Customer = true : this.missing.Customer = false
+                    this.machines.active.length == 0 ? this.missing.Machines = true : this.missing.Machines = false
+                    this.languages.active == "" ? this.missing.Languages = true : this.missing.Languages = false
+                },
+                selectOptionClass: function (val) {
+                    if (!val.status || !val.enabled)
+                        return true;
+                },
+                setLanguageFlag: function (val) {
+                    return setLanguageFlag(val)
+                },
+            },
+            mounted: function () {
+                $('#role-input').selectpicker();
+                $('#customer-input').selectpicker();
+                $('#machines-input').selectpicker();
+                $('#plants-input').selectpicker();
+                $('#languages-input').selectpicker();
+            },
+            updated: function () {
+                vmUsers.$nextTick(function () {
+                    $('#role-input').selectpicker('refresh');
+                    $('#customer-input').selectpicker('refresh');
+                    $('#machines-input').selectpicker('refresh');
+                    $('#languages-input').selectpicker('refresh');
+                });
+
+            },
         })
     }
 
-    var getUsers = function ()
-    {
+    var getData = function () {
         $.get({
-            url: userManagerAPI + '/Users',
-            contentType: "application/json; charset=utf-8",
-            success: function (result)
-            {
-                vmUsers.users = result.Data;
-                initDataTable("#users-table", result.Data);
-            },
-            error: function (xhr, status, error)
-            {
-                alert(error);
-            }
-        }).then(function(result)
-        {
-            getRoles();
-        });
-
-    };
-
-    var getRoles = function ()
-    {
-        $.get({
-            url: userManagerAPI + '/Roles',
-            contentType: "application/json; charset=utf-8",
-            success: function (result)
-            {
-                vmUsers.roles.all = result.Data;
-            },
-            error: function (xhr, status, error)
-            {
-                alert(error);
-            }
-        });
-    }
-
-    var initDataTable = function (renderID, data)
-    {
-
-        data.forEach(function (elem, index)
-        {
-            elem.Modify = '<div class="button btn-modify" onclick="UserManager.modifyClickEvent(\'' + elem.ID + '\')" data-id="' + elem.ID + '">Modifica</div>';
-            if (elem.Enabled)
-            {
-                elem.Switch = '<div class="button btn-disactive" onclick="UserManager.disabledClickEvent(\'' + elem.ID + '\')" data-id="' + elem.ID + '">Disabilita</div>';
-            }
-            else
-            {
-                elem.Switch = '<div class="button btn-active" onclick="UserManager.enabledClickEvent(\'' + elem.ID + '\')" data-id="' + elem.ID + '">Abilita</div>';
-            }
-        });
-
-        var config = {
-            data: data,
-            columns: [{ title: "Username", data: "Username" },
-                       { title: "Nome", data: "FirstName" },
-                       { title: "Cognome", data: "LastName" },
-                       { title: "Email", data: "Email" },
-                       { title: "Ruolo", data: "Roles[0].Name" },
-                       { title: "", data: "Modify", orderable: false },
-                       { title: "", data: "Switch", orderable: false }
-            ],
-            info: false,
-            order: [],
-            paging: false,
-            //scrollX: true,
-            responsive: true,
-            autoWidth: true,
-            //order: [[orderDefault, orderType]],
-            language: {
-                search: "",
-                searchPlaceholder: "Cerca",
-                emptyTable: "Non ci sono dati da visualizzare"
-            },
-        };
-        var table = $(renderID).DataTable(config);
-    }
-
-    var addClickEvent = function ()
-    {
-            $('#user-modal .modal-title').text("AGGIUNGI UTENTE");
-            $('#user-modal').modal('show');
-            $('#user-modal .js-modify').hide();
-            $('#user-modal .js-add').show();           
-    }
-    
-    var addUser = function ()
-    {
-        vmUsers.formValidation();
-        if (controlValidation())
-            {
-                var data = {
-                    User: {
-                        "ID": vmUsers.actual.ID,
-                        "DefaultHomePage": "",
-                        "Email": vmUsers.actual.Email,
-                        "Enabled": true,
-                        "Username": vmUsers.actual.Username,
-                        "FirstName": vmUsers.actual.FirstName,
-                        "LastName": vmUsers.actual.LastName,
-                        "Password": vmUsers.actual.Password
-                    },
-                    RoleIDs: [vmUsers.roles.active],
-                    GroupIDs: []
-                };
-
-                $.post({
-                    url: userManagerAPI + '/Users',
-                    data: JSON.stringify(data),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (result)
-                    {
-                        if (!result.HasError)
-                        {
-                            successSwal("Utente creato correttamente.");
-                            refreshTable();
-                        }
-                    },
-                    error: function (xhr, status, error)
-                    {
-                        errorSwal("Si è verificato un errore con la creazione del nuovo utente.");
-                    }
-                });
-        } else
-        {
-            null
-        }
-    }
-
-    var modifyClickEvent = function (userID)
-    {
-        $('#user-modal .modal-title').text("MODIFICA UTENTE");
-            $('#user-modal').modal('show');
-            $('#user-modal .js-add').hide();
-            $('#user-modal .js-modify').show();
-
-           var user = $.grep(vmUsers.users, function (element, index)
-            {
-                return element.ID == userID;
-           });
-           vmUsers.actual = Object.assign({}, user[0]);
-           vmUsers.actual.Password = "";
-           vmUsers.actual.RepeatPassword = "";
-           vmUsers.roles.active = vmUsers.actual.Roles[0].ID;
-    }
-
-    var modifyUser = function ()
-    {
-        vmUsers.formValidation();
-        if ( controlValidation() )
-             {
-               var data = {
-                    User: {
-                        "ID": vmUsers.actual.ID,
-                        "Domain": "",
-                        "DefaultHomePage": "",
-                        "Email": vmUsers.actual.Email,
-                        "Enabled": true,
-                        "Username": vmUsers.actual.Username,
-                        "FirstName": vmUsers.actual.FirstName,
-                        "LastName": vmUsers.actual.LastName,
-                        "Password": vmUsers.actual.Password
-                    },
-                    RoleIDs: [vmUsers.roles.active],
-                    GroupIDs: []
-                };
-
-                $.ajax({
-                    url: userManagerAPI + '/Users',
-                    data: JSON.stringify(data),
-                    type: "PUT",
-                    contentType: "application/json; charset=utf-8",
-                    success: function (result)
-                    {
-                        if (!result.HasError)
-                        {
-                            successSwal("Utente aggiornato correttamente.");
-                            refreshTable();
-                        } else
-                        {
-                            errorSwal("Si è verificato un errore con l'aggiornamento del utente.");
-                        }
-                    },
-                    error: function (xhr, status, error)
-                    {
-                        errorSwal("Si è verificato un errore con l'aggiornamento del utente.");
-                    }
-                });
-        } else
-        {
-            null
-        }
-    }
-
-    var disabledClickEvent = function (userID)
-    {
-            vmUsers.actual = $.grep(vmUsers.users, function (element, index)
-            {
-                return element.ID == userID;
-            });
-
-            vmUsers.actual = vmUsers.actual[0];
-
-            swal({
-                title: "",
-                text: "Si è sicuri di voler disabilitare questo utente?",
-                className: "text-modal-disactive",
-                icon: "warning",
-                buttons: {
-                    cancel: {
-                        text: "No, torna indietro",
-                        visible: true,
-                        className: "cancel",
-                        closeModal: true,
-                    },
-                    confirm: {
-                        text: "Si, continua",
-                        visible: true,
-                        className: "confirm",
-                        closeModal: true
-                    }
-                }
-            }).then(function(result)
-            {
-                if (result)
-                    disabledUser(userID);
-            });
-    }
-
-    var enabledClickEvent = function (userID) {
-        vmUsers.actual = $.grep(vmUsers.users, function (element, index) {
-            return element.ID == userID;
-        });
-
-        vmUsers.actual = vmUsers.actual[0];
-
-        swal({
-            title: "",
-            text: "Si è sicuri di voler abilitare questo utente?",
-            className: "text-modal-disactive",
-            icon: "warning",
-            buttons: {
-                cancel: {
-                    text: "No, torna indietro",
-                    visible: true,
-                    className: "cancel",
-                    closeModal: true,
-                },
-                confirm: {
-                    text: "Si, continua",
-                    visible: true,
-                    className: "confirm",
-                    closeModal: true
-                }
-            }
-        }).then(function(result) {
-            if (result)
-                enabledUser(userID);
-        });
-    }
-
-    var enabledUser = function (userID) {
-        $.ajax({
-            url: userManagerAPI + '/Users' + "/" + userID + "/Enable",
-            type: "PUT",
+            url: baseApiUrl + '/GetUsers',
             contentType: "application/json; charset=utf-8",
             success: function (result) {
-                if (!result.HasError) {
-                    successSwal("Utente abilitato correttamente.");
-                    refreshTable();
-                } else {
-                    errorSwal("Si è verificato un errore con l'abilitazione del utente.");
+                if (result != null) {
+                    vmUsers.users = result.users;
+                    vmUsers.roles.all = result.roles;
+                    vmUsers.customers.all = result.customers;
+                    vmUsers.machines.all = result.machines;
+                    vmUsers.languages.all = result.languages;
+
+                    initDataTable("#users-table", result.users);
                 }
             },
             error: function (xhr, status, error) {
-                errorSwal("Si è verificato un errore con l'abilitazione del utente.");
+                errorSwal(resource.ErrorOccurred);
             }
-        });
-    }
+        })
+    };
 
-    var disabledUser = function (userID)
-    {
-        $.ajax({
-            url: userManagerAPI + '/Users' + "/" + userID,
-            type: "DELETE",
-            contentType: "application/json; charset=utf-8",
-            success: function (result)
-            {
-                if (!result.HasError)
-                {
-                    successSwal("Utente eliminato correttamente.");
-                    refreshTable();
-                } else
-                {
-                    errorSwal("Si è verificato un errore con l'eliminazione del utente.");
-                }
-            },
-            error: function (xhr, status, error)
-            {
-                errorSwal("Si è verificato un errore con l'eliminazione del utente.");
-            }
-        });
-    }
+    var getMachinesByCustomer = function () {
+        $('#customer-input').on('hidden.bs.select', function (e, clickedIndex, newValue, oldValue) {
+            $('#machines-input').prop("disabled", false);
 
-    var refreshTable = function ()
-    {
-        $.get({
-            url: userManagerAPI + '/Users',
-            contentType: "application/json; charset=utf-8",
-            success: function (result)
-            {
-                result.Data.forEach(function (elem, index)
-                {
-                    elem.Modify = '<div class="button btn-modify" onclick="UserManager.modifyClickEvent(\'' + elem.ID + '\')" data-id="' + elem.ID + '">Modifica</div>';
-                    if (elem.Enabled) {
-                        elem.Switch = '<div class="button btn-disactive" onclick="UserManager.disabledClickEvent(\'' + elem.ID + '\')" data-id="' + elem.ID + '">Disabilita</div>';
-                    }
-                    else {
-                        elem.Switch = '<div class="button btn-active" onclick="UserManager.enabledClickEvent(\'' + elem.ID + '\')" data-id="' + elem.ID + '">Abilita</div>';
+            var customer = $("#customer-input option:selected").val();
+            if (customer != null && customer != '')
+                $.ajax({
+                    url: baseApiUrl + "/GetMachinesByCustomer/" + customer,
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+
+                        vmUsers.machines.all = result;
+                        Vue.nextTick(function () {
+                            $('#machines-input').selectpicker('destroy');
+                            $('#user-modal #machines-input').removeClass('input-read-only');
+                            $('#machines-input').selectpicker();
+                        });
+
                     }
                 });
 
-                var table = $("#users-table").DataTable();
-                table.clear();
-                table
-                    .rows
-                    .add(result.Data)
-                    .draw();
+        });
+    }
 
-                vmUsers.users = result.Data;
-                vmUsers.actual = {};
-                vmUsers.roles.active = '';
-                $('#user-modal').modal('hide');
+    var initDataTable = function (renderID, data) {
+        data.forEach(function (elem, index) {
+            elem.Name = elem.FirstName + ' ' + elem.LastName;
+            elem.Modify = '<div class="button btn-modify" data-toggle="tooltip" title="' + resource.Modify + '" onclick="UserManager.modifyClickEvent(\'' + elem.ID + '\')" data-id="' + elem.ID + '"><i class="fa fa-pencil"></i></div>';
+            if (elem.Enabled)
+                elem.Enabled = '<span class="btn-active btn-enabled" data-toggle="tooltip" title="' + resource.EnabledUser + '"><i class="fa fa-check" aria-hidden="true"></i></span>';
+            else
+                elem.Enabled = '<span class="btn-disactive btn-enabled" data-toggle="tooltip"  title="' + resource.DisabledUser + '"><i class="fa fa-times" aria-hidden="true"></i></span>';
+            elem.Language = '<img class="flag" src=' + setLanguageFlag(elem.LanguageName) + ' data-toggle="tooltip"  title="' + resource.Language + ": " + elem.LanguageName + '">'
+            elem.ChangePassword = '<div class="button btn-modify" data-toggle="tooltip"  title="' + resource.ResetPassword + '" onclick="UserManager.resetPasswordClickEvent(\'' + elem.ID + '\')" data-id="' + elem.ID + '"><i class="fa fa-lock"></i></div>';
+            if (elem.RoleCode != enRoles.Administrator && elem.RoleCode != enRoles.Customer)
+                elem.Delete = '<div class="button btn-modify" data-toggle="tooltip"  title="' + resource.Delete + '" onclick="UserManager.deleteClickEvent(\'' + elem.ID + '\')" data-id="' + elem.ID + '"><i class="fa fa-trash"></i></div>';
+            else
+                elem.Delete = "";
+            elem.Customer = "";
 
+            // contollo sulla lunghezza dei nomi delle macchine
+            if (elem.MachineSerials.length > 1)
+                elem.Machines = '<div data-toggle="popover" data-content="' + elem.MachineSerials + '" data-placement="bottom" data-trigger="hover">' + elem.MachineSerials.slice(0, 25) + "..." + '</div>';
+            else
+                elem.Machines = elem.MachineSerials;
+        });
+
+        var columns = [
+            { title: "", data: "Enabled", orderable: false, width: 2 },
+            { title: resource.Username, data: "Username" },
+            { title: resource.Name, data: "Name" },
+            { title: "Email", data: "Email" },
+            { title: resource.Role, data: "RoleName" }
+        ];
+
+        if (roleUser != enRoles.Customer)
+            columns.push({ title: resource.Customer, data: "CustomerName" });
+        columns.push({ title: resource.Machines, data: "Machines", width: 40 });
+        columns.push({ title: "", data: 'Language', orderable: false, width: 15 });
+        columns.push({ title: "", data: "Modify", orderable: false });
+        columns.push({ title: "", data: "ChangePassword", orderable: false })
+        columns.push({ title: "", data: "Delete", orderable: false });
+
+        var config = {
+            data: data,
+            columns: columns,
+            info: false,
+            order: [],
+            paging: false,
+            responsive: true,
+            autoWidth: false,
+            language: {
+                search: "",
+                searchPlaceholder: resource.Search,
+                emptyTable: resource.NoRecordsAvailables,
+                zeroRecords: resource.NothingFound
+            },
+        };
+
+        table = $(renderID).DataTable(config);
+
+        //init tooltip 
+        $('[data-toggle="tooltip"]').tooltip();
+
+        //init popover
+        $('[data-toggle="popover"]').popover();
+    }
+
+    var addClickEvent = function () {
+        action = enAction.add;
+
+        $('#user-modal .modal-title').text(resource.AddUser);
+        $('#user-modal .form-check').hide();
+        $('#form-customer-input').show();
+        $('#form-role-input-disabled').hide();
+        $('#form-customer-input-disabled').hide();
+
+        if (roleUser == enRoles.Customer) {
+            vmUsers.customers.active = contextUser.Username;
+            vmUsers.$nextTick(function () {
+                $('#form-customer-input').hide();
+                $('#user-modal #machines-input').removeClass('input-read-only');
+                $("[data-id='machines-input']").removeClass('background-disabled');
+            });
+        } else {
+            getMachinesByCustomer();
+            vmUsers.$nextTick(function () {
+                $('#user-modal #customer-input').removeClass('input-read-only');
+                $('#user-modal #machines-input').addClass('input-read-only');
+                $("[data-id='machines-input']").addClass('background-disabled');
+            });
+        }
+
+        $('#user-modal').modal('show');
+        $('#user-modal .js-modify').hide();
+        $('#user-modal .js-add').show();
+    }
+
+    var addUser = function () {
+        vmUsers.formValidation();
+        if (controlValidation()) {
+            var machines = [];
+            vmUsers.machines.active.forEach(function (val, index) {
+                machines.push({ Id: val })
+            });
+
+            var data = {
+                ID: null,
+                Username: vmUsers.actual.Username.replace(/\s/g, ''),
+                FirstName: vmUsers.actual.FirstName,
+                LastName: vmUsers.actual.LastName,
+                Email: vmUsers.actual.Email,
+                CustomerName: vmUsers.customers.active,
+                RoleCode: vmUsers.roles.active,
+                LanguageId: vmUsers.languages.active,
+                Machines: machines,
+                Enabled: true,
+            };
+
+            $.post({
+                url: baseApiUrl + '/InsertUser',
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    if (result == true) {
+                        successSwal(resource.CreatedUser);
+                        clearActualUser();
+                        $('#user-modal').modal('hide');
+                        refreshTable();
+                    } else {
+                        errorSwal(resource.UsernameExists);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    errorSwal(resource.ErrorOccurred);
+                }
+            });
+
+        }
+    }
+
+    var modifyClickEvent = function (userID) {
+        $.get({
+            url: baseApiUrl + '/GetUser/' + userID,
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                if (result.user != null) {
+                    vmUsers.actual = result.user;
+                    vmUsers.roles.active = result.user.RoleCode;
+                    vmUsers.customers.active = result.user.CustomerName;
+                    vmUsers.machines.all = result.machines;
+                    vmUsers.languages.active = result.user.LanguageId;
+                    vmUsers.machines.active = _.pluck(result.user.Machines, 'Id');
+
+                    $('#user-modal .modal-title').text(resource.ModifyUser);
+                    $('#user-modal').modal('show');
+                    $('#user-modal .js-add').hide();
+                    $('#user-modal .js-modify').show();
+
+                    $('#user-modal .form-check').show();
+                    $('#form-customer-input').hide();
+                    $('#form-customer-input-disabled').show();
+                    $('#user-modal #username-input').addClass('input-read-only');
+
+                    // se è un customer
+                    if (vmUsers.roles.active == enRoles.Customer) {
+                        $('#user-modal #role-input').addClass('input-read-only');
+                        $("[data-id='role-input']").addClass('background-disabled');
+                    }
+
+                    // se è admin o customer
+                    if (vmUsers.roles.active == enRoles.Operator || vmUsers.roles.active == enRoles.HeadWorkshop) {
+                        $('#form-role-input-disabled').hide();
+                        $('#form-role-input').show();
+                    }
+                    else {
+                        vmUsers.roles.activeName = result.user.RoleName;
+                        $('#form-role-input-disabled').show();
+                        $('#form-role-input').hide();
+                    }
+                } else
+                    errorSwal(resource.ErrorOccurred);
+            },
+            error: function (xhr, status, error) {
+                errorSwal(resource.ErrorOccurred);
             }
         });
     }
 
-    var successSwal = function (text)
-    {
+    var modifyUser = function () {
+        action = enAction.modify;
+        vmUsers.formValidation();
+        if (controlValidation()) {
+            var machines = [];
+            vmUsers.machines.active.forEach(function (val, index) {
+                machines.push({ Id: val })
+            });
+
+            var data = {
+                ID: vmUsers.actual.ID,
+                Username: vmUsers.actual.Username.replace(/\s/g, ''),
+                FirstName: vmUsers.actual.FirstName,
+                LastName: vmUsers.actual.LastName,
+                Email: vmUsers.actual.Email,
+                CustomerName: vmUsers.customers.active,
+                RoleCode: vmUsers.roles.active,
+                LanguageId: vmUsers.languages.active,
+                Machines: machines,
+                Enabled: vmUsers.actual.Enabled,
+            };
+
+            $.ajax({
+                url: baseApiUrl + "/EditUser",
+                data: JSON.stringify(data),
+                type: "PUT",
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    if (result == true) {
+
+                        successSwal(resource.UserSuccessfullyModify);
+                        clearActualUser();
+                        $('#user-modal').modal('hide');
+                        refreshTable();
+                    } else {
+                        clearActualUser();
+                        errorSwal(resource.ErrorOccurred);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    clearActualUser();
+                    errorSwal(resource.ErrorOccurred);
+                }
+            });
+        }
+    }
+
+    var resetPasswordClickEvent = function (userID) {
+        vmUsers.actual.ID = userID;
+        var text = resource.ResetUserPassword;
+        var alert = alertSwal(text);
+
+        alert.then(function (result) {
+            if (result)
+                resetPassword(vmUsers.actual.ID)
+        });
+    }
+
+    var resetPassword = function (id) {
+        var userId = id;
+
+        $.ajax({
+            url: baseApiUrl + "/ResetUserPassword/" + userId,
+            data: JSON.stringify(userId),
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                if (result == true) {
+                    successSwal(resource.PasswordSuccessfullyReseted);
+                    clearActualUser();
+                    $('#user-modal').modal('hide');
+                } else {
+                    errorSwal(resource.ErrorOccurred);
+                }
+            },
+            error: function (xhr, status, error) {
+                errorSwal(resource.ErrorOccurred);
+            }
+        });
+    }
+
+    var deleteClickEvent = function (userID) {
+        vmUsers.actual.ID = userID;
+        var text = resource.DeleteUser;
+        var alert = alertSwal(text);
+
+        alert.then(function (result) {
+            if (result)
+                deleteUser(vmUsers.actual.ID)
+        });
+    }
+
+    var deleteUser = function (id) {
+        var userId = id;
+
+        $.ajax({
+            url: baseApiUrl + "/DeleteUser/" + userId,
+            data: JSON.stringify(userId),
+            type: "DELETE",
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                if (result == true) {
+                    successSwal(resource.UserSuccessfullyDeleted);
+                    refreshTable();
+                } else {
+                    errorSwal(resource.ErrorOccurred);
+                }
+            },
+            error: function (xhr, status, error) {
+                errorSwal(resource.ErrorOccurred);
+            }
+        });
+    }
+
+    var refreshTable = function () {
+        table.destroy();
+        getData();
+    }
+
+    var successSwal = function (text) {
         swal({
             title: "",
             text: text,
@@ -397,10 +466,112 @@
         });
     }
 
-    var errorSwal = function (text)
-    {
+    var alertSwal = function (text) {
+        var alert = swal({
+            title: "",
+            text: text,
+            className: "text-modal-disactive",
+            icon: "warning",
+            buttons: {
+                cancel: {
+                    text: resource.ComeBack,
+                    visible: true,
+                    className: "cancel",
+                    closeModal: true,
+                },
+                confirm: {
+                    text: resource.Continue,
+                    visible: true,
+                    className: "confirm",
+                    closeModal: true
+                }
+            }
+        });
+        return alert;
+    }
+
+    var clearActualUser = function () {
+        vmUsers.actual = {};
+        vmUsers.roles.active = '';
+        vmUsers.customers.active = '';
+        vmUsers.machines.active = [];
+        if (roleUser != enRoles.Customer)
+            vmUsers.machines.all = [];
+
+        vmUsers.languages.active = '';
+        vmUsers.missing.Username = false;
+        vmUsers.missing.FirstName = false;
+        vmUsers.missing.LastName = false;
+        vmUsers.missing.Email = false;
+        vmUsers.missing.Role = false;
+        vmUsers.missing.Customer = false;
+        vmUsers.missing.Machines = false;
+        vmUsers.missing.Languages = false;
+
+        $('#machines-input').selectpicker('destroy');
+        $('#customer-input').selectpicker('destroy');
+        $('#role-input').selectpicker('destroy');
+
+        $('#user-modal #username-input').removeClass('input-read-only');
+
+        $('#user-modal #customer-input').removeClass('input-read-only');
+        $("[data-id='customer-input']").removeClass('background-disabled');
+
+        $('#user-modal #role-input').removeClass('input-read-only');
+        $("[data-id='role-input']").removeClass('background-disabled');
+
+        $('#user-modal #machines-input').removeClass('input-read-only');
+        $("[data-id='machines-input']").removeClass('background-disabled');
+
+        $('#user-modal .form-password').css('display', 'block');
+    }
+
+    var controlValidation = function () {
+        if (vmUsers.missing.Username == false &&
+            vmUsers.missing.Firstname == false &&
+            vmUsers.missing.LastName == false &&
+            vmUsers.missing.Email == false &&
+            vmUsers.missing.Role == false &&
+            vmUsers.missing.Customer == false &&
+            vmUsers.missing.Machines == false &&
+            vmUsers.missing.Languages == false) {
+            if (!controlValidationEmail(vmUsers.actual.Email)) {
+                errorSwal(resource.EmailNotValid);
+                return false;
+            }
+            return true;
+        } else
+            return false;
+    }
+
+    var controlValidationEmail = function (email) {
+        var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return regex.test(email);
+
+    }
+
+    var setLanguageFlag = function (val) {
+        var result;
+        switch (val) {
+            case 'English':
+                result = '/Images/flags/en.png';
+                break;
+            case 'Italiano':
+                result = '/Images/flags/it.png';
+                break;
+            case 'Spanish':
+                result = '/Images/flags/es.png';
+                break;
+            case 'French':
+                result = '/Images/flags/fr.png';
+                break;
+        }
+        return result;
+    }
+
+    var errorSwal = function (text) {
         swal({
-            title: "Errore",
+            title: resourceChangePassword.Error,
             text: text,
             icon: "error",
             allowOutsideClick: true,
@@ -408,65 +579,81 @@
         });
     }
 
-    var clearActualUser = function ()
-    {
-        vmUsers.actual = {};
-        vmUsers.roles.active = '';
-        vmUsers.missing.Username = false;
-        vmUsers.missing.Firstname = false,
-        vmUsers.missing.LastName = false,
-        vmUsers.missing.Email = false,
-        vmUsers.missing.Role = false,
-        vmUsers.missing.Password = false,
-        vmUsers.missing.RepeatPassword = false
+
+    /*#region CHANGE PASSWORD */
+
+    var initChangePassword = function (data, baseUrl, resourceText) {
+        dataPassword = data;
+        baseApiUrl = baseUrl + "/ajax/UserManagerApi";
+        resourceChangePassword = resourceText;
     }
-    
-    var controlValidation = function ()
-    {
-        if (vmUsers.missing.Username == false &&
-           vmUsers.missing.Firstname == false &&
-           vmUsers.missing.LastName == false &&
-           vmUsers.missing.Email == false &&
-           vmUsers.missing.Role == false &&
-           vmUsers.missing.Password == false)
-        {
-            if (!controlValidationEmail(vmUsers.actual.Email))
-            {
-                errorSwal("L'email inserita non è valida");
-                return false;
-            }
-            if (vmUsers.actual.Password.trim().length < 6)
-            {
-                errorSwal("La password inserita è troppo corta.");
-                return false;
-            }
-            if (vmUsers.actual.Password != vmUsers.actual.RepeatPassword)
-            {
-                errorSwal("Le password inserite non sono uguali.");
-                return false;
-            }
-            return true;
-        } else
-        {
-            return false;
+
+    var openChangePasswordModal = function () {
+        $('#last-password').val(null);
+        $('#new-password').val(null);
+        $('#repeat-new-password').val(null);
+        $('#change-password-modal').modal('show');
+    }
+
+    var changePasswordClick = function () {
+        var oldPassword = $('#last-password').val();
+        var newPassword = $('#new-password').val();
+        var repeatPassword = $('#repeat-new-password').val();
+
+        var data = {
+            IdUser: null,
+            OldPassword: oldPassword,
+            NewPassword: newPassword
+        };
+
+        if (newPassword != "" && repeatPassword != "") {
+            if (newPassword == repeatPassword)
+                changePassword(data);
+            else
+                errorSwal(resourceChangePassword.PasswordNotSame);
         }
+        else
+            errorSwal(resourceChangePassword.EnterPassword);
     }
-    
-    var controlValidationEmail = function (email)
-    {
-        var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-        return regex.test(email);
-     
+
+    var changePassword = function (data) {
+        var request = $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            url: baseApiUrl + "/ChangePassword",
+            data: JSON.stringify(data)
+        });
+
+        request.done(function (data) {
+            if (data == true) {
+                successSwal(resourceChangePassword.ChangePasswordSuccessfully);
+                $('#change-password-modal').modal('hide');
+            }
+            else
+                errorSwal(resourceChangePassword.PasswordSamePrevious);
+
+        });
+
+        request.fail(function (jqXHR, textStatus, errorThrown) {
+            errorSwal(resourceChangePassword.ErrorOccurred);
+        });
     }
+
+    /*#endregion*/
+
 
     return {
         init: init,
+        initChangePassword: initChangePassword,
         addClickEvent: addClickEvent,
         addUser: addUser,
         modifyUser: modifyUser,
         modifyClickEvent: modifyClickEvent,
-        enabledClickEvent: enabledClickEvent,
-        disabledClickEvent: disabledClickEvent,
-        clearActualUser: clearActualUser
+        deleteClickEvent: deleteClickEvent,
+        clearActualUser: clearActualUser,
+        resetPasswordClickEvent: resetPasswordClickEvent,
+        clearActualUser: clearActualUser,
+        changePasswordClick: changePasswordClick,
+        openChangePasswordModal: openChangePasswordModal
     }
 }()

@@ -332,7 +332,7 @@
     $(document).ready(function ()
     {
         var urlMachine = '@Url.Action("Index", "Machine")';
-        var urlMesAPI = '@Url.HttpRouteUrl("AjaxApi", new { controller = "AppApi", action = "GetMesViewModel" })';
+        var urlMesAPI = '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMesViewModel" })';
         var data = @Html.Raw(Json.Encode(Model));
 
         MesManager.init(urlMachine, urlMesAPI, data);
