@@ -1,58 +1,113 @@
-﻿using CommonCore.Service;
-using FomMonitoringCore.DAL;
+﻿using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Transactions;
+using System.Xml;
 using UserManager.DAL;
-using UserManager.Service;
-using UserManager.Service.Concrete;
 
 namespace FomMonitoringCore.Service.APIClient.Concrete
 {
     public class JsonAPIClientService : IJsonAPIClientService
     {
-        public string GetJsonData(string method)
+        public enLoginResult ValidateCredentialsViaRemoteApi(string username, string password)
         {
-            string result = string.Empty;
-            try
-            {
-                result = CUrlService.ExecutePrincipalCUrl(method);
-            }
-            catch (Exception ex)
-            {
-                string errMessage = string.Format(ex.GetStringLog());
-                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-            }
-            return result;
-        }
+            string apiUrl = ApplicationSettingService.GetWebConfigKey("RemoteLoginSOAPUrl");
+            var apiUsername = ApplicationSettingService.GetWebConfigKey("RemoteLoginSOAPUsername");
+            var apiPassword = ApplicationSettingService.GetWebConfigKey("RemoteLoginSOAPPassword");
 
-        public enLoginResult ElaborateLoginJsonData(string json)
-        {
+            HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(apiUrl);
+            webRequest.Headers.Add("SOAPAction", "http://tempuri.org/IService/verificaUtentePassword");
+            webRequest.ContentType = "text/xml;charset=\"utf-8\"";
+            webRequest.Accept = "text/xml";
+            webRequest.Method = "POST";
+            webRequest.CookieContainer = new CookieContainer();
+            webRequest.Credentials = new NetworkCredential(apiUsername, apiPassword, "");
+
+            XmlDocument soapEnvelopeXml = new XmlDocument();
+            soapEnvelopeXml.LoadXml(string.Format(@"<soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:tem=""http://tempuri.org/""><soapenv:Header></soapenv:Header><soapenv:Body><tem:verificaUtentePassword><tem:utente>{0}</tem:utente><tem:password>{1}</tem:password></tem:verificaUtentePassword></soapenv:Body></soapenv:Envelope>", username, password));
+
+            using (Stream stream = webRequest.GetRequestStream())
+            {
+                soapEnvelopeXml.Save(stream);
+            }
+
+            IAsyncResult asyncResult = webRequest.BeginGetResponse(null, null);
+            asyncResult.AsyncWaitHandle.WaitOne();
+
+            string soapResult;
+            using (WebResponse webResponse = webRequest.EndGetResponse(asyncResult))
+            {
+                using (StreamReader rd = new StreamReader(webResponse.GetResponseStream()))
+                {
+                    soapResult = rd.ReadToEnd();
+                }
+            }
+
+            XmlDocument document = new XmlDocument();
+            document.LoadXml(soapResult);
+
             enLoginResult result = enLoginResult.NotExists;
             try
             {
-                JsonLoginModel login = JsonConvert.DeserializeObject<JsonLoginModel>(json);
-                result = login.enResult;
+                JsonLoginModel login = JsonConvert.DeserializeObject<JsonLoginModel>(document.InnerText);
+                result = login.enResult ?? result;
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), json);
-                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+                LogService.WriteLog(ex.Message, LogService.TypeLevel.Error, ex);
             }
+
             return result;
         }
 
-        public bool ElaborateUpdateUsersJsonData(string json)
+        public bool UpdateActiveCustomersAndMachines()
         {
             bool result = true;
             try
             {
-                JsonCustomersModel customers = JsonConvert.DeserializeObject<JsonCustomersModel>(json);
-                IUserServices userService = new UserServices();
+                string apiUrl = ApplicationSettingService.GetWebConfigKey("UpdateCustomersAndMachinesSOAPUrl");
+                var apiUsername = ApplicationSettingService.GetWebConfigKey("UpdateCustomersAndMachinesSOAPUsername");
+                var apiPassword = ApplicationSettingService.GetWebConfigKey("UpdateCustomersAndMachinesSOAPPassword");
+
+                HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(apiUrl);
+                webRequest.Headers.Add("SOAPAction", "http://tempuri.org/IService/ottieniListaMacchineRegistrate");
+                webRequest.ContentType = "text/xml;charset=\"utf-8\"";
+                webRequest.Accept = "text/xml";
+                webRequest.Method = "POST";
+                webRequest.CookieContainer = new CookieContainer();
+                webRequest.Credentials = new NetworkCredential(apiUsername, apiPassword, "");
+
+                XmlDocument soapEnvelopeXml = new XmlDocument();
+                soapEnvelopeXml.LoadXml(@"<soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:tem=""http://tempuri.org/""><soapenv:Header></soapenv:Header><soapenv:Body><tem:ottieniListaMacchineRegistrate/></soapenv:Body></soapenv:Envelope>");
+
+                using (Stream stream = webRequest.GetRequestStream())
+                {
+                    soapEnvelopeXml.Save(stream);
+                }
+
+                IAsyncResult asyncResult = webRequest.BeginGetResponse(null, null);
+                asyncResult.AsyncWaitHandle.WaitOne();
+
+                string soapResult;
+                using (WebResponse webResponse = webRequest.EndGetResponse(asyncResult))
+                {
+                    using (StreamReader rd = new StreamReader(webResponse.GetResponseStream()))
+                    {
+                        soapResult = rd.ReadToEnd();
+                    }
+                }
+
+                XmlDocument document = new XmlDocument();
+                document.LoadXml(soapResult);
+
+                JsonCustomersModel customers = JsonConvert.DeserializeObject<JsonCustomersModel>(document.InnerText);
+
                 using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.ReadUncommitted }))
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
@@ -61,18 +116,21 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                         try
                         {
                             //Aggiungo eventuali nuovi clienti
-                            Users user = new Users();
+                            UserModel user = new UserModel();
                             using (TransactionScope transactionSuppress = new TransactionScope(TransactionScopeOption.Suppress))
                             {
-                                user = userService.GetUser(customer.username);
+                                user = UserManagerService.GetUser(customer.username);
                                 if (user == null)
                                 {
-                                    user = new Users()
+                                    user = new UserModel()
                                     {
                                         Username = customer.username,
-                                        Enabled = true
+                                        FirstName = customer.username,
+                                        LastName = customer.username,
+                                        Enabled = true,
+                                        Role = enRole.Customer
                                     };
-                                    userService.CreateUser(user);
+                                    user.ID = UserManagerService.CreateUser(user);
                                 }
                                 transactionSuppress.Complete();
                             }
@@ -129,8 +187,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                         }
                         catch (Exception ex)
                         {
-                            string errMessage = string.Format(ex.GetStringLog(), json);
-                            LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+                            LogService.WriteLog(ex.Message, LogService.TypeLevel.Error, ex);
                             result = false;
                         }
                     }
@@ -140,10 +197,11 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), json);
-                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+                LogService.WriteLog(ex.Message, LogService.TypeLevel.Error, ex);
             }
+
             return result;
         }
+
     }
 }

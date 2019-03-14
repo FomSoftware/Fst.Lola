@@ -641,6 +641,10 @@
         <Function Name="usp_CleanMachineData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="machineId" Type="int" Mode="In" />
         </Function>
+        <Function Name="usp_GetCustomerNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_GetCustomerUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerName" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="usp_MesUserMachines" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="plantId" Type="int" Mode="In" />
           <Parameter Name="date" Type="datetime" Mode="In" />

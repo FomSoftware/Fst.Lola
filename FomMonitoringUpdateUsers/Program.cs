@@ -1,11 +1,14 @@
-﻿using CommonCore.Service;
-using FomMonitoringCore.Framework.Common;
+﻿using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Config;
+using FomMonitoringCore.Service;
 using FomMonitoringCore.Service.APIClient;
 using FomMonitoringCore.Service.APIClient.Concrete;
 using Mapster;
 using System;
+using System.IO;
+using System.Net;
 using System.Reflection;
+using System.Xml;
 
 namespace FomMonitoringUpdateUsers
 {
@@ -19,20 +22,10 @@ namespace FomMonitoringUpdateUsers
             try
             {
                 IJsonAPIClientService jsonAPIClientService = new JsonAPIClientService();
-                string method = ApplicationSettingService.GetWebConfigKey("GetCustomers");
-                string customersJson = jsonAPIClientService.GetJsonData(method);
-                if (!string.IsNullOrEmpty(customersJson) && jsonAPIClientService.ElaborateUpdateUsersJsonData(customersJson))
-                {
+                if (!jsonAPIClientService.UpdateActiveCustomersAndMachines())
                     result--;
-                }
-                else if (string.IsNullOrEmpty(customersJson))
-                {
-                    throw new NullReferenceException("JSON vuoto!");
-                }
                 else
-                {
-                    throw new FormatException("Formato JSON errato!");
-                }
+                    throw new Exception("Errore durante l'aggiornamento dei clienti e delle macchine abilitate al servizio!");
             }
             catch (Exception ex)
             {
@@ -46,5 +39,6 @@ namespace FomMonitoringUpdateUsers
         {
             TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetAssembly(typeof(MapsterConfig)));
         }
+
     }
 }
