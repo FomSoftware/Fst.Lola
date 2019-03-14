@@ -4,8 +4,6 @@ using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using Mapster;
 using System;
-using System.Linq;
-using UserManager.DAL;
 
 namespace FomMonitoringCore.Framework.Config
 {
@@ -55,14 +53,6 @@ namespace FomMonitoringCore.Framework.Config
             config.NewConfig<UserPlantMapping, UserPlantMappingModel>()
                .Map(dest => dest.Plant, src => src.Plant);
             config.NewConfig<JsonData, JsonDataModel>();
-            config.NewConfig<UserCustomerMapping, UserCustomerModel>()
-                .Map(dest => dest.Username, src => src.CustomerName);
-            config.NewConfig<Users, UserModel>()
-                .Map(dest => dest.Role, src => (src.Roles_Users.Count > 0) ? (enRole)src.Roles_Users.First().Roles.IdRole : enRole.Operator)
-                .Map(dest => dest.Language, src => src.Languages);
-            config.NewConfig<Roles, RoleModel>()
-                .Map(dest => dest.Code, src => src.IdRole);
-            config.NewConfig<UserCustomerMapping, UserCustomerModel>();
 
             // SP to Model
             config.NewConfig<usp_AggregationState_Result, HistoryStateModel>()
@@ -74,7 +64,6 @@ namespace FomMonitoringCore.Framework.Config
 
             // Model to DAL
             config.NewConfig<JsonDataModel, JsonData>();
-            config.NewConfig<UserModel, Users>();
 
             // SQLite to SQLServer 
             config.NewConfig<DAL_SQLite.bar, Bar>()

@@ -1,4 +1,5 @@
-﻿using FomMonitoringCore.DAL;
+﻿using CommonCore.Service;
+using FomMonitoringCore.DAL;
 using FomMonitoringCore.DAL_SQLite;
 using FomMonitoringCore.Framework.Common;
 using Mapster;
