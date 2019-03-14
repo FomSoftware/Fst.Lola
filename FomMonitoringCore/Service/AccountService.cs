@@ -96,8 +96,6 @@ namespace FomMonitoringCore.Service
             UserModel UserModel = new UserModel();
 
             UserServices userServices = new UserServices();
-            RoleService roleService = new RoleService();
-            
             Users User = userServices.GetUser(username, password);
 
             if (!User.Enabled)
@@ -107,7 +105,7 @@ namespace FomMonitoringCore.Service
             UserModel.Username = User.Username;
             UserModel.FirstName = User.FirstName;
             UserModel.LastName = User.LastName;
-            UserModel.Roles = roleService.GetUserRoles(User.ID).Select(s => (enRole)s.IdRole).ToList();
+            UserModel.Roles = User.Roles_Users.Select(s => (enRole)s.Roles.IdRole).ToList();
             UserModel.Language = User.Languages;
 
             return UserModel;
