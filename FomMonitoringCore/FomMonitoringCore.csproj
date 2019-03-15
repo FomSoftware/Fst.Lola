@@ -34,10 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommonCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libraries\CommonCore.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -304,17 +300,18 @@
     <Compile Include="Framework\Model\MesUserMachinesModel.cs" />
     <Compile Include="Framework\Model\PlantModel.cs" />
     <Compile Include="Framework\Model\ResponseModel.cs" />
+    <Compile Include="Framework\Model\RoleModel.cs" />
     <Compile Include="Framework\Model\SpindleModel.cs" />
     <Compile Include="Framework\Model\StateMachineModel.cs" />
     <Compile Include="Framework\Model\StateModel.cs" />
     <Compile Include="Framework\Model\ToolMachineModel.cs" />
+    <Compile Include="Framework\Model\UserCustomerModel.cs" />
     <Compile Include="Framework\Model\UserIdentityModel.cs" />
     <Compile Include="Framework\Model\UserPlantMappingModel.cs" />
     <Compile Include="Framework\Model\UserMachineMappingModel.cs" />
     <Compile Include="Framework\Model\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AccountService.cs" />
-    <Compile Include="Service\AjaxService.cs" />
     <Compile Include="Service\AlarmService.cs" />
     <Compile Include="Service\API\Concrete\JsonDataService.cs" />
     <Compile Include="Service\API\IBasicManager.cs" />
@@ -324,22 +321,25 @@
     <Compile Include="Service\API\Concrete\JwtManager.cs" />
     <Compile Include="Service\API\IJsonDataService.cs" />
     <Compile Include="Service\API\IJwtManager.cs" />
-    <Compile Include="Service\APIClient\Concrete\AsyncHelpersService.cs" />
+    <Compile Include="Service\ApplicationSettingService.cs" />
     <Compile Include="Service\BarService.cs" />
+    <Compile Include="Service\CacheService.cs" />
     <Compile Include="Service\ContextService.cs" />
-    <Compile Include="Service\APIClient\Concrete\CUrlService.cs" />
     <Compile Include="Service\DataMapping\JsonToSQLiteService.cs" />
     <Compile Include="Service\DataMapping\SQLiteToSQLServerService.cs" />
     <Compile Include="Service\JobService.cs" />
+    <Compile Include="Service\LogService.cs" />
     <Compile Include="Service\MachineService.cs" />
     <Compile Include="Service\PeriodService.cs" />
     <Compile Include="Service\PieceService.cs" />
     <Compile Include="Service\MesService.cs" />
+    <Compile Include="Service\SessionService.cs" />
     <Compile Include="Service\ToolService.cs" />
     <Compile Include="Service\SpindleService.cs" />
     <Compile Include="Service\StateService.cs" />
     <Compile Include="Service\APIClient\Concrete\JsonAPIClientService.cs" />
     <Compile Include="Service\APIClient\IJsonAPIClientService.cs" />
+    <Compile Include="Service\UserManagerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -388,9 +388,7 @@
       <DependentUpon>FomMonitoringModelSQLite.edmx</DependentUpon>
       <LastGenOutput>FomMonitoringModelSQLite.cs</LastGenOutput>
     </Content>
-    <Content Include="Libraries\CommonCore.dll" />
     <Content Include="Libraries\UserManager.dll" />
-    <Content Include="Libraries\UserManagerApi.dll" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

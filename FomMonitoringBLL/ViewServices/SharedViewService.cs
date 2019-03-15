@@ -27,7 +27,7 @@ namespace FomMonitoringBLL.ViewServices
         {
             ToolbarViewModel toolbar = new ToolbarViewModel();
             toolbar.page = context.ActualPage;
-            toolbar.role = context.User.Roles.FirstOrDefault();
+            toolbar.role = context.User.Role;
             toolbar.language = new LanguageViewModel();
             toolbar.language.initial = context.ActualLanguage.InitialsLanguage;
             toolbar.language.labels = new CalendarI18nModel();

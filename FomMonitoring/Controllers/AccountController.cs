@@ -1,6 +1,4 @@
-﻿using CommonCore.Service;
-using FomMonitoring.Models;
-using FomMonitoringCore.Framework.Common;
+﻿using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using FomMonitoringCore.Service.APIClient;
@@ -21,9 +19,20 @@ namespace FomMonitoring.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl, int exception = 0)
         {
-            string isDemo = ApplicationSettingService.GetWebConfigKey("Demo");
+
+
+            var isDemo = bool.Parse(ApplicationSettingService.GetWebConfigKey("DemoMode"));
             ActionResult result = null;
-            if (!bool.Parse(isDemo))
+
+            if (isDemo)
+            {
+                LoginModel model = new LoginModel();
+                model.Username = ApplicationSettingService.GetWebConfigKey("DemoUsername");
+                model.Password = ApplicationSettingService.GetWebConfigKey("DemoPassword");
+                model.RememberMe = true;
+                result = Connect(model, returnUrl);
+            }
+            else
             {
                 switch (exception)
                 {
@@ -45,13 +54,7 @@ namespace FomMonitoring.Controllers
                 ViewBag.ReturnUrl = returnUrl;
                 result = View();
             }
-            else
-            {
-                LoginModel model = new LoginModel();
-                model.Username = ApplicationSettingService.GetWebConfigKey("DemoUser");
-                model.RememberMe = true;
-                result = Connect(model, returnUrl);
-            }
+
             return result;
         }
 
@@ -73,10 +76,9 @@ namespace FomMonitoring.Controllers
         [AllowAnonymous]
         public ActionResult Logout(string returnUrl, int exception = 0)
         {
-            //exception = exception == 0 && Request.Cookies.Count > 1 && Request.Cookies.Get(FormsAuthentication.FormsCookieName) == null ? 2 : exception;
-            //exception = exception == 0 && Request.Cookies.Count == 1 && Request.Cookies.AllKeys.FirstOrDefault(f => f.StartsWith("__RequestVerificationToken")) == null ? 1 : exception;
             Disconnect();
             RedirectToRouteResult redirect = null;
+
             switch (exception)
             {
                 case 0:
@@ -91,6 +93,7 @@ namespace FomMonitoring.Controllers
                     redirect = RedirectToAction("Login", new { returnUrl = returnUrl, exception = exception });
                     break;
             }
+
             return redirect;
         }
 
@@ -102,6 +105,7 @@ namespace FomMonitoring.Controllers
             AccountService accountService = new AccountService();
             accountService.Logout();
             CacheService.CleanAllCache();
+
             List<HttpCookie> cookies = new List<HttpCookie>();
             foreach (var cookie in Request.Cookies)
             {
@@ -109,6 +113,7 @@ namespace FomMonitoring.Controllers
                 c.Expires = DateTime.Now.AddDays(-1);
                 cookies.Add(c);
             }
+
             foreach (var cookie in cookies)
             {
                 Response.Cookies.Add(cookie);
@@ -117,63 +122,50 @@ namespace FomMonitoring.Controllers
 
         private ActionResult Connect(LoginModel model, string returnUrl)
         {
+            if (ModelState.IsValid)
+            {
+                AccountService accountService = new AccountService();
+                enLoginResult remoteLoginResult = enLoginResult.NotExists;
 
-            string isTest = ApplicationSettingService.GetWebConfigKey("Test");
-            if (bool.Parse(isTest))
-            {
-                model.Password = ApplicationSettingService.GetWebConfigKey("DefaultPassword");
-            }
-            AccountService accountService = new AccountService();
-            if (ModelState.IsValid && accountService.Login(model.Username, model.Password, true).Result)
-            {
-                FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
-                if (ContextService.InitializeContext())
+                /* REMOTE LOGIN */
+                var remoteLogin = bool.Parse(ApplicationSettingService.GetWebConfigKey("RemoteLogin"));
+                if (remoteLogin)
                 {
-                    return RedirectToLocal(returnUrl);
+                    IJsonAPIClientService jsonAPIClientService = new JsonAPIClientService();
+                    remoteLoginResult = jsonAPIClientService.ValidateCredentialsViaRemoteApi(model.Username, model.Password);
                 }
-                ModelState.AddModelError("", Resource.LoginProblem);
+
+                switch (remoteLoginResult)
+                {
+                    case enLoginResult.Ok:
+                    case enLoginResult.NotExists:
+                        var localLoginResult = accountService.Login(model.Username, model.Password, true, (remoteLoginResult == enLoginResult.Ok));
+                        if (localLoginResult.Result)
+                        {
+                            FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
+                            if (ContextService.InitializeContext())
+                                return RedirectToLocal(returnUrl);
+
+                            ModelState.AddModelError("", Resource.LoginProblem);
+                        }
+                        ModelState.AddModelError("", Resource.PassNotValid);
+                        break;
+
+                    case enLoginResult.Disabled:
+                        ModelState.AddModelError("", Resource.UserExpired);
+                        break;
+
+                    case enLoginResult.WrongPassword:
+                        ModelState.AddModelError("", Resource.PassNotValid);
+                        break;
+
+                    default:
+                        ModelState.AddModelError("", Resource.LoginProblem);
+                        break;
+                }
                 return View(model);
             }
 
-            //if (ModelState.IsValid)
-            //{
-            //    /* REMOTE LOGIN */
-            //    IJsonAPIClientService jsonAPIClientService = new JsonAPIClientService();
-            //    string method = ApplicationSettingService.GetWebConfigKey("RemoteLogin");
-            //    string remoteLoginJson = jsonAPIClientService.GetJsonData(method);
-            //    if (!string.IsNullOrEmpty(remoteLoginJson))
-            //    {
-            //        enLoginResult loginResult = jsonAPIClientService.ElaborateLoginJsonData(remoteLoginJson);
-            //        switch (loginResult)
-            //        {
-            //            case enLoginResult.Ok:
-            //            case enLoginResult.NotExists:
-            //                if (loginResult == enLoginResult.Ok)
-            //                {
-            //                    model.Password = ApplicationSettingService.GetWebConfigKey("DefaultPassword");
-            //                }
-            //                if (accountService.Login(model.Username, model.Password, true).Result)
-            //                {
-            //                    FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
-            //                    if (ContextService.InitializeContext())
-            //                    {
-            //                        return RedirectToLocal(returnUrl);
-            //                    }
-            //                    ModelState.AddModelError("", Resource.LoginProblem);
-            //                }
-            //                break;
-            //            case enLoginResult.Disabled:
-            //                ModelState.AddModelError("", Resource.UserExpired);
-            //                break;
-            //            case enLoginResult.WrongPassword:
-            //                ModelState.AddModelError("", Resource.PassNotValid);
-            //                break;
-            //            default:
-            //                break;
-            //        }
-            //        return View(model);
-            //    }
-            //}
             ModelState.AddModelError("", Resource.UserPassNotValid);
             return View(model);
         }
@@ -182,41 +174,40 @@ namespace FomMonitoring.Controllers
         {
             ContextModel context = ContextService.GetContext();
 
-            if (context != null)
+            if (context == null)
+                return RedirectToAction("Logout");
+
+            string url = "/Machine";
+            returnUrl = returnUrl == "/" ? url : returnUrl;
+
+            if (!string.IsNullOrEmpty(returnUrl) && returnUrl != url && Url.IsLocalUrl(returnUrl))
+                return Redirect(returnUrl);
+
+            RedirectToRouteResult result = null;
+            switch (context.User.Role)
             {
-                string url = "/Machine";
-                returnUrl = returnUrl == "/" ? url : returnUrl;
-                if (!string.IsNullOrEmpty(returnUrl) && returnUrl != url && Url.IsLocalUrl(returnUrl))
-                {
-                    return Redirect(returnUrl);
-                }
+                case enRole.Administrator:
+                    result = RedirectToAction("Index", "Mes");
+                    break;
 
-                RedirectToRouteResult result = null;
-                switch (context.User.Roles.First())
-                {
-                    case enRole.Administrator:
-                        result = RedirectToAction("Index", "Mes");
-                        break;
-                    //case enRole.Assistance:
-                    //    result = RedirectToAction("Index", "Machine");
-                    //    break;
-                    //case enRole.Customer:
-                    //    result = RedirectToAction("Index", "UserManager");
-                    //    break;
-                    case enRole.HeadWorkshop:
-                        result = RedirectToAction("Index", "Mes");
-                        break;
-                    case enRole.Operator:
-                        result = RedirectToAction("Index", "Machine");
-                        break;
-                    default:
-                        result = RedirectToAction("Logout", new { exception = 1 });
-                        break;
-                }
+                case enRole.HeadWorkshop:
+                    result = RedirectToAction("Index", "Mes");
+                    break;
 
-                return result;
+                case enRole.Operator:
+                    result = RedirectToAction("Index", "Machine");
+                    break;
+
+                case enRole.Customer:
+                    result = RedirectToAction("Index", "Mes");
+                    break;
+
+                default:
+                    result = RedirectToAction("Logout", new { exception = 1 });
+                    break;
             }
-            return RedirectToAction("Logout");
+
+            return result;
         }
 
         #endregion

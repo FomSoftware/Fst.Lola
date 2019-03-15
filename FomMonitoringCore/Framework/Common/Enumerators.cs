@@ -4,11 +4,17 @@ namespace FomMonitoringCore.Framework.Common
 {
     public enum enRole
     {
+        [Description("Administrator")]
         Administrator = 0,
+        [Description("Operator")]
         Operator = 1,
+        [Description("HeadWorkshop")]
         HeadWorkshop = 2,
+        [Description("Assistance")]
         Assistance = 3,
+        [Description("Customer")]
         Customer = 4,
+        [Description("UserApi")]
         UserApi = 5
     }
 
