@@ -55,7 +55,7 @@ namespace FomMonitoringCore.Service.DataMapping
                             Machine machineFromSQLite = machine.OrderByDescending(o => o.Id).FirstOrDefault();
                             foreach (PropertyInfo property in machineActual.GetType().GetProperties())
                             {
-                                if (property.PropertyType.IsSerializable && property.Name != "Id" && property.Name != "PlantId")
+                                if (property.PropertyType.IsSerializable && property.Name != "Id")
                                 {
                                     property.SetValue(machineActual, machineFromSQLite.GetType().GetProperty(property.Name).GetValue(machineFromSQLite));
                                 }
@@ -175,7 +175,7 @@ namespace FomMonitoringCore.Service.DataMapping
                             Machine machineFromSQLite = machine.OrderByDescending(o => o.Id).FirstOrDefault();
                             foreach (PropertyInfo property in machineActual.GetType().GetProperties())
                             {
-                                if (property.PropertyType.IsSerializable && property.Name != "Id" && property.Name != "PlantId")
+                                if (property.PropertyType.IsSerializable && property.Name != "Id")
                                 {
                                     property.SetValue(machineActual, machineFromSQLite.GetType().GetProperty(property.Name).GetValue(machineFromSQLite));
                                 }
