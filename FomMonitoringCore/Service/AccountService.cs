@@ -59,7 +59,9 @@ namespace FomMonitoringCore.Service
             if (remoteAuthentication)
                 result = loginServices.ManageLoginUserWithoutPassword(username, out message, true);
             else
+            {
                 result = loginServices.LoginUserWithEncryptedPassword(username, password, out message, true);
+            }
 
             if (result)
             {
