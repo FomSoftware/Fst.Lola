@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{62F6CE7E-300E-4117-BDE1-CB422F8379C5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UserManager</RootNamespace>
+    <AssemblyName>UserManager</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAL\AuditLogin.cs">
+      <DependentUpon>UserManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Gateway\Concrete\AuditLogin.cs" />
+    <Compile Include="DAL\Gateway\Concrete\Groups.cs" />
+    <Compile Include="DAL\Gateway\Concrete\Languages.cs" />
+    <Compile Include="DAL\Gateway\Concrete\RedirectAccessRequests.cs" />
+    <Compile Include="DAL\Gateway\Concrete\Roles.cs" />
+    <Compile Include="DAL\Gateway\Concrete\Users.cs" />
+    <Compile Include="DAL\Gateway\Concrete\UsersGroups.cs" />
+    <Compile Include="DAL\Gateway\Concrete\UsersRoles.cs" />
+    <Compile Include="DAL\Groups.cs">
+      <DependentUpon>UserManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Groups_Users.cs">
+      <DependentUpon>UserManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Languages.cs">
+      <DependentUpon>UserManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\MakeEFPOCOSerializable.cs" />
+    <Compile Include="DAL\OptionalParameters.cs">
+      <DependentUpon>UserManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\RedirectAccessRequests.cs">
+      <DependentUpon>UserManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Roles.cs">
+      <DependentUpon>UserManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Roles_Users.cs">
+      <DependentUpon>UserManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\UserManager.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserManager.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\UserManager.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\UserManager.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserManager.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Users.cs">
+      <DependentUpon>UserManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Users_OptionalParameters.cs">
+      <DependentUpon>UserManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\vw_UserInfo.cs">
+      <DependentUpon>UserManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\Common\Constants.cs" />
+    <Compile Include="Framework\Common\Enumerators.cs" />
+    <Compile Include="Framework\Common\SessionsVariables.cs" />
+    <Compile Include="Framework\Model\Encrypter.cs" />
+    <Compile Include="Framework\Util\ExtensionMethods.cs" />
+    <Compile Include="Framework\Util\ReflectionUtility.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\Concrete\AdministrativeServices.cs" />
+    <Compile Include="Service\Concrete\ApplicationSettingsService.cs" />
+    <Compile Include="Service\Concrete\AuditLoginServices.cs" />
+    <Compile Include="Service\Concrete\CacheService.cs" />
+    <Compile Include="Service\Concrete\GroupService.cs" />
+    <Compile Include="Service\Concrete\LanguageServices.cs" />
+    <Compile Include="Service\Concrete\UsersGroupsServices.cs" />
+    <Compile Include="Service\Concrete\UsersRolesServices.cs" />
+    <Compile Include="Service\Concrete\UtilServices.cs" />
+    <Compile Include="Service\IAdministrativeServices.cs" />
+    <Compile Include="Service\Concrete\RoleService.cs" />
+    <Compile Include="Service\Concrete\SessionServices.cs" />
+    <Compile Include="Service\IAuditLoginServices.cs" />
+    <Compile Include="Service\IGroupService.cs" />
+    <Compile Include="Service\ILanguageServives.cs" />
+    <Compile Include="Service\ILoggedUserServices.cs" />
+    <Compile Include="Service\Concrete\LoggedUserServices.cs" />
+    <Compile Include="Service\IRolesService.cs" />
+    <Compile Include="Service\IUserServices.cs" />
+    <Compile Include="Service\Concrete\UserServices.cs" />
+    <Compile Include="Service\ILoginServices.cs" />
+    <Compile Include="Service\Concrete\LoginServices.cs" />
+    <Compile Include="Service\IUsersGroups.cs" />
+    <Compile Include="Service\IUsersRoles.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="DAL\UserManager.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>UserManager.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DAL\UserManager.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>UserManager.edmx</DependentUpon>
+      <LastGenOutput>UserManager.Context.cs</LastGenOutput>
+    </None>
+    <None Include="DAL\UserManager.edmx.diagram">
+      <DependentUpon>UserManager.edmx</DependentUpon>
+    </None>
+    <None Include="DAL\UserManager.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>UserManager.edmx</DependentUpon>
+      <LastGenOutput>UserManager.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

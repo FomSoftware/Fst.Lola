@@ -41,7 +41,7 @@
                 <div class="dropdown-content">
                     @foreach (var Lang in Model.AllLanguages)
                     {
-                        <a href="@Url.Action("Index", Model.ControllerPage, null, CultureInfo.CreateSpecificCulture(Lang.DotNetCulture))"
+                        <a href="@Url.Action(Model.ActionPage, Model.ControllerPage, null, CultureInfo.CreateSpecificCulture(Lang.DotNetCulture))"
                            class="@("dd-item " + (Model.ActualLanguage.ID == Lang.ID ? "active" : ""))">
                             <img class="flag" src="@Url.Content("~/Images/flags/" + (Lang.InitialsLanguage) + ".png")" />
                             <span>@Lang.Name</span>
@@ -80,21 +80,30 @@
                             </tr>
                         </table>
                     </div>
-                    @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer)
-                    {
-                        <a class="dd-item" href="@Url.Action("UserManager", "Admin")">
-                            <i class="fa fa-user fa-lg color-corporate"></i>
-                            <span>@Resource.UserManager</span>
+                    <div class="main-menu">
+                        @if (Model.User.Role != enRole.Operator)
+                        {
+                            <a class="dd-item" href="@Url.Action("Index", "Mes")">
+                                <i class="fa fa-home fa-lg color-corporate"></i>
+                                <span>Home</span>
+                            </a>
+                        }
+                        @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer)
+                        {
+                            <a class="dd-item" href="@Url.Action("UserManager", "Admin")">
+                                <i class="fa fa-user fa-lg color-corporate"></i>
+                                <span>@Resource.UserManager</span>
+                            </a>
+                        }
+                        <div class="dd-item" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
+                            <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
+                            <span>@Resource.ChangePassword</span>
+                        </div>
+                        <a class="dd-item" href="@Url.Action("Logout", "Account")">
+                            <i class="fa fa-power-off color-corporate fa-lg"></i>
+                            <span>@Resource.Logout</span>
                         </a>
-                    }
-                    <div class="dd-item" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
-                        <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
-                        <span>@Resource.ChangePassword</span>
                     </div>
-                    <a class="dd-item" href="@Url.Action("Logout", "Account")">
-                        <i class="fa fa-power-off color-corporate fa-lg"></i>
-                        <span>@Resource.Logout</span>
-                    </a>
                 </div>
             </div>
         </div>
@@ -108,8 +117,8 @@
             <a href="javascript:void(0)" class="close-btn js-close-menu">&times;</a>
             <ul class="main-menu">
                 <li class="dd-logo">
-                    <img class="logo" src="/Images/logo/Icon-35.png">
-                    <img class="scritta" src="/Images/logo/Lola-35.png">
+                    <img class="logo" src="~/Images/logo/Icon-35.png">
+                    <img class="scritta" src="~/Images/logo/Lola-35.png">
                 </li>
                 <li class="dd-item-user">
                     <table class="table table-info">
@@ -145,36 +154,45 @@
                         @foreach (var Lang in Model.AllLanguages)
                         {
                             <li class="@((Model.ActualLanguage.ID == Lang.ID ? "display-none" : ""))">
-                                <a href="@Url.Action("Index", Model.ControllerPage, null, CultureInfo.CreateSpecificCulture(Lang.DotNetCulture))">
+                                <a class="dd-item" href="@Url.Action(Model.ActionPage, Model.ControllerPage, null, CultureInfo.CreateSpecificCulture(Lang.DotNetCulture))">
                                     <img class="flag" src="@Url.Content("~/Images/flags/" + (Lang.InitialsLanguage) + ".png")" />
-                                    <span>@Lang.Name</span>
+                                    <div>@Lang.Name</div>
                                 </a>
                             </li>
                         }
                     </ul>
                 </li>
-                @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer)
+                @if (Model.User.Role != enRole.Operator)
                 {
                     <li>
-                        <a href="@Url.Action("UserManager", "Admin")">
-                            <i class="fa fa-user color-corporate fa-lg"></i>
-                            <span>@Resource.UserManager</span>
+                        <a class="dd-item" href="@Url.Action("Index", "Mes")">
+                            <i class="fa fa-home fa-lg color-corporate"></i>
+                            <div>Home</div>
                         </a>
                     </li>
                 }
+                @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer)
+                {
                     <li>
-                        <a href="#" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
-                            <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
-                            <span>@Resource.ChangePassword</span>
+                        <a class="dd-item" href="@Url.Action("UserManager", "Admin")">
+                            <i class="fa fa-user color-corporate fa-lg"></i>
+                            <div>@Resource.UserManager</div>
                         </a>
                     </li>
-                    <li>
-                        <a href="@Url.Action("Logout", "Account")">
-                            <i class="fa fa-power-off color-corporate fa-lg"></i>
-                            <span>@Resource.Logout</span>
-                        </a>
-                    </li>
-                </ul>
+                }
+                <li>
+                    <a class="dd-item" href="#" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
+                        <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
+                        <div>@Resource.ChangePassword</div>
+                    </a>
+                </li>
+                <li>
+                    <a class="dd-item" href="@Url.Action("Logout", "Account")">
+                        <i class="fa fa-power-off color-corporate fa-lg"></i>
+                        <div>@Resource.Logout</div>
+                    </a>
+                </li>
+            </ul>
         </nav>
         <!-- #endregion -->
     </div>

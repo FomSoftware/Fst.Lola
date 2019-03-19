@@ -18,7 +18,6 @@ namespace FomMonitoringCore.DAL
         public Plant()
         {
             this.Machine = new HashSet<Machine>();
-            this.UserPlantMapping = new HashSet<UserPlantMapping>();
         }
     
         public int Id { get; set; }
@@ -27,7 +26,5 @@ namespace FomMonitoringCore.DAL
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Machine> Machine { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserPlantMapping> UserPlantMapping { get; set; }
     }
 }

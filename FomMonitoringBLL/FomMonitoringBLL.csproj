@@ -43,9 +43,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="UserManager">
-      <HintPath>..\FomMonitoringCore\Libraries\UserManager.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +82,10 @@
     <ProjectReference Include="..\FomMonitoringResources\FomMonitoringResources.csproj">
       <Project>{d55f7e93-771c-4180-83de-353b98daa2b5}</Project>
       <Name>FomMonitoringResources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserManager\UserManager.csproj">
+      <Project>{62f6ce7e-300e-4117-bde1-cb422f8379c5}</Project>
+      <Name>UserManager</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

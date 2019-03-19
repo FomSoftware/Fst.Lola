@@ -52,8 +52,6 @@ namespace FomMonitoringCore.Framework.Config
             config.NewConfig<ToolMachine, ToolMachineModel>();
             config.NewConfig<UserMachineMapping, UserMachineMappingModel>()
                 .Map(dest => dest.Machine, src => src.Machine);
-            config.NewConfig<UserPlantMapping, UserPlantMappingModel>()
-               .Map(dest => dest.Plant, src => src.Plant);
             config.NewConfig<JsonData, JsonDataModel>();
             config.NewConfig<UserCustomerMapping, UserCustomerModel>()
                 .Map(dest => dest.Username, src => src.CustomerName);

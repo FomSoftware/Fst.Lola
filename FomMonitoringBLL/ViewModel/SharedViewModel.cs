@@ -13,6 +13,8 @@ namespace FomMonitoringBLL.ViewModel
     {
         public string ControllerPage { get; set; }
 
+        public string ActionPage { get; set; }
+
         public PeriodModel ActualPeriod { get; set; }
 
         public UserModel User { get; set; }
@@ -20,6 +22,7 @@ namespace FomMonitoringBLL.ViewModel
         public List<Languages> AllLanguages { get; set; }
 
         public Languages ActualLanguage { get; set; }
+
     }
 
     public class ToolbarViewModel

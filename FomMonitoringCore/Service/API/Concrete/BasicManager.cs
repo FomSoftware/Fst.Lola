@@ -12,8 +12,7 @@ namespace FomMonitoringCore.Service.API.Concrete
     {
         public bool ValidateCredentials(LoginModel login)
         {
-            var user = AccountService.LoginApi(login.Username, login.Password);
-            return (user == null) ? false : user.Role == enRole.UserApi;
+            return AccountService.LoginApi(login.Username, login.Password);
         }
     }
 }

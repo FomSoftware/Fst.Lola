@@ -31,6 +31,10 @@ namespace FomMonitoringCore.Service
                             }
                             result = plant != null ? plant.Id : (int?)null;
                         }
+                        else
+                        {
+                            result = int.Parse(ApplicationSettingService.GetWebConfigKey("DefaultPlantID"));
+                        }
                         transaction.Complete();
                     }
                 }
@@ -82,7 +86,7 @@ namespace FomMonitoringCore.Service
             {
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
-                    var query = ent.UserMachineMapping.Where(w => w.UserId == UserID).Select(s => s.Machine.Plant).ToList();
+                    var query = ent.UserMachineMapping.Where(w => w.UserId == UserID).Select(s => s.Machine.Plant).Distinct().ToList();
                     result = query.Adapt<List<PlantModel>>();
                 }
             }
@@ -94,6 +98,7 @@ namespace FomMonitoringCore.Service
 
             return result;
         }
+
 
         public static List<MesUserMachinesModel> GetPlantData(PlantModel plant)
         {
@@ -110,6 +115,27 @@ namespace FomMonitoringCore.Service
             catch (Exception ex)
             {
                 string errMessage = string.Format("{0} (PlantID = '{1}')", ex.GetStringLog(), plant.Id);
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+
+            return result;
+        }
+
+        public static List<PlantModel> GetAllPlantsMachines()
+        {
+            List<PlantModel> result = new List<PlantModel>();
+
+            try
+            {
+                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                {
+                    var query = ent.Machine.Select(s => s.Plant).Distinct().ToList();
+                    result = query.Adapt<List<PlantModel>>();
+                }
+            }
+            catch (Exception ex)
+            {
+                string errMessage = string.Format(ex.GetStringLog());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 

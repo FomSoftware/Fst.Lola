@@ -195,6 +195,27 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
+        public static List<MachineInfoModel> GetAllMachines()
+        {
+            List<Framework.Model.MachineInfoModel> result = new List<Framework.Model.MachineInfoModel>();
+
+            try
+            {
+                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                {
+                    var query = ent.Machine.ToList();
+                    result = query.Where(w => w.LastUpdate != null).Adapt<List<MachineInfoModel>>();
+                }
+            }
+            catch (Exception ex)
+            {
+                string errMessage = string.Format(ex.GetStringLog());
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+
+            return result;
+        }
+
         public static MachineInfoModel GetMachineInfo(int MachineID)
         {
             MachineInfoModel result = new MachineInfoModel();

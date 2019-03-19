@@ -10,18 +10,18 @@ using System.Web.Mvc;
 namespace FomMonitoring.Controllers
 {
     [SessionWeb]
-    [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+    [Authorize(Roles = Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
     public class MesController : Controller
     {
         public ActionResult Index()
         {
-            if(!ContextService.InitializeMesLevel())
+            if (!ContextService.InitializeMesLevel())
                 return RedirectToAction("Logout", new { returnUrl = string.Empty, exception = 3 });
 
             ContextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
 
             ContextModel context = ContextService.GetContext();
-            MesViewModel mes = MesViewService.GetMes(context); 
+            MesViewModel mes = MesViewService.GetMes(context);
 
             return View("Mes", mes);
         }

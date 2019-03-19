@@ -318,14 +318,6 @@
           <Property Name="MachineId" Type="int" Nullable="false" />
           <Property Name="ExpirationDate" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="UserPlantMapping">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PlantId" Type="int" Nullable="false" />
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-        </EntityType>
         <Association Name="FK_AlarmMachine_Machine">
           <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
           <End Role="AlarmMachine" Type="Self.AlarmMachine" Multiplicity="*" />
@@ -590,18 +582,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserPlantMapping_Plant">
-          <End Role="Plant" Type="Self.Plant" Multiplicity="1" />
-          <End Role="UserPlantMapping" Type="Self.UserPlantMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Plant">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserPlantMapping">
-              <PropertyRef Name="PlantId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="usp_HistoricizingAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
           <Parameter Name="machineId" Type="int" Mode="In" />
         </Function>
@@ -670,7 +650,6 @@
           <EntitySet Name="ToolMachine" EntityType="Self.ToolMachine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserCustomerMapping" EntityType="Self.UserCustomerMapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMachineMapping" EntityType="Self.UserMachineMapping" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserPlantMapping" EntityType="Self.UserPlantMapping" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AlarmMachine_Machine" Association="Self.FK_AlarmMachine_Machine">
             <End Role="Machine" EntitySet="Machine" />
             <End Role="AlarmMachine" EntitySet="AlarmMachine" />
@@ -758,10 +737,6 @@
           <AssociationSet Name="FK_UserMachineMapping_Machine" Association="Self.FK_UserMachineMapping_Machine">
             <End Role="Machine" EntitySet="Machine" />
             <End Role="UserMachineMapping" EntitySet="UserMachineMapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserPlantMapping_Plant" Association="Self.FK_UserPlantMapping_Plant">
-            <End Role="Plant" EntitySet="Plant" />
-            <End Role="UserPlantMapping" EntitySet="UserPlantMapping" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -885,14 +860,9 @@
           </AssociationSet>
           <EntitySet Name="HistoryJob" EntityType="FST_FomMonitoringModel.HistoryJob" />
           <EntitySet Name="UserCustomerMapping" EntityType="FST_FomMonitoringModel.UserCustomerMapping" />
-          <EntitySet Name="UserPlantMapping" EntityType="FST_FomMonitoringModel.UserPlantMapping" />
           <AssociationSet Name="FK_HistoryJob_Machine" Association="FST_FomMonitoringModel.FK_HistoryJob_Machine">
             <End Role="Machine" EntitySet="Machine" />
             <End Role="HistoryJob" EntitySet="HistoryJob" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserPlantMapping_Plant" Association="FST_FomMonitoringModel.FK_UserPlantMapping_Plant">
-            <End Role="Plant" EntitySet="Plant" />
-            <End Role="UserPlantMapping" EntitySet="UserPlantMapping" />
           </AssociationSet>
           <FunctionImport Name="usp_AggregationJob" ReturnType="Collection(FST_FomMonitoringModel.usp_AggregationJob_Result)">
             <Parameter Name="machineId" Mode="In" Type="Int32" />
@@ -1340,7 +1310,6 @@
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_Machine_Plant" FromRole="Plant" ToRole="Machine" />
-          <NavigationProperty Name="UserPlantMapping" Relationship="FST_FomMonitoringModel.FK_UserPlantMapping_Plant" FromRole="Plant" ToRole="UserPlantMapping" />
         </EntityType>
         <Association Name="FK_AlarmMachine_Machine">
           <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
@@ -1510,15 +1479,6 @@
           <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UserId" Type="Guid" Nullable="false" />
         </EntityType>
-        <EntityType Name="UserPlantMapping">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PlantId" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="Plant" Relationship="FST_FomMonitoringModel.FK_UserPlantMapping_Plant" FromRole="UserPlantMapping" ToRole="Plant" />
-        </EntityType>
         <Association Name="FK_HistoryJob_Machine">
           <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
           <End Type="FST_FomMonitoringModel.HistoryJob" Role="HistoryJob" Multiplicity="*" />
@@ -1528,18 +1488,6 @@
             </Principal>
             <Dependent Role="HistoryJob">
               <PropertyRef Name="MachineId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserPlantMapping_Plant">
-          <End Type="FST_FomMonitoringModel.Plant" Role="Plant" Multiplicity="1" />
-          <End Type="FST_FomMonitoringModel.UserPlantMapping" Role="UserPlantMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Plant">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserPlantMapping">
-              <PropertyRef Name="PlantId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2013,15 +1961,6 @@
               <MappingFragment StoreEntitySet="UserCustomerMapping">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserPlantMapping">
-            <EntityTypeMapping TypeName="FST_FomMonitoringModel.UserPlantMapping">
-              <MappingFragment StoreEntitySet="UserPlantMapping">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="PlantId" ColumnName="PlantId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

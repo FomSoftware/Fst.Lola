@@ -121,10 +121,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="UserManager, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libraries\UserManager.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\AlarmMachine.cs">
@@ -200,9 +196,6 @@
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\UserMachineMapping.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\UserPlantMapping.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\usp_AggregationAlarm_Result.cs">
@@ -307,7 +300,6 @@
     <Compile Include="Framework\Model\ToolMachineModel.cs" />
     <Compile Include="Framework\Model\UserCustomerModel.cs" />
     <Compile Include="Framework\Model\UserIdentityModel.cs" />
-    <Compile Include="Framework\Model\UserPlantMappingModel.cs" />
     <Compile Include="Framework\Model\UserMachineMappingModel.cs" />
     <Compile Include="Framework\Model\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -366,6 +358,10 @@
       <Project>{D55F7E93-771C-4180-83DE-353B98DAA2B5}</Project>
       <Name>FomMonitoringResources</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UserManager\UserManager.csproj">
+      <Project>{62f6ce7e-300e-4117-bde1-cb422f8379c5}</Project>
+      <Name>UserManager</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="DAL\FomMonitoringModel.Context.tt">
@@ -388,7 +384,6 @@
       <DependentUpon>FomMonitoringModelSQLite.edmx</DependentUpon>
       <LastGenOutput>FomMonitoringModelSQLite.cs</LastGenOutput>
     </Content>
-    <Content Include="Libraries\UserManager.dll" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

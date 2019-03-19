@@ -44,7 +44,6 @@ namespace FomMonitoringCore.DAL
         public virtual DbSet<Plant> Plant { get; set; }
         public virtual DbSet<HistoryJob> HistoryJob { get; set; }
         public virtual DbSet<UserCustomerMapping> UserCustomerMapping { get; set; }
-        public virtual DbSet<UserPlantMapping> UserPlantMapping { get; set; }
         public virtual DbSet<Spindle> Spindle { get; set; }
         public virtual DbSet<JsonData> JsonData { get; set; }
         public virtual DbSet<UserMachineMapping> UserMachineMapping { get; set; }

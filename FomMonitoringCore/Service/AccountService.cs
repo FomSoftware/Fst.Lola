@@ -59,9 +59,7 @@ namespace FomMonitoringCore.Service
             if (remoteAuthentication)
                 result = loginServices.ManageLoginUserWithoutPassword(username, out message, true);
             else
-            {
                 result = loginServices.LoginUserWithEncryptedPassword(username, password, out message, true);
-            }
 
             if (result)
             {
@@ -93,15 +91,18 @@ namespace FomMonitoringCore.Service
             return response;
         }
 
-        public static UserModel LoginApi(string username, string password)
+        public static bool LoginApi(string username, string password)
         {
             string message;
 
             var loginServices = new LoginServices();
-            if (loginServices.LoginUserWithEncryptedPassword(username, password, out message, true))
-                return new AccountService().GetLoggedUser();
+            if (loginServices.LoginUserWithEncryptedPassword(username, password, out message, false))
+            {
+                var userServices = new UserServices();
+                return userServices.GetUser(username).Roles_Users.Any(a => a.Roles.IdRole == (int)enRole.UserApi);
+            }
 
-            return null;
+            return false;
         }
 
         /// <summary>

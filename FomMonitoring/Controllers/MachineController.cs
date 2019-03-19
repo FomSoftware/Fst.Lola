@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace FomMonitoring.Controllers
 {
     [SessionWeb]
-    [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator)]
+    [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
     public class MachineController : Controller
     {
         public ActionResult Index()
@@ -21,7 +21,7 @@ namespace FomMonitoring.Controllers
 
             ContextModel context = ContextService.GetContext();
             MachineViewModel machine = MachineViewService.GetMachine(context);
-           
+
             return View(machine);
         }
 

@@ -11,7 +11,7 @@
             <div v-if="showOverlay(machine)" class="box-overlay" v-on:click="locationMachine(machine.info.id)"></div>
             <div class="status" v-if="machine.state != null" v-bind:class="'bg-' + machine.state.code"></div>
             <div class="status bg-default" v-else></div>
-            <div class="box-title" >
+            <div class="box-title">
                 <div class="row">
                     <div class="col-xs-3 col-icon text-right" v-on:click="locationMachine(machine.info.id)">
                         <i class="icofom-size" v-bind:class="iconMachine(machine)"></i>
@@ -325,7 +325,6 @@
         </div>
     </div>
 </div>
-
 
 <script type="text/javascript">
 
