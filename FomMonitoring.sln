@@ -17,6 +17,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringBLL", "FomMoni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManager", "UserManager\UserManager.csproj", "{62F6CE7E-300E-4117-BDE1-CB422F8379C5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{08BCB764-459B-48D6-B387-4727ACE2F779}"
+	ProjectSection(SolutionItems) = preProject
+		001_UserPlantMapping.sql = 001_UserPlantMapping.sql
+		002_Machine.sql = 002_Machine.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,7 +62,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_PrefixTranslations = False
 		SolutionGuid = {A47B5DB1-473C-4389-B640-2496BC32A8E9}
+		RESX_PrefixTranslations = False
 	EndGlobalSection
 EndGlobal
