@@ -1,4 +1,6 @@
-﻿ALTER TABLE [dbo].[Machine] DROP CONSTRAINT [FK_Machine_Plant];
+﻿USE LOLA
+
+ALTER TABLE [dbo].[Machine] DROP CONSTRAINT [FK_Machine_Plant];
 GO
 
 ALTER TABLE [dbo].[Machine] ALTER COLUMN [PlantId] INT NULL;

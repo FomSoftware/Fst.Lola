@@ -1,2 +1,4 @@
-﻿DROP TABLE [dbo].[UserPlantMapping]
+﻿USE LOLA
+
+DROP TABLE [dbo].[UserPlantMapping]
 GO
