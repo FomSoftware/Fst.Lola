@@ -129,7 +129,7 @@ namespace FomMonitoringCore.Service
             {
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
-                    var query = ent.Machine.Select(s => s.Plant).Distinct().ToList();
+                    var query = ent.Machine.Where(w => w.Plant != null).Select(s => s.Plant).Distinct().ToList();
                     result = query.Adapt<List<PlantModel>>();
                 }
             }
