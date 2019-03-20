@@ -172,7 +172,7 @@
     <value>Completion</value>
   </data>
   <data name="Spindles" xml:space="preserve">
-    <value>Spindles</value>
+    <value>Multi Spindles</value>
   </data>
   <data name="Tools" xml:space="preserve">
     <value>Tools</value>
@@ -530,5 +530,11 @@
   </data>
   <data name="UsernameExists" xml:space="preserve">
     <value>The username already exists. Please use a different username</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Timestamp" xml:space="preserve">
+    <value>Timestamp</value>
   </data>
 </root>

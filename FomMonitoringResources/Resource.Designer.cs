@@ -871,6 +871,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Position.
+        /// </summary>
+        public static string Position {
+            get {
+                return ResourceManager.GetString("Position", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Production.
         /// </summary>
         public static string Production {
@@ -1051,7 +1060,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Spindles.
+        ///   Looks up a localized string similar to Multi Spindles.
         /// </summary>
         public static string Spindles {
             get {
@@ -1110,6 +1119,15 @@ namespace FomMonitoringResources {
         public static string TimeOn {
             get {
                 return ResourceManager.GetString("TimeOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timestamp.
+        /// </summary>
+        public static string Timestamp {
+            get {
+                return ResourceManager.GetString("Timestamp", resourceCulture);
             }
         }
         

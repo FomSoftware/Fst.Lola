@@ -127,7 +127,7 @@
     <value>Efficacité</value>
   </data>
   <data name="Alarms" xml:space="preserve">
-    <value>Alarmes</value>
+    <value>Messages</value>
   </data>
   <data name="MachineStates" xml:space="preserve">
     <value>états machine</value>
@@ -172,7 +172,7 @@
     <value>Achèvement</value>
   </data>
   <data name="Spindles" xml:space="preserve">
-    <value>Broches</value>
+    <value>Multi Broches</value>
   </data>
   <data name="Tools" xml:space="preserve">
     <value>Outils</value>
@@ -530,5 +530,11 @@
   </data>
   <data name="UsernameExists" xml:space="preserve">
     <value>The username already exists. Please use a different username</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Emplacement</value>
+  </data>
+  <data name="Timestamp" xml:space="preserve">
+    <value>Timestamp</value>
   </data>
 </root>

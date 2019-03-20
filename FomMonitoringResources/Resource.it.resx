@@ -127,7 +127,7 @@
     <value>Efficienza</value>
   </data>
   <data name="Alarms" xml:space="preserve">
-    <value>Allarmi</value>
+    <value>Messaggi</value>
   </data>
   <data name="MachineStates" xml:space="preserve">
     <value>Stati Macchina</value>
@@ -172,7 +172,7 @@
     <value>Completamento</value>
   </data>
   <data name="Spindles" xml:space="preserve">
-    <value>Mandrini</value>
+    <value>Multi Mandrini</value>
   </data>
   <data name="Tools" xml:space="preserve">
     <value>Utensili</value>
@@ -280,7 +280,10 @@
     <value>Spezzoni</value>
   </data>
   <data name="Code" xml:space="preserve">
-    <value>Codice</value>
+    <value>Code</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Posizione</value>
   </data>
   <data name="AverageSpeed" xml:space="preserve">
     <value>Velocità Media</value>
@@ -530,5 +533,8 @@
   </data>
   <data name="UsernameExists" xml:space="preserve">
     <value>Un utente con questo username esiste già</value>
+  </data>
+  <data name="Timestamp" xml:space="preserve">
+    <value>Timestamp</value>
   </data>
 </root>
