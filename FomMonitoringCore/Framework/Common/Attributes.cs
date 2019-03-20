@@ -238,9 +238,9 @@ namespace FomMonitoringCore.Framework.Common
             string[] parameters = credentials.Split(new char[] { ':' });
             if (parameters.Length == 3)
             {
-                username = parameters[0];
-                password = parameters[1];
-                machineSerial = parameters[2];
+                username = parameters[0];                
+                machineSerial = parameters[1];
+                password = parameters[2];
 
                 LoginModel login = new LoginModel();
                 login.Username = username;
