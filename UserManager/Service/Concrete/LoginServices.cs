@@ -61,7 +61,8 @@ namespace UserManager.Service.Concrete
             }
 
             // Crypt password and perform authentication
-            return ManageLoginUser(Username, EncryptPassword(Password), Domain, out Message, PersistUserObject);
+            return ManageLoginUser(Username, DecryptPassword(Password), Domain, out Message, PersistUserObject);
+            //return ManageLoginUser(Username, EncryptPassword(Password), Domain, out Message, PersistUserObject);
         }
 
         /**
