@@ -141,6 +141,18 @@ section.container-fluid {
     background-color: #B33157;
 }
 
+.main-menu .dd-item {
+    position: relative;
+}
+
+    .main-menu .dd-item i {
+        width: 15px;
+        text-align: center;
+    }
+
+    .main-menu .dd-item div {
+        display: inline-block;
+    }
 
 /*#region desktop menu */
 
@@ -226,6 +238,11 @@ section.container-fluid {
         .mobile-menu .main-menu li:hover .sub-menu {
             display: block;
             max-height: 200px;
+        }
+
+        .mobile-menu .main-menu .dd-logo {
+            padding: 10px 20px;
+            border-bottom: solid 1px #ddd;
         }
 
         .mobile-menu .main-menu .sub-menu {

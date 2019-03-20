@@ -20,8 +20,11 @@ namespace FomMonitoringCore.Framework.Common
 
     public enum enPage
     {
-        Admin = 1,
+        [Description("")]
+        UserManager = 1,
+        [Description("Index")]
         Machine = 2,
+        [Description("Index")]
         Mes = 3
     }
 

@@ -15,6 +15,7 @@ namespace FomMonitoringBLL.ViewServices
         {
             HeaderViewModel header = new HeaderViewModel();
             header.ControllerPage = context.ActualPage.ToString();
+            header.ActionPage = context.ActualPage.GetDescription();
             header.ActualPeriod = context.ActualPeriod;
             header.User = context.User;
             header.AllLanguages = context.AllLanguages;
@@ -32,7 +33,7 @@ namespace FomMonitoringBLL.ViewServices
             toolbar.language.initial = context.ActualLanguage.InitialsLanguage;
             toolbar.language.labels = new CalendarI18nModel();
 
-            if(context.ActualPage == enPage.Mes)
+            if (context.ActualPage == enPage.Mes)
             {
                 toolbar.plants = GetListPlants(context);
                 toolbar.selected_plant = toolbar.plants.Where(w => w.id == context.ActualPlant.Id).FirstOrDefault();

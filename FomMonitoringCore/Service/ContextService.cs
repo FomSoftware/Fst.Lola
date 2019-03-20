@@ -80,13 +80,20 @@ namespace FomMonitoringCore.Service
             ContextModel context = GetContext();
             context.ActualPage = enPage.Mes;
 
-            context.AllPlants = MesService.GetUserPlants(context.User.ID);
+            if (context.User.Role == enRole.Administrator)
+                context.AllPlants = MesService.GetAllPlantsMachines();
+            else
+                context.AllPlants = MesService.GetUserPlants(context.User.ID);
 
             if (context.AllPlants.Count > 0)
             {
                 context.ActualPlant = context.AllPlants.FirstOrDefault();
 
-                context.AllMachines = MachineService.GetAllMachinesByPlantID(context.ActualPlant.Id);
+                if (context.User.Role == enRole.Administrator)
+                    context.AllMachines = MachineService.GetAllMachines();
+                else
+                    context.AllMachines = MachineService.GetUserMachines(context.User.ID);
+
                 context.ActualPeriod = new PeriodModel() { LastUpdate = new DataUpdateModel() { DateTime = DateTime.UtcNow } };
 
                 isInitialize = true;
@@ -104,7 +111,10 @@ namespace FomMonitoringCore.Service
             ContextModel context = GetContext();
             context.ActualPage = enPage.Machine;
 
-            context.AllPlants = MesService.GetUserPlants(context.User.ID);
+            if (context.User.Role == enRole.Administrator)
+                context.AllPlants = MesService.GetAllPlantsMachines();
+            else
+                context.AllPlants = MesService.GetUserPlants(context.User.ID);
 
             if (context.AllPlants.Count > 0)
             {
@@ -116,7 +126,11 @@ namespace FomMonitoringCore.Service
                         return isInitialize;
 
                     context.ActualPlant = context.AllPlants.Where(w => w.Id == machine.PlantId).FirstOrDefault();
-                    context.AllMachines = MachineService.GetAllMachinesByPlantID(context.ActualPlant.Id);
+
+                    if (context.User.Role == enRole.Administrator)
+                        context.AllMachines = MachineService.GetAllMachines();
+                    else
+                        context.AllMachines = MachineService.GetUserMachines(context.User.ID);
 
                     if (context.AllMachines.Count == 0)
                         return isInitialize;
@@ -128,7 +142,10 @@ namespace FomMonitoringCore.Service
                     if (context.ActualPlant == null)
                         context.ActualPlant = context.AllPlants.FirstOrDefault();
 
-                    context.AllMachines = MachineService.GetAllMachinesByPlantID(context.ActualPlant.Id);
+                    if (context.User.Role == enRole.Administrator)
+                        context.AllMachines = MachineService.GetAllMachines();
+                    else
+                        context.AllMachines = MachineService.GetUserMachines(context.User.ID);
 
                     if (context.AllMachines.Count == 0)
                         return isInitialize;
@@ -163,6 +180,19 @@ namespace FomMonitoringCore.Service
             return isInitialize;
         }
 
+        public static bool InitializeAdminLevel()
+        {
+            bool isInitialize = false;
+
+            ContextModel context = GetContext();
+            context.ActualPage = enPage.UserManager;
+
+            isInitialize = true;
+            SetContext(context);
+
+            return isInitialize;
+        }
+
         public static void SetActualPage(enPage Page)
         {
             ContextModel context = GetContext();
@@ -188,7 +218,12 @@ namespace FomMonitoringCore.Service
             if (context.ActualPlant.Id != id)
             {
                 context.ActualPlant = context.AllPlants.Where(w => w.Id == id).FirstOrDefault();
-                context.AllMachines = MachineService.GetAllMachinesByPlantID(context.ActualPlant.Id);
+
+                if (context.User.Role == enRole.Administrator)
+                    context.AllMachines = MachineService.GetAllMachines();
+                else
+                    context.AllMachines = MachineService.GetUserMachines(context.User.ID);
+                //  context.AllMachines = MachineService.GetAllMachinesByPlantID(context.ActualPlant.Id);
             }
 
             SetContext(context);

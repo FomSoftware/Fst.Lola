@@ -24,7 +24,6 @@
                         <div>Welcome</div>
                         <img class="logo" src="~/Images/logo/Lola-lg.png">
                         @*<div class="title-small">Dashboard</div>*@
-                        <img style="width:350px" src="~/Images/logo/Log_On_Live_Automation-600x100px.png">
                     </div>
                     <div class="content">
                         @using (Html.BeginForm("/Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form" }))
@@ -44,29 +43,14 @@
                                     @Html.ValidationSummary(true, "", new { @class = "alert-danger ptb-10" })
                                 </div>
                             }
-
-                                <div style="height:100px;">
-                                    <div style="margin-top: 20px;width: 40%;float:left;">
-                                        <img style="width:200px" src="~/Images/logo/Powered_by_FOM-350x200px.png">
-                                    </div>
-                                    <div class="form-actions" style="margin-top: 20px;width: 50%;float: right;">
-                                        <button type="submit">LOGIN</button>
-                                    </div>
-
-                                </div>
+                            <div class="form-actions">
+                                <button type="submit">LOGIN</button>
+                            </div>
                         }
-
-
-
                     </div>
-                   
                 </div>
-                
             </div>
-            
         </div>
-       
     </div>
-   
 </body>
 </html>

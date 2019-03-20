@@ -40,9 +40,7 @@
         <AssociationConnector Association="FST_FomMonitoringModel.FK_ToolMachine_Machine" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryJob" Width="1.5" PointX="5.25" PointY="64.75" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.UserCustomerMapping" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="FST_FomMonitoringModel.UserPlantMapping" Width="1.5" PointX="3" PointY="63.125" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryJob_Machine" />
-        <AssociationConnector Association="FST_FomMonitoringModel.FK_UserPlantMapping_Plant" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_Bar_Machine" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.Spindle" Width="1.5" PointX="5.25" PointY="59.375" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_Spindle_Machine" />
