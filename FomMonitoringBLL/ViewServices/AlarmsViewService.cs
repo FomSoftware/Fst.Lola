@@ -39,7 +39,8 @@ namespace FomMonitoringBLL.ViewServices
                 type = ((enTypeAlarm)a.StateId).GetDescription(),
                 description = a.Description,
                 time = CommonViewService.getTimeViewModel(a.ElapsedTime),
-                quantity = a.Count == null ? 0 : a.Count.Value
+                quantity = a.Count == null ? 0 : a.Count.Value,
+                day = a.Day == null ? "-" : a.Day.Value.ToString("t")
             }).ToList();
 
             alarms = alarms.OrderByDescending(o => o.time.elapsed).ToList();
@@ -49,6 +50,7 @@ namespace FomMonitoringBLL.ViewServices
 
             result.alarms = alarms;
             result.sorting = sorting;
+            
 
             return result;
         }

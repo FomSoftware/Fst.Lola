@@ -25,6 +25,8 @@ namespace FomMonitoringBLL.ViewModel
         public TimeViewModel time { get; set; }
         public int quantity { get; set; }
         public string description { get; set; }
+
+        public string day { get; set; }
     }
 
 }
