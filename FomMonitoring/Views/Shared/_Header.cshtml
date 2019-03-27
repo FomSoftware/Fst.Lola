@@ -95,10 +95,13 @@
                                 <span>@Resource.UserManager</span>
                             </a>
                         }
-                        <div class="dd-item" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
-                            <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
-                            <span>@Resource.ChangePassword</span>
-                        </div>
+                        @if (Model.User.Role != enRole.Customer)
+                        {
+                            <div class="dd-item" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
+                                <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
+                                <span>@Resource.ChangePassword</span>
+                            </div>
+                        }
                         <a class="dd-item" href="@Url.Action("Logout", "Account")">
                             <i class="fa fa-power-off color-corporate fa-lg"></i>
                             <span>@Resource.Logout</span>
@@ -180,12 +183,15 @@
                         </a>
                     </li>
                 }
-                <li>
-                    <a class="dd-item" href="#" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
-                        <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
-                        <div>@Resource.ChangePassword</div>
-                    </a>
-                </li>
+                @if (Model.User.Role != enRole.Customer)
+                {
+                    <li>
+                        <a class="dd-item" href="#" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
+                            <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
+                            <div>@Resource.ChangePassword</div>
+                        </a>
+                    </li>
+                }
                 <li>
                     <a class="dd-item" href="@Url.Action("Logout", "Account")">
                         <i class="fa fa-power-off color-corporate fa-lg"></i>

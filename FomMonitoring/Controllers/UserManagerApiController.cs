@@ -82,6 +82,7 @@ namespace FomMonitoring.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator)]
         [Route("ajax/UserManagerApi/ChangePassword")]
         public HttpResponseMessage ChangePassword(ChangePasswordViewModel changePasswordInfo)
         {

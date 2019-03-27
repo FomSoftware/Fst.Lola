@@ -74,7 +74,7 @@
                     this.actual.FirstName == undefined || this.actual.FirstName == null || this.actual.FirstName.trim() == "" ? this.missing.FirstName = true : this.missing.FirstName = false
                     this.actual.LastName == undefined || this.actual.LastName == null || this.actual.LastName.trim() == "" ? this.missing.LastName = true : this.missing.LastName = false
                     this.actual.Email == undefined || this.actual.Email == null || this.actual.Email.trim() == "" ? this.missing.Email = true : this.missing.Email = false
-                    this.roles.active == "" && this.roles.active != 0 ? this.missing.Role = true : this.missing.Role = false
+                    this.roles.active.length == 0 ? this.missing.Role = true : this.missing.Role = false
                     this.customers.active == "" && roleUser != enRoles.Customer ? this.missing.Customer = true : this.missing.Customer = false
                     this.machines.active.length == 0 ? this.missing.Machines = true : this.missing.Machines = false
                     this.languages.active == "" ? this.missing.Languages = true : this.missing.Languages = false
