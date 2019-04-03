@@ -1060,7 +1060,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Multi Spindles.
+        ///   Looks up a localized string similar to Multispindle.
         /// </summary>
         public static string Spindles {
             get {
