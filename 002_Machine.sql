@@ -3,7 +3,7 @@
 ALTER TABLE [dbo].[Machine] DROP CONSTRAINT [FK_Machine_Plant];
 GO
 
-ALTER TABLE [dbo].[Machine] ALTER COLUMN [PlantId] INT NULL;
+ALTER TABLE [dbo].[Machine] ALTER COLUMN [PlantId] INT NOT NULL;
 GO
 
 ALTER TABLE [dbo].[Machine] WITH NOCHECK
