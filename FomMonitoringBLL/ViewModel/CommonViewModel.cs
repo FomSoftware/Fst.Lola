@@ -48,6 +48,7 @@ namespace FomMonitoringBLL.ViewModel
         public List<string> categories { get; set; }
 
         public List<SerieViewModel> series { get; set; }
+        
     }
 
     public class SerieViewModel
@@ -57,6 +58,8 @@ namespace FomMonitoringBLL.ViewModel
         public string name { get; set; }
 
         public string color { get; set; }
+
+        public decimal y { get; set; }
 
         public List<int> data { get; set; }
     }

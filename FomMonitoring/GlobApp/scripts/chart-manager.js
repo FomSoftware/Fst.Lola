@@ -540,6 +540,48 @@
             chart.update(config);
     }
 
+    var stateMachinePieChart = function (chartID, options) {
+        var config = {
+
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },            
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'States',
+                colorByPoint: true,
+                data: options.series
+            }]
+        }
+
+        var chart = $('#' + chartID).highcharts();
+
+        if (chart == null)
+            Highcharts.chart(chartID, config);
+        else
+            chart.update(config);
+
+    }
+
+
     var getProductivitySeries = function (series, type)
     {
         var enSerieType = {
@@ -596,7 +638,8 @@
         stackedBarChart: stackedBarChart,
         dualAxesColumnChart: dualAxesColumnChart,
         dualAxesBarChart: dualAxesBarChart,
-        destroyChart: destroyChart
+        destroyChart: destroyChart,
+        stateMachinePieChart: stateMachinePieChart
     }
 
 }();

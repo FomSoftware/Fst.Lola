@@ -85,8 +85,11 @@
             }
         }*/
         
-        initVueModel(data.vm_efficiency);
-
+        initVueModel(data);
+        if (data.opt_states != null)
+        {
+            ChartManager.stateMachinePieChart("efc_pie_chart", data.opt_states);
+        }
         if (data.opt_historical != null)
         {
             vmEfficiency.show.historical = true;
@@ -112,10 +115,11 @@
         vmEfficiency = new Vue({
             el: '#CardEfficiency',
             data: {
-                kpi: data.kpi,
-                total: data.total,
-                overfeed: data.overfeed,
-                states: data.states,
+                type: data.vm_machine_info.mtype,
+                kpi: data.vm_efficiency.kpi,
+                total: data.vm_efficiency.total,
+                overfeed: data.vm_efficiency.overfeed,
+                states: data.vm_efficiency.states,
                 show: {
                     historical: false,
                     operators: false,
@@ -166,6 +170,13 @@
                         return true;
                     else
                         return false;
+                },
+
+                getCol: function () {
+                    if (this.type != 'Troncatrice')
+                        return "col-xs-6";
+                    else
+                        return "col-xs-7";
                 }
             },
             methods: {
@@ -178,7 +189,9 @@
                         'fa-exclamation-triangle': state.code == 'error'
                         //'icofom-alarms': state.code == 'error'
                     }
-                }
+                },
+                
+
             }
         });
     }
@@ -188,6 +201,7 @@
     {
         // update vue model
         var efficiency = data.vm_efficiency;
+        vmEfficiency.type = data.vm_machine_info.mtype;
         vmEfficiency.kpi = efficiency.kpi;
         vmEfficiency.total = efficiency.total;
         vmEfficiency.overfeed = efficiency.overfeed;

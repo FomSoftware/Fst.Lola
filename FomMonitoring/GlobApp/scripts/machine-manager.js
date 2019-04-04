@@ -132,7 +132,22 @@
         var swiper_productivity = new Swiper('.swiper-container.productivity', {
             direction: 'horizontal',
             loop: false
+        });
+
+        var swiper_alarm = new Swiper('.swiper-container.alarms', {
+            direction: 'horizontal',
+            loop: false
         })
+
+
+        $('.slide-summary').click(function (e) {
+            e.preventDefault();
+            var group = $(this).data('group');
+            if (group == 'alarms')
+                swiper_alarm.slideTo(1, 300);
+            
+        });
+
 
         $('.slide-history').click(function (e)
         {
@@ -144,6 +159,9 @@
 
             if (group == 'productivity')
                 swiper_productivity.slideTo(0, 300);
+
+            if (group == 'alarms')
+                swiper_alarm.slideTo(0, 300);
         });
 
         $('.slide-operator').click(function (e)

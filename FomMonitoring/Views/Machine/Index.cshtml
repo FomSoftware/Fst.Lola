@@ -10,209 +10,51 @@
     <div class="col-lg-4 col-md-6 col-sm-12">
         @Html.Partial("_Efficiency", Model.Efficiency)
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12">
-        @Html.Partial("_Productivity", Model.Productivity)
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="col-lg-8 col-md-6 col-sm-12">
         @Html.Partial("_Alarms", Model.Alarms)
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12">
-        @Html.Partial("_Spindles", Model.Spindles)
+        <div class="row">
+            <div class="col-sm-12">
+
+                @Html.Partial("_Productivity", Model.Productivity)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.Partial("_Spindles", Model.Spindles)
+            </div>
+        </div>
     </div>
+
     <div class="col-lg-4 col-md-6 col-sm-12">
-        @Html.Partial("_Tools", Model.Tools)
+        <div class="row">
+            <div class="col-sm-12">
+
+                @Html.Partial("_Jobs", Model.Jobs)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.Partial("_Tools", Model.Tools)
+            </div>
+        </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12">
-        @Html.Partial("_Jobs", Model.Jobs)
+
+    
+    <div class="col-lg-4 col-md-12 col-sm-12">
+        @Html.Partial("_Test", Model.Errori)
     </div>
 </div>
 
-
-<script type="text/x-template" id="modal-spindle">
-    <div v-bind:id="'modal-' + spindle.code" class="modal modal-tools fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="inline-block">
-                        <table class="table table-tools">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="el-state el-code">
-                                            <div>{{ spindle.code }}</div>
-                                            <small>@Resource.Position</small>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="el-state">
-                                            <div>{{ spindle.info.install }}</div>
-                                            <small>@Resource.Install</small>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="el-state">
-                                            <div>{{ spindle.info.maintenance }}</div>
-                                            <small>@Resource.Maintenance</small>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="el-state el-margin">
-                                            <div>
-                                                <i class="icon-reload"></i>
-                                                <span>{{ spindle.info.change }}</span>
-                                            </div>
-                                            <small>@Resource.Change</small>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-xs-12 text-center">
-                            <div class="item-time">
-                                <div class="icon fa fa-clock-o"></div>
-                                <div>
-                                    <div class="title-time">@Resource.UsageTime</div>
-                                    <div class="value-time">
-                                        <time-span v-bind:duration="spindle.time.work"></time-span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div v-bind:id="'chart_bands_' + spindle.code"></div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <table class="table" style="margin-bottom: 0px;">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="el-state el-margin text-right">
-                                                <div>
-                                                    <i class="fa fa-plug"></i>
-                                                    <span>{{ spindle.workover.power }}</span><em>qty</em>
-                                                </div>
-                                                <small>@Resource.Overpower</small>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="el-state el-margin text-right">
-                                                <div>
-                                                    <i class="fa fa-spinner"></i>
-                                                    <span>{{ spindle.workover.vibration }}</span><em>qty</em>
-                                                </div>
-                                                <small>@Resource.OverVibrating</small>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="el-state el-margin text-right">
-                                                <div>
-                                                    <i class="fa fa-thermometer-full"></i>
-                                                    <span>{{ spindle.workover.heating }}</span><em>qty</em>
-                                                </div>
-                                                <small>@Resource.Overhating</small>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-annulla" data-dismiss="modal">Close</button>
-                </div>
+        <script type="text/x-template" id="no-data">
+            <div class="no-data">
+                <i class="fa fa-meh-o fa-3x"></i>
+                <div>@Resource.NoData</div>
             </div>
-        </div>
-    </div>
-</script>
+        </script>
 
-<script type="text/x-template" id="modal-tool">
-    <div v-bind:id="'modal-' + tool.code" class="modal modal-tools fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="inline-block">
-                        <table class="table table-tools">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="el-state el-code">
-                                            <div>{{ tool.description }}</div>
-                                            <small>@Resource.Description</small>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="el-state">
-                                            <div>
-                                                <i class="fa fa-remove color-red font-12x"></i>
-                                                <span>{{ tool.changes.breaking }}</span><em>qty</em>
-                                            </div>
-                                            <small>@Resource.Breaking</small>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="el-state">
-                                            <div>
-                                                <i class="fa fa-repeat color-orange font-12x"></i>
-                                                <span>{{ tool.changes.replacement }}</span><em>qty</em>
-                                            </div>
-                                            <small>@Resource.Replacement</small>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <table class="table" v-if="tool.changes.historical.length > 0">
-                        <thead>
-                            <tr>
-                                <th>@Resource.Date</th>
-                                <th>@Resource.Typology</th>
-                                <th>@Resource.Duration</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="history in tool.changes.historical">
-                                <td>{{ history.date }}</td>
-                                <td>
-                                    <div class="label" v-bind:class="history.color_type">{{ history.type }}</div>
-                                </td>
-                                <td>
-                                    <time-span v-bind:duration="history.duration"></time-span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <no-data v-else></no-data>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-annulla" data-dismiss="modal">@Resource.CancelLabel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</script>
-
-<script type="text/x-template" id="no-data">
-    <div class="no-data">
-        <i class="fa fa-meh-o fa-3x"></i>
-        <div>@Resource.NoData</div>
-    </div>
-</script>
-
-<script type="text/javascript">
+        <script type="text/javascript">
 
     MachineManager.initVueComponents();
 
@@ -222,4 +64,4 @@
         MachineManager.init(urlMachineAPI);
     });
 
-</script>
+        </script>

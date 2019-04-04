@@ -10,12 +10,21 @@ namespace FomMonitoringBLL.ViewModel
         public AlarmVueModel vm_alarms { get; set; }
 
         public ChartViewModel opt_historical { get; set; }
+
+        public AlarmDetailsViewModel vm_details { get; set; }
     }
 
     public class AlarmVueModel
     {
         public List<AlarmDataModel> alarms { get; set; }
         public SortingViewModel sorting { get; set; }
+    }
+
+    public class AlarmDetailsViewModel
+    {
+        public List<ErroriViewModel> alarms { get; set; }
+        public SortingViewModel sorting { get; set; }
+
     }
 
     public class AlarmDataModel

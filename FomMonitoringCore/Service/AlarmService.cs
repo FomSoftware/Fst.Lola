@@ -45,6 +45,30 @@ namespace FomMonitoringCore.Service
 
         #endregion
 
+        public static List<AlarmMachineModel> GetAlarmDetails(MachineInfoModel machine, PeriodModel period)
+        {
+            List<AlarmMachineModel> result = new List<AlarmMachineModel>();
+
+            try
+            {
+                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                {
+                    List<AlarmMachine> query = ent.AlarmMachine.Where(m => m.MachineId == machine.Id).ToList();
+
+                    result = query.Adapt<List<AlarmMachine>, List<AlarmMachineModel>>();
+                }
+            }
+            catch (Exception ex)
+            {
+                string errMessage = string.Format(ex.GetStringLog(),
+                    machine.Id.ToString(),
+                    string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString()));
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+
+            return result;
+        }
+
 
         /// <summary>
         /// Ritorna i dettagli degli allarmi in base a macchina e periodo
@@ -79,6 +103,33 @@ namespace FomMonitoringCore.Service
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
+            return result;
+        }
+
+        public static List<AlarmMachineModel> GetAllCurrentAlarms(MachineInfoModel machine, PeriodModel period)
+        {
+            List<AlarmMachineModel> result = new List<AlarmMachineModel>();
+
+            try
+            {
+                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                {
+
+                    List<AlarmMachine> query = (from hs in ent.AlarmMachine
+                                                where hs.MachineId == machine.Id
+                                                && hs.Day >= period.StartDate && hs.Day <= period.EndDate
+                                                select hs).ToList();
+
+                    result = query.Adapt<List<AlarmMachineModel>>();
+                }
+            }
+            catch (Exception ex)
+            {
+                string errMessage = string.Format(ex.GetStringLog(),
+                    machine.Id.ToString(),
+                    string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString()));
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
             return result;
         }
     }

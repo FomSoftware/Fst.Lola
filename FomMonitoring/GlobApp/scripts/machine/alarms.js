@@ -50,7 +50,7 @@
         //    }
         //}
 
-        initVueModel(data.vm_alarms);
+        initVueModel(data);
 
         if (data.opt_historical != null)
         {
@@ -65,8 +65,9 @@
         vmAlarms = new Vue({
             el: '#CardAlarms',
             data: {
-                alarms: data.alarms,
-                sorting: data.sorting,
+                alarms: data.vm_alarms.alarms,
+                details: data.vm_details.alarms,
+                    sorting: data.vm_alarms.sorting,
                 show: {
                     historical: false
                 }
@@ -176,6 +177,7 @@
         var vm_alarms = data.vm_alarms;
         vmAlarms.alarms = vm_alarms.alarms;
         vmAlarms.sorting = vm_alarms.sorting;
+        vmAlarms.details = data.vm_details;
 
         // update historical chart
         if (data.opt_historical != null)

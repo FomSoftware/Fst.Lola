@@ -115,6 +115,77 @@
     <modal-tool v-for="tool in tools" v-bind:tool="tool"></modal-tool>
 </div>
 
+<script type="text/x-template" id="modal-tool">
+    <div v-bind:id="'modal-' + tool.code" class="modal modal-tools fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="inline-block">
+                        <table class="table table-tools">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="el-state el-code">
+                                            <div>{{ tool.description }}</div>
+                                            <small>@Resource.Description</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="el-state">
+                                            <div>
+                                                <i class="fa fa-remove color-red font-12x"></i>
+                                                <span>{{ tool.changes.breaking }}</span><em>qty</em>
+                                            </div>
+                                            <small>@Resource.Breaking</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="el-state">
+                                            <div>
+                                                <i class="fa fa-repeat color-orange font-12x"></i>
+                                                <span>{{ tool.changes.replacement }}</span><em>qty</em>
+                                            </div>
+                                            <small>@Resource.Replacement</small>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <table class="table" v-if="tool.changes.historical.length > 0">
+                        <thead>
+                            <tr>
+                                <th>@Resource.Date</th>
+                                <th>@Resource.Typology</th>
+                                <th>@Resource.Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="history in tool.changes.historical">
+                                <td>{{ history.date }}</td>
+                                <td>
+                                    <div class="label" v-bind:class="history.color_type">{{ history.type }}</div>
+                                </td>
+                                <td>
+                                    <time-span v-bind:duration="history.duration"></time-span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <no-data v-else></no-data>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-annulla" data-dismiss="modal">@Resource.CancelLabel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
 
 <script type="text/javascript">
 

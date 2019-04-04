@@ -53,7 +53,9 @@
     <Compile Include="ViewModel\AlarmViewModel.cs" />
     <Compile Include="ViewModel\CommonViewModel.cs" />
     <Compile Include="ViewModel\EfficiencyViewModel.cs" />
+    <Compile Include="ViewModel\ErroriViewModel.cs" />
     <Compile Include="ViewModel\FilterViewModel.cs" />
+    <Compile Include="ViewModel\ListaErroriViewModel.cs" />
     <Compile Include="ViewModel\MesViewModel.cs" />
     <Compile Include="ViewModel\SharedViewModel.cs" />
     <Compile Include="ViewModel\I18nViewModel.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="ViewModel\UserManagerViewModel.cs" />
     <Compile Include="ViewServices\AlarmsViewService.cs" />
     <Compile Include="ViewServices\CommonViewService.cs" />
+    <Compile Include="ViewServices\ErroriViewService.cs" />
     <Compile Include="ViewServices\MachineViewService.cs" />
     <Compile Include="ViewServices\MesViewService.cs" />
     <Compile Include="ViewServices\EfficiencyViewService.cs" />

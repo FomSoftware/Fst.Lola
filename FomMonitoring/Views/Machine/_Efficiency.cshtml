@@ -42,89 +42,93 @@
         <div class="card-portlet card-efficiency" v-cloak>
             <div class="front">
                 <div class="row" v-if="states != null">
-                    <div class="col-xs-11">
-                        <!-- MACHINE STATES -->
-                        <div class="use-states">
-                            <div class="progress-label clearfix">
-                                <div class="progress-title">
-                                    @Resource.MachineStates
-                                </div>
-                                <div class="progress-time">
-                                    <div class="icon fa fa-clock-o"></div>
-                                    <div>
-                                        <div class="title-time">@Resource.TimeOn</div>
-                                        <div class="value-time">
-                                            <time-span v-bind:duration="total.on"></time-span>
+                    <div class="col-xs-5">
+                        <div id="efc_pie_chart">
+                        </div>
+                     </div>
+                     <div v-bind:class="getCol">
+                            <!-- MACHINE STATES -->
+                            <div class="use-states">
+                                <div class="progress-label clearfix">
+                                    <div class="progress-title">
+                                        @Resource.MachineStates
+                                    </div>
+                                    <div class="progress-time">
+                                        <div class="icon fa fa-clock-o"></div>
+                                        <div>
+                                            <div class="title-time">@Resource.TimeOn</div>
+                                            <div class="value-time">
+                                                <time-span v-bind:duration="total.on"></time-span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="progress">
-                                <div v-for="state in states" class="progress-bar" v-bind:class="'bg-' + state.code" v-bind:aria-valuenow="state.perc">
-                                    <i v-if="state.active" class="fa fa-check-circle"></i>
-                                </div>
-                            </div>
-                            <table class="table-legend">
-                                <tbody>
-                                    <tr v-for="state in states">
-                                        <td>
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x" v-bind:class="'cr-' + state.code"></i>
-                                                <i class="fa fa-stack-1x fa-inverse" v-bind:class="icon(state)"></i>
-                                            </span>
-                                            <span class="icon-label font-medium">
-                                                {{ state.text }}
-                                                <i v-if="state.active" class="fa fa-check-circle"></i>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            {{ state.perc | round }}<em>%</em>
-                                        </td>
-                                        <td>
-                                            <time-span v-bind:duration="state.time"></time-span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <!-- OFF STATE -->
-                            <div class="progress-label clearfix">
-                                <div class="progress-title">
-                                    <span class="fa-stack v-middle font-normal">
-                                        <i class="fa fa-square fa-stack-2x cr-stop"></i>
-                                        <i class="fa fa-remove fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                    <span class="v-middle">
-                                        @Resource.StateOff
-                                    </span>
-                                </div>
-                                <div class="progress-time margin-top-5" style="margin-bottom: 0px;">
-                                    <div class="icon fa fa-power-off"></div>
-                                    <div>
-                                        <div class="title-time">@Resource.TimeOff</div>
-                                        <div class="value-time">
-                                            <time-span v-bind:duration="total.off"></time-span>
+                                @*<div class="progress">
+                        <div v-for="state in states" class="progress-bar" v-bind:class="'bg-' + state.code" v-bind:aria-valuenow="state.perc">
+                            <i v-if="state.active" class="fa fa-check-circle"></i>
+                        </div>
+                    </div>*@
+                                <table class="table-legend">
+                                    <tbody>
+                                        <tr v-for="state in states">
+                                            <td>
+                                                <span class="fa-stack">
+                                                    <i class="fa fa-square fa-stack-2x" v-bind:class="'cr-' + state.code"></i>
+                                                    <i class="fa fa-stack-1x fa-inverse" v-bind:class="icon(state)"></i>
+                                                </span>
+                                                <span class="icon-label font-medium">
+                                                    {{ state.text }}
+                                                    <i v-if="state.active" class="fa fa-check-circle"></i>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                {{ state.perc | round }}<em>%</em>
+                                            </td>
+                                            <td>
+                                                <time-span v-bind:duration="state.time"></time-span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- OFF STATE -->
+                                <div class="progress-label clearfix">
+                                    <div class="progress-title">
+                                        <span class="fa-stack v-middle font-normal">
+                                            <i class="fa fa-square fa-stack-2x cr-stop"></i>
+                                            <i class="fa fa-remove fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                        <span class="v-middle">
+                                            @Resource.StateOff
+                                        </span>
+                                    </div>
+                                    <div class="progress-time margin-top-5" style="margin-bottom: 0px;">
+                                        <div class="icon fa fa-power-off"></div>
+                                        <div>
+                                            <div class="title-time">@Resource.TimeOff</div>
+                                            <div class="value-time">
+                                                <time-span v-bind:duration="total.off"></time-span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xs-1 no-padding-left text-center">
-                        <!-- OVERFEED -->
-                        <div class="overfeed">
-                            <div class="overfeed-progress">
-                                <div class="overfeed-title">
-                                    overfeed <b>{{ overfeed.value | round }}<em>%</em></b>
+                        <div class="col-xs-1 no-padding-left text-center" v-if="type != 'Troncatrice'">
+                            <!-- OVERFEED -->
+                            <div class="overfeed">
+                                <div class="overfeed-progress">
+                                    <div class="overfeed-title">
+                                        overfeed <b>{{ overfeed.value | round }}<em>%</em></b>
+                                    </div>
+                                    <div class="overfeed-bar" v-bind:class="bgOverfeed" v-bind:aria-valuenow="overfeed.value"></div>
+                                    <div class="overfeed-threshold" v-bind:style="{ bottom: overfeed.threshold.green + '%'}"></div>
+                                    <div class="overfeed-threshold" v-bind:style="{ bottom: overfeed.threshold.yellow + '%'}"></div>
                                 </div>
-                                <div class="overfeed-bar" v-bind:class="bgOverfeed" v-bind:aria-valuenow="overfeed.value"></div>
-                                <div class="overfeed-threshold" v-bind:style="{ bottom: overfeed.threshold.green + '%'}"></div>
-                                <div class="overfeed-threshold" v-bind:style="{ bottom: overfeed.threshold.yellow + '%'}"></div>
                             </div>
                         </div>
                     </div>
+                    <no-data v-else></no-data>
                 </div>
-                <no-data v-else></no-data>
-            </div>
             <div class="back">
                 <div class="swiper-container efficiency">
                     <div class="swiper-wrapper">

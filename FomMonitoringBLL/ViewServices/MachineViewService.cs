@@ -25,7 +25,9 @@ namespace FomMonitoringBLL.ViewServices
             machine.Jobs = JobsViewService.GetJobs(context);
             machine.Spindles = SpindlesViewService.GetSpindles(context);
             machine.Tools = ToolsViewService.GetTools(context);
-
+            machine.Errori = ErroriViewService.GetErrori(context);
+          
+             
             return machine;
         }
     }

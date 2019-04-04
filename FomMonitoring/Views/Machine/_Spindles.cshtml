@@ -42,11 +42,11 @@
                                 <td>
                                     <div class="el-state el-margin text-right">
                                         <!-- <div>
-                                        <i class="fa fa-bolt"></i>
-                                        <span>{{ spindle.velocity }}</span>
-                                        <span class="sty-unit">rpm</span>
-                                    </div>
-                                    <small>@Resource.AverageSpeed</small>-->
+                                            <i class="fa fa-bolt"></i>
+                                            <span>{{ spindle.velocity }}</span>
+                                            <span class="sty-unit">rpm</span>
+                                        </div>
+                                        <small>@Resource.AverageSpeed</small>-->
                                     </div>
                                 </td>
                                 <td>
@@ -63,7 +63,7 @@
                             <tr>
                                 <td colspan="3">
                                     <div class="progress progress-spindle slim">
-                                        <div class="progress-bar" v-bind:class="bgColor(spindle.perc)" v-bind:aria-valuenow="spindle.perc"></div>
+                                        <div class="progress-bar" v-bind:class="bgColor(spindle.perc)" v-bind:aria-valuenow="spindle.time.residual"></div>
                                     </div>
                                 </td>
                             </tr>
@@ -156,6 +156,112 @@
     <modal-spindle v-for="spindle in spindles" v-bind:spindle="spindle"></modal-spindle>
 </div>
 
+<script type="text/x-template" id="modal-spindle">
+    <div v-bind:id="'modal-' + spindle.code" class="modal modal-tools fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="inline-block">
+                        <table class="table table-tools">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="el-state el-code">
+                                            <div>{{ spindle.code }}</div>
+                                            <small>@Resource.Position</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="el-state">
+                                            <div>{{ spindle.info.install }}</div>
+                                            <small>@Resource.Install</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="el-state">
+                                            <div>{{ spindle.info.maintenance }}</div>
+                                            <small>@Resource.Maintenance</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="el-state el-margin">
+                                            <div>
+                                                <i class="icon-reload"></i>
+                                                <span>{{ spindle.info.change }}</span>
+                                            </div>
+                                            <small>@Resource.Change</small>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <div class="item-time">
+                                <div class="icon fa fa-clock-o"></div>
+                                <div>
+                                    <div class="title-time">@Resource.UsageTime</div>
+                                    <div class="value-time">
+                                        <time-span v-bind:duration="spindle.time.work"></time-span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-bind:id="'chart_bands_' + spindle.code"></div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table class="table" style="margin-bottom: 0px;">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="el-state el-margin text-right">
+                                                <div>
+                                                    <i class="fa fa-plug"></i>
+                                                    <span>{{ spindle.workover.power }}</span><em>qty</em>
+                                                </div>
+                                                <small>@Resource.Overpower</small>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="el-state el-margin text-right">
+                                                <div>
+                                                    <i class="fa fa-spinner"></i>
+                                                    <span>{{ spindle.workover.vibration }}</span><em>qty</em>
+                                                </div>
+                                                <small>@Resource.OverVibrating</small>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="el-state el-margin text-right">
+                                                <div>
+                                                    <i class="fa fa-thermometer-full"></i>
+                                                    <span>{{ spindle.workover.heating }}</span><em>qty</em>
+                                                </div>
+                                                <small>@Resource.Overhating</small>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-annulla" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+
 <script type="text/javascript">
 
     $(document).ready(function ()
@@ -165,3 +271,4 @@
     });
 
 </script>
+

@@ -117,7 +117,7 @@ namespace FomMonitoringCore.Service
                             .Include("Roles_Users")
                             .Include("Roles_Users.Roles")
                             .Include("Languages").AsQueryable()
-                            .Where(w => !w.Roles_Users.Any(a => a.Roles.IdRole == (int)enRole.Administrator
+                            .Where(w => w.Roles_Users.Any(a => a.Roles.Enabled == true) && !w.Roles_Users.Any(a => a.Roles.IdRole == (int)enRole.Administrator
                                     || a.Roles.IdRole == (int)enRole.Customer || a.Roles.IdRole == (int)enRole.UserApi)).AsQueryable();
 
                         if (customerName != null) userQuery = userQuery.Where(w => customerUsers.Contains(w.ID));

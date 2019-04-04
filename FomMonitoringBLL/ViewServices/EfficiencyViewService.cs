@@ -16,12 +16,16 @@ namespace FomMonitoringBLL.ViewServices
         public static EfficiencyViewModel GetEfficiency(ContextModel context)
         {
             EfficiencyViewModel result = new EfficiencyViewModel();
-
+            result.vm_machine_info = new MachineInfoViewModel
+            {
+                model = context.ActualMachine.Model.Name,
+                mtype = context.ActualMachine.Type.Name
+            };
             result.vm_efficiency = GetVueModel(context.ActualMachine, context.ActualPeriod);
             result.opt_historical = GetHistoricalOptions(context.ActualMachine, context.ActualPeriod);
             result.opt_operators = GetOperatorsOptions(context.ActualMachine, context.ActualPeriod);
             result.opt_shifts = GetShiftsOptions(context.ActualMachine, context.ActualPeriod);
-
+            result.opt_states = GetStatesOptions(context.ActualMachine, context.ActualPeriod);
             return result;
         }
 
@@ -204,6 +208,87 @@ namespace FomMonitoringBLL.ViewServices
             options.series = GetSeriesStackedBarChart(data, shifts, enDataType.Shifts);
 
             return options;
+        }
+
+        private static ChartViewModel GetStatesOptions(MachineInfoModel machine, PeriodModel period)
+        {
+            ChartViewModel options = new ChartViewModel();
+            options.series = new List<SerieViewModel>();
+            
+
+                List<HistoryStateModel> data = StateService.GetAggregationStates(machine, period, enDataType.Dashboard);
+
+            if (!data.Any())
+                return options;
+
+                HistoryStateModel stateProd = data.Where(w => w.enState == enState.Production).FirstOrDefault();
+
+                long? totalProd = stateProd.ElapsedTime;
+                long? totalOn = data.Where(w => w.enState != enState.Off).Select(s => s.ElapsedTime).Sum();
+                long? totalOff = data.Where(w => w.enState == enState.Off).Select(s => s.ElapsedTime).Sum();
+
+                decimal? percProd = Common.GetPercentage(totalProd, totalOn);
+                decimal? overfeed = stateProd.OverfeedAvg;
+
+                List<StateViewModel> states = new List<StateViewModel>();
+
+                // state prod
+                SerieViewModel prod = new SerieViewModel();
+                prod.name = enState.Production.ToLocalizedString();
+                prod.y = percProd ?? 0;
+                options.series.Add(prod);
+
+
+                // state pause
+                SerieViewModel pause = new SerieViewModel();
+                pause.name = enState.Pause.ToLocalizedString();
+           
+
+                HistoryStateModel statePause = data.Where(w => w.enState == enState.Pause).FirstOrDefault();
+
+            if (statePause != null)
+            {
+                long? totalPause = statePause.ElapsedTime;
+                pause.y = Common.GetPercentage(totalPause, totalOn);
+            }
+
+            options.series.Add(pause);
+
+
+            //// state manual
+            //StateViewModel manual = new StateViewModel();
+            //    manual.code = enState.Manual.GetDescription();
+            //    manual.text = enState.Manual.ToLocalizedString();
+
+            //    HistoryStateModel stateManual = data.Where(w => w.enState == enState.Manual).FirstOrDefault();
+
+            //    if (stateManual != null)
+            //    {
+            //        long? totalManual = stateManual.ElapsedTime;
+            //        manual.perc = Common.GetPercentage(totalManual, totalOn);
+            //        manual.time = CommonViewService.getTimeViewModel(totalManual);
+            //    }
+            //    states.Add(manual);
+
+            //    // state error
+            //    StateViewModel error = new StateViewModel();
+            //    error.code = enState.Error.GetDescription();
+            //    error.text = enState.Error.ToLocalizedString();
+
+            //    HistoryStateModel stateError = data.Where(w => w.enState == enState.Error).FirstOrDefault();
+
+            //    if (stateError != null)
+            //    {
+            //        long? totalError = stateError.ElapsedTime;
+            //        error.perc = Common.GetPercentage(totalError, totalOn);
+            //        error.time = CommonViewService.getTimeViewModel(totalError);
+            //    }
+            //    states.Add(error);
+
+            //    result.states = states.OrderByDescending(o => o.perc).ToList();
+
+            //    return result;
+                return options;
         }
 
 

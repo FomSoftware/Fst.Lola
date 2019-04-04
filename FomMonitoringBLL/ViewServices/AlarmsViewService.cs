@@ -19,16 +19,44 @@ namespace FomMonitoringBLL.ViewServices
 
             result.vm_alarms = GetVueModel(context.ActualMachine, context.ActualPeriod);
             result.opt_historical = GetHistoricalOptions(context.ActualMachine, context.ActualPeriod);
-
+            result.vm_details = GetAlarmDetails(context.ActualMachine, context.ActualPeriod);
             return result;
         }
 
+        private static AlarmDetailsViewModel GetAlarmDetails(MachineInfoModel actualMachine, PeriodModel actualPeriod)
+        {
+            AlarmDetailsViewModel result = new AlarmDetailsViewModel();
+
+            List<AlarmMachineModel> data = AlarmService.GetAlarmDetails(actualMachine, actualPeriod);
+
+            if (data.Count == 0)
+                return result;
+
+            List<ErroriViewModel> alarms = data.Select(a => new ErroriViewModel()
+            {
+                Code = a.Code,
+                Messaggio = a.Description,
+                Timestamp = a.Day
+              
+            }).ToList();
+
+            alarms = alarms.OrderByDescending(o => o.Timestamp).ToList();
+
+            SortingViewModel sorting = new SortingViewModel();
+            sorting.duration = enSorting.Descending.GetDescription();
+
+            result.alarms = alarms;
+            result.sorting = sorting;
+
+
+            return result;
+        }
 
         private static AlarmVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
         {
             AlarmVueModel result = new AlarmVueModel();
 
-            List<HistoryAlarmModel> data = AlarmService.GetAggregationAlarms(machine, period, enDataType.Dashboard);
+            List<HistoryAlarmModel> data = AlarmService.GetAggregationAlarms(machine, period, enDataType.Summary);
 
             if (data.Count == 0)
                 return result;
