@@ -429,6 +429,7 @@
     <Content Include="GlobApp\styles\mes.css" />
     <Content Include="GlobApp\styles\toolbar.css" />
     <Content Include="GlobApp\styles\user-manager.css" />
+    <Content Include="Images\flags\de.png" />
     <Content Include="Images\flags\en.png" />
     <Content Include="Images\flags\es.png" />
     <Content Include="Images\flags\fr.png" />
