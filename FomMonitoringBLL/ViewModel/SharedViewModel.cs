@@ -61,6 +61,8 @@ namespace FomMonitoringBLL.ViewModel
 
         public string icon { get; set; }
 
+        public int id_mtype { get; set; }
+
         public string mtype { get; set; }
 
         public string model { get; set; }

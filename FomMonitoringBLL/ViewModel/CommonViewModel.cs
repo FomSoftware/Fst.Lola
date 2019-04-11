@@ -57,7 +57,10 @@ namespace FomMonitoringBLL.ViewModel
         public string name { get; set; }
 
         public string color { get; set; }
+        public decimal y { get; set; }
 
         public List<int> data { get; set; }
+        public double stateProductivityGreenThreshold { get; set; }
+        public double stateProductivityYellowThreshold { get; set; }
     }
 }
