@@ -844,6 +844,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Periodic Ordinary Maintenance.
+        /// </summary>
+        public static string PeriodicMaintenance {
+            get {
+                return ResourceManager.GetString("PeriodicMaintenance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phases.
         /// </summary>
         public static string Phases {

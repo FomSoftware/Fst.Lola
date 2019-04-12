@@ -1,0 +1,31 @@
+﻿@using FomMonitoringResources
+<div id="CardMaintenance" class="portlet" style="height:588px">
+    <div class="portlet-title">
+        <div class="portlet-kpi" v-cloak>
+            
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x" style="color:cornflowerblue"></i>
+                <i class="fa fa-info fa-stack-1x fa-inverse"></i>
+            </span>
+        </div>
+        <div class="title-kpi">
+            <span>@Resource.PeriodicMaintenance</span>
+            <div class="sub-period js-period"></div>
+        </div>
+        <div class="portlet-details" v-show="show.historical">
+            <div class="dropdown" onclick="SharedManager.handlerDropdown($(this))">
+                <div class="button drop-btn">
+                    <i class="icon-options-vertical"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="card-portlet card-alarms" v-cloak>
+            <div class="front" style="padding: 0px;">                
+                <no-data></no-data>
+            </div>
+            
+        </div>
+    </div>
+</div>
