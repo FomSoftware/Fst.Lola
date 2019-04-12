@@ -26,6 +26,10 @@ namespace FomMonitoringCore.Service
                     Machine machine = ent.Machine.FirstOrDefault(m => m.Serial == machineSerial);
                     userIds = ent.Machine.Where(m => m.Serial == machineSerial).SelectMany(n => n.UserMachineMapping).Select(um => um.UserId).ToList();
 
+                    if(machine.Plant != null)
+                    {
+                        return machine.Plant.Id;
+                    }
 
                     //devo isolare questo contesto per non abilitare il sqlServer alla transazioni distribuite essendo su un db diverso - mbelletti
                     using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.RequiresNew))
