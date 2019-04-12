@@ -27,6 +27,9 @@
                         <i class="fa fa-history"></i>
                         <span>@Resource.Historical</span>
                     </div>
+                    <div class="dd-item js-flip slide-summary" data-group="alarms">
+                        <span>Summary</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -39,44 +42,35 @@
                         <table class="table table-alerts">
                             <thead>
                                 <tr>
-                                    <th class="th-title">
+                                    <th class="th-title">                                       
+                                    </th>                                   
+                                    <th >
+                                       
+                                        <span class="value-title">
+                                            @Resource.Description
+                                        </span>
                                     </th>
-                                    <th class="th-duration sorting" v-bind:class="sorting.duration" v-on:click="sortDuration()">
+                                    <th class="th-duration sorting" v-bind:class="sortingDet.timestamp" v-on:click="sortTimestamp()">
                                         <i class="fa fa-clock-o color-aaa"></i>
                                         <span class="value-title">
                                             @Resource.Timestamp
                                         </span>
                                     </th>
-                                    <th class="th-number sorting" v-bind:class="sorting.quantity" v-on:click="sortQuantity()">
-                                        <i class="fa fa-exclamation-triangle color-aaa"></i>
-                                        <span class="value-title">qty</span>
-                                    </th>
                                 </tr>
                             </thead>
-                            <tbody v-for="alarm in alarms">
-                                <tr class="clickable" v-on:click="showDescription(alarm, $event)">
-                                    <td v-bind:class="{'without-icon': !isThereDesc(alarm) }">
-                                        <a href="javascript:void(0)" class="click-more" v-if="isThereDesc(alarm)">
-                                            <i class="icon-plus"></i>
-                                        </a>
+                            <tbody v-for="alarm in details">
+                                <tr>
+                                    <td>
                                         <div class="item-icon fa fa-2x" v-bind:class="iconClass(alarm.type)"></div>
-                                        <div class="item-alert">
+                                        <div class="item-alert">      
                                             <div class="code-alert">{{ alarm.code }}</div>
                                             <div class="subtitle-alert" v-bind:class="colorClass(alarm.type)">{{ alarm.type }}</div>
-                                        </div>
+                                        </div>                                        
                                     </td>
-                                    <td>
-                                        <span class="label label-default">
-                                            <time-span v-bind:duration="alarm.time"></time-span>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="label label-default">{{ alarm.quantity }}</span>
-                                    </td>
-                                </tr>
-                                <tr class="tr-more display-none">
-                                    <td colspan="3">{{ alarm.description }}</td>
-                                </tr>
+                                    
+                                    <td>{{ alarm.description }}</td>
+                                    <td>{{ alarm.formatted_timestamp }}</td>
+                                </tr>                               
                             </tbody>
                         </table>
                     </div>
@@ -84,13 +78,68 @@
                 <no-data v-else></no-data>
             </div>
             <div class="back">
-                <div id="alm_historical_chart"></div>
-                <no-data v-if="!show.historical"></no-data>
-            </div>
+                <div class="swiper-container alarms">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div id="alm_historical_chart"></div>
+                            <no-data v-if="!show.historical"></no-data>
+                        </div>
+                        <div class="swiper-slide">
+                            <div id="alm_summary" v-if="alarms != null">
+                                <div class="slimscroll">
+                                    <table class="table table-alerts">
+                                        <thead>
+                                            <tr>
+                                                <th class="th-title">
+                                                </th>
+                                                <th class="th-duration sorting" v-bind:class="sorting.duration" v-on:click="sortDuration()">
+                                                    <i class="fa fa-clock-o color-aaa"></i>
+                                                    <span class="value-title">
+                                                        @Resource.Time
+                                                    </span>
+                                                </th>
+                                                <th class="th-number sorting" v-bind:class="sorting.quantity" v-on:click="sortQuantity()">
+                                                    <i class="fa fa-exclamation-triangle color-aaa"></i>
+                                                    <span class="value-title">qty</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody v-for="alarm in alarms">
+                                            <tr class="clickable" v-on:click="showDescription(alarm, $event)">
+                                                <td v-bind:class="{'without-icon': !isThereDesc(alarm) }">
+                                                    <a href="javascript:void(0)" class="click-more" v-if="isThereDesc(alarm)">
+                                                        <i class="icon-plus"></i>
+                                                    </a>
+                                                    <div class="item-icon fa fa-2x" v-bind:class="iconClass(alarm.type)"></div>
+                                                    <div class="item-alert">
+                                                        <div class="code-alert">{{ alarm.code }}</div>
+                                                        <div class="subtitle-alert" v-bind:class="colorClass(alarm.type)">{{ alarm.type }}</div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="label label-default">
+                                                        <time-span v-bind:duration="alarm.time"></time-span>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="label label-default">{{ alarm.quantity }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="tr-more display-none">
+                                                <td colspan="3">{{ alarm.description }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <no-data v-else></no-data>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 </div>
-
+</div>
 <script type="text/javascript">
 
     $(document).ready(function ()

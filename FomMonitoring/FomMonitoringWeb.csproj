@@ -425,10 +425,6 @@
     <Content Include="GlobApp\scripts\user-manager.js" />
     <Content Include="GlobApp\scripts\vue-manager.js" />
     <Content Include="GlobApp\scripts\waitme-manager.js" />
-    <Content Include="GlobApp\styles\login.css" />
-    <Content Include="GlobApp\styles\mes.css" />
-    <Content Include="GlobApp\styles\toolbar.css" />
-    <Content Include="GlobApp\styles\user-manager.css" />
     <Content Include="Images\flags\de.png" />
     <Content Include="Images\flags\en.png" />
     <Content Include="Images\flags\es.png" />
@@ -783,14 +779,7 @@
     <Content Include="GlobApp\plugins\bootstrap-select\css\bootstrap-select.min.css" />
     <Content Include="GlobApp\plugins\bootstrap-select\js\bootstrap-select.js" />
     <Content Include="GlobApp\plugins\bootstrap-select\js\bootstrap-select.min.js" />
-    <Content Include="GlobApp\plugins\collap-table\jquery.aCollapTable.js" />
-    <Content Include="GlobApp\plugins\collap-table\jquery.aCollapTable.min.js" />
-    <Content Include="GlobApp\plugins\progress-bar\progressbar.js" />
-    <Content Include="GlobApp\plugins\progress-bar\progressbar.min.js" />
     <Content Include="GlobApp\scripts\chart-manager.js" />
-    <Content Include="GlobApp\styles\layout.css" />
-    <Content Include="GlobApp\styles\machine.css" />
-    <Content Include="GlobApp\styles\utilities.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\highcharts\5.0.14\themes\sunset.src.js" />

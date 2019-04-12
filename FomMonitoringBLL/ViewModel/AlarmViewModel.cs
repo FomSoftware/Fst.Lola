@@ -9,7 +9,9 @@ namespace FomMonitoringBLL.ViewModel
     {
         public AlarmVueModel vm_alarms { get; set; }
 
-        public ChartViewModel opt_historical { get; set; }
+        public AlarmDetailsVueModel vm_details { get; set; }
+
+    public ChartViewModel opt_historical { get; set; }
     }
 
     public class AlarmVueModel
@@ -27,6 +29,13 @@ namespace FomMonitoringBLL.ViewModel
         public string description { get; set; }
 
         public string day { get; set; }
+    }
+
+    public class AlarmDetailsVueModel
+    {
+        public List<AlarmDetailViewModel> alarms { get; set; }
+        public SortingViewModel sorting { get; set; }
+
     }
 
 }

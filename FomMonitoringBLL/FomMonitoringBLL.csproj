@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AlarmViewModel.cs" />
+    <Compile Include="ViewModel\AlarmDetailViewModel.cs" />
     <Compile Include="ViewModel\CommonViewModel.cs" />
     <Compile Include="ViewModel\EfficiencyViewModel.cs" />
     <Compile Include="ViewModel\FilterViewModel.cs" />

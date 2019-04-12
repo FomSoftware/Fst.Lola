@@ -63,9 +63,7 @@ namespace FomMonitoring.App_Start
 
 
             bundles.Add(new ScriptBundle("~/GlobApp/scripts/FomMonitoringScriptsAPP").Include(
-                        "~/GlobApp/plugins/bootstrap-select/js/bootstrap-select.min.js",
-                        "~/GlobApp/plugins/progress-bar/progressbar.min.js",
-                        "~/GlobApp/plugins/collap-table/jquery.aCollapTable.min.js",
+                        "~/GlobApp/plugins/bootstrap-select/js/bootstrap-select.min.js",                        
                         "~/GlobApp/plugins/jquery-flip/jquery.flip.min.js",
                         "~/GlobApp/plugins/jquery-slimscroll/jquery.slimscroll.min.js",
                         "~/GlobApp/plugins/bootstrap-select.js",
