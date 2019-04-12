@@ -6,8 +6,6 @@ using FomMonitoringResources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FomMonitoringBLL.ViewServices
 {
@@ -16,11 +14,18 @@ namespace FomMonitoringBLL.ViewServices
         public static EfficiencyViewModel GetEfficiency(ContextModel context)
         {
             EfficiencyViewModel result = new EfficiencyViewModel();
-
+            result.vm_machine_info = new MachineInfoViewModel
+            {
+                model = context.ActualMachine.Model.Name,
+                mtype = context.ActualMachine.Type.Name,
+                id_mtype = context.ActualMachine.Type.Id
+            };
             result.vm_efficiency = GetVueModel(context.ActualMachine, context.ActualPeriod);
             result.opt_historical = GetHistoricalOptions(context.ActualMachine, context.ActualPeriod);
+            result.opt_kpis = GetKpisOptions(context.ActualMachine, context.ActualPeriod);
             result.opt_operators = GetOperatorsOptions(context.ActualMachine, context.ActualPeriod);
             result.opt_shifts = GetShiftsOptions(context.ActualMachine, context.ActualPeriod);
+            result.opt_states = GetStatesOptions(context.ActualMachine, context.ActualPeriod);
 
             return result;
         }
@@ -188,6 +193,30 @@ namespace FomMonitoringBLL.ViewServices
             return options;
         }
 
+        private static ChartViewModel GetKpisOptions(MachineInfoModel machine, PeriodModel period)
+        {
+            ChartViewModel options = new ChartViewModel();
+            List<HistoryStateModel> data = StateService.GetAggregationStates(machine, period, enDataType.Dashboard);
+
+
+            HistoryStateModel stateProd = data.Where(w => w.enState == enState.Production).FirstOrDefault();
+
+            long? totalProd = stateProd.ElapsedTime;
+            long? totalOn = data.Where(w => w.enState != enState.Off).Select(s => s.ElapsedTime).Sum();
+            long? totalOff = data.Where(w => w.enState == enState.Off).Select(s => s.ElapsedTime).Sum();
+
+            decimal? percProd = Common.GetPercentage(totalProd, totalOn);
+            decimal? overfeed = stateProd.OverfeedAvg;
+
+            options.series = new List<SerieViewModel>(){
+                new SerieViewModel {
+                    stateProductivityGreenThreshold = machine.StateProductivityGreenThreshold ?? 0,
+                    stateProductivityYellowThreshold = machine.StateProductivityYellowThreshold ?? 0,
+                    y = CommonViewService.getKpiViewModel(percProd, machine.StateProductivityGreenThreshold, machine.StateProductivityYellowThreshold).value ?? (decimal)0
+                }
+            };
+            return options;
+        }
 
         private static ChartViewModel GetShiftsOptions(MachineInfoModel machine, PeriodModel period)
         {
@@ -206,6 +235,71 @@ namespace FomMonitoringBLL.ViewServices
             return options;
         }
 
+        private static ChartViewModel GetStatesOptions(MachineInfoModel machine, PeriodModel period)
+        {
+            ChartViewModel options = new ChartViewModel();
+            options.series = new List<SerieViewModel>();
+
+
+            List<HistoryStateModel> data = StateService.GetAggregationStates(machine, period, enDataType.Dashboard);
+
+            if (!data.Any())
+                return options;
+
+            HistoryStateModel stateProd = data.FirstOrDefault(w => w.enState == enState.Production);
+            HistoryStateModel statePause = data.FirstOrDefault(w => w.enState == enState.Pause);
+
+            HistoryStateModel stateError = data.FirstOrDefault(w => w.enState == enState.Error);
+            HistoryStateModel stateManual = data.FirstOrDefault(w => w.enState == enState.Manual);
+
+            long? totalProd = stateProd?.ElapsedTime ?? 0;
+            long? totalPause = statePause?.ElapsedTime ?? 0;
+            long? totalError = stateError?.ElapsedTime ?? 0;
+            long? totalManual = stateManual?.ElapsedTime ?? 0;
+
+            long? totalOn = data.Where(w => w.enState != enState.Off).Select(s => s.ElapsedTime).Sum();
+            long? totalOff = data.Where(w => w.enState == enState.Off).Select(s => s.ElapsedTime).Sum();
+
+            decimal? percProd = Common.GetPercentage(totalProd, totalOn);
+            decimal? percPause = Common.GetPercentage(totalPause, totalOn);
+            decimal? percError = Common.GetPercentage(totalError, totalOn);
+            decimal? percManual = Common.GetPercentage(totalManual, totalOn);
+
+            decimal? overfeed = stateProd.OverfeedAvg;
+
+            List<StateViewModel> states = new List<StateViewModel>();
+
+            // state prod
+            SerieViewModel prod = new SerieViewModel();
+            prod.name = enState.Production.ToLocalizedString();
+            prod.y = percProd ?? 0;
+            prod.color = CommonViewService.GetColorState(enState.Production);
+            options.series.Add(prod);
+            
+            // state pause
+            SerieViewModel pause = new SerieViewModel();
+            pause.name = enState.Pause.ToLocalizedString();
+            pause.y = percPause ?? 0;
+            pause.color = CommonViewService.GetColorState(enState.Pause);
+            options.series.Add(pause);
+
+
+            SerieViewModel manual = new SerieViewModel();
+            manual.name = enState.Manual.ToLocalizedString();
+            manual.y = percManual ?? 0;
+            manual.color = CommonViewService.GetColorState(enState.Manual);
+            options.series.Add(manual);
+
+
+            SerieViewModel error = new SerieViewModel();
+            error.name = enState.Error.ToLocalizedString();
+            error.y = percError ?? 0;
+            error.color = CommonViewService.GetColorState(enState.Error);
+            options.series.Add(error);
+
+            
+            return options;
+        }
 
         private static List<SerieViewModel> GetSeriesStackedBarChart(List<HistoryStateModel> data, List<string> categories, enDataType chart)
         {

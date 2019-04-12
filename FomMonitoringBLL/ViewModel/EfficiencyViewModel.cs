@@ -11,9 +11,15 @@ namespace FomMonitoringBLL.ViewModel
 
         public ChartViewModel opt_historical { get; set; }
 
+        public ChartViewModel opt_kpis { get; set; }
+
         public ChartViewModel opt_operators { get; set; }
 
         public ChartViewModel opt_shifts { get; set; }
+
+        public ChartViewModel opt_states { get; set; }
+
+        public MachineInfoViewModel vm_machine_info { get; set; }
     }
 
     public class EfficiencyVueModel

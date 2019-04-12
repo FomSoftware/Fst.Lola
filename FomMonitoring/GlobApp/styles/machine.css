@@ -117,7 +117,23 @@
             height: 254px;
         }
 }
+#CardEfficiency.portlet {
+    height: 520px;
+}
 
+    #CardEfficiency.portlet .card-portlet {
+        height: 474px;
+    }
+
+@media(min-width: 768px) {
+    #CardEfficiency.portlet {
+        height: 300px;
+    }
+
+        #CardEfficiency.portlet .card-portlet {
+            height: 254px;
+        }
+}
 /*#endregion */
 
 

@@ -85,22 +85,27 @@
             }
         }*/
         
-        initVueModel(data.vm_efficiency);
+        initVueModel(data);
 
-        if (data.opt_historical != null)
-        {
+        if (data.opt_states != null) {
+            ChartManager.stateMachinePieChart("efc_pie_chart", data.opt_states);
+        }
+
+        if (data.opt_kpis != null) {
+            ChartManager.productivityMachineSolidGaugeChart("efc_kpi_chart", data.opt_kpis);
+        }
+        
+        if (data.opt_historical != null) {
             vmEfficiency.show.historical = true;
             ChartManager.lineChart('efc_historical_chart', data.opt_historical);
         }
 
-        if (data.opt_operators != null)
-        {
+        if (data.opt_operators != null) {
             vmEfficiency.show.operators = true;
             ChartManager.stackedBarChart('efc_operators_chart', data.opt_operators);
         }
 
-        if (data.opt_shifts != null)
-        {
+        if (data.opt_shifts != null) {
             vmEfficiency.show.shifts = true;
             ChartManager.stackedBarChart('efc_shifts_chart', data.opt_shifts);
         }
@@ -112,10 +117,11 @@
         vmEfficiency = new Vue({
             el: '#CardEfficiency',
             data: {
-                kpi: data.kpi,
-                total: data.total,
-                overfeed: data.overfeed,
-                states: data.states,
+                type: data.vm_machine_info.mtype,
+                kpi: data.vm_efficiency.kpi,
+                total: data.vm_efficiency.total,
+                overfeed: data.vm_efficiency.overfeed,
+                states: data.vm_efficiency.states,
                 show: {
                     historical: false,
                     operators: false,
@@ -166,6 +172,12 @@
                         return true;
                     else
                         return false;
+                },
+                getCol: function () {
+                    if (this.type != 'Troncatrice')
+                        return "col-xs-11 col-sm-8 col-md-7 col-lg-6";
+                    else
+                        return "col-xs-12 col-sm-9 col-md-8 col-lg-7";
                 }
             },
             methods: {
@@ -188,10 +200,19 @@
     {
         // update vue model
         var efficiency = data.vm_efficiency;
+        vmEfficiency.type = data.vm_machine_info.mtype;
         vmEfficiency.kpi = efficiency.kpi;
         vmEfficiency.total = efficiency.total;
         vmEfficiency.overfeed = efficiency.overfeed;
         vmEfficiency.states = efficiency.states;
+
+        if (data.opt_states != null) {
+            ChartManager.stateMachinePieChart("efc_pie_chart", data.opt_states);
+        }
+
+        if (data.opt_kpis != null) {
+            ChartManager.productivityMachineSolidGaugeChart("efc_kpi_chart", data.opt_kpis);
+        }
 
         // chart historical
         if (data.opt_historical != null)

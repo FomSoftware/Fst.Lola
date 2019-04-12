@@ -128,12 +128,30 @@
             height: 254px;
         }
 }
+#CardEfficiency.portlet {
+    height: 480px;
+}
 
+    #CardEfficiency.portlet .card-portlet {
+        height: 434px;
+    }
+
+@media(min-width: 768px) {
+    #CardEfficiency.portlet {
+        height: 300px;
+    }
+
+    #CardEfficiency.portlet .card-portlet {
+        height: 254px;
+    }
+}
+
+.graph{
+    padding: 0;
+    margin-top: -5px;
+}
 /*#endregion */
-
-
 /*#region card */
-
 .card {
     cursor: pointer;
     height: 70px;

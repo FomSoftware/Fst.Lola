@@ -42,7 +42,17 @@
         <div class="card-portlet card-efficiency" v-cloak>
             <div class="front">
                 <div class="row" v-if="states != null">
-                    <div class="col-xs-11">
+                    <div class="col-xs-12 col-sm-3 col-md-4 col-lg-5">
+                            <div class="col-xs-6 col-sm-12 graph">
+                                <div id="efc_kpi_chart" >
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-12 graph">
+                                <div id="efc_pie_chart" >
+                                </div>
+                            </div>
+                    </div>
+                    <div v-bind:class="getCol">
                         <!-- MACHINE STATES -->
                         <div class="use-states">
                             <div class="progress-label clearfix">
@@ -109,7 +119,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-1 no-padding-left text-center">
+                    <div class="col-xs-1 no-padding-left text-center" v-if="type != 'Troncatrice'">
                         <!-- OVERFEED -->
                         <div class="overfeed">
                             <div class="overfeed-progress">

@@ -540,6 +540,138 @@
             chart.update(config);
     }
 
+    var stateMachinePieChart = function (chartID, options) {
+        var config = {
+
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                height: 170,
+                spacingBottom: 0,
+                spacingTop: 0,
+                spacingLeft: 0,
+                spacingRight: 0,
+                marginBottom: 0,
+                marginTop: 0,
+                marginLeft: 0,
+                marginRight: 0
+
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'States',
+                colorByPoint: true,
+                data: options.series
+            }],
+
+            
+        }
+
+        var chart = $('#' + chartID).highcharts();
+
+        if (chart == null)
+            Highcharts.chart(chartID, config);
+        else
+            chart.update(config);
+
+    }
+
+    var productivityMachineSolidGaugeChart = function (chartID, options) {
+        var config = {
+            yAxis: {
+                min: 0,
+                max: 100,
+                stops: [
+                    [options.series[0].stateProductivityYellowThreshold / 100 / 2, '#cc3333'], // red
+                    [options.series[0].stateProductivityYellowThreshold / 100, '#fbe45a'], // yellow
+                    [options.series[0].stateProductivityGreenThreshold / 100, '#8bb13f'] // green
+                ],
+                lineWidth: 0,
+                labels: {
+                    y: 16
+                },
+                lineWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    style: {
+                        fontSize: '1px',
+                        fontWeight: '400'
+                    }
+                },
+                labels: {
+                    style: {
+                        fontSize: '1px'
+                    }
+                }
+            },
+
+            chart: {
+                height: 90,
+                type: 'solidgauge'
+            },
+            series: [{
+                name: 'Productivity',
+                data: _.map(options.series, function (opt) { return Math.round(opt.y); }),
+
+                dataLabels: {
+                    format: '<div style="text-align:center"><span style="font-size:20px;color:' +
+                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span>' +
+                        '<span style="font-size:14px;"> %</span></div>'
+                },
+                tooltip: {
+                    valueSuffix: ' %'
+                }
+            }],
+            pane: {
+                center: ['50%', '95%'],
+                size: '190%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 6,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+
+        }
+
+        var chart = $('#' + chartID).highcharts();
+
+        if (chart == null)
+            Highcharts.chart(chartID, config);
+        else
+            chart.update(config);
+    }
+    
     var getProductivitySeries = function (series, type)
     {
         var enSerieType = {
@@ -596,7 +728,9 @@
         stackedBarChart: stackedBarChart,
         dualAxesColumnChart: dualAxesColumnChart,
         dualAxesBarChart: dualAxesBarChart,
-        destroyChart: destroyChart
+        destroyChart: destroyChart,
+        stateMachinePieChart: stateMachinePieChart,
+        productivityMachineSolidGaugeChart: productivityMachineSolidGaugeChart
     }
 
 }();
