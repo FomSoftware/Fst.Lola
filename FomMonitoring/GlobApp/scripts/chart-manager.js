@@ -599,9 +599,11 @@
                 min: 0,
                 max: 100,
                 stops: [
-                    [options.series[0].stateProductivityYellowThreshold / 100 / 2, '#cc3333'], // red
-                    [(options.series[0].stateProductivityYellowThreshold + ((options.series[0].stateProductivityGreenThreshold - options.series[0].stateProductivityYellowThreshold) / 2)) / 100, '#fbe45a'], // yellow
-                    [(options.series[0].stateProductivityGreenThreshold + ((100 - options.series[0].stateProductivityGreenThreshold) / 2)) / 100, '#8bb13f'] // green
+                    [0.01, '#cc3333'], // red
+                    [options.series[0].stateProductivityYellowThreshold / 100 - 0.01, '#cc3333'], // red
+                    [options.series[0].stateProductivityYellowThreshold / 100, '#fbe45a'], //yellow
+                    [options.series[0].stateProductivityGreenThreshold / 100 - 0.01, '#fbe45a'], //yellow
+                    [options.series[0].stateProductivityGreenThreshold / 100, '#8bb13f'], //yellow
                 ],
                 lineWidth: 0,
                 labels: {
@@ -641,7 +643,7 @@
             }],
             pane: {
                 center: ['50%', '95%'],
-                size: '130%',
+                size: '180%',
                 startAngle: -90,
                 endAngle: 90,
                 background: {
