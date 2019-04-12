@@ -50,7 +50,7 @@
         //    }
         //}
 
-        initVueModel(data.vm_alarms);
+        initVueModel(data);
 
         if (data.opt_historical != null)
         {
@@ -65,8 +65,10 @@
         vmAlarms = new Vue({
             el: '#CardAlarms',
             data: {
-                alarms: data.alarms,
-                sorting: data.sorting,
+                alarms: data.vm_alarms.alarms,
+                details: data.vm_details.alarms,
+                sortingDet: data.vm_details.sorting,
+                sorting: data.vm_alarms.sorting,
                 show: {
                     historical: false
                 }
@@ -148,6 +150,20 @@
                         return;
                     }
                 },
+                sortTimestamp: function () {
+                    
+                    if (this.sortingDet.timestamp == 'desc') {
+                        this.$data.details = _.sortBy(this.$data.details, function (alarm) { return alarm.timestamp; });
+                        this.sortingDet.timestamp = 'asc';
+                        return;
+                    }
+
+                    if (this.sortingDet.timestamp == 'asc' || this.sortingDet.timestamp == null) {
+                        this.$data.details = _.sortBy(this.$data.details, function (alarm) { return alarm.timestamp; }).reverse();
+                        this.sortingDet.timestamp = 'desc';
+                        return;
+                    }
+                },
                 showDescription: function (alarm, event)
                 {
                     if (alarm.description != null && alarm.description != "")
@@ -174,8 +190,12 @@
     {
         // update vue model
         var vm_alarms = data.vm_alarms;
-        vmAlarms.alarms = vm_alarms.alarms;
-        vmAlarms.sorting = vm_alarms.sorting;
+        if (vm_alarms) {
+            vmAlarms.alarms = vm_alarms.alarms;
+            vmAlarms.sorting = vm_alarms.sorting;
+        }
+        vmAlarms.details = data.vm_details.alarms;
+        vmAlarms.sortingDet = data.vm_details.sorting;
 
         // update historical chart
         if (data.opt_historical != null)

@@ -47,7 +47,8 @@ namespace FomMonitoringCore.Framework.Common
         Dashboard = 0,
         Historical = 1,
         Operators = 2,
-        Shifts = 3
+        Shifts = 3,
+        Summary = 4
     }
 
     public enum enAggregation
