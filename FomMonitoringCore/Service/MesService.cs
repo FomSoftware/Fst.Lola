@@ -13,31 +13,59 @@ namespace FomMonitoringCore.Service
     {
         #region API
 
-        public static int? GetPlantIdByPlantName(string plantName, string plantAddress)
+        public static int? GetOrSetPlantIdByPlantName(string plantName, string plantAddress, string machineSerial)
         {
             int? result = null;
             try
             {
-                using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
-                    using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                    Guid? userId;
+                    Plant plant = null;
+                    IEnumerable<Guid> userIds;
+                    Machine machine = ent.Machine.FirstOrDefault(m => m.Serial == machineSerial);
+                    userIds = ent.Machine.Where(m => m.Serial == machineSerial).SelectMany(n => n.UserMachineMapping).Select(um => um.UserId).ToList();
+
+                    if(machine.Plant != null)
                     {
-                        if (!string.IsNullOrEmpty(plantName))
-                        {
-                            Plant plant = ent.Plant.FirstOrDefault(f => f.Name == plantName && f.Address == plantAddress);
-                            if (plant == null && AddPlant(plantName, plantAddress))
-                            {
-                                plant = ent.Plant.FirstOrDefault(f => f.Name == plantName && f.Address == plantAddress);
-                            }
-                            result = plant != null ? plant.Id : (int?)null;
-                        }
-                        else
-                        {
-                            result = int.Parse(ApplicationSettingService.GetWebConfigKey("DefaultPlantID"));
-                        }
-                        transaction.Complete();
+                        return machine.Plant.Id;
                     }
+
+                    //devo isolare questo contesto per non abilitare il sqlServer alla transazioni distribuite essendo su un db diverso - mbelletti
+                    using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.RequiresNew))
+                    {
+                        using (UserManager.DAL.UserManagerEntities uent = new UserManager.DAL.UserManagerEntities())
+                        {
+                            //l'utente a cui appartiene il plant tra tutti quelli 
+                            //a cui la macchina è associata sarà sempre il customer
+                            //e ve ne sarà sempre e solo uno
+                            userId = uent.Users.FirstOrDefault(user => userIds.Any(us => us == user.ID) && user.Roles_Users.Any(ur => ur.Roles.IdRole == (int)UserManager.Framework.Common.Enumerators.UserRole.Customer))?.ID;
+                        }
+                    }
+
+
+                    //se c'è il pant con il nome inviato dalla macchina lo associo
+                    if (!string.IsNullOrEmpty(plantName))
+                    {
+                        plant = ent.Plant.FirstOrDefault(f => f.Name == plantName && f.Address == plantAddress);
+                    }
+
+                    //se non c'è cerco il primo plant associato all'utente della macchina,
+                    //N.B. quando non ci sarà più solo il plant di default modificare
+                    if (plant == null)
+                    {
+                        plant = ent.Plant.FirstOrDefault(f => f.UserId == userId);
+                    }
+
+                    //se non c'è creo il plant di default per l'utente
+                    if (plant == null)
+                    {
+                        plant = AddPlant(plantName, plantAddress, userId);
+                    }
+
+                    result = plant.Id;
                 }
+
             }
             catch (Exception ex)
             {
@@ -47,9 +75,15 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        public static bool AddPlant(string plantName, string plantAddress)
+        public static Plant AddPlant(string plantName, string plantAddress, Guid? userId)
         {
-            bool result = false;
+            Plant result = null;
+
+            if (string.IsNullOrWhiteSpace(plantName))
+            {
+                plantName = "DEFAULT";
+            }
+
             try
             {
                 using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
@@ -59,10 +93,12 @@ namespace FomMonitoringCore.Service
                         Plant plant = new Plant();
                         plant.Name = plantName;
                         plant.Address = plantAddress;
+                        plant.UserId = userId;
                         ent.Plant.Add(plant);
                         ent.SaveChanges();
                         transaction.Complete();
-                        result = true;
+
+                        result = plant;
                     }
                 }
             }

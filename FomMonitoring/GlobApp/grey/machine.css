@@ -1019,3 +1019,8 @@ a.click-more {
 
 /*#endregion */
 
+@media (min-width:1200px) and (max-width: 1480px) {
+    .card-wrap-2{
+        width: 50%;
+    }
+}

@@ -14,7 +14,10 @@ namespace UserManager.Framework.Common
             NA = -1,
             Admin = 0,
             User = 1,
-            Guest = 2
+            Guest = 2,
+            Assistance = 3,
+            Customer = 4,
+            UserApi = 5
         }
 
         public enum UserGroup

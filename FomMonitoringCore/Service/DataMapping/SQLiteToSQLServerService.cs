@@ -37,7 +37,7 @@ namespace FomMonitoringCore.Service.DataMapping
                     toolSQLite = ent.tool.ToList();
                 }
                 string matricola = infoSQLite.OrderByDescending(o => o.Id).FirstOrDefault().MachineSerial;
-                using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required, new TimeSpan(1, 0, 0)))
+                using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
                 {
                     List<Machine> machine = infoSQLite.Adapt<List<Machine>>();
                     using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
