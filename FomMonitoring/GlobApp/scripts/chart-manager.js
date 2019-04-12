@@ -548,7 +548,7 @@
                 plotBorderWidth: null,
                 plotShadow: false,
                 type: 'pie',
-                height: 170,
+                height: 160,
                 spacingBottom: 0,
                 spacingTop: 0,
                 spacingLeft: 0,
