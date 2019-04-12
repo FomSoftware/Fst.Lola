@@ -42,7 +42,7 @@
         <div class="card-portlet card-efficiency" v-cloak>
             <div class="front">
                 <div class="row" v-if="states != null">
-                    <div class="col-xs-12 col-sm-3 col-md-4 col-lg-5">
+                    <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
                             <div class="col-xs-6 col-sm-12 graph">
                                 <div id="efc_kpi_chart" >
                                 </div>
@@ -82,7 +82,7 @@
                                                 <i class="fa fa-square fa-stack-2x" v-bind:class="'cr-' + state.code"></i>
                                                 <i class="fa fa-stack-1x fa-inverse" v-bind:class="icon(state)"></i>
                                             </span>
-                                            <span class="icon-label font-medium">
+                                            <span class="icon-label font-small">
                                                 {{ state.text }}
                                                 <i v-if="state.active" class="fa fa-check-circle"></i>
                                             </span>

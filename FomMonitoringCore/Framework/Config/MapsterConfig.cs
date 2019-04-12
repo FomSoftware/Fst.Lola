@@ -135,7 +135,7 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.Shift3, src => src.Shift3StartHour.HasValue && src.Shift3StartMinute.HasValue ? new TimeSpan(src.Shift3StartHour.Value, src.Shift3StartMinute.Value, 0) : (TimeSpan?)null)
                 .Map(dest => dest.MachineModelId, src => MachineService.GetMachineModelIdByModelName(src.MachineModel))
                 .Map(dest => dest.MachineTypeId, src => MachineService.GetMachineTypeIdByTypeName(src.MachineType))
-                .Map(dest => dest.PlantId, src => MesService.GetPlantIdByPlantName(src.PlantName, src.PlantAddress));
+                .Map(dest => dest.PlantId, src => MesService.GetOrSetPlantIdByPlantName(src.PlantName, src.PlantAddress, src.MachineSerial));
             config.NewConfig<DAL_SQLite.piece, Piece>()
                 .Ignore(dest => dest.Id)
                 .IgnoreAllVirtual()

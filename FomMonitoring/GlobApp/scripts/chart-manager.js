@@ -600,8 +600,8 @@
                 max: 100,
                 stops: [
                     [options.series[0].stateProductivityYellowThreshold / 100 / 2, '#cc3333'], // red
-                    [options.series[0].stateProductivityYellowThreshold / 100, '#fbe45a'], // yellow
-                    [options.series[0].stateProductivityGreenThreshold / 100, '#8bb13f'] // green
+                    [(options.series[0].stateProductivityYellowThreshold + ((options.series[0].stateProductivityGreenThreshold - options.series[0].stateProductivityYellowThreshold) / 2)) / 100, '#fbe45a'], // yellow
+                    [(options.series[0].stateProductivityGreenThreshold + ((100 - options.series[0].stateProductivityGreenThreshold) / 2)) / 100, '#8bb13f'] // green
                 ],
                 lineWidth: 0,
                 labels: {
@@ -622,7 +622,6 @@
                     }
                 }
             },
-
             chart: {
                 height: 90,
                 type: 'solidgauge'
@@ -632,9 +631,9 @@
                 data: _.map(options.series, function (opt) { return Math.round(opt.y); }),
 
                 dataLabels: {
-                    format: '<div style="text-align:center"><span style="font-size:20px;color:' +
+                    format: '<div style="text-align:center"><span style="font-size:14px;color:' +
                         ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span>' +
-                        '<span style="font-size:14px;"> %</span></div>'
+                        '<span style="font-size:12px;">%</span></div>'
                 },
                 tooltip: {
                     valueSuffix: ' %'
@@ -642,7 +641,7 @@
             }],
             pane: {
                 center: ['50%', '95%'],
-                size: '190%',
+                size: '130%',
                 startAngle: -90,
                 endAngle: 90,
                 background: {
@@ -661,7 +660,6 @@
                     }
                 }
             }
-
         }
 
         var chart = $('#' + chartID).highcharts();

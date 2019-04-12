@@ -158,7 +158,7 @@
           <Property Name="MachineModelId" Type="int" />
           <Property Name="MachineTypeId" Type="int" />
           <Property Name="NextMaintenanceService" Type="datetime" />
-          <Property Name="PlantId" Type="int" />
+          <Property Name="PlantId" Type="int" Nullable="false" />
           <Property Name="PlcVersion" Type="varchar" MaxLength="100" />
           <Property Name="Product" Type="varchar" MaxLength="100" />
           <Property Name="ProductVersion" Type="varchar" MaxLength="100" />
@@ -234,6 +234,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" />
           <Property Name="Address" Type="varchar(max)" />
+          <Property Name="UserId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="Spindle">
           <Key>
@@ -487,7 +488,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Machine_Plant">
-          <End Role="Plant" Type="Self.Plant" Multiplicity="0..1" />
+          <End Role="Plant" Type="Self.Plant" Multiplicity="1" />
           <End Role="Machine" Type="Self.Machine" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Plant">
@@ -620,10 +621,6 @@
         </Function>
         <Function Name="usp_CleanMachineData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="machineId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="usp_GetCustomerNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="usp_GetCustomerUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="CustomerName" Type="varchar" Mode="In" />
         </Function>
         <Function Name="usp_MesUserMachines" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="plantId" Type="int" Mode="In" />
@@ -1267,7 +1264,7 @@
           <Property Name="MachineModelId" Type="Int32" />
           <Property Name="MachineTypeId" Type="Int32" />
           <Property Name="NextMaintenanceService" Type="DateTime" Precision="3" />
-          <Property Name="PlantId" Type="Int32" />
+          <Property Name="PlantId" Type="Int32" Nullable="false" />
           <Property Name="PlcVersion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Product" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ProductVersion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -1310,6 +1307,7 @@
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_Machine_Plant" FromRole="Plant" ToRole="Machine" />
+          <Property Name="UserId" Type="Guid" />
         </EntityType>
         <Association Name="FK_AlarmMachine_Machine">
           <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
@@ -1408,7 +1406,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Machine_Plant">
-          <End Type="FST_FomMonitoringModel.Plant" Role="Plant" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.Plant" Role="Plant" Multiplicity="1" />
           <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Plant">
@@ -1934,6 +1932,7 @@
           <EntitySetMapping Name="Plant">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.Plant">
               <MappingFragment StoreEntitySet="Plant">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
