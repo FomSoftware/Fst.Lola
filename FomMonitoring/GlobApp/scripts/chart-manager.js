@@ -514,22 +514,6 @@
                 }
             },
             series: getProductivitySeries(options.series, 'bar')
-            //series: [{
-            //    type: 'line',
-            //    name: 'Efficienza',
-            //    color: '#A5CC48',
-            //    data: [70, 70, 70, 70],
-            //    zIndex: 3
-            //}, {
-            //    name: 'Tempo Lordo',
-            //    color: '#588FA4',
-            //    yAxis: 1,
-            //    data: [49.9, 71.5, 96.4, 91.2]
-            //}, {
-            //    name: 'Tempo Netto',
-            //    color: '#AEDFDE',
-            //    data: [7.0, 6.9, 9.5, 14.5]
-            //}]
         }
 
         var chart = $('#' + chartID).highcharts();

@@ -565,6 +565,9 @@
             case 'French':
                 result = '/Images/flags/fr.png';
                 break;
+            case 'German':
+                result = '/Images/flags/de.png';
+                break;
         }
         return result;
     }

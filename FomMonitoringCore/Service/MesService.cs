@@ -20,16 +20,11 @@ namespace FomMonitoringCore.Service
             {
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
+                    Machine machine = ent.Machine.FirstOrDefault(m => m.Serial == machineSerial);
                     Guid? userId;
                     Plant plant = null;
                     IEnumerable<Guid> userIds;
-                    Machine machine = ent.Machine.FirstOrDefault(m => m.Serial == machineSerial);
                     userIds = ent.Machine.Where(m => m.Serial == machineSerial).SelectMany(n => n.UserMachineMapping).Select(um => um.UserId).ToList();
-
-                    if(machine.Plant != null)
-                    {
-                        return machine.Plant.Id;
-                    }
 
                     //devo isolare questo contesto per non abilitare il sqlServer alla transazioni distribuite essendo su un db diverso - mbelletti
                     using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.RequiresNew))
@@ -42,6 +37,13 @@ namespace FomMonitoringCore.Service
                             userId = uent.Users.FirstOrDefault(user => userIds.Any(us => us == user.ID) && user.Roles_Users.Any(ur => ur.Roles.IdRole == (int)UserManager.Framework.Common.Enumerators.UserRole.Customer))?.ID;
                         }
                     }
+
+                    if (machine.Plant != null && machine.Plant.UserId == userId)
+                    {
+                        return machine.Plant.Id;
+                    }
+
+
 
 
                     //se c'è il pant con il nome inviato dalla macchina lo associo
