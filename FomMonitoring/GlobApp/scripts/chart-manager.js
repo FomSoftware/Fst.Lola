@@ -587,7 +587,7 @@
                     [options.series[0].stateProductivityYellowThreshold / 100 - 0.01, '#cc3333'], // red
                     [options.series[0].stateProductivityYellowThreshold / 100, '#fbe45a'], //yellow
                     [options.series[0].stateProductivityGreenThreshold / 100 - 0.01, '#fbe45a'], //yellow
-                    [options.series[0].stateProductivityGreenThreshold / 100, '#8bb13f'], //yellow
+                    [options.series[0].stateProductivityGreenThreshold / 100, '#8bb13f'], //green
                 ],
                 lineWidth: 0,
                 labels: {
