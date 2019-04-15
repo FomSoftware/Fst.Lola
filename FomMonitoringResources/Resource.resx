@@ -537,4 +537,7 @@
   <data name="Timestamp" xml:space="preserve">
     <value>Timestamp</value>
   </data>
+  <data name="PeriodicMaintenance" xml:space="preserve">
+    <value>Periodic Ordinary Maintenance</value>
+  </data>
 </root>

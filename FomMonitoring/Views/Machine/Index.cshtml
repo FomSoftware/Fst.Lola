@@ -10,23 +10,45 @@
     <div class="col-lg-4 col-md-6 col-sm-12 card-wrap-2">
         @Html.Partial("_Efficiency", Model.Efficiency)
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 card-wrap-2">
-        @Html.Partial("_Productivity", Model.Productivity)
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 card-wrap-2">
+    <div class="col-lg-8 col-md-6 col-sm-12 card-wrap-2">
         @Html.Partial("_Alarms", Model.Alarms)
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12 card-wrap-2">
-        @Html.Partial("_Spindles", Model.Spindles)
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.Partial("_Productivity", Model.Productivity)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.Partial("_Spindles", Model.Spindles)
+            </div>
+        </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 card-wrap-2">
-        @Html.Partial("_Tools", Model.Tools)
+    <div class="col-lg-4 col-md-6 col-sm-12  card-wrap-2">
+        <div class="row">
+            <div class="col-sm-12">
+
+                @Html.Partial("_Jobs", Model.Jobs)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.Partial("_Tools", Model.Tools)
+            </div>
+        </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 card-wrap-2">
-        @Html.Partial("_Jobs", Model.Jobs)
+    <div class="col-lg-4 col-md-12 col-sm-12 card-wrap-2">
+        @Html.Partial("_Maintenance", Model.Tools)
     </div>
 </div>
 
+<script type="text/x-template" id="no-data">
+    <div class="no-data">
+        <i class="fa fa-meh-o fa-3x"></i>
+        <div>@Resource.NoData</div>
+    </div>
+</script>
 
 <script type="text/x-template" id="modal-spindle">
     <div v-bind:id="'modal-' + spindle.code" class="modal modal-tools fade" tabindex="-1" role="dialog">

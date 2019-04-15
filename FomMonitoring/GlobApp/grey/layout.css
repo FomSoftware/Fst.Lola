@@ -15,11 +15,11 @@ header {
 }
 
     header .header {
-        height: 50px;
+        height: 45px;
         position: relative;
         border-top: solid 2px #B33157;
         background-color: #CBCACA;
-		margin-top: 5px;
+		/*margin-top: 5px;*/
 		
     }
 
@@ -128,7 +128,7 @@ header {
 
 
 section.container-fluid {
-    margin-top: 75px;
+    margin-top: 68px;
     height: calc(100vh - 75px);
     padding: 15px 15px 0 15px;
 }

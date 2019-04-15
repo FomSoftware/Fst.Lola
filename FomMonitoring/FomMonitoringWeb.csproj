@@ -836,6 +836,7 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Mes\Mes.cshtml" />
     <Content Include="Views\Shared\_Toolbar.cshtml" />
+    <Content Include="Views\Machine\_Maintenance.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
