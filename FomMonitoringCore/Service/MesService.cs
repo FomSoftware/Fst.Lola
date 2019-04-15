@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
+using UserManager.DAL;
 
 namespace FomMonitoringCore.Service
 {
@@ -21,7 +22,7 @@ namespace FomMonitoringCore.Service
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
                     Machine machine = ent.Machine.FirstOrDefault(m => m.Serial == machineSerial);
-                    Guid? userId;
+                    UserManager.DAL.Users user;
                     Plant plant = null;
                     IEnumerable<Guid> userIds;
                     userIds = ent.Machine.Where(m => m.Serial == machineSerial).SelectMany(n => n.UserMachineMapping).Select(um => um.UserId).ToList();
@@ -34,11 +35,11 @@ namespace FomMonitoringCore.Service
                             //l'utente a cui appartiene il plant tra tutti quelli 
                             //a cui la macchina è associata sarà sempre il customer
                             //e ve ne sarà sempre e solo uno
-                            userId = uent.Users.FirstOrDefault(user => userIds.Any(us => us == user.ID) && user.Roles_Users.Any(ur => ur.Roles.IdRole == (int)UserManager.Framework.Common.Enumerators.UserRole.Customer))?.ID;
+                            user = uent.Users.FirstOrDefault(u => userIds.Any(us => us == u.ID) && u.Roles_Users.Any(ur => ur.Roles.IdRole == (int)UserManager.Framework.Common.Enumerators.UserRole.Customer));
                         }
                     }
 
-                    if (machine.Plant != null && machine.Plant.UserId == userId)
+                    if (machine.Plant != null && machine.Plant.UserId == user?.ID)
                     {
                         return machine.Plant.Id;
                     }
@@ -54,15 +55,15 @@ namespace FomMonitoringCore.Service
 
                     //se non c'è cerco il primo plant associato all'utente della macchina,
                     //N.B. quando non ci sarà più solo il plant di default modificare
-                    if (plant == null)
+                    if (plant == null && user != null)
                     {
-                        plant = ent.Plant.FirstOrDefault(f => f.UserId == userId);
+                        plant = ent.Plant.FirstOrDefault(f => f.UserId == user.ID);
                     }
 
                     //se non c'è creo il plant di default per l'utente
                     if (plant == null)
                     {
-                        plant = AddPlant(plantName, plantAddress, userId);
+                        plant = AddPlant(plantName, plantAddress, user);
                     }
 
                     result = plant.Id;
@@ -77,13 +78,13 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        public static Plant AddPlant(string plantName, string plantAddress, Guid? userId)
+        public static Plant AddPlant(string plantName, string plantAddress, Users user)
         {
             Plant result = null;
 
             if (string.IsNullOrWhiteSpace(plantName))
             {
-                plantName = "DEFAULT";
+                plantName = "DEFAULT_PLANT_" + user.Username;
             }
 
             try
@@ -95,7 +96,7 @@ namespace FomMonitoringCore.Service
                         Plant plant = new Plant();
                         plant.Name = plantName;
                         plant.Address = plantAddress;
-                        plant.UserId = userId;
+                        plant.UserId = user?.ID;
                         ent.Plant.Add(plant);
                         ent.SaveChanges();
                         transaction.Complete();
