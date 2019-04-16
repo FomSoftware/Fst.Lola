@@ -2,6 +2,7 @@
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -106,7 +107,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                 XmlDocument document = new XmlDocument();
                 document.LoadXml(soapResult);
 
-                JsonCustomersModel customers = JsonConvert.DeserializeObject<JsonCustomersModel>(document.InnerText);
+                JsonCustomersModel customers = JsonConvert.DeserializeObject<JsonCustomersModel>(document.InnerText, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
 
                 using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.ReadUncommitted }))
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())

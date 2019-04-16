@@ -39,12 +39,10 @@ namespace FomMonitoringCore.Service
                         }
                     }
 
-                    if (machine.Plant != null && machine.Plant.UserId == user?.ID)
+                    if (machine != null && machine.Plant != null && machine.Plant.UserId == user?.ID)
                     {
                         return machine.Plant.Id;
                     }
-
-
 
 
                     //se c'è il pant con il nome inviato dalla macchina lo associo

@@ -300,7 +300,7 @@ namespace FomMonitoringCore.Service
                     var defaultPassword = ApplicationSettingService.GetWebConfigKey("DefaultPassword");
                     var addUser = new Users
                     {
-                        ID = Guid.NewGuid(),
+                        ID = Guid.NewGuid(),                       
                         Username = user.Username,
                         FirstName = user.FirstName,
                         LastName = user.LastName,
@@ -328,12 +328,14 @@ namespace FomMonitoringCore.Service
                     using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                     {
                         // Add user customer
-                        ent.UserCustomerMapping.Add(new UserCustomerMapping() { UserId = addUser.ID, CustomerName = user.CustomerName });
+                        //fabiana: lo user appena inserito è quello del db UM per cui non ha valorizzato il campo CustomerName ma solo il campo username
+                        ent.UserCustomerMapping.Add(new UserCustomerMapping() { UserId = addUser.ID, CustomerName = user.Username });
 
                         // Add user machines
-                        foreach (var machine in user.Machines)
+                        //fabiana: commentato perchè qui user.Machines è sempre null
+                       /* foreach (var machine in user.Machines)
                             ent.UserMachineMapping.Add(new UserMachineMapping() { UserId = addUser.ID, MachineId = machine.Id, ExpirationDate = DateTime.Now });
-
+                            */
                         ent.SaveChanges();
                     }
 
