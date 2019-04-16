@@ -40,24 +40,25 @@ namespace FomMonitoringCore.Service
                     }
 
                     if (machine != null && machine.Plant != null && machine.Plant.UserId == user?.ID)
-                    {
+                    {                        
                         return machine.Plant.Id;
-                    }
-
-
+                    }                   
                     //se c'è il pant con il nome inviato dalla macchina lo associo
                     if (!string.IsNullOrEmpty(plantName))
                     {
                         plant = ent.Plant.FirstOrDefault(f => f.Name == plantName && f.Address == plantAddress);
                     }
-
                     //se non c'è cerco il primo plant associato all'utente della macchina,
                     //N.B. quando non ci sarà più solo il plant di default modificare
+                    
                     if (plant == null && user != null)
                     {
                         plant = ent.Plant.FirstOrDefault(f => f.UserId == user.ID);
                     }
-
+                    if (plant != null && user != null)
+                    {
+                        plant.UserId = user.ID;
+                    }
                     //se non c'è creo il plant di default per l'utente
                     if (plant == null)
                     {
@@ -65,8 +66,10 @@ namespace FomMonitoringCore.Service
                     }
 
                     result = plant.Id;
-                }
 
+                    ent.SaveChanges();
+                }
+                
             }
             catch (Exception ex)
             {
