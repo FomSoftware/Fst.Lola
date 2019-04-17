@@ -2,9 +2,9 @@
 {
     var vmEfficiency;
     var circle_kpi;
+    var localizations;
 
-
-    var init = function (data)
+    var init = function (data, loc)
     {
         /*var data = {
             vm_efficiency: {
@@ -84,7 +84,7 @@
                 }]
             }
         }*/
-        
+        localizations = loc;
         initVueModel(data);
 
         if (data.opt_states != null) {
@@ -92,7 +92,7 @@
         }
 
         if (data.opt_kpis != null) {
-            ChartManager.productivityMachineSolidGaugeChart("efc_kpi_chart", data.opt_kpis);
+            ChartManager.productivityMachineSolidGaugeChart("efc_kpi_chart", data.opt_kpis, localizations);
         }
         
         if (data.opt_historical != null) {
@@ -211,7 +211,7 @@
         }
 
         if (data.opt_kpis != null) {
-            ChartManager.productivityMachineSolidGaugeChart("efc_kpi_chart", data.opt_kpis);
+            ChartManager.productivityMachineSolidGaugeChart("efc_kpi_chart", data.opt_kpis, localizations);
         }
 
         // chart historical

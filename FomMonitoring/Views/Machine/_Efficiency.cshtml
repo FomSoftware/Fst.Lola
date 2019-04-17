@@ -11,7 +11,6 @@
         </div>
         <div class="title-kpi" v-cloak>
             <span>@Resource.Efficiency</span>
-            <span v-if="kpi != null" class="value-kpi" v-bind:class="colorKPI" v-cloak>{{ kpi.value | round }}<small>%</small></span>
             <div class="sub-period js-period"></div>
         </div>
         <div class="portlet-details" v-show="showDetails">
@@ -43,11 +42,11 @@
             <div class="front">
                 <div class="row" v-if="states != null">
                     <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
-                            <div class="col-xs-6 col-sm-12 graph">
+                            <div class="col-xs-6 col-xs-push-6 col-sm-12 col-sm-push-0 graph">
                                 <div id="efc_kpi_chart" >
                                 </div>
                             </div>
-                            <div class="col-xs-6 col-sm-12 graph">
+                            <div class="col-xs-6 col-xs-pull-6 col-sm-12 col-sm-pull-0 graph">
                                 <div id="efc_pie_chart" >
                                 </div>
                             </div>
@@ -69,11 +68,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="progress">
-                                <div v-for="state in states" class="progress-bar" v-bind:class="'bg-' + state.code" v-bind:aria-valuenow="state.perc">
-                                    <i v-if="state.active" class="fa fa-check-circle"></i>
-                                </div>
-                            </div>
+                            <hr />
+                            @*<div class="progress">
+            <div v-for="state in states" class="progress-bar" v-bind:class="'bg-' + state.code" v-bind:aria-valuenow="state.perc">
+                <i v-if="state.active" class="fa fa-check-circle"></i>
+            </div>
+        </div>*@
                             <table class="table-legend">
                                 <tbody>
                                     <tr v-for="state in states">
@@ -96,6 +96,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <hr />
                             <!-- OFF STATE -->
                             <div class="progress-label clearfix">
                                 <div class="progress-title">
@@ -162,8 +163,11 @@
 
     $(document).ready(function ()
     {
+        var loc = {
+            efficiency : '@Resource.Efficiency'
+        };
         var data = @Html.Raw(Json.Encode(Model));
-        Efficiency.init(data);
+        Efficiency.init(data, loc);
     });
 
 </script>
