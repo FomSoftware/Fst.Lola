@@ -355,13 +355,14 @@
 
 .use-states .progress-label .progress-title {
     margin-top: 10px;
-    font-size: 16px;
+    font-size: 12px;
     float: left;
 }
 
 .use-states .progress-label .progress-time {
     float: right;
     margin-bottom: 3px;
+    font-size: 12px;
 }
 
     .use-states .progress-label .progress-time > div {
@@ -517,6 +518,16 @@
         font-size: 15px;
     }
 
+    @media (max-width: 1096px) {
+
+        .table-legend {
+            font-size: 12px;
+        }
+
+        .table-legend td:not(:first-child) {
+            font-size: 12px;
+        }
+    }
 /*#endregion */
 
 
