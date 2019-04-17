@@ -42,12 +42,9 @@
                         <table class="table table-alerts">
                             <thead>
                                 <tr>
-                                    <th class="th-title">                                       
-                                    </th>                                   
-                                    <th >
-                                       
+                                    <th style="padding-left:10px">
                                         <span class="value-title">
-                                            @Resource.Description
+                                            @Resource.Code
                                         </span>
                                     </th>
                                     <th class="th-duration sorting" v-bind:class="sortingDet.timestamp" v-on:click="sortTimestamp()">
@@ -56,20 +53,24 @@
                                             @Resource.Timestamp
                                         </span>
                                     </th>
+                                    <th>
+                                        <span class="value-title">
+                                            @Resource.Description
+                                        </span>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody v-for="alarm in details">
                                 <tr>
                                     <td>
                                         <div class="item-icon fa fa-2x" v-bind:class="iconClass(alarm.type)"></div>
-                                        <div class="item-alert">      
+                                        <div class="item-alert">
                                             <div class="code-alert">{{ alarm.code }}</div>
                                             <div class="subtitle-alert" v-bind:class="colorClass(alarm.type)">{{ alarm.type }}</div>
-                                        </div>                                        
+                                        </div>
                                     </td>
-                                    
-                                    <td>{{ alarm.description }}</td>
                                     <td>{{ alarm.formatted_timestamp }}</td>
+                                    <td>{{ alarm.description }}</td>
                                 </tr>                               
                             </tbody>
                         </table>

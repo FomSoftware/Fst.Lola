@@ -1132,7 +1132,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Timestamp.
+        ///   Looks up a localized string similar to Date/Time.
         /// </summary>
         public static string Timestamp {
             get {

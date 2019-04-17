@@ -529,7 +529,7 @@
     <value>Position</value>
   </data>
   <data name="Timestamp" xml:space="preserve">
-    <value>Timestamp</value>
+    <value>Date/Time</value>
   </data>
   <data name="PeriodicMaintenance" xml:space="preserve">
     <value>Periodic Ordinary Maintenance</value>
