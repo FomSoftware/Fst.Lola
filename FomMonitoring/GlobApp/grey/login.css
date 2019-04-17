@@ -29,9 +29,21 @@
     /*background: rgba(221, 221, 221, 0.1);
     border: solid 1px #ddd;*/
 }
-
-.row {
+    .row {
     height: 100%;
+}
+
+@media(max-width:767px) {
+    .container-login {
+        padding: 30px;
+    }
+
+    .row {
+        height: 90%;
+        width: 100%;
+        margin-top: 30px;
+        margin-left: 2px;
+    }
 }
 
 .col-sm-12 {
@@ -53,6 +65,27 @@
         width: auto;
     }
 
+    .header img.logo2 {       
+        width: 350px;
+    }
+
+img.logo3 {
+    width: 200px;
+}
+
+@media(max-width:767px) {
+    .header img.logo {
+        height: 50px;
+    }
+
+    .header img.logo2 {
+        width: 250px;
+    }
+
+    img.logo3 {
+        width: 100px;
+    }
+}
 
 .form-group {
     position: relative;
@@ -196,7 +229,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
 .alert.validation {
     border: 1px solid transparent;
     border-radius: 4px;
-    margin-bottom: -25px;
+    margin-bottom: -20px;
     padding: 0px;
 }
 
