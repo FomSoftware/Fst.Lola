@@ -43,6 +43,16 @@
 	color:white;
 }
 
+@media (max-width: 767px) {
+    .portlet-title {
+        font-size: 10px;
+    }
+}
+
+
+
+
+
     .portlet-title > div {
         display: inline-block;
         vertical-align: middle;
@@ -171,7 +181,7 @@
         }
 
 .front, .back {
-    padding: 10px;
+    padding: 5px;
 }
 
 .front {
@@ -359,6 +369,11 @@
     float: left;
 }
 
+@media(max-width:767px) {
+    .use-states .progress-label .progress-title {
+        font-size: 14px;
+    }
+}
 .use-states .progress-label .progress-time {
     float: right;
     margin-bottom: 3px;
@@ -611,6 +626,15 @@
     margin-top: 10px;
     font-size: 16px;
     float: left;
+}
+
+@media (max-width:767px) {
+    .item .item-title {
+        font-size: 14px;
+    }
+    .table-legend {
+        font-size: 12px;
+    }
 }
 
 .item .item-label {
@@ -885,6 +909,13 @@ a.click-more {
     .el-state.el-code > div {
         font-size: 16px;
     }
+
+@media(max-width:767px) {
+
+    .el-state.el-code > div {
+        font-size: 14px;
+    }
+}
 
     .el-state > div {
         font-size: 14px;

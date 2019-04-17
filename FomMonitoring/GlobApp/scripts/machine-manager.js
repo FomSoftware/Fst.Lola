@@ -80,7 +80,7 @@
     {
         $('.slimscroll').slimScroll({
             size: '5px',
-            height: '254px',
+            height: '240px',
             alwaysVisible: false,
             //wheelStep: 10,
             touchScrollStep: 35,
