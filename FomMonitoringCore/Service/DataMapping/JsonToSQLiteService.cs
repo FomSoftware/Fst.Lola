@@ -217,6 +217,7 @@ namespace FomMonitoringCore.Service.DataMapping
                         ent.Database.ExecuteSqlCommand("TRUNCATE TABLE info");
                         ent.Database.ExecuteSqlCommand("TRUNCATE TABLE historyAlarm");
                         ent.Database.ExecuteSqlCommand("TRUNCATE TABLE historyState");
+                        ent.Database.ExecuteSqlCommand("TRUNCATE TABLE historyMessage");
                         ent.Database.ExecuteSqlCommand("TRUNCATE TABLE spindle");
                         ent.Database.ExecuteSqlCommand("TRUNCATE TABLE tool");
                         ent.Database.ExecuteSqlCommand("TRUNCATE TABLE message");
