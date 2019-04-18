@@ -25,6 +25,8 @@ namespace FomMonitoringCore.Service.DataMapping
                 List<spindle> spindleSQLite = new List<spindle>();
                 List<state> stateSQLite = new List<state>();
                 List<tool> toolSQLite = new List<tool>();
+                List<message> messageSQLite = new List<message>();
+
                 using (FST_FomMonitoringSQLiteEntities ent = new FST_FomMonitoringSQLiteEntities())
                 {
                     barSQLite = ent.bar.ToList();
@@ -35,7 +37,9 @@ namespace FomMonitoringCore.Service.DataMapping
                     spindleSQLite = ent.spindle.ToList();
                     stateSQLite = ent.state.ToList();
                     toolSQLite = ent.tool.ToList();
+                    messageSQLite = ent.message.ToList();
                 }
+
                 string matricola = infoSQLite.OrderByDescending(o => o.Id).FirstOrDefault().MachineSerial;
                 using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
                 {
@@ -67,6 +71,11 @@ namespace FomMonitoringCore.Service.DataMapping
                         ent.Bar.AddRange(bar);
                         ent.SaveChanges();
 
+                        List<MessageMachine> messageMachine = messageSQLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<MessageMachine>>();
+                        messageMachine = messageMachine.Where(w => w.StartTime > (machineActual.LastUpdate ?? new DateTime())).ToList();
+                        ent.MessageMachine.AddRange(messageMachine);
+                        ent.SaveChanges();
+                        
                         List<HistoryJob> historyJob = historyJobSQLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<HistoryJob>>();
                         DateTime minDateHistoryJob = historyJob.Any(a => a.Day.HasValue) ? historyJob.Where(w => w.Day.HasValue && w.MachineId == machineActual.Id).Select(s => s.Day).Min().Value : new DateTime();
                         List<HistoryJob> removeHistoryJob = ent.HistoryJob.Where(w => w.Day.HasValue && w.Day.Value >= minDateHistoryJob && w.MachineId == machineActual.Id).ToList();

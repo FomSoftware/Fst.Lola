@@ -88,12 +88,31 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.ElapsedTime, src => src.TimeSpanDuration)
                 .Map(dest => dest.StateId, src => src.State)
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
+
+            config.NewConfig<DAL_SQLite.message, MessageMachine>()
+                .Ignore(dest => dest.Id)
+                .IgnoreAllVirtual()
+                .Map(dest => dest.Day, src => src.Time.HasValue ? src.Time.Value : (DateTime?)null)
+                .Map(dest => dest.StartTime, src => src.Time)
+                .Map(dest => dest.ElapsedTime, src => src.TimeSpanDuration)
+                .Map(dest => dest.StateId, src => src.State)
+                .Map(dest => dest.Day, src => src.Code)
+                .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
+
             config.NewConfig<DAL_SQLite.historyAlarm, HistoryAlarm>()
                 .Ignore(dest => dest.Id)
                 .IgnoreAllVirtual()
                 .Map(dest => dest.Period, src => src.Day != null ? ((src.Day.Value.Year * 10000) + (src.Day.Value.Month * 100) + (src.Day.Value.Day)) : (int?)null)
                 .Map(dest => dest.TypeHistory, src => "d")
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
+
+            config.NewConfig<DAL_SQLite.historyMessage, HistoryMessage>()
+                .Ignore(dest => dest.Id)
+                .IgnoreAllVirtual()
+                .Map(dest => dest.Period, src => src.Day != null ? ((src.Day.Value.Year * 10000) + (src.Day.Value.Month * 100) + (src.Day.Value.Day)) : (int?)null)
+                .Map(dest => dest.TypeHistory, src => "d")
+                .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
+
             config.NewConfig<DAL_SQLite.historyBar, HistoryBar>()
                 .Ignore(dest => dest.Id)
                 .IgnoreAllVirtual()

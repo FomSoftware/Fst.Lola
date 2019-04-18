@@ -160,6 +160,9 @@
     <Compile Include="DAL\HistoryJob.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\HistoryMessage.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\HistoryPiece.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
@@ -176,6 +179,9 @@
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\MachineType.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\MessageMachine.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\Piece.cs">
@@ -250,6 +256,9 @@
     <Compile Include="DAL_SQLite\historyJob.cs">
       <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL_SQLite\historyMessage.cs">
+      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL_SQLite\historyPiece.cs">
       <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
     </Compile>
@@ -257,6 +266,9 @@
       <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL_SQLite\info.cs">
+      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL_SQLite\message.cs">
       <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL_SQLite\piece.cs">

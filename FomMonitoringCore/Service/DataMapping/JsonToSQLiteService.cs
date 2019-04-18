@@ -45,6 +45,7 @@ namespace FomMonitoringCore.Service.DataMapping
                 List<historyJob> historyJobSQLite = new List<historyJob>();
                 List<info> infoSQLite = new List<info>();
                 List<piece> pieceSQLite = new List<piece>();
+                List<message> messageSQLite = new List<message>();
                 List<spindle> spindleSQLite = new List<spindle>();
                 List<state> stateSQLite = new List<state>();
                 List<tool> toolSQLite = new List<tool>();
@@ -60,6 +61,7 @@ namespace FomMonitoringCore.Service.DataMapping
                         ent.Database.ExecuteSqlCommand("TRUNCATE TABLE spindle");
                         ent.Database.ExecuteSqlCommand("TRUNCATE TABLE state");
                         ent.Database.ExecuteSqlCommand("TRUNCATE TABLE tool");
+                        ent.Database.ExecuteSqlCommand("TRUNCATE TABLE message");
 
                         foreach (JToken token in json.Root)
                         {
@@ -136,10 +138,18 @@ namespace FomMonitoringCore.Service.DataMapping
                                         tool.DateReplaced = tool.DateReplaced.HasValue && tool.DateReplaced.Value.Year < 1900 ? null : tool.DateReplaced;
                                     }
                                     break;
+                                case "message":
+                                    messageSQLite = JsonConvert.DeserializeObject<List<message>>(JsonConvert.SerializeObject(token.First));
+                                    foreach (message message in messageSQLite)
+                                    {
+                                        message.Time = message.Time.HasValue && message.Time.Value.Year < 1900 ? null : message.Time;
+                                    }
+                                    break;
                                 default:
                                     break;
                             }
                         }
+
                         ent.bar.AddRange(barSQLite);
                         ent.SaveChanges();
 
@@ -162,6 +172,9 @@ namespace FomMonitoringCore.Service.DataMapping
                         ent.SaveChanges();
 
                         ent.tool.AddRange(toolSQLite);
+                        ent.SaveChanges();
+
+                        ent.message.AddRange(messageSQLite);
                         ent.SaveChanges();
 
                         transaction.Complete();
@@ -188,9 +201,12 @@ namespace FomMonitoringCore.Service.DataMapping
                 List<historyJob> historyJobSQLite = new List<historyJob>();
                 List<info> infoSQLite = new List<info>();
                 List<historyAlarm> historyAlarmSQLite = new List<historyAlarm>();
+                List<historyMessage> historyMessageSQLite = new List<historyMessage>();
                 List<historyState> historyStateSQLite = new List<historyState>();
                 List<spindle> spindleSQLite = new List<spindle>();
                 List<tool> toolSQLite = new List<tool>();
+                List<message> messageSQLite = new List<message>();
+
                 using (TransactionScope transaction = new TransactionScope())
                 {
                     using (FST_FomMonitoringSQLiteEntities ent = new FST_FomMonitoringSQLiteEntities())
@@ -203,6 +219,7 @@ namespace FomMonitoringCore.Service.DataMapping
                         ent.Database.ExecuteSqlCommand("TRUNCATE TABLE historyState");
                         ent.Database.ExecuteSqlCommand("TRUNCATE TABLE spindle");
                         ent.Database.ExecuteSqlCommand("TRUNCATE TABLE tool");
+                        ent.Database.ExecuteSqlCommand("TRUNCATE TABLE message");
 
                         foreach (JToken token in json.Root)
                         {
@@ -244,6 +261,13 @@ namespace FomMonitoringCore.Service.DataMapping
                                         historyAlarm.Day = historyAlarm.Day.HasValue && historyAlarm.Day.Value.Year < 1900 ? null : historyAlarm.Day;
                                     }
                                     break;
+                                case "historymessage":
+                                    historyMessageSQLite = JsonConvert.DeserializeObject<List<historyMessage>>(JsonConvert.SerializeObject(token.First));
+                                    foreach (historyMessage historyMessage in historyMessageSQLite)
+                                    {
+                                        historyMessage.Day = historyMessage.Day.HasValue && historyMessage.Day.Value.Year < 1900 ? null : historyMessage.Day;
+                                    }
+                                    break;
                                 case "historystate":
                                     historyStateSQLite = JsonConvert.DeserializeObject<List<historyState>>(JsonConvert.SerializeObject(token.First));
                                     foreach (historyState historyState in historyStateSQLite)
@@ -265,6 +289,13 @@ namespace FomMonitoringCore.Service.DataMapping
                                     {
                                         tool.DateLoaded = tool.DateLoaded.HasValue && tool.DateLoaded.Value.Year < 1900 ? null : tool.DateLoaded;
                                         tool.DateReplaced = tool.DateReplaced.HasValue && tool.DateReplaced.Value.Year < 1900 ? null : tool.DateReplaced;
+                                    }
+                                    break;
+                                case "message":
+                                    messageSQLite = JsonConvert.DeserializeObject<List<message>>(JsonConvert.SerializeObject(token.First));
+                                    foreach (message message in messageSQLite)
+                                    {
+                                        message.Time = message.Time.HasValue && message.Time.Value.Year < 1900 ? null : message.Time;
                                     }
                                     break;
                                 default:
@@ -293,6 +324,9 @@ namespace FomMonitoringCore.Service.DataMapping
                         ent.SaveChanges();
 
                         ent.tool.AddRange(toolSQLite);
+                        ent.SaveChanges();
+
+                        ent.message.AddRange(messageSQLite);
                         ent.SaveChanges();
 
                         transaction.Complete();

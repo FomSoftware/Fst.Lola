@@ -72,6 +72,19 @@
           <Property Name="Day" Type="datetime" />
           <Property Name="ElapsedTime" Type="bigint" />
         </EntityType>
+        <EntityType Name="historyMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar(max)" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Params" Type="varchar(max)" />
+          <Property Name="Day" Type="datetime" />
+          <Property Name="ElapsedTime" Type="bigint" />
+          <Property Name="Period" Type="int" />
+          <Property Name="StateId" Type="int" />
+        </EntityType>
         <EntityType Name="historyPiece">
           <Key>
             <PropertyRef Name="Id" />
@@ -132,6 +145,20 @@
           <Property Name="Shift3StartHour" Type="int" />
           <Property Name="Shift3StartMinute" Type="int" />
           <Property Name="UTC" Type="float" />
+        </EntityType>
+        <EntityType Name="message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Time" Type="datetime" />
+          <Property Name="TimeSpanDuration" Type="int" />
+          <Property Name="Code" Type="int" />
+          <Property Name="Params" Type="nvarchar(max)" />
+          <Property Name="Operator" Type="nvarchar" MaxLength="150" />
+          <Property Name="State" Type="int" />
+          <Property Name="Type" Type="nvarchar" MaxLength="150" />
+          <Property Name="Group" Type="int" />
         </EntityType>
         <EntityType Name="piece">
           <Key>
@@ -228,9 +255,11 @@
           <EntitySet Name="historyAlarm" EntityType="Self.historyAlarm" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="historyBar" EntityType="Self.historyBar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="historyJob" EntityType="Self.historyJob" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="historyMessage" EntityType="Self.historyMessage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="historyPiece" EntityType="Self.historyPiece" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="historyState" EntityType="Self.historyState" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="info" EntityType="Self.info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="message" EntityType="Self.message" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="piece" EntityType="Self.piece" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="spindle" EntityType="Self.spindle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="state" EntityType="Self.state" Schema="dbo" store:Type="Tables" />
@@ -253,6 +282,8 @@
           <EntitySet Name="historyBar" EntityType="FomMonitoringSQLiteModel.historyBar" />
           <EntitySet Name="spindle" EntityType="FomMonitoringSQLiteModel.spindle" />
           <EntitySet Name="bar" EntityType="FomMonitoringSQLiteModel.bar" />
+          <EntitySet Name="message" EntityType="FomMonitoringSQLiteModel.message" />
+          <EntitySet Name="historyMessage" EntityType="FomMonitoringSQLiteModel.historyMessage" />
         </EntityContainer>
         <EntityType Name="error">
           <Key>
@@ -470,6 +501,33 @@
           <Property Name="Length" Type="Double" />
           <Property Name="IsOffcut" Type="Boolean" />
           <Property Name="BadAreas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="TimeSpanDuration" Type="Int32" />
+          <Property Name="Code" Type="Int32" />
+          <Property Name="Params" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Operator" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Group" Type="Int32" />
+        </EntityType>
+        <EntityType Name="historyMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Params" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Day" Type="DateTime" Precision="3" />
+          <Property Name="ElapsedTime" Type="Int64" />
+          <Property Name="Period" Type="Int32" />
+          <Property Name="StateId" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -702,6 +760,35 @@
                 <ScalarProperty Name="ProfileCode" ColumnName="ProfileCode" />
                 <ScalarProperty Name="System" ColumnName="System" />
                 <ScalarProperty Name="Index" ColumnName="Index" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="message">
+            <EntityTypeMapping TypeName="FomMonitoringSQLiteModel.message">
+              <MappingFragment StoreEntitySet="message">
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="Params" ColumnName="Params" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="TimeSpanDuration" ColumnName="TimeSpanDuration" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="historyMessage">
+            <EntityTypeMapping TypeName="FomMonitoringSQLiteModel.historyMessage">
+              <MappingFragment StoreEntitySet="historyMessage">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Params" ColumnName="Params" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

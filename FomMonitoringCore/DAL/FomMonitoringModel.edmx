@@ -108,6 +108,21 @@
           <Property Name="TotalPieces" Type="int" />
           <Property Name="TypeHistory" Type="char" MaxLength="1" />
         </EntityType>
+        <EntityType Name="HistoryMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Day" Type="datetime" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="ElapsedTime" Type="bigint" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="Period" Type="int" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="TypeHistory" Type="char" MaxLength="1" />
+        </EntityType>
         <EntityType Name="HistoryPiece">
           <Key>
             <PropertyRef Name="Id" />
@@ -191,6 +206,22 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" />
           <Property Name="Image" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="MessageMachine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Day" Type="datetime" />
+          <Property Name="ElapsedTime" Type="bigint" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="Operator" Type="varchar" MaxLength="100" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="Params" Type="nvarchar(max)" />
+          <Property Name="Type" Type="nvarchar" MaxLength="150" />
+          <Property Name="Group" Type="int" />
         </EntityType>
         <EntityType Name="Piece">
           <Key>
@@ -427,6 +458,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HistoryMessage_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
+          <End Role="HistoryMessage" Type="Self.HistoryMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryMessage">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryMessage_State">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="HistoryMessage" Type="Self.HistoryMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryMessage">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_HistoryPiece_Machine">
           <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
           <End Role="HistoryPiece" Type="Self.HistoryPiece" Multiplicity="*" />
@@ -496,6 +551,30 @@
             </Principal>
             <Dependent Role="Machine">
               <PropertyRef Name="PlantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessageMachine_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
+          <End Role="MessageMachine" Type="Self.MessageMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageMachine">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessageMachine_State">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="MessageMachine" Type="Self.MessageMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageMachine">
+              <PropertyRef Name="StateId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -634,11 +713,13 @@
           <EntitySet Name="HistoryAlarm" EntityType="Self.HistoryAlarm" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistoryBar" EntityType="Self.HistoryBar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistoryJob" EntityType="Self.HistoryJob" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoryMessage" EntityType="Self.HistoryMessage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistoryPiece" EntityType="Self.HistoryPiece" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistoryState" EntityType="Self.HistoryState" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Machine" EntityType="Self.Machine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MachineModel" EntityType="Self.MachineModel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MachineType" EntityType="Self.MachineType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageMachine" EntityType="Self.MessageMachine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Piece" EntityType="Self.Piece" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Plant" EntityType="Self.Plant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Spindle" EntityType="Self.Spindle" Schema="dbo" store:Type="Tables" />
@@ -683,6 +764,14 @@
             <End Role="Machine" EntitySet="Machine" />
             <End Role="HistoryJob" EntitySet="HistoryJob" />
           </AssociationSet>
+          <AssociationSet Name="FK_HistoryMessage_Machine" Association="Self.FK_HistoryMessage_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="HistoryMessage" EntitySet="HistoryMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryMessage_State" Association="Self.FK_HistoryMessage_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="HistoryMessage" EntitySet="HistoryMessage" />
+          </AssociationSet>
           <AssociationSet Name="FK_HistoryPiece_Machine" Association="Self.FK_HistoryPiece_Machine">
             <End Role="Machine" EntitySet="Machine" />
             <End Role="HistoryPiece" EntitySet="HistoryPiece" />
@@ -706,6 +795,14 @@
           <AssociationSet Name="FK_Machine_Plant" Association="Self.FK_Machine_Plant">
             <End Role="Plant" EntitySet="Plant" />
             <End Role="Machine" EntitySet="Machine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageMachine_Machine" Association="Self.FK_MessageMachine_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="MessageMachine" EntitySet="MessageMachine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageMachine_State" Association="Self.FK_MessageMachine_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="MessageMachine" EntitySet="MessageMachine" />
           </AssociationSet>
           <AssociationSet Name="FK_Piece_Bar" Association="Self.FK_Piece_Bar">
             <End Role="Bar" EntitySet="Bar" />
@@ -892,6 +989,24 @@
             <End Role="Machine" EntitySet="Machine" />
             <End Role="UserMachineMapping" EntitySet="UserMachineMapping" />
           </AssociationSet>
+          <EntitySet Name="HistoryMessage" EntityType="FST_FomMonitoringModel.HistoryMessage" />
+          <EntitySet Name="MessageMachine" EntityType="FST_FomMonitoringModel.MessageMachine" />
+          <AssociationSet Name="FK_HistoryMessage_Machine" Association="FST_FomMonitoringModel.FK_HistoryMessage_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="HistoryMessage" EntitySet="HistoryMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryMessage_State" Association="FST_FomMonitoringModel.FK_HistoryMessage_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="HistoryMessage" EntitySet="HistoryMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageMachine_Machine" Association="FST_FomMonitoringModel.FK_MessageMachine_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="MessageMachine" EntitySet="MessageMachine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageMachine_State" Association="FST_FomMonitoringModel.FK_MessageMachine_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="MessageMachine" EntitySet="MessageMachine" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AlarmMachine">
           <Key>
@@ -946,6 +1061,8 @@
           <NavigationProperty Name="HistoryState" Relationship="FST_FomMonitoringModel.FK_HistoryState_State" FromRole="State" ToRole="HistoryState" />
           <NavigationProperty Name="StateMachine" Relationship="FST_FomMonitoringModel.FK_StateMachine_State" FromRole="State" ToRole="StateMachine" />
           <NavigationProperty Name="CurrentState" Relationship="FST_FomMonitoringModel.FK_CurrentState_State" FromRole="State" ToRole="CurrentState" />
+          <NavigationProperty Name="HistoryMessage" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_State" FromRole="State" ToRole="HistoryMessage" />
+          <NavigationProperty Name="MessageMachine" Relationship="FST_FomMonitoringModel.FK_MessageMachine_State" FromRole="State" ToRole="MessageMachine" />
           </EntityType>
         <Association Name="FK_AlarmMachine_State">
           <End Type="FST_FomMonitoringModel.State" Role="State" Multiplicity="0..1" />
@@ -1298,6 +1415,8 @@
           <NavigationProperty Name="Bar" Relationship="FST_FomMonitoringModel.FK_Bar_Machine" FromRole="Machine" ToRole="Bar" />
           <NavigationProperty Name="Spindle" Relationship="FST_FomMonitoringModel.FK_Spindle_Machine" FromRole="Machine" ToRole="Spindle" />
           <NavigationProperty Name="UserMachineMapping" Relationship="FST_FomMonitoringModel.FK_UserMachineMapping_Machine" FromRole="Machine" ToRole="UserMachineMapping" />
+          <NavigationProperty Name="HistoryMessage" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_Machine" FromRole="Machine" ToRole="HistoryMessage" />
+          <NavigationProperty Name="MessageMachine" Relationship="FST_FomMonitoringModel.FK_MessageMachine_Machine" FromRole="Machine" ToRole="MessageMachine" />
         </EntityType>
         <EntityType Name="Plant">
           <Key>
@@ -1596,6 +1715,89 @@
             </Principal>
             <Dependent Role="UserMachineMapping">
               <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HistoryMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Day" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ElapsedTime" Type="Int64" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="Period" Type="Int32" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="TypeHistory" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_Machine" FromRole="HistoryMessage" ToRole="Machine" />
+          <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_State" FromRole="HistoryMessage" ToRole="State" />
+        </EntityType>
+        <EntityType Name="MessageMachine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Day" Type="DateTime" Precision="3" />
+          <Property Name="ElapsedTime" Type="Int64" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="Operator" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="Params" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Group" Type="Int32" />
+          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_MessageMachine_Machine" FromRole="MessageMachine" ToRole="Machine" />
+          <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_MessageMachine_State" FromRole="MessageMachine" ToRole="State" />
+        </EntityType>
+        <Association Name="FK_HistoryMessage_Machine">
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.HistoryMessage" Role="HistoryMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryMessage">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryMessage_State">
+          <End Type="FST_FomMonitoringModel.State" Role="State" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.HistoryMessage" Role="HistoryMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryMessage">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessageMachine_Machine">
+          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.MessageMachine" Role="MessageMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageMachine">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessageMachine_State">
+          <End Type="FST_FomMonitoringModel.State" Role="State" Multiplicity="0..1" />
+          <End Type="FST_FomMonitoringModel.MessageMachine" Role="MessageMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageMachine">
+              <PropertyRef Name="StateId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2045,6 +2247,39 @@
                 <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
                 <ScalarProperty Name="MachineId" ColumnName="MachineId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryMessage">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.HistoryMessage">
+              <MappingFragment StoreEntitySet="HistoryMessage">
+                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageMachine">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.MessageMachine">
+              <MappingFragment StoreEntitySet="MessageMachine">
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Params" ColumnName="Params" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

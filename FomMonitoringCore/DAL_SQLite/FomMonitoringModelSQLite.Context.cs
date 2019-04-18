@@ -37,5 +37,7 @@ namespace FomMonitoringCore.DAL_SQLite
         public virtual DbSet<historyBar> historyBar { get; set; }
         public virtual DbSet<spindle> spindle { get; set; }
         public virtual DbSet<bar> bar { get; set; }
+        public virtual DbSet<message> message { get; set; }
+        public virtual DbSet<historyMessage> historyMessage { get; set; }
     }
 }
