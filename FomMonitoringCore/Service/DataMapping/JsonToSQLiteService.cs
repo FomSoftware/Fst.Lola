@@ -228,28 +228,28 @@ namespace FomMonitoringCore.Service.DataMapping
                             {
                                 case "historybar":
                                     historyBarSQLite = JsonConvert.DeserializeObject<List<historyBar>>(JsonConvert.SerializeObject(token.First));
-                                    foreach (historyBar historyBar in historyBarSQLite)
+                                    foreach (var historyBar in historyBarSQLite)
                                     {
                                         historyBar.Day = historyBar.Day.HasValue && historyBar.Day.Value.Year < 1900 ? null : historyBar.Day;
                                     }
                                     break;
                                 case "historypiece":
                                     historyPieceSQLite = JsonConvert.DeserializeObject<List<historyPiece>>(JsonConvert.SerializeObject(token.First));
-                                    foreach (historyPiece historyPiece in historyPieceSQLite)
+                                    foreach (var historyPiece in historyPieceSQLite)
                                     {
                                         historyPiece.Day = historyPiece.Day.HasValue && historyPiece.Day.Value.Year < 1900 ? null : historyPiece.Day;
                                     }
                                     break;
                                 case "historyjob":
                                     historyJobSQLite = JsonConvert.DeserializeObject<List<historyJob>>(JsonConvert.SerializeObject(token.First));
-                                    foreach (historyJob historyJob in historyJobSQLite)
+                                    foreach (var historyJob in historyJobSQLite)
                                     {
                                         historyJob.Day = historyJob.Day.HasValue && historyJob.Day.Value.Year < 1900 ? null : historyJob.Day;
                                     }
                                     break;
                                 case "info":
                                     infoSQLite = JsonConvert.DeserializeObject<List<info>>(JsonConvert.SerializeObject(token.First));
-                                    foreach (info info in infoSQLite)
+                                    foreach (var info in infoSQLite)
                                     {
                                         info.LoginDate = info.LoginDate.HasValue && info.LoginDate.Value.Year < 1900 ? null : info.LoginDate;
                                         info.InstallationDate = info.InstallationDate.HasValue && info.InstallationDate.Value.Year < 1900 ? null : info.InstallationDate;
@@ -258,28 +258,28 @@ namespace FomMonitoringCore.Service.DataMapping
                                     break;
                                 case "historyalarm":
                                     historyAlarmSQLite = JsonConvert.DeserializeObject<List<historyAlarm>>(JsonConvert.SerializeObject(token.First));
-                                    foreach (historyAlarm historyAlarm in historyAlarmSQLite)
+                                    foreach (var historyAlarm in historyAlarmSQLite)
                                     {
                                         historyAlarm.Day = historyAlarm.Day.HasValue && historyAlarm.Day.Value.Year < 1900 ? null : historyAlarm.Day;
                                     }
                                     break;
                                 case "historymessage":
                                     historyMessageSQLite = JsonConvert.DeserializeObject<List<historyMessage>>(JsonConvert.SerializeObject(token.First));
-                                    foreach (historyMessage historyMessage in historyMessageSQLite)
+                                    foreach (var historyMessage in historyMessageSQLite)
                                     {
                                         historyMessage.Day = historyMessage.Day.HasValue && historyMessage.Day.Value.Year < 1900 ? null : historyMessage.Day;
                                     }
                                     break;
                                 case "historystate":
                                     historyStateSQLite = JsonConvert.DeserializeObject<List<historyState>>(JsonConvert.SerializeObject(token.First));
-                                    foreach (historyState historyState in historyStateSQLite)
+                                    foreach (var historyState in historyStateSQLite)
                                     {
                                         historyState.Day = historyState.Day.HasValue && historyState.Day.Value.Year < 1900 ? null : historyState.Day;
                                     }
                                     break;
                                 case "spindle":
                                     spindleSQLite = JsonConvert.DeserializeObject<List<spindle>>(JsonConvert.SerializeObject(token.First));
-                                    foreach (spindle spindle in spindleSQLite)
+                                    foreach (var spindle in spindleSQLite)
                                     {
                                         spindle.InstallDate = spindle.InstallDate.HasValue && spindle.InstallDate.Value.Year < 1900 ? null : spindle.InstallDate;
                                         spindle.Replaced = spindle.Replaced.HasValue && spindle.Replaced.Value.Year < 1900 ? null : spindle.Replaced;
@@ -287,7 +287,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                     break;
                                 case "tool":
                                     toolSQLite = JsonConvert.DeserializeObject<List<tool>>(JsonConvert.SerializeObject(token.First));
-                                    foreach (tool tool in toolSQLite)
+                                    foreach (var tool in toolSQLite)
                                     {
                                         tool.DateLoaded = tool.DateLoaded.HasValue && tool.DateLoaded.Value.Year < 1900 ? null : tool.DateLoaded;
                                         tool.DateReplaced = tool.DateReplaced.HasValue && tool.DateReplaced.Value.Year < 1900 ? null : tool.DateReplaced;
@@ -295,7 +295,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                     break;
                                 case "message":
                                     messageSQLite = JsonConvert.DeserializeObject<List<message>>(JsonConvert.SerializeObject(token.First));
-                                    foreach (message message in messageSQLite)
+                                    foreach (var message in messageSQLite)
                                     {
                                         message.Time = message.Time.HasValue && message.Time.Value.Year < 1900 ? null : message.Time;
                                     }
