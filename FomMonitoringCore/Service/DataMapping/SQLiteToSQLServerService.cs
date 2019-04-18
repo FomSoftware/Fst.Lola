@@ -147,6 +147,7 @@ namespace FomMonitoringCore.Service.DataMapping
             try
             {
                 List<historyAlarm> historyAlarmSQLite = new List<historyAlarm>();
+                List<historyMessage> historyMessageSQLite = new List<historyMessage>();
                 List<historyBar> historyBarSQLite = new List<historyBar>();
                 List<historyJob> historyJobSQLite = new List<historyJob>();
                 List<historyPiece> historyPieceSQLite = new List<historyPiece>();
@@ -161,6 +162,7 @@ namespace FomMonitoringCore.Service.DataMapping
                     historyJobSQLite = ent.historyJob.ToList();
                     historyPieceSQLite = ent.historyPiece.ToList();
                     historyStateSQLite = ent.historyState.ToList();
+                    historyMessageSQLite = ent.historyMessage.ToList();
                     infoSQLite = ent.info.ToList();
                     spindleSQLite = ent.spindle.ToList();
                     toolSQLite = ent.tool.ToList();
@@ -197,6 +199,14 @@ namespace FomMonitoringCore.Service.DataMapping
                         ent.HistoryAlarm.RemoveRange(removeHistoryAlarm);
                         ent.SaveChanges();
                         ent.HistoryAlarm.AddRange(historyAlarm);
+                        ent.SaveChanges();
+
+                        List<HistoryMessage> historyMessage = historyMessageSQLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<HistoryMessage>>();
+                        DateTime minDateHistoryMessage = historyMessage.Any(a => a.Day.HasValue) ? historyMessage.Where(w => w.Day.HasValue && w.MachineId == machineActual.Id).Select(s => s.Day).Min().Value : new DateTime();
+                        List<HistoryMessage> removeHistoryMessage = ent.HistoryMessage.Where(w => w.Day.HasValue && w.Day.Value >= minDateHistoryMessage && w.MachineId == machineActual.Id).ToList();
+                        ent.HistoryMessage.RemoveRange(removeHistoryMessage);
+                        ent.SaveChanges();
+                        ent.HistoryMessage.AddRange(historyMessage);
                         ent.SaveChanges();
 
                         List<HistoryBar> historyBar = historyBarSQLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<HistoryBar>>();
