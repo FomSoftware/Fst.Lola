@@ -116,7 +116,7 @@
           <Property Name="Code" Type="varchar" MaxLength="100" />
           <Property Name="Count" Type="int" />
           <Property Name="Day" Type="datetime" />
-          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="Params" Type="varchar(max)" />
           <Property Name="ElapsedTime" Type="bigint" />
           <Property Name="MachineId" Type="int" />
           <Property Name="Period" Type="int" />
@@ -1726,7 +1726,6 @@
           <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Count" Type="Int32" />
           <Property Name="Day" Type="DateTime" Precision="3" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ElapsedTime" Type="Int64" />
           <Property Name="MachineId" Type="Int32" />
           <Property Name="Period" Type="Int32" />
@@ -1734,6 +1733,7 @@
           <Property Name="TypeHistory" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_Machine" FromRole="HistoryMessage" ToRole="Machine" />
           <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_State" FromRole="HistoryMessage" ToRole="State" />
+          <Property Name="Params" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="MessageMachine">
           <Key>
@@ -2254,12 +2254,12 @@
           <EntitySetMapping Name="HistoryMessage">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.HistoryMessage">
               <MappingFragment StoreEntitySet="HistoryMessage">
+                <ScalarProperty Name="Params" ColumnName="Params" />
                 <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
                 <ScalarProperty Name="Period" ColumnName="Period" />
                 <ScalarProperty Name="MachineId" ColumnName="MachineId" />
                 <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Day" ColumnName="Day" />
                 <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
