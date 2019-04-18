@@ -302,10 +302,14 @@ namespace FomMonitoringCore.Service.DataMapping
                                     break;
                             }
                         }
+
                         ent.historyBar.AddRange(historyBarSQLite);
                         ent.SaveChanges();
 
                         ent.historyPiece.AddRange(historyPieceSQLite);
+                        ent.SaveChanges();
+
+                        ent.historyMessage.AddRange(historyMessageSQLite);
                         ent.SaveChanges();
 
                         ent.historyJob.AddRange(historyJobSQLite);
