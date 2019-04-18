@@ -152,7 +152,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Time" Type="datetime" />
-          <Property Name="TimeSpanDuration" Type="int" />
+          <Property Name="TimeSpanDuration" Type="bigint" />
           <Property Name="Code" Type="int" />
           <Property Name="Params" Type="nvarchar(max)" />
           <Property Name="Operator" Type="nvarchar" MaxLength="150" />
@@ -508,7 +508,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Time" Type="DateTime" Precision="3" />
-          <Property Name="TimeSpanDuration" Type="Int32" />
+          <Property Name="TimeSpanDuration" Type="Int64" />
           <Property Name="Code" Type="Int32" />
           <Property Name="Params" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Operator" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
