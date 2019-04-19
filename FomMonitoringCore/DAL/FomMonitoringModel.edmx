@@ -122,6 +122,7 @@
           <Property Name="Period" Type="int" />
           <Property Name="StateId" Type="int" />
           <Property Name="TypeHistory" Type="char" MaxLength="1" />
+          <Property Name="Group" Type="int" />
         </EntityType>
         <EntityType Name="HistoryPiece">
           <Key>
@@ -222,6 +223,7 @@
           <Property Name="Params" Type="nvarchar(max)" />
           <Property Name="Type" Type="nvarchar" MaxLength="150" />
           <Property Name="Group" Type="int" />
+          <Property Name="IsVisible" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Piece">
           <Key>
@@ -554,30 +556,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MessageMachine_Machine">
-          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
-          <End Role="MessageMachine" Type="Self.MessageMachine" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Machine">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MessageMachine">
-              <PropertyRef Name="MachineId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MessageMachine_State">
-          <End Role="State" Type="Self.State" Multiplicity="0..1" />
-          <End Role="MessageMachine" Type="Self.MessageMachine" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="State">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MessageMachine">
-              <PropertyRef Name="StateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Piece_Bar">
           <End Role="Bar" Type="Self.Bar" Multiplicity="0..1" />
           <End Role="Piece" Type="Self.Piece" Multiplicity="*" />
@@ -683,6 +661,13 @@
           <Parameter Name="startDate" Type="datetime" Mode="In" />
           <Parameter Name="endDate" Type="datetime" Mode="In" />
           <Parameter Name="aggregation" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_AggregationMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="machineId" Type="int" Mode="In" />
+          <Parameter Name="startDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
+          <Parameter Name="aggregation" Type="int" Mode="In" />
+          <Parameter Name="dataType" Type="int" Mode="In" />
         </Function>
         <Function Name="usp_AggregationPiece" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="machineId" Type="int" Mode="In" />
@@ -795,14 +780,6 @@
           <AssociationSet Name="FK_Machine_Plant" Association="Self.FK_Machine_Plant">
             <End Role="Plant" EntitySet="Plant" />
             <End Role="Machine" EntitySet="Machine" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MessageMachine_Machine" Association="Self.FK_MessageMachine_Machine">
-            <End Role="Machine" EntitySet="Machine" />
-            <End Role="MessageMachine" EntitySet="MessageMachine" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MessageMachine_State" Association="Self.FK_MessageMachine_State">
-            <End Role="State" EntitySet="State" />
-            <End Role="MessageMachine" EntitySet="MessageMachine" />
           </AssociationSet>
           <AssociationSet Name="FK_Piece_Bar" Association="Self.FK_Piece_Bar">
             <End Role="Bar" EntitySet="Bar" />
@@ -1007,6 +984,13 @@
             <End Role="State" EntitySet="State" />
             <End Role="MessageMachine" EntitySet="MessageMachine" />
           </AssociationSet>
+          <FunctionImport Name="usp_AggregationMessage" ReturnType="Collection(FST_FomMonitoringModel.usp_AggregationMessage_Result1)">
+            <Parameter Name="machineId" Mode="In" Type="Int32" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+            <Parameter Name="aggregation" Mode="In" Type="Int32" />
+            <Parameter Name="dataType" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="AlarmMachine">
           <Key>
@@ -1734,6 +1718,7 @@
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_Machine" FromRole="HistoryMessage" ToRole="Machine" />
           <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_State" FromRole="HistoryMessage" ToRole="State" />
           <Property Name="Params" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Group" Type="Int32" />
         </EntityType>
         <EntityType Name="MessageMachine">
           <Key>
@@ -1752,6 +1737,7 @@
           <Property Name="Group" Type="Int32" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_MessageMachine_Machine" FromRole="MessageMachine" ToRole="Machine" />
           <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_MessageMachine_State" FromRole="MessageMachine" ToRole="State" />
+          <Property Name="IsVisible" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_HistoryMessage_Machine">
           <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
@@ -1801,6 +1787,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="usp_AggregationMessage_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Count" Nullable="true" />
+          <Property Type="DateTime" Name="Day" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="ElapsedTime" Nullable="true" />
+          <Property Type="Int32" Name="MachineId" Nullable="true" />
+          <Property Type="Int32" Name="Period" Nullable="true" />
+          <Property Type="Int32" Name="StateId" Nullable="true" />
+          <Property Type="Int32" Name="Group" Nullable="true" />
+          <Property Type="String" Name="TypeHistory" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="usp_AggregationMessage_Result1">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Count" Nullable="true" />
+          <Property Type="DateTime" Name="Day" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Params" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="ElapsedTime" Nullable="true" />
+          <Property Type="Int32" Name="MachineId" Nullable="true" />
+          <Property Type="Int32" Name="Period" Nullable="true" />
+          <Property Type="Int32" Name="StateId" Nullable="true" />
+          <Property Type="Int32" Name="Group" Nullable="true" />
+          <Property Type="String" Name="TypeHistory" Nullable="true" MaxLength="1" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2254,6 +2266,7 @@
           <EntitySetMapping Name="HistoryMessage">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.HistoryMessage">
               <MappingFragment StoreEntitySet="HistoryMessage">
+                <ScalarProperty Name="Group" ColumnName="Group" />
                 <ScalarProperty Name="Params" ColumnName="Params" />
                 <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
@@ -2270,6 +2283,7 @@
           <EntitySetMapping Name="MessageMachine">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.MessageMachine">
               <MappingFragment StoreEntitySet="MessageMachine">
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
                 <ScalarProperty Name="Group" ColumnName="Group" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Params" ColumnName="Params" />
@@ -2284,6 +2298,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_AggregationMessage" FunctionName="FST_FomMonitoringModel.Store.usp_AggregationMessage">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="FST_FomMonitoringModel.usp_AggregationMessage_Result1">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Params" ColumnName="Params" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

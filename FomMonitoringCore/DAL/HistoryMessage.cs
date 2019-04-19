@@ -24,6 +24,7 @@ namespace FomMonitoringCore.DAL
         public Nullable<int> StateId { get; set; }
         public string TypeHistory { get; set; }
         public string Params { get; set; }
+        public Nullable<int> Group { get; set; }
     
         public virtual Machine Machine { get; set; }
         public virtual State State { get; set; }

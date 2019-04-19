@@ -6,47 +6,45 @@ using FomMonitoringResources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FomMonitoringBLL.ViewServices
 {
-    public class AlarmsViewService
+    public class MessagesViewService
     {
-        public static AlarmViewModel GetAlarms(ContextModel context)
+        public static MessageViewModel GetMessages(ContextModel context)
         {
-            AlarmViewModel result = new AlarmViewModel();
+            MessageViewModel result = new MessageViewModel();
 
-            result.vm_alarms = GetVueModel(context.ActualMachine, context.ActualPeriod);
+            result.vm_messages = GetVueModel(context.ActualMachine, context.ActualPeriod);
             result.opt_historical = GetHistoricalOptions(context.ActualMachine, context.ActualPeriod);
-            result.vm_details = GetAlarmDetails(context.ActualMachine, context.ActualPeriod);
+            result.vm_details = GetMessageDetails(context.ActualMachine, context.ActualPeriod);
             return result;
         }
 
-        private static AlarmDetailsVueModel GetAlarmDetails(MachineInfoModel actualMachine, PeriodModel actualPeriod)
+        private static MessageDetailsVueModel GetMessageDetails(MachineInfoModel actualMachine, PeriodModel actualPeriod)
         {
-            AlarmDetailsVueModel result = new AlarmDetailsVueModel();
+            MessageDetailsVueModel result = new MessageDetailsVueModel();
 
-            List<AlarmMachineModel> data = AlarmService.GetAlarmDetails(actualMachine, actualPeriod);
+            List<MessageMachineModel> data = MessageService.GetMessageDetails(actualMachine, actualPeriod);
 
             if (data.Count == 0)
                 return result;
 
-            List<AlarmDetailViewModel> alarms = data.Select(a => new AlarmDetailViewModel()
+            List<MessageDetailViewModel> messages = data.Select(a => new MessageDetailViewModel()
             {
                 code = a.Code,
-                description = a.Description,
+                parameters = a.Params,
                 timestamp = a.Day,
                 type = ((enTypeAlarm)a.StateId).GetDescription(),
 
             }).ToList();
 
-            alarms = alarms.OrderByDescending(o => o.timestamp).ToList();
+            messages = messages.OrderByDescending(o => o.timestamp).ToList();
 
             SortingViewModel sorting = new SortingViewModel();
             sorting.timestamp = enSorting.Descending.GetDescription();
 
-            result.alarms = alarms;
+            result.messages = messages;
             result.sorting = sorting;
 
 
@@ -54,33 +52,33 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        private static AlarmVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
+        private static MessageVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
         {
-            AlarmVueModel result = new AlarmVueModel();
+            MessageVueModel result = new MessageVueModel();
 
-            List<HistoryAlarmModel> data = AlarmService.GetAggregationAlarms(machine, period, enDataType.Summary);
+            List<HistoryMessageModel> data = MessageService.GetAggregationMessages(machine, period, enDataType.Summary);
 
             if (data.Count == 0)
                 return result;
 
-            List<AlarmDataModel> alarms = data.Select(a => new AlarmDataModel()
+            List<MessageDataModel> messages = data.Select(a => new MessageDataModel()
             {
                 code = a.Code,
                 type = ((enTypeAlarm)a.StateId).GetDescription(),
-                description = a.Description,
+                parameters = a.Params,
                 time = CommonViewService.getTimeViewModel(a.ElapsedTime),
                 quantity = a.Count == null ? 0 : a.Count.Value,
                 day = a.Day == null ? "-" : a.Day.Value.ToString("t")
             }).ToList();
 
-            alarms = alarms.OrderByDescending(o => o.time.elapsed).ToList();
+            messages = messages.OrderByDescending(o => o.time.elapsed).ToList();
 
             SortingViewModel sorting = new SortingViewModel();
             sorting.duration = enSorting.Descending.GetDescription();
 
-            result.alarms = alarms;
+            result.messages = messages;
             result.sorting = sorting;
-
+            
 
             return result;
         }
@@ -98,11 +96,11 @@ namespace FomMonitoringBLL.ViewServices
             periodTrend.EndDate = period.EndDate;
             periodTrend.Aggregation = granularity;
 
-            List<HistoryAlarmModel> data = AlarmService.GetAggregationAlarms(machine, periodTrend, enDataType.Historical).OrderBy(o => o.Day).ToList();
+            List<HistoryMessageModel> data = MessageService.GetAggregationMessages(machine, periodTrend, enDataType.Historical).OrderBy(o => o.Day).ToList();
 
             if (data.Count == 0)
                 return null;
-
+           
             options.yTitle = string.Format("{0} (n)", Resource.Quantity);
 
             List<DateTime> days = data.Where(w => w.Day != null).Select(s => s.Day.Value).Distinct().ToList();

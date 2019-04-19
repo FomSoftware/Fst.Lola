@@ -197,5 +197,30 @@ namespace FomMonitoringCore.DAL
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_HistoricizingAll", machineIdParameter);
         }
+    
+        public virtual ObjectResult<usp_AggregationMessage_Result1> usp_AggregationMessage(Nullable<int> machineId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<int> aggregation, Nullable<int> dataType)
+        {
+            var machineIdParameter = machineId.HasValue ?
+                new ObjectParameter("machineId", machineId) :
+                new ObjectParameter("machineId", typeof(int));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(System.DateTime));
+    
+            var aggregationParameter = aggregation.HasValue ?
+                new ObjectParameter("aggregation", aggregation) :
+                new ObjectParameter("aggregation", typeof(int));
+    
+            var dataTypeParameter = dataType.HasValue ?
+                new ObjectParameter("dataType", dataType) :
+                new ObjectParameter("dataType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AggregationMessage_Result1>("usp_AggregationMessage", machineIdParameter, startDateParameter, endDateParameter, aggregationParameter, dataTypeParameter);
+        }
     }
 }

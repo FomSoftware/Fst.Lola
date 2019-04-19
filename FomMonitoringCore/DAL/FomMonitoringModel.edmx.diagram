@@ -44,7 +44,7 @@
         <AssociationConnector Association="FST_FomMonitoringModel.FK_Bar_Machine" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.Spindle" Width="1.5" PointX="5.25" PointY="59.375" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_Spindle_Machine" />
-        <EntityTypeShape EntityType="FST_FomMonitoringModel.JsonData" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.JsonData" Width="1.5" PointX="3" PointY="0.75" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.UserMachineMapping" Width="1.5" PointX="5.25" PointY="52.375" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_UserMachineMapping_Machine" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryMessage" Width="1.5" PointX="11.25" PointY="29.875" />

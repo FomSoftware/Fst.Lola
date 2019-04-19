@@ -27,7 +27,7 @@ namespace FomMonitoringCore.Service
             {
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
-                    List<usp_AggregationAlarm_Result> query = ent.usp_AggregationAlarm(machine.Id, period.StartDate, period.EndDate, (int)period.Aggregation, (int)dataType).ToList();
+                    List<usp_AggregationMessage_Result1> query = ent.usp_AggregationMessage(machine.Id, period.StartDate, period.EndDate, (int)period.Aggregation, (int)dataType).ToList();
                     result = query.Adapt<List<HistoryMessageModel>>();
                 }
             }
@@ -62,7 +62,7 @@ namespace FomMonitoringCore.Service
                 {
                     string aggType = period.Aggregation.GetDescription();
 
-                    List<HistoryAlarm> query = (from hs in ent.HistoryAlarm
+                    List<HistoryMessage> query = (from hs in ent.HistoryMessage
                                                 where hs.MachineId == machine.Id
                                                 && hs.Day >= period.StartDate && hs.Day <= period.EndDate
                                                 && hs.TypeHistory == aggType

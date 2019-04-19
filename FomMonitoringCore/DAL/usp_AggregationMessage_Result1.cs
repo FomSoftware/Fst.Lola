@@ -10,24 +10,19 @@
 namespace FomMonitoringCore.DAL
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class MessageMachine
+    public partial class usp_AggregationMessage_Result1
     {
         public int Id { get; set; }
         public string Code { get; set; }
+        public Nullable<int> Count { get; set; }
         public Nullable<System.DateTime> Day { get; set; }
+        public string Params { get; set; }
         public Nullable<long> ElapsedTime { get; set; }
         public Nullable<int> MachineId { get; set; }
-        public string Operator { get; set; }
-        public Nullable<System.DateTime> StartTime { get; set; }
+        public Nullable<int> Period { get; set; }
         public Nullable<int> StateId { get; set; }
-        public string Params { get; set; }
-        public string Type { get; set; }
         public Nullable<int> Group { get; set; }
-        public bool IsVisible { get; set; }
-    
-        public virtual Machine Machine { get; set; }
-        public virtual State State { get; set; }
+        public string TypeHistory { get; set; }
     }
 }
