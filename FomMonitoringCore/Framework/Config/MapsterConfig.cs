@@ -21,8 +21,11 @@ namespace FomMonitoringCore.Framework.Config
 
             // DAL to Model
             config.NewConfig<AlarmMachine, AlarmMachineModel>();
+            config.NewConfig<MessageMachine, MessageMachineModel>();
             config.NewConfig<Bar, BarModel>();
             config.NewConfig<HistoryAlarm, HistoryAlarmModel>()
+                .Map(dest => dest.enState, src => (enState)src.StateId);
+            config.NewConfig<HistoryMessage, HistoryMessageModel>()
                 .Map(dest => dest.enState, src => (enState)src.StateId);
             config.NewConfig<HistoryPiece, HistoryPieceModel>();
             config.NewConfig<HistoryState, HistoryStateModel>()
