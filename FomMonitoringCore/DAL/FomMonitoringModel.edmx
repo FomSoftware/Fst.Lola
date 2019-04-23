@@ -122,6 +122,7 @@
           <Property Name="Period" Type="int" />
           <Property Name="StateId" Type="int" />
           <Property Name="TypeHistory" Type="char" MaxLength="1" />
+		  <Property Name="Group" Type="int" />
         </EntityType>
         <EntityType Name="HistoryPiece">
           <Key>
@@ -747,6 +748,13 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Parameter Name="endDate" Type="datetime" Mode="In" />
           <Parameter Name="aggregation" Type="int" Mode="In" />
         </Function>
+		<Function Name="usp_AggregationMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="machineId" Type="int" Mode="In" />
+          <Parameter Name="startDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
+          <Parameter Name="aggregation" Type="int" Mode="In" />
+          <Parameter Name="dataType" Type="int" Mode="In" />
+        </Function>
         <Function Name="usp_AggregationPiece" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="machineId" Type="int" Mode="In" />
           <Parameter Name="startDate" Type="datetime" Mode="In" />
@@ -1112,7 +1120,14 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySet Name="FomMonitoringApi" EntityType="FST_FomMonitoringModel.FomMonitoringApi" />
           <EntitySet Name="FomMonitoringDatabaseMapping" EntityType="FST_FomMonitoringModel.FomMonitoringDatabaseMapping" />
           <EntitySet Name="FomMonitoringUpdateUsers" EntityType="FST_FomMonitoringModel.FomMonitoringUpdateUsers" />
-          </EntityContainer>
+          <FunctionImport Name="usp_AggregationMessage" ReturnType="Collection(FST_FomMonitoringModel.usp_AggregationMessage_Result)">
+            <Parameter Name="machineId" Mode="In" Type="Int32" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+            <Parameter Name="aggregation" Mode="In" Type="Int32" />
+            <Parameter Name="dataType" Mode="In" Type="Int32" />
+          </FunctionImport>
+		  </EntityContainer>
         <EntityType Name="AlarmMachine">
           <Key>
             <PropertyRef Name="Id" />
@@ -1839,6 +1854,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_Machine" FromRole="HistoryMessage" ToRole="Machine" />
           <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_State" FromRole="HistoryMessage" ToRole="State" />
           <Property Name="Params" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+		  <Property Name="Group" Type="Int32" />
         </EntityType>
         <EntityType Name="MessageMachine">
           <Key>
@@ -1985,6 +2001,19 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="Message" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
           <Property Name="Exception" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
         </EntityType>
+        <ComplexType Name="usp_AggregationMessage_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Count" Nullable="true" />
+          <Property Type="DateTime" Name="Day" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Params" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="ElapsedTime" Nullable="true" />
+          <Property Type="Int32" Name="MachineId" Nullable="true" />
+          <Property Type="Int32" Name="Period" Nullable="true" />
+          <Property Type="Int32" Name="StateId" Nullable="true" />
+          <Property Type="Int32" Name="Group" Nullable="true" />
+          <Property Type="String" Name="TypeHistory" Nullable="true" MaxLength="1" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2438,6 +2467,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="HistoryMessage">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.HistoryMessage">
               <MappingFragment StoreEntitySet="HistoryMessage">
+				<ScalarProperty Name="Group" ColumnName="Group" />
                 <ScalarProperty Name="Params" ColumnName="Params" />
                 <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
@@ -2532,6 +2562,23 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+		  <FunctionImportMapping FunctionImportName="usp_AggregationMessage" FunctionName="FST_FomMonitoringModel.Store.usp_AggregationMessage">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="FST_FomMonitoringModel.usp_AggregationMessage_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Params" ColumnName="Params" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

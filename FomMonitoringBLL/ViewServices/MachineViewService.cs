@@ -22,6 +22,7 @@ namespace FomMonitoringBLL.ViewServices
             machine.Efficiency = EfficiencyViewService.GetEfficiency(context);
             machine.Productivity = ProductivityViewService.GetProductivity(context);
             machine.Alarms = AlarmsViewService.GetAlarms(context);
+            machine.Messages = MessagesViewService.GetMessages(context);
             machine.Jobs = JobsViewService.GetJobs(context);
             machine.Spindles = SpindlesViewService.GetSpindles(context);
             machine.Tools = ToolsViewService.GetTools(context);

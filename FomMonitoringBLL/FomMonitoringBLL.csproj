@@ -55,6 +55,8 @@
     <Compile Include="ViewModel\CommonViewModel.cs" />
     <Compile Include="ViewModel\EfficiencyViewModel.cs" />
     <Compile Include="ViewModel\FilterViewModel.cs" />
+    <Compile Include="ViewModel\MessageDetailViewModel.cs" />
+    <Compile Include="ViewModel\MessageViewModel.cs" />
     <Compile Include="ViewModel\MesViewModel.cs" />
     <Compile Include="ViewModel\SharedViewModel.cs" />
     <Compile Include="ViewModel\I18nViewModel.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="ViewServices\AlarmsViewService.cs" />
     <Compile Include="ViewServices\CommonViewService.cs" />
     <Compile Include="ViewServices\MachineViewService.cs" />
+    <Compile Include="ViewServices\MessagesViewService.cs" />
     <Compile Include="ViewServices\MesViewService.cs" />
     <Compile Include="ViewServices\EfficiencyViewService.cs" />
     <Compile Include="ViewServices\JobsViewService.cs" />
