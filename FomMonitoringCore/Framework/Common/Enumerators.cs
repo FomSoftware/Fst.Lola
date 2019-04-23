@@ -126,4 +126,12 @@ namespace FomMonitoringCore.Framework.Common
         WrongPassword
     }
 
+    // I valori storicizzati di default sono non visibili mentre quelli visibili sono sempre storicizzati
+    public enum enMessageScope
+    {
+        Ignore = 0,
+        Historicised = 1,
+        Visible = 2
+    }
+
 }

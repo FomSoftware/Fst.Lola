@@ -73,6 +73,28 @@ namespace FomMonitoringCore.Service.DataMapping
 
                         List<MessageMachine> messageMachine = messageSQLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<MessageMachine>>();
                         messageMachine = messageMachine.Where(w => w.StartTime > (machineActual.LastUpdate ?? new DateTime())).ToList();
+
+                        //devo eliminare quei messaggi che hanno scope = 0 da mdb
+                        foreach(MessageMachine mm in messageMachine.ToList())
+                        {
+                            int scope = ReadMessages.ReadMessageScope(mm.Code, ent);
+
+                            switch (scope)
+                            {
+                                case (int)enMessageScope.Ignore:
+                                    messageMachine.Remove(mm);
+                                    break;
+                                case (int)enMessageScope.Historicised:
+                                    mm.IsVisible = false;
+                                    break;
+                                case (int)enMessageScope.Visible:
+                                    mm.IsVisible = true;
+                                    break;
+
+                            }
+                            
+                        }                                      
+
                         ent.MessageMachine.AddRange(messageMachine);
                         ent.SaveChanges();
                         

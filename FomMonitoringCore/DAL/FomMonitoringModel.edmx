@@ -222,6 +222,7 @@
           <Property Name="Params" Type="nvarchar(max)" />
           <Property Name="Type" Type="nvarchar" MaxLength="150" />
           <Property Name="Group" Type="int" />
+          <Property Name="IsVisible" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Piece">
           <Key>
@@ -315,6 +316,16 @@
           <Property Name="StartTime" Type="datetime" />
           <Property Name="StateId" Type="int" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="ToolMachine">
           <Key>
             <PropertyRef Name="Id" />
@@ -349,6 +360,82 @@
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="MachineId" Type="int" Nullable="false" />
           <Property Name="ExpirationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LOLAPROD.log.FomMonitoring' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FomMonitoring">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Thread" />
+            <PropertyRef Name="Level" />
+            <PropertyRef Name="Logger" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Thread" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Level" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Logger" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="8000" Nullable="false" />
+          <Property Name="Exception" Type="varchar" MaxLength="8000" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LOLAPROD.log.FomMonitoringApi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FomMonitoringApi">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Thread" />
+            <PropertyRef Name="Level" />
+            <PropertyRef Name="Logger" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Thread" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Level" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Logger" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="8000" Nullable="false" />
+          <Property Name="Exception" Type="varchar" MaxLength="8000" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LOLAPROD.log.FomMonitoringDatabaseMapping' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FomMonitoringDatabaseMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Thread" />
+            <PropertyRef Name="Level" />
+            <PropertyRef Name="Logger" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Thread" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Level" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Logger" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="8000" Nullable="false" />
+          <Property Name="Exception" Type="varchar" MaxLength="8000" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FomMonitoringUpdateUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Thread" />
+            <PropertyRef Name="Level" />
+            <PropertyRef Name="Logger" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Thread" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Level" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Logger" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="8000" Nullable="false" />
+          <Property Name="Exception" Type="varchar" MaxLength="8000" />
         </EntityType>
         <Association Name="FK_AlarmMachine_Machine">
           <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
@@ -554,30 +641,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MessageMachine_Machine">
-          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
-          <End Role="MessageMachine" Type="Self.MessageMachine" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Machine">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MessageMachine">
-              <PropertyRef Name="MachineId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MessageMachine_State">
-          <End Role="State" Type="Self.State" Multiplicity="0..1" />
-          <End Role="MessageMachine" Type="Self.MessageMachine" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="State">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MessageMachine">
-              <PropertyRef Name="StateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Piece_Bar">
           <End Role="Bar" Type="Self.Bar" Multiplicity="0..1" />
           <End Role="Piece" Type="Self.Piece" Multiplicity="*" />
@@ -725,9 +788,54 @@
           <EntitySet Name="Spindle" EntityType="Self.Spindle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StateMachine" EntityType="Self.StateMachine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ToolMachine" EntityType="Self.ToolMachine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserCustomerMapping" EntityType="Self.UserCustomerMapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMachineMapping" EntityType="Self.UserMachineMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FomMonitoring" EntityType="Self.FomMonitoring" store:Type="Tables" store:Schema="log">
+            <DefiningQuery>SELECT 
+    [FomMonitoring].[Id] AS [Id], 
+    [FomMonitoring].[Date] AS [Date], 
+    [FomMonitoring].[Thread] AS [Thread], 
+    [FomMonitoring].[Level] AS [Level], 
+    [FomMonitoring].[Logger] AS [Logger], 
+    [FomMonitoring].[Message] AS [Message], 
+    [FomMonitoring].[Exception] AS [Exception]
+    FROM [log].[FomMonitoring] AS [FomMonitoring]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="FomMonitoringApi" EntityType="Self.FomMonitoringApi" store:Type="Tables" store:Schema="log">
+            <DefiningQuery>SELECT 
+    [FomMonitoringApi].[Id] AS [Id], 
+    [FomMonitoringApi].[Date] AS [Date], 
+    [FomMonitoringApi].[Thread] AS [Thread], 
+    [FomMonitoringApi].[Level] AS [Level], 
+    [FomMonitoringApi].[Logger] AS [Logger], 
+    [FomMonitoringApi].[Message] AS [Message], 
+    [FomMonitoringApi].[Exception] AS [Exception]
+    FROM [log].[FomMonitoringApi] AS [FomMonitoringApi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="FomMonitoringDatabaseMapping" EntityType="Self.FomMonitoringDatabaseMapping" store:Type="Tables" store:Schema="log">
+            <DefiningQuery>SELECT 
+    [FomMonitoringDatabaseMapping].[Id] AS [Id], 
+    [FomMonitoringDatabaseMapping].[Date] AS [Date], 
+    [FomMonitoringDatabaseMapping].[Thread] AS [Thread], 
+    [FomMonitoringDatabaseMapping].[Level] AS [Level], 
+    [FomMonitoringDatabaseMapping].[Logger] AS [Logger], 
+    [FomMonitoringDatabaseMapping].[Message] AS [Message], 
+    [FomMonitoringDatabaseMapping].[Exception] AS [Exception]
+    FROM [log].[FomMonitoringDatabaseMapping] AS [FomMonitoringDatabaseMapping]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="FomMonitoringUpdateUsers" EntityType="Self.FomMonitoringUpdateUsers" store:Type="Tables" store:Schema="log">
+            <DefiningQuery>SELECT 
+    [FomMonitoringUpdateUsers].[Id] AS [Id], 
+    [FomMonitoringUpdateUsers].[Date] AS [Date], 
+    [FomMonitoringUpdateUsers].[Thread] AS [Thread], 
+    [FomMonitoringUpdateUsers].[Level] AS [Level], 
+    [FomMonitoringUpdateUsers].[Logger] AS [Logger], 
+    [FomMonitoringUpdateUsers].[Message] AS [Message], 
+    [FomMonitoringUpdateUsers].[Exception] AS [Exception]
+    FROM [log].[FomMonitoringUpdateUsers] AS [FomMonitoringUpdateUsers]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_AlarmMachine_Machine" Association="Self.FK_AlarmMachine_Machine">
             <End Role="Machine" EntitySet="Machine" />
             <End Role="AlarmMachine" EntitySet="AlarmMachine" />
@@ -795,14 +903,6 @@
           <AssociationSet Name="FK_Machine_Plant" Association="Self.FK_Machine_Plant">
             <End Role="Plant" EntitySet="Plant" />
             <End Role="Machine" EntitySet="Machine" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MessageMachine_Machine" Association="Self.FK_MessageMachine_Machine">
-            <End Role="Machine" EntitySet="Machine" />
-            <End Role="MessageMachine" EntitySet="MessageMachine" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MessageMachine_State" Association="Self.FK_MessageMachine_State">
-            <End Role="State" EntitySet="State" />
-            <End Role="MessageMachine" EntitySet="MessageMachine" />
           </AssociationSet>
           <AssociationSet Name="FK_Piece_Bar" Association="Self.FK_Piece_Bar">
             <End Role="Bar" EntitySet="Bar" />
@@ -1007,6 +1107,11 @@
             <End Role="State" EntitySet="State" />
             <End Role="MessageMachine" EntitySet="MessageMachine" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="FST_FomMonitoringModel.sysdiagrams" />
+          <EntitySet Name="FomMonitoring" EntityType="FST_FomMonitoringModel.FomMonitoring" />
+          <EntitySet Name="FomMonitoringApi" EntityType="FST_FomMonitoringModel.FomMonitoringApi" />
+          <EntitySet Name="FomMonitoringDatabaseMapping" EntityType="FST_FomMonitoringModel.FomMonitoringDatabaseMapping" />
+          <EntitySet Name="FomMonitoringUpdateUsers" EntityType="FST_FomMonitoringModel.FomMonitoringUpdateUsers" />
           </EntityContainer>
         <EntityType Name="AlarmMachine">
           <Key>
@@ -1752,6 +1857,7 @@
           <Property Name="Group" Type="Int32" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_MessageMachine_Machine" FromRole="MessageMachine" ToRole="Machine" />
           <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_MessageMachine_State" FromRole="MessageMachine" ToRole="State" />
+          <Property Name="IsVisible" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_HistoryMessage_Machine">
           <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
@@ -1801,6 +1907,84 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="FomMonitoring">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Thread" />
+            <PropertyRef Name="Level" />
+            <PropertyRef Name="Logger" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Thread" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Level" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Logger" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="Exception" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FomMonitoringApi">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Thread" />
+            <PropertyRef Name="Level" />
+            <PropertyRef Name="Logger" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Thread" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Level" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Logger" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="Exception" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FomMonitoringDatabaseMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Thread" />
+            <PropertyRef Name="Level" />
+            <PropertyRef Name="Logger" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Thread" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Level" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Logger" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="Exception" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FomMonitoringUpdateUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Thread" />
+            <PropertyRef Name="Level" />
+            <PropertyRef Name="Logger" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Thread" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Level" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Logger" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="Exception" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2270,6 +2454,7 @@
           <EntitySetMapping Name="MessageMachine">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.MessageMachine">
               <MappingFragment StoreEntitySet="MessageMachine">
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
                 <ScalarProperty Name="Group" ColumnName="Group" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Params" ColumnName="Params" />
@@ -2280,6 +2465,69 @@
                 <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
                 <ScalarProperty Name="Day" ColumnName="Day" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FomMonitoring">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.FomMonitoring">
+              <MappingFragment StoreEntitySet="FomMonitoring">
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Logger" ColumnName="Logger" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Thread" ColumnName="Thread" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FomMonitoringApi">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.FomMonitoringApi">
+              <MappingFragment StoreEntitySet="FomMonitoringApi">
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Logger" ColumnName="Logger" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Thread" ColumnName="Thread" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FomMonitoringDatabaseMapping">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.FomMonitoringDatabaseMapping">
+              <MappingFragment StoreEntitySet="FomMonitoringDatabaseMapping">
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Logger" ColumnName="Logger" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Thread" ColumnName="Thread" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FomMonitoringUpdateUsers">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.FomMonitoringUpdateUsers">
+              <MappingFragment StoreEntitySet="FomMonitoringUpdateUsers">
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Logger" ColumnName="Logger" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Thread" ColumnName="Thread" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
