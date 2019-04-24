@@ -1,10 +1,12 @@
 ﻿using FomMonitoringBLL.ViewModel;
+using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using FomMonitoringResources;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace FomMonitoringBLL.ViewServices
@@ -36,13 +38,16 @@ namespace FomMonitoringBLL.ViewServices
                 parameters = a.Params,
                 timestamp = a.Day,
                 type = ((enTypeAlarm)a.StateId).GetDescription(),
-
+                group = a.Group,
+                description = ReadMessages.GetMessageDescription(a.Code, a.Params, CultureInfo.CurrentCulture.EnglishName)
             }).ToList();
 
             messages = messages.OrderByDescending(o => o.timestamp).ToList();
 
             SortingViewModel sorting = new SortingViewModel();
             sorting.timestamp = enSorting.Descending.GetDescription();
+
+            sorting.group = enSorting.Ascending.GetDescription();
 
             result.messages = messages;
             result.sorting = sorting;

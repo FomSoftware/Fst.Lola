@@ -537,4 +537,7 @@
   <data name="Timestamp" xml:space="preserve">
     <value>Fecha/Hora</value>
   </data>
+  <data name="Group" xml:space="preserve">
+    <value>Grupo</value>
+  </data>
 </root>

@@ -42,7 +42,6 @@ namespace FomMonitoringCore.Service
 
             return result;
         }
-
         #endregion
 
 

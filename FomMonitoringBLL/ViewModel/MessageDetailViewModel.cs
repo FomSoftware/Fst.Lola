@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FomMonitoringCore.Framework.Common;
+using System;
 using System.Globalization;
 
 namespace FomMonitoringBLL.ViewModel
@@ -10,6 +11,9 @@ namespace FomMonitoringBLL.ViewModel
         public string parameters { get; set; }
         public DateTime? timestamp { get; set; }
         public string type { get; set; }
+
+        public int group { get; set; }
+        public string description { get; set; }        
 
         public string formatted_timestamp
         {

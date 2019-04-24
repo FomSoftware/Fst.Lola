@@ -34,6 +34,7 @@ namespace FomMonitoringBLL.ViewModel
         public string duration { get; set; }
         public string quantity { get; set; }
         public string timestamp { get; set; }
+        public string group { get; set; }
     }
 
     public class ChartViewModel

@@ -7,6 +7,7 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace FomMonitoringCore.Framework.Common
@@ -16,7 +17,7 @@ namespace FomMonitoringCore.Framework.Common
         static string dbConn = ApplicationSettingService.GetWebConfigKey("DbMessagesConnectionString");
 
         public static int ReadMessageScope(string code, FST_FomMonitoringEntities ent)
-        {           
+        {
             int result = 0;
 
 
@@ -58,6 +59,36 @@ namespace FomMonitoringCore.Framework.Common
 
             result = ent.Database.SqlQuery<int>("Select scope from AnagMessages where id = @id", new SqlParameter("@id", code)).FirstOrDefault();
 
+            return result;
+        }
+
+        public static string GetMessageDescription(string code, string parameters, string language)
+        {
+            string result = "";
+            using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+            {
+                string separator = "#-#";
+                result = ent.Database.SqlQuery<string>("Select " + language + " from AnagMessages where id = @id", new SqlParameter("@id", code)).FirstOrDefault();
+
+                if (result.IndexOf(separator) > -1)
+                {
+                    string res = "";
+                    string[] splitted = Regex.Split(result, separator);
+                    string[] splittedParams = parameters.Split(',');
+                    if (splitted.Length < splittedParams.Length)
+                        return result;
+                   
+                    for (int i = 0; i < splitted.Length; i++)
+                    {
+                        if (i < splittedParams.Length)
+                            res += splitted[i] + splittedParams[i];
+                        else
+                            res += splitted[i];
+                    }
+                    result = res;
+                }
+            }         
+            
             return result;
         }
     }

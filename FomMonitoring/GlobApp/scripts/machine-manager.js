@@ -43,10 +43,11 @@
 
             Efficiency.update(data.Efficiency);
             Productivity.update(data.Productivity);
-            Alarms.update(data.Alarms);
+            //Alarms.update(data.Alarms);
             Spindles.update(data.Spindles);
             Tools.update(data.Tools);
             Jobs.update(data.Jobs);
+            Messages.update(data.Messages);
 
             Vue.nextTick(function ()
             {
@@ -139,6 +140,11 @@
             loop: false
         })
 
+        var swiper_message = new Swiper('.swiper-container.messages', {
+            direction: 'horizontal',
+            loop: false
+        })
+
         $('.slide-summary').click(function (e) {
             e.preventDefault();
             var group = $(this).data('group');
@@ -161,6 +167,9 @@
 
             if (group == 'alarms')
                 swiper_alarm.slideTo(0, 300);
+
+            if (group == 'messages')
+                swiper_message.slideTo(0, 300);
         });
 
         $('.slide-operator').click(function (e)

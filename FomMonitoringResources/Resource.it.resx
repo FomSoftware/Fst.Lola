@@ -540,4 +540,7 @@
   <data name="PeriodicMaintenance" xml:space="preserve">
     <value>Manutenzione Periodica Ordinaria</value>
   </data>
+  <data name="Group" xml:space="preserve">
+    <value>Gruppo</value>
+  </data>
 </root>

@@ -201,12 +201,12 @@ namespace FomMonitoringBLL.ViewServices
 
             HistoryStateModel stateProd = data.Where(w => w.enState == enState.Production).FirstOrDefault();
 
-            long? totalProd = stateProd.ElapsedTime;
+            long? totalProd = stateProd?.ElapsedTime;
             long? totalOn = data.Where(w => w.enState != enState.Off).Select(s => s.ElapsedTime).Sum();
             long? totalOff = data.Where(w => w.enState == enState.Off).Select(s => s.ElapsedTime).Sum();
 
             decimal? percProd = Common.GetPercentage(totalProd, totalOn);
-            decimal? overfeed = stateProd.OverfeedAvg;
+            decimal? overfeed = stateProd?.OverfeedAvg;
 
             options.series = new List<SerieViewModel>(){
                 new SerieViewModel {

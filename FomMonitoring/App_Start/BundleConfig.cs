@@ -85,7 +85,8 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/waitme-manager.js",
                         "~/GlobApp/scripts/machine/efficiency.js",
                         "~/GlobApp/scripts/machine/productivity.js",
-                        "~/GlobApp/scripts/machine/alarms.js",
+                        //"~/GlobApp/scripts/machine/alarms.js",
+                        "~/GlobApp/scripts/machine/messages.js",
                         "~/GlobApp/scripts/machine/spindles.js",
                         "~/GlobApp/scripts/machine/tools.js",
                         "~/GlobApp/scripts/machine/jobs.js"
