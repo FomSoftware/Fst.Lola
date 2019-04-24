@@ -60,5 +60,19 @@ namespace FomMonitoringCore.Framework.Common
 
             return result;
         }
+
+        public static string ComputeMessage(string code, FST_FomMonitoringEntities ent, string language, params string[] p)
+        {
+            string result = ent.Database.SqlQuery<string>($"Select {language} from AnagMessages where id = @id", new SqlParameter("@id", code)).FirstOrDefault();
+
+            return result;
+        }
+
+        public static string ReplaceFirstOccurrence(string source, string find, string replace)
+        {
+            int place = source.IndexOf(find);
+            string result = source.Remove(place, find.Length).Insert(place, replace);
+            return result;
+        }
     }
 }

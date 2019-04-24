@@ -253,9 +253,6 @@
     <Compile Include="DAL\usp_AggregationMessage_Result.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL\usp_AggregationMessage_Result1.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DAL\usp_AggregationPiece_Result.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
@@ -328,6 +325,8 @@
     <Compile Include="Framework\Common\ExtensionMethods.cs" />
     <Compile Include="Framework\Common\ReadMessages.cs" />
     <Compile Include="Framework\Config\MapsterConfig.cs" />
+    <Compile Include="Framework\Model\AggregationBarModel.cs" />
+    <Compile Include="Framework\Model\AggregationMessageModel.cs" />
     <Compile Include="Framework\Model\AlarmMachineModel.cs" />
     <Compile Include="Framework\Model\BarModel.cs" />
     <Compile Include="Framework\Model\ContextModel.cs" />
