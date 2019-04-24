@@ -63,7 +63,7 @@ namespace FomMonitoringCore.Service
                             if (period.Aggregation == enAggregation.Day)
                             {
                                 var historyMessages = ent.HistoryMessage
-                                    .Where(hm => hm.MachineId == machine.Id && hm.Day.Value.DayOfYear >= period.StartDate.DayOfYear && hm.Day.Value.DayOfYear <= period.EndDate.DayOfYear).ToList()
+                                    .Where(hm => hm.MachineId == machine.Id && hm.Day.Value >= period.StartDate && hm.Day.Value <= period.EndDate).ToList()
                                     .Select(s => new AggregationMessageModel
                                     {
                                         Id = s.Id,
