@@ -206,6 +206,9 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.RevisedEventsCount, src => src.RevisedEvents)
                 .Map(dest => dest.IsActive, src => true)
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
+
+
+            config.NewConfig<AggregationMessageModel, HistoryMessageModel>();
         }
     }
 }

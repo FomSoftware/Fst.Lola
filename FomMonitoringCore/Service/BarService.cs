@@ -19,7 +19,7 @@ namespace FomMonitoringCore.Service
         /// <param name="machine"></param>
         /// <param name="period"></param>
         /// <returns>Lista dei dettagli di barre e spezzoni</returns>
-        public static List<HistoryBarModel> GetAggregationBar(MachineInfoModel machine, PeriodModel period)
+        public static List<HistoryBarModel> GetAggregationBarSP(MachineInfoModel machine, PeriodModel period)
         {
             List<HistoryBarModel> result = new List<HistoryBarModel>();
 
@@ -29,6 +29,50 @@ namespace FomMonitoringCore.Service
                 {
                     List<usp_AggregationBar_Result> query = ent.usp_AggregationBar(machine.Id, period.StartDate, period.EndDate, (int)period.Aggregation).ToList();
                     result = query.Adapt<List<HistoryBarModel>>();
+                }
+            }
+            catch (Exception ex)
+            {
+                string errMessage = string.Format(ex.GetStringLog(),
+                    machine.Id.ToString(),
+                    string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString()));
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region Entity AGGREGATION
+
+        /// <summary>
+        /// Ritorna i dati di barre e spezzoni in base al tipo di aggregazione
+        /// </summary>
+        /// <param name="machine"></param>
+        /// <param name="period"></param>
+        /// <returns>Lista dei dettagli di barre e spezzoni</returns>
+        public static List<HistoryBarModel> GetAggregationBar(MachineInfoModel machine, PeriodModel period)
+        {
+            var result = new List<HistoryBarModel>();
+
+            try
+            {
+                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                {
+                    result = ent.HistoryBar.Where(hb => hb.MachineId == machine.Id && hb.Day >= period.StartDate && hb.Day <= period.EndDate).GroupBy(g => g.MachineId).Select(n => new HistoryBarModel
+                    {
+                        Count = n.Count(),
+                        Id = n.Max(i => i.Id),
+                        Length = n.Sum(i => i.Length),
+                        Day = n.Max(i => i.Day),
+                        MachineId = n.Key,
+                        OffcutCount = n.Sum(i => i.OffcutCount),
+                        OffcutLength = n.Sum(i => i.OffcutLength),
+                        Period = null,
+                        System = null,
+                        TypeHistory = "d"
+                    }).ToList();
                 }
             }
             catch (Exception ex)

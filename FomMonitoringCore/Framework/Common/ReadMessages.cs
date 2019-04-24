@@ -68,7 +68,7 @@ namespace FomMonitoringCore.Framework.Common
             using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
             {
                 string separator = "#-#";
-                result = ent.Database.SqlQuery<string>("Select " + language + " from AnagMessages where id = @id", new SqlParameter("@id", code)).FirstOrDefault();
+                result = ent.Database.SqlQuery<string>($"Select {language} from AnagMessages where id = @id", new SqlParameter("@id", code)).FirstOrDefault();
 
                 if (result.IndexOf(separator) > -1)
                 {
@@ -77,7 +77,7 @@ namespace FomMonitoringCore.Framework.Common
                     string[] splittedParams = parameters.Split(',');
                     if (splitted.Length < splittedParams.Length)
                         return result;
-                   
+
                     for (int i = 0; i < splitted.Length; i++)
                     {
                         if (i < splittedParams.Length)
@@ -87,9 +87,18 @@ namespace FomMonitoringCore.Framework.Common
                     }
                     result = res;
                 }
-            }         
-            
+            }
+
+            return result;
+        }       
+
+        public static string ReplaceFirstOccurrence(string source, string find, string replace)
+        {
+            int place = source.IndexOf(find);
+            string result = source.Remove(place, find.Length).Insert(place, replace);
+
             return result;
         }
+
     }
 }
