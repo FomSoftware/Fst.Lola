@@ -601,6 +601,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Messages.
+        /// </summary>
+        public static string Messages {
+            get {
+                return ResourceManager.GetString("Messages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Model.
         /// </summary>
         public static string Model {

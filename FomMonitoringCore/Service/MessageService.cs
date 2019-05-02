@@ -67,14 +67,14 @@ namespace FomMonitoringCore.Service
                                     .Select(s => new AggregationMessageModel
                                     {
                                         Id = s.Id,
-                                        Code = null,
+                                        Code = s.Code,
                                         StateId = s.StateId,
                                         Count = s.Count,
                                         Day = s.Day,
                                         ElapsedTime = s.ElapsedTime,
-                                        Group = s.Group,
+                                        //Group = s.Group,
                                         MachineId = s.MachineId,
-                                        Params = s.Params,
+                                        //Params = s.Params,
                                         Period = s.Period,
                                         TypeHistory = "d"
                                     }).ToList();
@@ -212,21 +212,22 @@ namespace FomMonitoringCore.Service
                                 .GroupBy(g => new
                                 {
                                     g.MachineId,
-                                    g.Params,
-                                    g.Group,
-                                    g.StateId
+                                    //g.Params,
+                                    //g.Group,
+                                    g.StateId,
+                                    g.Code
 
                                 }).ToList().Select(s => new AggregationMessageModel
                                 {
                                     Id = s.Max(m => m.Id),
-                                    Code = null,
+                                    Code = s.Key.Code,
                                     StateId = s.Key.StateId,
                                     Count = s.Count(),
                                     Day = s.Max(i => i.Day),
                                     ElapsedTime = s.Sum(i => i.ElapsedTime),
-                                    Group = s.Key.Group,
+                                    //Group = s.Key.Group,
                                     MachineId = s.Key.MachineId,
-                                    Params = s.Key.Params,
+                                    //Params = s.Key.Params,
                                     TypeHistory = "y"
                                 }).ToList();
 

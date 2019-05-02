@@ -206,14 +206,19 @@
         vmEfficiency.overfeed = efficiency.overfeed;
         vmEfficiency.states = efficiency.states;
 
-        if (data.opt_states != null) {
-            ChartManager.stateMachinePieChart("efc_pie_chart", data.opt_states);
-        }
+        try {
+            if (data.opt_states != null) {
+                ChartManager.stateMachinePieChart("efc_pie_chart", data.opt_states);
+            }
 
-        if (data.opt_kpis != null) {
-            ChartManager.productivityMachineSolidGaugeChart("efc_kpi_chart", data.opt_kpis, localizations);
+            if (data.opt_kpis != null) {
+                ChartManager.productivityMachineSolidGaugeChart("efc_kpi_chart", data.opt_kpis, localizations);
+            }
         }
+        catch (ex) {
 
+        }
+      
         // chart historical
         if (data.opt_historical != null)
         {
