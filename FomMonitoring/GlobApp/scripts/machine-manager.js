@@ -150,6 +150,8 @@
             var group = $(this).data('group');
             if (group == 'alarms')
                 swiper_alarm.slideTo(1, 300);
+            if (group == 'messages')
+                swiper_message.slideTo(1, 300);
 
         });
 

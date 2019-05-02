@@ -10,7 +10,7 @@
             </span>
         </div>
         <div class="title-kpi">
-            <span>@Resource.Alarms</span>
+            <span>@Resource.Messages</span>
             <div class="sub-period js-period"></div>
         </div>
         <div class="portlet-details" v-show="show.historical">
@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="portlet-body">
-        <div class="card-portlet card-alarms" v-cloak>
+        <div class="card-portlet card-messages" v-cloak>
             <div class="front" style="padding: 0px;">
                 <div v-if="messages != null">
                     <div class="slimscroll">
@@ -97,8 +97,9 @@
                                     <table class="table table-alerts">
                                         <thead>
                                             <tr>
-                                                <th class="th-title">
-                                                </th>
+                                                <th style="padding-left:10px">
+                                                    <span class="value-title"> @Resource.Code </span>
+                                                </th>                                           
                                                 <th class="th-duration sorting" v-bind:class="sorting.duration" v-on:click="sortDuration()">
                                                     <i class="fa fa-clock-o color-aaa"></i>
                                                     <span class="value-title">
@@ -122,7 +123,7 @@
                                                         <div class="code-alert">{{ message.code }}</div>
                                                         <div class="subtitle-alert" v-bind:class="colorClass(message.type)">{{ message.type }}</div>
                                                     </div>
-                                                </td>
+                                                </td>                                               
                                                 <td>
                                                     <span class="label label-default">
                                                         <time-span v-bind:duration="message.time"></time-span>

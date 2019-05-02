@@ -540,4 +540,7 @@
   <data name="Group" xml:space="preserve">
     <value>Groupe</value>
   </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Messages</value>
+  </data>
 </root>
