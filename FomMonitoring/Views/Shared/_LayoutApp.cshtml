@@ -18,16 +18,22 @@
 
 </head>
 <body>
+
     <header>
         @Html.Action("_Header", "Shared")
         @Html.Action("_Toolbar", "Shared")
-        
+
     </header>
     <section class="container-fluid">
         @RenderBody()
     </section>
 
-
+    <script type="text/x-template" id="no-data">
+        <div class="no-data">
+            <i class="fa fa-meh-o fa-3x"></i>
+            <div>@Resource.NoData</div>
+        </div>
+    </script>
     <script type="text/x-template" id="time-span">
         <span v-if="duration != null">
             <span v-if="duration.days != null">
@@ -59,7 +65,7 @@
                 <div class="modal-body"></div>
                 <form class="form-horizontal">
                     <fieldset>
-                       <div class="form-group">
+                        <div class="form-group">
                             <label class="col-md-5 control-label" for="username-input">@Resource.LastPassword:</label>
                             <div class="col-md-5">
                                 <input name="username-input" class="form-control input-md modal-input" id="last-password" type="password" placeholder="@Resource.LastPassword" required>
@@ -90,7 +96,7 @@
 
 
     <script type="text/javascript">
-               
+
         VueManager.initTimeSpanComponent();
     </script>
 

@@ -335,6 +335,23 @@
         });
     }
 
+    var initVueComponents = function () {
+        Vue.component('no-data', {
+            props: ['show'],
+            template: '#no-data'
+        });
+
+        Vue.component('modal-tool', {
+            props: ['tool'],
+            template: '#modal-tool'
+        });
+
+        Vue.component('modal-spindle', {
+            props: ['spindle'],
+            template: '#modal-spindle'
+        });
+    }
+
     var callAjaxMesViewModelData = function (plantID)
     {
         var request = $.ajax({
@@ -370,6 +387,7 @@
 
     return {
         init: init,
-        callAjaxMesViewModelData: callAjaxMesViewModelData
+        callAjaxMesViewModelData: callAjaxMesViewModelData,
+        initVueComponents: initVueComponents
     }
 }();

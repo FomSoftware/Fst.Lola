@@ -277,7 +277,7 @@
     }
 
 .box-machine .box-body .card-portlet {
-    height: auto;
+    height: 244px !important;
 }
 
     .box-machine .box-body .card-portlet .front,

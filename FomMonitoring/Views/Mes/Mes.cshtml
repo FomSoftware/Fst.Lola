@@ -21,14 +21,12 @@
                             <div class="machine-info" v-if="machine.info.description != null">
                                 <div class="text-uppercase">
                                     {{ machine.info.description }}
-                                    <span class="text-lowercase" v-if="isOffline(machine)"> (OFFLINE) </span>
                                 </div>
                                 <div class="text-lowercase">{{ machine.info.model }}</div>
                             </div>
                             <div class="machine-info" v-else>
                                 <div class="text-uppercase">
                                     {{ machine.info.model }}
-                                    <span class="text-lowercase" v-if="isOffline(machine)">(OFFLINE)</span>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +44,7 @@
             </div>
             <div class="box-body">
                 <div class="card-portlet hidden-xs" v-bind:class="'card-' + machine.info.id">
-                    <div class="front">
+                    <div class="front" v-if="!isOffline(machine)">
                         <div class="row">
                             <div class="col-xs-3 text-right">
                                 <span class="fa-stack fa-lg" v-if="machine.state != null">
@@ -109,7 +107,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="back">
+
+                    <div class="front" style="height: unset;" v-else>
+                        <no-data></no-data>
+                    </div>
+                    <div class="back" v-if="!isOffline(machine)">
                         <div class="row">
                             <div class="col-xs-3 text-right">
                                 <span class="fa-stack fa-lg" v-if="machine.efficiency != null">
@@ -185,6 +187,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="back" style="height: unset;" v-else>
+                        <no-data></no-data>
                     </div>
                 </div>
                 <div class="slide-portlet visible-xs">
@@ -333,6 +338,8 @@
 </div>
 
 <script type="text/javascript">
+
+    MesManager.initVueComponents();
 
     $(document).ready(function ()
     {
