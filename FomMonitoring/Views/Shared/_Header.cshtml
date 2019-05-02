@@ -6,7 +6,9 @@
         <div class="header-logo">
             <img class="logo" src="~/Images/logo/Icon-35.png" />
             <img class="scritta" src="~/Images/logo/Lola-35.png" />
+            <div class="title-small" style="display: inline-table; vertical-align: bottom;">@ViewContext.Controller.GetType().Assembly.GetName().Version</div>
         </div>
+
         <div class="page-title hide">
             <div class="app-title">@Model.ControllerPage</div>
             <div class="title-small">Monitoring</div>

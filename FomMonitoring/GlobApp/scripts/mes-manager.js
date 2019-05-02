@@ -260,6 +260,15 @@
                     var url = urlMachine + '/' + machineID;
                     location.href = url;
                 },
+                isOffline: function (machine) {
+                    if (machine.state == null &&
+                        machine.job == null &&
+                        machine.operator == null &&
+                        machine.efficiency == null &&
+                        machine.productivity == null &&
+                        machine.alarms == null)
+                        return true;
+                },
                 showOverlay: function(machine)
                 {
                     if (machine.state == null &&
@@ -268,7 +277,7 @@
                         machine.efficiency == null &&
                         machine.productivity == null &&
                         machine.alarms == null)
-                        return true;
+                        return false;//return true;
                 },
                 iconState: function (state)
                 {
