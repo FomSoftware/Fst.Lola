@@ -116,13 +116,13 @@ namespace FomMonitoringBLL.ViewServices
             SerieViewModel serieOperator = new SerieViewModel();
             serieOperator.name = Resource.Operators;
             serieOperator.color = CommonViewService.GetColorAlarm(enState.Pause);
-            serieOperator.data = data.Where(w => w.enState == enState.Pause).Select(s => s.Count ?? 0).ToList();
+            serieOperator.data = data.Where(w => w.StateId == (int)enState.Pause).Select(s => s.Count ?? 0).ToList();
             series.Add(serieOperator);
 
             SerieViewModel serieError = new SerieViewModel();
             serieError.name = enState.Error.ToLocalizedString();
             serieError.color = CommonViewService.GetColorAlarm(enState.Error);
-            serieError.data = data.Where(w => w.enState == enState.Error).Select(s => s.Count ?? 0).ToList();
+            serieError.data = data.Where(w => w.StateId == (int)enState.Error).Select(s => s.Count ?? 0).ToList();
             series.Add(serieError);
 
             options.series = series;

@@ -67,14 +67,14 @@ namespace FomMonitoringCore.Service
                                     .Select(s => new AggregationMessageModel
                                     {
                                         Id = s.Id,
-                                        Code = null,
+                                        Code = s.Code,
                                         StateId = s.StateId,
                                         Count = s.Count,
                                         Day = s.Day,
                                         ElapsedTime = s.ElapsedTime,
-                                        Group = s.Group,
+                                        //Group = s.Group,
                                         MachineId = s.MachineId,
-                                        Params = s.Params,
+                                        //Params = s.Params,
                                         Period = s.Period,
                                         TypeHistory = "d"
                                     }).ToList();
