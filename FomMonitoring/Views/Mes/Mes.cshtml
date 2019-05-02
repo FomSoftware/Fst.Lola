@@ -31,7 +31,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-2 col-button">
+                    <div class="col-xs-2 col-button" v-if="!isOffline(machine)">
                         <div class="btn btn-circle btn-rotate js-toggle-card hidden-xs" v-bind:data-cardid="'card-' + machine.info.id">
                             <i class="icon-refresh fa-lg"></i>
                         </div>
@@ -109,7 +109,7 @@
                     </div>
 
                     <div class="front" style="height: unset;" v-else>
-                        <no-data></no-data>
+                        <offline-machine></offline-machine>
                     </div>
                     <div class="back" v-if="!isOffline(machine)">
                         <div class="row">
@@ -189,7 +189,7 @@
                         </div>
                     </div>
                     <div class="back" style="height: unset;" v-else>
-                        <no-data></no-data>
+                        <offline-machine></offline-machine>
                     </div>
                 </div>
                 <div class="slide-portlet visible-xs">

@@ -117,11 +117,11 @@ em,
     color: #ddd;
 }
 
-.bg-no-data {
+.bg-no-data, .bg-offline-machine {
     background-color: #ddd;
 }
 
-.no-data {
+.no-data, .offline-machine {
     height: 250px;
     text-align: center;
     color: #ddd;

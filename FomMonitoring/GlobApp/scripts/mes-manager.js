@@ -341,6 +341,11 @@
             template: '#no-data'
         });
 
+        Vue.component('offline-machine', {
+            props: ['show'],
+            template: '#offline-machine'
+        });
+
         Vue.component('modal-tool', {
             props: ['tool'],
             template: '#modal-tool'
