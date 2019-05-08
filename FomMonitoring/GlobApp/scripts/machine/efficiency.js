@@ -205,55 +205,56 @@
         vmEfficiency.total = efficiency.total;
         vmEfficiency.overfeed = efficiency.overfeed;
         vmEfficiency.states = efficiency.states;
+        if (vmEfficiency.states != null) {
+            Vue.nextTick(function () {
+                // container IS finished rendering to the DOM
 
-        try {
-            if (data.opt_states != null) {
-                ChartManager.stateMachinePieChart("efc_pie_chart", data.opt_states);
-            }
+                if (data.opt_states != null && data.opt_states.series.length > 0) {
+                    ChartManager.stateMachinePieChart("efc_pie_chart", data.opt_states);
+                }
+                else {
+                    ChartManager.destroyChart('efc_pie_chart');
+                }
 
-            if (data.opt_kpis != null) {
-                ChartManager.productivityMachineSolidGaugeChart("efc_kpi_chart", data.opt_kpis, localizations);
-            }
-        }
-        catch (ex) {
+                if (data.opt_kpis != null) {
+                    ChartManager.productivityMachineSolidGaugeChart("efc_kpi_chart", data.opt_kpis, localizations);
+                }
+                else {
+                    ChartManager.destroyChart('efc_kpi_chart');
+                }
 
-        }
-      
-        // chart historical
-        if (data.opt_historical != null)
-        {
-            vmEfficiency.show.historical = true;
-            ChartManager.lineChart('efc_historical_chart', data.opt_historical);
-        }
-        else
-        {
-            vmEfficiency.show.historical = false;
-            ChartManager.destroyChart('efc_historical_chart');
-        }
+                // chart historical
+                if (data.opt_historical != null) {
+                    vmEfficiency.show.historical = true;
+                    ChartManager.lineChart('efc_historical_chart', data.opt_historical);
+                }
+                else {
+                    vmEfficiency.show.historical = false;
+                    ChartManager.destroyChart('efc_historical_chart');
+                }
 
-        // chart operators
-        if (data.opt_operators != null)
-        {
-            vmEfficiency.show.operators = true;
-            ChartManager.stackedBarChart('efc_operators_chart', data.opt_operators);
-        }
-        else
-        {
-            vmEfficiency.show.operators = false;
-            ChartManager.destroyChart('efc_operators_chart');
-        }
+                // chart operators
+                if (data.opt_operators != null) {
+                    vmEfficiency.show.operators = true;
+                    ChartManager.stackedBarChart('efc_operators_chart', data.opt_operators);
+                }
+                else {
+                    vmEfficiency.show.operators = false;
+                    ChartManager.destroyChart('efc_operators_chart');
+                }
 
-        // chart shifts
-        if (data.opt_shifts != null)
-        {
-            vmEfficiency.show.shifts = true;
-            ChartManager.stackedBarChart('efc_shifts_chart', data.opt_shifts);
+                // chart shifts
+                if (data.opt_shifts != null) {
+                    vmEfficiency.show.shifts = true;
+                    ChartManager.stackedBarChart('efc_shifts_chart', data.opt_shifts);
+                }
+                else {
+                    vmEfficiency.show.shifts = false;
+                    ChartManager.destroyChart('efc_shifts_chart');
+                }
+            });
         }
-        else
-        {
-            vmEfficiency.show.shifts = false;
-            ChartManager.destroyChart('efc_shifts_chart');
-        }
+        
     }
 
     return {

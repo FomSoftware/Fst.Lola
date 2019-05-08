@@ -578,6 +578,7 @@
     }
 
     var productivityMachineSolidGaugeChart = function (chartID, options, localizations) {
+        console.log(localizations.efficiency.trim());
         var config = {
             yAxis: {
                 min: 0,
@@ -613,7 +614,7 @@
                 type: 'solidgauge'
             },
             series: [{
-                name: 'Productivity',
+                name: localizations.efficiency.trim(),
                 data: _.map(options.series, function (opt) { return Math.round(opt.y); }),
 
                 dataLabels: {
@@ -627,7 +628,7 @@
                 }
             }],
             pane: {
-                center: ['50%', '95%'],
+                center: ['45%', '95%'],
                 size: '165%',
                 startAngle: -90,
                 endAngle: 90,

@@ -22,7 +22,7 @@
     </SccProvider>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>\\lola-dev\inetpub\</PublishUrl>
-    <Install>true</Install>
+    <Install>false</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
@@ -33,7 +33,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -59,7 +59,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>F1A201EA57B10A966C7934CF57AE716D4E454FC4</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>14704D411966B8CE6247A05854D3D3DE2E6A43C7</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>FomMonitoringDatabaseMapping_TemporaryKey.pfx</ManifestKeyFile>
