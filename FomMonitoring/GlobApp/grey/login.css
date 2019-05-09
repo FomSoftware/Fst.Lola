@@ -181,17 +181,24 @@ input:-webkit-autofill:focus input:-webkit-autofill {
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 
-    .container-login {
+    /*.container-login {
         width: 100%;
         max-width: 100%;
         height: 100%;
         margin-top: 0px;
         padding: 100px;
+    }*/
+    .container-login {
+        width: 90%;
+        max-width: 100%;
+        height: 80%;
+        margin-top: 30px;
+        padding: 50px;
+        margin-left: 35px;
     }
-
         .container-login .content {
-            padding: 0px 130px;
-        }
+        padding: 0px 130px;
+    }
 
     .header {
         margin-bottom: 30px;
