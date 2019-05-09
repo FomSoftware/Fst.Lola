@@ -45,6 +45,7 @@
             Productivity.update(data.Productivity);
             //Alarms.update(data.Alarms);
             Spindles.update(data.Spindles);
+            XSpindles.update(data.XSpindles);
             Tools.update(data.Tools);
             Jobs.update(data.Jobs);
             Messages.update(data.Messages);

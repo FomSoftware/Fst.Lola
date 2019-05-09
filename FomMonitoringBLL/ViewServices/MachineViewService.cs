@@ -26,6 +26,14 @@ namespace FomMonitoringBLL.ViewServices
             machine.Jobs = JobsViewService.GetJobs(context);
             machine.Spindles = SpindlesViewService.GetSpindles(context);
             machine.Tools = ToolsViewService.GetTools(context);
+            machine.MachineInfo = new MachineInfoViewModel
+            {
+                model = context.ActualMachine.Model.Name,
+                mtype = context.ActualMachine.Type.Name,
+                id_mtype = context.ActualMachine.Type.Id
+            };
+            machine.XSpindles = SpindlesViewService.GetXSpindles(context);
+            machine.XTools = ToolsViewService.GetXTools(context);
 
             return machine;
         }

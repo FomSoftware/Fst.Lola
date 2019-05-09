@@ -1,0 +1,127 @@
+﻿@model FomMonitoringBLL.ViewModel.XToolViewModel
+@using FomMonitoringResources
+
+<div id="CardXTools" class="portlet">
+    <div class="portlet-title">
+        <div class="portlet-kpi">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
+                <i class="fa icofom-fresa fa-stack-1x fa-inverse"></i>
+            </span>
+        </div>
+        <div class="title-kpi" >
+            <span>@Resource.XTools</span>
+            <div class="sub-period">@Resource.UntilNow</div>
+        </div>
+        <div class="portlet-details" v-if="tools != null" v-cloak>
+            <div class="btn-group">
+                <div class="btn btn-outline sorting" v-bind:class="sortingCode" v-on:click="sortCode()">
+                    <span>@Resource.Code</span>
+                </div>
+                <div class="btn btn-outline sorting" v-bind:class="sortingTTL" v-on:click="sortTTL()">
+                    <span>
+                        <i class="fa fa-clock-o color-aaa"></i>@Resource.Time
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet-body text-center">
+        <div v-if="tools != null" class="slimscroll">
+            <template v-for="tool in tools" v-cloak>
+                <div class="card" v-bind:class="borderColor(tool.perc)">
+                    <div class="front text-left">
+                        <table class="table-spindle">
+                            <tr>
+                                <td class="first-td-tool">
+                                    <div class="el-state el-code">
+                                        <div>{{ tool.description }}</div>
+                                        <small>@Resource.Description</small>
+                                        @*<small>{{ tool.description }}</small>*@
+                                    </div>
+                                </td>
+                                <td class="change-td-tool">
+                                    <div class="el-state el-margin text-right">
+                                        <div>
+                                            <i class="icon-reload"></i>
+                                            <span>{{ tool.changes.total }}</span>
+                                        </div>
+                                        <small>@Resource.Change</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="el-state el-margin text-right">
+                                        <!-- nascondere solo per pannello cliente? -->
+                                        <!--<div>
+                                            <i class="icon fa fa-clock-o"></i>
+                                            <time-span v-bind:duration="tool.time"></time-span>
+                                        </div>
+                                        <small>@Resource.TimeToLive</small>-->
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="progress progress-tool slim">
+                            <div class="progress-bar" v-bind:class="bgColor(tool.perc)" v-bind:aria-valuenow="tool.perc"></div>
+                        </div>
+                        <div class="progress-info display-none">
+                            <small>@Resource.Usury</small>
+                            {{ tool.perc }}<em>%</em>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <table>
+                            <tr>
+                                <td class="first-td-tool">
+                                    <div class="el-state el-code">
+                                        <div>{{ tool.description }}</div>
+                                        @*<small>{{ tool.code }}</small>*@
+                                        <small>@Resource.Description</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="el-state">
+                                        <div>
+                                            <i class="fa fa-remove color-red font-12x"></i>
+                                            <span>{{ tool.changes.breaking }}</span><em>qty</em>
+                                        </div>
+                                        <small>@Resource.Breaking</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="el-state">
+                                        <div>
+                                            <i class="fa fa-repeat color-orange font-12x"></i>
+                                            <span>{{ tool.changes.replacement }}</span><em>qty</em>
+                                        </div>
+                                        <small>@Resource.Replacement</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="btn btn-link btn-history" v-bind:class="{disabled: tool.changes.historical.length == 0}" v-on:click="showModal(tool, $event)">
+                                        <i class="fa fa-history"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <hr />
+            </template>
+        </div>
+        <no-data v-else></no-data>
+    </div>
+
+    <modal-tool v-for="tool in tools" v-bind:tool="tool"></modal-tool>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        var data = @Html.Raw(Json.Encode(Model));
+        XTools.init(data);
+    });
+
+</script>

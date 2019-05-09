@@ -552,4 +552,10 @@
   <data name="DisclamerBody" xml:space="preserve">
     <value>&lt;H4&gt;Testo Disclamer Tedesco&lt;/H4&gt;&lt;p&gt;Lorem ipsum dolor sit amet, &lt;br&gt; consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;</value>
   </data>
+  <data name="XSpindles" xml:space="preserve">
+    <value>Spindel XModule/XMU</value>
+  </data>
+  <data name="XTools" xml:space="preserve">
+    <value>Werkzeuge XModule/XMU</value>
+  </data>
 </root>

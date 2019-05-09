@@ -414,6 +414,8 @@
     <Content Include="GlobApp\plugins\waitMe\waitMe.min.css" />
     <Content Include="GlobApp\plugins\waitMe\waitMe.min.js" />
     <Content Include="GlobApp\scripts\machine\messages.js" />
+    <Content Include="GlobApp\scripts\machine\xtools.js" />
+    <Content Include="GlobApp\scripts\machine\xspindles.js" />
     <Content Include="GlobApp\scripts\mes-manager.js" />
     <Content Include="GlobApp\scripts\shared-manager.js" />
     <Content Include="GlobApp\scripts\machine-manager.js" />
@@ -839,6 +841,8 @@
     <Content Include="Views\Shared\_Toolbar.cshtml" />
     <Content Include="Views\Machine\_Maintenance.cshtml" />
     <Content Include="Views\Machine\_Messages.cshtml" />
+    <Content Include="Views\Machine\_XSpindles.cshtml" />
+    <Content Include="Views\Machine\_XTools.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

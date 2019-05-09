@@ -20,11 +20,20 @@ namespace FomMonitoringBLL.ViewServices
             return result;
         }
 
-        private static ToolVueModel GetVueModel(MachineInfoModel machine)
+        public static XToolViewModel GetXTools(ContextModel context)
+        {
+            XToolViewModel result = new XToolViewModel();
+            result.vm_tools = GetVueModel(context.ActualMachine, true);
+
+            return result;
+        }
+
+
+        private static ToolVueModel GetVueModel(MachineInfoModel machine, bool xmodule = false)
         {
             ToolVueModel result = new ToolVueModel();
 
-            List<ToolMachineModel> data = ToolService.GetTools(machine);
+            List<ToolMachineModel> data = ToolService.GetTools(machine, xmodule);
 
             List<ToolMachineModel> dataTools = data.Where(w => w.IsActive == true).ToList();
             List<ToolMachineModel> dataHistorical = data.Where(w => w.IsActive == false).ToList();

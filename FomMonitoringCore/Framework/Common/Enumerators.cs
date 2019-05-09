@@ -134,4 +134,16 @@ namespace FomMonitoringCore.Framework.Common
         Visible = 2
     }
 
+    public enum enMachineType
+    {
+        [Description("Centro di lavoro")]
+        CentroLavoro = 1,
+        [Description("Linea di taglio")]
+        LineaTaglio = 2,
+        [Description("Linea taglio e lavoro")]
+        LineaTaglioLavoro = 3,
+        [Description("Troncatrice")]
+        Troncatrice = 4
+    }
+
 }

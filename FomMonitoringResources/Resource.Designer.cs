@@ -1366,6 +1366,24 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Spindle Xmodule/XMU.
+        /// </summary>
+        public static string XSpindles {
+            get {
+                return ResourceManager.GetString("XSpindles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tools XModule/XMU.
+        /// </summary>
+        public static string XTools {
+            get {
+                return ResourceManager.GetString("XTools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yesterday.
         /// </summary>
         public static string Yesterday {

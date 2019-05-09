@@ -18,11 +18,19 @@ namespace FomMonitoringBLL.ViewServices
             return result;
         }
 
-        private static SpindleVueModel GetVueModel(MachineInfoModel machine)
+        public static XSpindleViewModel GetXSpindles(ContextModel context)
+        {
+            XSpindleViewModel result = new XSpindleViewModel();
+            result.vm_spindles = GetVueModel(context.ActualMachine, true);
+
+            return result;
+        }
+
+        private static SpindleVueModel GetVueModel(MachineInfoModel machine, bool xmodule = false)
         {
             SpindleVueModel result = new SpindleVueModel();
 
-            List<SpindleModel> data = SpindleService.GetSpindles(machine);
+            List<SpindleModel> data = SpindleService.GetSpindles(machine, xmodule);
 
             if (data.Count == 0)
                 return result;

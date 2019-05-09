@@ -1,0 +1,167 @@
+﻿@model FomMonitoringBLL.ViewModel.XSpindleViewModel
+@using FomMonitoringResources
+
+<div id="CardXSpindles" class="portlet">
+    <div class="portlet-title">
+        <div class="portlet-kpi">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
+                <i class="fa icofom-spindles fa-stack-1x fa-inverse"></i>
+            </span>
+        </div>
+        <div class="title-kpi">
+            <span id="xSpindlesTitle">@Resource.XSpindles</span>
+            <div class="sub-period">@Resource.UntilNow</div>
+        </div>
+        <div class="portlet-details" v-if="spindles != null">
+            <div class="btn-group">
+                <div class="btn btn-outline sorting" v-bind:class="sortingCode" v-on:click="sortCode()">
+                    <span>@Resource.Position</span>
+                </div>
+                <div class="btn btn-outline sorting" v-bind:class="sortingTTL" v-on:click="sortTTL()">
+                    <span>
+                        <i class="fa fa-clock-o color-aaa"></i>@Resource.Time
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet-body slimscroll" v-cloak>
+        <div v-if="spindles != null" class="slimscroll">
+            <div v-for="spindle in spindles" v-if="spindles != null">
+                <div class="card card-big" v-bind:class="borderColor(spindle.time, spindle.perc)">
+                    <div class="front text-left">
+                        <table class="table-spindle">
+                            <tr>
+                                <td>
+                                    <div class="el-state el-code">
+                                        <div>{{ spindle.code }}</div>
+                                        <small>@Resource.Position</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="el-state el-margin text-right">
+                                        <!-- <div>
+                                        <i class="fa fa-bolt"></i>
+                                        <span>{{ spindle.velocity }}</span>
+                                        <span class="sty-unit">rpm</span>
+                                    </div>
+                                    <small>@Resource.AverageSpeed</small>-->
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="el-state el-margin text-right">
+                                        <!-- nascondere solo per pannello cliente? -->
+                                        <!--<div>
+                                            <i class="fa fa-clock-o"></i>
+                                            <time-span v-bind:duration="spindle.time.residual"></time-span>
+                                        </div>
+                                        <small>@Resource.TimeToLive</small>-->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <div class="progress progress-spindle slim">
+                                        <div class="progress-bar" v-bind:class="bgColor(spindle.perc)" v-bind:aria-valuenow="spindle.perc"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table-spindle">
+                            <tr class="second-tr">
+                                <td>
+                                    <div class="el-state el-margin text-right">
+                                        <div>
+                                            <i class="fa fa-plug"></i>
+                                            <span>{{ spindle.workover.power }}</span><em>qty</em>
+                                        </div>
+                                        <small>@Resource.Overpower</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="el-state el-margin text-right">
+                                        <div>
+                                            <i class="fa fa-spinner"></i>
+                                            <span>{{ spindle.workover.vibration }}</span><em>qty</em>
+                                        </div>
+                                        <small>@Resource.OverVibrating</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="el-state el-margin text-right">
+                                        <!--<div>
+                                            <i class="fa fa-thermometer-full"></i>
+                                            <span>{{ spindle.workover.heating }}</span><em>qty</em>
+                                        </div>
+                                        <small>@Resource.Overhating</small>-->
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="back">
+                        <table class="table table-spindle-back">
+                            <tr>
+                                <td>
+                                    <div class="el-state">
+                                        <div>{{ spindle.code }}</div>
+                                        <small>@Resource.Code</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="el-state">
+                                        <div>{{ spindle.info.install }}</div>
+                                        <small>@Resource.Install</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="el-state el-margin">
+                                        <div><i class="icon-reload"></i>&nbsp;{{ spindle.info.change }}</div>
+                                        <small>@Resource.Change</small>
+                                    </div>
+                                </td>
+                                <td rowspan="2" class="v-middle">
+                                    <div class="btn btn-link btn-spindle" v-on:click="showModal(spindle, $event)">
+                                        <i class="icon-chart"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div class="el-state">
+                                        <div>{{ spindle.info.maintenance }}</div>
+                                        <small>@Resource.Maintenance</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="el-state el-margin">
+                                        <div>
+                                            <time-span v-bind:duration="spindle.time.work"></time-span>
+                                        </div>
+                                        <small>@Resource.UsageTime</small>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <hr />
+            </div>
+        </div>
+        <no-data v-else></no-data>
+    </div>
+
+    <modal-spindle v-for="spindle in spindles" v-bind:spindle="spindle"></modal-spindle>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        var data = @Html.Raw(Json.Encode(Model));
+        XSpindles.init(data);
+    });
+
+</script>
