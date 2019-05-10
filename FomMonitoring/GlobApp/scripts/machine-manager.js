@@ -198,6 +198,7 @@
             if (group == 'productivity')
                 swiper_productivity.slideTo(2, 300);
         });
+
     }
 
     var initVueComponents = function ()

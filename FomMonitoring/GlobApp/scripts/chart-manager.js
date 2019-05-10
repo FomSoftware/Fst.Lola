@@ -2,6 +2,7 @@
 {
     Highcharts.setOptions({
         chart: {
+            animation: false,
             style: {
                 fontFamily: 'Roboto Mono'
             },
@@ -20,13 +21,13 @@
         yAxis: {
             title: {
                 style: {
-                    fontSize: '10px',
+                    fontSize: '8px',
                     fontWeight: '400'
                 }
             },
             labels: {
                 style: {
-                    fontSize: '9px'
+                    fontSize: '8px'
                 }
             }
         },
@@ -42,8 +43,8 @@
             itemDistance: 8,
             itemStyle: {
                 fontWeight: 'normal',
-                fontSize: '10px',
-                lineHeight: '10px'
+                fontSize: '8px',
+                lineHeight: '8px'
             }
         },
         plotOptions: {
@@ -99,39 +100,8 @@
             tooltip: {
                 valueSuffix: options.valueSuffix
             },
-            series: options.series
-            //series: [{
-            //    name: 'Produzione',
-            //    color: '#A5CC48',
-            //    data: [35, 33, 30, 25, 20, 21, 24],
-            //}, {
-            //    name: "Pausa",
-            //    color: '#FFE941',
-            //    lineWidth: 1.5,
-            //    dashStyle: 'ShortDot',
-            //    marker: {
-            //        radius: 3
-            //    },
-            //    data: [22, 50, 10, 13, 15, 21, 20]
-            //}, {
-            //    name: 'Manuale',
-            //    color: '#98C2ED',
-            //    lineWidth: 1.5,
-            //    dashStyle: 'ShortDot',
-            //    marker: {
-            //        radius: 3
-            //    },
-            //    data: [6, 5, 10, 9, 11, 10, 16]
-            //}, {
-            //    name: 'Guasto',
-            //    color: '#ee0000',
-            //    lineWidth: 1.5,
-            //    dashStyle: 'ShortDot',
-            //    marker: {
-            //        radius: 3
-            //    },
-            //    data: [2, 1, 5, 3, 2, 5, 12]
-            //}]
+            series: options.series,
+
         }
 
         var chart = $('#' + chartID).highcharts();
@@ -140,6 +110,10 @@
             Highcharts.chart(chartID, config);
         else
             chart.update(config);
+
+        setInterval(function () {
+            $('#' + chartID).highcharts().setSize($(".card-efficiency").width() - 30, $(".card-efficiency").height() - 30);
+        }, 100);
     }
 
     var columnChart = function (chartID, options)
@@ -328,6 +302,13 @@
             Highcharts.chart(chartID, config);
         else
             chart.update(config);
+
+
+        setInterval(function () {
+            $('#' + chartID).highcharts().setSize($(".card-efficiency").width() - 30, $(".card-efficiency").height() - 30);
+        }, 100);
+            
+        
     }
 
     var dualAxesColumnChart = function (chartID, options)
@@ -619,9 +600,9 @@
 
                 dataLabels: {
                     format: '<div style="text-align:center"><span style="font-size:8px;color:' +
-                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">' + localizations.efficiency + '</span><br /><span style="font-size:12px;color:' +
+                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">' + localizations.efficiency + '</span><br /><span style="font-size:10px;color:' +
                         ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span>' +
-                        '<span style="font-size:10px;">%</span></div>'
+                        '<span style="font-size:8px;">%</span></div>'
                 },
                 tooltip: {
                     valueSuffix: ' %'
