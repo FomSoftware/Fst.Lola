@@ -141,9 +141,10 @@
             height: 288px;
         }
 
-            #CardProductivity.portlet .card-portlet {
-                height: 244px;
-            }
+        #CardProductivity.portlet .card-portlet {
+            height: 244px;
+        }
+       
     }
 
     #CardEfficiency.portlet {
