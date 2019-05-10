@@ -10,6 +10,11 @@ namespace FomMonitoringBLL.ViewModel
         public SpindleVueModel vm_spindles { get; set; }
     }
 
+    public class XSpindleViewModel
+    {
+        public SpindleVueModel vm_spindles { get; set; }
+    }
+
     public class SpindleVueModel
     {
         public List<SpindleDataModel> spindles { get; set; }

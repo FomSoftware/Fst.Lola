@@ -10,6 +10,11 @@ namespace FomMonitoringBLL.ViewModel
         public ToolVueModel vm_tools { get; set; }
     }
 
+    public class XToolViewModel
+    {
+        public ToolVueModel vm_tools { get; set; }
+    }
+
     public class ToolVueModel
     {
         public List<ToolDataModel> tools { get; set; }

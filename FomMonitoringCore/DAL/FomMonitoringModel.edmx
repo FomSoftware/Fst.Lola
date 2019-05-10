@@ -122,7 +122,7 @@
           <Property Name="Period" Type="int" />
           <Property Name="StateId" Type="int" />
           <Property Name="TypeHistory" Type="char" MaxLength="1" />
-		  <Property Name="Group" Type="int" />
+          <Property Name="Group" Type="int" />
         </EntityType>
         <EntityType Name="HistoryPiece">
           <Key>
@@ -361,6 +361,7 @@
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="MachineId" Type="int" Nullable="false" />
           <Property Name="ExpirationDate" Type="datetime" Nullable="false" />
+          <Property Name="ActivationDate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'LOLAPROD.log.FomMonitoring' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -748,7 +749,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Parameter Name="endDate" Type="datetime" Mode="In" />
           <Parameter Name="aggregation" Type="int" Mode="In" />
         </Function>
-		<Function Name="usp_AggregationMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="usp_AggregationMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="machineId" Type="int" Mode="In" />
           <Parameter Name="startDate" Type="datetime" Mode="In" />
           <Parameter Name="endDate" Type="datetime" Mode="In" />
@@ -1825,6 +1826,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="MachineId" Type="Int32" Nullable="false" />
           <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_UserMachineMapping_Machine" FromRole="UserMachineMapping" ToRole="Machine" />
+          <Property Name="ActivationDate" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_UserMachineMapping_Machine">
           <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="1" />
@@ -2457,6 +2459,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="UserMachineMapping">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.UserMachineMapping">
               <MappingFragment StoreEntitySet="UserMachineMapping">
+                <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
                 <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
                 <ScalarProperty Name="MachineId" ColumnName="MachineId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />

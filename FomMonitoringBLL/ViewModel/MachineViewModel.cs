@@ -22,5 +22,11 @@ namespace FomMonitoringBLL.ViewModel
         public ToolViewModel Tools { get; set; }
 
         public JobViewModel Jobs { get; set; }
+
+        public XSpindleViewModel XSpindles { get; set; }
+
+        public XToolViewModel XTools { get; set; }
+
+        public MachineInfoViewModel MachineInfo { get; set; }
     }
 }

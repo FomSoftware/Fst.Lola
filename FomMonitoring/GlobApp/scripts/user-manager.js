@@ -642,6 +642,10 @@
         });
     }
 
+    var openDisclamerModal = function () {       
+        $('#disclamer-modal').modal('show');
+    }
+
     /*#endregion*/
 
 
@@ -657,6 +661,7 @@
         resetPasswordClickEvent: resetPasswordClickEvent,
         clearActualUser: clearActualUser,
         changePasswordClick: changePasswordClick,
-        openChangePasswordModal: openChangePasswordModal
+        openChangePasswordModal: openChangePasswordModal,
+        openDisclamerModal: openDisclamerModal
     }
 }()

@@ -5,12 +5,13 @@ using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace FomMonitoringCore.Service
 {
     public class SpindleService
     {
-        public static List<SpindleModel> GetSpindles(MachineInfoModel machine)
+        public static List<SpindleModel> GetSpindles(MachineInfoModel machine, bool xmodule = false)
         {
             List<SpindleModel> result = new List<SpindleModel>();
 
@@ -18,7 +19,23 @@ namespace FomMonitoringCore.Service
             {
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
-                    List<Spindle> query = ent.Spindle.Where(w => w.MachineId == machine.Id).ToList();
+                    List<Spindle> query = null;
+                    if (machine.Type.Id == (int)enMachineType.LineaTaglioLavoro)
+                    {
+                        Regex regex = new Regex(@"^[1-2]\d{2}$");
+                        if (xmodule)
+                        {
+                            query = ent.Spindle.Where(w => w.MachineId == machine.Id).ToList().Where(w => regex.IsMatch(w.Code)).ToList();
+                        }
+                        else
+                        {
+                            query = ent.Spindle.Where(w => w.MachineId == machine.Id).ToList().Where(w => !regex.IsMatch(w.Code)).ToList();
+                        }
+                    }                    
+                    else
+                        query = ent.Spindle.Where(w => w.MachineId == machine.Id).ToList();
+                    
+
                     result = query.Adapt<List<SpindleModel>>();
                     foreach (SpindleModel spindle in result)
                     {

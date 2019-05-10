@@ -313,6 +313,24 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Terms and conditions.
+        /// </summary>
+        public static string Disclamer {
+            get {
+                return ResourceManager.GetString("Disclamer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;H4&gt;Testo Disclamer Default&lt;/H4&gt;&lt;p&gt;Lorem ipsum dolor sit amet, &lt;br&gt; consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;.
+        /// </summary>
+        public static string DisclamerBody {
+            get {
+                return ResourceManager.GetString("DisclamerBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Done.
         /// </summary>
         public static string Done {
@@ -1344,6 +1362,24 @@ namespace FomMonitoringResources {
         public static string Working {
             get {
                 return ResourceManager.GetString("Working", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spindle Xmodule/XMU.
+        /// </summary>
+        public static string XSpindles {
+            get {
+                return ResourceManager.GetString("XSpindles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tools XModule/XMU.
+        /// </summary>
+        public static string XTools {
+            get {
+                return ResourceManager.GetString("XTools", resourceCulture);
             }
         }
         
