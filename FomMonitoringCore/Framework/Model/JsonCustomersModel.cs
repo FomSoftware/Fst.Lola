@@ -18,5 +18,7 @@ namespace FomMonitoringCore.Framework.Model
     {
         public string serial { get; set; }
         public DateTime expirationDate { get; set; }
+
+        public DateTime activationDate { get; set; }
     }
 }

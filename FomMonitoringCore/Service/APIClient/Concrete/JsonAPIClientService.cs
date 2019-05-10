@@ -164,12 +164,14 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             foreach (var machine in machines)
                             {
                                 DateTime expirationDate = customer.machines.FirstOrDefault(f => f.serial == machine.Serial).expirationDate;
+                                DateTime activationDate = customer.machines.FirstOrDefault(f => f.serial == machine.Serial).activationDate;
                                 List<UserMachineMapping> usersMachineMapped = ent.UserMachineMapping.Where(w => w.MachineId == machine.Id).ToList();
                                 if (usersMachineMapped.Any())
                                 {
                                     foreach (UserMachineMapping userMachineMapped in usersMachineMapped)
                                     {
                                         userMachineMapped.ExpirationDate = expirationDate;
+                                        userMachineMapped.ActivationDate = activationDate;
                                         ent.SaveChanges();
                                     }
                                 }
@@ -178,6 +180,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                                     UserMachineMapping userMachine = new UserMachineMapping()
                                     {
                                         ExpirationDate = expirationDate,
+                                        ActivationDate = activationDate,
                                         MachineId = machine.Id,
                                         UserId = user.ID
                                     };
