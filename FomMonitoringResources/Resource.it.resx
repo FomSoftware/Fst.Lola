@@ -553,7 +553,9 @@
     <value>Termini e condizioni</value>
   </data>
   <data name="DisclamerBody" xml:space="preserve">
-    <value>&lt;H4&gt;Testo Disclamer Italiano&lt;/H4&gt;&lt;p&gt;Lorem ipsum dolor sit amet, &lt;br&gt; consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;</value>
+    <value>&lt;H4&gt;NOTE LEGALI&lt;/H4&gt;&lt;p&gt;I dati acquisiti da Fom Industrie s.r.l. mediante l'applicazione LO.LA verranno archiviati e trattati a meri fini statistici e gli stessi non verranno comunicati a terzi. Non trattandosi di dati personali non sono soggetti alla normativa di cui al Regolamento UE 2016/679.
+&lt;br&gt;&lt;br&gt;
+Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati raccolti (necessità di manutenzione periodica e/o straordinaria, usura dei componenti tipo elettromandrini, utensili, componenti meccanici e/o pneumatici in uso sul bene), è garantita soltanto se il cliente si avvale di componentistica e ricambi ufficiali forniti e consigliati da FOM Industrie s.r.l..&lt;/p&gt;</value>
   </data>
   <data name="XSpindles" xml:space="preserve">
     <value>Mandrini XModule/XMU</value>
