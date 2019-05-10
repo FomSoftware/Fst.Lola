@@ -299,40 +299,48 @@
 
 /*#region responsive */
 
+
+
 @media (max-width: 768px) {
 
-    .dataTables_wrapper{
+    .dataTables_wrapper {
         overflow-x: auto;
     }
 
-    .users-table{
+    .users-table {
         margin-top: 50px !important;
     }
 
-    .dataTables_filter{
+    .dataTables_filter {
         margin-top: 0px !important;
         position: fixed;
         right: 20px;
+        z-index: 10;
     }
 
-    .dataTables_filter label input{
-       height: 34px;
-    }
+        .dataTables_filter label input {
+            height: 34px;
+        }
 
-    .button-adduser{
+    .button-adduser {
         margin-left: 0px !important;
     }
 }
 
-/* Small devices (tablets, 768px and up) */
-
-@media (min-width: 768px) {
-
+@media (max-width: 400px) {
+    .dataTables_filter {
+        right: 60px;
+        width: 40%;
+    }
 }
 
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
+    /* Small devices (tablets, 768px and up) */
 
-}
+    @media (min-width: 768px) {
+    }
 
-/*#endregion */
+    /* Medium devices (desktops, 992px and up) */
+    @media (min-width: 992px) {
+    }
+
+    /*#endregion */

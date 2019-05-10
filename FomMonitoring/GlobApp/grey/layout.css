@@ -74,6 +74,21 @@ header {
             margin-top: 10px;
         }
 
+@media (max-width: 400px) {
+    header .time-stamp.visible-xs {
+        font-size: 8px;
+    }
+
+    header .pull-left {
+        padding: 0;
+    }
+
+    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+        width: 170px !important;
+    }
+
+}
+
         header .time-stamp i {
             font-size: 10px;
         }
