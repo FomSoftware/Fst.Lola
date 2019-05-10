@@ -203,8 +203,13 @@
     {
         // update vue model
         var vm_tools = data.vm_tools;
-        vmTools.tools = vm_tools.tools;
-        vmTools.sorting = vm_tools.sorting;
+        if (vmTools) {
+            vmTools.tools = vm_tools.tools;
+            vmTools.sorting = vm_tools.sorting;
+        }
+        else {
+            initVueModel(data.vm_tools);
+        }
     }
 
     return {

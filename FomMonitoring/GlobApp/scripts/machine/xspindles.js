@@ -222,9 +222,13 @@
     {
         // update vue model
         var vm_spindles = data.vm_spindles;
-        vmSpindles.spindles = vm_spindles.spindles;
-        vmSpindles.sorting = vm_spindles.sorting;
-
+        if (vmSpindles) {
+            vmSpindles.spindles = vm_spindles.spindles;
+            vmSpindles.sorting = vm_spindles.sorting;
+        }
+        else {
+            initVueModel(data.vm_spindles);
+        }
         //if (vmSpindles.spindles != null)
         //    $('.slimscroll').slimscroll({ scrollBy: '0px' });
         //else
