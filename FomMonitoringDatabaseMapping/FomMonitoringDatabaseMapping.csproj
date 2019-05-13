@@ -59,7 +59,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>14704D411966B8CE6247A05854D3D3DE2E6A43C7</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>F1A201EA57B10A966C7934CF57AE716D4E454FC4</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>FomMonitoringDatabaseMapping_TemporaryKey.pfx</ManifestKeyFile>
