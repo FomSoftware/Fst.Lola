@@ -322,9 +322,9 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;H4&gt;NOTE LEGALI&lt;/H4&gt;&lt;p&gt;I dati acquisiti da Fom Industrie s.r.l. mediante l&apos;applicazione LO.LA verranno archiviati e trattati a meri fini statistici e gli stessi non verranno comunicati a terzi. Non trattandosi di dati personali non sono soggetti alla normativa di cui al Regolamento UE 2016/679.
+        ///   Looks up a localized string similar to &lt;H4&gt;DISCLAIMER&lt;/H4&gt;&lt;p&gt;The data acquired by Fom Industrie s.r.l. using the LO.LA application will be stored and handled for statistical purposes only, and will not be passed on to third parties. As this is not personal information, it is not subject to the contents of EU Regulation 2016/679.
         ///&lt;br&gt;&lt;br&gt;
-        ///Si informano i clienti che l&apos;attendibilità delle statistiche rilevate dai dati raccolti (necessità di manutenzione periodica e/o straordinaria, usura dei componenti tipo elettromandrini, utensili, componen [rest of string was truncated]&quot;;.
+        ///Customers are informed that the reliability of the statistics obtained from the data collected (need for periodic and/or special maintenance, wear in components such as electrospindles, tools, mechanical and/o [rest of string was truncated]&quot;;.
         /// </summary>
         public static string DisclamerBody {
             get {

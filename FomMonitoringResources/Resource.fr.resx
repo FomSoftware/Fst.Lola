@@ -550,7 +550,9 @@
     <value>Termes et conditions</value>
   </data>
   <data name="DisclamerBody" xml:space="preserve">
-    <value>&lt;H4&gt;Testo Disclamer Francese&lt;/H4&gt;&lt;p&gt;Lorem ipsum dolor sit amet, &lt;br&gt; consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;</value>
+    <value>&lt;H4&gt;MENTIONS LÉGALES&lt;/H4&gt;&lt;p&gt;Les données collectées par Fom Industrie s.r.l. via l'application LO.LA seront archivées et traitées uniquement à des fins statistiques et ne seront pas divulguées à des tiers. Ne s’agissant pas de données à caractère personnel, leur traitement n’est pas soumis au règlement UE 2016/679.
+&lt;br&gt;&lt;br&gt;
+Nous informons nos clients que la fiabilité des statistiques réalisées à partir des données collectées (nécessité d’entretien périodique et/ou exceptionnel, usure des composants tels que les électrobroches, les outils, les composants mécaniques et/ou pneumatiques montés sur le produit) n’est garantie que si le client utilise les pièces détachées et les composants officiels fournis et conseillés par FOM Industrie s.r.l.&lt;/p&gt;</value>
   </data>
   <data name="XSpindles" xml:space="preserve">
     <value>Broche XModule/XMU</value>

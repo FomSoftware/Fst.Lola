@@ -550,7 +550,8 @@
     <value>Allgemeine Geschäftsbedingungen</value>
   </data>
   <data name="DisclamerBody" xml:space="preserve">
-    <value>&lt;H4&gt;Testo Disclamer Tedesco&lt;/H4&gt;&lt;p&gt;Lorem ipsum dolor sit amet, &lt;br&gt; consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;</value>
+    <value>&lt;H4&gt;RECHTLICHE HINWEISE&lt;/H4&gt;&lt;p&gt;Die von FOM Industrie s.r.l. durch die Anwendung LO.LA. erhobenen Daten werden allein für statistische Zwecke gespeichert und verarbeitet und nicht an Dritte weitergeleitet. Da es sich nicht um personenbezogene Daten handelt, unterliegen sie nicht den Vorschriften gemäß Verordnung (EU) 2016/679. &lt;br&gt; &lt;br&gt;
+Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den erhobenen Daten abgeleiteten Statistik (planmäßiger und/oder außerplanmäßiger Wartungsbedarf, Verschleiß von Komponenten wie Elektrospindel, Werkzeuge, mechanische und/oder pneumatische Komponenten, die am Produkt verwendet werden) nur garantiert ist, wenn der Kunde die offiziellen, von FOM Industrie s.r.l. gelieferten und empfohlenen Teile verwendet.&lt;/p&gt;</value>
   </data>
   <data name="XSpindles" xml:space="preserve">
     <value>Spindel XModule/XMU</value>

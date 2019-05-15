@@ -550,7 +550,9 @@
     <value>Términos y condiciones</value>
   </data>
   <data name="DisclamerBody" xml:space="preserve">
-    <value>&lt;H4&gt;Testo Disclamer Spagnolo&lt;/H4&gt;&lt;p&gt;Lorem ipsum dolor sit amet, &lt;br&gt; consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;</value>
+    <value>&lt;H4&gt;AVISO LEGAL&lt;/H4&gt;&lt;p&gt;Los datos adquiridos por Fom Industrie s.r.l. a través de la aplicación LO.LA serán guardados y tratados con meros fines estadísticos, absolutamente sin comunicarlos a terceros. De todos modos, no tratándose de datos personales, no están sujetos a la normativa relacionada con el Reglamento UE 2016/679.
+&lt;br&gt;&lt;br&gt;
+Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultantes de los datos recopilados (necesidad de mantenimiento ordinario y/o extraordinario, desgaste de componentes como electromandriles, herramientas, piezas mecánicas y/o neumáticas utilizadas en el bien) solo se garantiza si el cliente se sirve de componentes y recambios oficiales provistos y recomendados por FOM Industrie s.r.l.&lt;/p&gt;</value>
   </data>
   <data name="XSpindles" xml:space="preserve">
     <value>Husillo XModule/XMU</value>
