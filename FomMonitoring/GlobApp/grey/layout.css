@@ -191,7 +191,7 @@ section.container-fluid {
     width: 270px;
     right: -270px;
     position: fixed;
-    z-index: 10;
+    z-index: 100;
     top: 0;
     background-color: #EEE;
     overflow-x: hidden;
