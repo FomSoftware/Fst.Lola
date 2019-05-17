@@ -14,7 +14,7 @@ namespace FomMonitoringBLL.ViewServices
         public static HeaderViewModel GetHeader(ContextModel context)
         {
             HeaderViewModel header = new HeaderViewModel();
-            header.ControllerPage = context.ActualPage.ToString();
+            header.ControllerPage = context.ActualPage.GetController();                         
             header.ActionPage = context.ActualPage.GetDescription();
             header.ActualPeriod = context.ActualPeriod;
             header.User = context.User;
@@ -37,6 +37,24 @@ namespace FomMonitoringBLL.ViewServices
             {
                 toolbar.plants = GetListPlants(context);
                 toolbar.selected_plant = toolbar.plants.Where(w => w.id == context.ActualPlant.Id).FirstOrDefault();
+                toolbar.period = new PeriodViewModel();
+                toolbar.period.start = context.ActualPeriod.StartDate;
+                toolbar.period.end = context.ActualPeriod.EndDate;
+            }
+
+            if (context.ActualPage == enPage.PlantMessages)
+            {
+                toolbar.plants = GetListPlants(context);
+                toolbar.selected_plant = toolbar.plants.Where(w => w.id == context.ActualPlant.Id).FirstOrDefault();
+                toolbar.period = new PeriodViewModel();
+                if(context.ActualPeriod.StartDate.Year == 1)
+                {
+                    context.ActualPeriod.StartDate = System.DateTime.Now.AddDays(-30);
+                    context.ActualPeriod.EndDate = System.DateTime.Now;
+                }
+
+                toolbar.period.start = context.ActualPeriod.StartDate;
+                toolbar.period.end = context.ActualPeriod.EndDate;
             }
 
             if (context.ActualPage == enPage.Machine)

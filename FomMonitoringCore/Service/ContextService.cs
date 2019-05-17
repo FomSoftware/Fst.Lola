@@ -73,7 +73,18 @@ namespace FomMonitoringCore.Service
             SessionService.SetSessionValue("Context", context);
         }
 
-        public static bool InitializeMesLevel()
+        public static bool InitializeMessagesMachineLevel()
+        {
+            bool isInitialize = false;
+
+            ContextModel context = GetContext();
+            context.ActualPage = enPage.PlantMessages;                       
+            return isInitialize;
+
+
+        }
+
+            public static bool InitializeMesLevel()
         {
             bool isInitialize = false;
 
@@ -87,7 +98,8 @@ namespace FomMonitoringCore.Service
 
             if (context.AllPlants.Count > 0)
             {
-                context.ActualPlant = context.AllPlants.FirstOrDefault();
+                if(context.ActualPlant == null)
+                    context.ActualPlant = context.AllPlants.FirstOrDefault();
 
                 if (context.User.Role == enRole.Administrator)
                     context.AllMachines = MachineService.GetAllMachines();

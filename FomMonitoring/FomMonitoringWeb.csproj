@@ -417,6 +417,7 @@
     <Content Include="GlobApp\scripts\machine\xtools.js" />
     <Content Include="GlobApp\scripts\machine\xspindles.js" />
     <Content Include="GlobApp\scripts\mes-manager.js" />
+    <Content Include="GlobApp\scripts\plantmessages.js" />
     <Content Include="GlobApp\scripts\shared-manager.js" />
     <Content Include="GlobApp\scripts\machine-manager.js" />
     <Content Include="GlobApp\scripts\machine\jobs.js" />
@@ -843,6 +844,10 @@
     <Content Include="Views\Machine\_Messages.cshtml" />
     <Content Include="Views\Machine\_XSpindles.cshtml" />
     <Content Include="Views\Machine\_XTools.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Mes\PlantMessages.cshtml" />
+    <Content Include="Views\Mes\_PlantMessages.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

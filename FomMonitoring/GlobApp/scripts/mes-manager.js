@@ -390,9 +390,12 @@
         });
     }
 
+    
+
+
     return {
         init: init,
-        callAjaxMesViewModelData: callAjaxMesViewModelData,
+        callAjaxMesViewModelData: callAjaxMesViewModelData,        
         initVueComponents: initVueComponents
     }
 }();

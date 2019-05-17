@@ -4,7 +4,8 @@
 
     var enPage = {
         machine: 2,
-        mes: 3
+        mes: 3,
+        messagesMachine: 4
     }
 
     var filters = {
@@ -31,12 +32,17 @@
         switch (data.page)
         {
             case enPage.mes:
+                initPlantsFilter(data);              
+                break;
+
+            case enPage.messagesMachine:
                 initPlantsFilter(data);
+                initCalendar(data.period, data.language, data.page);
                 break;
 
             case enPage.machine:
                 initMachinesFilter(data);
-                initCalendar(data.period, data.language);
+                initCalendar(data.period, data.language, data.page);
                 break;
         }
 
@@ -90,10 +96,11 @@
 
                 MachineManager.callAjaxMachineViewModelData(filters);
             }
+            
         });
     }
 
-    var initCalendar = function (period, language)
+    var initCalendar = function (period, language, page)
     {
         moment.locale(language.initial);
 
@@ -137,8 +144,13 @@
 
             if (this.locale.customRangeLabel == label)
                 label = getLabelCalendar(this.startDate, this.endDate, formatLabel);
-
-            MachineManager.callAjaxMachineViewModelData(filters);
+            if (page == enPage.machine) {
+                MachineManager.callAjaxMachineViewModelData(filters);
+            }
+            else {
+                PlantMessages.callAjaxPlantMessagesViewModelData(filters);
+            }
+            
 
             $('#calendar .text-period').html(getLabelCalendar(start, end, formatCalendar));
             $('.js-period').text(label);
@@ -214,8 +226,11 @@
 
     var updateLastUpdate = function (data)
     {
-        vmLastUpdate.date = data.Date;
-        vmLastUpdate.time = data.Time;
+        if (data) {
+            vmLastUpdate.date = data.Date;
+            vmLastUpdate.time = data.Time;
+        }
+       
     }
 
     var handlerDropdown = function (dropdown)

@@ -26,5 +26,18 @@ namespace FomMonitoring.Controllers
             return View("Mes", mes);
         }
 
+        
+        public ActionResult PlantMessages()
+        {
+            ContextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
+            ContextModel context = ContextService.GetContext();
+            context.ActualPage = enPage.PlantMessages;
+            PlantMessagesViewModel mes = PlantMessagesViewService.GetPlantMessages(context);
+
+            return View("PlantMessages", mes);
+
+        }
+
+
     }
 }

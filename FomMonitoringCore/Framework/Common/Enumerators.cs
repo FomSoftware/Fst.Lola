@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace FomMonitoringCore.Framework.Common
 {
@@ -20,13 +21,17 @@ namespace FomMonitoringCore.Framework.Common
 
     public enum enPage
     {
-        [Description("")]
+        [Description(""), Controller("UserManager")]
         UserManager = 1,
-        [Description("Index")]
+        [Description("Index"), Controller("Machine")]
         Machine = 2,
-        [Description("Index")]
-        Mes = 3
+        [Description("Index"), Controller("Mes")]
+        Mes = 3,
+        [Description("PlantMessages"), Controller("Mes")]
+        PlantMessages = 4,
     }
+
+    
 
     public enum enState
     {

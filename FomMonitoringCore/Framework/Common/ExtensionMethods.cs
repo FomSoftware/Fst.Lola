@@ -56,6 +56,12 @@ namespace FomMonitoringCore.Framework.Common
             return da.Length > 0 ? da[0].Description : value.ToString();
         }
 
+        public static string GetController(this Enum value)
+        {
+            var da = (ControllerAttribute[])(value.GetType().GetField(value.ToString())).GetCustomAttributes(typeof(ControllerAttribute), false);
+            return da.Length > 0 ? da[0].Controller : value.ToString();
+        }
+
         /// <summary>
         /// Get enumerator label
         /// </summary>
@@ -66,6 +72,8 @@ namespace FomMonitoringCore.Framework.Common
             var da = (LabelAttribute[])(value.GetType().GetField(value.ToString())).GetCustomAttributes(typeof(LabelAttribute), false);
             return da.Length > 0 ? da[0].Text : value.ToString();
         }
+
+
 
         /// <summary>
         /// Encript string with SHA256
@@ -332,5 +340,25 @@ namespace FomMonitoringCore.Framework.Common
         {
             return (int)Math.Round(leftValue, 0, MidpointRounding.AwayFromZero);
         }
+
+
+    }
+
+    public class ControllerAttribute:Attribute
+    {
+        protected string _controller;
+        
+        public ControllerAttribute(string v)
+        {
+            this._controller = v;
+        }
+
+        public string Controller
+        {
+            get { return _controller; }
+            set { _controller = value; }
+        }
+
     }
 }
+

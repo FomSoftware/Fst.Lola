@@ -57,5 +57,19 @@ namespace FomMonitoring.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, mes, MediaTypeHeaderValue.Parse("application/json"));
         }
+
+        [HttpPost]
+        [Authorize(Roles = Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Route("ajax/AppApi/GetPlantMessagesViewModel")]
+        public HttpResponseMessage GetPlantMessagesViewModel(FilterViewModel filters)
+        {
+            if (filters.period != null)
+                ContextService.SetActualPeriod(filters.period.start, filters.period.end);
+
+            ContextModel context = ContextService.GetContext();
+            PlantMessagesViewModel mes = PlantMessagesViewService.GetPlantMessages(context);
+
+            return Request.CreateResponse(HttpStatusCode.OK, mes, MediaTypeHeaderValue.Parse("application/json"));
+        }
     }
 }

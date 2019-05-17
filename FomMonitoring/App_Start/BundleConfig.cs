@@ -91,7 +91,8 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/xspindles.js",
                         "~/GlobApp/scripts/machine/tools.js",
                         "~/GlobApp/scripts/machine/xtools.js",
-                        "~/GlobApp/scripts/machine/jobs.js"
+                        "~/GlobApp/scripts/machine/jobs.js",
+                        "~/GlobApp/scripts/plantmessages.js"
                       ));
 
             #endregion

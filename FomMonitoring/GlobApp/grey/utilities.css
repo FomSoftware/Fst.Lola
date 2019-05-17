@@ -136,9 +136,11 @@ em,
     z-index: 0;
 }
 
+#slimscroll-plant-msg-wrapper .slimScrollDiv .slimscroll {
+    overflow-x: auto !important;
+}
 
 /*#region color */
-
 .color-green {
     color: #5C7829;
     color: #779933;

@@ -39,6 +39,7 @@
         {
             $(".slimscroll").slimScroll({ destroy: true });
 
+           
             SharedManager.updateLastUpdate(data.LastUpdate);
 
             Efficiency.update(data.Efficiency);

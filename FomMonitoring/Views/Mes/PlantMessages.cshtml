@@ -1,0 +1,23 @@
+﻿@model FomMonitoringBLL.ViewModel.PlantMessagesViewModel
+
+@{
+    ViewBag.AppTitle = "Plant Messages Monitoring";
+    Layout = "~/Views/Shared/_LayoutApp.cshtml";
+}
+
+<div id="PlantMessagesLevel" class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 card-wrap-2">
+        @Html.Partial("_PlantMessages", Model)
+    </div>
+</div>
+
+<script type="text/javascript">    
+
+    $(document).ready(function ()
+    {
+        var urlPlantMessagesAPI = '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetPlantMessagesViewModel" })';
+        PlantMessages.urlPlantMessagesAPI = urlPlantMessagesAPI;
+    });
+
+</script>
+

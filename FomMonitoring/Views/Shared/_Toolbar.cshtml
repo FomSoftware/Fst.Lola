@@ -2,9 +2,10 @@
 @using FomMonitoringResources
 
 <div class="toolbar">
-    @if (Model.page == enPage.Machine)
-    {
-        <div class="row row-toolbar">
+    <div class="row row-toolbar">
+        @if (Model.page == enPage.Machine)
+        {
+
             <div class="col-md-8 col-sm-7 col-xs-11 col-padding">
                 <div id="machines-filter" v-cloak>
                     @if (Model.role != enRole.Operator)
@@ -89,7 +90,57 @@
                     </div>
                     <!-- #endregion -->
                 </div>
+            </div>            
+
+        }
+        else if (Model.page == enPage.Mes)
+        {
+            <div class="col-xs-12">
+                <div id="plants-filter" class="toolbar-filter" v-cloak>
+                    <i class="icofom-productivity" v-cloak></i>
+                    <span class="title-small">@Resource.Plant</span>
+                    <select id="plant_select" class="bs-select show-menu-arrow show-tick display-none plant-select">
+                        <option v-for="plant in plants"
+                                v-bind:value="plant.id"
+                                v-bind:selected="plant.id == selected.plant.id">
+                            {{ plant.name }}
+                        </option>
+                    </select>
+                    @if (Model.role != enRole.Operator)
+                    {
+                        <a class="btn btn-toolbar" href="@Url.Action("PlantMessages", "Mes")">
+                            <i class="fa fa-server color-corporate fa-lg" style="position:inherit"></i>
+                        </a>
+                    }
+                </div>
             </div>
+        }
+        else if (Model.page == enPage.PlantMessages)
+        {
+            if (Model.role != enRole.Operator)
+            {
+                <div class="col-md-8 col-sm-7 col-xs-11">
+                    <div id="plants-filter" class="toolbar-filter" v-cloak>
+                        <div>
+                            <a class="btn btn-toolbar" href="@Url.Action("Index", "Mes")" style="padding: 2px 10px 10px 10px;">
+                                <i class="fa icofom-productivity fa-stack-1x fa-inverse" style="position:inherit"></i>
+                            </a>
+                            <span class="title" >
+                                @Resource.Plant {{selected.plant.name}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else if (Model.page == enPage.UserManager)
+        {
+            <a class="btn btn-toolbar" href="@Url.Action("Index", "Mes")">
+                <i class="fa fa-arrow-circle-left color-corporate fa-lg"></i>
+            </a>
+        }
+        @if (Model.page == enPage.Machine || Model.page == enPage.PlantMessages)
+        {            
             <div class="col-md-4 col-sm-5 col-xs-1 col-padding">
                 <div id="calendar" class="btn-toolbar pull-right">
                     <div class="icon-btn">
@@ -104,37 +155,13 @@
                     <div class="hidden-xs">
                         <i class="icon-arrow-down"></i>
                     </div>
-                </div>
-            </div>
-        </div>
-    }
-    else if (Model.page == enPage.Mes)
-    {
-        <div class="row">
-            <div class="col-xs-12">
-                <div id="plants-filter" class="toolbar-filter" v-cloak>
-                    <i class="icofom-productivity" v-cloak></i>
-                    <span class="title-small">@Resource.Plant</span>
-                    <select id="plant_select" class="bs-select show-menu-arrow show-tick display-none plant-select">
-                        <option v-for="plant in plants"
-                                v-bind:value="plant.id"
-                                v-bind:selected="plant.id == selected.plant.id">
-                            {{ plant.name }}
-                        </option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    }
-    else if (Model.page == enPage.UserManager)
-    {
-        <a class="btn btn-toolbar" href="@Url.Action("Index", "Mes")">
-            <i class="fa fa-arrow-circle-left color-corporate fa-lg"></i>
-        </a>
-    }
-</div>
 
-<script type="text/javascript">
+                </div>
+            </div>
+        }
+    </div>
+</div>
+    <script type="text/javascript">
 
     $(document).ready(function ()
     {
@@ -142,4 +169,4 @@
         SharedManager.initToolbar(data);
     });
 
-</script>
+    </script>
