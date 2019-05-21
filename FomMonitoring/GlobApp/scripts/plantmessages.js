@@ -115,6 +115,7 @@
                     this.sorting.group = null;
                     this.sorting.model = null;
                     this.sorting.serial = null;
+                    this.sorting.duration = null;
 
                     if (this.sorting.timestamp == 'desc') {
                         this.$data.messages = _.sortBy(this.$data.messages, function (message) { return message.message.timestamp; });
@@ -128,10 +129,30 @@
                         return;
                     }
                 },
+                sortDuration: function () {
+                    this.sorting.group = null;
+                    this.sorting.model = null;
+                    this.sorting.serial = null;
+                    this.sorting.timestamp = null;
+                   
+                    if (this.sorting.duration == 'desc') {
+                        this.$data.messages = _.sortBy(this.$data.messages, function (message) { return message.message.time.elapsed; });
+                        this.sorting.duration = 'asc';
+                        return;
+                    }
+
+                    if (this.sorting.duration == 'asc' || this.sorting.duration == null) {
+                        this.$data.messages = _.sortBy(this.$data.messages, function (message) { return message.message.time.elapsed; }).reverse();
+                        this.sorting.duration = 'desc';
+                        return;
+                    }
+                },
                 sortGroup: function () {
                     this.sorting.timestamp = null;
                     this.sorting.model = null;
                     this.sorting.serial = null;
+                    this.sorting.duration = null;
+                    this.sorting.timestamp = null;
 
                     if (this.sorting.group == 'desc') {
                         this.$data.messages = _.sortBy(this.$data.messages, function (message) { return message.message.group; });
@@ -149,6 +170,8 @@
                     this.sorting.group = null;
                     this.sorting.timestamp = null;
                     this.sorting.model = null;
+                    this.sorting.duration = null;
+                    this.sorting.timestamp = null;
 
                     if (this.sorting.serial == 'desc') {
                         this.$data.messages = _.sortBy(this.$data.messages, function (message) { return message.message.serial; });
@@ -166,6 +189,8 @@
                     this.sorting.group = null;
                     this.sorting.timestamp = null;
                     this.sorting.serial = null;
+                    this.sorting.duration = null;
+                    this.sorting.timestamp = null;
 
                     if (this.sorting.model == 'desc') {
                         this.$data.messages = _.sortBy(this.$data.messages, function (message) { return message.message.model; });

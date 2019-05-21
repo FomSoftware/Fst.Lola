@@ -13,8 +13,10 @@ namespace FomMonitoringBLL.ViewModel
         public string type { get; set; }
 
         public int group { get; set; }
-        public string description { get; set; }        
+        public string description { get; set; }
 
+        public TimeViewModel time { get; set; }
+        
         public string formatted_timestamp
         {
             get { return timestamp?.ToString(CultureInfo.CurrentCulture); }

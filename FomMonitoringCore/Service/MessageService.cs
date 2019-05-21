@@ -212,7 +212,7 @@ namespace FomMonitoringCore.Service
                                 .GroupBy(g => new
                                 {
                                     g.MachineId,
-                                    //g.Params,
+                                    g.Params,
                                     //g.Group,
                                     g.StateId,
                                     g.Code
@@ -227,7 +227,7 @@ namespace FomMonitoringCore.Service
                                     ElapsedTime = s.Sum(i => i.ElapsedTime),
                                     //Group = s.Key.Group,
                                     MachineId = s.Key.MachineId,
-                                    //Params = s.Key.Params,
+                                    Params = s.Key.Params,
                                     TypeHistory = "y"
                                 }).ToList();
 

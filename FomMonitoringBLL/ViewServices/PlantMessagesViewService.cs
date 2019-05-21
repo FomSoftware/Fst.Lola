@@ -68,7 +68,9 @@ namespace FomMonitoringBLL.ViewServices
                     timestamp = a.Day,
                     type = ((enTypeAlarm)a.StateId).GetDescription(),
                     group = a.Group,
+                    time = CommonViewService.getTimeViewModel(a.ElapsedTime),
                     description = ReadMessages.GetMessageDescription(a.Code, a.Params, CultureInfo.CurrentCulture.EnglishName)
+
                 }).ToList();
 
                 foreach(MessageDetailViewModel det in msgDet)

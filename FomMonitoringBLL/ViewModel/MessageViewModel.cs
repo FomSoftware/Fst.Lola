@@ -25,6 +25,7 @@ namespace FomMonitoringBLL.ViewModel
         public string parameters { get; set; }
 
         public string day { get; set; }
+        public string description { get; set; }
     }
 
     public class MessageDetailsVueModel
