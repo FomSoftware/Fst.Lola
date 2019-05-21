@@ -38,7 +38,8 @@ namespace FomMonitoringBLL.ViewServices
                 time = CommonViewService.getTimeViewModel(j.ElapsedTime),
                 quantity_day = j.PiecesProducedDay ?? 0,
                 quantity = j.PiecesProduced ?? 0,
-                pieces = j.TotalPieces ?? 0
+                pieces = j.TotalPieces ?? 0,
+                day = j.Day
             }).ToList();
 
             jobs = jobs.OrderBy(o => o.perc).ToList();

@@ -107,6 +107,7 @@
                     this.sorting.duration = null;
                     this.sorting.code = null;
                     this.sorting.progress = null;
+                    this.sorting.day = null;
 
                     if (this.sorting.quantity == 'desc')
                     {
@@ -139,6 +140,7 @@
                     this.sorting.quantity = null;
                     this.sorting.code = null;
                     this.sorting.progress = null;
+                    this.sorting.day = null;
 
                     if (this.sorting.duration == 'desc')
                     {
@@ -166,11 +168,40 @@
                         return;
                     }
                 },
+                sortDay: function () {
+                    this.sorting.duration = null;
+                    this.sorting.quantity = null;
+                    this.sorting.code = null;
+                    this.sorting.progress = null;
+
+                    if (this.sorting.day == 'desc') {
+                        this.jobs = _.sortBy(this.jobs, function (job) { return job.day; });
+                        this.sorting.day = 'asc';
+
+                        this.$nextTick(function () {
+                            this.refreshProgress();
+                        });
+
+                        return;
+                    }
+
+                    if (this.sorting.day == 'asc' || this.sorting.day == null) {
+                        this.jobs = _.sortBy(this.jobs, function (job) { return job.day; }).reverse();
+                        this.sorting.day = 'desc';
+
+                        this.$nextTick(function () {
+                            this.refreshProgress();
+                        });
+
+                        return;
+                    }
+                },
                 sortCode: function ()
                 {
                     this.sorting.quantity = null;
                     this.sorting.duration = null;
                     this.sorting.progress = null;
+                    this.sorting.day = null;
 
                     if (this.sorting.code == 'desc')
                     {
@@ -203,6 +234,7 @@
                     this.sorting.quantity = null;
                     this.sorting.duration = null;
                     this.sorting.code = null;
+                    this.sorting.day = null;
 
                     if (this.sorting.progress == 'desc')
                     {

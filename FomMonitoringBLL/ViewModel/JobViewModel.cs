@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -24,5 +25,11 @@ namespace FomMonitoringBLL.ViewModel
         public int quantity { get; set; }
         public int quantity_day { get; set; }
         public int pieces { get; set; }
+        public DateTime? day { get; set; }
+
+        public string formatted_day
+        {
+            get { return day?.ToString("d", CultureInfo.CurrentCulture); }
+        }
     }
 }
