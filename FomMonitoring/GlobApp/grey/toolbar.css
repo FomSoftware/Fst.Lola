@@ -16,9 +16,32 @@
     }
 }
 
+#plantMessagesLabel {
+    font-size: 14px;
+    color: #403D3D;
+}
+
 @media (max-width: 768px) {
     .btn-toolbar .title-btn {
         font-size: 11px;
+    }
+    .btn-toolbar {
+        padding: 7px 5px 5px 5px;
+    }
+
+    #plantMessagesLabel {
+        font-size: 10px;
+        color: #403D3D;
+    }
+}
+
+@media (max-width: 330px) {
+    #plantMessagesLabel {
+        display: none
+    }
+
+    header .btn-menu{
+        padding: 10px;
     }
 }
 
