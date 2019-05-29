@@ -52,10 +52,13 @@
 
         initVueModel(data);
 
-        if (data.opt_historical != null)
-        {
+        if (data.opt_historical != null) {
             vmMessages.show.historical = true;
             ChartManager.lineChart('msg_historical_chart', data.opt_historical);
+        }
+        else {
+
+            vmMessages.show.historical = false;
         }
 
     }

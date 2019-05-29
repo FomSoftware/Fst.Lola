@@ -84,7 +84,7 @@ namespace FomMonitoringCore.Service
                             if (period.Aggregation == enAggregation.Week)
                             {
                                 var historyMessagesWeek = ent.HistoryMessage
-                                    .Where(hm => hm.MachineId == machine.Id && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.Code != null)
+                                    .Where(hm => hm.MachineId == machine.Id && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.Code != null).ToList()
                                     .GroupBy(g => new
                                     {
                                         Year = g.Day.HasValue ? (int?)g.Day.Value.Year : null,
@@ -115,7 +115,7 @@ namespace FomMonitoringCore.Service
                             if (period.Aggregation == enAggregation.Month)
                             {
                                 var historyMessagesMonth = ent.HistoryMessage
-                                    .Where(hm => hm.MachineId == machine.Id && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.Code != null)
+                                    .Where(hm => hm.MachineId == machine.Id && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.Code != null).ToList()
                                     .GroupBy(g => new
                                     {
                                         Year = g.Day.HasValue ? (int?)g.Day.Value.Year : null,
@@ -146,7 +146,7 @@ namespace FomMonitoringCore.Service
                             if (period.Aggregation == enAggregation.Quarter)
                             {
                                 var historyMessagesQuarter = ent.HistoryMessage
-                                    .Where(hm => hm.MachineId == machine.Id && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.Code != null)
+                                    .Where(hm => hm.MachineId == machine.Id && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.Code != null).ToList()
                                     .GroupBy(g => new
                                     {
                                         Year = g.Day.HasValue ? (int?)g.Day.Value.Year : null,
@@ -177,7 +177,7 @@ namespace FomMonitoringCore.Service
                             if (period.Aggregation == enAggregation.Year)
                             {
                                 var historyMessagesYear = ent.HistoryMessage
-                                    .Where(hm => hm.MachineId == machine.Id && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.Code != null)
+                                    .Where(hm => hm.MachineId == machine.Id && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.Code != null).ToList()
                                     .GroupBy(g => new
                                     {
                                         Year = g.Day.HasValue ? (int?)g.Day.Value.Year : null,
@@ -208,7 +208,7 @@ namespace FomMonitoringCore.Service
                             break;
                         case enDataType.Summary:
                             var historyMessagesSummary = ent.HistoryMessage
-                                .Where(hm => hm.MachineId == machine.Id && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.Code != null)
+                                .Where(hm => hm.MachineId == machine.Id && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.Code != null).ToList()
                                 .GroupBy(g => new
                                 {
                                     g.MachineId,

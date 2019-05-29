@@ -385,5 +385,8 @@
 
 /*#endregion */
 
-
+#CardPlantMessages {
+    height: calc(100vh - 100px);
+    background-color: #CBCACA;
+}
 
