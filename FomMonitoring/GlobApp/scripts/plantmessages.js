@@ -278,7 +278,7 @@
     var initScrollBar = function () {
         $('.slimscroll').slimScroll({
             size: '5px',
-            height: '500px',
+            height: '86vh',
             alwaysVisible: false,
             //wheelStep: 10,
             touchScrollStep: 35,
