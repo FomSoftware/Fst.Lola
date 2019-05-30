@@ -50,7 +50,7 @@ namespace FomMonitoringBLL.ViewServices
                 {
                     install = s.InstallDate == null ? "-" : s.InstallDate.Value.ToString("d"),
                     maintenance = machine.NextMaintenanceService == null ? "-" : machine.NextMaintenanceService.Value.ToString("d"),
-                    change = s.ChangeCount
+                    //change = s.ChangeCount
                 },
                 time = new TimeToLiveModel()
                 {

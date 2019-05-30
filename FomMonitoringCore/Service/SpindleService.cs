@@ -37,10 +37,10 @@ namespace FomMonitoringCore.Service
                     
 
                     result = query.Adapt<List<SpindleModel>>();
-                    foreach (SpindleModel spindle in result)
+                   /* foreach (SpindleModel spindle in result)
                     {
                         spindle.ChangeCount = result.Count(c => c.Code == spindle.Code) - 1;
-                    }
+                    }*/
                     result = result.GroupBy(g => g.Code).Select(s => s.OrderByDescending(o => o.InstallDate).First()).ToList();
                 }
             }

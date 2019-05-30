@@ -5,7 +5,7 @@ namespace FomMonitoringCore.Framework.Model
     public class SpindleModel
     {
         public int Id { get; set; }
-        public int ChangeCount { get; set; }
+        //public int ChangeCount { get; set; }
         public string Code { get; set; }
         public long? ElapsedTimeWorkTotal { get; set; }
         public long? ElapsedTimeWork3K { get; set; }

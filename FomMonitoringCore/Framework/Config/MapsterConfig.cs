@@ -40,7 +40,7 @@ namespace FomMonitoringCore.Framework.Config
             config.NewConfig<MachineType, MachineTypeModel>();
             config.NewConfig<Piece, PieceModel>();
             config.NewConfig<Spindle, SpindleModel>()
-                .Ignore(dest => dest.ChangeCount)
+                //.Ignore(dest => dest.ChangeCount)
                 .Map(dest => dest.AverageElapsedTimeWork, src => src.ElapsedTimeWorkTotal.HasValue && src.ElapsedTimeWorkTotal > 0 ?
                                                                     (
                                                                         ((decimal)(src.ElapsedTimeWork3K ?? 0) * 3) + ((decimal)(src.ElapsedTimeWork6K ?? 0) * 6) +
