@@ -48,6 +48,7 @@
             Spindles.update(data.Spindles);
             XSpindles.update(data.XSpindles);
             Tools.update(data.Tools);
+            XTools.update(data.XTools);
             Jobs.update(data.Jobs);
             Messages.update(data.Messages);
 
