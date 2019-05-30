@@ -74,7 +74,7 @@ namespace FomMonitoringBLL.ViewServices
         {
             List<MachineInfoViewModel> machines = new List<MachineInfoViewModel>();
 
-            machines = context.AllMachines.Select(m => new MachineInfoViewModel()
+            machines = context.AllMachines.Where(w => w.PlantId == context.ActualPlant.Id).Select(m => new MachineInfoViewModel()
             {
                 id = m.Id,
                 serial = m.Serial,
