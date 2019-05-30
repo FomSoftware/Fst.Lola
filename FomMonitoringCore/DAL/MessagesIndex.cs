@@ -12,22 +12,25 @@ namespace FomMonitoringCore.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class MachineModel
+    public partial class MessagesIndex
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MachineModel()
+        public MessagesIndex()
         {
-            this.Machine = new HashSet<Machine>();
+            this.MessageTranslation = new HashSet<MessageTranslation>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int ModelCodev997 { get; set; }
+        public string MessageCode { get; set; }
         public int MessageCategoryId { get; set; }
-        public string Parameter { get; set; }
+        public int MessageTypeId { get; set; }
+        public bool IsVisibileLOLA { get; set; }
+        public int MachineGroupId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Machine> Machine { get; set; }
+        public virtual MachineGroup MachineGroup { get; set; }
         public virtual MessageCategory MessageCategory { get; set; }
+        public virtual MessageType MessageType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MessageTranslation> MessageTranslation { get; set; }
     }
 }

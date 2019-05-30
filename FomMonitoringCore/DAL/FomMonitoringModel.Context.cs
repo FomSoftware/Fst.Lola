@@ -54,6 +54,12 @@ namespace FomMonitoringCore.DAL
         public virtual DbSet<FomMonitoringApi> FomMonitoringApi { get; set; }
         public virtual DbSet<FomMonitoringDatabaseMapping> FomMonitoringDatabaseMapping { get; set; }
         public virtual DbSet<FomMonitoringUpdateUsers> FomMonitoringUpdateUsers { get; set; }
+        public virtual DbSet<MachineGroup> MachineGroup { get; set; }
+        public virtual DbSet<MessageCategory> MessageCategory { get; set; }
+        public virtual DbSet<MessageLanguages> MessageLanguages { get; set; }
+        public virtual DbSet<MessagesIndex> MessagesIndex { get; set; }
+        public virtual DbSet<MessageTranslation> MessageTranslation { get; set; }
+        public virtual DbSet<MessageType> MessageType { get; set; }
     
         public virtual ObjectResult<usp_AggregationState_Result> usp_AggregationState(Nullable<int> machineId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<int> aggregation, Nullable<int> dataType)
         {
