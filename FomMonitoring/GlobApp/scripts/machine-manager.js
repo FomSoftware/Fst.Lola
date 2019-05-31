@@ -14,8 +14,11 @@
             $('#MachineLevel').addClass('show');
             initFlipCard();
             initProgressBar();
-            initScrollBar();
+            initScrollBar();             
+            initColumnHeader();
         });
+
+        
     }
 
     var callAjaxMachineViewModelData = function (filters)
@@ -56,9 +59,10 @@
             {
                 initProgressBar();
                 initFlipCard();
-                initScrollBar();
+                initScrollBar();            
+                initColumnHeader();
             });
-
+           
         });
 
         request.fail(function (jqXHR, textStatus, errorThrown)
@@ -82,15 +86,47 @@
 
     var initScrollBar = function ()
     {
-        $('.slimscroll').slimScroll({
-            size: '5px',
-            height: '244px',
-            alwaysVisible: false,
-            //wheelStep: 10,
-            touchScrollStep: 35,
-            color: '#999',
-            allowPageScroll: true
+        $('.slimscroll').each(function () {
+
+            var hh = '244px';
+            // se sono in una tabella con il titolo fisso lo slimscroll contiene solo il tbody e non il theader
+            if ($(this).closest('.table-container').length > 0) {
+                hh = '210px';
+            }
+            
+            $(this).slimScroll({
+                size: '5px',
+                height: hh,
+                alwaysVisible: false,
+                //wheelStep: 10,
+                touchScrollStep: 35,
+                color: '#999',
+                allowPageScroll: true
+            });
         });
+    }
+
+    var initColumnHeader = function () {
+         $('.table-container').each(function (i) {
+                var thCol = $(this).find('.table-header:first').find("th");
+
+                var tdCol = $(this).find('.slimscroll .table tr:first').find("td");
+                var tdWidth = [];
+
+
+                if (tdCol && thCol) {
+                    tdCol.each(function () {
+                        tdWidth.push($(this).width());
+                    });
+
+
+                    thCol.each(function (index) {
+                        $(this).css("width", tdWidth[index]);
+
+                    });
+
+                }
+            });
     }
 
     var initFlipCard = function ()
@@ -247,7 +283,8 @@
         init: init,
         callAjaxMachineViewModelData: callAjaxMachineViewModelData,
         initVueComponents: initVueComponents,
-        getColorKPI: getColorKPI
+        getColorKPI: getColorKPI,
+        initColumnHeader
     }
 
 }();
