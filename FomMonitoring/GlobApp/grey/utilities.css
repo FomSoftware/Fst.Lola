@@ -299,12 +299,23 @@ em,
     text-decoration: none;
     font-size: 12px;
 }
-
-.dropdown-content .dd-item:hover,
-.dropdown-content .dd-item.active {
-    background-color: #ddd;
-    cursor: pointer;
+.dd-item-longtext {
+    display: inline;  
+    width:100%;
 }
+    .dd-item-longtext div {
+        width: 78%;
+    }
+
+    .dd-item-longtext div span {
+        word-break: break-word;       
+    }
+
+    .dropdown-content .dd-item:hover,
+    .dropdown-content .dd-item.active {
+        background-color: #ddd;
+        cursor: pointer;
+    }
 
     .dropdown-content .dd-item:hover::before,
     .dropdown-content .dd-item.active::before {
