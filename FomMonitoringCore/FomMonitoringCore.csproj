@@ -205,13 +205,31 @@
     <Compile Include="DAL\Machine.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\MachineGroup.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\MachineModel.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\MachineType.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\MessageCategory.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\MessageLanguages.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\MessageMachine.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\MessagesIndex.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\MessageTranslation.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\MessageType.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\Piece.cs">

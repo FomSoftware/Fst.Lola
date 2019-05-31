@@ -43,7 +43,7 @@ namespace FomMonitoringBLL.ViewModel
     {
         public string install { get; set; }
         public string maintenance { get; set; }
-        public int change { get; set; }
+        //public int change { get; set; }
     }
 
     public class TimeToLiveModel

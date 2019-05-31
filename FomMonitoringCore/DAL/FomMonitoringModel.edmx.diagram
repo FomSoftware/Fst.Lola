@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="FST_FomMonitoringModel.State" Width="1.5" PointX="3" PointY="25.875" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_AlarmMachine_State" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryAlarm_State" />
-        <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryBar" Width="1.5" PointX="5.25" PointY="19.5" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryBar" Width="1.5" PointX="0.625" PointY="20.375" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryState" Width="1.5" PointX="8.25" PointY="32.5" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.StateMachine" Width="1.5" PointX="5.25" PointY="37.25" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryState_State" />
@@ -58,6 +58,18 @@
         <EntityTypeShape EntityType="FST_FomMonitoringModel.FomMonitoringApi" Width="1.5" PointX="4.75" PointY="3.75" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.FomMonitoringDatabaseMapping" Width="1.5" PointX="6.75" PointY="0.75" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.FomMonitoringUpdateUsers" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.MachineGroup" Width="1.5" PointX="5.5" PointY="16.75" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.MessageCategory" Width="1.5" PointX="7.5" PointY="24.375" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.MessageLanguages" Width="1.5" PointX="8.25" PointY="12.75" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.MessagesIndex" Width="1.5" PointX="5" PointY="20.625" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.MessageTranslation" Width="1.5" PointX="9" PointY="20.5" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.MessageType" Width="1.5" PointX="2.875" PointY="15.625" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_MessagesIndex_MachineGroup" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_MachineModel_MessageCategory" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_MessagesIndex_MessageCategory" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageTranslation_MessageLanguage" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_MessagesIndex_MessageType" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageTranslation_MessageID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

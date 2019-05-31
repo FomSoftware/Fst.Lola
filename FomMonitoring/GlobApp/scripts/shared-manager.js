@@ -93,8 +93,10 @@
             {
                 vmMachinesFilter.selected.machine = machine;
                 filters.machine = machine;
-
-                MachineManager.callAjaxMachineViewModelData(filters);
+                              
+                var url = machineID;
+                location.href = url;
+                //MachineManager.callAjaxMachineViewModelData(filters);
             }
             
         });

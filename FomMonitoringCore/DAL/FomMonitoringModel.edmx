@@ -193,12 +193,22 @@
           <Property Name="StateProductivityYellowThreshold" Type="float" />
           <Property Name="UTC" Type="float" />
         </EntityType>
+        <EntityType Name="MachineGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="MachineGroupName" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
         <EntityType Name="MachineModel">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ModelCodev997" Type="int" Nullable="false" />
+          <Property Name="MessageCategoryId" Type="int" Nullable="false" />
+          <Property Name="Parameter" Type="nchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="MachineType">
           <Key>
@@ -207,6 +217,23 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" />
           <Property Name="Image" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="MessageCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="CategoryNote" Type="nchar" MaxLength="70" />
+        </EntityType>
+        <EntityType Name="MessageLanguages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="LangCode" Type="int" Nullable="false" />
+          <Property Name="LangDesc" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="DotNetCulture" Type="nchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="MessageMachine">
           <Key>
@@ -224,6 +251,34 @@
           <Property Name="Type" Type="nvarchar" MaxLength="150" />
           <Property Name="Group" Type="int" />
           <Property Name="IsVisible" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MessagesIndex">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MessageCode" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="MessageCategoryId" Type="int" Nullable="false" />
+          <Property Name="MessageTypeId" Type="int" Nullable="false" />
+          <Property Name="IsVisibileLOLA" Type="bit" Nullable="false" />
+          <Property Name="MachineGroupId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MessageTranslation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MessageId" Type="int" Nullable="false" />
+          <Property Name="MessageLanguageId" Type="int" Nullable="false" />
+          <Property Name="Translation" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MessageType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeCode" Type="int" Nullable="false" />
+          <Property Name="TypeDesc" Type="nchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="Piece">
           <Key>
@@ -643,6 +698,78 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MachineModel_MessageCategory">
+          <End Role="MessageCategory" Type="Self.MessageCategory" Multiplicity="1" />
+          <End Role="MachineModel" Type="Self.MachineModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MachineModel">
+              <PropertyRef Name="MessageCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessagesIndex_MachineGroup">
+          <End Role="MachineGroup" Type="Self.MachineGroup" Multiplicity="1" />
+          <End Role="MessagesIndex" Type="Self.MessagesIndex" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessagesIndex">
+              <PropertyRef Name="MachineGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessagesIndex_MessageCategory">
+          <End Role="MessageCategory" Type="Self.MessageCategory" Multiplicity="1" />
+          <End Role="MessagesIndex" Type="Self.MessagesIndex" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessagesIndex">
+              <PropertyRef Name="MessageCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessagesIndex_MessageType">
+          <End Role="MessageType" Type="Self.MessageType" Multiplicity="1" />
+          <End Role="MessagesIndex" Type="Self.MessagesIndex" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessagesIndex">
+              <PropertyRef Name="MessageTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessageTranslation_MessageID">
+          <End Role="MessagesIndex" Type="Self.MessagesIndex" Multiplicity="1" />
+          <End Role="MessageTranslation" Type="Self.MessageTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessagesIndex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageTranslation">
+              <PropertyRef Name="MessageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessageTranslation_MessageLanguage">
+          <End Role="MessageLanguages" Type="Self.MessageLanguages" Multiplicity="1" />
+          <End Role="MessageTranslation" Type="Self.MessageTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageLanguages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageTranslation">
+              <PropertyRef Name="MessageLanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Piece_Bar">
           <End Role="Bar" Type="Self.Bar" Multiplicity="0..1" />
           <End Role="Piece" Type="Self.Piece" Multiplicity="*" />
@@ -789,9 +916,15 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySet Name="HistoryPiece" EntityType="Self.HistoryPiece" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistoryState" EntityType="Self.HistoryState" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Machine" EntityType="Self.Machine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MachineGroup" EntityType="Self.MachineGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MachineModel" EntityType="Self.MachineModel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MachineType" EntityType="Self.MachineType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageCategory" EntityType="Self.MessageCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageLanguages" EntityType="Self.MessageLanguages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MessageMachine" EntityType="Self.MessageMachine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessagesIndex" EntityType="Self.MessagesIndex" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageTranslation" EntityType="Self.MessageTranslation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageType" EntityType="Self.MessageType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Piece" EntityType="Self.Piece" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Plant" EntityType="Self.Plant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Spindle" EntityType="Self.Spindle" Schema="dbo" store:Type="Tables" />
@@ -912,6 +1045,30 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <AssociationSet Name="FK_Machine_Plant" Association="Self.FK_Machine_Plant">
             <End Role="Plant" EntitySet="Plant" />
             <End Role="Machine" EntitySet="Machine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachineModel_MessageCategory" Association="Self.FK_MachineModel_MessageCategory">
+            <End Role="MessageCategory" EntitySet="MessageCategory" />
+            <End Role="MachineModel" EntitySet="MachineModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessagesIndex_MachineGroup" Association="Self.FK_MessagesIndex_MachineGroup">
+            <End Role="MachineGroup" EntitySet="MachineGroup" />
+            <End Role="MessagesIndex" EntitySet="MessagesIndex" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessagesIndex_MessageCategory" Association="Self.FK_MessagesIndex_MessageCategory">
+            <End Role="MessageCategory" EntitySet="MessageCategory" />
+            <End Role="MessagesIndex" EntitySet="MessagesIndex" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessagesIndex_MessageType" Association="Self.FK_MessagesIndex_MessageType">
+            <End Role="MessageType" EntitySet="MessageType" />
+            <End Role="MessagesIndex" EntitySet="MessagesIndex" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageTranslation_MessageID" Association="Self.FK_MessageTranslation_MessageID">
+            <End Role="MessagesIndex" EntitySet="MessagesIndex" />
+            <End Role="MessageTranslation" EntitySet="MessageTranslation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageTranslation_MessageLanguage" Association="Self.FK_MessageTranslation_MessageLanguage">
+            <End Role="MessageLanguages" EntitySet="MessageLanguages" />
+            <End Role="MessageTranslation" EntitySet="MessageTranslation" />
           </AssociationSet>
           <AssociationSet Name="FK_Piece_Bar" Association="Self.FK_Piece_Bar">
             <End Role="Bar" EntitySet="Bar" />
@@ -1128,6 +1285,36 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <Parameter Name="aggregation" Mode="In" Type="Int32" />
             <Parameter Name="dataType" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="MachineGroup" EntityType="FST_FomMonitoringModel.MachineGroup" />
+          <EntitySet Name="MessageCategory" EntityType="FST_FomMonitoringModel.MessageCategory" />
+          <EntitySet Name="MessageLanguages" EntityType="FST_FomMonitoringModel.MessageLanguages" />
+          <EntitySet Name="MessagesIndex" EntityType="FST_FomMonitoringModel.MessagesIndex" />
+          <EntitySet Name="MessageTranslation" EntityType="FST_FomMonitoringModel.MessageTranslation" />
+          <EntitySet Name="MessageType" EntityType="FST_FomMonitoringModel.MessageType" />
+          <AssociationSet Name="FK_MessagesIndex_MachineGroup" Association="FST_FomMonitoringModel.FK_MessagesIndex_MachineGroup">
+            <End Role="MachineGroup" EntitySet="MachineGroup" />
+            <End Role="MessagesIndex" EntitySet="MessagesIndex" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachineModel_MessageCategory" Association="FST_FomMonitoringModel.FK_MachineModel_MessageCategory">
+            <End Role="MessageCategory" EntitySet="MessageCategory" />
+            <End Role="MachineModel" EntitySet="MachineModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessagesIndex_MessageCategory" Association="FST_FomMonitoringModel.FK_MessagesIndex_MessageCategory">
+            <End Role="MessageCategory" EntitySet="MessageCategory" />
+            <End Role="MessagesIndex" EntitySet="MessagesIndex" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageTranslation_MessageLanguage" Association="FST_FomMonitoringModel.FK_MessageTranslation_MessageLanguage">
+            <End Role="MessageLanguages" EntitySet="MessageLanguages" />
+            <End Role="MessageTranslation" EntitySet="MessageTranslation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessagesIndex_MessageType" Association="FST_FomMonitoringModel.FK_MessagesIndex_MessageType">
+            <End Role="MessageType" EntitySet="MessageType" />
+            <End Role="MessagesIndex" EntitySet="MessagesIndex" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageTranslation_MessageID" Association="FST_FomMonitoringModel.FK_MessageTranslation_MessageID">
+            <End Role="MessagesIndex" EntitySet="MessagesIndex" />
+            <End Role="MessageTranslation" EntitySet="MessageTranslation" />
+          </AssociationSet>
 		  </EntityContainer>
         <EntityType Name="AlarmMachine">
           <Key>
@@ -1167,8 +1354,12 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_Machine_MachineModel" FromRole="MachineModel" ToRole="Machine" />
+          <Property Name="ModelCodev997" Type="Int32" Nullable="false" />
+          <Property Name="MessageCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Parameter" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="MessageCategory" Relationship="FST_FomMonitoringModel.FK_MachineModel_MessageCategory" FromRole="MachineModel" ToRole="MessageCategory" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -2016,6 +2207,141 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Type="Int32" Name="Group" Nullable="true" />
           <Property Type="String" Name="TypeHistory" Nullable="true" MaxLength="1" />
         </ComplexType>
+        <EntityType Name="MachineGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="MachineGroupName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MessagesIndex" Relationship="FST_FomMonitoringModel.FK_MessagesIndex_MachineGroup" FromRole="MachineGroup" ToRole="MessagesIndex" />
+        </EntityType>
+        <EntityType Name="MessageCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="CategoryNote" Type="String" MaxLength="70" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="MachineModel" Relationship="FST_FomMonitoringModel.FK_MachineModel_MessageCategory" FromRole="MessageCategory" ToRole="MachineModel" />
+          <NavigationProperty Name="MessagesIndex" Relationship="FST_FomMonitoringModel.FK_MessagesIndex_MessageCategory" FromRole="MessageCategory" ToRole="MessagesIndex" />
+        </EntityType>
+        <EntityType Name="MessageLanguages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="LangCode" Type="Int32" Nullable="false" />
+          <Property Name="LangDesc" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="DotNetCulture" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="MessageTranslation" Relationship="FST_FomMonitoringModel.FK_MessageTranslation_MessageLanguage" FromRole="MessageLanguages" ToRole="MessageTranslation" />
+        </EntityType>
+        <EntityType Name="MessagesIndex">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessageCode" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="MessageCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="MessageTypeId" Type="Int32" Nullable="false" />
+          <Property Name="IsVisibileLOLA" Type="Boolean" Nullable="false" />
+          <Property Name="MachineGroupId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MachineGroup" Relationship="FST_FomMonitoringModel.FK_MessagesIndex_MachineGroup" FromRole="MessagesIndex" ToRole="MachineGroup" />
+          <NavigationProperty Name="MessageCategory" Relationship="FST_FomMonitoringModel.FK_MessagesIndex_MessageCategory" FromRole="MessagesIndex" ToRole="MessageCategory" />
+          <NavigationProperty Name="MessageType" Relationship="FST_FomMonitoringModel.FK_MessagesIndex_MessageType" FromRole="MessagesIndex" ToRole="MessageType" />
+          <NavigationProperty Name="MessageTranslation" Relationship="FST_FomMonitoringModel.FK_MessageTranslation_MessageID" FromRole="MessagesIndex" ToRole="MessageTranslation" />
+        </EntityType>
+        <EntityType Name="MessageTranslation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessageId" Type="Int32" Nullable="false" />
+          <Property Name="MessageLanguageId" Type="Int32" Nullable="false" />
+          <Property Name="Translation" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MessageLanguages" Relationship="FST_FomMonitoringModel.FK_MessageTranslation_MessageLanguage" FromRole="MessageTranslation" ToRole="MessageLanguages" />
+          <NavigationProperty Name="MessagesIndex" Relationship="FST_FomMonitoringModel.FK_MessageTranslation_MessageID" FromRole="MessageTranslation" ToRole="MessagesIndex" />
+        </EntityType>
+        <EntityType Name="MessageType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeCode" Type="Int32" Nullable="false" />
+          <Property Name="TypeDesc" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="MessagesIndex" Relationship="FST_FomMonitoringModel.FK_MessagesIndex_MessageType" FromRole="MessageType" ToRole="MessagesIndex" />
+        </EntityType>
+        <Association Name="FK_MessagesIndex_MachineGroup">
+          <End Type="FST_FomMonitoringModel.MachineGroup" Role="MachineGroup" Multiplicity="1" />
+          <End Type="FST_FomMonitoringModel.MessagesIndex" Role="MessagesIndex" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessagesIndex">
+              <PropertyRef Name="MachineGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MachineModel_MessageCategory">
+          <End Type="FST_FomMonitoringModel.MessageCategory" Role="MessageCategory" Multiplicity="1" />
+          <End Type="FST_FomMonitoringModel.MachineModel" Role="MachineModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MachineModel">
+              <PropertyRef Name="MessageCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessagesIndex_MessageCategory">
+          <End Type="FST_FomMonitoringModel.MessageCategory" Role="MessageCategory" Multiplicity="1" />
+          <End Type="FST_FomMonitoringModel.MessagesIndex" Role="MessagesIndex" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessagesIndex">
+              <PropertyRef Name="MessageCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessageTranslation_MessageLanguage">
+          <End Type="FST_FomMonitoringModel.MessageLanguages" Role="MessageLanguages" Multiplicity="1" />
+          <End Type="FST_FomMonitoringModel.MessageTranslation" Role="MessageTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageLanguages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageTranslation">
+              <PropertyRef Name="MessageLanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessagesIndex_MessageType">
+          <End Type="FST_FomMonitoringModel.MessageType" Role="MessageType" Multiplicity="1" />
+          <End Type="FST_FomMonitoringModel.MessagesIndex" Role="MessagesIndex" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessagesIndex">
+              <PropertyRef Name="MessageTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessageTranslation_MessageID">
+          <End Type="FST_FomMonitoringModel.MessagesIndex" Role="MessagesIndex" Multiplicity="1" />
+          <End Type="FST_FomMonitoringModel.MessageTranslation" Role="MessageTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessagesIndex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageTranslation">
+              <PropertyRef Name="MessageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2056,6 +2382,9 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="MachineModel">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.MachineModel">
               <MappingFragment StoreEntitySet="MachineModel">
+                <ScalarProperty Name="Parameter" ColumnName="Parameter" />
+                <ScalarProperty Name="MessageCategoryId" ColumnName="MessageCategoryId" />
+                <ScalarProperty Name="ModelCodev997" ColumnName="ModelCodev997" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -2582,6 +2911,64 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="MachineGroup">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.MachineGroup">
+              <MappingFragment StoreEntitySet="MachineGroup">
+                <ScalarProperty Name="MachineGroupName" ColumnName="MachineGroupName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageCategory">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.MessageCategory">
+              <MappingFragment StoreEntitySet="MessageCategory">
+                <ScalarProperty Name="CategoryNote" ColumnName="CategoryNote" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageLanguages">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.MessageLanguages">
+              <MappingFragment StoreEntitySet="MessageLanguages">
+                <ScalarProperty Name="DotNetCulture" ColumnName="DotNetCulture" />
+                <ScalarProperty Name="LangDesc" ColumnName="LangDesc" />
+                <ScalarProperty Name="LangCode" ColumnName="LangCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessagesIndex">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.MessagesIndex">
+              <MappingFragment StoreEntitySet="MessagesIndex">
+                <ScalarProperty Name="MachineGroupId" ColumnName="MachineGroupId" />
+                <ScalarProperty Name="IsVisibileLOLA" ColumnName="IsVisibileLOLA" />
+                <ScalarProperty Name="MessageTypeId" ColumnName="MessageTypeId" />
+                <ScalarProperty Name="MessageCategoryId" ColumnName="MessageCategoryId" />
+                <ScalarProperty Name="MessageCode" ColumnName="MessageCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageTranslation">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.MessageTranslation">
+              <MappingFragment StoreEntitySet="MessageTranslation">
+                <ScalarProperty Name="Translation" ColumnName="Translation" />
+                <ScalarProperty Name="MessageLanguageId" ColumnName="MessageLanguageId" />
+                <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageType">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.MessageType">
+              <MappingFragment StoreEntitySet="MessageType">
+                <ScalarProperty Name="TypeDesc" ColumnName="TypeDesc" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
