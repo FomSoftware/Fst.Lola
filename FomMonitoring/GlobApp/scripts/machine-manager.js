@@ -88,15 +88,16 @@
     {
         $('.slimscroll').each(function () {
 
-            var hh = '244px';
+            var hh = 244;
             // se sono in una tabella con il titolo fisso lo slimscroll contiene solo il tbody e non il theader
-            if ($(this).closest('.table-container').length > 0) {
-                hh = '210px';
+            var tableContainer = $(this).closest('.table-container');
+            if (tableContainer.length > 0) {             
+                hh = hh - tableContainer.first().children('.table-header').height();
             }
             
             $(this).slimScroll({
                 size: '5px',
-                height: hh,
+                height: hh + 'px',
                 alwaysVisible: false,
                 //wheelStep: 10,
                 touchScrollStep: 35,
