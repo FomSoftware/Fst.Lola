@@ -557,4 +557,7 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="XTools" xml:space="preserve">
     <value>Tools XModule/XMU</value>
   </data>
+  <data name="PlantMessages" xml:space="preserve">
+    <value>Plant messages</value>
+  </data>
 </root>

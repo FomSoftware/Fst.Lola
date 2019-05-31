@@ -927,6 +927,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Plant Messages.
+        /// </summary>
+        public static string PlantMessages {
+            get {
+                return ResourceManager.GetString("PlantMessages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Position.
         /// </summary>
         public static string Position {

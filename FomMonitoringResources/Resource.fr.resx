@@ -561,6 +561,9 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Outils XModule/XMU</value>
   </data>
   <data name="PeriodicMaintenance" xml:space="preserve">
-    <value>Maintenance périodique ordinaire</value>
+    <value>Entretien periodique et ordinaire</value>
+  </data>
+  <data name="PlantMessages" xml:space="preserve">
+    <value>Messages de l’usine</value>
   </data>
 </root>
