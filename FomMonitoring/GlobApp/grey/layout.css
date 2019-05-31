@@ -163,6 +163,7 @@ section.container-fluid {
     .main-menu .dd-item i {
         width: 15px;
         text-align: center;
+        vertical-align: top;
     }
 
     .main-menu .dd-item div {
