@@ -92,10 +92,10 @@
                         }
                         @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer)
                         {
-                            <a class="dd-item" href="@Url.Action("UserManager", "Admin")">
+                            <a class="dd-item dd-item-longtext" href="@Url.Action("UserManager", "Admin")">
                                 <i class="fa fa-user fa-lg color-corporate"></i>
-                                <span>@Resource.UserManager</span>
-                            </a>
+                                <div><span>@Resource.UserManager</span></div>
+</a>
                         }
                         @if (Model.User.Role != enRole.Customer)
                         {
