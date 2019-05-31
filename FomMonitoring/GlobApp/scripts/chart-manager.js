@@ -112,7 +112,7 @@
             chart.update(config);
 
         setInterval(function () {
-            $('#' + chartID).highcharts().setSize($(".card-efficiency").width() - 30, $(".card-efficiency").height() - 30);
+            $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
         }, 100);
     }
 
@@ -305,7 +305,7 @@
 
 
         setInterval(function () {
-            $('#' + chartID).highcharts().setSize($(".card-efficiency").width() - 30, $(".card-efficiency").height() - 30);
+            $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
         }, 100);
             
         
