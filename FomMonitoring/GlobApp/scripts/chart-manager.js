@@ -513,7 +513,7 @@
                 plotBorderWidth: null,
                 plotShadow: false,
                 type: 'pie',
-                height: 160,
+                height: 140,
                 spacingBottom: 0,
                 spacingTop: 0,
                 spacingLeft: 0,
@@ -559,7 +559,6 @@
     }
 
     var productivityMachineSolidGaugeChart = function (chartID, options, localizations) {
-        console.log(localizations.efficiency.trim());
         var config = {
             yAxis: {
                 min: 0,
@@ -591,7 +590,7 @@
                 }
             },
             chart: {
-                height: 90,
+                height: 100,
                 type: 'solidgauge'
             },
             series: [{
@@ -609,8 +608,8 @@
                 }
             }],
             pane: {
-                center: ['45%', '95%'],
-                size: '165%',
+                center: ['50%', '100%'],
+                size: '150%',
                 startAngle: -90,
                 endAngle: 90,
                 background: {

@@ -305,3 +305,8 @@ section.container-fluid {
 .bs-caret::after{
     display: none !important;
 }
+
+
+.highcharts-container {
+    margin: 0 auto !important;
+}
