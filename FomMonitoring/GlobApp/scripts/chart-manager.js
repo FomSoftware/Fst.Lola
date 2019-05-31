@@ -382,39 +382,6 @@
                 }
             },
             series: getProductivitySeries(options.series, 'column')
-            //series: [{
-            //    type: 'line',
-            //    name: 'Efficienza',
-            //    color: '#A5CC48',
-            //    data: [70, 69, 95, 88, 84, 49, 89],
-            //    zIndex: 3,
-            //    tooltip: {
-            //        valueSuffix: ' %'
-            //    }
-            //}, {
-            //    type: null,
-            //    name: 'Tempo Lordo',
-            //    color: '#588FA4',
-            //    //color: '#FEC8E0',
-            //    yAxis: 1,
-            //    data: [49.9, 71.5, 93, 91.2, 44.0, 76.0, 35.6],
-            //    tooltip: {
-            //        valueSuffix: ' p/h'
-            //    }
-            //},
-            //{
-            //    type: null,
-            //    name: 'Tempo Netto',
-            //    color: '#B1D3EA',
-            //    color: '#AFEBDE',
-            //    color: '#AEDFDE',
-            //    yAxis: 1,
-            //    data: [49.9, 71.5, 91, 91.2, 44.0, 76.0, 35.6],
-            //    tooltip: {
-            //        valueSuffix: ' p/h',
-            //        useHTML: true
-            //    }
-            //}]
         }
 
         var chart = $('#' + chartID).highcharts();
@@ -592,6 +559,9 @@
             chart: {
                 height: 100,
                 type: 'solidgauge'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.y:.1f} %</b>'
             },
             series: [{
                 name: localizations.efficiency.trim(),
