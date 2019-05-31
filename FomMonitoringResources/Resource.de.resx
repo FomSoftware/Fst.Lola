@@ -559,4 +559,7 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="XTools" xml:space="preserve">
     <value>Werkzeuge XModule/XMU</value>
   </data>
+  <data name="PeriodicMaintenance" xml:space="preserve">
+    <value>Regelmäßige ordentliche Wartung</value>
+  </data>
 </root>

@@ -560,4 +560,7 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   <data name="XTools" xml:space="preserve">
     <value>Instrumentos XModule/XMU</value>
   </data>
+  <data name="PeriodicMaintenance" xml:space="preserve">
+    <value>Mantenimiento Ordinario Periódico</value>
+  </data>
 </root>
