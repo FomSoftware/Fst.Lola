@@ -539,7 +539,8 @@
                 ],
                 lineWidth: 0,
                 labels: {
-                    y: 16
+                    y: 16,
+                    x: 0
                 },
                 lineWidth: 0,
                 minorTickInterval: null,

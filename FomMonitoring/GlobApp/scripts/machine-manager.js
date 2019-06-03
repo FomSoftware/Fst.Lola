@@ -108,26 +108,26 @@
     }
 
     var initColumnHeader = function () {
-         $('.table-container').each(function (i) {
-                var thCol = $(this).find('.table-header:first').find("th");
+         //$('.table-container').each(function (i) {
+         //       var thCol = $(this).find('.table-header:first').find("th");
 
-                var tdCol = $(this).find('.slimscroll .table tr:first').find("td");
-                var tdWidth = [];
-
-
-                if (tdCol && thCol) {
-                    tdCol.each(function () {
-                        tdWidth.push($(this).width());
-                    });
+         //       var tdCol = $(this).find('.slimscroll .table tr:first').find("td");
+         //       var tdWidth = [];
 
 
-                    thCol.each(function (index) {
-                        $(this).css("width", tdWidth[index]);
+         //       if (tdCol && thCol) {
+         //           tdCol.each(function () {
+         //               tdWidth.push($(this).width());
+         //           });
 
-                    });
 
-                }
-            });
+         //           thCol.each(function (index) {
+         //               $(this).css("width", tdWidth[index]);
+
+         //           });
+
+         //       }
+         //   });
     }
 
     var initFlipCard = function ()
