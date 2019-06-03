@@ -560,9 +560,9 @@
                 height: 100,
                 type: 'solidgauge'
             },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.y:.1f} %</b>'
-            },
+            //tooltip: {
+            //    pointFormat: '{series.name}: <b>{point.y:.1f} %</b>'
+            //},
             series: [{
                 name: localizations.efficiency.trim(),
                 data: _.map(options.series, function (opt) { return Math.round(opt.y); }),
@@ -575,7 +575,8 @@
                 },
                 tooltip: {
                     valueSuffix: ' %'
-                }
+                },
+                enableMouseTracking: false
             }],
             pane: {
                 center: ['50%', '100%'],
@@ -593,6 +594,7 @@
                 solidgauge: {
                     dataLabels: {
                         y: 10,
+                        x: 0,
                         borderWidth: 0,
                         useHTML: true
                     }
