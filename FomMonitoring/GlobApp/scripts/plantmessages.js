@@ -284,7 +284,7 @@
             touchScrollStep: 35,
             color: '#999',
             allowPageScroll: true,
-            width: ('#slimscroll-plant-msg-wrapper').width()
+            width: $($('#slimscroll-plant-msg-wrapper .table-header')[0]).width() + 25
             
         });
     }
@@ -292,7 +292,8 @@
     return {
         init: init,
         callAjaxPlantMessagesViewModelData: callAjaxPlantMessagesViewModelData,
-        update: update
+        update: update,
+ 
     }
 
 }();

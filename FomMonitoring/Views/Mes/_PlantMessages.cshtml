@@ -22,12 +22,12 @@
                         <table class="table data-table table-alerts table-header">
                             <thead>
                                 <tr>
-                                    <th style="width:9%" class="th-duration sorting" v-bind:class="sorting.serial" v-on:click="sortSerialMachine()">
+                                    <th style="min-width:140px;width:6%" class="th-duration sorting" v-bind:class="sorting.serial" v-on:click="sortSerialMachine()">
                                         <span class="value-title">
                                             @Resource.Name @Resource.Machine
                                         </span>
                                     </th>
-                                    <th style="width:13%" class="th-duration sorting" v-bind:class="sorting.model" v-on:click="sortModelMachine()">
+                                    <th style="min-width:100px;width:11%" class="th-duration sorting" v-bind:class="sorting.model" v-on:click="sortModelMachine()">
                                         <span class="value-title">
                                             @Resource.Serial
                                         </span>
@@ -37,18 +37,18 @@
                                             @Resource.Code
                                         </span>
                                     </th>
-                                    <th style="width:20%" class="th-duration sorting" v-bind:class="sorting.timestamp" v-on:click="sortTimestamp()">
+                                    <th style="min-width: 120px;width:18%" class="th-duration sorting" v-bind:class="sorting.timestamp" v-on:click="sortTimestamp()">
                                         <i class="fa fa-clock-o color-aaa"></i>
                                         <span class="value-title">
                                             @Resource.Timestamp
                                         </span>
                                     </th>
-                                    <th style="width:9%" class="th-duration sorting" v-bind:class="sorting.group" v-on:click="sortGroup()">
+                                    <th style="width:12%" class="th-duration sorting" v-bind:class="sorting.group" v-on:click="sortGroup()">
                                         <span class="value-title">
                                             @Resource.Group
                                         </span>
                                     </th>
-                                    <th>
+                                    <th style="width:40%">
                                         <span class="value-title">
                                             @Resource.Description
                                         </span>
@@ -60,18 +60,18 @@
                             <table class="table data-table table-alerts" >
                                 <tbody v-for="message in messages">
                                     <tr>
-                                        <td>{{ message.machine.model }}</td>
-                                        <td>{{ message.machine.serial }}</td>
-                                        <td>
+                                        <td style="min-width:130px;width:6%">{{ message.machine.model }}</td>
+                                        <td style="width:11%" >{{ message.machine.serial }}</td>
+                                        <td style="min-width:65px;width:11%">
                                             <div class="item-icon fa fa-2x" v-bind:class="iconClass(message.message.type)"></div>
                                             <div class="item-alert">
                                                 <div class="code-alert">{{ message.message.code }}</div>
                                                 <div class="subtitle-alert" v-bind:class="colorClass(message.message.type)">{{ message.message.type }}</div>
                                             </div>
                                         </td>
-                                        <td>{{ message.message.formatted_timestamp }}</td>
-                                        <td style="min-width:70px">{{ message.message.group }}</td>
-                                        <td>{{ message.message.description }}</td>
+                                        <td style="min-width: 120px;width:16%">{{ message.message.formatted_timestamp }}</td>
+                                        <td style="width:12%;min-width:70px">{{ message.message.group }}</td>
+                                        <td style="width:40%">{{ message.message.description }}</td>
                                     </tr>
                                 </tbody>
                             </table>
