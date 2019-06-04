@@ -86,29 +86,29 @@
         }*/
         localizations = loc;
         initVueModel(data);
+        if (data.opt_states != null && data.opt_states.series.length > 0) {
+                ChartManager.stateMachinePieChart("efc_pie_chart", data.opt_states);
+            }
 
-        if (data.opt_states != null) {
-            ChartManager.stateMachinePieChart("efc_pie_chart", data.opt_states);
-        }
-
-        if (data.opt_kpis != null) {
-            ChartManager.productivityMachineSolidGaugeChart("efc_kpi_chart", data.opt_kpis, localizations);
-        }
-        
-        if (data.opt_historical != null) {
-            vmEfficiency.show.historical = true;
-            ChartManager.lineChart('efc_historical_chart', data.opt_historical);
+        if (data.opt_kpis != null && data.opt_kpis.series.length > 0 && data.opt_kpis.series[0].y != null) {
+                ChartManager.productivityMachineSolidGaugeChart("efc_kpi_chart", data.opt_kpis, localizations);
         }
 
-        if (data.opt_operators != null) {
-            vmEfficiency.show.operators = true;
-            ChartManager.stackedBarChart('efc_operators_chart', data.opt_operators);
+        if (data.opt_historical != null && data.opt_historical.series.length > 0) {
+                vmEfficiency.show.historical = true;
+                ChartManager.lineChart('efc_historical_chart', data.opt_historical);
         }
 
-        if (data.opt_shifts != null) {
-            vmEfficiency.show.shifts = true;
-            ChartManager.stackedBarChart('efc_shifts_chart', data.opt_shifts);
+        if (data.opt_operators != null && data.opt_operators.series.length > 0) {
+                vmEfficiency.show.operators = true;
+                ChartManager.stackedBarChart('efc_operators_chart', data.opt_operators);
         }
+
+        if (data.opt_shifts != null && data.opt_shifts.series.length > 0) {
+                vmEfficiency.show.shifts = true;
+                ChartManager.stackedBarChart('efc_shifts_chart', data.opt_shifts);
+        }
+
     }
 
 
