@@ -283,10 +283,12 @@
             //wheelStep: 10,
             touchScrollStep: 35,
             color: '#999',
-            allowPageScroll: true
+            allowPageScroll: true,
+            width: ('#slimscroll-plant-msg-wrapper').width()
             
         });
     }
+
     return {
         init: init,
         callAjaxPlantMessagesViewModelData: callAjaxPlantMessagesViewModelData,

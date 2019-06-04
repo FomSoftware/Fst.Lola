@@ -42,7 +42,7 @@
                     <table class="table table-alerts table-header">
                         <thead>
                             <tr>
-                                <th style="padding-left:10px">
+                                <th style="padding-left:5px;padding-right:5px">
                                     <span class="value-title">
                                         @Resource.Code
                                     </span>
@@ -79,7 +79,7 @@
                                         </div>
                                     </td>
                                     <td>{{ message.formatted_timestamp }}</td>
-                                    <td>{{ message.group }}</td>
+                                    <td style="min-width:80px">{{ message.group }}</td>
                                     <td>{{ message.description }}</td>
                                 </tr>
                             </tbody>
@@ -101,11 +101,8 @@
                                 <table class="table table-alerts table-header">
                                     <thead>
                                         <tr>
-                                            <th style="padding-left:10px">
+                                            <th style="padding-left:5px;padding-right:5px">
                                                 <span class="value-title"> @Resource.Code </span>
-                                            </th>
-                                            <th style="padding-left:10px">
-                                                <span class="value-title"> @Resource.Description </span>
                                             </th>
                                             <th class="th-duration sorting" v-bind:class="sorting.duration" v-on:click="sortDuration()">
                                                 <i class="fa fa-clock-o color-aaa"></i>
@@ -116,6 +113,9 @@
                                             <th class="th-number sorting" v-bind:class="sorting.quantity" v-on:click="sortQuantity()">
                                                 <i class="fa fa-exclamation-triangle color-aaa"></i>
                                                 <span class="value-title">qty</span>
+                                            </th>
+                                            <th>
+                                                <span class="value-title"> @Resource.Description </span>
                                             </th>
                                         </tr>
                                     </thead>
@@ -132,15 +132,15 @@
                                                         <div class="subtitle-alert" v-bind:class="colorClass(message.type)">{{ message.type }}</div>
                                                     </div>
                                                 </td>
-                                                <td>{{ message.description }}</td>
                                                 <td>
                                                     <span class="label label-default">
                                                         <time-span v-bind:duration="message.time"></time-span>
                                                     </span>
                                                 </td>
-                                                <td>
+                                                <td style="min-width:65px">
                                                     <span class="label label-default">{{ message.quantity }}</span>
                                                 </td>
+                                                <td>{{ message.description }}</td>
                                             </tr>
                                         </tbody>
                                     </table>

@@ -137,10 +137,6 @@ em,
     z-index: 0;
 }
 
-#slimscroll-plant-msg-wrapper .slimScrollDiv .slimscroll {
-    overflow-x: auto !important;
-}
-
 /*#region color */
 .color-green {
     color: #5C7829;
@@ -566,6 +562,8 @@ em,
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 /*#endregion */

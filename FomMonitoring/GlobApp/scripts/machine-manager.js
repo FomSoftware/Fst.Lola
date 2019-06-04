@@ -116,8 +116,9 @@
 
 
                 if (tdCol && thCol) {
-                    tdCol.each(function () {
-                        tdWidth.push($(this).width());
+                    tdCol.each(function (x) {
+                        console.log("i: " + x + " w:" + $(this).width());
+                        tdWidth.push($(this).width() + 28);
                     });
 
 
