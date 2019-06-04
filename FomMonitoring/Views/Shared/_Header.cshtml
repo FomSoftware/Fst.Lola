@@ -101,16 +101,16 @@
                         {
                             <div class="dd-item" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
                                 <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
-                                <span>@Resource.ChangePassword</span>
+                                <div><span>@Resource.ChangePassword</span></div>
                             </div>
                         }
-                        <div class="dd-item dd-item-longtext" data-toggle="modal" onclick="UserManager.openDisclamerModal()">
-                            <i class="fa fa-handshake-o color-corporate"></i>
+                        <div class="dd-item" data-toggle="modal" onclick="UserManager.openDisclamerModal()">
+                            <i class="fa fa-handshake-o color-corporate fa-sm"></i>
                             <div><span>@Resource.Disclamer</span></div>
                         </div>
                         <a class="dd-item" href="@Url.Action("Logout", "Account")">
                             <i class="fa fa-power-off color-corporate fa-lg"></i>
-                            <span>@Resource.Logout</span>
+                            <div><span>@Resource.Logout</span></div>
                         </a>                      
                     </div>
                 </div>
@@ -200,7 +200,7 @@
                 }               
                 <li>
                     <a class="dd-item" href="#" data-toggle="modal" onclick="UserManager.openDisclamerModal()">
-                        <i class="fa fa-handshake-o color-corporate fa-lg"></i>
+                        <i class="fa fa-handshake-o color-corporate fa-sm"></i>
                         <div>@Resource.Disclamer</div>
                     </a>
                 </li>
