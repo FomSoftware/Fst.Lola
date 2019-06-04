@@ -90,7 +90,7 @@
                 ChartManager.stateMachinePieChart("efc_pie_chart", data.opt_states);
             }
 
-        if (data.opt_kpis != null && data.opt_kpis.series.length > 0 && data.opt_kpis.series[0].y != null) {
+        if (data.opt_kpis != null && data.opt_states.series.length > 0) {
                 ChartManager.productivityMachineSolidGaugeChart("efc_kpi_chart", data.opt_kpis, localizations);
         }
 
