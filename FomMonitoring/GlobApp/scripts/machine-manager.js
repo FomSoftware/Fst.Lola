@@ -109,17 +109,17 @@
 
     var initColumnHeader = function () {
          $('.table-container').each(function (i) {
-                var thCol = $(this).find('.table-header:first').find("th");
+               var thCol = $(this).find('.table-header:first').find("th");
 
                 var tdCol = $(this).find('.slimscroll .table tr:first').find("td");
-                var tdWidth = [];
+               var tdWidth = [];
 
 
-                if (tdCol && thCol) {
-                    tdCol.each(function (x) {
-                        console.log("i: " + x + " w:" + $(this).width());
-                        tdWidth.push($(this).width() + 28);
-                    });
+               if (tdCol && thCol) {
+                   tdCol.each(function (x) {
+                       console.log("i: " + x + " w:" + $(this).width());
+                       tdWidth.push($(this).width() + 28);
+                   });
 
 
                     thCol.each(function (index) {

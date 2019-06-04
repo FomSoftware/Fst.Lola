@@ -28,25 +28,26 @@ namespace FomMonitoringCore.Framework.Common
 
         public static string GetMessageDescription(string code, int machineId, string parameters, string language)
         {
-            string result = "";
+            var result = "";
             
 
-            using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+            using (var ent = new FST_FomMonitoringEntities())
             {
-                int cat = ent.Machine.Find(machineId).MachineModel.MessageCategoryId;
+                var cat = ent.Machine.Find(machineId)?.MachineModel?.MessageCategoryId;
 
-                if (cat == 0) return "";
+                if (!(cat > 0))
+                    return string.Empty;
 
-                MessageLanguages la = ent.MessageLanguages.Where(lan => lan.DotNetCulture.StartsWith(language)).FirstOrDefault();
-                if (la == null) return "";
-                int languageId = la.Id;
+                var la = ent.MessageLanguages.FirstOrDefault(lan => lan.DotNetCulture.StartsWith(language));
+                if (la == null)
+                    return string.Empty;
 
-                result = (from e in ent.MessageTranslation.Where(t => t.MessageLanguageId == languageId)
-                join a in ent.MessagesIndex.Where(m => m.MessageCode == code && m.MessageCategoryId == cat)
-                    on e.MessageId equals a.Id
-                select e.Translation).FirstOrDefault();
+                var languageId = la.Id;
 
-                if (result == null) return "";               
+                result = ent.MessageTranslation.FirstOrDefault(t => t.MessageLanguageId == languageId && t.MessagesIndex.MessageCode == code && t.MessagesIndex.MessageCategoryId == cat)?.Translation;
+
+                if (result == null)
+                    return string.Empty;
             }
             
             return result;
