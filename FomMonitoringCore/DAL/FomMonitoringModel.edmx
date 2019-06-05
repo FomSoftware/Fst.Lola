@@ -198,6 +198,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="MachineGroupCode" Type="int" />
           <Property Name="MachineGroupName" Type="nvarchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="MachineModel">
@@ -260,7 +261,7 @@
           <Property Name="MessageCode" Type="nchar" MaxLength="100" Nullable="false" />
           <Property Name="MessageCategoryId" Type="int" Nullable="false" />
           <Property Name="MessageTypeId" Type="int" Nullable="false" />
-          <Property Name="IsVisibileLOLA" Type="bit" Nullable="false" />
+          <Property Name="IsVisibleLOLA" Type="bit" Nullable="false" />
           <Property Name="MachineGroupId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MessageTranslation">
@@ -270,7 +271,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MessageId" Type="int" Nullable="false" />
           <Property Name="MessageLanguageId" Type="int" Nullable="false" />
-          <Property Name="Translation" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Translation" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="MessageType">
           <Key>
@@ -2214,6 +2215,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="MachineGroupName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MessagesIndex" Relationship="FST_FomMonitoringModel.FK_MessagesIndex_MachineGroup" FromRole="MachineGroup" ToRole="MessagesIndex" />
+          <Property Name="MachineGroupCode" Type="Int32" />
         </EntityType>
         <EntityType Name="MessageCategory">
           <Key>
@@ -2243,12 +2245,12 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="MessageCode" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="MessageCategoryId" Type="Int32" Nullable="false" />
           <Property Name="MessageTypeId" Type="Int32" Nullable="false" />
-          <Property Name="IsVisibileLOLA" Type="Boolean" Nullable="false" />
           <Property Name="MachineGroupId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="MachineGroup" Relationship="FST_FomMonitoringModel.FK_MessagesIndex_MachineGroup" FromRole="MessagesIndex" ToRole="MachineGroup" />
           <NavigationProperty Name="MessageCategory" Relationship="FST_FomMonitoringModel.FK_MessagesIndex_MessageCategory" FromRole="MessagesIndex" ToRole="MessageCategory" />
           <NavigationProperty Name="MessageType" Relationship="FST_FomMonitoringModel.FK_MessagesIndex_MessageType" FromRole="MessagesIndex" ToRole="MessageType" />
           <NavigationProperty Name="MessageTranslation" Relationship="FST_FomMonitoringModel.FK_MessageTranslation_MessageID" FromRole="MessagesIndex" ToRole="MessageTranslation" />
+          <Property Name="IsVisibleLOLA" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="MessageTranslation">
           <Key>
@@ -2257,7 +2259,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MessageId" Type="Int32" Nullable="false" />
           <Property Name="MessageLanguageId" Type="Int32" Nullable="false" />
-          <Property Name="Translation" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Translation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MessageLanguages" Relationship="FST_FomMonitoringModel.FK_MessageTranslation_MessageLanguage" FromRole="MessageTranslation" ToRole="MessageLanguages" />
           <NavigationProperty Name="MessagesIndex" Relationship="FST_FomMonitoringModel.FK_MessageTranslation_MessageID" FromRole="MessageTranslation" ToRole="MessagesIndex" />
         </EntityType>
@@ -2914,6 +2916,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="MachineGroup">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.MachineGroup">
               <MappingFragment StoreEntitySet="MachineGroup">
+                <ScalarProperty Name="MachineGroupCode" ColumnName="MachineGroupCode" />
                 <ScalarProperty Name="MachineGroupName" ColumnName="MachineGroupName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -2941,8 +2944,8 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="MessagesIndex">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.MessagesIndex">
               <MappingFragment StoreEntitySet="MessagesIndex">
+                <ScalarProperty Name="IsVisibleLOLA" ColumnName="IsVisibleLOLA" />
                 <ScalarProperty Name="MachineGroupId" ColumnName="MachineGroupId" />
-                <ScalarProperty Name="IsVisibileLOLA" ColumnName="IsVisibileLOLA" />
                 <ScalarProperty Name="MessageTypeId" ColumnName="MessageTypeId" />
                 <ScalarProperty Name="MessageCategoryId" ColumnName="MessageCategoryId" />
                 <ScalarProperty Name="MessageCode" ColumnName="MessageCode" />

@@ -37,8 +37,9 @@ namespace FomMonitoringBLL.ViewServices
                 code = a.Code,
                 parameters = a.Params,
                 timestamp = a.Day,
-                type = ((enTypeAlarm)a.StateId).GetDescription(),
-                group = a.Group,
+                type = ((enTypeAlarm)ReadMessages.GetMessageType(a.Code, actualMachine.Id)).GetDescription(),
+                //((enTypeAlarm)a.StateId).GetDescription(),
+                group = (a.Group == 0 ? ReadMessages.GetMessageGroup(a.Code, actualMachine.Id) : a.Group),
                 description = ReadMessages.GetMessageDescription(a.Code, actualMachine.Id, a.Params, CultureInfo.CurrentCulture.Name)
             }).ToList();
 
@@ -69,7 +70,8 @@ namespace FomMonitoringBLL.ViewServices
             List<MessageDataModel> messages = data.Select(a => new MessageDataModel()
             {
                 code = a.Code,
-                type = ((enTypeAlarm)a.StateId).GetDescription(),
+                type = ((enTypeAlarm)ReadMessages.GetMessageType(a.Code, machine.Id)).GetDescription(),
+                //((enTypeAlarm)a.StateId).GetDescription(),
                 parameters = a.Params,
                 time = CommonViewService.getTimeViewModel(a.ElapsedTime),
                 quantity = a.Count == null ? 0 : a.Count.Value,

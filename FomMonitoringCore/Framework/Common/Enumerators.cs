@@ -73,10 +73,22 @@ namespace FomMonitoringCore.Framework.Common
     public enum enTypeAlarm
     {
         [Description("operator")]
-        Operator = 2,
+        Operator = 2,        
         [Description("error")]
-        Error = 3
+        Errori = 11,
+        [Description("warning")]
+        Interfaccia = 8,
+        [Description("warning")]
+        Popup = 9,
+        [Description("operator")]
+        Indicazioni = 10,
+
+        [Description("warning")]
+        Warning = 12,
+        [Description("operator")]
+        CN = 13
     }
+
 
     public enum enSorting
     {

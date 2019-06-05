@@ -77,8 +77,7 @@ namespace FomMonitoringCore.Service.DataMapping
                         //devo eliminare quei messaggi che hanno scope = 0 da mdb
                         foreach(MessageMachine mm in messageMachine.ToList())
                         {
-                            bool scope = ReadMessages.ReadMessageVisibility(mm, ent);
-                            mm.IsVisible = scope;                            
+                            ReadMessages.ReadMessageVisibilityGroup(mm, ent);
                         }                                      
 
                         ent.MessageMachine.AddRange(messageMachine);

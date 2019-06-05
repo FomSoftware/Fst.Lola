@@ -24,8 +24,8 @@ namespace FomMonitoringCore.DAL
         public string MessageCode { get; set; }
         public int MessageCategoryId { get; set; }
         public int MessageTypeId { get; set; }
-        public bool IsVisibileLOLA { get; set; }
         public int MachineGroupId { get; set; }
+        public bool IsVisibleLOLA { get; set; }
     
         public virtual MachineGroup MachineGroup { get; set; }
         public virtual MessageCategory MessageCategory { get; set; }
