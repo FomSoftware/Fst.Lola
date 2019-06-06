@@ -39,7 +39,7 @@ namespace FomMonitoringBLL.ViewServices
                 timestamp = a.Day,
                 type = ((enTypeAlarm)ReadMessages.GetMessageType(a.Code, actualMachine.Id)).GetDescription(),
                 //((enTypeAlarm)a.StateId).GetDescription(),
-                group = (a.Group == 0 ? ReadMessages.GetMessageGroup(a.Code, actualMachine.Id) : a.Group),
+                group = ReadMessages.GetMessageGroup(a.Code, actualMachine.Id, a.Group),
                 description = ReadMessages.GetMessageDescription(a.Code, actualMachine.Id, a.Params, CultureInfo.CurrentCulture.Name)
             }).ToList();
 

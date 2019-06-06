@@ -53,12 +53,12 @@
                                         @Resource.Timestamp
                                     </span>
                                 </th>
-                                <th style="width:20%" class="th-duration sorting" v-bind:class="sortingDet.group" v-on:click="sortGroup()">
+                                <th style="width:25%" class="th-duration sorting" v-bind:class="sortingDet.group" v-on:click="sortGroup()">
                                     <span class="value-title">
                                         @Resource.Group
                                     </span>
                                 </th>
-                                <th style="width:30%">
+                                <th style="width:25%">
                                     <span class="value-title">
                                         @Resource.Description
                                     </span>
@@ -79,8 +79,8 @@
                                         </div>
                                     </td>
                                     <td style="width:30%">{{ message.formatted_timestamp }}</td>
-                                    <td style="min-width:80px;width:20%">{{ message.group }}</td>
-                                    <td style="width:30%">{{ message.description }}</td>
+                                    <td style="min-width:80px;width:25%">{{ message.group }}</td>
+                                    <td style="width:25%">{{ message.description }}</td>
                                 </tr>
                             </tbody>
                         </table>

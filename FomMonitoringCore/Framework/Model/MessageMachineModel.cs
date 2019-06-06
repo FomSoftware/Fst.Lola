@@ -12,7 +12,7 @@ namespace FomMonitoringCore.Framework.Model
         public int? MachineId { get; set; }
         public string Operator { get; set; }
         public string Type { get; set; }
-        public int Group { get; set; }
+        public int? Group { get; set; }
         public DateTime? StartTime { get; set; }
         public int? StateId { get; set; }
     }

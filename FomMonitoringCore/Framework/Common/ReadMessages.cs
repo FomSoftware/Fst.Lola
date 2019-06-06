@@ -59,23 +59,38 @@ namespace FomMonitoringCore.Framework.Common
             return result;
         }
 
-        public static int GetMessageGroup(string code, int machineId)
+        public static string GetMessageGroup(string code, int machineId, int? jsonGroupId)
         {
             using (var ent = new FST_FomMonitoringEntities())
             {
-                var cat = ent.Machine.Find(machineId)?.MachineModel?.MessageCategoryId;
+                MachineGroup mg;
 
-                if (!(cat > 0))
-                    return 0;
+                if (jsonGroupId != null && jsonGroupId != 0)
+                {
+                    mg = ent.MachineGroup.Find(jsonGroupId);
+                }
+                else
+                {
+                    var cat = ent.Machine.Find(machineId)?.MachineModel?.MessageCategoryId;
 
-                var msg = ent.MessagesIndex.FirstOrDefault(mi => mi.MessageCode == code && mi.MessageCategoryId == cat);
-                if (msg == null)
-                    return 0;                                                
-               
-                if (msg.MachineGroup == null)
-                    return 0;
+                    if (!(cat > 0))
+                        return string.Empty;
 
-                return msg.MachineGroup.Id;
+                    var msg = ent.MessagesIndex.FirstOrDefault(mi => mi.MessageCode == code && mi.MessageCategoryId == cat);
+                    if (msg == null)
+                        return string.Empty;
+
+                    if (msg.MachineGroup == null)
+                        return string.Empty;
+
+                    mg = ent.MachineGroup.Find(msg.MachineGroup.Id);
+                }
+
+                if (mg == null)
+                    return string.Empty;
+
+                return mg.MachineGroupName;
+
             }
             
         }
