@@ -70,7 +70,7 @@
         //    }
         //}
 
-        initVueModel(data.vm_spindles);
+        initVueModel(data);
     }
 
     var initVueModel = function (data)
@@ -78,8 +78,9 @@
         vmSpindles = new Vue({
             el: '#CardSpindles',
             data: {
-                spindles: data.spindles,
-                sorting: data.sorting
+                spindles: data.vm_spindles.spindles,
+                sorting: data.vm_spindles.sorting,
+                type: data.vm_machine_info.mtype
             },
             computed: {
                 sortingCode: function ()
@@ -224,7 +225,7 @@
         var vm_spindles = data.vm_spindles;
         vmSpindles.spindles = vm_spindles.spindles;
         vmSpindles.sorting = vm_spindles.sorting;
-
+        vmSpindles.type = data.vm_machine_info.mtype;
         //if (vmSpindles.spindles != null)
         //    $('.slimscroll').slimscroll({ scrollBy: '0px' });
         //else

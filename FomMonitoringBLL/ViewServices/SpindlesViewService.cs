@@ -14,6 +14,13 @@ namespace FomMonitoringBLL.ViewServices
         {
             SpindleViewModel result = new SpindleViewModel();
             result.vm_spindles = GetVueModel(context.ActualMachine);
+            
+            result.vm_machine_info = new MachineInfoViewModel
+            {
+                model = context.ActualMachine.Model.Name,
+                mtype = context.ActualMachine.Type.Name,
+                id_mtype = context.ActualMachine.Type.Id
+            };
 
             return result;
         }

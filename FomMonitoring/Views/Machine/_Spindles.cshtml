@@ -10,7 +10,8 @@
             </span>
         </div>
         <div class="title-kpi">
-            <span>@Resource.Spindles</span>
+            <span v-if="type != '@enMachineType.Troncatrice.GetDescription()'">@Resource.Spindles</span>
+            <span v-else>@Resource.AxisMotors</span>
             <div class="sub-period">@Resource.UntilNow</div>
         </div>
         <div class="portlet-details" v-if="spindles != null">
