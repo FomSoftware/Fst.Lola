@@ -21,7 +21,7 @@ namespace FomMonitoringBLL.ViewServices
             machine.LastUpdate = new DataUpdateModel() { DateTime = context.ActualPeriod.LastUpdate.DateTime };
             machine.Efficiency = EfficiencyViewService.GetEfficiency(context);
             machine.Productivity = ProductivityViewService.GetProductivity(context);
-            machine.Alarms = AlarmsViewService.GetAlarms(context);
+            //machine.Alarms = AlarmsViewService.GetAlarms(context);
             machine.Messages = MessagesViewService.GetMessages(context);
             machine.Jobs = JobsViewService.GetJobs(context);
             machine.Spindles = SpindlesViewService.GetSpindles(context);

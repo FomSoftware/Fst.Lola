@@ -16,14 +16,20 @@ namespace FomMonitoringCore.Framework.Common
     {
         static string dbConn = ApplicationSettingService.GetWebConfigKey("DbMessagesConnectionString");
 
-        public static bool ReadMessageVisibility(MessageMachine mm, FST_FomMonitoringEntities ent)
+        public static void ReadMessageVisibilityGroup(MessageMachine mm, FST_FomMonitoringEntities ent)
         {
             bool result = false;
             int cat = ent.Machine.Find(mm.MachineId).MachineModel.MessageCategoryId;
             MessagesIndex msg = ent.MessagesIndex.FirstOrDefault(f => f.MessageCode == mm.Code && f.MessageCategoryId == cat);
-            result = msg == null ? false : msg.IsVisibileLOLA;
+            result = msg == null ? false : msg.IsVisibleLOLA;
+            mm.IsVisible = result;
 
-            return result;
+            if(mm.Group == null)
+            {
+                mm.Group = msg.MachineGroupId;
+            }
+            mm.Type = msg.MessageTypeId.ToString();
+
         }
 
         public static string GetMessageDescription(string code, int machineId, string parameters, string language)
@@ -51,7 +57,63 @@ namespace FomMonitoringCore.Framework.Common
             }
             
             return result;
-        }       
+        }
+
+        public static string GetMessageGroup(string code, int machineId, int? jsonGroupId)
+        {
+            using (var ent = new FST_FomMonitoringEntities())
+            {
+                MachineGroup mg;
+
+                if (jsonGroupId != null && jsonGroupId != 0)
+                {
+                    mg = ent.MachineGroup.Find(jsonGroupId);
+                }
+                else
+                {
+                    var cat = ent.Machine.Find(machineId)?.MachineModel?.MessageCategoryId;
+
+                    if (!(cat > 0))
+                        return string.Empty;
+
+                    var msg = ent.MessagesIndex.FirstOrDefault(mi => mi.MessageCode == code && mi.MessageCategoryId == cat);
+                    if (msg == null)
+                        return string.Empty;
+
+                    if (msg.MachineGroup == null)
+                        return string.Empty;
+
+                    mg = ent.MachineGroup.Find(msg.MachineGroup.Id);
+                }
+
+                if (mg == null)
+                    return string.Empty;
+
+                return mg.MachineGroupName;
+
+            }
+            
+        }
+
+        public static int? GetMessageType(string code, int machineId)
+        {            
+            using (var ent = new FST_FomMonitoringEntities())
+            {
+                var cat = ent.Machine.Find(machineId)?.MachineModel?.MessageCategoryId;
+
+                if (!(cat > 0))
+                    return null;
+
+                var msg = ent.MessagesIndex.FirstOrDefault(mi => mi.MessageCode == code && mi.MessageCategoryId == cat);
+                if (msg == null)
+                    return null;
+
+                if (msg.MessageType == null)
+                    return null;
+
+                return msg.MessageType.Id;
+            }        
+        }
 
         public static string ReplaceFirstOccurrence(string source, string find, string replace)
         {

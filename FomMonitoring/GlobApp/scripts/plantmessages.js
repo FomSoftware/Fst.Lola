@@ -276,6 +276,13 @@
     }
 
     var initScrollBar = function () {
+        var TableWidth = $($('#slimscroll-plant-msg-wrapper .table-header tr')[0]).outerWidth();
+        var FrontWidth = $($('.front')[0]).outerWidth();
+        var delta = TableWidth - FrontWidth;
+        //caso mobile:
+        if (delta > 0)
+            TableWidth = TableWidth + 12;
+
         $('.slimscroll').slimScroll({
             size: '5px',
             height: '82vh',
@@ -284,9 +291,19 @@
             touchScrollStep: 35,
             color: '#999',
             allowPageScroll: true,
-            width: $($('#slimscroll-plant-msg-wrapper .table-header')[0]).width() + 25
-            
+            width: TableWidth
         });
+
+        //caso IPad e PC o schermi più larghi
+        if (delta <= 0)
+        {
+            $($('.front')[0]).css("overflow-x", "hidden");
+        }
+       
+        
+
+        
+       
     }
 
     return {

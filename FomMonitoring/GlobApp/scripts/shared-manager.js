@@ -32,7 +32,10 @@
         switch (data.page)
         {
             case enPage.mes:
-                initPlantsFilter(data);              
+                initPlantsFilter(data);
+                if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+                    $('#plantMessagesLabel').css('display', 'none')
+                }
                 break;
 
             case enPage.messagesMachine:
@@ -50,6 +53,25 @@
         {
             initBootstrapSelect();
         });
+    }
+
+    var viewPlantMessagesBtn = function () {
+        if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            if ($('#plantMessagesLabel').css('display') == 'none') {
+                $('#plantMessagesLabel').css('display', 'inline');
+                $('#plants-filter').css('display', 'none');
+                $('#plantIcon').css('display', 'inline');
+
+            }
+            else {
+                $('#plantMessagesLabel').css('display', 'none');
+                $('#plants-filter').css('display', 'inline');
+                $('#plantIcon').css('display', 'none');
+            }
+        }
+        else {
+            location.href = "PlantMessages";
+        }
     }
 
     var initPlantsFilter = function (data)
@@ -284,7 +306,8 @@
         initToolbar: initToolbar,
         handlerDropdown: handlerDropdown,
         updateLastUpdate: updateLastUpdate,
-        initBootstrapSelect: initBootstrapSelect
+        initBootstrapSelect: initBootstrapSelect,
+        viewPlantMessagesBtn: viewPlantMessagesBtn
     }
 
 }();

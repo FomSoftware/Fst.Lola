@@ -104,7 +104,7 @@
                                 <div><span>@Resource.ChangePassword</span></div>
                             </div>
                         }
-                        <div class="dd-item" data-toggle="modal" onclick="UserManager.openDisclamerModal()">
+                        <div class="dd-item dd-item-longtext" data-toggle="modal" onclick="UserManager.openDisclamerModal()">
                             <i class="fa fa-handshake-o color-corporate fa-sm"></i>
                             <div><span>@Resource.Disclamer</span></div>
                         </div>
@@ -183,7 +183,7 @@
                 @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer)
                 {
                     <li>
-                        <a class="dd-item" href="@Url.Action("UserManager", "Admin")">
+                        <a class="dd-item dd-item-longtext" href="@Url.Action("UserManager", "Admin")">
                             <i class="fa fa-user color-corporate fa-lg"></i>
                             <div>@Resource.UserManager</div>
                         </a>
@@ -199,7 +199,7 @@
                     </li>
                 }               
                 <li>
-                    <a class="dd-item" href="#" data-toggle="modal" onclick="UserManager.openDisclamerModal()">
+                    <a class="dd-item dd-item-longtext" href="#" data-toggle="modal" onclick="UserManager.openDisclamerModal()">
                         <i class="fa fa-handshake-o color-corporate fa-sm"></i>
                         <div>@Resource.Disclamer</div>
                     </a>
