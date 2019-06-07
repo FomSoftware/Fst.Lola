@@ -566,4 +566,13 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   <data name="PlantMessages" xml:space="preserve">
     <value>Mensajes de la planta</value>
   </data>
+  <data name="DisclaimerLogin" xml:space="preserve">
+    <value>LOLA ha sido optimizado para dispositivos móviles.&lt;br /&gt; Para la lista, remitirse a la sección "Terms &amp; Conditions". </value>
+  </data>
+  <data name="DisclaimerMobileDevices" xml:space="preserve">
+    <value>LOLA ha sido optimizado para los siguientes dispositivos móviles: Samsung S10, Apple IPhone X, Samsung Galaxy S7, Apple IPhone 8, Apple IPad PRO, Apple IPad 2. En Internet, para los navegadores Google Chrome en Windows y Safari en MAC.</value>
+  </data>
+  <data name="AxisMotors" xml:space="preserve">
+    <value>Motores/Ejes</value>
+  </data>
 </root>

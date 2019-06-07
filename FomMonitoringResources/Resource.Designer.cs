@@ -106,6 +106,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Motors/Axes.
+        /// </summary>
+        public static string AxisMotors {
+            get {
+                return ResourceManager.GetString("AxisMotors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Return to Login.
         /// </summary>
         public static string BackToLogin {
@@ -309,6 +318,24 @@ namespace FomMonitoringResources {
         public static string DisableUser {
             get {
                 return ResourceManager.GetString("DisableUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LOLA has been optimised for mobile usage. &lt;br /&gt;For a list of devices, please see the section &quot;Terms &amp; Conditions&quot;. .
+        /// </summary>
+        public static string DisclaimerLogin {
+            get {
+                return ResourceManager.GetString("DisclaimerLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LOLA has been optimised for mobile usage on the following devices: Samsung S10, Apple IPhone X, Samsung Galaxy S7, Apple IPhone 8, Apple IPad PRO, Apple IPad 2. Web browsers: Google Chrome for Windows and Safari for MAC.&quot;.
+        /// </summary>
+        public static string DisclaimerMobileDevices {
+            get {
+                return ResourceManager.GetString("DisclaimerMobileDevices", resourceCulture);
             }
         }
         

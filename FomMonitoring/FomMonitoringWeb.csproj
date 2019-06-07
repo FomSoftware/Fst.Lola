@@ -848,6 +848,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Mes\PlantMessages.cshtml" />
     <Content Include="Views\Mes\_PlantMessages.cshtml" />
+    <Content Include="Views\Shared\Modals\_Disclaimer.cshtml" />
+    <Content Include="Views\Shared\Modals\_ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
