@@ -207,6 +207,10 @@
         vmEfficiency.overfeed = efficiency.overfeed;
         vmEfficiency.states = efficiency.states;
 
+        if (data.opt_states != null) {
+            ChartManager.stateMachinePieChart("efc_pie_chart", data.opt_states);
+        }
+
         // chart historical
         if (data.opt_historical != null)
         {
