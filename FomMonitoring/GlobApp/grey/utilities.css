@@ -296,7 +296,7 @@ em,
     font-size: 12px;
 }
 .dd-item-longtext {
-    display: inline;  
+    display: inline-block;  
     width:100%;
 }
     .dd-item-longtext div {
