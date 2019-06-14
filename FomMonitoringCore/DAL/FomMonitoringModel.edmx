@@ -192,6 +192,8 @@
           <Property Name="StateProductivityGreenThreshold" Type="float" />
           <Property Name="StateProductivityYellowThreshold" Type="float" />
           <Property Name="UTC" Type="float" />
+          <Property Name="ActivationDate" Type="datetime" />
+          <Property Name="ExpirationDate" Type="datetime" />
         </EntityType>
         <EntityType Name="MachineGroup">
           <Key>
@@ -252,6 +254,8 @@
           <Property Name="Type" Type="nvarchar" MaxLength="150" />
           <Property Name="Group" Type="int" />
           <Property Name="IsVisible" Type="bit" Nullable="false" />
+          <Property Name="IgnoreDate" Type="datetime" />
+          <Property Name="IsPeriodicMsg" Type="bit" />
         </EntityType>
         <EntityType Name="MessagesIndex">
           <Key>
@@ -263,6 +267,7 @@
           <Property Name="MessageTypeId" Type="int" Nullable="false" />
           <Property Name="IsVisibleLOLA" Type="bit" Nullable="false" />
           <Property Name="MachineGroupId" Type="int" Nullable="false" />
+          <Property Name="PeriodicSpan" Type="int" />
         </EntityType>
         <EntityType Name="MessageTranslation">
           <Key>
@@ -1730,6 +1735,8 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <NavigationProperty Name="UserMachineMapping" Relationship="FST_FomMonitoringModel.FK_UserMachineMapping_Machine" FromRole="Machine" ToRole="UserMachineMapping" />
           <NavigationProperty Name="HistoryMessage" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_Machine" FromRole="Machine" ToRole="HistoryMessage" />
           <NavigationProperty Name="MessageMachine" Relationship="FST_FomMonitoringModel.FK_MessageMachine_Machine" FromRole="Machine" ToRole="MessageMachine" />
+          <Property Name="ActivationDate" Type="DateTime" Precision="3" Nullable="true" />
+          <Property Name="ExpirationDate" Type="DateTime" Precision="3" Nullable="true" />
         </EntityType>
         <EntityType Name="Plant">
           <Key>
@@ -2068,6 +2075,8 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_MessageMachine_Machine" FromRole="MessageMachine" ToRole="Machine" />
           <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_MessageMachine_State" FromRole="MessageMachine" ToRole="State" />
           <Property Name="IsVisible" Type="Boolean" Nullable="false" />
+          <Property Name="IgnoreDate" Type="DateTime" Precision="3" Nullable="true" />
+          <Property Name="IsPeriodicMsg" Type="Boolean" Nullable="true" />
         </EntityType>
         <Association Name="FK_HistoryMessage_Machine">
           <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
@@ -2251,6 +2260,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <NavigationProperty Name="MessageType" Relationship="FST_FomMonitoringModel.FK_MessagesIndex_MessageType" FromRole="MessagesIndex" ToRole="MessageType" />
           <NavigationProperty Name="MessageTranslation" Relationship="FST_FomMonitoringModel.FK_MessageTranslation_MessageID" FromRole="MessagesIndex" ToRole="MessageTranslation" />
           <Property Name="IsVisibleLOLA" Type="Boolean" Nullable="false" />
+          <Property Name="PeriodicSpan" Type="Int32" Nullable="true" />
         </EntityType>
         <EntityType Name="MessageTranslation">
           <Key>
@@ -2647,6 +2657,8 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="Machine">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.Machine">
               <MappingFragment StoreEntitySet="Machine">
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
                 <ScalarProperty Name="UTC" ColumnName="UTC" />
                 <ScalarProperty Name="StateProductivityYellowThreshold" ColumnName="StateProductivityYellowThreshold" />
                 <ScalarProperty Name="StateProductivityGreenThreshold" ColumnName="StateProductivityGreenThreshold" />
@@ -2818,6 +2830,8 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="MessageMachine">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.MessageMachine">
               <MappingFragment StoreEntitySet="MessageMachine">
+                <ScalarProperty Name="IsPeriodicMsg" ColumnName="IsPeriodicMsg" />
+                <ScalarProperty Name="IgnoreDate" ColumnName="IgnoreDate" />
                 <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
                 <ScalarProperty Name="Group" ColumnName="Group" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
@@ -2944,6 +2958,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="MessagesIndex">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.MessagesIndex">
               <MappingFragment StoreEntitySet="MessagesIndex">
+                <ScalarProperty Name="PeriodicSpan" ColumnName="PeriodicSpan" />
                 <ScalarProperty Name="IsVisibleLOLA" ColumnName="IsVisibleLOLA" />
                 <ScalarProperty Name="MachineGroupId" ColumnName="MachineGroupId" />
                 <ScalarProperty Name="MessageTypeId" ColumnName="MessageTypeId" />

@@ -76,7 +76,7 @@ namespace FomMonitoringBLL.ViewServices
                 time = CommonViewService.getTimeViewModel(a.ElapsedTime),
                 quantity = a.Count == null ? 0 : a.Count.Value,
                 day = a.Day == null ? "-" : a.Day.Value.ToString("t"),
-                description = (a.Code != null && a.Params != null) ? ReadMessages.GetMessageDescription(a.Code, machine.Id, a.Params, CultureInfo.CurrentCulture.Name) : ""
+                description = (a.Code != null) ? ReadMessages.GetMessageDescription(a.Code, machine.Id, a.Params, CultureInfo.CurrentCulture.Name) : ""
             }).ToList();
 
             messages = messages.OrderByDescending(o => o.time.elapsed).ToList();

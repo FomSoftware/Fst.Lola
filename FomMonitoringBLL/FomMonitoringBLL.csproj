@@ -55,6 +55,7 @@
     <Compile Include="ViewModel\CommonViewModel.cs" />
     <Compile Include="ViewModel\EfficiencyViewModel.cs" />
     <Compile Include="ViewModel\FilterViewModel.cs" />
+    <Compile Include="ViewModel\MaintenanceViewModel.cs" />
     <Compile Include="ViewModel\MessageDetailViewModel.cs" />
     <Compile Include="ViewModel\MessageViewModel.cs" />
     <Compile Include="ViewModel\PlantMessagesViewModel.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="ViewServices\AlarmsViewService.cs" />
     <Compile Include="ViewServices\CommonViewService.cs" />
     <Compile Include="ViewServices\MachineViewService.cs" />
+    <Compile Include="ViewServices\MaintenanceViewService.cs" />
     <Compile Include="ViewServices\MessagesViewService.cs" />
     <Compile Include="ViewServices\PlantMessagesViewService.cs" />
     <Compile Include="ViewServices\MesViewService.cs" />

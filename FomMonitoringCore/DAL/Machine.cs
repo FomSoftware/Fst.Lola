@@ -61,6 +61,8 @@ namespace FomMonitoringCore.DAL
         public Nullable<double> StateProductivityGreenThreshold { get; set; }
         public Nullable<double> StateProductivityYellowThreshold { get; set; }
         public Nullable<double> UTC { get; set; }
+        public Nullable<System.DateTime> ActivationDate { get; set; }
+        public Nullable<System.DateTime> ExpirationDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AlarmMachine> AlarmMachine { get; set; }

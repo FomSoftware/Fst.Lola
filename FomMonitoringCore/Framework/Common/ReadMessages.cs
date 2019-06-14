@@ -30,9 +30,10 @@ namespace FomMonitoringCore.Framework.Common
             }
             mm.Type = msg.MessageTypeId.ToString();
 
-        }
+        }       
 
-        public static string GetMessageDescription(string code, int machineId, string parameters, string language)
+
+            public static string GetMessageDescription(string code, int machineId, string parameters, string language)
         {
             var result = "";
             

@@ -168,25 +168,38 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                                 List<UserMachineMapping> usersMachineMapped = ent.UserMachineMapping.Where(w => w.MachineId == machine.Id).ToList();
                                 if (usersMachineMapped.Any())
                                 {
-                                    foreach (UserMachineMapping userMachineMapped in usersMachineMapped)
+                                    /*foreach (UserMachineMapping userMachineMapped in usersMachineMapped)
                                     {
                                         userMachineMapped.ExpirationDate = expirationDate;
-                                        userMachineMapped.ActivationDate = activationDate;
+                                        //userMachineMapped.ActivationDate = activationDate;
                                         ent.SaveChanges();
-                                    }
+                                    }*/
                                 }
                                 else
                                 {
                                     UserMachineMapping userMachine = new UserMachineMapping()
                                     {
-                                        ExpirationDate = expirationDate,
-                                        ActivationDate = activationDate,
+                                        //ExpirationDate = expirationDate,
+                                        //ActivationDate = activationDate,
                                         MachineId = machine.Id,
                                         UserId = user.ID
                                     };
                                     ent.UserMachineMapping.Add(userMachine);
                                     ent.SaveChanges();
                                 }
+                                //aggiorno l'activationDate della macchina prendendo la più vecchia
+                                Machine ma = ent.Machine.Find(machine.Id);
+                                if(ma.ActivationDate == null || ma.ActivationDate > activationDate)
+                                {
+                                    ma.ActivationDate = activationDate;                                    
+                                }
+                                if (ma.ExpirationDate == null || ma.ExpirationDate < expirationDate)
+                                {
+                                    ma.ExpirationDate = expirationDate;                                  
+                                }
+                                ent.SaveChanges();
+
+
                             }
                         }
                         catch (Exception ex)

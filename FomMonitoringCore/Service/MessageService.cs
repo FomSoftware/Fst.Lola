@@ -63,7 +63,8 @@ namespace FomMonitoringCore.Service
                             if (period.Aggregation == enAggregation.Day)
                             {
                                 var historyMessages = ent.HistoryMessage
-                                    .Where(hm => hm.MachineId == machine.Id && hm.Day.Value >= period.StartDate && hm.Day.Value <= period.EndDate).ToList()
+                                    .Where(hm => hm.MachineId == machine.Id 
+                                        && hm.Day.Value >= period.StartDate && hm.Day.Value <= period.EndDate).ToList()
                                     .Select(s => new AggregationMessageModel
                                     {
                                         Id = s.Id,
@@ -300,7 +301,62 @@ namespace FomMonitoringCore.Service
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
                     List<MessageMachine> query = ent.MessageMachine.Where(m => m.MachineId == machine.Id &&
-                                        m.Day >= period.StartDate && m.Day <= period.EndDate).ToList();
+                                        m.Day >= period.StartDate && m.Day <= period.EndDate &&
+                                        m.IsPeriodicMsg == null || m.IsPeriodicMsg == false).ToList();
+
+                    
+                    result = query.Adapt<List<MessageMachine>, List<MessageMachineModel>>();
+                }
+            }
+            catch (Exception ex)
+            {
+                string errMessage = string.Format(ex.GetStringLog(),
+                    machine.Id.ToString(),
+                    string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString()));
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+
+            return result;
+        }
+
+        public static double GetExpiredSpan(MessageMachineModel mm)
+        {
+            using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+            {
+                if(mm.IsPeriodicMsg == true)
+                {
+                    int cat = ent.Machine.Find(mm.MachineId).MachineModel.MessageCategoryId;
+                    MessagesIndex msg = ent.MessagesIndex.FirstOrDefault(f => f.MessageCode == mm.Code && f.MessageCategoryId == cat);
+                    int span = msg.PeriodicSpan ?? 0;
+                    DateTime? initTime = ent.MessageMachine.Find(mm.Id).GetInitialSpanDate(span);
+                    return DateTime.Now.Subtract(initTime.Value).TotalDays;
+                }
+            }
+            return 0;
+        }
+
+        public static List<MessageMachineModel> GetMaintenanceMessages(MachineInfoModel machine, PeriodModel period)
+        {
+            List<MessageMachineModel> result = new List<MessageMachineModel>();
+
+            try
+            {
+                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                {
+                    List<MessageMachine> query = ent.MessageMachine.Where(m => m.MachineId == machine.Id &&
+                                        m.Day >= period.StartDate && m.Day <= period.EndDate &&
+                                        m.Machine.ActivationDate != null &&
+                                        m.IsPeriodicMsg != null && m.IsPeriodicMsg == true).ToList();
+      
+                    query = query.Where(m =>
+                    {
+                        int cat = ent.Machine.Find(m.MachineId).MachineModel.MessageCategoryId;
+                        MessagesIndex msg = ent.MessagesIndex.FirstOrDefault(f => f.MessageCode == m.Code && f.MessageCategoryId == cat);
+                        int span = msg.PeriodicSpan ?? 0;
+                        return m.GetInitialSpanDate(span)?.AddDays(span) <= DateTime.Now &&
+                                        (m.IgnoreDate == null ||
+                                        (m.IgnoreDate != null && m.IgnoreDate < m.GetInitialSpanDate(span)));
+                                        }).ToList();
 
                     result = query.Adapt<List<MessageMachine>, List<MessageMachineModel>>();
                 }
@@ -315,6 +371,7 @@ namespace FomMonitoringCore.Service
 
             return result;
         }
+
 
         public static List<MessageMachineModel> GetAllCurrentMessages(MachineInfoModel machine, PeriodModel period)
         {

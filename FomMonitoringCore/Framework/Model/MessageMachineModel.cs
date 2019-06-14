@@ -14,6 +14,8 @@ namespace FomMonitoringCore.Framework.Model
         public string Type { get; set; }
         public int? Group { get; set; }
         public DateTime? StartTime { get; set; }
-        public int? StateId { get; set; }
+        public int? StateId { get; set; }       
+        public DateTime? IgnoreDate { get; set; }
+        public bool? IsPeriodicMsg { get; set; }
     }
 }

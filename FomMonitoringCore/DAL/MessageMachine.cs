@@ -26,6 +26,8 @@ namespace FomMonitoringCore.DAL
         public string Type { get; set; }
         public Nullable<int> Group { get; set; }
         public bool IsVisible { get; set; }
+        public Nullable<System.DateTime> IgnoreDate { get; set; }
+        public Nullable<bool> IsPeriodicMsg { get; set; }
     
         public virtual Machine Machine { get; set; }
         public virtual State State { get; set; }
