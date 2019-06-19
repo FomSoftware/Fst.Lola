@@ -304,7 +304,15 @@ namespace FomMonitoringCore.Service
                                         m.Day >= period.StartDate && m.Day <= period.EndDate &&
                                         m.IsPeriodicMsg == null || m.IsPeriodicMsg == false).ToList();
 
-                    
+                    query = query.Where(m =>
+                    {
+                        int cat = ent.Machine.Find(m.MachineId).MachineModel.MessageCategoryId;
+                        MessagesIndex msg = ent.MessagesIndex.FirstOrDefault(f => f.MessageCode == m.Code && f.MessageCategoryId == cat);
+                        if (msg == null) return false;
+                        
+                        return (msg.IsVisibleLOLA);
+                    }).ToList();
+
                     result = query.Adapt<List<MessageMachine>, List<MessageMachineModel>>();
                 }
             }
