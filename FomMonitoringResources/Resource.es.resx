@@ -576,6 +576,6 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
     <value>Motores/Ejes</value>
   </data>
   <data name="MsgExpiredTime" xml:space="preserve">
-    <value />
+    <value>Caducado</value>
   </data>
 </root>

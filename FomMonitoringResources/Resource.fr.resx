@@ -576,6 +576,6 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Moteurs/Axes</value>
   </data>
   <data name="MsgExpiredTime" xml:space="preserve">
-    <value />
+    <value>Expiration</value>
   </data>
 </root>

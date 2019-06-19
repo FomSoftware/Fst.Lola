@@ -575,6 +575,6 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>Motoren/Achsen</value>
   </data>
   <data name="MsgExpiredTime" xml:space="preserve">
-    <value />
+    <value>Abgelaufen</value>
   </data>
 </root>
