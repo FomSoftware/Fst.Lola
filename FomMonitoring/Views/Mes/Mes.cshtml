@@ -44,7 +44,7 @@
             </div>
             <div class="box-body">
                 <div class="card-portlet hidden-xs" v-bind:class="'card-' + machine.info.id">
-                    <div class="front" v-if="!isOffline(machine)">
+                    <div class="front" v-if="!isOffline(machine) && !isExpired(machine)">
                         <div class="row">
                             <div class="col-xs-3 text-right">
                                 <span class="fa-stack fa-lg" v-if="machine.state != null">
@@ -109,89 +109,91 @@
                     </div>
 
                     <div class="front" style="height: unset;" v-else>
-                        <offline-machine></offline-machine>
+                        <offline-machine v-if="isOffline(machine) && !isExpired(machine)"></offline-machine>
+                        <expired-machine v-if="isExpired(machine)"></expired-machine>
+
                     </div>
-                    <div class="back" v-if="!isOffline(machine)">
-                        <div class="row">
-                            <div class="col-xs-3 text-right">
-                                <span class="fa-stack fa-lg" v-if="machine.efficiency != null">
-                                    <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI(machine.efficiency.kpi)"></i>
-                                    <i class="fa icofom-efficiency font-12x fa-stack-1x fa-inverse"></i>
-                                </span>
-                                <span class="fa-stack fa-lg" v-else>
-                                    <i class="fa fa-circle fa-stack-2x color-default"></i>
-                                    <i class="fa icofom-efficiency font-12x fa-stack-1x color-aaa"></i>
-                                </span>
-                            </div>
-                            <div class="col-xs-9 padding-left-5">
-                                <div class="item-label clearfix" v-if="machine.efficiency != null">
-                                    <div class="pull-left">
-                                        <div>{{ machine.efficiency.kpi.value | round }}<em>%</em></div>
+                        <div class="back" v-if="!isOffline(machine)">
+                            <div class="row">
+                                <div class="col-xs-3 text-right">
+                                    <span class="fa-stack fa-lg" v-if="machine.efficiency != null">
+                                        <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI(machine.efficiency.kpi)"></i>
+                                        <i class="fa icofom-efficiency font-12x fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                    <span class="fa-stack fa-lg" v-else>
+                                        <i class="fa fa-circle fa-stack-2x color-default"></i>
+                                        <i class="fa icofom-efficiency font-12x fa-stack-1x color-aaa"></i>
+                                    </span>
+                                </div>
+                                <div class="col-xs-9 padding-left-5">
+                                    <div class="item-label clearfix" v-if="machine.efficiency != null">
+                                        <div class="pull-left">
+                                            <div>{{ machine.efficiency.kpi.value | round }}<em>%</em></div>
+                                        </div>
+                                        <div class="pull-right text-right">
+                                            <div>
+                                                <i class="fa icofom-overfeed color-aaa"></i>
+                                                <span>{{ machine.efficiency.overfeed.value | round }}<em>%</em></span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="pull-right text-right">
-                                        <div>
-                                            <i class="fa icofom-overfeed color-aaa"></i>
-                                            <span>{{ machine.efficiency.overfeed.value | round }}<em>%</em></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3 text-right">
+                                    <span class="fa-stack fa-lg" v-if="machine.productivity != null">
+                                        <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI(machine.productivity.kpi)"></i>
+                                        <i class="fa icofom-productivity fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                    <span class="fa-stack fa-lg" v-else>
+                                        <i class="fa fa-circle fa-stack-2x color-default"></i>
+                                        <i class="fa icofom-productivity fa-stack-1x fa-inverse color-aaa"></i>
+                                    </span>
+                                </div>
+                                <div class="col-xs-9 padding-left-5">
+                                    <div class="item-label clearfix" v-if="machine.productivity != null">
+                                        <div class="pull-left">
+                                            <div>{{ machine.productivity.kpi.value }}<em>pz/h</em></div>
+                                        </div>
+                                        <div class="pull-right text-right">
+                                            <div>
+                                                <i class="fa fa-puzzle-piece color-aaa"></i>
+                                                <span>{{ machine.productivity.piece.total }}<em>pz</em></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3 text-right">
+                                    <span class="fa-stack fa-lg" v-if="machine.alarms != null">
+                                        <i class="fa fa-circle fa-stack-2x" v-bind:class="colorAlarms(machine.alarms.quantity)"></i>
+                                        <i class="fa fa-exclamation-triangle fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                    <span class="fa-stack fa-lg" v-else>
+                                        <i class="fa fa-circle fa-stack-2x color-default"></i>
+                                        <i class="fa icofom-alarms fa-stack-1x fa-inverse color-aaa"></i>
+                                    </span>
+                                </div>
+                                <div class="col-xs-9 padding-left-5">
+                                    <div class="item-label clearfix" v-if="machine.alarms != null">
+                                        <div class="pull-left">
+                                            <div>{{ machine.alarms.quantity }}<em>n</em></div>
+                                        </div>
+                                        <div class="pull-right text-right">
+                                            <div>
+                                                <i class="fa fa-clock-o color-aaa"></i>
+                                                <time-span v-bind:duration="machine.alarms.time"></time-span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-3 text-right">
-                                <span class="fa-stack fa-lg" v-if="machine.productivity != null">
-                                    <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI(machine.productivity.kpi)"></i>
-                                    <i class="fa icofom-productivity fa-stack-1x fa-inverse"></i>
-                                </span>
-                                <span class="fa-stack fa-lg" v-else>
-                                    <i class="fa fa-circle fa-stack-2x color-default"></i>
-                                    <i class="fa icofom-productivity fa-stack-1x fa-inverse color-aaa"></i>
-                                </span>
-                            </div>
-                            <div class="col-xs-9 padding-left-5">
-                                <div class="item-label clearfix" v-if="machine.productivity != null">
-                                    <div class="pull-left">
-                                        <div>{{ machine.productivity.kpi.value }}<em>pz/h</em></div>
-                                    </div>
-                                    <div class="pull-right text-right">
-                                        <div>
-                                            <i class="fa fa-puzzle-piece color-aaa"></i>
-                                            <span>{{ machine.productivity.piece.total }}<em>pz</em></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-3 text-right">
-                                <span class="fa-stack fa-lg" v-if="machine.alarms != null">
-                                    <i class="fa fa-circle fa-stack-2x" v-bind:class="colorAlarms(machine.alarms.quantity)"></i>
-                                    <i class="fa fa-exclamation-triangle fa-stack-1x fa-inverse"></i>
-                                </span>
-                                <span class="fa-stack fa-lg" v-else>
-                                    <i class="fa fa-circle fa-stack-2x color-default"></i>
-                                    <i class="fa icofom-alarms fa-stack-1x fa-inverse color-aaa"></i>
-                                </span>
-                            </div>
-                            <div class="col-xs-9 padding-left-5">
-                                <div class="item-label clearfix" v-if="machine.alarms != null">
-                                    <div class="pull-left">
-                                        <div>{{ machine.alarms.quantity }}<em>n</em></div>
-                                    </div>
-                                    <div class="pull-right text-right">
-                                        <div>
-                                            <i class="fa fa-clock-o color-aaa"></i>
-                                            <time-span v-bind:duration="machine.alarms.time"></time-span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="back" style="height: unset;" v-else>
+                            <offline-machine></offline-machine>
                         </div>
                     </div>
-                    <div class="back" style="height: unset;" v-else>
-                        <offline-machine></offline-machine>
-                    </div>
-                </div>
                 <div class="slide-portlet visible-xs">
                     <div class="row">
                         <div class="col-xs-3 text-right">
