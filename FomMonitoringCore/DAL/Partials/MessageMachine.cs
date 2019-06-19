@@ -10,7 +10,7 @@ namespace FomMonitoringCore.DAL
     {
         public DateTime? GetInitialSpanDate(long PeriodicSpan)
         {
-            DateTime? result = this.Machine.ActivationDate;
+            DateTime? result = Machine.ActivationDate;
            
             if (IgnoreDate == null || PeriodicSpan == 0)
                 return result;            

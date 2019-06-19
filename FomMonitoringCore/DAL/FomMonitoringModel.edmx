@@ -378,16 +378,6 @@
           <Property Name="StartTime" Type="datetime" />
           <Property Name="StateId" Type="int" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="ToolMachine">
           <Key>
             <PropertyRef Name="Id" />
@@ -936,7 +926,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySet Name="Spindle" EntityType="Self.Spindle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StateMachine" EntityType="Self.StateMachine" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ToolMachine" EntityType="Self.ToolMachine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserCustomerMapping" EntityType="Self.UserCustomerMapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMachineMapping" EntityType="Self.UserMachineMapping" Schema="dbo" store:Type="Tables" />
@@ -1279,7 +1268,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <End Role="State" EntitySet="State" />
             <End Role="MessageMachine" EntitySet="MessageMachine" />
           </AssociationSet>
-          <EntitySet Name="sysdiagrams" EntityType="FST_FomMonitoringModel.sysdiagrams" />
           <EntitySet Name="FomMonitoring" EntityType="FST_FomMonitoringModel.FomMonitoring" />
           <EntitySet Name="FomMonitoringApi" EntityType="FST_FomMonitoringModel.FomMonitoringApi" />
           <EntitySet Name="FomMonitoringDatabaseMapping" EntityType="FST_FomMonitoringModel.FomMonitoringDatabaseMapping" />
@@ -1956,6 +1944,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Type="String" Name="ActualJobCode" Nullable="true" MaxLength="100" />
           <Property Type="Double" Name="ActualJobPerc" Nullable="true" />
           <Property Type="String" Name="ActualOperator" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="ExpirationDate" Nullable="true" Precision="23" />
         </ComplexType>
         <Association Name="FK_Bar_Machine">
           <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
@@ -2126,16 +2115,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="FomMonitoring">
           <Key>
             <PropertyRef Name="Id" />
@@ -2758,6 +2737,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
                 <ScalarProperty Name="ActualJobCode" ColumnName="ActualJobCode" />
                 <ScalarProperty Name="ActualJobPerc" ColumnName="ActualJobPerc" />
                 <ScalarProperty Name="ActualOperator" ColumnName="ActualOperator" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2844,17 +2824,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
                 <ScalarProperty Name="Day" ColumnName="Day" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="FST_FomMonitoringModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

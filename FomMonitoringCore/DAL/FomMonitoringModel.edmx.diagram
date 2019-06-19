@@ -53,7 +53,6 @@
         <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryMessage_State" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageMachine_Machine" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageMachine_State" />
-        <EntityTypeShape EntityType="FST_FomMonitoringModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.FomMonitoring" Width="1.5" PointX="2.75" PointY="3.75" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.FomMonitoringApi" Width="1.5" PointX="4.75" PointY="3.75" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.FomMonitoringDatabaseMapping" Width="1.5" PointX="6.75" PointY="0.75" />

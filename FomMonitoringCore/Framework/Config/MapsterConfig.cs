@@ -71,7 +71,8 @@ namespace FomMonitoringCore.Framework.Config
             config.NewConfig<usp_AggregationAlarm_Result, HistoryAlarmModel>()
                 .Map(dest => dest.enState, src => (enState)src.StateId);
             config.NewConfig<usp_MesUserMachines_Result, MesUserMachinesModel>()
-                .Map(dest => dest.enActualState, src => (enState?)src.ActualStateId);
+                .Map(dest => dest.enActualState, src => (enState?)src.ActualStateId)
+                .Map(dest => dest.Expired, src => src.ExpirationDate < DateTime.Now);
 
             // Model to DAL
             config.NewConfig<JsonDataModel, JsonData>();
