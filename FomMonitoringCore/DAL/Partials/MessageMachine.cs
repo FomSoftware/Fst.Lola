@@ -8,17 +8,23 @@ namespace FomMonitoringCore.DAL
 {
     public partial class MessageMachine
     {
-        public DateTime? GetInitialSpanDate(int PeriodicSpan)
+        public DateTime? GetInitialSpanDate(long PeriodicSpan)
         {
             DateTime? result = this.Machine.ActivationDate;
            
             if (IgnoreDate == null || PeriodicSpan == 0)
-                return result;
+                return result;            
 
-            while( result < DateTime.Now)
+            while ( result < DateTime.Now)
             {
-                if (result?.AddDays(PeriodicSpan) < DateTime.Now)
-                    result = result?.AddDays(PeriodicSpan);
+                DateTime? newInit = result?.AddTicks(PeriodicSpan);
+
+                if (newInit < DateTime.Now)
+                { 
+                    result = result?.AddTicks(PeriodicSpan);
+                    if (result > IgnoreDate)
+                        break;
+                }
                 else
                     break;
             }

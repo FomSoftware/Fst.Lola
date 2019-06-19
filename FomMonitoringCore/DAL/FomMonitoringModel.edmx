@@ -267,7 +267,7 @@
           <Property Name="MessageTypeId" Type="int" Nullable="false" />
           <Property Name="IsVisibleLOLA" Type="bit" Nullable="false" />
           <Property Name="MachineGroupId" Type="int" Nullable="false" />
-          <Property Name="PeriodicSpan" Type="int" />
+          <Property Name="PeriodicSpan" Type="bigint" />
         </EntityType>
         <EntityType Name="MessageTranslation">
           <Key>
@@ -2260,7 +2260,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <NavigationProperty Name="MessageType" Relationship="FST_FomMonitoringModel.FK_MessagesIndex_MessageType" FromRole="MessagesIndex" ToRole="MessageType" />
           <NavigationProperty Name="MessageTranslation" Relationship="FST_FomMonitoringModel.FK_MessageTranslation_MessageID" FromRole="MessagesIndex" ToRole="MessageTranslation" />
           <Property Name="IsVisibleLOLA" Type="Boolean" Nullable="false" />
-          <Property Name="PeriodicSpan" Type="Int32" Nullable="true" />
+          <Property Name="PeriodicSpan" Type="Int64" Nullable="true" />
         </EntityType>
         <EntityType Name="MessageTranslation">
           <Key>
