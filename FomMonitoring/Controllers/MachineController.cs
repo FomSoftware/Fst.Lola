@@ -44,14 +44,18 @@ namespace FomMonitoring.Controllers
             return View(machine);
         }
 
-        [Route("{lang}/Machine/IgnoreMessage/{MessageID}")]
+        [Route("Machine/IgnoreMessage/{MessageID}")]
         public ActionResult IgnoreMessage(int MessageID)
-        {
+        {           
             bool res = MaintenanceViewService.IgnoreMessage(MessageID);
 
             ContextModel context = ContextService.GetContext();
-            MachineViewModel machine = MachineViewService.GetMachine(context);
-            return View(machine);
+
+            MaintenanceViewModel mvm = MaintenanceViewService.GetMessages(context);
+
+            return Json(mvm);
+
+            
         }
 
     }
