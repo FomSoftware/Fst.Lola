@@ -12,16 +12,21 @@ namespace FomMonitoringBLL.ViewServices
         public static MesViewModel GetMes(ContextModel context)
         {
             MesViewModel result = new MesViewModel();
-            result.machines = GetVueModel(context.ActualPlant, context.AllMachines);
+            result.machines = GetVueModel(context.ActualPlant, context.AllMachines, !(context.User.Role == enRole.Administrator || context.User.Role == enRole.Assistance));
             return result;
         }
 
 
-        public static List<MesDataViewModel> GetVueModel(PlantModel plant, List<MachineInfoModel> allMachines)
+        public static List<MesDataViewModel> GetVueModel(PlantModel plant, List<MachineInfoModel> allMachines, bool onlyActive)
         {
             List<MesDataViewModel> result = new List<MesDataViewModel>();
 
             List<MesUserMachinesModel> dataAllMachines = MesService.GetPlantData(plant);
+            if (onlyActive)
+            {
+                dataAllMachines = dataAllMachines.Where(m => m.Expired == false).ToList();
+            }
+
 
             foreach (MesUserMachinesModel dataMachine in dataAllMachines)
             {

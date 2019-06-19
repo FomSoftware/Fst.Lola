@@ -28,5 +28,6 @@ namespace FomMonitoringCore.DAL
         public string ActualJobCode { get; set; }
         public Nullable<double> ActualJobPerc { get; set; }
         public string ActualOperator { get; set; }
+        public Nullable<System.DateTime> ExpirationDate { get; set; }
     }
 }

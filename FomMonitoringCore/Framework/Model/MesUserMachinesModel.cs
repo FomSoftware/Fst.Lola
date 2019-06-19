@@ -20,5 +20,6 @@ namespace FomMonitoringCore.Framework.Model
         public string ActualJobCode { get; set; }
         public double? ActualJobPerc { get; set; }
         public string ActualOperator { get; set; }
+        public bool Expired { get; set; }
     }
 }
