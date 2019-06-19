@@ -88,6 +88,10 @@
         $('.slimscroll').each(function () {
 
             var hh = 244;
+
+            if ($(this).attr('id') == "maintenanceSlimscroll")
+                hh = 525;
+
             // se sono in una tabella con il titolo fisso lo slimscroll contiene solo il tbody e non il theader
             var tableContainer = $(this).closest('.table-container');
             if (tableContainer.length > 0) {             

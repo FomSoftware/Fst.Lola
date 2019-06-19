@@ -299,11 +299,6 @@
         {
             $($('.front')[0]).css("overflow-x", "hidden");
         }
-       
-        
-
-        
-       
     }
 
     return {

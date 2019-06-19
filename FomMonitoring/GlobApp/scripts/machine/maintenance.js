@@ -7,7 +7,7 @@
     {
 
         initVueModel(data);
-        urlIgnoreMessageAPI = url;
+        urlIgnoreMessageAPI = url;      
     }
 
     var initVueModel = function (data)
@@ -65,7 +65,8 @@
         });
 
         request.done(function (data) {
-            Maintenance.update(data);            
+            Maintenance.update(data);             
+
         });
 
         request.fail(function (jqXHR, textStatus, errorThrown) {
@@ -74,9 +75,7 @@
             console.debug(errorThrown);
             location.reload();
         });
-    }
-
-
+    }    
 
     var update = function (data)
     {
