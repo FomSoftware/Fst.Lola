@@ -28,5 +28,7 @@ namespace FomMonitoringBLL.ViewModel
         public XToolViewModel XTools { get; set; }
 
         public MachineInfoViewModel MachineInfo { get; set; }
+
+        public MaintenanceViewModel Maintenance { get; set; }
     }
 }

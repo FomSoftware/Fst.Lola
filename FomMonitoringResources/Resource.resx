@@ -575,4 +575,7 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="AxisMotors" xml:space="preserve">
     <value>Motors/Axes</value>
   </data>
+  <data name="MsgExpiredTime" xml:space="preserve">
+    <value>Expired</value>
+  </data>
 </root>

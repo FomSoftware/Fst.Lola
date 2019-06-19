@@ -11,7 +11,9 @@
         -webkit-transition: opacity 3s;
         transition: opacity 3s;
     }
-
+#CardMaintenance .portlet-body {
+    height:537px;
+}
 /*#MachineLevel > div {
         padding: 0px 10px;
     }

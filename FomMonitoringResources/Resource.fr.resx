@@ -575,4 +575,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="AxisMotors" xml:space="preserve">
     <value>Moteurs/Axes</value>
   </data>
+  <data name="MsgExpiredTime" xml:space="preserve">
+    <value />
+  </data>
 </root>

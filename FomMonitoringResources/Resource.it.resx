@@ -575,4 +575,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="AxisMotors" xml:space="preserve">
     <value>Motori/Assi</value>
   </data>
+  <data name="MsgExpiredTime" xml:space="preserve">
+    <value>Scaduto</value>
+  </data>
 </root>

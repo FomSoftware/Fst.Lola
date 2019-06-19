@@ -413,6 +413,7 @@
     <Content Include="GlobApp\plugins\waitMe\waitMe.js" />
     <Content Include="GlobApp\plugins\waitMe\waitMe.min.css" />
     <Content Include="GlobApp\plugins\waitMe\waitMe.min.js" />
+    <Content Include="GlobApp\scripts\machine\maintenance.js" />
     <Content Include="GlobApp\scripts\machine\messages.js" />
     <Content Include="GlobApp\scripts\machine\xtools.js" />
     <Content Include="GlobApp\scripts\machine\xspindles.js" />

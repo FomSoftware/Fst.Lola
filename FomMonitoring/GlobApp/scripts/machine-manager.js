@@ -53,6 +53,7 @@
             XTools.update(data.XTools);
             Jobs.update(data.Jobs);
             Messages.update(data.Messages);
+            Maintenance.update(data.Maintenance);
 
             Vue.nextTick(function ()
             {

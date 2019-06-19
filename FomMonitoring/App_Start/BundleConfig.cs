@@ -92,6 +92,7 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/tools.js",
                         "~/GlobApp/scripts/machine/xtools.js",
                         "~/GlobApp/scripts/machine/jobs.js",
+                        "~/GlobApp/scripts/machine/maintenance.js",
                         "~/GlobApp/scripts/plantmessages.js"
                       ));
 

@@ -574,4 +574,7 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="AxisMotors" xml:space="preserve">
     <value>Motoren/Achsen</value>
   </data>
+  <data name="MsgExpiredTime" xml:space="preserve">
+    <value />
+  </data>
 </root>

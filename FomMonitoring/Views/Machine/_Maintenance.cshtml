@@ -1,8 +1,10 @@
-﻿@using FomMonitoringResources
+﻿@model FomMonitoringBLL.ViewModel.MaintenanceViewModel
+@using FomMonitoringResources
+
 <div id="CardMaintenance" class="portlet" style="height:581px">
     <div class="portlet-title">
         <div class="portlet-kpi" v-cloak>
-            
+
             <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x" style="color:cornflowerblue"></i>
                 <i class="fa fa-info fa-stack-1x fa-inverse"></i>
@@ -20,10 +22,68 @@
             </div>
         </div>
     </div>
-    <div class="portlet-body" style="background-color: #cecece;height:92.5%">       
-                <div class="no-data" >       
-                    <i class="fa fa-meh-o fa-3x"></i>
-                    <div>@Resource.NoData</div>
+    <div class="portlet-body" >
+        <div class="card-portlet card-messages" v-cloak>
+            <div class="front" style="padding: 0px;">
+                <div v-if="messages != null" class="table-container">
+                    <table class="table table-alerts table-header">
+                        <thead>
+                            <tr>
+                                <th style="width:5%"></th>                              
+                                <th style="width:55%">                                
+                                </th>
+                                <th style="width:20%" class="th-duration sorting" v-bind:class="sorting.timestamp" v-on:click="sortTimestamp()">
+                                    <i class="fa fa-clock-o color-aaa"></i>
+                                    <span class="value-title">
+                                        @Resource.Timestamp
+                                    </span>
+                                </th>
+                                <th style="width:20%">
+                                    <i class="fa fa-clock-o color-aaa"></i>
+                                    <span class="value-title">
+                                        @Resource.MsgExpiredTime
+                                    </span>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div class="slimscroll">
+                        <table class="table table-alerts">
+                            <tbody>
+                                <tr v-for="message in messages">
+                                    <td style="width:5%">
+                                        <span class="fa-stack fa">
+                                            <i class="fa fa-circle fa-stack-2x" style="color:cornflowerblue"></i>
+                                            <i class="fa fa-info fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                        <span class="fa-stack fa btn" style="border:none"  v-on:click="ignoreMessage(message.id, $event)">
+                                            <i class="fa fa-square fa-stack-2x" style="color:limegreen;top: 0;"></i>
+                                            <i class="fa fa-check fa-stack-1x fa-inverse" style="top: 0;"></i>
+                                        </span>
+                                    </td>
+                                    <td style="width:55%">{{ message.description }}</td>
+                                    <td style="width:20%">{{ message.formatted_timestamp }}</td>
+                                    <td style="min-width:80px;width:20%">                                     
+                                        <time-span v-bind:duration="message.expiredSpan"></time-span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+                <no-data v-else></no-data>
+            </div>
+        </div>
     </div>
 </div>
+    <script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        var data = @Html.Raw(Json.Encode(Model));
+        var urlIgnoreMessageAPI = '@Url.HttpRouteUrl("DefaultApi", new { controller = "Machine", action = "IgnoreMessage" })';       
+        Maintenance.init(data, urlIgnoreMessageAPI);        
+
+    });
+
+    </script>

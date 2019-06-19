@@ -246,7 +246,7 @@ namespace FomMonitoringCore.Service
             }
 
             return null;
-        }
+        }        
         #endregion
 
         private static int GetQuarter(DateTime fromDate)
@@ -319,20 +319,32 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        public static double GetExpiredSpan(MessageMachineModel mm)
+        public static long? GetExpiredSpan(MessageMachineModel mm)
         {
             using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
             {
                 if(mm.IsPeriodicMsg == true)
                 {
                     int cat = ent.Machine.Find(mm.MachineId).MachineModel.MessageCategoryId;
-                    MessagesIndex msg = ent.MessagesIndex.FirstOrDefault(f => f.MessageCode == mm.Code && f.MessageCategoryId == cat);
-                    int span = msg.PeriodicSpan ?? 0;
-                    DateTime? initTime = ent.MessageMachine.Find(mm.Id).GetInitialSpanDate(span);
-                    return DateTime.Now.Subtract(initTime.Value).TotalDays;
+                    MessagesIndex msg = ent.MessagesIndex.FirstOrDefault(f => f.MessageCode == mm.Code && f.MessageCategoryId == cat && f.PeriodicSpan != null);
+                    if (msg == null) return null;
+                    long span = msg.PeriodicSpan ?? 0;
+                    DateTime? initTime = ent.Machine.Find(mm.MachineId).ActivationDate;
+                    if(mm.IgnoreDate != null)
+                    {
+                        DateTime ? initInterval = ent.MessageMachine.Find(mm.Id).GetInitialSpanDate(span);
+                        if (mm.IgnoreDate < initInterval)
+                            initTime = initInterval;
+                        else
+                            return null;
+                    }
+                    
+                    
+
+                    return DateTime.Now.Subtract(initTime.Value).Ticks;
                 }
             }
-            return 0;
+            return null;
         }
 
         public static List<MessageMachineModel> GetMaintenanceMessages(MachineInfoModel machine, PeriodModel period)
@@ -351,13 +363,15 @@ namespace FomMonitoringCore.Service
                     query = query.Where(m =>
                     {
                         int cat = ent.Machine.Find(m.MachineId).MachineModel.MessageCategoryId;
-                        MessagesIndex msg = ent.MessagesIndex.FirstOrDefault(f => f.MessageCode == m.Code && f.MessageCategoryId == cat);
-                        int span = msg.PeriodicSpan ?? 0;
-                        return m.GetInitialSpanDate(span)?.AddDays(span) <= DateTime.Now &&
-                                        (m.IgnoreDate == null ||
-                                        (m.IgnoreDate != null && m.IgnoreDate < m.GetInitialSpanDate(span)));
-                                        }).ToList();
+                        MessagesIndex msg = ent.MessagesIndex.FirstOrDefault(f => f.MessageCode == m.Code && f.MessageCategoryId == cat && f.PeriodicSpan != null);
+                        if (msg == null) return false;
+                        long span = msg.PeriodicSpan ?? 0;
 
+
+                        return (m.IgnoreDate == null && m.Machine.ActivationDate?.AddTicks(span) <= DateTime.Now) ||
+                               (m.IgnoreDate != null && m.IgnoreDate < m.GetInitialSpanDate(span));
+                                }).ToList();
+                  
                     result = query.Adapt<List<MessageMachine>, List<MessageMachineModel>>();
                 }
             }
@@ -398,6 +412,26 @@ namespace FomMonitoringCore.Service
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
+        }
+
+        public static bool IgnoreMessage(int messageId)
+        {
+            try
+            {
+                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                {
+                    ent.MessageMachine.Find(messageId).IgnoreDate = DateTime.Now;
+                    ent.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                string errMessage = string.Format(ex.GetStringLog(),
+                    messageId.ToString(), "");
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+            return false;
         }
 
     }

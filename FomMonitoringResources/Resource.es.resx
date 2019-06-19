@@ -555,7 +555,7 @@
 Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultantes de los datos recopilados (necesidad de mantenimiento ordinario y/o extraordinario, desgaste de componentes como electromandriles, herramientas, piezas mecánicas y/o neumáticas utilizadas en el bien) solo se garantiza si el cliente se sirve de componentes y recambios oficiales provistos y recomendados por FOM Industrie s.r.l.&lt;/p&gt;</value>
   </data>
   <data name="XSpindles" xml:space="preserve">
-    <value>Husillo XModule/XMU</value>
+    <value>MsgExpiredTime</value>
   </data>
   <data name="XTools" xml:space="preserve">
     <value>Instrumentos XModule/XMU</value>
@@ -574,5 +574,8 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   </data>
   <data name="AxisMotors" xml:space="preserve">
     <value>Motores/Ejes</value>
+  </data>
+  <data name="MsgExpiredTime" xml:space="preserve">
+    <value />
   </data>
 </root>
