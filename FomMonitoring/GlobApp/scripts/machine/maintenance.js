@@ -65,20 +65,14 @@
         });
 
         request.done(function (data) {
-            $(".slimscroll").slimScroll({ destroy: true });
-            Maintenance.update(data.Maintenance);
-
-            Vue.nextTick(function () {           
-                initScrollBar();
-            });
-
+            Maintenance.update(data);            
         });
 
         request.fail(function (jqXHR, textStatus, errorThrown) {
             console.debug(jqXHR);
             console.debug(textStatus);
             console.debug(errorThrown);
-            //location.reload();
+            location.reload();
         });
     }
 
