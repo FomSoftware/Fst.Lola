@@ -223,7 +223,7 @@
             series: options.series
             //series: [{
             //    name: 'Error',
-            //    color: '#cc3333',
+            //    color: '#D32337',
             //    index: 4,
             //    legendIndex: 0,
             //    data: [5, 3, 4, 5, 7, 4, 9]
@@ -417,12 +417,12 @@
                     //text: 'Efficienza (%)',
                     text: options.yTitle,
                     style: {
-                        color: '#c0f73c',
+                        color: '#8EBF36',
                     }
                 },
                 labels: {
                     style: {
-                        color: '#c0f73c',
+                        color: '#8EBF36',
                     },
                     x: 0,
                     y: 11
@@ -436,13 +436,13 @@
                     //text: 'Produttività (p/h)',
                     text: options.yTitle2,
                     style: {
-                        color: '#a2f3f0',
+                        color: '#87CDF3',
                     },
                     y: 15
                 },
                 labels: {
                     style: {
-                        color: '#a2f3f0',
+                        color: '#87CDF3',
                     },
                     x: 0,
                     y: -5
@@ -531,11 +531,11 @@
                 min: 0,
                 max: 100,
                 stops: [
-                    [0.01, '#cc3333'], // red
-                    [options.series[0].stateProductivityYellowThreshold / 100 - 0.01, '#cc3333'], // red
-                    [options.series[0].stateProductivityYellowThreshold / 100, '#fbe45a'], //yellow
-                    [options.series[0].stateProductivityGreenThreshold / 100 - 0.01, '#fbe45a'], //yellow
-                    [options.series[0].stateProductivityGreenThreshold / 100, '#8bb13f'], //green
+                    [0.01, '#D32337'], // red
+                    [options.series[0].stateProductivityYellowThreshold / 100 - 0.01, '#D32337'], // red
+                    [options.series[0].stateProductivityYellowThreshold / 100, '#F9ED4B'], //yellow
+                    [options.series[0].stateProductivityGreenThreshold / 100 - 0.01, '#F9ED4B'], //yellow
+                    [options.series[0].stateProductivityGreenThreshold / 100, '#8EBF36'], //green
                 ],
                 lineWidth: 0,
                 labels: {

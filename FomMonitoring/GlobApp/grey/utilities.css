@@ -141,24 +141,24 @@ em,
 .color-green {
     color: #5C7829;
     color: #779933;
-    color: #8bb13f;
+    color: #8EBF36;
 }
 
 .bg-green {
     background-color: #5C7829;
     background-color: #779933;
-    background-color: #8bb13f;
+    background-color: #8EBF36;
 }
 
 .border-green {
     border-color: #779933;
-    border-color: #8bb13f;
+    border-color: #8EBF36;
 }
 
 .color-yellow {
     color: #B7B327;
     color: #DCD427;
-    color: #fbe45a;
+    color: #F9ED4B;
 }
 
 .bg-yellow {
@@ -181,17 +181,17 @@ em,
 
 .color-red {
     color: #ff3333;
-    color: #cc3333 !important;
+    color: #D32337 !important;
 }
 
 .bg-red {
     background-color: #ff3333;
-    background-color: #cc3333;
+    background-color: #D32337;
 }
 
 .border-red {
     border-color: #ff3333;
-    border-color: #cc3333;
+    border-color: #D32337;
 }
 
 .color-grey-light {

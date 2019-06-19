@@ -428,11 +428,11 @@
     }
 
     .bg-manual {
-        background-color: #98C2ED;
+        background-color: rgb(135, 205, 243);
     }
 
     .bg-error {
-        background-color: #cc3344;
+        background-color: rgb(211, 35, 53);
     }
 
     .cr-prod {
@@ -444,11 +444,11 @@
     }
 
     .cr-manual {
-        color: #98C2ED;
+        color: rgb(135, 205, 243);
     }
 
     .cr-error {
-        color: #cc3344;
+        color: rgb(211, 35, 53);
     }
 
     .cr-stop {
@@ -507,7 +507,7 @@
 
     .gradient-after-70 {
         border-radius: 2px;
-        background-image: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, .1) 33%, rgba(0,0, 0, .1) 66%, transparent 66%), -webkit-linear-gradient(left, #A5CC48 40%, #cc3333);
+        background-image: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, .1) 33%, rgba(0,0, 0, .1) 66%, transparent 66%), -webkit-linear-gradient(left, #A5CC48 40%, #D32337);
         background-size: 35px 20px, 100% 100%, 100% 100%;
         background: linear-gradient(to right, rgba(165, 204, 72, 0.6) 0%, #A5CC48 50%, #ee0000 95%);
     }
@@ -571,7 +571,7 @@
 
     .bg-max-piece {
         background-color: #D97784;
-        background-color: #FF949C;
+        background-color: #EF7FA8;
     }
 
     .bg-min-piece {
@@ -856,11 +856,11 @@
         }
 
     .bg-progress {
-        background-color: #f2784b !important;
+        background-color: #EC6035 !important;
     }
 
     .color-progress {
-        color: #f2784b !important;
+        color: #EC6035 !important;
     }
 
     /*#endregion */

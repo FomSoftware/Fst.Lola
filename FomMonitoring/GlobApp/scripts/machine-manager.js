@@ -246,15 +246,15 @@
         switch (color_name)
         {
             case 'color-red':
-                color = '#cc3333';
+                color = '#D32337';
                 break;
 
             case 'color-yellow':
-                color = '#ec0';
+                color = '#F9ED4B';
                 break;
 
             case 'color-green':
-                color = '#779933';
+                color = '#8FBF36';
                 break;
         }
 
