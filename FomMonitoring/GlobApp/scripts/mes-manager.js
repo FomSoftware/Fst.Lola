@@ -269,6 +269,10 @@
                         machine.alarms == null)
                         return true;
                 },
+                isExpired: function (machine) {
+                    if (machine.info.expired)
+                        return true;
+                },
                 showOverlay: function(machine)
                 {
                     if (machine.state == null &&
@@ -344,6 +348,11 @@
         Vue.component('offline-machine', {
             props: ['show'],
             template: '#offline-machine'
+        });
+
+        Vue.component('expired-machine', {
+            props: ['show'],
+            template: '#expired-machine'
         });
 
         Vue.component('modal-tool', {

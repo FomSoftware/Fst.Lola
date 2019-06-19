@@ -44,7 +44,8 @@ namespace FomMonitoringBLL.ViewServices
                     id = machine.Id,
                     description = machine.Description == string.Empty ? null : machine.Description,
                     model = machine.Model.Name,
-                    icon = machine.Type.Image
+                    icon = machine.Type.Image,
+                    expired = dataMachine.Expired
                 };
 
 

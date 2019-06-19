@@ -55,6 +55,7 @@ namespace FomMonitoringBLL.ViewModel
 
     public class MachineInfoViewModel
     {
+
         public int id { get; set; }
 
         public string serial { get; set; }
@@ -74,6 +75,8 @@ namespace FomMonitoringBLL.ViewModel
         public string product_version { get; set; }
 
         public string installation { get; set; }
+
+        public bool expired { get; set; }
     }
 
 
