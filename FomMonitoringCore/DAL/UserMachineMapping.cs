@@ -17,8 +17,6 @@ namespace FomMonitoringCore.DAL
         public int Id { get; set; }
         public System.Guid UserId { get; set; }
         public int MachineId { get; set; }
-        public System.DateTime ExpirationDate { get; set; }
-        public Nullable<System.DateTime> ActivationDate { get; set; }
     
         public virtual Machine Machine { get; set; }
     }

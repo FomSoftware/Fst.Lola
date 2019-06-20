@@ -410,9 +410,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="MachineId" Type="int" Nullable="false" />
-          <Property Name="ExpirationDate" Type="datetime" Nullable="false" />
-          <Property Name="ActivationDate" Type="datetime" />
+          <Property Name="MachineId" Type="int" Nullable="false" />          
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'LOLAPROD.log.FomMonitoring' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -2012,9 +2010,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="Guid" Nullable="false" />
           <Property Name="MachineId" Type="Int32" Nullable="false" />
-          <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_UserMachineMapping_Machine" FromRole="UserMachineMapping" ToRole="Machine" />
-          <Property Name="ActivationDate" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_UserMachineMapping_Machine">
           <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="1" />
@@ -2782,8 +2778,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="UserMachineMapping">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.UserMachineMapping">
               <MappingFragment StoreEntitySet="UserMachineMapping">
-                <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
-                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
                 <ScalarProperty Name="MachineId" ColumnName="MachineId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
