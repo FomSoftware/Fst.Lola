@@ -566,7 +566,7 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>Nachrichten aus der Anlage</value>
   </data>
   <data name="DisclaimerLogin" xml:space="preserve">
-    <value>LOLA wurde für die Mobilfunknutzung optimiert. &lt;br /&gt;Für die Liste den Abschnitt „Terms &amp; Conditions“ konsultieren</value>
+    <value>LOLA wurde für die Mobilfunknutzung optimiert. &lt;br /&gt;Für die Liste den Abschnitt &lt;br /&gt;„Terms &amp; Conditions“ konsultieren</value>
   </data>
   <data name="DisclaimerMobileDevices" xml:space="preserve">
     <value>LOLA wurde für die Mobilfunknutzung auf folgenden Geräten optimiert: Samsung S10, Apple IPhone X, Samsung Galaxy S7, Apple IPhone 8, Apple IPad PRO, Apple IPad 2. Mit Webbrowser Google Chrome auf Windows und Safari auf MAC.</value>
