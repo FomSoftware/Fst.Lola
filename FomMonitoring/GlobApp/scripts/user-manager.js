@@ -556,7 +556,7 @@
             case 'English':
                 result = '/Images/flags/en.png';
                 break;
-            case 'Italiano':
+            case 'Italian':
                 result = '/Images/flags/it.png';
                 break;
             case 'Spanish':
