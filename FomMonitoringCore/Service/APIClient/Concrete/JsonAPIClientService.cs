@@ -129,7 +129,8 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                                         FirstName = customer.username,
                                         LastName = customer.username,
                                         Enabled = true,
-                                        Role = enRole.Customer
+                                        Role = enRole.Customer,
+                                        CustomerName = customer.username
                                     };
                                     user.ID = UserManagerService.CreateUser(user);
                                 }
