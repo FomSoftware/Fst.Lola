@@ -88,7 +88,7 @@ namespace FomMonitoringBLL.ViewServices
                 user.Machines = userModel.Machines.Select(s => new UserMachineViewModel { Id = s.Id, Serial = s.Serial }).ToList();
                 result.user = user;
 
-                //machines for customer         
+                //machines for customer       
                 result.machines = GetMachinesByCustomer(userModel.CustomerName);
 
                 return result;
@@ -134,7 +134,8 @@ namespace FomMonitoringBLL.ViewServices
                 List<UserMachineViewModel> result = new List<UserMachineViewModel>();
 
                 List<MachineInfoModel> machinesModel = UserManagerService.GetCustomerMachines(name);
-                result = machinesModel.Select(s => new UserMachineViewModel { Id = s.Id, Serial = s.Serial }).ToList();
+                if(machinesModel != null)
+                    result = machinesModel.Select(s => new UserMachineViewModel { Id = s.Id, Serial = s.Serial }).ToList();
 
                 return result;
             }
