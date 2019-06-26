@@ -13,7 +13,10 @@ namespace FomMonitoringCore.DAL
             DateTime? result = Machine.ActivationDate;
            
             if (IgnoreDate == null || PeriodicSpan == 0)
-                return result;            
+                return result;
+
+            if (IgnoreDate != null)
+                result = IgnoreDate;
 
             while ( result < DateTime.Now)
             {
