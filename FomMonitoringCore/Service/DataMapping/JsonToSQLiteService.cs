@@ -139,11 +139,18 @@ namespace FomMonitoringCore.Service.DataMapping
                                     }
                                     break;
                                 case "message":
-                                    messageSQLite = JsonConvert.DeserializeObject<List<message>>(JsonConvert.SerializeObject(token.First));
-                                    foreach (message message in messageSQLite)
+                                    List< MessageModel >messageModels = JsonConvert.DeserializeObject<List<MessageModel>>(JsonConvert.SerializeObject(token.First));
+                                    messageSQLite = messageModels.Select(m => new message()
                                     {
-                                        message.Time = message.Time.HasValue && message.Time.Value.Year < 1900 ? null : message.Time;
-                                    }
+                                        Id = m.Id,
+                                        Time = m.Time.HasValue && m.Time.Value.Year < 1900 ? null : m.Time,
+                                        Code = m.Code,
+                                        Group = m.Group,
+                                        Operator = m.Operator,
+                                        Params = JsonConvert.SerializeObject(m.Parameters)
+                                    }).ToList();
+
+                                    
                                     break;
                                 default:
                                     break;
