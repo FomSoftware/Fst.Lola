@@ -60,14 +60,17 @@ namespace FomMonitoringCore.Service
                         plant.UserId = user.ID;
                     }
                     //se non c'è creo il plant di default per l'utente
-                    if (plant == null)
+                    if (plant == null && user != null)
                     {
                         plant = AddPlant(plantName, plantAddress, user);
                     }
 
-                    result = plant.Id;
+                    if (plant != null)
+                    {
+                        result = plant.Id;
 
-                    ent.SaveChanges();
+                        ent.SaveChanges();
+                    }
                 }
                 
             }

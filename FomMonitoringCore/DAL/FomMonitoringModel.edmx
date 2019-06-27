@@ -174,7 +174,7 @@
           <Property Name="MachineModelId" Type="int" />
           <Property Name="MachineTypeId" Type="int" />
           <Property Name="NextMaintenanceService" Type="datetime" />
-          <Property Name="PlantId" Type="int" Nullable="false" />
+          <Property Name="PlantId" Type="int" />
           <Property Name="PlcVersion" Type="varchar" MaxLength="100" />
           <Property Name="Product" Type="varchar" MaxLength="100" />
           <Property Name="ProductVersion" Type="varchar" MaxLength="100" />
@@ -410,7 +410,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="MachineId" Type="int" Nullable="false" />          
+          <Property Name="MachineId" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'LOLAPROD.log.FomMonitoring' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -681,7 +681,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Machine_Plant">
-          <End Role="Plant" Type="Self.Plant" Multiplicity="1" />
+          <End Role="Plant" Type="Self.Plant" Multiplicity="0..1" />
           <End Role="Machine" Type="Self.Machine" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Plant">
@@ -1685,7 +1685,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="MachineModelId" Type="Int32" />
           <Property Name="MachineTypeId" Type="Int32" />
           <Property Name="NextMaintenanceService" Type="DateTime" Precision="3" />
-          <Property Name="PlantId" Type="Int32" Nullable="false" />
+          <Property Name="PlantId" Type="Int32" />
           <Property Name="PlcVersion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Product" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ProductVersion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -1831,7 +1831,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Machine_Plant">
-          <End Type="FST_FomMonitoringModel.Plant" Role="Plant" Multiplicity="1" />
+          <End Type="FST_FomMonitoringModel.Plant" Role="Plant" Multiplicity="0..1" />
           <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Plant">
@@ -2032,7 +2032,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Count" Type="Int32" />
           <Property Name="Day" Type="DateTime" Precision="3" />
-          <Property Name="ElapsedTime" Type="Int64" />
+          <Property Name="ElapsedTime" Type="Int64" Nullable="true" />
           <Property Name="MachineId" Type="Int32" />
           <Property Name="Period" Type="Int32" />
           <Property Name="StateId" Type="Int32" />
@@ -2049,7 +2049,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Day" Type="DateTime" Precision="3" />
-          <Property Name="ElapsedTime" Type="Int64" />
+          <Property Name="ElapsedTime" Type="Int64" Nullable="true" />
           <Property Name="MachineId" Type="Int32" />
           <Property Name="Operator" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="StartTime" Type="DateTime" Precision="3" />

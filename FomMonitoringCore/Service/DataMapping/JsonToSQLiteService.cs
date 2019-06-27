@@ -162,7 +162,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                         Code = m.Code,
                                         Group = m.Group,
                                         Operator = m.Operator,
-                                        Params = JsonConvert.SerializeObject(m.Parameters)
+                                        Params = m.Parameters == null ? "" : JsonConvert.SerializeObject(m.Parameters)
                                     }).ToList();
 
                                     

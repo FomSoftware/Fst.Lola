@@ -43,7 +43,7 @@ namespace FomMonitoringCore.DAL
         public Nullable<int> MachineModelId { get; set; }
         public Nullable<int> MachineTypeId { get; set; }
         public Nullable<System.DateTime> NextMaintenanceService { get; set; }
-        public int PlantId { get; set; }
+        public Nullable<int> PlantId { get; set; }
         public string PlcVersion { get; set; }
         public string Product { get; set; }
         public string ProductVersion { get; set; }
