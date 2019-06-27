@@ -122,7 +122,7 @@ namespace FomMonitoringCore.Framework.Config
                 .IgnoreAllVirtual()
                 .Map(dest => dest.Day, src => src.Time.HasValue ? src.Time.Value : (DateTime?)null)
                 .Map(dest => dest.StartTime, src => src.Time)
-                .Map(dest => dest.ElapsedTime, src => src.TimeSpanDuration)
+                //.Map(dest => dest.ElapsedTime, src => src.TimeSpanDuration)
                 .Map(dest => dest.StateId, src => src.State)
                 .Map(dest => dest.Day, src => src.Code)
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);

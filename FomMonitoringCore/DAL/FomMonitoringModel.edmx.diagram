@@ -7,7 +7,7 @@
       <Diagram DiagramId="13d8bd6ff76b464c804b04dfa7328890" Name="Diagram1" ZoomLevel="47">
         <EntityTypeShape EntityType="FST_FomMonitoringModel.AlarmMachine" Width="1.5" PointX="8.25" PointY="28.5" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryAlarm" Width="1.5" PointX="5.25" PointY="27.5" />
-        <EntityTypeShape EntityType="FST_FomMonitoringModel.MachineModel" Width="1.5" PointX="0.75" PointY="30" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.MachineModel" Width="1.5" PointX="1" PointY="29.75" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.State" Width="1.5" PointX="3" PointY="25.875" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_AlarmMachine_State" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryAlarm_State" />

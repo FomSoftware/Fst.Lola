@@ -94,8 +94,23 @@ namespace FomMonitoringCore.Service.DataMapping
                                     foreach (info info in infoSQLite)
                                     {
                                         info.LoginDate = info.LoginDate.HasValue && info.LoginDate.Value.Year < 1900 ? null : info.LoginDate;
-                                        info.InstallationDate = info.InstallationDate.HasValue && info.InstallationDate.Value.Year < 1900 ? null : info.InstallationDate;
-                                        info.NextMaintenanceService = info.NextMaintenanceService.HasValue && info.NextMaintenanceService.Value.Year < 1900 ? null : info.NextMaintenanceService;
+                                        //info.InstallationDate = info.InstallationDate.HasValue && info.InstallationDate.Value.Year < 1900 ? null : info.InstallationDate;
+                                        //info.NextMaintenanceService = info.NextMaintenanceService.HasValue && info.NextMaintenanceService.Value.Year < 1900 ? null : info.NextMaintenanceService;
+                                        //campi cablati che non arrivano più dal json
+                                        info.StateProductivityGreenThreshold = 63.0;
+                                        info.StateProductivityYellowThreshold = 40.0;
+                                        info.PiecesProductivityGreenThreshold = 10.0;
+                                        info.PiecesProductivityYellowThreshold = 25.0;
+                                        info.BarsProductivityGreenThreshold = 90.0;
+                                        info.BarsProductivityYellowThreshold = 50.0;
+                                        info.OverfeedGreenThreshold = 85.0;
+                                        info.OverfeedYellowThreshold = 50.0;
+                                        info.Shift1StartHour = 0;
+                                        info.Shift1StartMinute = 0;
+                                        info.Shift2StartHour = 8;
+                                        info.Shift2StartMinute = 0;
+                                        info.Shift3StartHour = 16;
+                                        info.Shift3StartMinute = 0;
                                     }
                                     break;
                                 case "piece":
@@ -139,11 +154,18 @@ namespace FomMonitoringCore.Service.DataMapping
                                     }
                                     break;
                                 case "message":
-                                    messageSQLite = JsonConvert.DeserializeObject<List<message>>(JsonConvert.SerializeObject(token.First));
-                                    foreach (message message in messageSQLite)
+                                    List< MessageModel >messageModels = JsonConvert.DeserializeObject<List<MessageModel>>(JsonConvert.SerializeObject(token.First));
+                                    messageSQLite = messageModels.Select(m => new message()
                                     {
-                                        message.Time = message.Time.HasValue && message.Time.Value.Year < 1900 ? null : message.Time;
-                                    }
+                                        Id = m.Id,
+                                        Time = m.Time.HasValue && m.Time.Value.Year < 1900 ? null : m.Time,
+                                        Code = m.Code,
+                                        Group = m.Group,
+                                        Operator = m.Operator,
+                                        Params = m.Parameters == null ? "" : JsonConvert.SerializeObject(m.Parameters)
+                                    }).ToList();
+
+                                    
                                     break;
                                 default:
                                     break;

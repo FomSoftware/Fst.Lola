@@ -322,7 +322,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LOLA has been optimised for mobile usage. &lt;br /&gt;For a list of devices, please see the section &quot;Terms &amp; Conditions&quot;. .
+        ///   Looks up a localized string similar to LOLA has been optimised for mobile usage. &lt;br /&gt;For a list of devices, please see the section &lt;br /&gt;&quot;Terms &amp; Conditions&quot;. .
         /// </summary>
         public static string DisclaimerLogin {
             get {

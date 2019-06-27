@@ -328,15 +328,16 @@ namespace FomMonitoringCore.Service
                     using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                     {
                         // Add user customer
-                        //fabiana: lo user appena inserito è quello del db UM per cui non ha valorizzato il campo CustomerName ma solo il campo username
-                        ent.UserCustomerMapping.Add(new UserCustomerMapping() { UserId = addUser.ID, CustomerName = user.Username });
+                        ent.UserCustomerMapping.Add(new UserCustomerMapping() { UserId = addUser.ID, CustomerName = user.CustomerName });
 
                         // Add user machines
-                        //fabiana: commentato perchè qui user.Machines è sempre null
-                       /* foreach (var machine in user.Machines)
-                            ent.UserMachineMapping.Add(new UserMachineMapping() { UserId = addUser.ID, MachineId = machine.Id, ExpirationDate = DateTime.Now });
-                            */
+                        if (user.Machines != null && user.Machines.Count() > 0)
+                        {
+                            foreach (var machine in user.Machines)
+                                ent.UserMachineMapping.Add(new UserMachineMapping() { UserId = addUser.ID, MachineId = machine.Id });
+                        }
                         ent.SaveChanges();
+
                     }
 
                     entUM.SaveChanges();
@@ -520,7 +521,10 @@ namespace FomMonitoringCore.Service
                     var userRole = entUM.Roles_Users.Where(s => s.UserID == userId).SingleOrDefault();
 
                     if (userRole == null)
+                    {
+                        //se sono qui l'utente è sbagliato perchè non ha un ruolo, vado avanti e lo cancello...?
                         return false; // not found
+                    }     
                     entUM.Roles_Users.Remove(userRole);
 
                     entUM.SaveChanges();

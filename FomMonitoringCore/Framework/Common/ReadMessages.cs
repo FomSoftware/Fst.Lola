@@ -1,5 +1,6 @@
 ﻿using FomMonitoringCore.DAL;
 using FomMonitoringCore.Service;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.Odbc;
@@ -33,7 +34,7 @@ namespace FomMonitoringCore.Framework.Common
         }       
 
 
-            public static string GetMessageDescription(string code, int machineId, string parameters, string language)
+        public static string GetMessageDescription(string code, int machineId, string parameters, string language)
         {
             var result = "";
             
@@ -56,6 +57,21 @@ namespace FomMonitoringCore.Framework.Common
                 if (result == null)
                     return string.Empty;
             }
+
+            if (string.IsNullOrEmpty(parameters))                
+                return result;
+            try
+            {
+                Dictionary<string, string> parDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(parameters);
+
+                foreach (string key in parDict.Keys)
+                {
+                    result = result.Replace(key, parDict[key]);
+                }
+            }
+            catch(Exception ex)
+            { }
+                   
             
             return result;
         }

@@ -72,7 +72,7 @@ namespace FomMonitoringCore.Service
                                         StateId = s.StateId,
                                         Count = s.Count,
                                         Day = s.Day,
-                                        ElapsedTime = s.ElapsedTime,
+                                        //ElapsedTime = s.ElapsedTime,
                                         //Group = s.Group,
                                         MachineId = s.MachineId,
                                         //Params = s.Params,
@@ -103,7 +103,7 @@ namespace FomMonitoringCore.Service
                                         StateId = s.Key.StateId,
                                         Count = s.Count(),
                                         Day = s.Max(i => i.Day),
-                                        ElapsedTime = s.Sum(i => i.ElapsedTime),
+                                        //ElapsedTime = s.Sum(i => i.ElapsedTime),
                                         Group = s.Key.Group,
                                         MachineId = s.Key.MachineId,
                                         Params = s.Key.Params,
@@ -134,7 +134,7 @@ namespace FomMonitoringCore.Service
                                         StateId = s.Key.StateId,
                                         Count = s.Count(),
                                         Day = s.Max(i => i.Day),
-                                        ElapsedTime = s.Sum(i => i.ElapsedTime),
+                                        //ElapsedTime = s.Sum(i => i.ElapsedTime),
                                         Group = s.Key.Group,
                                         MachineId = s.Key.MachineId,
                                         Params = s.Key.Params,
@@ -165,7 +165,7 @@ namespace FomMonitoringCore.Service
                                         StateId = s.Key.StateId,
                                         Count = s.Count(),
                                         Day = s.Max(i => i.Day),
-                                        ElapsedTime = s.Sum(i => i.ElapsedTime),
+                                        //ElapsedTime = s.Sum(i => i.ElapsedTime),
                                         Group = s.Key.Group,
                                         MachineId = s.Key.MachineId,
                                         Params = s.Key.Params,
@@ -196,7 +196,7 @@ namespace FomMonitoringCore.Service
                                         StateId = s.Key.StateId,
                                         Count = s.Count(),
                                         Day = s.Max(i => i.Day),
-                                        ElapsedTime = s.Sum(i => i.ElapsedTime),
+                                        //ElapsedTime = s.Sum(i => i.ElapsedTime),
                                         Group = s.Key.Group,
                                         MachineId = s.Key.MachineId,
                                         Params = s.Key.Params,
@@ -225,7 +225,7 @@ namespace FomMonitoringCore.Service
                                     StateId = s.Key.StateId,
                                     Count = s.Count(),
                                     Day = s.Max(i => i.Day),
-                                    ElapsedTime = s.Sum(i => i.ElapsedTime),
+                                    //ElapsedTime = s.Sum(i => i.ElapsedTime),
                                     //Group = s.Key.Group,
                                     MachineId = s.Key.MachineId,
                                     Params = s.Key.Params,
@@ -363,8 +363,7 @@ namespace FomMonitoringCore.Service
             {
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
-                    List<MessageMachine> query = ent.MessageMachine.Where(m => m.MachineId == machine.Id &&
-                                        m.Day >= period.StartDate && m.Day <= period.EndDate &&
+                    List<MessageMachine> query = ent.MessageMachine.Where(m => m.MachineId == machine.Id &&                                        
                                         m.Machine.ActivationDate != null &&
                                         m.IsPeriodicMsg != null && m.IsPeriodicMsg == true).ToList();
       
@@ -376,7 +375,7 @@ namespace FomMonitoringCore.Service
                         long span = msg.PeriodicSpan ?? 0;
 
 
-                        return (m.IgnoreDate == null && m.Machine.ActivationDate?.AddTicks(span) <= DateTime.Now) ||
+                        return (m.IgnoreDate == null && m.Machine.ActivationDate?.AddSeconds(span) <= DateTime.Now) ||
                                (m.IgnoreDate != null && m.IgnoreDate < m.GetInitialSpanDate(span));
                                 }).ToList();
                   
@@ -440,6 +439,53 @@ namespace FomMonitoringCore.Service
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return false;
+        }
+
+        /// Per ogni macchina non scaduta e con data di attivazione valida estrae i messaggi periodici da controllare 
+        /// e per ognuno se non esiste già nella tabella MessageMachine, inserisce un nuovo messaggio periodico.
+        public static void CheckMaintenance()
+        {
+            string MachinId = null;
+            try
+            {
+                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                {
+                    List<Machine> machines = ent.Machine.Where(m => m.ExpirationDate != null && m.ExpirationDate >= DateTime.Now && 
+                                           m.ActivationDate != null && m.ActivationDate <= DateTime.Now).ToList();
+                    
+                    foreach(Machine machine in machines)
+                    {
+                        MachinId = machine.Id.ToString();
+                        int cat = ent.Machine.Find(machine.Id).MachineModel.MessageCategoryId;
+
+                        List<MessagesIndex> messaggi = ent.MessagesIndex.Where(mi => mi.MessageCategoryId == cat && mi.PeriodicSpan != null).ToList();
+
+                        foreach (MessagesIndex messaggio in messaggi)
+                        {
+                            if (ent.MessageMachine.Any(mm => mm.MachineId == machine.Id && mm.IsPeriodicMsg == true &&
+                                                     mm.Code == messaggio.MessageCode) == false)
+                            {
+                                MessageMachine msg = new MessageMachine()
+                                {
+                                    Code = messaggio.MessageCode,
+                                    MachineId = machine.Id,
+                                    IsPeriodicMsg = true,
+                                    Day = DateTime.Now,
+                                    IsVisible = true
+                                };
+                                ent.MessageMachine.Add(msg);
+                                ent.SaveChanges();
+                            }
+                        }
+                    }               
+                }
+            }
+            catch (Exception ex)
+            {
+                string errMessage = string.Format(ex.GetStringLog(),
+                    MachinId, "");
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }        
         }
 
     }

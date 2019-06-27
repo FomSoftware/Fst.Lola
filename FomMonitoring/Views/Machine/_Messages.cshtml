@@ -103,18 +103,12 @@
                                         <tr>
                                             <th style="padding-left:5px;padding-right:5px;width:20%">
                                                 <span class="value-title"> @Resource.Code </span>
-                                            </th>
-                                            <th style="width:23%" class="th-duration sorting" v-bind:class="sorting.duration" v-on:click="sortDuration()">
-                                                <i class="fa fa-clock-o color-aaa"></i>
-                                                <span class="value-title">
-                                                    @Resource.Time
-                                                </span>
-                                            </th>
+                                            </th>                                            
                                             <th style="width:23%" class="th-number sorting" v-bind:class="sorting.quantity" v-on:click="sortQuantity()">
                                                 <i class="fa fa-exclamation-triangle color-aaa"></i>
                                                 <span class="value-title">qty</span>
                                             </th>
-                                            <th style="width:34%">
+                                            <th style="width:57%">
                                                 <span class="value-title"> @Resource.Description </span>
                                             </th>
                                         </tr>
@@ -131,16 +125,11 @@
                                                         <div class="code-alert">{{ message.code }}</div>
                                                         <div class="subtitle-alert" v-bind:class="colorClass(message.type)">{{ message.type }}</div>
                                                     </div>
-                                                </td>
-                                                <td style="width:23%">
-                                                    <span class="label label-default">
-                                                        <time-span v-bind:duration="message.time"></time-span>
-                                                    </span>
-                                                </td>
+                                                </td>                                                
                                                 <td style="min-width:65px;width:23%">
                                                     <span class="label label-default">{{ message.quantity }}</span>
                                                 </td>
-                                                <td style="width:34%">{{ message.description }}</td>
+                                                <td style="width:57%">{{ message.description }}</td>
                                             </tr>
                                         </tbody>
                                     </table>

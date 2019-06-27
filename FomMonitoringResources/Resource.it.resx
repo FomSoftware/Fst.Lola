@@ -567,7 +567,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
     <value>Messaggi stabilimento</value>
   </data>
   <data name="DisclaimerLogin" xml:space="preserve">
-    <value>LOLA è stato ottimizzato per la fruibilità mobile.&lt;br /&gt; Per la lista, consultare la sezione "Terms &amp; Conditions</value>
+    <value>LOLA è stato ottimizzato per la fruibilità mobile.&lt;br /&gt; Per la lista, consultare la sezione &lt;br /&gt;"Terms &amp; Conditions</value>
   </data>
   <data name="DisclaimerMobileDevices" xml:space="preserve">
     <value>LOLA è stato ottimizzato per la fruibilità mobile sui seguenti dispositivi: Samsung S10, Apple IPhone X, Samsung Galaxy S7, Apple IPhone 8, Apple IPad PRO, Apple IPad 2. Su web per browser Google Chrome su Windows e Safari su MAC.</value>
