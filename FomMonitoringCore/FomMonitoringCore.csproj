@@ -232,6 +232,9 @@
     <Compile Include="DAL\MessageType.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\ParameterMachine.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Partials\MessageMachine.cs" />
     <Compile Include="DAL\Piece.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
@@ -361,6 +364,7 @@
     <Compile Include="Framework\Model\MachineModelModel.cs" />
     <Compile Include="Framework\Model\MachineTypeModel.cs" />
     <Compile Include="Framework\Model\MessageMachineModel.cs" />
+    <Compile Include="Framework\Model\ParametersMachineModel.cs" />
     <Compile Include="Framework\Model\PeriodModel.cs" />
     <Compile Include="Framework\Model\PieceModel.cs" />
     <Compile Include="Framework\Model\MesUserMachinesModel.cs" />
@@ -379,6 +383,7 @@
     <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\AlarmService.cs" />
     <Compile Include="Service\API\Concrete\JsonDataService.cs" />
+    <Compile Include="Service\API\Concrete\XmlDataService.cs" />
     <Compile Include="Service\API\IBasicManager.cs" />
     <Compile Include="Service\API\Concrete\AddChallengeOnUnauthorizedResult.cs" />
     <Compile Include="Service\API\Concrete\AuthenticationFailureResult.cs" />
@@ -386,6 +391,7 @@
     <Compile Include="Service\API\Concrete\JwtManager.cs" />
     <Compile Include="Service\API\IJsonDataService.cs" />
     <Compile Include="Service\API\IJwtManager.cs" />
+    <Compile Include="Service\API\IXmlDataService.cs" />
     <Compile Include="Service\ApplicationSettingService.cs" />
     <Compile Include="Service\BarService.cs" />
     <Compile Include="Service\CacheService.cs" />

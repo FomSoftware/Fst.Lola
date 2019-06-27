@@ -32,6 +32,7 @@ namespace FomMonitoringCore.DAL
             this.UserMachineMapping = new HashSet<UserMachineMapping>();
             this.HistoryMessage = new HashSet<HistoryMessage>();
             this.MessageMachine = new HashSet<MessageMachine>();
+            this.ParameterMachine = new HashSet<ParameterMachine>();
         }
     
         public int Id { get; set; }
@@ -43,7 +44,7 @@ namespace FomMonitoringCore.DAL
         public Nullable<int> MachineModelId { get; set; }
         public Nullable<int> MachineTypeId { get; set; }
         public Nullable<System.DateTime> NextMaintenanceService { get; set; }
-        public int PlantId { get; set; }
+        public Nullable<int> PlantId { get; set; }
         public string PlcVersion { get; set; }
         public string Product { get; set; }
         public string ProductVersion { get; set; }
@@ -97,5 +98,7 @@ namespace FomMonitoringCore.DAL
         public virtual ICollection<HistoryMessage> HistoryMessage { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MessageMachine> MessageMachine { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ParameterMachine> ParameterMachine { get; set; }
     }
 }

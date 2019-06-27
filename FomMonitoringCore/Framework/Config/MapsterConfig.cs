@@ -65,6 +65,27 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.Code, src => src.IdRole);
             config.NewConfig<UserCustomerMapping, UserCustomerModel>();
 
+
+            config.NewConfig<ParameterMachine, ParameterMachineModel>()
+                .Map(d => d.CLUSTER, src => src.Cluster)
+                .Map(d => d.CN_TYPE, src => src.CnType)
+                .Map(d => d.CN_UM, src => src.CnUm)
+                .Map(d => d.DEFAULT_VALUE, src => src.DefaultValue)
+                .Map(d => d.HMI_LABEL, src => src.HmiLabel)
+                .Map(d => d.HMI_SECTION, src => src.HmiSection)
+                .Map(d => d.HMI_UM, src => src.HmiUm)
+                .Map(d => d.KEYWORD, src => src.Keyword)
+                .Map(d => d.LOLA_LABEL, src => src.LolaLabel)
+                .Map(d => d.MACHINE_GROUP, src => src.MachineGroup)
+                .Map(d => d.PANEL, src => src.Panel)
+                .Map(d => d.R_LEVEL, src => src.RLevel)
+                .Map(d => d.THRESHOLD_LABEL, src => src.ThresholdLabel)
+                .Map(d => d.THRESHOLD_MAX, src => src.ThresholdMax)
+                .Map(d => d.THRESHOLD_MIN, src => src.ThresholdMin)
+                .Map(d => d.VAR_NUMBER, src => src.VarNumber)
+                .Map(d => d.W_LEVEL, src => src.WLevel);
+
+
             // SP to Model
             config.NewConfig<usp_AggregationState_Result, HistoryStateModel>()
                 .Map(dest => dest.enState, src => (enState)src.StateId);
@@ -73,6 +94,9 @@ namespace FomMonitoringCore.Framework.Config
             config.NewConfig<usp_MesUserMachines_Result, MesUserMachinesModel>()
                 .Map(dest => dest.enActualState, src => (enState?)src.ActualStateId)
                 .Map(dest => dest.Expired, src => src.ExpirationDate < DateTime.Now);
+
+
+
 
             // Model to DAL
             config.NewConfig<JsonDataModel, JsonData>();
@@ -210,6 +234,25 @@ namespace FomMonitoringCore.Framework.Config
 
 
             config.NewConfig<AggregationMessageModel, HistoryMessageModel>();
+
+            config.NewConfig<ParameterMachineModel, ParameterMachine>()
+                .Map(d => d.Cluster, src => src.CLUSTER)
+                .Map(d => d.CnType, src => src.CN_TYPE)
+                .Map(d => d.CnUm, src => src.CN_UM)
+                .Map(d => d.DefaultValue, src => src.DEFAULT_VALUE)
+                .Map(d => d.HmiLabel, src => src.HMI_LABEL)
+                .Map(d => d.HmiSection, src => src.HMI_SECTION)
+                .Map(d => d.HmiUm, src => src.HMI_UM)
+                .Map(d => d.Keyword, src => src.KEYWORD)
+                .Map(d => d.LolaLabel, src => src.LOLA_LABEL)
+                .Map(d => d.MachineGroup, src => src.MACHINE_GROUP)
+                .Map(d => d.Panel, src => src.PANEL)
+                .Map(d => d.RLevel, src => src.R_LEVEL)
+                .Map(d => d.ThresholdLabel, src => src.THRESHOLD_LABEL)
+                .Map(d => d.ThresholdMax, src => src.THRESHOLD_MAX)
+                .Map(d => d.ThresholdMin, src => src.THRESHOLD_MIN)
+                .Map(d => d.VarNumber, src => src.VAR_NUMBER)
+                .Map(d => d.WLevel, src => src.W_LEVEL);
         }
     }
 }

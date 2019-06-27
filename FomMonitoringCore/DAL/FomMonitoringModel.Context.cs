@@ -59,6 +59,7 @@ namespace FomMonitoringCore.DAL
         public virtual DbSet<MessagesIndex> MessagesIndex { get; set; }
         public virtual DbSet<MessageTranslation> MessageTranslation { get; set; }
         public virtual DbSet<MessageType> MessageType { get; set; }
+        public virtual DbSet<ParameterMachine> ParameterMachine { get; set; }
     
         public virtual ObjectResult<usp_AggregationState_Result> usp_AggregationState(Nullable<int> machineId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<int> aggregation, Nullable<int> dataType)
         {

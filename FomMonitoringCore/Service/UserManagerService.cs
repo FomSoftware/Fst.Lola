@@ -420,7 +420,7 @@ namespace FomMonitoringCore.Service
                             foreach (var machine in user.Machines)
                             {
                                 if (!userMachines.Any(a => a.MachineId == machine.Id))
-                                    ent.UserMachineMapping.Add(new UserMachineMapping() { UserId = user.ID, MachineId = machine.Id, ExpirationDate = DateTime.Now });
+                                    ent.UserMachineMapping.Add(new UserMachineMapping() { UserId = user.ID, MachineId = machine.Id});
                             }
                         }
 

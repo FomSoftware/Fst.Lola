@@ -270,8 +270,7 @@
                         return true;
                 },
                 isExpired: function (machine) {
-                    if (machine.info.expired)
-                        return true;
+                    return machine.info.expired;
                 },
                 showOverlay: function(machine)
                 {

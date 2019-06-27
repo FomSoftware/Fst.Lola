@@ -17,6 +17,10 @@ namespace FomMonitoringApi
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { action = RouteParameter.Optional, id = RouteParameter.Optional }
             );
+
+            var xml = GlobalConfiguration.Configuration.Formatters.XmlFormatter;
+            xml.UseXmlSerializer = true;
+
         }
     }
 }
