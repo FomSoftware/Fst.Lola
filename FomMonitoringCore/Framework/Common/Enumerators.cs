@@ -47,6 +47,24 @@ namespace FomMonitoringCore.Framework.Common
         Manual = 4
     }
 
+    public enum enPanel
+    {
+        [Description("efficiency")]
+        Efficiency = 0,
+        [Description("messages")]
+        Messages = 1,
+        [Description("productivity")]
+        Productivity = 2,
+        [Description("orders")]
+        Orders = 3,
+        [Description("maintance")]
+        Maintance = 4,
+        [Description("multispindle")]
+        Multispindle = 5,
+        [Description("tools")]
+        Tools = 6
+    }
+
     public enum enDataType
     {
         Dashboard = 0,

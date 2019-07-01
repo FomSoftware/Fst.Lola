@@ -291,15 +291,15 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MachineId" Type="int" Nullable="false" />
+          <Property Name="MachineModelId" Type="int" Nullable="false" />
           <Property Name="ModelCode" Type="nvarchar" MaxLength="50" />
           <Property Name="VarNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="HmiLabel" Type="nvarchar" MaxLength="50" />
           <Property Name="MachineGroup" Type="int" />
-          <Property Name="CnType" Type="nvarchar" MaxLength="5" />
-          <Property Name="CnUm" Type="nvarchar" MaxLength="5" />
+          <Property Name="CnType" Type="nvarchar" MaxLength="50" />
+          <Property Name="CnUm" Type="nvarchar" MaxLength="50" />
           <Property Name="Keyword" Type="nvarchar" MaxLength="50" />
-          <Property Name="HmiUm" Type="nvarchar" MaxLength="5" />
+          <Property Name="HmiUm" Type="nvarchar" MaxLength="50" />
           <Property Name="DefaultValue" Type="nvarchar" MaxLength="250" />
           <Property Name="WLevel" Type="nvarchar" MaxLength="50" />
           <Property Name="RLevel" Type="nvarchar" MaxLength="50" />
@@ -789,15 +789,15 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ParameterMachine_Machine">
-          <End Role="Machine" Type="Self.Machine" Multiplicity="1" />
+        <Association Name="FK_ParameterMachine_MachineModel">
+          <End Role="MachineModel" Type="Self.MachineModel" Multiplicity="1" />
           <End Role="ParameterMachine" Type="Self.ParameterMachine" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Machine">
+            <Principal Role="MachineModel">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ParameterMachine">
-              <PropertyRef Name="MachineId" />
+              <PropertyRef Name="MachineModelId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1101,8 +1101,8 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <End Role="MessageLanguages" EntitySet="MessageLanguages" />
             <End Role="MessageTranslation" EntitySet="MessageTranslation" />
           </AssociationSet>
-          <AssociationSet Name="FK_ParameterMachine_Machine" Association="Self.FK_ParameterMachine_Machine">
-            <End Role="Machine" EntitySet="Machine" />
+          <AssociationSet Name="FK_ParameterMachine_MachineModel" Association="Self.FK_ParameterMachine_MachineModel">
+            <End Role="MachineModel" EntitySet="MachineModel" />
             <End Role="ParameterMachine" EntitySet="ParameterMachine" />
           </AssociationSet>
           <AssociationSet Name="FK_Piece_Bar" Association="Self.FK_Piece_Bar">
@@ -1350,8 +1350,8 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <End Role="MessageTranslation" EntitySet="MessageTranslation" />
           </AssociationSet>
           <EntitySet Name="ParameterMachine" EntityType="FST_FomMonitoringModel.ParameterMachine" />
-          <AssociationSet Name="FK_ParameterMachine_Machine" Association="FST_FomMonitoringModel.FK_ParameterMachine_Machine">
-            <End Role="Machine" EntitySet="Machine" />
+          <AssociationSet Name="FK_ParameterMachine_MachineModel" Association="FST_FomMonitoringModel.FK_ParameterMachine_MachineModel">
+            <End Role="MachineModel" EntitySet="MachineModel" />
             <End Role="ParameterMachine" EntitySet="ParameterMachine" />
           </AssociationSet>
 		  </EntityContainer>
@@ -1399,6 +1399,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="MessageCategoryId" Type="Int32" Nullable="false" />
           <Property Name="Parameter" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="MessageCategory" Relationship="FST_FomMonitoringModel.FK_MachineModel_MessageCategory" FromRole="MachineModel" ToRole="MessageCategory" />
+          <NavigationProperty Name="ParameterMachine" Relationship="FST_FomMonitoringModel.FK_ParameterMachine_MachineModel" FromRole="MachineModel" ToRole="ParameterMachine" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -1770,7 +1771,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <NavigationProperty Name="MessageMachine" Relationship="FST_FomMonitoringModel.FK_MessageMachine_Machine" FromRole="Machine" ToRole="MessageMachine" />
           <Property Name="ActivationDate" Type="DateTime" Precision="3" Nullable="true" />
           <Property Name="ExpirationDate" Type="DateTime" Precision="3" Nullable="true" />
-          <NavigationProperty Name="ParameterMachine" Relationship="FST_FomMonitoringModel.FK_ParameterMachine_Machine" FromRole="Machine" ToRole="ParameterMachine" />
         </EntityType>
         <EntityType Name="Plant">
           <Key>
@@ -2382,15 +2382,14 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MachineId" Type="Int32" Nullable="false" />
           <Property Name="ModelCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="VarNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HmiLabel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MachineGroup" Type="Int32" />
-          <Property Name="CnType" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="CnUm" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="CnType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CnUm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Keyword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HmiUm" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="HmiUm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DefaultValue" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="WLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="RLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -2401,17 +2400,18 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="ThresholdLabel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Panel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Cluster" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_ParameterMachine_Machine" FromRole="ParameterMachine" ToRole="Machine" />
+          <Property Name="MachineModelId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MachineModel" Relationship="FST_FomMonitoringModel.FK_ParameterMachine_MachineModel" FromRole="ParameterMachine" ToRole="MachineModel" />
         </EntityType>
-        <Association Name="FK_ParameterMachine_Machine">
-          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="1" />
+        <Association Name="FK_ParameterMachine_MachineModel">
+          <End Type="FST_FomMonitoringModel.MachineModel" Role="MachineModel" Multiplicity="1" />
           <End Type="FST_FomMonitoringModel.ParameterMachine" Role="ParameterMachine" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Machine">
+            <Principal Role="MachineModel">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ParameterMachine">
-              <PropertyRef Name="MachineId" />
+              <PropertyRef Name="MachineModelId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3039,6 +3039,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="ParameterMachine">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.ParameterMachine">
               <MappingFragment StoreEntitySet="ParameterMachine">
+                <ScalarProperty Name="MachineModelId" ColumnName="MachineModelId" />
                 <ScalarProperty Name="Cluster" ColumnName="Cluster" />
                 <ScalarProperty Name="Panel" ColumnName="Panel" />
                 <ScalarProperty Name="ThresholdLabel" ColumnName="ThresholdLabel" />
@@ -3057,7 +3058,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
                 <ScalarProperty Name="HmiLabel" ColumnName="HmiLabel" />
                 <ScalarProperty Name="VarNumber" ColumnName="VarNumber" />
                 <ScalarProperty Name="ModelCode" ColumnName="ModelCode" />
-                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

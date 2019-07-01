@@ -1,4 +1,7 @@
-﻿using System.Web.Http;
+﻿using FomMonitoringCore.Framework.Config;
+using System.Reflection;
+using System.Web.Http;
+using Mapster;
 
 namespace FomMonitoringApi
 {
@@ -6,6 +9,7 @@ namespace FomMonitoringApi
     {
         protected void Application_Start()
         {
+            TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetAssembly(typeof(MapsterConfig)));
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }

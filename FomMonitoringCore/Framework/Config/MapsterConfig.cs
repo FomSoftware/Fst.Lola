@@ -88,11 +88,11 @@ namespace FomMonitoringCore.Framework.Config
 
             // SP to Model
             config.NewConfig<usp_AggregationState_Result, HistoryStateModel>()
-                .Map(dest => dest.enState, src => (enState)src.StateId);
+                .Map(dest => dest.enState, src => (enState?)src.StateId ?? null);
             config.NewConfig<usp_AggregationAlarm_Result, HistoryAlarmModel>()
-                .Map(dest => dest.enState, src => (enState)src.StateId);
+                .Map(dest => dest.enState, src => (enState?)src.StateId ?? null);
             config.NewConfig<usp_MesUserMachines_Result, MesUserMachinesModel>()
-                .Map(dest => dest.enActualState, src => (enState?)src.ActualStateId)
+                .Map(dest => dest.enActualState, src => (enState?)src.ActualStateId ?? null)
                 .Map(dest => dest.Expired, src => src.ExpirationDate < DateTime.Now);
 
 
@@ -236,6 +236,9 @@ namespace FomMonitoringCore.Framework.Config
             config.NewConfig<AggregationMessageModel, HistoryMessageModel>();
 
             config.NewConfig<ParameterMachineModel, ParameterMachine>()
+                .Ignore(dest => dest.Id, dest => dest.MachineModelId)
+                .IgnoreAllVirtual()
+                .IgnoreNonMapped(true)
                 .Map(d => d.Cluster, src => src.CLUSTER)
                 .Map(d => d.CnType, src => src.CN_TYPE)
                 .Map(d => d.CnUm, src => src.CN_UM)
@@ -245,7 +248,7 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(d => d.HmiUm, src => src.HMI_UM)
                 .Map(d => d.Keyword, src => src.KEYWORD)
                 .Map(d => d.LolaLabel, src => src.LOLA_LABEL)
-                .Map(d => d.MachineGroup, src => src.MACHINE_GROUP)
+                .Map(d => d.MachineGroup, src => !string.IsNullOrWhiteSpace(src.MACHINE_GROUP) ? src.MACHINE_GROUP : null)
                 .Map(d => d.Panel, src => src.PANEL)
                 .Map(d => d.RLevel, src => src.R_LEVEL)
                 .Map(d => d.ThresholdLabel, src => src.THRESHOLD_LABEL)
