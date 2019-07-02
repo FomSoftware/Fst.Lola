@@ -177,7 +177,7 @@
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
-    </Content>
+    </Content>   
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -197,6 +197,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\Alten.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />    
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
