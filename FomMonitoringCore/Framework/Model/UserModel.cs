@@ -21,7 +21,7 @@ namespace FomMonitoringCore.Framework.Model
 
         public enRole Role { get; set; }
 
-        public Languages Language { get; set; }
+        public LanguagesModel Language { get; set; }
 
         public List<MachineInfoModel> Machines { get; set; }
 

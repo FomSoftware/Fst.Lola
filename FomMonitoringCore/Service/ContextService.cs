@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Web;
+using UserManager.DAL;
 
 namespace FomMonitoringCore.Service
 {
@@ -26,7 +27,12 @@ namespace FomMonitoringCore.Service
                 context.User = ActualUser;
 
                 context.AllLanguages = UserManagerService.GetLanguages().OrderBy(o => o.IdLanguage).ToList();
-                context.ActualLanguage = context.User.Language == null ? context.AllLanguages.FirstOrDefault() : context.User.Language;
+
+
+
+
+                context.ActualLanguage = context.User.Language == null ? context.AllLanguages.FirstOrDefault() :
+                    UserManagerService.GetLanguages().Where(lan => lan.ID == context.User.Language.ID).FirstOrDefault();
 
                 SetContext(context);
 

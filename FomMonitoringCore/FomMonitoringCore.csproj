@@ -359,6 +359,7 @@
     <Compile Include="Framework\Model\JsonCustomersModel.cs" />
     <Compile Include="Framework\Model\JsonDataModel.cs" />
     <Compile Include="Framework\Model\JsonLoginModel.cs" />
+    <Compile Include="Framework\Model\LanguagesModel.cs" />
     <Compile Include="Framework\Model\LoginModel.cs" />
     <Compile Include="Framework\Model\MachineInfoModel.cs" />
     <Compile Include="Framework\Model\MachineModelModel.cs" />
