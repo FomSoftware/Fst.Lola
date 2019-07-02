@@ -49,7 +49,7 @@ namespace FomMonitoringBLL.ViewServices
                 };
 
 
-                MesUserMachinesModel data = dataAllMachines.Where(w => w.MachineId == machine.Id).FirstOrDefault();
+                MesUserMachinesModel data = dataAllMachines.FirstOrDefault(w => w.MachineId == machine.Id);
 
                 if (data == null)
                 {

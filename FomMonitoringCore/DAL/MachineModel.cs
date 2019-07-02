@@ -18,6 +18,7 @@ namespace FomMonitoringCore.DAL
         public MachineModel()
         {
             this.Machine = new HashSet<Machine>();
+            this.ParameterMachine = new HashSet<ParameterMachine>();
         }
     
         public int Id { get; set; }
@@ -29,5 +30,7 @@ namespace FomMonitoringCore.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Machine> Machine { get; set; }
         public virtual MessageCategory MessageCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ParameterMachine> ParameterMachine { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace FomMonitoringCore.Framework.Model
 
         /// <remarks/>
         [XmlElement("MODELCODEv997")]
-        public string ModelCodeV997 { get; set; }
+        public int ModelCodeV997 { get; set; }
 
         /// <remarks/>
         [XmlElement("PARAMETERS")]

@@ -58,6 +58,7 @@
     <Compile Include="ViewModel\MaintenanceViewModel.cs" />
     <Compile Include="ViewModel\MessageDetailViewModel.cs" />
     <Compile Include="ViewModel\MessageViewModel.cs" />
+    <Compile Include="ViewModel\ParameterMachineViewModel.cs" />
     <Compile Include="ViewModel\PlantMessagesViewModel.cs" />
     <Compile Include="ViewModel\MesViewModel.cs" />
     <Compile Include="ViewModel\SharedViewModel.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="ViewServices\MachineViewService.cs" />
     <Compile Include="ViewServices\MaintenanceViewService.cs" />
     <Compile Include="ViewServices\MessagesViewService.cs" />
+    <Compile Include="ViewServices\ParameterMachineViewService.cs" />
     <Compile Include="ViewServices\PlantMessagesViewService.cs" />
     <Compile Include="ViewServices\MesViewService.cs" />
     <Compile Include="ViewServices\EfficiencyViewService.cs" />

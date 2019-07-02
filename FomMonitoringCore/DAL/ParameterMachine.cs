@@ -15,7 +15,6 @@ namespace FomMonitoringCore.DAL
     public partial class ParameterMachine
     {
         public int Id { get; set; }
-        public int MachineId { get; set; }
         public string ModelCode { get; set; }
         public string VarNumber { get; set; }
         public string HmiLabel { get; set; }
@@ -34,7 +33,8 @@ namespace FomMonitoringCore.DAL
         public string ThresholdLabel { get; set; }
         public string Panel { get; set; }
         public string Cluster { get; set; }
+        public int MachineModelId { get; set; }
     
-        public virtual Machine Machine { get; set; }
+        public virtual MachineModel MachineModel { get; set; }
     }
 }

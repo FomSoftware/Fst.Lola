@@ -69,8 +69,8 @@
         <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageTranslation_MessageLanguage" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_MessagesIndex_MessageType" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageTranslation_MessageID" />
-        <EntityTypeShape EntityType="FST_FomMonitoringModel.ParameterMachine" Width="1.75" PointX="5.25" PointY="42.125" />
-        <AssociationConnector Association="FST_FomMonitoringModel.FK_ParameterMachine_Machine" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.ParameterMachine" Width="1.75" PointX="5" PointY="42.25" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_ParameterMachine_MachineModel" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

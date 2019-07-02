@@ -264,7 +264,6 @@
                     if (machine.state == null &&
                         machine.job == null &&
                         machine.operator == null &&
-                        machine.efficiency == null &&
                         machine.productivity == null &&
                         machine.alarms == null)
                         return true;
@@ -277,7 +276,6 @@
                     if (machine.state == null &&
                         machine.job == null &&
                         machine.operator == null &&
-                        machine.efficiency == null &&
                         machine.productivity == null &&
                         machine.alarms == null)
                         return false;//return true;
