@@ -375,7 +375,7 @@ namespace FomMonitoringCore.Service
                         long span = msg.PeriodicSpan ?? 0;
 
 
-                        return (m.IgnoreDate == null && m.Machine.ActivationDate?.AddSeconds(span) <= DateTime.Now) ||
+                        return (m.IgnoreDate == null && m.Machine.ActivationDate?.AddHours(span) <= DateTime.Now) ||
                                (m.IgnoreDate != null && m.IgnoreDate < m.GetInitialSpanDate(span));
                                 }).ToList();
                   

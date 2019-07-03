@@ -104,7 +104,10 @@ namespace FomMonitoringCore.Framework.Common
         [Description("warning")]
         Warning = 12,
         [Description("operator")]
-        CN = 13
+        CN = 13,
+        [Description("warning")]
+        PeriodicMaintenance = 14
+
     }
 
 
