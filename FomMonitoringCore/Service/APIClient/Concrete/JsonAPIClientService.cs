@@ -166,6 +166,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             {
                                 DateTime expirationDate = customer.machines.FirstOrDefault(f => f.serial == machine.Serial).expirationDate;
                                 DateTime activationDate = customer.machines.FirstOrDefault(f => f.serial == machine.Serial).activationDate;
+                                string machineName = customer.machines.FirstOrDefault(f => f.serial == machine.Serial).machineName;
                                 List<UserMachineMapping> usersMachineMapped = ent.UserMachineMapping.Where(w => w.MachineId == machine.Id).ToList();
                                 if (usersMachineMapped.Any())
                                 {
@@ -197,6 +198,10 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                                 if (ma.ExpirationDate == null || ma.ExpirationDate < expirationDate)
                                 {
                                     ma.ExpirationDate = expirationDate;                                  
+                                }
+                                if (!string.IsNullOrWhiteSpace(machineName))
+                                {
+                                    ma.MachineName = machineName;
                                 }
                                 ent.SaveChanges();
 

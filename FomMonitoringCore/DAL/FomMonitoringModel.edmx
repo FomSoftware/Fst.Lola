@@ -194,6 +194,7 @@
           <Property Name="UTC" Type="float" />
           <Property Name="ActivationDate" Type="datetime" />
           <Property Name="ExpirationDate" Type="datetime" />
+          <Property Name="MachineName" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="MachineGroup">
           <Key>
@@ -1771,6 +1772,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <NavigationProperty Name="MessageMachine" Relationship="FST_FomMonitoringModel.FK_MessageMachine_Machine" FromRole="Machine" ToRole="MessageMachine" />
           <Property Name="ActivationDate" Type="DateTime" Precision="3" Nullable="true" />
           <Property Name="ExpirationDate" Type="DateTime" Precision="3" Nullable="true" />
+          <Property Name="MachineName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Plant">
           <Key>
@@ -2718,6 +2720,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="Machine">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.Machine">
               <MappingFragment StoreEntitySet="Machine">
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
                 <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
                 <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
                 <ScalarProperty Name="UTC" ColumnName="UTC" />

@@ -20,5 +20,7 @@ namespace FomMonitoringCore.Framework.Model
         public DateTime expirationDate { get; set; }
 
         public DateTime activationDate { get; set; }
+        
+        public string machineName { get; set; }
     }
 }
