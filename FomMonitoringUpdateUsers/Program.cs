@@ -22,7 +22,7 @@ namespace FomMonitoringUpdateUsers
             try
             {
                 IJsonAPIClientService jsonAPIClientService = new JsonAPIClientService();
-                if (!jsonAPIClientService.UpdateActiveCustomersAndMachines())
+                if (jsonAPIClientService.UpdateActiveCustomersAndMachines())
                     result--;
                 else
                     throw new Exception("Errore durante l'aggiornamento dei clienti e delle macchine abilitate al servizio!");

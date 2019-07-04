@@ -37,7 +37,13 @@ namespace FomMonitoringCore.Service
             LoggedUser.FirstName = User.FirstName;
             LoggedUser.LastName = User.LastName;
             LoggedUser.Role = User.Roles_Users.Select(s => (enRole)s.Roles.IdRole).FirstOrDefault();
-            LoggedUser.Language = User.Languages;
+            LoggedUser.Language = User.Languages != null ? new LanguagesModel {
+                DotNetCulture = User.Languages.DotNetCulture,
+                ID = User.Languages.ID,
+                IdLanguage = User.Languages.IdLanguage,
+                InitialsLanguage = User.Languages.InitialsLanguage,
+                Name = User.Languages.Name
+            } : null;
 
             return LoggedUser;
         }
@@ -65,7 +71,12 @@ namespace FomMonitoringCore.Service
             {
                 UserModel User = new AccountService().GetLoggedUser();
                 string userId = User.ID.Adapt<string>();
-                string serializedUser = JsonConvert.SerializeObject(User);
+                string serializedUser = JsonConvert.SerializeObject(User, Formatting.Indented, 
+                    new JsonSerializerSettings {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                    MaxDepth = 1
+            }
+                );
 
                 var authTicket = new FormsAuthenticationTicket(
                     1, // version

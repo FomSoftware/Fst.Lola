@@ -16,8 +16,10 @@ namespace FomMonitoring.Controllers
         public ActionResult Index()
         {
             if (!ContextService.InitializeMesLevel())
-                return RedirectToAction("Logout", new { returnUrl = string.Empty, exception = 3 });
-
+            {
+                //sbagliato, la action Logout su MesController non esiste
+                return RedirectToAction("Logout", "Account", new { returnUrl = string.Empty, exception = 3 });
+            }
             ContextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
 
             ContextModel context = ContextService.GetContext();

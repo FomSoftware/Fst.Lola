@@ -20,11 +20,11 @@ namespace FomMonitoringCore.DAL
 
             while ( result < DateTime.Now)
             {
-                DateTime? newInit = result?.AddSeconds(PeriodicSpan);
+                DateTime? newInit = result?.AddHours(PeriodicSpan);
 
                 if (newInit < DateTime.Now)
                 { 
-                    result = result?.AddSeconds(PeriodicSpan);
+                    result = result?.AddHours(PeriodicSpan);
                     if (result > IgnoreDate)
                         break;
                 }

@@ -110,7 +110,7 @@ namespace FomMonitoringBLL.ViewServices
                     Email = userModel.Email,
                     CustomerName = userModel.CustomerName,
                     Role = (enRole)userModel.RoleCode,
-                    Language = new UserManager.DAL.Languages { ID = userModel.LanguageId },
+                    Language = new LanguagesModel { ID = userModel.LanguageId },
                     Machines = userModel.Machines.Select(s => new MachineInfoModel { Id = s.Id }).ToList(),
                     Enabled = userModel.Enabled,
                 };
@@ -158,7 +158,7 @@ namespace FomMonitoringBLL.ViewServices
                     Email = userModel.Email,
                     CustomerName = userModel.CustomerName,
                     Role = (enRole)userModel.RoleCode,
-                    Language = new UserManager.DAL.Languages { ID = userModel.LanguageId },
+                    Language = new LanguagesModel { ID = userModel.LanguageId },
                     Machines = userModel.Machines.Select(s => new MachineInfoModel { Id = s.Id }).ToList(),
                     Enabled = userModel.Enabled,
                 };
