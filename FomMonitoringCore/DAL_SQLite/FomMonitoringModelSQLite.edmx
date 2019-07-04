@@ -145,6 +145,7 @@
           <Property Name="Shift3StartHour" Type="int" />
           <Property Name="Shift3StartMinute" Type="int" />
           <Property Name="UTC" Type="float" />
+          <Property Name="MachineCode" Type="int" />
         </EntityType>
         <EntityType Name="message">
           <Key>
@@ -381,6 +382,7 @@
           <Property Name="Shift3StartHour" Type="Int32" />
           <Property Name="Shift3StartMinute" Type="Int32" />
           <Property Name="UTC" Type="Double" />
+          <Property Name="MachineCode" Type="Int32" />
         </EntityType>
         <EntityType Name="piece">
           <Key>
@@ -605,6 +607,7 @@
           <EntitySetMapping Name="info">
             <EntityTypeMapping TypeName="FomMonitoringSQLiteModel.info">
               <MappingFragment StoreEntitySet="info">
+                <ScalarProperty Name="MachineCode" ColumnName="MachineCode" />
                 <ScalarProperty Name="UTC" ColumnName="UTC" />
                 <ScalarProperty Name="Shift3StartMinute" ColumnName="Shift3StartMinute" />
                 <ScalarProperty Name="Shift3StartHour" ColumnName="Shift3StartHour" />

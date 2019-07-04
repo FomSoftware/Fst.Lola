@@ -52,13 +52,14 @@ namespace FomMonitoringCore.Service.DataMapping
                             machineActual = machine.OrderByDescending(o => o.Id).FirstOrDefault();
                             machineActual.Id = 0;
                             ent.Machine.Add(machineActual);
+                            ent.SaveChanges();
                         }
                         else
                         {
                             Machine machineFromSQLite = machine.OrderByDescending(o => o.Id).FirstOrDefault();
                             foreach (PropertyInfo property in machineActual.GetType().GetProperties())
                             {
-                                if (property.PropertyType.IsSerializable && property.Name != "Id")
+                                if (property.PropertyType.IsSerializable && (property.Name != "Id"))
                                 {
                                     property.SetValue(machineActual, machineFromSQLite.GetType().GetProperty(property.Name).GetValue(machineFromSQLite));
                                 }
@@ -77,7 +78,10 @@ namespace FomMonitoringCore.Service.DataMapping
                         //devo eliminare quei messaggi che hanno scope = 0 da mdb
                         foreach(MessageMachine mm in messageMachine.ToList())
                         {
-                            ReadMessages.ReadMessageVisibilityGroup(mm, ent);
+                            int cat = ent.MachineModel.Find(machineActual.MachineModelId).MessageCategoryId;
+                            MessagesIndex msg = ent.MessagesIndex.FirstOrDefault(f => f.MessageCode == mm.Code && f.MessageCategoryId == cat);
+
+                            ReadMessages.ReadMessageVisibilityGroup(mm, msg);
                         }                                      
 
                         ent.MessageMachine.AddRange(messageMachine);

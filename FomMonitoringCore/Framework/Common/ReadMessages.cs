@@ -17,11 +17,9 @@ namespace FomMonitoringCore.Framework.Common
     {
         static string dbConn = ApplicationSettingService.GetWebConfigKey("DbMessagesConnectionString");
 
-        public static void ReadMessageVisibilityGroup(MessageMachine mm, FST_FomMonitoringEntities ent)
+        public static void ReadMessageVisibilityGroup(MessageMachine mm, MessagesIndex msg)
         {
-            bool result = false;
-            int cat = ent.Machine.Find(mm.MachineId).MachineModel.MessageCategoryId;
-            MessagesIndex msg = ent.MessagesIndex.FirstOrDefault(f => f.MessageCode == mm.Code && f.MessageCategoryId == cat);
+            bool result = false;            
             result = msg == null ? false : msg.IsVisibleLOLA;
             mm.IsVisible = result;
 

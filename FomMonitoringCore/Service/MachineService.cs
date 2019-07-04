@@ -14,7 +14,7 @@ namespace FomMonitoringCore.Service
     {
         #region API
 
-        public static int? GetMachineModelIdByModelName(string modelName)
+        public static int? GetMachineModelIdByModelCodeOrName(int? modelCode, string modelName)
         {
             int? result = null;
             try
@@ -23,13 +23,18 @@ namespace FomMonitoringCore.Service
                 {
                     using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                     {
-                        if (!string.IsNullOrEmpty(modelName))
+                        if (modelCode != null)
                         {
-                            MachineModel machineModel = ent.MachineModel.FirstOrDefault(f => f.Name == modelName);
-                            if (machineModel == null && AddMachineModel(modelName))
+                            MachineModel machineModel = ent.MachineModel.FirstOrDefault(f => f.ModelCodev997 == modelCode);
+                            if (machineModel == null && AddMachineModel(modelName, (int)modelCode))
                             {
                                 machineModel = ent.MachineModel.FirstOrDefault(f => f.Name == modelName);
                             }
+                            result = machineModel != null ? machineModel.Id : (int?)null;
+                        }
+                        else if (!string.IsNullOrEmpty(modelName))
+                        {
+                            MachineModel machineModel = ent.MachineModel.FirstOrDefault(f => f.Name == modelName);                            
                             result = machineModel != null ? machineModel.Id : (int?)null;
                         }
                         transaction.Complete();
@@ -123,7 +128,7 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        public static bool AddMachineModel(string modelName)
+        public static bool AddMachineModel(string modelName, int modelCode)
         {
             bool result = false;
             try
@@ -134,6 +139,7 @@ namespace FomMonitoringCore.Service
                     {
                         MachineModel machineModel = new MachineModel();
                         machineModel.Name = modelName;
+                        machineModel.ModelCodev997 = modelCode;
                         ent.MachineModel.Add(machineModel);
                         ent.SaveChanges();
                         transaction.Complete();

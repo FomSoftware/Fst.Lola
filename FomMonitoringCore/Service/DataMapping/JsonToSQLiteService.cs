@@ -143,6 +143,10 @@ namespace FomMonitoringCore.Service.DataMapping
                                     {
                                         state.StartTime = state.StartTime.HasValue && state.StartTime.Value.Year < 1900 ? null : state.StartTime;
                                         state.EndTime = state.EndTime.HasValue && state.EndTime.Value.Year < 1900 ? null : state.EndTime;
+                                        if (state.StartTime != null && state.EndTime != null)
+                                            state.TimeSpanDuration = state.EndTime?.Subtract((DateTime)state.StartTime).Ticks;
+                                        else
+                                            state.TimeSpanDuration = null;
                                     }
                                     break;
                                 case "tool":

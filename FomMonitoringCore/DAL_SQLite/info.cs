@@ -44,5 +44,6 @@ namespace FomMonitoringCore.DAL_SQLite
         public Nullable<int> Shift3StartHour { get; set; }
         public Nullable<int> Shift3StartMinute { get; set; }
         public Nullable<double> UTC { get; set; }
+        public Nullable<int> MachineCode { get; set; }
     }
 }

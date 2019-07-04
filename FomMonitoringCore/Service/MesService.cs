@@ -59,7 +59,9 @@ namespace FomMonitoringCore.Service
                     {
                         plant.UserId = user.ID;
                     }
-                    //se non c'è creo il plant di default per l'utente
+                    //se non c'è creo il plant di default per l'utente, 
+                    // precondizione: il record dalla VIP area che associa la macchina ad un utente deve esistere
+                    //altrimenti non si saprebbe a chi associare il plant, la macchina viene inserita con plantid null
                     if (plant == null && user != null)
                     {
                         plant = AddPlant(plantName, plantAddress, user);

@@ -180,7 +180,7 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.Shift1, src => src.Shift1StartHour.HasValue && src.Shift1StartMinute.HasValue ? new TimeSpan(src.Shift1StartHour.Value, src.Shift1StartMinute.Value, 0) : (TimeSpan?)null)
                 .Map(dest => dest.Shift2, src => src.Shift2StartHour.HasValue && src.Shift2StartMinute.HasValue ? new TimeSpan(src.Shift2StartHour.Value, src.Shift2StartMinute.Value, 0) : (TimeSpan?)null)
                 .Map(dest => dest.Shift3, src => src.Shift3StartHour.HasValue && src.Shift3StartMinute.HasValue ? new TimeSpan(src.Shift3StartHour.Value, src.Shift3StartMinute.Value, 0) : (TimeSpan?)null)
-                .Map(dest => dest.MachineModelId, src => MachineService.GetMachineModelIdByModelName(src.MachineModel))
+                .Map(dest => dest.MachineModelId, src => MachineService.GetMachineModelIdByModelCodeOrName(src.MachineCode, src.MachineModel))
                 .Map(dest => dest.MachineTypeId, src => MachineService.GetMachineTypeIdByTypeName(src.MachineType))
                 .Map(dest => dest.PlantId, src => MesService.GetOrSetPlantIdByPlantName(src.PlantName, src.PlantAddress, src.MachineSerial));
             config.NewConfig<DAL_SQLite.piece, Piece>()
