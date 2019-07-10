@@ -22,7 +22,7 @@
                                     v-bind:value="m.id"
                                     v-bind:selected="m.serial == selected.machine.serial"
                                     v-bind:data-icon="'icofom-' + m.icon">
-                                {{ m.description || m.model }}
+                                {{  m.machineName || m.description || m.model }}
                             </option>
                         </select>
                     </div>

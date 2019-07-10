@@ -77,6 +77,8 @@ namespace FomMonitoringBLL.ViewModel
         public string installation { get; set; }
 
         public bool expired { get; set; }
+
+        public string machineName { get; set; }
     }
 
 

@@ -84,6 +84,7 @@ namespace FomMonitoringBLL.ViewServices
                 description = m.Description,
                 product_type = m.Product,
                 product_version = m.ProductVersion,
+                machineName = m.MachineName,
                 installation = m.InstallationDate.ToString()
             }).ToList();
 

@@ -34,5 +34,6 @@ namespace FomMonitoringCore.Framework.Model
         public double? StateProductivityGreenThreshold { get; set; }
         public double? StateProductivityYellowThreshold { get; set; }
         public double? UTC { get; set; }
+        public string MachineName { get; set; }
     }
 }

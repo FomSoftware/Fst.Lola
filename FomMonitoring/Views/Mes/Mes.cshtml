@@ -22,11 +22,11 @@
                                 <div class="text-uppercase">
                                     {{ machine.info.description }}
                                 </div>
-                                <div class="text-lowercase">{{ machine.info.model }}</div>
+                                <div class="text-lowercase">{{ machine.info.machineName || machine.info.model }}</div>
                             </div>
                             <div class="machine-info" v-else>
                                 <div class="text-uppercase">
-                                    {{ machine.info.model }}
+                                    {{ machine.info.machineName || machine.info.model }}
                                 </div>
                             </div>
                         </div>

@@ -60,7 +60,7 @@
                             <table class="table data-table table-alerts" >
                                 <tbody v-for="message in messages">
                                     <tr>
-                                        <td style="min-width:110px;width:10%">{{ message.machine.model }}</td>
+                                        <td style="min-width:110px;width:10%">{{ message.machine.machineName || message.machine.model }}</td>
                                         <td style="width:13%" >{{ message.machine.serial }}</td>
                                         <td style="min-width:65px;width:8%">
                                             <div class="item-icon fa fa-2x" v-bind:class="iconClass(message.message.type)"></div>

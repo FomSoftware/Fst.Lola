@@ -51,6 +51,7 @@ namespace FomMonitoringBLL.ViewServices
                     id = machine.Id,
                     description = machine.Description == string.Empty ? null : machine.Description,
                     model = machine.Model.Name,
+                    machineName = machine.MachineName,
                     icon = machine.Type.Image,
                     serial = machine.Serial
                 };
