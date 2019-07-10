@@ -83,7 +83,8 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(d => d.THRESHOLD_MAX, src => src.ThresholdMax)
                 .Map(d => d.THRESHOLD_MIN, src => src.ThresholdMin)
                 .Map(d => d.VAR_NUMBER, src => src.VarNumber)
-                .Map(d => d.W_LEVEL, src => src.WLevel);
+                .Map(d => d.W_LEVEL, src => src.WLevel)
+                .Map(d => d.HISTORICIZED, src => src.Historicized);
 
 
             // SP to Model
@@ -255,7 +256,8 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(d => d.ThresholdMax, src => !string.IsNullOrWhiteSpace(src.THRESHOLD_MAX) ? src.THRESHOLD_MAX.Trim() : null)
                 .Map(d => d.ThresholdMin, src => !string.IsNullOrWhiteSpace(src.THRESHOLD_MIN) ? src.THRESHOLD_MIN.Trim() : null)
                 .Map(d => d.VarNumber, src => !string.IsNullOrWhiteSpace(src.VAR_NUMBER) ? src.VAR_NUMBER.Trim() : null)
-                .Map(d => d.WLevel, src => !string.IsNullOrWhiteSpace(src.W_LEVEL) ? src.W_LEVEL.Trim() : null);
+                .Map(d => d.WLevel, src => !string.IsNullOrWhiteSpace(src.W_LEVEL) ? src.W_LEVEL.Trim() : null)
+                .Map(d => d.Historicized, src => !string.IsNullOrWhiteSpace(src.HISTORICIZED) ? src.HISTORICIZED.Trim() : null);
         }
     }
 }

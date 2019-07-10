@@ -34,6 +34,7 @@ namespace FomMonitoringCore.DAL
         public string Panel { get; set; }
         public string Cluster { get; set; }
         public int MachineModelId { get; set; }
+        public string Historicized { get; set; }
     
         public virtual MachineModel MachineModel { get; set; }
     }
