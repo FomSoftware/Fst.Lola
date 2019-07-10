@@ -32,6 +32,7 @@ namespace FomMonitoringCore.DAL
             this.UserMachineMapping = new HashSet<UserMachineMapping>();
             this.HistoryMessage = new HashSet<HistoryMessage>();
             this.MessageMachine = new HashSet<MessageMachine>();
+            this.ParameterMachineValue = new HashSet<ParameterMachineValue>();
         }
     
         public int Id { get; set; }
@@ -98,5 +99,7 @@ namespace FomMonitoringCore.DAL
         public virtual ICollection<HistoryMessage> HistoryMessage { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MessageMachine> MessageMachine { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ParameterMachineValue> ParameterMachineValue { get; set; }
     }
 }

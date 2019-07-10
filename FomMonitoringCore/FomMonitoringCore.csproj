@@ -235,6 +235,9 @@
     <Compile Include="DAL\ParameterMachine.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\ParameterMachineValue.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Partials\MessageMachine.cs" />
     <Compile Include="DAL\Piece.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
@@ -359,6 +362,8 @@
     <Compile Include="Framework\Model\JsonCustomersModel.cs" />
     <Compile Include="Framework\Model\JsonDataModel.cs" />
     <Compile Include="Framework\Model\JsonLoginModel.cs" />
+    <Compile Include="Framework\Model\JsonVariableModel.cs" />
+    <Compile Include="Framework\Model\JsonVariableValueModel.cs" />
     <Compile Include="Framework\Model\LanguagesModel.cs" />
     <Compile Include="Framework\Model\LoginModel.cs" />
     <Compile Include="Framework\Model\MachineInfoModel.cs" />
@@ -399,6 +404,7 @@
     <Compile Include="Service\CacheService.cs" />
     <Compile Include="Service\ContextService.cs" />
     <Compile Include="Service\DataMapping\JsonToSQLiteService.cs" />
+    <Compile Include="Service\DataMapping\JsonVariantsToSQLServerService.cs" />
     <Compile Include="Service\DataMapping\SQLiteToSQLServerService.cs" />
     <Compile Include="Service\JobService.cs" />
     <Compile Include="Service\LogService.cs" />

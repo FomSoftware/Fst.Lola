@@ -14,6 +14,12 @@ namespace FomMonitoringCore.DAL
     
     public partial class ParameterMachine
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ParameterMachine()
+        {
+            this.ParameterMachineValue = new HashSet<ParameterMachineValue>();
+        }
+    
         public int Id { get; set; }
         public string ModelCode { get; set; }
         public string VarNumber { get; set; }
@@ -34,7 +40,10 @@ namespace FomMonitoringCore.DAL
         public string Panel { get; set; }
         public string Cluster { get; set; }
         public int MachineModelId { get; set; }
+        public string Historicized { get; set; }
     
         public virtual MachineModel MachineModel { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ParameterMachineValue> ParameterMachineValue { get; set; }
     }
 }

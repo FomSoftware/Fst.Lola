@@ -71,6 +71,9 @@
         <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageTranslation_MessageID" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.ParameterMachine" Width="1.75" PointX="5" PointY="42.25" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_ParameterMachine_MachineModel" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.ParameterMachineValue" Width="1.5" PointX="7.5" PointY="37.25" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_ParameterMachineValue_MachineId" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_ParameterMachineValue_ParameterMachineId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

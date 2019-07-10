@@ -42,6 +42,10 @@ namespace FomMonitoringDatabaseMapping
                                 throw new Exception("SQLite to SQLServer Error:");
                         }
 
+                        if(!JsonVariantsToSQLServerService.MappingJsonVariantsToSQLite(jsonDataModel))
+                            throw new Exception("JSON variables reading Error:");
+
+
                         JsonToSQLiteService.SaveElaboration(jsonDataModel.Id, true);
                         result--;
                     }
