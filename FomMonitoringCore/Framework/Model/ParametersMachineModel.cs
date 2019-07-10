@@ -98,6 +98,9 @@ namespace FomMonitoringCore.Framework.Model
 
         /// <remarks/>
         public string CLUSTER { get; set; }
+
+        /// <remarks/>
+        public string HISTORICIZED { get; set; }
     }
 
 }
