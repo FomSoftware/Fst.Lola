@@ -18,7 +18,9 @@ namespace FomMonitoringBLL.ViewServices
             {
                 model = context.ActualMachine.Model.Name,
                 mtype = context.ActualMachine.Type.Name,
-                id_mtype = context.ActualMachine.Type.Id
+                id_mtype = context.ActualMachine.Type.Id,
+                machineName = context.ActualMachine.MachineName
+                
             };
             result.vm_efficiency = GetVueModel(context.ActualMachine, context.ActualPeriod);
             result.opt_historical = GetHistoricalOptions(context.ActualMachine, context.ActualPeriod);

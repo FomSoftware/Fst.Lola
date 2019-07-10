@@ -19,7 +19,8 @@ namespace FomMonitoringBLL.ViewServices
             {
                 model = context.ActualMachine.Model.Name,
                 mtype = context.ActualMachine.Type.Name,
-                id_mtype = context.ActualMachine.Type.Id
+                id_mtype = context.ActualMachine.Type.Id,
+                machineName = context.ActualMachine.MachineName
             };
 
             return result;
