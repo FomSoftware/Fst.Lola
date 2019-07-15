@@ -2,6 +2,7 @@
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
+using FomMonitoringResources;
 using Mapster;
 using System;
 using System.Linq;
@@ -66,7 +67,13 @@ namespace FomMonitoringCore.Framework.Config
             config.NewConfig<UserCustomerMapping, UserCustomerModel>();
 
 
-            config.NewConfig<ParameterMachine, ParameterMachineModel>()
+            config.NewConfig<ParameterMachineValue, ParameterMachineValueModel>()
+                .Map(d => d.UtcDateTime, src => src.UtcDateTime)
+                .Map(d => d.Description, src => new System.Resources.ResourceManager(typeof(Resource)).GetString(src.ParameterMachine.Keyword))
+                .Map(d => d.Value, src => src.VarValue)
+                .Map(d => d.VarNumber, src => src.VarNumber);
+
+            config.NewConfig<ParameterMachine, Model.Xml.ParameterMachineModelXml>()
                 .Map(d => d.CLUSTER, src => src.Cluster)
                 .Map(d => d.CN_TYPE, src => src.CnType)
                 .Map(d => d.CN_UM, src => src.CnUm)
@@ -236,7 +243,7 @@ namespace FomMonitoringCore.Framework.Config
 
             config.NewConfig<AggregationMessageModel, HistoryMessageModel>();
 
-            config.NewConfig<ParameterMachineModel, ParameterMachine>()
+            config.NewConfig<Model.Xml.ParameterMachineModelXml, ParameterMachine>()
                 .Ignore(dest => dest.Id, dest => dest.MachineModelId)
                 .IgnoreAllVirtual()
                 .IgnoreNonMapped(true)

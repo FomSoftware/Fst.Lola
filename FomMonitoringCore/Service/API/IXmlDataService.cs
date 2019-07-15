@@ -1,4 +1,5 @@
 ﻿using FomMonitoringCore.Framework.Model;
+using FomMonitoringCore.Framework.Model.Xml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace FomMonitoringCore.Service.API
 {
     public interface IXmlDataService
     {
-        void AddOrUpdateMachineParameter(ParametersMachineModel m);
+        void AddOrUpdateMachineParameter(ParametersMachineModelXml m);
     }
 }

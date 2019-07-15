@@ -3,6 +3,8 @@ using FomMonitoringBLL.ViewServices;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
+using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Web.Mvc;
 
@@ -28,20 +30,28 @@ namespace FomMonitoring.Controllers
         [Route("{lang}/Machine/Index/{MachineID}")]
         public ActionResult Index(int MachineID)
         {
-            if (!ContextService.InitializeMachineLevel(MachineID))
-                return RedirectToAction("Logout", new { returnUrl = string.Empty, exception = 4 });
+            try
+            {
+                if (!ContextService.InitializeMachineLevel(MachineID))
+                    return RedirectToAction("Logout", new { returnUrl = string.Empty, exception = 4 });
 
-            bool isCorrect = ContextService.CheckSecurityParameterApi(MachineID, enCheckParam.Machine);
+                bool isCorrect = ContextService.CheckSecurityParameterApi(MachineID, enCheckParam.Machine);
 
-            if (!isCorrect)
-                return RedirectToAction("Logout", new { returnUrl = string.Empty, exception = 1 });
+                if (!isCorrect)
+                    return RedirectToAction("Logout", new { returnUrl = string.Empty, exception = 1 });
 
-            ContextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
+                ContextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
 
-            ContextModel context = ContextService.GetContext();
-            MachineViewModel machine = MachineViewService.GetMachine(context);
+                ContextModel context = ContextService.GetContext();
+                MachineViewModel machine = MachineViewService.GetMachine(context);
 
-            return View(machine);
+                return View(machine);
+            }
+            catch(Exception ex)
+            {
+                Debugger.Break();
+                throw ex;
+            }
         }
 
         [Route("Machine/IgnoreMessage/{MessageID}")]

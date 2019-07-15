@@ -214,6 +214,24 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contat_tagli_TF.
+        /// </summary>
+        public static string Contat_tagli_TF {
+            get {
+                return ResourceManager.GetString("Contat_tagli_TF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contat_tagli_TM.
+        /// </summary>
+        public static string Contat_tagli_TM {
+            get {
+                return ResourceManager.GetString("Contat_tagli_TM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yes, continue.
         /// </summary>
         public static string Continue {
@@ -774,6 +792,24 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Num_Tagli_TF.
+        /// </summary>
+        public static string Num_Tagli_TF {
+            get {
+                return ResourceManager.GetString("Num_Tagli_TF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Num_Tagli_TM.
+        /// </summary>
+        public static string Num_Tagli_TM {
+            get {
+                return ResourceManager.GetString("Num_Tagli_TM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Offline.
         /// </summary>
         public static string Offline {
@@ -851,6 +887,24 @@ namespace FomMonitoringResources {
         public static string OverVibrating {
             get {
                 return ResourceManager.GetString("OverVibrating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parz_tagli_TF.
+        /// </summary>
+        public static string Parz_tagli_TF {
+            get {
+                return ResourceManager.GetString("Parz_tagli_TF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parz_tagli_TM.
+        /// </summary>
+        public static string Parz_tagli_TM {
+            get {
+                return ResourceManager.GetString("Parz_tagli_TM", resourceCulture);
             }
         }
         

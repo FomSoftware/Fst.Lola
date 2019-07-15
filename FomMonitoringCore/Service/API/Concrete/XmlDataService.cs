@@ -7,16 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Model;
+using FomMonitoringCore.Framework.Model.Xml;
 using Mapster;
 
 namespace FomMonitoringCore.Service.API.Concrete
 {
     public class XmlDataService : IXmlDataService
     {
-        public void AddOrUpdateMachineParameter(ParametersMachineModel m)
+        public void AddOrUpdateMachineParameter(ParametersMachineModelXml m)
         {
-            try
-            {
+
                 var list = m.Parameters.Parameter.BuildAdapter().AdaptToType<List<ParameterMachine>>();
 
                 using (var db = new FST_FomMonitoringEntities())
@@ -36,11 +36,6 @@ namespace FomMonitoringCore.Service.API.Concrete
 
                     db.SaveChanges();
                 }
-            }
-            catch (Exception ex)
-            {
-                Debugger.Break();
-            }
 
 
         }

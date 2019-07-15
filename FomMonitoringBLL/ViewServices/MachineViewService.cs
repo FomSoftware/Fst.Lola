@@ -34,7 +34,7 @@ namespace FomMonitoringBLL.ViewServices
                 machineName = context.ActualMachine.MachineName
             };
             machine.XSpindles = SpindlesViewService.GetXSpindles(context);
-            machine.XTools = ToolsViewService.GetXTools(context);
+            machine.XTools = XToolsViewService.GetXTools(context);
             machine.Maintenance = MaintenanceViewService.GetMessages(context);
             return machine;
         }

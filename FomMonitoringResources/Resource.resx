@@ -578,4 +578,22 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="MsgExpiredTime" xml:space="preserve">
     <value>Expired</value>
   </data>
+  <data name="Contat_tagli_TF" xml:space="preserve">
+    <value>Contat_tagli_TF</value>
+  </data>
+  <data name="Contat_tagli_TM" xml:space="preserve">
+    <value>Contat_tagli_TM</value>
+  </data>
+  <data name="Num_Tagli_TF" xml:space="preserve">
+    <value>Num_Tagli_TF</value>
+  </data>
+  <data name="Num_Tagli_TM" xml:space="preserve">
+    <value>Num_Tagli_TM</value>
+  </data>
+  <data name="Parz_tagli_TF" xml:space="preserve">
+    <value>Parz_tagli_TF</value>
+  </data>
+  <data name="Parz_tagli_TM" xml:space="preserve">
+    <value>Parz_tagli_TM</value>
+  </data>
 </root>

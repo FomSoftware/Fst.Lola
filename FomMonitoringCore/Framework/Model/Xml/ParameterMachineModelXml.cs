@@ -1,52 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace FomMonitoringCore.Framework.Model
+namespace FomMonitoringCore.Framework.Model.Xml
 {
-
-
-    // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
-    /// <remarks/>
-    [Serializable()]
-    [XmlRoot("MACHINE")]
-    [DesignerCategory("code")]
-    [XmlType(AnonymousType = true)]
-    public partial class ParametersMachineModel
-    {
-
-        /// <remarks/>
-        [XmlElement("MODELCODEv997")]
-        public int ModelCodeV997 { get; set; }
-
-        /// <remarks/>
-        [XmlElement("PARAMETERS")]
-        public ParametersListMachineModel Parameters { get; set; }
-    }
-        
-    
-
     /// <remarks/>
     [Serializable()]
     [DesignerCategory("code")]
     [XmlType(AnonymousType = true)]
-    public partial class ParametersListMachineModel
-    {
-        
-        [XmlElement("PARAMETER")]
-        public List<ParameterMachineModel> Parameter { get; set; }
-    
-    }
-
-    /// <remarks/>
-    [Serializable()]
-    [DesignerCategory("code")]
-    [XmlType(AnonymousType = true)]
-    public partial class ParameterMachineModel
+    public partial class ParameterMachineModelXml
     {
         /// <remarks/>
         public string VAR_NUMBER { get; set; }

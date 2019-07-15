@@ -10,67 +10,32 @@ using System.Threading.Tasks;
 
 namespace FomMonitoringBLL.ViewServices
 {
-    public class ToolsViewService
-    {
-        public static ToolViewModel GetTools(ContextModel context)
+
+        public class ToolsViewService
         {
-            ToolViewModel result = new ToolViewModel();
-            result.vm_tools = GetVueModel(context.ActualMachine);
 
-            return result;
-        }
-
-        public static XToolViewModel GetXTools(ContextModel context)
-        {
-            XToolViewModel result = new XToolViewModel();
-            result.vm_tools = GetVueModel(context.ActualMachine, true);
-
-            return result;
-        }
-
-
-        private static ToolVueModel GetVueModel(MachineInfoModel machine, bool xmodule = false)
-        {
-            ToolVueModel result = new ToolVueModel();
-
-            List<ToolMachineModel> data = ToolService.GetTools(machine, xmodule);
-
-            List<ToolMachineModel> dataTools = data.Where(w => w.IsActive == true).ToList();
-            List<ToolMachineModel> dataHistorical = data.Where(w => w.IsActive == false).ToList();
-
-            if (dataTools.Count == 0)
-                return result;
-
-            List<ToolDataModel> tools = dataTools.Select(t => new ToolDataModel()
+            public static ToolViewModel GetTools(ContextModel context)
             {
-                code = t.Code,
-                description = t.Description,
-                perc = Common.GetPercentage(t.CurrentLife, t.ExpectedLife),
-                changes = new ChangeModel()
+                ToolViewModel result = new ToolViewModel();
+                result.vm_tools = GetVueModel(context.ActualMachine, true);
+
+                return result;
+            }
+
+
+            private static ToolParameterVueModel GetVueModel(MachineInfoModel machine, bool xmodule = false)
+            {
+                var par = ParameterMachineService.GetParameters(machine, (int)enPanel.Tools);
+
+                var result = new ToolParameterVueModel
                 {
-                    //total = (t.BrokenEventsCount ?? 0) + (t.RevisedEventsCount ?? 0),
-                    breaking = t.BrokenEventsCount ?? 0,
-                    replacement = t.RevisedEventsCount ?? 0,
-                    historical = dataHistorical.Where(w => w.Code == t.Code).Select(h => new HistoricalModel()
-                    {
-                        date = h.DateReplaced.ToString(),
-                        type = CommonViewService.GetTypeTool(h).ToLocalizedString(),
-                        color_type = CommonViewService.GetTypeTool(h).GetDescription(),
-                        duration = CommonViewService.getTimeViewModel(h.CurrentLife)
-                    }).OrderByDescending(o => o.date).ToList()
-                },
-                time = CommonViewService.getTimeViewModel((t.ExpectedLife ?? 0) - (t.CurrentLife ?? 0))
-            }).ToList();
+                    toolsTf = par.Where(p => p.VarNumber == 416 || p.VarNumber == 418 || p.VarNumber == 420).ToList(),
 
-            tools = tools.OrderByDescending(o => o.perc).ToList();
+                    toolsTm = par.Where(p => p.VarNumber == 422 || p.VarNumber == 424 || p.VarNumber == 426).ToList(),
+                };
 
-            SortingViewModel sorting = new SortingViewModel();
-            sorting.time = enSorting.Descending.GetDescription();
-
-            result.tools = tools;
-            result.sorting = sorting;
-
-            return result;
-        }
+                return result;
+            }
+        
     }
 }

@@ -1,13 +1,16 @@
-﻿using System;
+﻿using FomMonitoringCore.Framework.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace FomMonitoringBLL.ViewModel
 {
+
+
     public class ToolViewModel
     {
-        public ToolVueModel vm_tools { get; set; }
+        public ToolParameterVueModel vm_tools { get; set; }
     }
 
     public class XToolViewModel
@@ -17,10 +20,16 @@ namespace FomMonitoringBLL.ViewModel
 
     public class ToolVueModel
     {
-        public List<ToolDataModel> tools { get; set; }
+        public List<ToolDataModel> tools { get; set; } = new List<ToolDataModel>();
         public SortingViewModel sorting { get; set; }
     }
 
+    public class ToolParameterVueModel
+    {
+        public List<ParameterMachineValueModel> toolsTm { get; set; } = new List<ParameterMachineValueModel>();
+        public List<ParameterMachineValueModel> toolsTf { get; set; } = new List<ParameterMachineValueModel>();
+
+    }
     public class ToolDataModel
     {
         public string code { get; set; }

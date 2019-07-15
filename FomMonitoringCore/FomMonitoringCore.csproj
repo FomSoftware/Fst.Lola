@@ -371,7 +371,10 @@
     <Compile Include="Framework\Model\MachineTypeModel.cs" />
     <Compile Include="Framework\Model\MessageModel.cs" />
     <Compile Include="Framework\Model\MessageMachineModel.cs" />
-    <Compile Include="Framework\Model\ParametersMachineModel.cs" />
+    <Compile Include="Framework\Model\ParameterMachineModel.cs" />
+    <Compile Include="Framework\Model\Xml\ParameterMachineModelXml.cs" />
+    <Compile Include="Framework\Model\Xml\ParametersListMachineModelXml.cs" />
+    <Compile Include="Framework\Model\Xml\ParametersMachineModelXml.cs" />
     <Compile Include="Framework\Model\PeriodModel.cs" />
     <Compile Include="Framework\Model\PieceModel.cs" />
     <Compile Include="Framework\Model\MesUserMachinesModel.cs" />
@@ -410,6 +413,7 @@
     <Compile Include="Service\LogService.cs" />
     <Compile Include="Service\MachineService.cs" />
     <Compile Include="Service\MessageService.cs" />
+    <Compile Include="Service\ParameterMachineService.cs" />
     <Compile Include="Service\PeriodService.cs" />
     <Compile Include="Service\PieceService.cs" />
     <Compile Include="Service\MesService.cs" />
