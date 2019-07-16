@@ -29,9 +29,9 @@ namespace FomMonitoringBLL.ViewServices
 
                 var result = new ToolParameterVueModel
                 {
-                    toolsTf = par.Where(p => p.VarNumber == 416 || p.VarNumber == 418 || p.VarNumber == 420).ToList(),
+                    toolsTf = par.Where(p => p.VarNumber == 416 || p.VarNumber == 418 || p.VarNumber == 420).OrderBy(n => n.VarNumber).ToList(),
 
-                    toolsTm = par.Where(p => p.VarNumber == 422 || p.VarNumber == 424 || p.VarNumber == 426).ToList(),
+                    toolsTm = par.Where(p => p.VarNumber == 422 || p.VarNumber == 424 || p.VarNumber == 426).OrderBy(n => n.VarNumber).ToList(),
                 };
 
                 return result;
