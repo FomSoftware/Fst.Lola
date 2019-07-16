@@ -6,106 +6,182 @@
         <div class="portlet-kpi">
             <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
-                <i class="fa icofom-fresa fa-stack-1x fa-inverse"></i>
+                <i class="fa icofom-lama fa-stack-1x fa-inverse" style="font-size:21px" ></i>
             </span>
         </div>
         <div class="title-kpi" style="max-width: 130px;">
             <span>@Resource.Tools</span>
             <div class="sub-period">@Resource.UntilNow</div>
-        </div>
-        <div class="portlet-details" v-if="tools != null" v-cloak>
-            <div class="btn-group">
-                <div class="btn btn-outline sorting" v-bind:class="sortingCode" v-on:click="sortCode()">
-                    <span>@Resource.Code</span>
-                </div>
-                <div class="btn btn-outline sorting" v-bind:class="sortingTTL" v-on:click="sortTTL()">
-                    <span>
-                        <i class="fa fa-clock-o color-aaa"></i>@Resource.Time
-                    </span>
-                </div>
-            </div>
-        </div>
+        </div>      
     </div>
-    <div class="portlet-body text-center">
-        <div class="card-portlet">
-            <div v-if="tools != null" class="slimscroll">
-                <template v-for="tool in tools" v-cloak>
-                    <div class="card" v-bind:class="borderColor(tool.perc)">
-                        <div class="front text-left">
+    <div class="portlet-body text-center" style="height:244px">
+        <div class="card-portlet slimscroll" >
+            <div v-if="toolsTm != null && toolsTm.length > 0 && toolsTf != null && toolsTf.length > 0" style="height:98%">
+                <div class="card card-big border-green" style="height:47%;cursor:auto">                    
+                        <table class="table-spindle">
+                            <tr>
+                                <td class="first-td-tool">
+                                    @Html.Raw(Resource.FixedHead)                                  
+                                </td>
+                                <td>
+                                    <table  style="width: 100%;">
+                                        <tr>
+                                           <td class="td-tool">
+                                                <div style="display:inline-flex">
+                                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                                    <label v-if="toolsTf[1] != null" class="label-tools" v-html="toolsTf[1].Description"></label>
+                                                </div>
+                                            </td>
+                                            <td class="td-tool tool-border-left">
+                                                <div style="display:inline-flex">
+                                                    <i class="fa fa-tasks" aria-hidden="true"></i>
+                                                    <label v-if="toolsTf[2] != null" class="label-tools" v-html="toolsTf[2].Description"></label>
+                                                </div>
+                                            </td>
+                                            <td class="td-tool tool-border-left">
+                                                <div style="display:inline-flex">
+                                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                    <label class="label-tools">Ore vita<br /> lama<br /> effettive<br /></label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-tool">
+                                                <label v-if="toolsTf[1] && toolsTf[1].Value != null" class="label-tools-value" v-html="Math.round(toolsTf[1].Value)"></label><label class="label-tools">qty</label>
+</td>
+                                            <td class="td-tool tool-border-left">
+                                                <label v-if="toolsTf[2] != null && toolsTf[2].Value" class="label-tools-value" v-html="Math.round(toolsTf[2].Value)"></label><label class="label-tools">qty</label>
+                                            </td>
+                                            <td class="td-tool tool-border-left">
+                                                <label class="label-tools-value">1h 11min</label>                                               
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>               
+                </div>
+                <hr />
+                    <div class="card card-big border-green" style="height:47%;cursor:auto">                        
                             <table class="table-spindle">
                                 <tr>
                                     <td class="first-td-tool">
-                                        <div class="el-state el-code">
-                                            <div>{{ tool.description }}</div>
-                                            <small>@Resource.Description</small>
-                                            @*<small>{{ tool.description }}</small>*@
-                                        </div>
-                                    </td>                                   
+                                        @Html.Raw(Resource.MobileHead)
+                                    </td>
                                     <td>
-                                        <div class="el-state el-margin text-right">
-                                            <!-- nascondere solo per pannello cliente? -->
-                                            <!--<div>
-                                            <i class="icon fa fa-clock-o"></i>
-                                            <time-span v-bind:duration="tool.time"></time-span>
-                                        </div>
-                                        <small>@Resource.TimeToLive</small>-->
-                                        </div>
+                                        <table style="width: 100%;">
+                                            <tr>
+
+                                               <td class="td-tool">
+                                                    <div style="display:inline-flex">
+                                                        <i class="fa fa-bars" aria-hidden="true"></i>
+                                                        <label v-if="toolsTm[1] != null && toolsTm[1].Description != null" class="label-tools" v-html="toolsTm[1].Description"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="td-tool tool-border-left">
+                                                    <div style="display:inline-flex">
+                                                        <i class="fa fa-tasks" aria-hidden="true"></i>
+                                                        <label v-if="toolsTm[0] != null" class="label-tools" v-html="toolsTm[0].Description"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="td-tool tool-border-left">
+                                                    <div style="display:inline-flex">
+                                                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                        <label class="label-tools">Ore vita<br /> lama<br /> effettive<br /></label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                                <tr>
+                                                    <td class="td-tool">
+                                                        <label v-if="toolsTm[1] != null && toolsTm[1].Value != null" class="label-tools-value" v-html="Math.round(toolsTm[1].Value)"></label><label class="label-tools">qty</label>
+                                                    </td>
+                                                    <td class="td-tool tool-border-left">
+                                                        <label v-if="toolsTm[0] != null && toolsTm[0].Value != null" class="label-tools-value" v-html="Math.round(toolsTm[0].Value)"></label><label class="label-tools">qty</label>
+                                                    </td>
+                                                    <td class="td-tool tool-border-left">
+                                                        <label class="label-tools-value">1h 11min</label>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                     </td>
                                 </tr>
                             </table>
-                            <div class="progress progress-tool slim">
-                                <div class="progress-bar" v-bind:class="bgColor(tool.perc)" v-bind:aria-valuenow="tool.perc"></div>
-                            </div>
-                            <div class="progress-info display-none">
-                                <small>@Resource.Usury</small>
-                                {{ tool.perc }}<em>%</em>
-                            </div>
-                        </div>
-                        <div class="back">
-                            <table style="width:100%">
-                                <tr>
-                                    <td class="first-td-tool">
-                                        <div class="el-state el-code">
-                                            <div>{{ tool.description }}</div>
-                                            @*<small>{{ tool.code }}</small>*@
-                                            <small>@Resource.Description</small>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="el-state">
-                                            <div>
-                                                <i class="fa fa-remove color-red font-12x"></i>
-                                                <span>{{ tool.changes.breaking }}</span><em>qty</em>
-                                            </div>
-                                            <small>@Resource.Breaking</small>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="el-state">
-                                            <div>
-                                                <i class="fa fa-repeat color-orange font-12x"></i>
-                                                <span>{{ tool.changes.replacement }}</span><em>qty</em>
-                                            </div>
-                                            <small>@Resource.Replacement</small>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="btn btn-link btn-history" v-bind:class="{disabled: tool.changes.historical.length == 0}" v-on:click="showModal(tool, $event)">
-                                            <i class="fa fa-history"></i>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
                     </div>
-                    <hr />
-                </template>
+
+
+                    <!--   <template v-for="tool in tools" v-cloak>
+        <div class="card" v-bind:class="borderColor(tool.perc)">
+            <div class="front text-left">
+                <table class="table-spindle">
+                    <tr>
+                        <td class="first-td-tool">
+                            <div class="el-state el-code">
+                                <div>{{ tool.description }}</div>
+                                <small>@Resource.Description</small>
+                                @*<small>{{ tool.description }}</small>*@
+                            </div>
+                        </td>
+                        <td>
+                            <div class="el-state el-margin text-right">
+
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="progress progress-tool slim">
+                    <div class="progress-bar" v-bind:class="bgColor(tool.perc)" v-bind:aria-valuenow="tool.perc"></div>
+                </div>
+                <div class="progress-info display-none">
+                    <small>@Resource.Usury</small>
+                    {{ tool.perc }}<em>%</em>
+                </div>
             </div>
-            <no-data v-else></no-data>
+            <div class="back">
+                <table style="width:100%">
+                    <tr>
+                        <td class="first-td-tool">
+                            <div class="el-state el-code">
+                                <div>{{ tool.description }}</div>
+                                @*<small>{{ tool.code }}</small>*@
+                                <small>@Resource.Description</small>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="el-state">
+                                <div>
+                                    <i class="fa fa-remove color-red font-12x"></i>
+                                    <span>{{ tool.changes.breaking }}</span><em>qty</em>
+                                </div>
+                                <small>@Resource.Breaking</small>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="el-state">
+                                <div>
+                                    <i class="fa fa-repeat color-orange font-12x"></i>
+                                    <span>{{ tool.changes.replacement }}</span><em>qty</em>
+                                </div>
+                                <small>@Resource.Replacement</small>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn btn-link btn-history" v-bind:class="{disabled: tool.changes.historical.length == 0}" v-on:click="showModal(tool, $event)">
+                                <i class="fa fa-history"></i>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
+        <hr />
+    </template>
+    -->
+                </div>
+                <no-data v-else></no-data>
+            </div>
     </div>
 
-        <modal-tool v-for="tool in tools" v-bind:tool="tool"></modal-tool>
+    
     </div>
 
 

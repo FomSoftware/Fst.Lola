@@ -74,8 +74,8 @@
         vmTools = new Vue({
             el: '#CardTools',
             data: {
-                tools: data.tools,
-                sorting: data.sorting
+                toolsTm: data.toolsTm,
+                toolsTf: data.toolsTf,
             },
             computed: {
                 colorKPI: function ()
@@ -85,17 +85,17 @@
 
                     var color = 'color-green';
 
-                    var toolRed = _.filter(this.tools, function (tool)
+                    /*var toolRed = _.filter(this.tools, function (tool)
                     {
                         return tool.perc > 70
                     });
 
                     if (toolRed.length > 0)
-                        color = 'color-red';
+                        color = 'color-red';*/
 
                     return color;
                 },
-                sortingCode: function ()
+                /*sortingCode: function ()
                 {
                     if (this.sorting.code != null)
                         return 'active ' + this.sorting.code;
@@ -104,9 +104,9 @@
                 {
                     if (this.sorting.time != null)
                         return 'active ' + this.sorting.time;
-                }
+                }*/
             },
-            methods: {
+            /*methods: {
                 bgColor: function (perc)
                 {
                     return {
@@ -195,7 +195,7 @@
                         $(modalID).modal('show');
                     }
                 }
-            }
+            }*/
         });
     }
 
@@ -203,8 +203,8 @@
     {
         // update vue model
         var vm_tools = data.vm_tools;
-        vmTools.tools = vm_tools.tools;
-        vmTools.sorting = vm_tools.sorting;
+        vmTools.toolsTm = vm_tools.toolsTm;
+        vmTools.toolsTf = vm_tools.toolsTf;
     }
 
     return {

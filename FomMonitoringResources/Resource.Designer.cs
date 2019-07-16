@@ -214,7 +214,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contat_tagli_TF.
+        ///   Looks up a localized string similar to Tagli lama &lt;br /&gt; totali.
         /// </summary>
         public static string Contat_tagli_TF {
             get {
@@ -223,7 +223,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contat_tagli_TM.
+        ///   Looks up a localized string similar to Tagli lama &lt;br /&gt; totali.
         /// </summary>
         public static string Contat_tagli_TM {
             get {
@@ -486,6 +486,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Testa &lt;br /&gt; Fissa.
+        /// </summary>
+        public static string FixedHead {
+            get {
+                return ResourceManager.GetString("FixedHead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gross Time.
         /// </summary>
         public static string GrossTime {
@@ -675,6 +684,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Testa &lt;br /&gt; Mobile.
+        /// </summary>
+        public static string MobileHead {
+            get {
+                return ResourceManager.GetString("MobileHead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Model.
         /// </summary>
         public static string Model {
@@ -792,7 +810,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Num_Tagli_TF.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string Num_Tagli_TF {
             get {
@@ -801,7 +819,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Num_Tagli_TM.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string Num_Tagli_TM {
             get {
@@ -891,7 +909,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Parz_tagli_TF.
+        ///   Looks up a localized string similar to Tagli lama&lt;br /&gt; parziali &lt;br /&gt; (da reset).
         /// </summary>
         public static string Parz_tagli_TF {
             get {
@@ -900,7 +918,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Parz_tagli_TM.
+        ///   Looks up a localized string similar to Tagli lama&lt;br /&gt; parziali &lt;br /&gt; (da reset).
         /// </summary>
         public static string Parz_tagli_TM {
             get {
