@@ -143,7 +143,7 @@ namespace FomMonitoringCore.Service
                     if (machine == null)
                         return isInitialize;
 
-                    context.ActualPlant = context.AllPlants.Where(w => w.Id == machine.PlantId).FirstOrDefault();
+                    context.ActualPlant = context.AllPlants.FirstOrDefault(w => w.Id == machine.PlantId);
 
                     if (context.User.Role == enRole.Administrator)
                         context.AllMachines = MachineService.GetAllMachines();

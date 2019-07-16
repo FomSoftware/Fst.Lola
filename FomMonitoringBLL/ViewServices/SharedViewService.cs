@@ -74,18 +74,18 @@ namespace FomMonitoringBLL.ViewServices
         {
             List<MachineInfoViewModel> machines = new List<MachineInfoViewModel>();
 
-            machines = context.AllMachines.Where(w => w.PlantId == context.ActualPlant.Id).Select(m => new MachineInfoViewModel()
+            machines = context.AllMachines.Where(w => w.PlantId == context.ActualPlant?.Id).Select(m => new MachineInfoViewModel()
             {
                 id = m.Id,
                 serial = m.Serial,
-                icon = m.Type.Image,
-                mtype = m.Type.Name,
-                model = m.Model.Name,
+                icon = m.Type?.Image,
+                mtype = m.Type?.Name,
+                model = m.Model?.Name,
                 description = m.Description,
                 product_type = m.Product,
                 product_version = m.ProductVersion,
                 machineName = m.MachineName,
-                installation = m.InstallationDate.ToString()
+                installation = m.InstallationDate?.ToString() ?? string.Empty
             }).ToList();
 
             return machines;
