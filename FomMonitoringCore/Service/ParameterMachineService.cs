@@ -27,12 +27,12 @@ namespace FomMonitoringCore.Service
                     //result.Add(parameter.BuildAdapter().AdaptToType<ParameterMachineValueModel>());
                     varNums.Add(parameter.VarNumber, parameter.BuildAdapter().AdaptToType<ParameterMachineValueModel>());
                 }
-
+                //se ci sono dati cerco tutti i parametri di quel modello per avere almeno le descrizioni
                 if(varNums != null && varNums.Count > 0)
                 {
-                    List<ParameterMachine> parametri = ctx.ParameterMachine.Where(pp => pp.MachineModelId == machine.MachineModelId).OrderBy(pp => pp.VarNumber).ToList();
-                                                //da aggiungere quando si implementa anagrafica dei pannelli
-                                                //&& pp.Panel != null && Int32.Parse(pp.Panel) == idPanel);
+                    List<ParameterMachine> parametri = ctx.ParameterMachine.Where(pp => pp.MachineModelId == machine.MachineModelId
+                                                        && pp.PanelId != null && pp.PanelId == idPanel).OrderBy(pp => pp.VarNumber).ToList();
+                    
                     foreach(ParameterMachine pm in parametri)
                     {
                         if (varNums.ContainsKey(pm.VarNumber))
@@ -41,12 +41,12 @@ namespace FomMonitoringCore.Service
                         }
                         else
                         {
-                            ParameterMachineValueModel vuoto = new ParameterMachineValueModel()
+                            ParameterMachineValueModel valoreVuoto = new ParameterMachineValueModel()
                             {
                                 VarNumber = Int32.Parse(pm.VarNumber),
                                 Description = new System.Resources.ResourceManager(typeof(Resource)).GetString(pm.Keyword)
                             };
-                            result.Add(vuoto);
+                            result.Add(valoreVuoto);
                         }
                     }
                     

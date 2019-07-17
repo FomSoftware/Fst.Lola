@@ -48,21 +48,25 @@ namespace FomMonitoringCore.Framework.Common
     }
 
     public enum enPanel
-    {
-        [Description("efficiency")]
-        Efficiency = 0,
-        [Description("messages")]
-        Messages = 1,
-        [Description("productivity")]
-        Productivity = 2,
-        [Description("orders")]
-        Orders = 3,
-        [Description("maintance")]
-        Maintance = 4,
+    {       
+        [Description("toolsBlitz")]
+        ToolsBlitz = 1,
+        [Description("xtools")]
+        XTools = 2,
         [Description("multispindle")]
-        Multispindle = 5,
-        [Description("tools")]
-        Tools = 6
+        Multispindle = 3,
+        [Description("xspindles")]
+        XSpindles = 4,
+        [Description("productivity")]
+        Productivity = 5,
+        [Description("messages")]
+        Messages = 6,
+        [Description("orders")]
+        Orders = 7,
+        [Description("maintenance")]
+        Maintance = 8,
+        [Description("efficiency")]
+        Efficiency = 9
     }
 
     public enum enDataType

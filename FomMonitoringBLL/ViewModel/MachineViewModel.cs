@@ -30,5 +30,7 @@ namespace FomMonitoringBLL.ViewModel
         public MachineInfoViewModel MachineInfo { get; set; }
 
         public MaintenanceViewModel Maintenance { get; set; }
+
+        public List<int> MachinePanels { get; set; }
     }
 }

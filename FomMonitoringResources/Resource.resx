@@ -602,4 +602,7 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="MobileHead" xml:space="preserve">
     <value>Testa &lt;br /&gt; Mobile</value>
   </data>
+  <data name="Ore_vita_lama_ef" xml:space="preserve">
+    <value>Ore vita &lt;br /&gt; lama &lt;br /&gt; effettive</value>
+  </data>
 </root>

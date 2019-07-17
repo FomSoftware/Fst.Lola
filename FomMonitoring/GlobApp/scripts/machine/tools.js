@@ -1,9 +1,7 @@
-﻿var Tools = function ()
-{
+﻿var Tools = function () {
     var vmTools;
 
-    var init = function (data)
-    {
+    var init = function (data) {
         //var data = {
         //    vm_tools: {
         //        tools: [{
@@ -69,142 +67,124 @@
         initVueModel(data.vm_tools);
     }
 
-    var initVueModel = function (data)
-    {
+    var initVueModel = function (data) {
         vmTools = new Vue({
             el: '#CardTools',
             data: {
-                toolsTm: data.toolsTm,
-                toolsTf: data.toolsTf,
+                tools: data.tools,
+                sorting: data.sorting
             },
             computed: {
-                colorKPI: function ()
-                {
+                colorKPI: function () {
                     if (this.tools == null)
                         return 'color-no-data';
 
                     var color = 'color-green';
 
-                    /*var toolRed = _.filter(this.tools, function (tool)
-                    {
+                    var toolRed = _.filter(this.tools, function (tool) {
                         return tool.perc > 70
                     });
 
                     if (toolRed.length > 0)
-                        color = 'color-red';*/
+                        color = 'color-red';
 
                     return color;
                 },
-                /*sortingCode: function ()
-                {
+                sortingCode: function () {
                     if (this.sorting.code != null)
                         return 'active ' + this.sorting.code;
                 },
-                sortingTTL: function ()
-                {
+                sortingTTL: function () {
                     if (this.sorting.time != null)
                         return 'active ' + this.sorting.time;
-                }*/
+                }
             },
-            /*methods: {
-                bgColor: function (perc)
-                {
+            methods: {
+                bgColor: function (perc) {
                     return {
                         'gradient-until-70': perc <= 70,
                         'gradient-after-70': perc > 70
                     }
                 },
-                borderColor: function (perc)
-                {
+                borderColor: function (perc) {
                     return {
                         'border-green': perc <= 70,
                         'border-red': perc > 70
                     }
                 },
-                refreshProgress: function ()
-                {
+                refreshProgress: function () {
                     $('.progress-tool .progress-bar').css("width",
-                          function () { return $(this).attr("aria-valuenow") + "%"; });
+                        function () { return $(this).attr("aria-valuenow") + "%"; });
                 },
-                sortCode: function ()
-                {
+                sortCode: function () {
                     this.sorting.time = null;
 
-                    if (this.sorting.code == 'desc')
-                    {
+                    if (this.sorting.code == 'desc') {
                         this.tools = _.sortBy(this.tools, 'code');
                         this.sorting.code = 'asc';
 
-                        this.$nextTick(function ()
-                        {
+                        this.$nextTick(function () {
                             this.refreshProgress();
                         });
 
                         return;
                     }
 
-                    if (this.sorting.code == 'asc' || this.sorting.code == null)
-                    {
+                    if (this.sorting.code == 'asc' || this.sorting.code == null) {
                         this.tools = _.sortBy(this.tools, 'code').reverse();
                         this.sorting.code = 'desc';
 
-                        this.$nextTick(function ()
-                        {
+                        this.$nextTick(function () {
                             this.refreshProgress();
                         });
 
                         return;
                     }
                 },
-                sortTTL: function ()
-                {
+                sortTTL: function () {
                     this.sorting.code = null;
 
-                    if (this.sorting.time == 'desc')
-                    {
+                    if (this.sorting.time == 'desc') {
                         this.tools = _.sortBy(this.tools, function (tool) { return tool.time.elapsed; });
                         this.sorting.time = 'asc';
 
-                        this.$nextTick(function ()
-                        {
+                        this.$nextTick(function () {
                             this.refreshProgress();
                         });
 
                         return;
                     }
 
-                    if (this.sorting.time == 'asc' || this.sorting.time == null)
-                    {
+                    if (this.sorting.time == 'asc' || this.sorting.time == null) {
                         this.tools = _.sortBy(this.tools, function (tool) { return tool.time.elapsed; }).reverse();
                         this.sorting.time = 'desc';
 
-                        this.$nextTick(function ()
-                        {
+                        this.$nextTick(function () {
                             this.refreshProgress();
                         });
 
                         return;
                     }
                 },
-                showModal: function (tool, event)
-                {
-                    if (tool.changes.historical.length > 0)
-                    {
+                showModal: function (tool, event) {
+                    if (tool.changes.historical.length > 0) {
                         event.cancelBubble = true;
                         var modalID = '#modal-' + tool.code;
                         $(modalID).modal('show');
                     }
                 }
-            }*/
+            }
         });
     }
 
-    var update = function (data)
-    {
+    var update = function (data) {
         // update vue model
+        
         var vm_tools = data.vm_tools;
-        vmTools.toolsTm = vm_tools.toolsTm;
-        vmTools.toolsTf = vm_tools.toolsTf;
+        if (vm_tools != null) {
+            vmTools.tools = vm_tools.tools;
+            vmTools.sorting = vm_tools.sorting;
+        }
     }
 
     return {

@@ -49,6 +49,7 @@
             //Alarms.update(data.Alarms);
             Spindles.update(data.Spindles);
             XSpindles.update(data.XSpindles);
+            ToolsBlitz.update(data.Tools);
             Tools.update(data.Tools);
             XTools.update(data.XTools);
             Jobs.update(data.Jobs);

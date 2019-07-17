@@ -243,6 +243,25 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        #endregion
-    }
+        public static List<int> GetMachinePanels(ContextModel context)
+        {
+            List<int> result = new List<int>();
+            try
+            {
+                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                {
+                    result = ent.Panel.Where(p => p.MachineModel.Any(f => f.Id  == context.ActualMachine.MachineModelId)).Select(a => a.Id).ToList();                   
+                }
+            }
+            catch (Exception ex)
+            {
+                string errMessage = string.Format(ex.GetStringLog(), context.ActualMachine.MachineModelId.ToString());
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+            return result;
+        }
+
+
+            #endregion
+        }
 }

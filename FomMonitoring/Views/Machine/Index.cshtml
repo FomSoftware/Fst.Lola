@@ -40,18 +40,30 @@
                 @Html.Partial("_Jobs", Model.Jobs)
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-                @Html.Partial("_Tools", Model.Tools)
+        @if (Model.MachinePanels.Contains((int)enPanel.ToolsBlitz))
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    @Html.Partial("./Tools/_Blitz", Model.Tools)
+                </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    @Html.Partial("_Tools", Model.Tools)
+                </div>
+            </div>
+        }
+
         @if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)
         {
-        <div class="row">
-            <div class="col-sm-12">
-                @Html.Partial("_XTools", Model.XTools)
+            <div class="row">
+                <div class="col-sm-12">
+                    @Html.Partial("_XTools", Model.XTools)
+                </div>
             </div>
-        </div>
         }
     </div>
     <div class="col-lg-4 col-md-12 col-sm-12 card-wrap-2">

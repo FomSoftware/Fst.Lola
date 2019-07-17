@@ -1,0 +1,128 @@
+﻿@model FomMonitoringBLL.ViewModel.ToolViewModel
+@using FomMonitoringResources
+
+<div id="CardTools" class="portlet">
+    <div class="portlet-title">
+        <div class="portlet-kpi">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
+                <i class="fa icofom-lama fa-stack-1x fa-inverse" style="font-size:21px" ></i>
+            </span>
+        </div>
+        <div class="title-kpi" style="max-width: 130px;">
+            <span>@Resource.Tools</span>
+            <div class="sub-period">@Resource.UntilNow</div>
+        </div>      
+    </div>
+    <div class="portlet-body text-center" style="height:244px">
+        <div class="card-portlet slimscroll" >
+            <div v-if="toolsTm != null && toolsTm.length > 0 && toolsTf != null && toolsTf.length > 0" style="height:98%">
+                <div class="card card-big border-green" style="height:47%;cursor:auto">                    
+                        <table class="table-spindle">
+                            <tr>
+                                <td class="first-td-tool">
+                                    @Html.Raw(Resource.FixedHead)                                  
+                                </td>
+                                <td>
+                                    <table  style="width: 100%;">
+                                        <tr>
+                                           <td class="td-tool">
+                                                <div style="display:inline-flex">
+                                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                                    <label v-if="toolsTf[1] != null" class="label-tools" v-html="toolsTf[1].Description"></label>
+                                                </div>
+                                            </td>
+                                            <td class="td-tool tool-border-left">
+                                                <div style="display:inline-flex">
+                                                    <i class="fa fa-tasks" aria-hidden="true"></i>
+                                                    <label v-if="toolsTf[2] != null" class="label-tools" v-html="toolsTf[2].Description"></label>
+                                                </div>
+                                            </td>
+                                            <td class="td-tool tool-border-left">
+                                                <div style="display:inline-flex">
+                                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                    <label class="label-tools">@Html.Raw(Resource.Ore_vita_lama_ef)</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-tool">
+                                                <label v-if="toolsTf[1] && toolsTf[1].Value != null" class="label-tools-value" v-html="Math.round(toolsTf[1].Value)"></label><label class="label-tools">qty</label>
+</td>
+                                            <td class="td-tool tool-border-left">
+                                                <label v-if="toolsTf[2] != null && toolsTf[2].Value" class="label-tools-value" v-html="Math.round(toolsTf[2].Value)"></label><label class="label-tools">qty</label>
+                                            </td>
+                                            <td class="td-tool tool-border-left">
+                                                <label class="label-tools-value">1h 11min</label>                                               
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>               
+                </div>
+                <hr />
+                    <div class="card card-big border-green" style="height:47%;cursor:auto">                        
+                            <table class="table-spindle">
+                                <tr>
+                                    <td class="first-td-tool">
+                                        @Html.Raw(Resource.MobileHead)
+                                    </td>
+                                    <td>
+                                        <table style="width: 100%;">
+                                            <tr>
+
+                                               <td class="td-tool">
+                                                    <div style="display:inline-flex">
+                                                        <i class="fa fa-bars" aria-hidden="true"></i>
+                                                        <label v-if="toolsTm[1] != null && toolsTm[1].Description != null" class="label-tools" v-html="toolsTm[1].Description"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="td-tool tool-border-left">
+                                                    <div style="display:inline-flex">
+                                                        <i class="fa fa-tasks" aria-hidden="true"></i>
+                                                        <label v-if="toolsTm[0] != null" class="label-tools" v-html="toolsTm[0].Description"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="td-tool tool-border-left">
+                                                    <div style="display:inline-flex">
+                                                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                        <label class="label-tools">@Html.Raw(Resource.Ore_vita_lama_ef)</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                                <tr>
+                                                    <td class="td-tool">
+                                                        <label v-if="toolsTm[1] != null && toolsTm[1].Value != null" class="label-tools-value" v-html="Math.round(toolsTm[1].Value)"></label><label class="label-tools">qty</label>
+                                                    </td>
+                                                    <td class="td-tool tool-border-left">
+                                                        <label v-if="toolsTm[0] != null && toolsTm[0].Value != null" class="label-tools-value" v-html="Math.round(toolsTm[0].Value)"></label><label class="label-tools">qty</label>
+                                                    </td>
+                                                    <td class="td-tool tool-border-left">
+                                                        <label class="label-tools-value">1h 11min</label>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                    </td>
+                                </tr>
+                            </table>
+                    </div>
+
+                </div>
+                <no-data v-else></no-data>
+            </div>
+    </div>
+
+    
+    </div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        var data = @Html.Raw(Json.Encode(Model));
+        ToolsBlitz.init(data);
+    });
+
+</script>

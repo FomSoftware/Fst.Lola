@@ -232,6 +232,9 @@
     <Compile Include="DAL\MessageType.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Panel.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\ParameterMachine.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>

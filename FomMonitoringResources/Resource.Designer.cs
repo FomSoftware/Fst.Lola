@@ -873,6 +873,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ore vita &lt;br /&gt; lama &lt;br /&gt; effettive.
+        /// </summary>
+        public static string Ore_vita_lama_ef {
+            get {
+                return ResourceManager.GetString("Ore_vita_lama_ef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Others.
         /// </summary>
         public static string Others {

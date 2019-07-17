@@ -5,12 +5,13 @@ using System.Linq;
 using System.Web;
 
 namespace FomMonitoringBLL.ViewModel
-{
-
+{    
 
     public class ToolViewModel
     {
-        public ToolParameterVueModel vm_tools { get; set; }
+        public ToolVueModel vm_tools { get; set; }
+
+        public ToolParameterVueModel vm_tools_blitz { get; set; }
     }
 
     public class XToolViewModel

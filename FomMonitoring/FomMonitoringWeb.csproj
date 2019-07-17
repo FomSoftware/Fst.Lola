@@ -415,6 +415,7 @@
     <Content Include="GlobApp\plugins\waitMe\waitMe.min.js" />
     <Content Include="GlobApp\scripts\machine\maintenance.js" />
     <Content Include="GlobApp\scripts\machine\messages.js" />
+    <Content Include="GlobApp\scripts\machine\tools\blitz.js" />
     <Content Include="GlobApp\scripts\machine\xtools.js" />
     <Content Include="GlobApp\scripts\machine\xspindles.js" />
     <Content Include="GlobApp\scripts\mes-manager.js" />
@@ -851,6 +852,7 @@
     <Content Include="Views\Mes\_PlantMessages.cshtml" />
     <Content Include="Views\Shared\Modals\_Disclaimer.cshtml" />
     <Content Include="Views\Shared\Modals\_ChangePassword.cshtml" />
+    <Content Include="Views\Machine\Tools\_Blitz.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

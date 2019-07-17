@@ -17,6 +17,7 @@ namespace FomMonitoringBLL.ViewServices
         public static MachineViewModel GetMachine(ContextModel context)
         {
             MachineViewModel machine = new MachineViewModel();
+            machine.MachinePanels = MachineService.GetMachinePanels(context);
 
             machine.LastUpdate = new DataUpdateModel() { DateTime = context.ActualPeriod.LastUpdate.DateTime };
             machine.Efficiency = EfficiencyViewService.GetEfficiency(context);
@@ -25,7 +26,7 @@ namespace FomMonitoringBLL.ViewServices
             machine.Messages = MessagesViewService.GetMessages(context);
             machine.Jobs = JobsViewService.GetJobs(context);
             machine.Spindles = SpindlesViewService.GetSpindles(context);
-            machine.Tools = ToolsViewService.GetTools(context);
+            machine.Tools = ToolsViewService.GetTools(context);           
             machine.MachineInfo = new MachineInfoViewModel
             {
                 model = context.ActualMachine.Model.Name,
@@ -35,7 +36,7 @@ namespace FomMonitoringBLL.ViewServices
             };
             machine.XSpindles = SpindlesViewService.GetXSpindles(context);
             machine.XTools = XToolsViewService.GetXTools(context);
-            machine.Maintenance = MaintenanceViewService.GetMessages(context);
+            machine.Maintenance = MaintenanceViewService.GetMessages(context);           
             return machine;
         }
     }

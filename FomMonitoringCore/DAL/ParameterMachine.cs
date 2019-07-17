@@ -37,13 +37,14 @@ namespace FomMonitoringCore.DAL
         public string ThresholdMin { get; set; }
         public string ThresholdMax { get; set; }
         public string ThresholdLabel { get; set; }
-        public string Panel { get; set; }
         public string Cluster { get; set; }
         public int MachineModelId { get; set; }
         public string Historicized { get; set; }
+        public Nullable<int> PanelId { get; set; }
     
         public virtual MachineModel MachineModel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ParameterMachineValue> ParameterMachineValue { get; set; }
+        public virtual Panel Panel1 { get; set; }
     }
 }
