@@ -15,11 +15,11 @@ namespace FomMonitoringCore.Service
         public static List<ParameterMachineValueModel> GetParameters(MachineInfoModel machine, int idPanel)
         {
             var result = new List<ParameterMachineValueModel>();
-            using (var ctx = new DAL.FST_FomMonitoringEntities())
+            using (var ctx = new FST_FomMonitoringEntities())
             {
                 var parametersValues = ctx.ParameterMachineValue.Where(p => p.MachineId == machine.Id).GroupBy(g => g.VarNumber);
 
-                Dictionary <string, ParameterMachineValueModel> varNums = new Dictionary<string, ParameterMachineValueModel>();
+                var varNums = new Dictionary<string, ParameterMachineValueModel>();
                 foreach(var i in parametersValues)
                 {
                     var dateMax = i.Max(d => d.UtcDateTime);
@@ -28,12 +28,12 @@ namespace FomMonitoringCore.Service
                     varNums.Add(parameter.VarNumber, parameter.BuildAdapter().AdaptToType<ParameterMachineValueModel>());
                 }
                 //se ci sono dati cerco tutti i parametri di quel modello per avere almeno le descrizioni
-                if(varNums != null && varNums.Count > 0)
+                if(varNums.Any())
                 {
-                    List<ParameterMachine> parametri = ctx.ParameterMachine.Where(pp => pp.MachineModelId == machine.MachineModelId
+                    var parametri = ctx.ParameterMachine.Where(pp => pp.MachineModelId == machine.MachineModelId
                                                         && pp.PanelId != null && pp.PanelId == idPanel).OrderBy(pp => pp.VarNumber).ToList();
                     
-                    foreach(ParameterMachine pm in parametri)
+                    foreach(var pm in parametri)
                     {
                         if (varNums.ContainsKey(pm.VarNumber))
                         {
@@ -41,10 +41,11 @@ namespace FomMonitoringCore.Service
                         }
                         else
                         {
-                            ParameterMachineValueModel valoreVuoto = new ParameterMachineValueModel()
+                            var valoreVuoto = new ParameterMachineValueModel()
                             {
-                                VarNumber = Int32.Parse(pm.VarNumber),
-                                Description = new System.Resources.ResourceManager(typeof(Resource)).GetString(pm.Keyword)
+                                VarNumber = int.Parse(pm.VarNumber),
+                                Description = new System.Resources.ResourceManager(typeof(Resource)).GetString(pm.Keyword),
+                                Value = pm.DefaultValue
                             };
                             result.Add(valoreVuoto);
                         }
