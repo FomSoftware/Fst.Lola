@@ -257,7 +257,7 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(d => d.Keyword, src => !string.IsNullOrWhiteSpace(src.KEYWORD) ? src.KEYWORD.Trim() : null)
                 .Map(d => d.LolaLabel, src => !string.IsNullOrWhiteSpace(src.LOLA_LABEL) ? src.LOLA_LABEL.Trim() : null)
                 .Map(d => d.MachineGroup, src => !string.IsNullOrWhiteSpace(src.MACHINE_GROUP) ? src.MACHINE_GROUP.Trim() : null)
-                .Map(d => d.PanelId, src => !string.IsNullOrWhiteSpace(src.PANEL) ? src.PANEL.Trim() : null)
+                .Map(d => d.PanelId, src => MachineService.GetOrSetPanelIdByPanelName(src, (int)MapContext.Current.Parameters["idMachineModel"]))
                 .Map(d => d.RLevel, src => !string.IsNullOrWhiteSpace(src.R_LEVEL) ? src.R_LEVEL.Trim() : null)
                 .Map(d => d.ThresholdLabel, src => !string.IsNullOrWhiteSpace(src.THRESHOLD_LABEL) ? src.THRESHOLD_LABEL.Trim() : null)
                 .Map(d => d.ThresholdMax, src => !string.IsNullOrWhiteSpace(src.THRESHOLD_MAX) ? src.THRESHOLD_MAX.Trim() : null)

@@ -1,6 +1,7 @@
 ﻿using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
+using FomMonitoringCore.Framework.Model.Xml;
 using Mapster;
 using System;
 using System.Collections.Generic;
@@ -261,7 +262,59 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
+        public static int? GetOrSetPanelIdByPanelName(ParameterMachineModelXml src, int idModel)
+        {
+            var panelname = src.PANEL?.Trim();
+            if (!string.IsNullOrWhiteSpace(panelname))
+            {
+                try
+                {
+                    using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                    {
+                        var pa = ent.Panel.FirstOrDefault(p => p.Name == panelname);
+                        if (pa != null)
+                        {
+                            if (!pa.MachineModel.Any(mm => mm.Id == idModel))
+                            {
+                                pa.MachineModel.Add(ent.MachineModel.First(mm => mm.Id == idModel));
+                                var idPanels = ent.ParameterMachine.Where(pm => pm.MachineModelId == idModel).ToList();
+                                var toRmv = pa.MachineModel.Where(p => p.Id == idModel && !idPanels.Any(i => p.Panel.Any(a => a.Id == i.PanelId))).ToList();
+                                if (toRmv.Any())
+                                {
+                                    foreach (var t in toRmv)
+                                        pa.MachineModel.Remove(t);
 
-            #endregion
+                                    ent.SaveChanges();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //aggiungo il pannello
+                            pa = new Panel
+                            {
+                                Name = src.PANEL.Trim(),
+                                MachineModel = ent.MachineModel.Where(mm => mm.Id == idModel).ToList()
+                            };
+                            ent.Panel.Add(pa);
+                        }
+
+                        ent.SaveChanges();
+
+                        return pa.Id;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string errMessage = string.Format(ex.GetStringLog(), idModel.ToString());
+                    LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+                }
+            }
+
+            return null;
         }
+
+
+        #endregion
+    }
 }
