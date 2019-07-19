@@ -278,7 +278,7 @@ namespace FomMonitoringCore.Service
                             {
                                 pa.MachineModel.Add(ent.MachineModel.First(mm => mm.Id == idModel));
                                 var idPanels = ent.ParameterMachine.Where(pm => pm.MachineModelId == idModel).ToList();
-                                var toRmv = pa.MachineModel.Where(p => p.Id == idModel && !idPanels.Any(i => p.Panel.Any(a => a.Id == i.PanelId))).ToList();
+                                var toRmv = pa.MachineModel.Where(machineModel => machineModel.Id == idModel && !idPanels.Any(i => machineModel.Panel.Any(a => a.Id == i.PanelId))).ToList();
                                 if (toRmv.Any())
                                 {
                                     foreach (var t in toRmv)

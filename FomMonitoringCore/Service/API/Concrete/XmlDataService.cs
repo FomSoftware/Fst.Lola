@@ -35,6 +35,15 @@ namespace FomMonitoringCore.Service.API.Concrete
                 }
 
                 db.SaveChanges();
+
+                var panelModelToRemove = machineModel.Panel.Where(p => panels.Any(p2 => p2 == p.Name)).ToList();
+                foreach(var r in panelModelToRemove)
+                {
+                    machineModel.Panel.Remove(r);
+                }
+
+                db.SaveChanges();
+
             }
 
 
