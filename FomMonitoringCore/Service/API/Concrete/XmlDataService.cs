@@ -17,7 +17,7 @@ namespace FomMonitoringCore.Service.API.Concrete
         public void AddOrUpdateMachineParameter(ParametersMachineModelXml m)
         {
 
-            var panels = m.Parameters.Parameter.Where(p => !string.IsNullOrWhiteSpace(p.PANEL)).Select(p => p.PANEL.Trim()).Distinct().ToList();
+            var panelsXml = m.Parameters.Parameter.Where(p => !string.IsNullOrWhiteSpace(p.PANEL)).Select(p => p.PANEL.Trim()).Distinct().ToList();
             
             using (var db = new FST_FomMonitoringEntities())
             {
@@ -36,12 +36,12 @@ namespace FomMonitoringCore.Service.API.Concrete
 
                 db.SaveChanges();
 
-                var panelModelToRemove = machineModel.Panel.Where(p => panels.Any(p2 => p2 == p.Name)).ToList();
-                foreach(var r in panelModelToRemove)
+                var panelAssociationToRemove = machineModel.Panel.Where(p => !panelsXml.Any(p2 => p2 == p.Name)).ToList();
+                foreach(var r in panelAssociationToRemove)
                 {
                     machineModel.Panel.Remove(r);
                 }
-
+                
                 db.SaveChanges();
 
             }
