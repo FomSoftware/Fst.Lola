@@ -810,7 +810,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Tagli lama&lt;br /&gt; totali.
         /// </summary>
         public static string Num_Tagli_TF {
             get {
@@ -819,7 +819,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Tagli lama&lt;br /&gt; totali.
         /// </summary>
         public static string Num_Tagli_TM {
             get {
@@ -918,7 +918,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tagli lama&lt;br /&gt; parziali &lt;br /&gt; (da reset).
+        ///   Looks up a localized string similar to Tagli lama&lt;br /&gt; da sostituzione.
         /// </summary>
         public static string Parz_tagli_TF {
             get {
@@ -927,7 +927,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tagli lama&lt;br /&gt; parziali &lt;br /&gt; (da reset).
+        ///   Looks up a localized string similar to Tagli lama&lt;br /&gt; da sostituzione.
         /// </summary>
         public static string Parz_tagli_TM {
             get {

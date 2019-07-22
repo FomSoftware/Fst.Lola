@@ -585,16 +585,16 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Tagli lama &lt;br /&gt; totali</value>
   </data>
   <data name="Num_Tagli_TF" xml:space="preserve">
-    <value />
+    <value>Tagli lama&lt;br /&gt; totali</value>
   </data>
   <data name="Num_Tagli_TM" xml:space="preserve">
-    <value />
+    <value>Tagli lama&lt;br /&gt; totali</value>
   </data>
   <data name="Parz_tagli_TF" xml:space="preserve">
-    <value>Tagli lama&lt;br /&gt; parziali &lt;br /&gt; (da reset)</value>
+    <value>Tagli lama&lt;br /&gt; da sostituzione</value>
   </data>
   <data name="Parz_tagli_TM" xml:space="preserve">
-    <value>Tagli lama&lt;br /&gt; parziali &lt;br /&gt; (da reset)</value>
+    <value>Tagli lama&lt;br /&gt; da sostituzione</value>
   </data>
   <data name="FixedHead" xml:space="preserve">
     <value>Testa &lt;br /&gt; Fissa</value>
