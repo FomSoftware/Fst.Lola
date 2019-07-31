@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Http;
+using UserManager.Service.Concrete;
 
 namespace FomMonitoring.Controllers
 {
@@ -54,7 +55,8 @@ namespace FomMonitoring.Controllers
         {
             try
             {
-                var result = UserManagerViewService.CreateUser(user);
+                ContextModel context = ContextService.GetContext();
+                var result = UserManagerViewService.CreateUser(user, context);
                 return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
             }
             catch (System.InvalidOperationException ex)
@@ -88,6 +90,22 @@ namespace FomMonitoring.Controllers
         {
             ContextModel context = ContextService.GetContext();
             var result = UserManagerViewService.ChangePassword(context, changePasswordInfo);
+            return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = Common.Operator + "," + Common.Customer + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator)]
+        [Route("ajax/UserManagerApi/CheckFirstLogin")]
+        public HttpResponseMessage CheckFirstLogin()
+        {
+            ContextModel context = ContextService.GetContext();
+            var result = false;
+            if (context.User.Role == enRole.Operator || context.User.Role == enRole.HeadWorkshop)
+            {
+                LoginServices ls = new LoginServices();
+                result = ls.IsFirstLogin();
+            }
+            
             return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
         }
 

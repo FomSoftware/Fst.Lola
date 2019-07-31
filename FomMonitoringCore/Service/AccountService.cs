@@ -36,6 +36,7 @@ namespace FomMonitoringCore.Service
             LoggedUser.Username = User.Username;
             LoggedUser.FirstName = User.FirstName;
             LoggedUser.LastName = User.LastName;
+            LoggedUser.Email = User.Email;
             LoggedUser.Role = User.Roles_Users.Select(s => (enRole)s.Roles.IdRole).FirstOrDefault();
             LoggedUser.Language = User.Languages != null ? new LanguagesModel {
                 DotNetCulture = User.Languages.DotNetCulture,
@@ -44,6 +45,7 @@ namespace FomMonitoringCore.Service
                 InitialsLanguage = User.Languages.InitialsLanguage,
                 Name = User.Languages.Name
             } : null;
+            LoggedUser.LastDateUpdatePassword = User.LastDateUpdatePassword;
 
             return LoggedUser;
         }
@@ -69,7 +71,7 @@ namespace FomMonitoringCore.Service
 
             if (result)
             {
-                UserModel User = new AccountService().GetLoggedUser();
+                UserModel User = new AccountService().GetLoggedUser();                
                 string userId = User.ID.Adapt<string>();
                 string serializedUser = JsonConvert.SerializeObject(User, Formatting.Indented, 
                     new JsonSerializerSettings {
@@ -96,7 +98,7 @@ namespace FomMonitoringCore.Service
             ResponseModel response = new ResponseModel
             {
                 Result = result,
-                Message = message
+                Message = message    
             };
 
             return response;

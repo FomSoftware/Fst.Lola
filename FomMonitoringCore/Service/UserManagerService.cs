@@ -6,6 +6,7 @@ using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using UserManager.DAL;
 using UserManager.Service.Concrete;
 
@@ -298,6 +299,9 @@ namespace FomMonitoringCore.Service
 
                     // creo il nuovo utente
                     var defaultPassword = ApplicationSettingService.GetWebConfigKey("DefaultPassword");
+                    if (user.Password != null)                    
+                        defaultPassword = user.Password;                        
+  
                     var addUser = new Users
                     {
                         ID = Guid.NewGuid(),                       
@@ -307,7 +311,8 @@ namespace FomMonitoringCore.Service
                         Email = user.Email,
                         LanguageID = user.Language?.ID,
                         Enabled = user.Enabled,
-                        Password = ls.EncryptPassword(defaultPassword)
+                        Password = ls.EncryptPassword(defaultPassword),
+                        LastDateUpdatePassword = user.LastDateUpdatePassword
                     };
 
                     // user language
@@ -354,6 +359,39 @@ namespace FomMonitoringCore.Service
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
                 throw ex;
             }
+        }
+
+        public static bool SendPassword(string email, Guid id)
+        {
+            bool result = true;
+            try
+            {
+                using (UserManagerEntities entUM = new UserManagerEntities())
+                {
+                    var user = entUM.Users.Find(id);
+                    if (user == null) return false;
+                    string subject = Resource.CreateUserEmailSubject + " " + user.Username;
+                    LoginServices ls = new LoginServices();
+                    string body = Resource.CreateUserEmailBody.Replace("[TIPO_USER]", user.Roles_Users.FirstOrDefault().Roles.Description )
+                                                              .Replace("[USERNAME]", user.Username)
+                                                              .Replace("[PASSWORD]", ls.DecryptPassword(user.Password));
+
+                    MailMessage message = new MailMessage(ApplicationSettingService.GetWebConfigKey("EmailFromAddress"), 
+                                                           email, subject, body);
+                    message.IsBodyHtml = true;
+                    EmailSender.SendEmail(message);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                string errMessage = ex.GetStringLog();
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+                result = false;
+                throw ex;
+            }
+
+            return result;
         }
 
         /// <summary>

@@ -159,7 +159,7 @@ namespace UserManager.DAL.Gateway.Concrete
                     User.Password = NewPassword;
                     User.ModifiedBy = UserID;
                     User.ModifiedDate = DateTime.Now;
-
+                    User.LastDateUpdatePassword = DateTime.Now;
                     userManagerEntities.SaveChanges();
                 }
                 return true;

@@ -49,6 +49,8 @@ namespace FomMonitoringBLL.ViewModel
         public List<string> MachineSerials { get; set; }
 
         public bool Enabled { get; set; }
+
+        public string Password { get; set; }
     }
 
     public class UserMachineViewModel

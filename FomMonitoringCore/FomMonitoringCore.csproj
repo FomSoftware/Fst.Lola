@@ -346,6 +346,7 @@
     </Compile>
     <Compile Include="Framework\Common\Attributes.cs" />
     <Compile Include="Framework\Common\Common.cs" />
+    <Compile Include="Framework\Common\EmailSender.cs" />
     <Compile Include="Framework\Common\Enumerators.cs" />
     <Compile Include="Framework\Common\ExtensionMethods.cs" />
     <Compile Include="Framework\Common\ReadMessages.cs" />

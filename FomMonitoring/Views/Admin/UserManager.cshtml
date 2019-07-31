@@ -130,6 +130,25 @@
                                 </div>
                             </div>
 
+                            @if (Model.User.Role == enRole.Customer)
+                            {
+                                <!-- Text input-->
+                                <div class="form-group display-none" id="form-group-password" >
+                                    <label class="col-md-4 control-label" for="lastname-input">Password:</label>
+                                    <div class="col-md-6">
+                                        <input v-model="actual.Password" name="password-input" class="form-control input-md modal-input" id="password-input" type="text" placeholder="Password" maxlength="50" required>
+                                        <div v-show="missing.Password" class="validation">@Resource.FieldRequired.</div>
+                                    </div>
+                                </div>
+                                <!-- Text input-->
+                                <div class="form-group display-none" id="form-group-confirm-password">
+                                    <label class="col-md-4 control-label" for="lastname-input">@Resource.RepeatPassword:</label>
+                                    <div class="col-md-6">
+                                        <input v-model="actual.ConfirmPassword" name="confirm-password-input" class="form-control input-md modal-input" id="confirm-password-input" type="text" placeholder="Conferma Password" maxlength="50" required>
+                                        <div v-show="missing.ConfirmPassword" class="validation">@Resource.FieldRequired.</div>
+                                    </div>
+                                </div>
+                            }
                             <!-- Enable/disable check -->
                             <div class="form-group form-check">
                                 <label class="col-md-4 control-label" for="enabled-input">@Resource.Enable:</label>

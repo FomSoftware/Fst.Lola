@@ -26,5 +26,9 @@ namespace FomMonitoringCore.Framework.Model
         public List<MachineInfoModel> Machines { get; set; }
 
         public bool Enabled { get; set; }
+
+        public string Password { get; set; }
+
+        public Nullable<DateTime> LastDateUpdatePassword { get; set; }
     }
 }

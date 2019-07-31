@@ -97,7 +97,7 @@ namespace FomMonitoringBLL.ViewServices
                 return null;
         }
 
-        public static bool CreateUser(UserViewModel userModel)
+        public static bool CreateUser(UserViewModel userModel, ContextModel context)
         {
             try
             {
@@ -113,9 +113,20 @@ namespace FomMonitoringBLL.ViewServices
                     Language = new LanguagesModel { ID = userModel.LanguageId },
                     Machines = userModel.Machines.Select(s => new MachineInfoModel { Id = s.Id }).ToList(),
                     Enabled = userModel.Enabled,
+                    Password = userModel.Password
                 };
 
-                UserManagerService.CreateUser(user);
+                if (context.User.Role != enRole.Customer)
+                    user.LastDateUpdatePassword = DateTime.Now;
+
+                Guid id = UserManagerService.CreateUser(user);
+                // se sono customer invio la mail con la password del nuovo utente
+                if(context.User.Role == enRole.Customer && context.User.Email != null)
+                {
+                    UserManagerService.SendPassword(context.User.Email, id);
+
+                }
+              
                 return true;
             }
             catch (Exception ex)
@@ -160,7 +171,7 @@ namespace FomMonitoringBLL.ViewServices
                     Role = (enRole)userModel.RoleCode,
                     Language = new LanguagesModel { ID = userModel.LanguageId },
                     Machines = userModel.Machines.Select(s => new MachineInfoModel { Id = s.Id }).ToList(),
-                    Enabled = userModel.Enabled,
+                    Enabled = userModel.Enabled
                 };
 
                 return UserManagerService.ModifyUser(user);

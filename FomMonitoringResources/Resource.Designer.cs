@@ -250,6 +250,24 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E’ stata generata una nuova utenza di tipo [TIPO_USER], di seguito le credenziali: &lt;br/&gt; utente: [USERNAME] &lt;br/&gt;password: [PASSWORD] provvisoria generata. &lt;br/&gt; La password andrà resettata obbligatoriamente al primo accesso in LOLA.
+        /// </summary>
+        public static string CreateUserEmailBody {
+            get {
+                return ResourceManager.GetString("CreateUserEmailBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LOLA - Credenziali nuovo utente:.
+        /// </summary>
+        public static string CreateUserEmailSubject {
+            get {
+                return ResourceManager.GetString("CreateUserEmailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cutomer.
         /// </summary>
         public static string Customer {

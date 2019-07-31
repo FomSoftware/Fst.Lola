@@ -227,12 +227,15 @@
             Error: '@Resource.Error',
             EnterPassword: '@Resource.EnterPasswords',
             PasswordNotSame: '@Resource.PasswordNotSame',
+            PasswordShort: '@Resource.PasswordShort',
             ChangePasswordSuccessfully: '@Resource.ChangePasswordSuccessfully',
             PasswordSamePrevious:'@Resource.PasswordSamePrevious',
         };
 
         UserManager.initChangePassword(user, "@ViewBag.BaseUrl", resource);
         SharedManager.initHeader(data.LastUpdate);
+        UserManager.checkFirstLogin(user);
+
     });
 
 </script>

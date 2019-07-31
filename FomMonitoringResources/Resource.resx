@@ -605,4 +605,10 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="Ore_vita_lama_ef" xml:space="preserve">
     <value>Ore vita &lt;br /&gt; lama &lt;br /&gt; effettive</value>
   </data>
+  <data name="CreateUserEmailBody" xml:space="preserve">
+    <value>E’ stata generata una nuova utenza di tipo [TIPO_USER], di seguito le credenziali: &lt;br/&gt; utente: [USERNAME] &lt;br/&gt;password: [PASSWORD] provvisoria generata. &lt;br/&gt; La password andrà resettata obbligatoriamente al primo accesso in LOLA</value>
+  </data>
+  <data name="CreateUserEmailSubject" xml:space="preserve">
+    <value>LOLA - Credenziali nuovo utente:</value>
+  </data>
 </root>

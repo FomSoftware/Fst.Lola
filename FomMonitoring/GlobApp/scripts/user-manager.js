@@ -64,7 +64,9 @@
                     Role: false,
                     Customer: false,
                     Machines: false,
-                    Languages: false
+                    Languages: false,
+                    Password: false,
+                    ConfirmPassword: false
                 },
                 enRoles: enRoles
             },
@@ -77,7 +79,7 @@
                     this.roles.active.length == 0 ? this.missing.Role = true : this.missing.Role = false
                     this.customers.active == "" && roleUser != enRoles.Customer ? this.missing.Customer = true : this.missing.Customer = false
                     this.machines.active.length == 0 ? this.missing.Machines = true : this.missing.Machines = false
-                    this.languages.active == "" ? this.missing.Languages = true : this.missing.Languages = false
+                    this.languages.active == "" ? this.missing.Languages = true : this.missing.Languages = false                    
                 },
                 selectOptionClass: function (val) {
                     if (!val.status || !val.enabled)
@@ -231,6 +233,10 @@
                 $('#form-customer-input').hide();
                 $('#user-modal #machines-input').removeClass('input-read-only');
                 $("[data-id='machines-input']").removeClass('background-disabled');
+                //mostro i campi nel caso della create per customer
+                $('#user-modal #form-group-password').removeClass('display-none');
+                $('#user-modal #form-group-confirm-password').removeClass('display-none');
+
             });
         } else {
             getMachinesByCustomer();
@@ -265,6 +271,7 @@
                 LanguageId: vmUsers.languages.active,
                 Machines: machines,
                 Enabled: true,
+                Password: vmUsers.actual.Password
             };
 
             $.post({
@@ -273,7 +280,11 @@
                 contentType: "application/json; charset=utf-8",
                 success: function (result) {
                     if (result == true) {
-                        successSwal(resource.CreatedUser);
+                        if (roleUser == enRoles.Customer) {
+                            successSwal(resource.CreatedUser + "\n Username:" + data.Username + "\n Password: " + data.Password);
+                        }
+                        else
+                            successSwal(resource.CreatedUser );
                         clearActualUser();
                         $('#user-modal').modal('hide');
                         refreshTable();
@@ -310,14 +321,15 @@
                     $('#user-modal .form-check').show();
                     $('#form-customer-input').hide();
                     $('#form-customer-input-disabled').show();
-                    $('#user-modal #username-input').addClass('input-read-only');
-
+                    $('#user-modal #username-input').addClass('input-read-only');                    
                     // se è un customer
                     if (vmUsers.roles.active == enRoles.Customer) {
                         $('#user-modal #role-input').addClass('input-read-only');
                         $("[data-id='role-input']").addClass('background-disabled');
+                        
                     }
-
+                    $('#user-modal #form-group-password').addClass('display-none');
+                    $('#user-modal #form-group-confirm-password').addClass('display-none');
                     // se è admin o customer
                     if (vmUsers.roles.active == enRoles.Operator || vmUsers.roles.active == enRoles.HeadWorkshop) {
                         $('#form-role-input-disabled').hide();
@@ -357,6 +369,7 @@
                 LanguageId: vmUsers.languages.active,
                 Machines: machines,
                 Enabled: vmUsers.actual.Enabled,
+                Password: vmUsers.actual.Password
             };
 
             $.ajax({
@@ -366,7 +379,6 @@
                 contentType: "application/json; charset=utf-8",
                 success: function (result) {
                     if (result == true) {
-
                         successSwal(resource.UserSuccessfullyModify);
                         clearActualUser();
                         $('#user-modal').modal('hide');
@@ -507,6 +519,8 @@
         vmUsers.missing.Customer = false;
         vmUsers.missing.Machines = false;
         vmUsers.missing.Languages = false;
+        vmUsers.missing.Password = false;
+        vmUsers.missing.ConfirmPassword = false;
 
         $('#machines-input').selectpicker('destroy');
         $('#customer-input').selectpicker('destroy');
@@ -534,9 +548,24 @@
             vmUsers.missing.Role == false &&
             vmUsers.missing.Customer == false &&
             vmUsers.missing.Machines == false &&
-            vmUsers.missing.Languages == false) {
+            vmUsers.missing.Languages == false &&
+            vmUsers.missing.Password == false &&
+            vmUsers.missing.ConfirmPassword == false) {
+
             if (!controlValidationEmail(vmUsers.actual.Email)) {
                 errorSwal(resource.EmailNotValid);
+                return false;
+            }
+
+            if (!vmUsers.actual.ID && roleUser == enRoles.Customer) {
+                if (vmUsers.actual.Password == undefined || vmUsers.actual.Password == null || vmUsers.actual.Password.trim() == "" || vmUsers.actual.Password.length < 6) {
+                    errorSwal(resource.PasswordShort);
+                    return false;
+                }
+            }
+
+            if (vmUsers.actual.Password != vmUsers.actual.ConfirmPassword) {
+                errorSwal(resource.PasswordsNotSame);
                 return false;
             }
             return true;
@@ -591,13 +620,23 @@
         resourceChangePassword = resourceText;
     }
 
-    var openChangePasswordModal = function () {
+    var openChangePasswordModal = function (mustChange) {
+        if (mustChange) {
+            $('#change-password-modal #close').addClass("display-none");
+            $('#change-password-modal .btn-annulla').addClass('display-none');
+        }
+        else {
+            $('#change-password-modal #close').removeClass("display-none");
+            $('#change-password-modal .btn-annulla').removeClass('display-none');
+        }
         $('#last-password').val(null);
         $('#new-password').val(null);
-        $('#repeat-new-password').val(null);
+        $('#repeat-new-password').val(null);        
         $('#change-password-modal').modal('show');
+      
     }
 
+    
     var changePasswordClick = function () {
         var oldPassword = $('#last-password').val();
         var newPassword = $('#new-password').val();
@@ -610,10 +649,13 @@
         };
 
         if (newPassword != "" && repeatPassword != "") {
-            if (newPassword == repeatPassword)
-                changePassword(data);
-            else
+            if (newPassword != repeatPassword)
                 errorSwal(resourceChangePassword.PasswordNotSame);
+            else if (newPassword.length < 6)
+                errorSwal(resourceChangePassword.PasswordShort);
+            else
+                changePassword(data);     
+                
         }
         else
             errorSwal(resourceChangePassword.EnterPassword);
@@ -642,6 +684,25 @@
         });
     }
 
+    var checkFirstLogin = function (user) {
+        if (user.Role == enRoles.HeadWorkshop || user.Role == enRoles.Operator) {
+            $.ajax({
+                url: baseApiUrl + "/CheckFirstLogin",
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    if (result == true) {
+                        UserManager.openChangePasswordModal(true);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    errorSwal(resourceChangePassword.ErrorOccurred);
+                }
+            });
+        }
+    }
+
+
     var openDisclamerModal = function () {       
         $('#disclamer-modal').modal('show');
     }
@@ -662,6 +723,7 @@
         clearActualUser: clearActualUser,
         changePasswordClick: changePasswordClick,
         openChangePasswordModal: openChangePasswordModal,
-        openDisclamerModal: openDisclamerModal
+        openDisclamerModal: openDisclamerModal,
+        checkFirstLogin: checkFirstLogin
     }
 }()
