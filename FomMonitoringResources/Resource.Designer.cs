@@ -531,6 +531,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HeadWorkshop.
+        /// </summary>
+        public static string HeadWorkshop {
+            get {
+                return ResourceManager.GetString("HeadWorkshop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Historical.
         /// </summary>
         public static string Historical {

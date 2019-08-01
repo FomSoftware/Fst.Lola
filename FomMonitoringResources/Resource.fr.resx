@@ -605,4 +605,13 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="Contat_tagli_TM" xml:space="preserve">
     <value>Coupes lame&lt;br /&gt; totales</value>
   </data>
+  <data name="CreateUserEmailSubject" xml:space="preserve">
+    <value>LOLA – Identifiants de connexion nouvel utilisateur: </value>
+  </data>
+  <data name="CreateUserEmailBody" xml:space="preserve">
+    <value>Un nouvel utilisateur de type [TIPO_USER] a été créé, ci-dessous les identifiants de connexion:&lt;br/&gt;nom d’utilisateur : [USERNAME]&lt;br/&gt; mot de passe : [PASSWORD] provisoire généré&lt;br/&gt;Le mot de passe sera réinitialisé obligatoirement lors du premier accès dans LOLA</value>
+  </data>
+  <data name="HeadWorkshop" xml:space="preserve">
+    <value>Chef d’atelier</value>
+  </data>
 </root>

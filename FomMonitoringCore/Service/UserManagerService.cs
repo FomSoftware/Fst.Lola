@@ -372,7 +372,15 @@ namespace FomMonitoringCore.Service
                     if (user == null) return false;
                     string subject = Resource.CreateUserEmailSubject + " " + user.Username;
                     LoginServices ls = new LoginServices();
-                    string body = Resource.CreateUserEmailBody.Replace("[TIPO_USER]", user.Roles_Users.FirstOrDefault().Roles.Description )
+                    string ruolo = user.Roles_Users.FirstOrDefault().Roles.Description;
+                    int? idRuolo = user.Roles_Users.FirstOrDefault().Roles.IdRole;
+
+                    if (idRuolo == 1)
+                        ruolo = Resource.Operator.ToString();
+                    else if (idRuolo == 2)
+                        ruolo = Resource.HeadWorkshop.ToString();
+
+                    string body = Resource.CreateUserEmailBody.Replace("[TIPO_USER]", ruolo )
                                                               .Replace("[USERNAME]", user.Username)
                                                               .Replace("[PASSWORD]", ls.DecryptPassword(user.Password));
 

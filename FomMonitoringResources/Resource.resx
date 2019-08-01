@@ -611,4 +611,7 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="CreateUserEmailSubject" xml:space="preserve">
     <value>LOLA - Credenziali nuovo utente:</value>
   </data>
+  <data name="HeadWorkshop" xml:space="preserve">
+    <value>HeadWorkshop</value>
+  </data>
 </root>

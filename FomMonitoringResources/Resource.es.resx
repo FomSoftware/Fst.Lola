@@ -605,4 +605,13 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   <data name="Contat_tagli_TM" xml:space="preserve">
     <value>Cortes disco&lt;br /&gt; totales</value>
   </data>
+  <data name="CreateUserEmailSubject" xml:space="preserve">
+    <value>LOLA - Credenciales nuevo usuario: </value>
+  </data>
+  <data name="CreateUserEmailBody" xml:space="preserve">
+    <value>Se ha generado un nuevo usuario de tipo [TIPO_USER], con las siguientes credenciales: &lt;br/&gt;usuario: [USERNAME] &lt;br/&gt;password: [PASSWORD] provisoria generada&lt;br/&gt;La password deberá cambiarse obligatoriamente la primera vez que se acceda a LOLA.</value>
+  </data>
+  <data name="HeadWorkshop" xml:space="preserve">
+    <value>Jefe taller</value>
+  </data>
 </root>

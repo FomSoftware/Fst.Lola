@@ -604,4 +604,13 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="Contat_tagli_TM" xml:space="preserve">
     <value>Schnitte Sägeblatt&lt;br /&gt; insgesamt</value>
   </data>
+  <data name="CreateUserEmailSubject" xml:space="preserve">
+    <value>LOLA – Anmeldedaten neuer Benutzer: </value>
+  </data>
+  <data name="CreateUserEmailBody" xml:space="preserve">
+    <value>Es wurde ein neues Benutzerkonto vom Typ [TIPO_USER] erstellt; nachstehend die Anmeldedaten:&lt;br/&gt;Benutzer: [USERNAME]&lt;br/&gt;Passwort: [PASSWORD] erzeugtes provisorisches.&lt;br/&gt;Das Passwort ist obligatorisch zu ändern, wenn das erste Login bei LOLA vorgenommen wird.</value>
+  </data>
+  <data name="HeadWorkshop" xml:space="preserve">
+    <value>Werkstattleiter</value>
+  </data>
 </root>

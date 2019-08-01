@@ -605,4 +605,13 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="Contat_tagli_TM" xml:space="preserve">
     <value>Total&lt;br /&gt; blade cuts</value>
   </data>
+  <data name="CreateUserEmailSubject" xml:space="preserve">
+    <value>LOLA – New user credentials: </value>
+  </data>
+  <data name="CreateUserEmailBody" xml:space="preserve">
+    <value>A new [TIPO_USER] type user has been generated with the following credentials: &lt;br/&gt; user: [USERNAME] &lt;br/&gt; password: [PASSWORD] provisional generated &lt;br/&gt; The password must be reset on first access to LOLA. </value>
+  </data>
+  <data name="HeadWorkshop" xml:space="preserve">
+    <value>Foreman</value>
+  </data>
 </root>

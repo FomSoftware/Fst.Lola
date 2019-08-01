@@ -605,4 +605,13 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="Contat_tagli_TF" xml:space="preserve">
     <value>Tagli lama&lt;br /&gt; totali</value>
   </data>
+  <data name="CreateUserEmailSubject" xml:space="preserve">
+    <value>LOLA - Credenziali nuovo utente:</value>
+  </data>
+  <data name="CreateUserEmailBody" xml:space="preserve">
+    <value>E’ stata generata una nuova utenza di tipo [TIPO_USER], di seguito le credenziali: &lt;br/&gt; utente: [USERNAME] &lt;br/&gt;password: [PASSWORD] provvisoria generata. &lt;br/&gt; La password andrà resettata obbligatoriamente al primo accesso in LOLA</value>
+  </data>
+  <data name="HeadWorkshop" xml:space="preserve">
+    <value>Capo Officina</value>
+  </data>
 </root>
