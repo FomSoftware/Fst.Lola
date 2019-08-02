@@ -939,6 +939,7 @@
 
     .el-state {
         line-height: 1;
+        white-space: nowrap;
     }
 
         .el-state.el-code > div {
