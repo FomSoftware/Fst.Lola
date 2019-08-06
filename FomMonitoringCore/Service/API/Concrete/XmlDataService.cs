@@ -22,7 +22,7 @@ namespace FomMonitoringCore.Service.API.Concrete
             using (var db = new FST_FomMonitoringEntities())
             {
                 var machineModel = db.MachineModel.FirstOrDefault(mac => mac.ModelCodev997 == m.ModelCodeV997);
-                var list = m.Parameters.Parameter.BuildAdapter().AddParameters("idMachineModel", machineModel.Id).AdaptToType<List<ParameterMachine>>();
+                var list = m.Parameters.Parameter.BuildAdapter().AddParameters("idMachineModel", machineModel.Id).AddParameters("modelCode", m.ModelCodeV997).AdaptToType<List<ParameterMachine>>();
                 if (machineModel != null)
                 {
                     foreach (var i in list)

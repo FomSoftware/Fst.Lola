@@ -158,7 +158,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                     }
                                     break;
                                 case "message":
-                                    List< MessageModel >messageModels = JsonConvert.DeserializeObject<List<MessageModel>>(JsonConvert.SerializeObject(token.First));
+                                    List<MessageModel>messageModels = JsonConvert.DeserializeObject<List<MessageModel>>(JsonConvert.SerializeObject(token.First));
                                     messageSQLite = messageModels.Select(m => new message()
                                     {
                                         Id = m.Id,
@@ -166,7 +166,9 @@ namespace FomMonitoringCore.Service.DataMapping
                                         Code = m.Code,
                                         Group = m.Group,
                                         Operator = m.Operator,
-                                        Params = m.Parameters == null ? "" : JsonConvert.SerializeObject(m.Parameters)
+                                        Params = m.Parameters == null ? "" : JsonConvert.SerializeObject(m.Parameters),
+                                        State = m.State,
+                                        Type = m.Type
                                     }).ToList();
 
                                     
