@@ -164,9 +164,9 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             //Inserisco i nuovi mapping cliente <=> macchina
                             foreach (var machine in machines)
                             {
-                                DateTime expirationDate = customer.machines.FirstOrDefault(f => f.serial == machine.Serial).expirationDate;
-                                DateTime activationDate = customer.machines.FirstOrDefault(f => f.serial == machine.Serial).activationDate;
-                                string machineName = customer.machines.FirstOrDefault(f => f.serial == machine.Serial).machineName;
+                                DateTime expirationDate = customer.machines.FirstOrDefault(f => f.serial.ToLower() == machine.Serial.ToLower()).expirationDate;
+                                DateTime activationDate = customer.machines.FirstOrDefault(f => f.serial.ToLower() == machine.Serial.ToLower()).activationDate;
+                                string machineName = customer.machines.FirstOrDefault(f => f.serial.ToLower() == machine.Serial.ToLower()).machineName;
                                 List<UserMachineMapping> usersMachineMapped = ent.UserMachineMapping.Where(w => w.MachineId == machine.Id).ToList();
                                 if (usersMachineMapped.Any())
                                 {
