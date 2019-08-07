@@ -281,7 +281,7 @@
                 success: function (result) {
                     if (result == true) {
                         if (roleUser == enRoles.Customer) {
-                            successSwal(resource.CreatedUser + "\n Username:" + data.Username + "\n Password: " + data.Password);
+                            successSwal(resource.CreatedUser + "\n Username: " + data.Username + "\n Password: " + data.Password);
                         }
                         else
                             successSwal(resource.CreatedUser );
