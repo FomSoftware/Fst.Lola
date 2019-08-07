@@ -57,13 +57,40 @@ namespace FomMonitoringCore.Service.DataMapping
                         else
                         {
                             Machine machineFromSQLite = machine.OrderByDescending(o => o.Id).FirstOrDefault();
-                            foreach (PropertyInfo property in machineActual.GetType().GetProperties())
+                            /*foreach (PropertyInfo property in machineActual.GetType().GetProperties())
                             {
                                 if (property.PropertyType.IsSerializable && (property.Name != "Id"))
                                 {
                                     property.SetValue(machineActual, machineFromSQLite.GetType().GetProperty(property.Name).GetValue(machineFromSQLite));
                                 }
-                            }
+                            }*/
+                            machineActual.Description = machineFromSQLite.Description;
+                            machineActual.FirmwareVersion = machineFromSQLite.FirmwareVersion;
+                            machineActual.InstallationDate = machineFromSQLite.InstallationDate;
+                            machineActual.KeyId = machineFromSQLite.KeyId;
+                            machineActual.LoginDate = machineFromSQLite.LoginDate;
+                            machineActual.MachineModelId = machineFromSQLite.MachineModelId;
+                            machineActual.MachineTypeId = machineFromSQLite.MachineTypeId;
+                            machineActual.NextMaintenanceService = machineFromSQLite.NextMaintenanceService;
+                            machineActual.PlcVersion = machineFromSQLite.PlcVersion;
+                            machineActual.Product = machineFromSQLite.Product;
+                            machineActual.ProductVersion = machineFromSQLite.ProductVersion;
+                            machineActual.Serial = machineFromSQLite.Serial;
+                            machineActual.Shift1 = machineFromSQLite.Shift1;
+                            machineActual.Shift2 = machineFromSQLite.Shift2;
+                            machineActual.Shift3 = machineFromSQLite.Shift3;
+                            machineActual.BarsProductivityGreenThreshold = machineFromSQLite.BarsProductivityGreenThreshold;
+                            machineActual.BarsProductivityYellowThreshold = machineFromSQLite.BarsProductivityYellowThreshold;
+                            machineActual.LastUpdate = machineFromSQLite.LastUpdate;
+                            machineActual.OverfeedGreenThreshold = machineFromSQLite.OverfeedGreenThreshold;
+                            machineActual.OverfeedYellowThreshold = machineFromSQLite.OverfeedYellowThreshold;
+                            machineActual.PiecesProductivityGreenThreshold = machineFromSQLite.PiecesProductivityGreenThreshold;
+                            machineActual.PiecesProductivityYellowThreshold = machineFromSQLite.PiecesProductivityYellowThreshold;
+                            machineActual.StateProductivityGreenThreshold = machineFromSQLite.StateProductivityGreenThreshold;
+                            machineActual.StateProductivityYellowThreshold = machineFromSQLite.StateProductivityYellowThreshold;
+                            machineActual.UTC = machineFromSQLite.UTC;
+
+
                         }
                         ent.SaveChanges();
 
