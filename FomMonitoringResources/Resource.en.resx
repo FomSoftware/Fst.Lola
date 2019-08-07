@@ -612,6 +612,6 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>A new [TIPO_USER] type user has been generated with the following credentials: &lt;br/&gt; user: [USERNAME] &lt;br/&gt; password: [PASSWORD] provisional generated &lt;br/&gt; The password must be reset on first access to LOLA. </value>
   </data>
   <data name="HeadWorkshop" xml:space="preserve">
-    <value>Foreman</value>
+    <value>HeadWorkshop</value>
   </data>
 </root>
