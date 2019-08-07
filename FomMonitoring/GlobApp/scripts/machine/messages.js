@@ -52,7 +52,7 @@
 
         initVueModel(data);
 
-        if (data.opt_historical != null) {
+        if (data.opt_historical != null && (data.vm_details.messages != null || data.vm_messages.messages != null)) {
             vmMessages.show.historical = true;
             ChartManager.lineChart('msg_historical_chart', data.opt_historical);
         }
@@ -215,7 +215,7 @@
         vmMessages.sortingDet = data.vm_details.sorting;
 
         // update historical chart
-        if (data.opt_historical != null)
+        if (data.opt_historical != null && (data.vm_details.messages != null || data.vm_messages.messages != null))
         {
             vmMessages.show.historical = true;
             ChartManager.lineChart('msg_historical_chart', data.opt_historical);
