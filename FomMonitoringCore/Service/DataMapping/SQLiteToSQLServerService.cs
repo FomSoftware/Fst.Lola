@@ -75,7 +75,7 @@ namespace FomMonitoringCore.Service.DataMapping
                             machineActual.PlcVersion = machineFromSQLite.PlcVersion;
                             machineActual.Product = machineFromSQLite.Product;
                             machineActual.ProductVersion = machineFromSQLite.ProductVersion;
-                            machineActual.Serial = machineFromSQLite.Serial.ToUpper();
+                            machineActual.Serial = machineFromSQLite.Serial;
                             machineActual.Shift1 = machineFromSQLite.Shift1;
                             machineActual.Shift2 = machineFromSQLite.Shift2;
                             machineActual.Shift3 = machineFromSQLite.Shift3;

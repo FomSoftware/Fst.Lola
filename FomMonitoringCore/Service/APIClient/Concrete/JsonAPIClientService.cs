@@ -164,47 +164,50 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             //Inserisco i nuovi mapping cliente <=> macchina
                             foreach (var machine in machines)
                             {
-                                DateTime expirationDate = customer.machines.FirstOrDefault(f => f.serial.ToLower() == machine.Serial.ToLower()).expirationDate;
-                                DateTime activationDate = customer.machines.FirstOrDefault(f => f.serial.ToLower() == machine.Serial.ToLower()).activationDate;
-                                string machineName = customer.machines.FirstOrDefault(f => f.serial.ToLower() == machine.Serial.ToLower()).machineName;
-                                List<UserMachineMapping> usersMachineMapped = ent.UserMachineMapping.Where(w => w.MachineId == machine.Id).ToList();
-                                if (usersMachineMapped.Any())
+                                JsonMachine jm = customer.machines.FirstOrDefault(f => f.serial == machine.Serial);
+                                if (jm != null)
                                 {
-                                    /*foreach (UserMachineMapping userMachineMapped in usersMachineMapped)
+                                    DateTime expirationDate = jm.expirationDate;
+                                    DateTime activationDate = jm.activationDate;
+                                    string machineName = jm.machineName;
+                                    List<UserMachineMapping> usersMachineMapped = ent.UserMachineMapping.Where(w => w.MachineId == machine.Id).ToList();
+                                    if (usersMachineMapped.Any())
                                     {
-                                        userMachineMapped.ExpirationDate = expirationDate;
-                                        //userMachineMapped.ActivationDate = activationDate;
+                                        /*foreach (UserMachineMapping userMachineMapped in usersMachineMapped)
+                                        {
+                                            userMachineMapped.ExpirationDate = expirationDate;
+                                            //userMachineMapped.ActivationDate = activationDate;
+                                            ent.SaveChanges();
+                                        }*/
+                                    }
+                                    else
+                                    {
+                                        UserMachineMapping userMachine = new UserMachineMapping()
+                                        {
+                                            //ExpirationDate = expirationDate,
+                                            //ActivationDate = activationDate,
+                                            MachineId = machine.Id,
+                                            UserId = user.ID
+                                        };
+                                        ent.UserMachineMapping.Add(userMachine);
                                         ent.SaveChanges();
-                                    }*/
-                                }
-                                else
-                                {
-                                    UserMachineMapping userMachine = new UserMachineMapping()
+                                    }
+                                    //aggiorno l'activationDate della macchina prendendo la più vecchia
+                                    Machine ma = ent.Machine.Find(machine.Id);
+                                    if (ma.ActivationDate == null || ma.ActivationDate > activationDate)
                                     {
-                                        //ExpirationDate = expirationDate,
-                                        //ActivationDate = activationDate,
-                                        MachineId = machine.Id,
-                                        UserId = user.ID
-                                    };
-                                    ent.UserMachineMapping.Add(userMachine);
+                                        ma.ActivationDate = activationDate;
+                                    }
+                                    if (ma.ExpirationDate == null || ma.ExpirationDate < expirationDate)
+                                    {
+                                        ma.ExpirationDate = expirationDate;
+                                    }
+                                    if (!string.IsNullOrWhiteSpace(machineName))
+                                    {
+                                        ma.MachineName = machineName;
+                                    }
                                     ent.SaveChanges();
                                 }
-                                //aggiorno l'activationDate della macchina prendendo la più vecchia
-                                Machine ma = ent.Machine.Find(machine.Id);
-                                if(ma.ActivationDate == null || ma.ActivationDate > activationDate)
-                                {
-                                    ma.ActivationDate = activationDate;                                    
-                                }
-                                if (ma.ExpirationDate == null || ma.ExpirationDate < expirationDate)
-                                {
-                                    ma.ExpirationDate = expirationDate;                                  
-                                }
-                                if (!string.IsNullOrWhiteSpace(machineName))
-                                {
-                                    ma.MachineName = machineName;
-                                }
-                                ent.SaveChanges();
-
 
                             }
                         }
