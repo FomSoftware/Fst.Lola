@@ -107,11 +107,47 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                 XmlDocument document = new XmlDocument();
                 document.LoadXml(soapResult);
 
-                JsonCustomersModel customers = JsonConvert.DeserializeObject<JsonCustomersModel>(document.InnerText, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                JsonCustomersModel customers = JsonConvert.DeserializeObject<JsonCustomersModel>(document.InnerText, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });                
 
                 using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.ReadUncommitted }))
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
+                    //elimino i customer non più presenti nella vip area
+
+                    List<UserModel> dbCustomers =UserManagerService.GetAllCustomers();
+                    IEnumerable<string> customerNames = customers.customers.Select(j => j.username).Distinct();
+                    List<UserModel> custmerToRemove = dbCustomers.Where(e => !customerNames.Contains(e.Username)).ToList<UserModel>();
+
+                    
+                    if(custmerToRemove != null && custmerToRemove.Count() > 0)
+                    {
+                        //rimuovo prima le associazioni
+                        List<Guid> ids = custmerToRemove.Select(a => a.ID).ToList();
+                        List<string> names = custmerToRemove.Select(a => a.Username).ToList();
+                        List<UserCustomerMapping> us = ent.UserCustomerMapping.Where(uc => names.Contains(uc.CustomerName)).ToList();
+
+                        //utenti associati al customer
+                        List<UserModel> usCust = new List<UserModel>();
+                        foreach(UserCustomerMapping item in us)
+                        {
+                            usCust.AddRange(UserManagerService.GetUsers(item.CustomerName));
+                        }
+                        
+                        ent.UserCustomerMapping.RemoveRange(us);
+                        ent.SaveChanges();
+
+                        List<UserMachineMapping> um = ent.UserMachineMapping.Where(mh => ids.Contains(mh.UserId)).ToList();
+                        ent.UserMachineMapping.RemoveRange(um);                        
+                        ent.SaveChanges();
+
+                        usCust.AddRange(custmerToRemove);
+                        using (TransactionScope transactionSuppress = new TransactionScope(TransactionScopeOption.Suppress))
+                        {
+                            UserManagerService.RemoveUsers(usCust);
+                            transactionSuppress.Complete();
+                        }
+                    }
+
                     foreach (var customer in customers.customers)
                     {
                         try

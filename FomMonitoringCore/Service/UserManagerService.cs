@@ -87,6 +87,59 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
+        public static List<UserModel> GetAllCustomers()
+        {
+            List<UserModel> result = null;
+            try
+            {
+                using (UserManagerEntities entUM = new UserManagerEntities())
+                {
+                    entUM.Configuration.LazyLoadingEnabled = false;
+
+                    // Recupero i dati base degli utenti
+                    var userQuery = entUM.Users
+                        .Include("Roles_Users")
+                        .Include("Roles_Users.Roles").AsQueryable()
+                        .Where(w => w.Roles_Users.Any(a => a.Roles.IdRole == (int)enRole.Customer)).AsQueryable();
+
+                    var users = userQuery.ToList();
+                    result = users.Adapt<List<Users>, List<UserModel>>();
+                }
+            }
+            catch (Exception ex)
+            {
+                string errMessage = string.Format(ex.GetStringLog());
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+
+            return result;
+
+        }
+
+        public static void RemoveUsers(List<UserModel> users)
+        {
+            if (users == null || users.Count == 0) return;
+            try
+            {
+                using (UserManagerEntities entUM = new UserManagerEntities())
+                {                    
+                    List<Guid> ids = users.Select(a => a.ID).ToList();
+                    List<Users> rem = entUM.Users.Where(y => ids.Contains(y.ID)).ToList();
+ 
+                    entUM.Users.RemoveRange(rem);
+
+                    entUM.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                string errMessage = string.Format(ex.GetStringLog());
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+
+        }
+
+
         /// <summary>
         /// Ritorna la lista degli utenti con le relative info
         /// </summary>

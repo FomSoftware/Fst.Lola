@@ -11,11 +11,14 @@ namespace UserManager.DAL
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Groups_Users
     {
         public System.Guid ID { get; set; }
         public System.Guid GroupID { get; set; }
+
+        [ForeignKey("Users")]
         public System.Guid UserID { get; set; }
     
         public virtual Groups Groups { get; set; }
