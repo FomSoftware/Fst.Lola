@@ -109,7 +109,6 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
 
                 JsonCustomersModel customers = JsonConvert.DeserializeObject<JsonCustomersModel>(document.InnerText, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });                
 
-                using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.ReadUncommitted }))
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
                     //elimino i customer non più presenti nella vip area
@@ -259,8 +258,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             result = false;
                         }
                     }
-
-                    transaction.Complete();
+                    
                 }
             }
             catch (Exception ex)
