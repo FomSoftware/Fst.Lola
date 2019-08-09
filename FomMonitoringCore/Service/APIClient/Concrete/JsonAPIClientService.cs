@@ -118,8 +118,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                     IEnumerable<string> customerNames = customers.customers.Select(j => j.username).Distinct();
                     List<UserModel> custmerToRemove = dbCustomers.Where(e => !customerNames.Contains(e.Username)).ToList<UserModel>();
 
-                    
-                    if(custmerToRemove != null && custmerToRemove.Count() > 0)
+                    if (custmerToRemove != null && custmerToRemove.Count() > 0)
                     {
                         //rimuovo prima le associazioni
                         List<Guid> ids = custmerToRemove.Select(a => a.ID).ToList();
@@ -128,17 +127,23 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
 
                         //utenti associati al customer
                         List<UserModel> usCust = new List<UserModel>();
-                        foreach(UserCustomerMapping item in us)
+                        foreach (UserCustomerMapping item in us)
                         {
                             usCust.AddRange(UserManagerService.GetUsers(item.CustomerName));
                         }
-                        
-                        ent.UserCustomerMapping.RemoveRange(us);
-                        ent.SaveChanges();
+
+                        if (us.Any())
+                        { 
+                            ent.UserCustomerMapping.RemoveRange(us);
+                            ent.SaveChanges();
+                        }
 
                         List<UserMachineMapping> um = ent.UserMachineMapping.Where(mh => ids.Contains(mh.UserId)).ToList();
-                        ent.UserMachineMapping.RemoveRange(um);                        
-                        ent.SaveChanges();
+                        if (um.Any())
+                        {
+                            ent.UserMachineMapping.RemoveRange(um);
+                            ent.SaveChanges();
+                        }
 
                         usCust.AddRange(custmerToRemove);
                         using (TransactionScope transactionSuppress = new TransactionScope(TransactionScopeOption.Suppress))
@@ -147,7 +152,8 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             transactionSuppress.Complete();
                         }
                     }
-
+                    //pulizia della tabella UserCustomerMapping, potrebbero esserci record inseriti a mano con customerName non esistenti
+                    
                     foreach (var customer in customers.customers)
                     {
                         try
