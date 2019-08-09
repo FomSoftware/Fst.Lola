@@ -262,16 +262,15 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        public static int? GetOrSetPanelIdByPanelName(ParameterMachineModelXml src, int idModel)
+        public static int? GetPanelId(ParameterMachineModelXml src, int idModel)
         {
-            var panelname = src.PANEL?.Trim();
-            if (!string.IsNullOrWhiteSpace(panelname))
-            {
+            var panel = src.PANEL;
+
                 try
                 {
                     using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                     {
-                        var pa = ent.Panel.FirstOrDefault(p => p.Name == panelname);
+                        var pa = ent.Panel.FirstOrDefault(p => p.Id == panel);
                         if (pa != null)
                         {
                             if (!pa.MachineModel.Any(mm => mm.Id == idModel))
@@ -288,16 +287,6 @@ namespace FomMonitoringCore.Service
                                 }
                             }
                         }
-                        else
-                        {
-                            //aggiungo il pannello
-                            pa = new Panel
-                            {
-                                Name = src.PANEL.Trim(),
-                                MachineModel = ent.MachineModel.Where(mm => mm.Id == idModel).ToList()
-                            };
-                            ent.Panel.Add(pa);
-                        }
 
                         ent.SaveChanges();
 
@@ -309,7 +298,7 @@ namespace FomMonitoringCore.Service
                     string errMessage = string.Format(ex.GetStringLog(), idModel.ToString());
                     LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
                 }
-            }
+            
 
             return null;
         }

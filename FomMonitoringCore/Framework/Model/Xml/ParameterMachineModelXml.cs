@@ -56,7 +56,7 @@ namespace FomMonitoringCore.Framework.Model.Xml
         public string THRESHOLD_LABEL { get; set; }
 
         /// <remarks/>
-        public string PANEL { get; set; }
+        public int PANEL { get; set; }
 
         /// <remarks/>
         public string CLUSTER { get; set; }
