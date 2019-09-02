@@ -201,6 +201,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             List<UserMachineMapping> usersMachinesToRemove = ent.UserMachineMapping.Where(w => !machinesId.Contains(w.MachineId) && clientUsersMachines.Contains(w.UserId)).ToList();
                             ent.UserMachineMapping.RemoveRange(usersMachinesToRemove);
                             ent.SaveChanges();
+                            var plant = MesService.GetOrSetPlantDefaultByUser(user.ID);
 
                             //Inserisco i nuovi mapping cliente <=> macchina
                             foreach (var machine in machines)

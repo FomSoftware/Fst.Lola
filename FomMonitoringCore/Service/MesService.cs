@@ -14,6 +14,38 @@ namespace FomMonitoringCore.Service
     {
         #region API
 
+        public static int? GetPlantDefaultByMachine(string machineSerial)
+        {
+            using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+            {
+                using (UserManagerEntities uent = new UserManagerEntities())
+                {
+                    var userIds = ent.Machine.Where(m => m.Serial == machineSerial).SelectMany(n => n.UserMachineMapping).Select(um => um.UserId).ToList();
+                    var plant = ent.Plant.FirstOrDefault(p => userIds.Any(g => g == p.UserId));
+                    return plant?.Id;
+                }
+            }
+        }
+
+        public static int? GetOrSetPlantDefaultByUser(Guid userId)
+        {
+            using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+            {
+                using (UserManagerEntities uent = new UserManagerEntities())
+                {
+                    var userM = ent.UserCustomerMapping.FirstOrDefault(m => m.UserId == userId);
+                    var plant = ent.Plant.FirstOrDefault(p => userId == p.UserId);
+
+                    if(plant == null)
+                    {
+                        var user = uent.Users.FirstOrDefault(u => u.ID == userM.UserId);
+                        plant = AddPlant(user);
+                    }
+                    return plant?.Id;
+                }
+            }
+        }
+
         public static int? GetOrSetPlantIdByPlantName(string plantName, string plantAddress, string machineSerial)
         {
             int? result = null;
@@ -44,7 +76,7 @@ namespace FomMonitoringCore.Service
                         return machine.Plant.Id;
                     }                   
                     //se c'è il pant con il nome inviato dalla macchina lo associo
-                    if (!string.IsNullOrEmpty(plantName))
+                    if (!string.IsNullOrWhiteSpace(plantName))
                     {
                         plant = ent.Plant.FirstOrDefault(f => f.Name == plantName && f.Address == plantAddress);
                     }
@@ -64,7 +96,7 @@ namespace FomMonitoringCore.Service
                     //altrimenti non si saprebbe a chi associare il plant, la macchina viene inserita con plantid null
                     if (plant == null && user != null)
                     {
-                        plant = AddPlant(plantName, plantAddress, user);
+                        plant = AddPlant(user, plantName, plantAddress);
                     }
 
                     if (plant != null)
@@ -84,7 +116,7 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        public static Plant AddPlant(string plantName, string plantAddress, Users user)
+        public static Plant AddPlant(Users user, string plantName = null, string plantAddress = null)
         {
             Plant result = null;
 
