@@ -264,7 +264,7 @@ namespace FomMonitoringCore.Service
 
         public static int? GetPanelId(ParameterMachineModelXml src, int idModel)
         {
-            var panel = src.PANEL;
+            var panel = src.PANEL_ID;
 
                 try
                 {

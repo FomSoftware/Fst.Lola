@@ -10,6 +10,7 @@ namespace FomMonitoringCore.Framework.Model.Xml
     [XmlType(AnonymousType = true)]
     public partial class ParameterMachineModelXml
     {
+
         /// <remarks/>
         public string VAR_NUMBER { get; set; }
 
@@ -54,10 +55,25 @@ namespace FomMonitoringCore.Framework.Model.Xml
 
         /// <remarks/>
         public string THRESHOLD_LABEL { get; set; }
-
-        /// <remarks/>
-        public int PANEL { get; set; }
-
+        
+        public string PANEL { get; set; }
+        public int? PANEL_ID {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(PANEL))
+                {
+                    return int.Parse(PANEL);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set
+            {
+                PANEL = value.ToString();
+            }
+        }
         /// <remarks/>
         public string CLUSTER { get; set; }
 

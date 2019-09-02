@@ -17,7 +17,7 @@ namespace FomMonitoringCore.Service.API.Concrete
         public void AddOrUpdateMachineParameter(ParametersMachineModelXml m)
         {
 
-            var panelsXml = m.Parameters.Parameter.Where(p => p.PANEL > 0).Select(p => p.PANEL).Distinct().ToList();
+            var panelsXml = m.Parameters.Parameter.Where(p => p.PANEL_ID > 0).Select(p => p.PANEL_ID).Distinct().ToList();
             
             using (var db = new FST_FomMonitoringEntities())
             {
