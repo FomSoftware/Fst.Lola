@@ -91,11 +91,11 @@
                     return color;
                 },
                 sortingCode: function () {
-                    if (this.sorting.code != null)
+                    if (this.sorting != null && this.sorting.code != null)
                         return 'active ' + this.sorting.code;
                 },
                 sortingTTL: function () {
-                    if (this.sorting.time != null)
+                    if (this.sorting != null && this.sorting.time != null)
                         return 'active ' + this.sorting.time;
                 }
             },
