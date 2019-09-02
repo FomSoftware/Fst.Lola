@@ -131,7 +131,7 @@ namespace FomMonitoringCore.Service
             {
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
-                    var query = ent.UserMachineMapping.Where(w => w.UserId == UserID).Select(s => s.Machine.Plant).Distinct().ToList();
+                    var query = ent.UserMachineMapping.Where(w => w.UserId == UserID && w.Machine.PlantId != null).Select(s => s.Machine.Plant).Distinct().ToList();
                     result = query.Adapt<List<PlantModel>>();
                 }
             }
@@ -159,7 +159,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format("{0} (PlantID = '{1}')", ex.GetStringLog(), plant.Id);
+                string errMessage = string.Format("{0} (PlantID = '{1}')", ex.GetStringLog(), plant != null ? plant.Id : 0);
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
