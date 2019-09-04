@@ -579,10 +579,10 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Total&lt;br /&gt; blade cuts</value>
   </data>
   <data name="Parz_tagli_TF" xml:space="preserve">
-    <value>Blade cuts &lt;br /&gt; partial &lt;br /&gt;(after reset)</value>
+    <value>Partial &lt;br /&gt;blade cuts &lt;br /&gt;(after reset)</value>
   </data>
   <data name="Parz_tagli_TM" xml:space="preserve">
-    <value>Blade cuts &lt;br /&gt; partial &lt;br /&gt;(after reset)</value>
+    <value>Partial &lt;br /&gt;blade cuts &lt;br /&gt;(after reset)</value>
   </data>
   <data name="FixedHead" xml:space="preserve">
     <value>Fixed Head</value>
