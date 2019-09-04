@@ -15,100 +15,97 @@
         </div>      
     </div>
     <div class="portlet-body text-center" style="height:244px">
-        <div class="card-portlet slimscroll" >
-            <div v-if="toolsTm != null && toolsTm.length > 0 && toolsTf != null && toolsTf.length > 0" style="height:98%">
-                <div class="card card-big border-green" style="height:47%;cursor:auto">                    
-                        <table class="table-spindle">
-                            <tr>
-                                <td class="first-td-tool">
-                                    @Html.Raw(Resource.FixedHead)                                  
-                                </td>
-                                <td>
-                                    <table  style="width: 100%;">
-                                        <tr>
-                                           <td class="td-tool">
-                                                <div style="display:inline-flex">
-                                                    <i class="fa fa-bars" aria-hidden="true"></i>
-                                                    <label v-if="toolsTf[1] != null" class="label-tools" v-html="toolsTf[1].Description"></label>
-                                                </div>
-                                            </td>
-                                            <td class="td-tool tool-border-left">
-                                                <div style="display:inline-flex">
-                                                    <i class="fa fa-tasks" aria-hidden="true"></i>
-                                                    <label v-if="toolsTf[2] != null" class="label-tools" v-html="toolsTf[2].Description"></label>
-                                                </div>
-                                            </td>
-                                            <td class="td-tool tool-border-left">
-                                                <div style="display:inline-flex">
-                                                    <!--<i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                    <label class="label-tools">@Html.Raw(Resource.Ore_vita_lama_ef)</label>-->
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="td-tool">
-                                                <label v-if="toolsTf[1] && toolsTf[1].Value != null" class="label-tools-value" v-html="Math.round(toolsTf[1].Value)"></label><label class="label-tools"></label>
-</td>
-                                            <td class="td-tool tool-border-left">
-                                                <label v-if="toolsTf[2] != null && toolsTf[2].Value" class="label-tools-value" v-html="Math.round(toolsTf[2].Value)"></label><label class="label-tools"></label>
-                                            </td>
-                                            <td class="td-tool tool-border-left">
-                                                <label class="label-tools-value"></label>                                               
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>               
-                </div>
-                <hr />
-                    <div class="card card-big border-green" style="height:47%;cursor:auto">                        
-                            <table class="table-spindle">
-                                <tr>
-                                    <td class="first-td-tool">
-                                        @Html.Raw(Resource.MobileHead)
-                                    </td>
-                                    <td>
-                                        <table style="width: 100%;">
-                                            <tr>
+        <div class="card-portlet" >
+            <div v-if="toolsTm != null && toolsTm.length > 0 && toolsTf != null && toolsTf.length > 0" style="height:242px">
+                <hr style="background-color:#0c3817;height:2px;border:none" />
+                <div style="cursor:auto;height:50%">
+                    <table class="table-spindle" style="height:100%">
+                        <tr>
+                            <td class="portlet-subtitle" style="font-size: 11px">
+                                @Html.Raw(Resource.FixedHead)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table style="width: 100%;height:100%">
+                                    <tr>
+                                        <td class="td-tool">                                         
+                                                <label style="vertical-align: top;"><i class="fa fa-dot-circle-o fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="toolsTf[1] != null" class="label-tools" v-html="toolsTf[1].Description"></label>
+                                        </td>
+                                        <td class="td-tool tool-border-left">                                            
+                                                <label style="vertical-align: top;"><i class="fa fa-circle-o fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="toolsTf[2] != null" class="label-tools" v-html="toolsTf[2].Description"></label>
+                                        </td>
+                                        <td class="td-tool">
+                                            <div style="display:inline-flex">
+                                                <!--<i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <label class="label-tools">@Html.Raw(Resource.Ore_vita_lama_ef)</label>-->
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-tool">
+                                            <label v-if="toolsTf[1] && toolsTf[1].Value != null" class="label-tools-value" v-html="toolsTf[1].Value"></label>
+                                        </td>
+                                        <td class="td-tool tool-border-left">
+                                            <label v-if="toolsTf[2] != null && toolsTf[2].Value" class="label-tools-value" v-html="toolsTf[2].Value"></label>
+                                        </td>
+                                        <td class="td-tool">
+                                            <label class="label-tools-value"></label>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
 
-                                               <td class="td-tool">
-                                                    <div style="display:inline-flex">
-                                                        <i class="fa fa-bars" aria-hidden="true"></i>
-                                                        <label v-if="toolsTm[1] != null && toolsTm[1].Description != null" class="label-tools" v-html="toolsTm[1].Description"></label>
-                                                    </div>
-                                                </td>
-                                                <td class="td-tool tool-border-left">
-                                                    <div style="display:inline-flex">
-                                                        <i class="fa fa-tasks" aria-hidden="true"></i>
-                                                        <label v-if="toolsTm[0] != null" class="label-tools" v-html="toolsTm[0].Description"></label>
-                                                    </div>
-                                                </td>
-                                                <td class="td-tool tool-border-left">
-                                                    <div style="display:inline-flex">
-                                                        <!--<i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                        <label class="label-tools">@Html.Raw(Resource.Ore_vita_lama_ef)</label>-->
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                                <tr>
-                                                    <td class="td-tool">
-                                                        <label v-if="toolsTm[1] != null && toolsTm[1].Value != null" class="label-tools-value" v-html="Math.round(toolsTm[1].Value)"></label><label class="label-tools"></label>
-                                                    </td>
-                                                    <td class="td-tool tool-border-left">
-                                                        <label v-if="toolsTm[0] != null && toolsTm[0].Value != null" class="label-tools-value" v-html="Math.round(toolsTm[0].Value)"></label><label class="label-tools"></label>
-                                                    </td>
-                                                    <td class="td-tool tool-border-left">
-                                                        <label class="label-tools-value"></label>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                    </td>
-                                </tr>
-                            </table>
-                    </div>
 
+
+                    <table class="table-spindle">
+                        <tr>
+                            <td class="portlet-subtitle" style="font-size: 11px">
+                                @Html.Raw(Resource.MobileHead)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table style="width: 100%;height:100%">
+                                    <tr>
+
+                                        <td class="td-tool">
+                                            <label style="vertical-align: top;"><i class="fa fa-dot-circle-o fa-lg" aria-hidden="true"></i></label>
+                                            <label v-if="toolsTm[1] != null && toolsTm[1].Description != null" class="label-tools" v-html="toolsTm[1].Description"></label>
+                                        </td>
+                                        <td class="td-tool tool-border-left">                                            
+                                                <label style="vertical-align: top;"><i class="fa fa-circle-o fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="toolsTm[0] != null" class="label-tools" v-html="toolsTm[0].Description"></label>                                        
+                                        </td>
+                                        <td class="td-tool">
+                                            <div style="display:inline-flex">
+                                                <!--<i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <label class="label-tools">@Html.Raw(Resource.Ore_vita_lama_ef)</label>-->
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-tool">
+                                            <label v-if="toolsTm[1] != null && toolsTm[1].Value != null" class="label-tools-value" v-html="toolsTm[1].Value"></label>
+                                        </td>
+                                        <td class="td-tool tool-border-left">
+                                            <label v-if="toolsTm[0] != null && toolsTm[0].Value != null" class="label-tools-value" v-html="toolsTm[0].Value"></label>
+                                        </td>
+                                        <td class="td-tool">
+                                            <label class="label-tools-value"></label>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
+
+            </div>
                 <no-data v-else></no-data>
             </div>
     </div>

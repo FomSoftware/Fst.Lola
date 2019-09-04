@@ -83,7 +83,7 @@
                     if (this.toolsTm == null && this.toolsTf == null || (this.toolsTm.length == 0 && this.toolsTf.length == 0))
                         return 'color-no-data';
 
-                    var color = 'color-green';                   
+                    var color = 'color-darkgreen';                   
 
                     return color;
                 },               

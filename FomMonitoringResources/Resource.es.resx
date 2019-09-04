@@ -585,16 +585,16 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
     <value>Cortes disco&lt;br /&gt; totales</value>
   </data>
   <data name="Parz_tagli_TF" xml:space="preserve">
-    <value>Cortes disco&lt;br /&gt; desde sustitución</value>
+    <value>Cortes disco&lt;br /&gt;parcial&lt;br /&gt;(desde reset)</value>
   </data>
   <data name="Parz_tagli_TM" xml:space="preserve">
-    <value>Cortes disco&lt;br /&gt; desde sustitución</value>
+    <value>Cortes disco&lt;br /&gt;parcial&lt;br /&gt;(desde reset)</value>
   </data>
   <data name="FixedHead" xml:space="preserve">
-    <value>Cabezal&lt;br /&gt; Fijo</value>
+    <value>Cabezal Fijo</value>
   </data>
   <data name="MobileHead" xml:space="preserve">
-    <value>Cabezal&lt;br /&gt; Móvil</value>
+    <value>Cabezal Móvil</value>
   </data>
   <data name="Ore_vita_lama_ef" xml:space="preserve">
     <value>Horas vida&lt;br /&gt; efectivas &lt;br /&gt; disco</value>

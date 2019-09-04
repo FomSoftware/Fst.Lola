@@ -585,16 +585,16 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Coupes lame&lt;br /&gt; totales</value>
   </data>
   <data name="Parz_tagli_TF" xml:space="preserve">
-    <value>Coupes lame &lt;br /&gt; (depuis remplacement)</value>
+    <value>Coupes lame &lt;br /&gt;partiel&lt;br /&gt;(depuis reset)</value>
   </data>
   <data name="Parz_tagli_TM" xml:space="preserve">
-    <value>Coupes lame &lt;br /&gt; (depuis remplacement)</value>
+    <value>Coupes lame &lt;br /&gt;partiel&lt;br /&gt;(depuis reset)</value>
   </data>
   <data name="FixedHead" xml:space="preserve">
-    <value>Tête &lt;br /&gt; Fixe</value>
+    <value>Tête Fixe</value>
   </data>
   <data name="MobileHead" xml:space="preserve">
-    <value>Tête &lt;br /&gt; Mobile</value>
+    <value>Tête Mobile</value>
   </data>
   <data name="Ore_vita_lama_ef" xml:space="preserve">
     <value>Heures de vie &lt;br /&gt; lame &lt;br /&gt; effectives</value>

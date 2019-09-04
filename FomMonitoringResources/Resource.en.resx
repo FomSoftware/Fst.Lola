@@ -579,16 +579,16 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Total&lt;br /&gt; blade cuts</value>
   </data>
   <data name="Parz_tagli_TF" xml:space="preserve">
-    <value>Replacement &lt;br /&gt; blade cuts &lt;br /&gt; </value>
+    <value>Blade cuts &lt;br /&gt; partial &lt;br /&gt;(after reset)</value>
   </data>
   <data name="Parz_tagli_TM" xml:space="preserve">
-    <value>Replacement &lt;br /&gt; blade cuts &lt;br /&gt; </value>
+    <value>Blade cuts &lt;br /&gt; partial &lt;br /&gt;(after reset)</value>
   </data>
   <data name="FixedHead" xml:space="preserve">
-    <value>Fixed &lt;br /&gt; Head</value>
+    <value>Fixed Head</value>
   </data>
   <data name="MobileHead" xml:space="preserve">
-    <value>Mobile &lt;br /&gt; head</value>
+    <value>Mobile head</value>
   </data>
   <data name="Ore_vita_lama_ef" xml:space="preserve">
     <value>Actual &lt;br /&gt; blade&lt;br /&gt; lifespan</value>

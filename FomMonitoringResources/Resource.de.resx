@@ -584,16 +584,16 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>Schnitte Sägeblatt&lt;br /&gt; insgesamt</value>
   </data>
   <data name="Parz_tagli_TF" xml:space="preserve">
-    <value>Schnitte Sägeblatt&lt;br /&gt; von Ersatz </value>
+    <value>Schnitte Sägeblatt&lt;br /&gt;teilweise&lt;br /&gt;(von Ersatz) </value>
   </data>
   <data name="Parz_tagli_TM" xml:space="preserve">
-    <value>Schnitte Sägeblatt&lt;br /&gt; von Ersatz </value>
+    <value>Schnitte Sägeblatt&lt;br /&gt;teilweise&lt;br /&gt;(von Ersatz) </value>
   </data>
   <data name="FixedHead" xml:space="preserve">
-    <value>Fest- &lt;br /&gt; kopf </value>
+    <value>Fest- kopf </value>
   </data>
   <data name="MobileHead" xml:space="preserve">
-    <value>Verfahr- &lt;br /&gt; kopf </value>
+    <value>Verfahr- kopf </value>
   </data>
   <data name="Ore_vita_lama_ef" xml:space="preserve">
     <value>Effektive &lt;br /&gt; Lebensdauer &lt;br /&gt; Sägeblatt</value>

@@ -504,7 +504,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Testa &lt;br /&gt; Fissa.
+        ///   Looks up a localized string similar to Testa Fissa.
         /// </summary>
         public static string FixedHead {
             get {
@@ -711,7 +711,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Testa &lt;br /&gt; Mobile.
+        ///   Looks up a localized string similar to Testa Mobile.
         /// </summary>
         public static string MobileHead {
             get {
@@ -945,7 +945,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tagli lama&lt;br /&gt; da sostituzione.
+        ///   Looks up a localized string similar to Tagli lama&lt;br /&gt;parziali&lt;br/&gt;(da reset).
         /// </summary>
         public static string Parz_tagli_TF {
             get {
@@ -954,7 +954,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tagli lama&lt;br /&gt; da sostituzione.
+        ///   Looks up a localized string similar to Tagli lama&lt;br /&gt;parziali&lt;br/&gt;(da reset).
         /// </summary>
         public static string Parz_tagli_TM {
             get {

@@ -585,16 +585,16 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
     <value>Tagli lama&lt;br /&gt; totali</value>
   </data>
   <data name="Parz_tagli_TF" xml:space="preserve">
-    <value>Tagli lama&lt;br /&gt; da sostituzione</value>
+    <value>Tagli lama&lt;br /&gt;parziali&lt;br/&gt;(da reset)</value>
   </data>
   <data name="Parz_tagli_TM" xml:space="preserve">
-    <value>Tagli lama&lt;br /&gt; da sostituzione</value>
+    <value>Tagli lama&lt;br /&gt;parziali&lt;br/&gt;(da reset)</value>
   </data>
   <data name="FixedHead" xml:space="preserve">
-    <value>Testa &lt;br /&gt; Fissa</value>
+    <value>Testa Fissa</value>
   </data>
   <data name="MobileHead" xml:space="preserve">
-    <value>Testa &lt;br /&gt; Mobile</value>
+    <value>Testa Mobile</value>
   </data>
   <data name="Ore_vita_lama_ef" xml:space="preserve">
     <value>Ore vita &lt;br /&gt; lama &lt;br /&gt; effettive</value>
