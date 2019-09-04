@@ -997,8 +997,11 @@
     .table-spindle {
         width: 100%;
         table-layout: fixed;
-        height:100%;
-        background-color:#bebebe
+        height:100%;    
+    }
+
+    .table-spindle-tools {
+        background-color: #bebebe
     }
 
         .table-spindle tr:first-child td {
