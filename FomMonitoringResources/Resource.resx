@@ -614,4 +614,31 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="HeadWorkshop" xml:space="preserve">
     <value>HeadWorkshop</value>
   </data>
+  <data name="Axes" xml:space="preserve">
+    <value>Assi</value>
+  </data>
+  <data name="Critic_LamaOff_TF" xml:space="preserve">
+    <value>Numero&lt;br /&gt; spegnimenti&lt;br /&gt;critici &lt;br/&gt; motore lama TF</value>
+  </data>
+  <data name="Critic_LamaOff_TM" xml:space="preserve">
+    <value>Numero&lt;br /&gt; spegnimenti&lt;br /&gt;critici &lt;br/&gt; motore lama TM</value>
+  </data>
+  <data name="Motors" xml:space="preserve">
+    <value>Motori</value>
+  </data>
+  <data name="Num_LamaON_TF" xml:space="preserve">
+    <value>Numero&lt;br /&gt; accensioni/ &lt;br /&gt;spegnimenti &lt;br/&gt; motore lama TF</value>
+  </data>
+  <data name="Num_LamaON_TM" xml:space="preserve">
+    <value>Numero&lt;br /&gt; accensioni/ &lt;br /&gt;spegnimenti &lt;br/&gt; motore lama TM</value>
+  </data>
+  <data name="Num_mPercorsiAsseX" xml:space="preserve">
+    <value>Asse X KM</value>
+  </data>
+  <data name="Num_mPercorsiAsseY" xml:space="preserve">
+    <value>Asse Y KM</value>
+  </data>
+  <data name="Num_mPercorsiAsseZ" xml:space="preserve">
+    <value>Asse Z KM</value>
+  </data>
 </root>

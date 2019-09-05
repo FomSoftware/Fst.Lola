@@ -94,7 +94,8 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/jobs.js",
                         "~/GlobApp/scripts/machine/maintenance.js",
                         "~/GlobApp/scripts/plantmessages.js",
-                        "~/GlobApp/scripts/machine/tools/blitz.js"
+                        "~/GlobApp/scripts/machine/tools/blitz.js",
+                        "~/GlobApp/scripts/machine/motoraxes/blitz.js"
                       ));
 
             #endregion

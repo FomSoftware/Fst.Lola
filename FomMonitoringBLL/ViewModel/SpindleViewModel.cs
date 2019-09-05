@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FomMonitoringCore.Framework.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace FomMonitoringBLL.ViewModel
     public class SpindleViewModel
     {
         public SpindleVueModel vm_spindles { get; set; }
+        public MotorAxesParameterVueModel vm_motoraxes_blitz { get; set; }
         public MachineInfoViewModel vm_machine_info { get; set; }
     }
 
@@ -20,6 +22,14 @@ namespace FomMonitoringBLL.ViewModel
     {
         public List<SpindleDataModel> spindles { get; set; }
         public SortingViewModel sorting { get; set; }
+    }
+
+
+    public class MotorAxesParameterVueModel
+    {
+        public List<ParameterMachineValueModel> motors { get; set; } = new List<ParameterMachineValueModel>();
+        public List<ParameterMachineValueModel> axes { get; set; } = new List<ParameterMachineValueModel>();
+
     }
 
     public class SpindleDataModel

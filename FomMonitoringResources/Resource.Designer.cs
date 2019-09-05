@@ -106,6 +106,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assi.
+        /// </summary>
+        public static string Axes {
+            get {
+                return ResourceManager.GetString("Axes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Motors/Axes.
         /// </summary>
         public static string AxisMotors {
@@ -264,6 +273,24 @@ namespace FomMonitoringResources {
         public static string CreateUserEmailSubject {
             get {
                 return ResourceManager.GetString("CreateUserEmailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Numero&lt;br /&gt; spegnimenti&lt;br /&gt;critici &lt;br/&gt; motore lama TF.
+        /// </summary>
+        public static string Critic_LamaOff_TF {
+            get {
+                return ResourceManager.GetString("Critic_LamaOff_TF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Numero&lt;br /&gt; spegnimenti&lt;br /&gt;critici &lt;br/&gt; motore lama TM.
+        /// </summary>
+        public static string Critic_LamaOff_TM {
+            get {
+                return ResourceManager.GetString("Critic_LamaOff_TM", resourceCulture);
             }
         }
         
@@ -747,6 +774,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Motori.
+        /// </summary>
+        public static string Motors {
+            get {
+                return ResourceManager.GetString("Motors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expired.
         /// </summary>
         public static string MsgExpiredTime {
@@ -833,6 +869,51 @@ namespace FomMonitoringResources {
         public static string NothingSelected {
             get {
                 return ResourceManager.GetString("NothingSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Numero&lt;br /&gt; accensioni/ &lt;br /&gt;spegnimenti &lt;br/&gt; motore lama TF.
+        /// </summary>
+        public static string Num_LamaON_TF {
+            get {
+                return ResourceManager.GetString("Num_LamaON_TF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Numero&lt;br /&gt; accensioni/ &lt;br /&gt;spegnimenti &lt;br/&gt; motore lama TM.
+        /// </summary>
+        public static string Num_LamaON_TM {
+            get {
+                return ResourceManager.GetString("Num_LamaON_TM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asse X KM.
+        /// </summary>
+        public static string Num_mPercorsiAsseX {
+            get {
+                return ResourceManager.GetString("Num_mPercorsiAsseX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asse Y KM.
+        /// </summary>
+        public static string Num_mPercorsiAsseY {
+            get {
+                return ResourceManager.GetString("Num_mPercorsiAsseY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asse Z KM.
+        /// </summary>
+        public static string Num_mPercorsiAsseZ {
+            get {
+                return ResourceManager.GetString("Num_mPercorsiAsseZ", resourceCulture);
             }
         }
         

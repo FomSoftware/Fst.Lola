@@ -13,7 +13,11 @@ namespace FomMonitoringBLL.ViewServices
         public static SpindleViewModel GetSpindles(ContextModel context)
         {
             SpindleViewModel result = new SpindleViewModel();
-            result.vm_spindles = GetVueModel(context.ActualMachine);
+
+            if (MachineService.GetMachinePanels(context).Contains((int)enPanel.BlitzMotorAxes))
+                result.vm_motoraxes_blitz = GetVueModelBlitz(context.ActualMachine, true);
+            else 
+                result.vm_spindles = GetVueModel(context.ActualMachine);
             
             result.vm_machine_info = new MachineInfoViewModel
             {
@@ -25,6 +29,22 @@ namespace FomMonitoringBLL.ViewServices
 
             return result;
         }
+
+        private static MotorAxesParameterVueModel GetVueModelBlitz(MachineInfoModel machine, bool xmodule = false)
+        {
+
+            var par = ParameterMachineService.GetParameters(machine, (int)enPanel.BlitzMotorAxes);
+
+            var result = new MotorAxesParameterVueModel
+            {
+                motors = par.Where(p => p.VarNumber == 428 || p.VarNumber == 430 || p.VarNumber == 432 || p.VarNumber == 434).OrderBy(n => n.VarNumber).ToList(),
+
+                axes = par.Where(p => p.VarNumber == 450 || p.VarNumber == 452 || p.VarNumber == 454).OrderBy(n => n.VarNumber).ToList(),
+            };
+
+            return result;
+        }
+
 
         public static XSpindleViewModel GetXSpindles(ContextModel context)
         {

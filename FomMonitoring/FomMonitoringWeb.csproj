@@ -415,6 +415,7 @@
     <Content Include="GlobApp\plugins\waitMe\waitMe.min.js" />
     <Content Include="GlobApp\scripts\machine\maintenance.js" />
     <Content Include="GlobApp\scripts\machine\messages.js" />
+    <Content Include="GlobApp\scripts\machine\motoraxes\blitz.js" />
     <Content Include="GlobApp\scripts\machine\tools\blitz.js" />
     <Content Include="GlobApp\scripts\machine\xtools.js" />
     <Content Include="GlobApp\scripts\machine\xspindles.js" />
@@ -436,6 +437,8 @@
     <Content Include="Images\flags\es.png" />
     <Content Include="Images\flags\fr.png" />
     <Content Include="Images\flags\it.png" />
+    <Content Include="Images\icon\ico_contachilometri.png" />
+    <Content Include="Images\icon\ico_motoriassi.png" />
     <Content Include="Images\logo\Icon-35.png" />
     <Content Include="Images\logo\Log_On_Live_Automation-600x100px.png" />
     <Content Include="Images\logo\Lola-35.png" />
@@ -853,6 +856,7 @@
     <Content Include="Views\Shared\Modals\_Disclaimer.cshtml" />
     <Content Include="Views\Shared\Modals\_ChangePassword.cshtml" />
     <Content Include="Views\Machine\Tools\_Blitz.cshtml" />
+    <Content Include="Views\Machine\MotorAxes\_Blitz.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
