@@ -24,6 +24,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icofom-motoriassi:before {
+  content: "\e900";
+}
 .icofom-centrolavoro:before {
   content: "\e94b";
 }
