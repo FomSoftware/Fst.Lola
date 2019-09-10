@@ -3,6 +3,7 @@ using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using FomMonitoringResources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -41,6 +42,17 @@ namespace FomMonitoringBLL.ViewServices
 
                 axes = par.Where(p => p.VarNumber == 450 || p.VarNumber == 452 || p.VarNumber == 454).OrderBy(n => n.VarNumber).ToList(),
             };
+
+            foreach(var mot in result.motors)
+            {
+                mot.Value = Double.IsNaN(Double.Parse(mot.Value)) ? "" : Double.Parse(mot.Value).ToString("0.000");
+            }
+
+            foreach (var ax in result.axes)
+            {
+                ax.Value = Double.IsNaN(Double.Parse(ax.Value)) ? "" : Double.Parse(ax.Value).ToString("0.000");
+            }
+
 
             return result;
         }

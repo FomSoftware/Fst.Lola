@@ -83,6 +83,16 @@ namespace FomMonitoringBLL.ViewServices
                 toolsTm = par.Where(p => p.VarNumber == 422 || p.VarNumber == 424 || p.VarNumber == 426).OrderBy(n => n.VarNumber).ToList(),
             };
 
+            foreach (var t1 in result.toolsTf)
+            {
+                t1.Value = Double.IsNaN(Double.Parse(t1.Value)) ? "" : Double.Parse(t1.Value).ToString("0.000");
+            }
+
+            foreach (var t2 in result.toolsTm)
+            {
+                t2.Value = Double.IsNaN(Double.Parse(t2.Value)) ? "" : Double.Parse(t2.Value).ToString("0.000");
+            }
+
             return result;
         }
         
