@@ -995,7 +995,7 @@
     /*#region table spindle */
 
     .table-spindle {
-        width: 100%;
+        width: calc(100% + 1px);
         table-layout: fixed;
         height:100%;    
     }
