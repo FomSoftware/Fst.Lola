@@ -995,11 +995,11 @@
 
     /*#region table spindle */
 
-    .table-spindle {
-        width: 100%;
-        table-layout: fixed;
-        height:100%;    
-    }
+.table-spindle {
+    width: calc(100% + 1px);
+    table-layout: fixed;
+    height: 100%;
+}
 
     .table-spindle-tools {
         background-color: #bebebe
