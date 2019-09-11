@@ -225,18 +225,18 @@ namespace FomMonitoringResources {
         /// <summary>
         ///   Looks up a localized string similar to Tagli lama &lt;br /&gt; totali.
         /// </summary>
-        public static string Contat_tagli_TF {
+        public static string Contat_Tagli_TF {
             get {
-                return ResourceManager.GetString("Contat_tagli_TF", resourceCulture);
+                return ResourceManager.GetString("Contat_Tagli_TF", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Tagli lama &lt;br /&gt; totali.
         /// </summary>
-        public static string Contat_tagli_TM {
+        public static string Contat_Tagli_TM {
             get {
-                return ResourceManager.GetString("Contat_tagli_TM", resourceCulture);
+                return ResourceManager.GetString("Contat_Tagli_TM", resourceCulture);
             }
         }
         

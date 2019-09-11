@@ -599,10 +599,10 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   <data name="Ore_vita_lama_ef" xml:space="preserve">
     <value>Horas vida&lt;br /&gt; efectivas &lt;br /&gt; disco</value>
   </data>
-  <data name="Contat_tagli_TF" xml:space="preserve">
+  <data name="Contat_Tagli_TF" xml:space="preserve">
     <value>Cortes disco&lt;br /&gt; totales</value>
   </data>
-  <data name="Contat_tagli_TM" xml:space="preserve">
+  <data name="Contat_Tagli_TM" xml:space="preserve">
     <value>Cortes disco&lt;br /&gt; totales</value>
   </data>
   <data name="CreateUserEmailSubject" xml:space="preserve">

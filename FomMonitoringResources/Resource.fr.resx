@@ -599,10 +599,10 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="Ore_vita_lama_ef" xml:space="preserve">
     <value>Heures de vie &lt;br /&gt; lame &lt;br /&gt; effectives</value>
   </data>
-  <data name="Contat_tagli_TF" xml:space="preserve">
+  <data name="Contat_Tagli_TF" xml:space="preserve">
     <value>Coupes lame&lt;br /&gt; totales</value>
   </data>
-  <data name="Contat_tagli_TM" xml:space="preserve">
+  <data name="Contat_Tagli_TM" xml:space="preserve">
     <value>Coupes lame&lt;br /&gt; totales</value>
   </data>
   <data name="CreateUserEmailSubject" xml:space="preserve">

@@ -599,10 +599,10 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="Ore_vita_lama_ef" xml:space="preserve">
     <value>Ore vita &lt;br /&gt; lama &lt;br /&gt; effettive</value>
   </data>
-  <data name="Contat_tagli_TM" xml:space="preserve">
+  <data name="Contat_Tagli_TM" xml:space="preserve">
     <value>Tagli lama&lt;br /&gt; totali</value>
   </data>
-  <data name="Contat_tagli_TF" xml:space="preserve">
+  <data name="Contat_Tagli_TF" xml:space="preserve">
     <value>Tagli lama&lt;br /&gt; totali</value>
   </data>
   <data name="CreateUserEmailSubject" xml:space="preserve">

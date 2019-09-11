@@ -599,10 +599,10 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
-  <data name="Contat_tagli_TF" xml:space="preserve">
+  <data name="Contat_Tagli_TF" xml:space="preserve">
     <value>Total&lt;br /&gt; blade cuts</value>
   </data>
-  <data name="Contat_tagli_TM" xml:space="preserve">
+  <data name="Contat_Tagli_TM" xml:space="preserve">
     <value>Total&lt;br /&gt; blade cuts</value>
   </data>
   <data name="CreateUserEmailSubject" xml:space="preserve">

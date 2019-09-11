@@ -598,10 +598,10 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="Ore_vita_lama_ef" xml:space="preserve">
     <value>Effektive &lt;br /&gt; Lebensdauer &lt;br /&gt; Sägeblatt</value>
   </data>
-  <data name="Contat_tagli_TF" xml:space="preserve">
+  <data name="Contat_Tagli_TF" xml:space="preserve">
     <value>Schnitte Sägeblatt&lt;br /&gt; insgesamt</value>
   </data>
-  <data name="Contat_tagli_TM" xml:space="preserve">
+  <data name="Contat_Tagli_TM" xml:space="preserve">
     <value>Schnitte Sägeblatt&lt;br /&gt; insgesamt</value>
   </data>
   <data name="CreateUserEmailSubject" xml:space="preserve">
