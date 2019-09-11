@@ -613,4 +613,43 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="HeadWorkshop" xml:space="preserve">
     <value>Werkstattleiter</value>
   </data>
+  <data name="Axes" xml:space="preserve">
+    <value>Achsen</value>
+  </data>
+  <data name="Critic_LamaOff_TF" xml:space="preserve">
+    <value>Nr. Kritis.&lt;br /&gt; OFF &lt;br /&gt; Sägeblattm. FK</value>
+  </data>
+  <data name="Critic_LamaOff_TM" xml:space="preserve">
+    <value>Nr. Kritis. &lt;br /&gt; OFF &lt;br /&gt; Sägeblattm. VK</value>
+  </data>
+  <data name="Motors" xml:space="preserve">
+    <value>Sägeblattmotor</value>
+  </data>
+  <data name="Num_LamaON_TF" xml:space="preserve">
+    <value>Nr. ON/&lt;br /&gt; OFF &lt;br /&gt; Sägeblattm. FK</value>
+  </data>
+  <data name="Num_LamaON_TM" xml:space="preserve">
+    <value>Nr. ON/&lt;br /&gt; OFF &lt;br /&gt; Sägeblattm. VK</value>
+  </data>
+  <data name="Num_mPercorsiAsseX" xml:space="preserve">
+    <value>KM Achse X</value>
+  </data>
+  <data name="Num_mPercorsiAsseY" xml:space="preserve">
+    <value>KM Achse Y</value>
+  </data>
+  <data name="Num_mPercorsiAsseZ" xml:space="preserve">
+    <value>KM Achse Z</value>
+  </data>
+  <data name="Num_mPercorsiAsseU" xml:space="preserve">
+    <value>KM Achse U</value>
+  </data>
+  <data name="Num_mPercorsiAsseW" xml:space="preserve">
+    <value>KM Achse W</value>
+  </data>
+  <data name="motore_lama_TF" xml:space="preserve">
+    <value>Sägeblattmotor Festkopf</value>
+  </data>
+  <data name="motore_lama_TM" xml:space="preserve">
+    <value>Sägeblattmotor Verfahrkopf</value>
+  </data>
 </root>

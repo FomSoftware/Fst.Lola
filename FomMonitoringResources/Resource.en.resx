@@ -614,4 +614,43 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="HeadWorkshop" xml:space="preserve">
     <value>HeadWorkshop</value>
   </data>
+  <data name="Axes" xml:space="preserve">
+    <value>Axes</value>
+  </data>
+  <data name="Critic_LamaOff_TF" xml:space="preserve">
+    <value>N. FH &lt;br /&gt;blade motor &lt;br /&gt;critical off</value>
+  </data>
+  <data name="Critic_LamaOff_TM" xml:space="preserve">
+    <value>N. MH &lt;br /&gt;blade motor &lt;br /&gt;critical off</value>
+  </data>
+  <data name="Motors" xml:space="preserve">
+    <value>Motors</value>
+  </data>
+  <data name="Num_LamaON_TF" xml:space="preserve">
+    <value>N. of FH &lt;br /&gt;blade motor &lt;br /&gt;on/off's</value>
+  </data>
+  <data name="Num_LamaON_TM" xml:space="preserve">
+    <value>N. of MH &lt;br /&gt;blade motor &lt;br /&gt;on/off's</value>
+  </data>
+  <data name="Num_mPercorsiAsseX" xml:space="preserve">
+    <value>KM axis X</value>
+  </data>
+  <data name="Num_mPercorsiAsseY" xml:space="preserve">
+    <value>KM axis Y</value>
+  </data>
+  <data name="Num_mPercorsiAsseZ" xml:space="preserve">
+    <value>KM axis Z</value>
+  </data>
+  <data name="Num_mPercorsiAsseU" xml:space="preserve">
+    <value>KM axis U</value>
+  </data>
+  <data name="Num_mPercorsiAsseW" xml:space="preserve">
+    <value>KM axis W</value>
+  </data>
+  <data name="motore_lama_TF" xml:space="preserve">
+    <value>Fixed head blade motor</value>
+  </data>
+  <data name="motore_lama_TM" xml:space="preserve">
+    <value>Mobile head blade motor</value>
+  </data>
 </root>

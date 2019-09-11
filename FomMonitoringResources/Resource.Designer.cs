@@ -277,7 +277,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Numero&lt;br /&gt; spegnimenti&lt;br /&gt;critici &lt;br/&gt; motore lama TF.
+        ///   Looks up a localized string similar to N. spegnimenti&lt;br /&gt;critici &lt;br/&gt; motore lama TF.
         /// </summary>
         public static string Critic_LamaOff_TF {
             get {
@@ -286,7 +286,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Numero&lt;br /&gt; spegnimenti&lt;br /&gt;critici &lt;br/&gt; motore lama TM.
+        ///   Looks up a localized string similar to N. spegnimenti&lt;br /&gt;critici &lt;br/&gt; motore lama TM.
         /// </summary>
         public static string Critic_LamaOff_TM {
             get {
@@ -774,6 +774,24 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fixed head blade motor.
+        /// </summary>
+        public static string motore_lama_TF {
+            get {
+                return ResourceManager.GetString("motore_lama_TF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile head blade motor.
+        /// </summary>
+        public static string motore_lama_TM {
+            get {
+                return ResourceManager.GetString("motore_lama_TM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Motori.
         /// </summary>
         public static string Motors {
@@ -873,7 +891,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Numero&lt;br /&gt; accensioni/ &lt;br /&gt;spegnimenti &lt;br/&gt; motore lama TF.
+        ///   Looks up a localized string similar to N. accensioni/ &lt;br /&gt;spegnimenti &lt;br/&gt; motore lama TF.
         /// </summary>
         public static string Num_LamaON_TF {
             get {
@@ -882,7 +900,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Numero&lt;br /&gt; accensioni/ &lt;br /&gt;spegnimenti &lt;br/&gt; motore lama TM.
+        ///   Looks up a localized string similar to N. accensioni/ &lt;br /&gt;spegnimenti &lt;br/&gt; motore lama TM.
         /// </summary>
         public static string Num_LamaON_TM {
             get {
@@ -891,7 +909,25 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Asse X KM.
+        ///   Looks up a localized string similar to KM axis U.
+        /// </summary>
+        public static string Num_mPercorsiAsseU {
+            get {
+                return ResourceManager.GetString("Num_mPercorsiAsseU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis W.
+        /// </summary>
+        public static string Num_mPercorsiAsseW {
+            get {
+                return ResourceManager.GetString("Num_mPercorsiAsseW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM asse X.
         /// </summary>
         public static string Num_mPercorsiAsseX {
             get {
@@ -900,7 +936,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Asse Y KM.
+        ///   Looks up a localized string similar to KM asse Y.
         /// </summary>
         public static string Num_mPercorsiAsseY {
             get {
@@ -909,7 +945,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Asse Z KM.
+        ///   Looks up a localized string similar to KM asse Z.
         /// </summary>
         public static string Num_mPercorsiAsseZ {
             get {

@@ -614,4 +614,43 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   <data name="HeadWorkshop" xml:space="preserve">
     <value>Jefe taller</value>
   </data>
+  <data name="Axes" xml:space="preserve">
+    <value>Ejes</value>
+  </data>
+  <data name="Critic_LamaOff_TF" xml:space="preserve">
+    <value>Nº OFF &lt;br /&gt; críticos &lt;br /&gt;motor disco CF</value>
+  </data>
+  <data name="Critic_LamaOff_TM" xml:space="preserve">
+    <value>Nº OFF &lt;br /&gt; críticos &lt;br /&gt;motor disco CM</value>
+  </data>
+  <data name="Motors" xml:space="preserve">
+    <value>Motor</value>
+  </data>
+  <data name="Num_LamaON_TF" xml:space="preserve">
+    <value>Nº ON/OFF &lt;br /&gt;  motor disco CF</value>
+  </data>
+  <data name="Num_LamaON_TM" xml:space="preserve">
+    <value>Nº ON/OFF &lt;br /&gt; motor disco CM</value>
+  </data>
+  <data name="Num_mPercorsiAsseX" xml:space="preserve">
+    <value>KM eje X</value>
+  </data>
+  <data name="Num_mPercorsiAsseY" xml:space="preserve">
+    <value>KM eje Y</value>
+  </data>
+  <data name="Num_mPercorsiAsseZ" xml:space="preserve">
+    <value>KM eje Z</value>
+  </data>
+  <data name="Num_mPercorsiAsseU" xml:space="preserve">
+    <value>KM eje U</value>
+  </data>
+  <data name="Num_mPercorsiAsseW" xml:space="preserve">
+    <value>KM eje W</value>
+  </data>
+  <data name="motore_lama_TF" xml:space="preserve">
+    <value>Motor disco cabezal fijo</value>
+  </data>
+  <data name="motore_lama_TM" xml:space="preserve">
+    <value>Motor disco cabezal móvil</value>
+  </data>
 </root>
