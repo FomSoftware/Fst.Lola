@@ -626,10 +626,10 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>Sägeblattmotor</value>
   </data>
   <data name="Num_LamaON_TF" xml:space="preserve">
-    <value>Nr. ON/&lt;br /&gt; OFF &lt;br /&gt; Sägeblattm. FK</value>
+    <value>Nr. ON/OFF &lt;br /&gt; Sägeblattm. FK</value>
   </data>
   <data name="Num_LamaON_TM" xml:space="preserve">
-    <value>Nr. ON/&lt;br /&gt; OFF &lt;br /&gt; Sägeblattm. VK</value>
+    <value>Nr. ON/OFF &lt;br /&gt; Sägeblattm. VK</value>
   </data>
   <data name="Num_mPercorsiAsseX" xml:space="preserve">
     <value>KM Achse X</value>
