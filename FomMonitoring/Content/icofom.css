@@ -24,6 +24,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icofom-motori:before {
+    content: "\e902";
+}
+
+.icofom-assi:before {
+    content: "\e901";
+}
+
 .icofom-motoriassi:before {
   content: "\e900";
 }
