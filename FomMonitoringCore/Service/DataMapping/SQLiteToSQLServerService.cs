@@ -161,7 +161,7 @@ namespace FomMonitoringCore.Service.DataMapping
 
                         StateMachine lastState = ent.StateMachine.Where(w => w.MachineId == machineActual.Id).OrderByDescending(o => o.EndTime).FirstOrDefault();
                         machineActual = ent.Machine.FirstOrDefault(f => f.Id == machineActual.Id);
-                        machineActual.LastUpdate = lastState.EndTime;
+                        machineActual.LastUpdate = lastState?.EndTime ?? DateTime.Now;
                         ent.SaveChanges();
 
                         ent.usp_HistoricizingAll(machineActual.Id);
