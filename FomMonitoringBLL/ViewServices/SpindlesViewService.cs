@@ -16,9 +16,21 @@ namespace FomMonitoringBLL.ViewServices
             SpindleViewModel result = new SpindleViewModel();
 
             if (MachineService.GetMachinePanels(context).Contains((int)enPanel.BlitzMotorAxes))
+            {
                 result.vm_motoraxes_blitz = GetVueModelBlitz(context.ActualMachine, true);
-            else 
-                result.vm_spindles = GetVueModel(context.ActualMachine);
+            }
+            else
+            {
+                if (MachineService.GetMachinePanels(context).Contains((int)enPanel.KeopeMotors))
+                {
+                    result.vm_motor_keope = GetVueModelKeope(context.ActualMachine);
+                }
+                else
+                {
+                    result.vm_spindles = GetVueModel(context.ActualMachine);
+                }
+
+            }
             
             result.vm_machine_info = new MachineInfoViewModel
             {
@@ -27,6 +39,32 @@ namespace FomMonitoringBLL.ViewServices
                 id_mtype = context.ActualMachine.Type.Id,
                 machineName = context.ActualMachine.MachineName
             };
+
+            return result;
+        }
+
+        private static MotorKeopeParameterVueModel GetVueModelKeope(MachineInfoModel machine, bool xmodule = false)
+        {
+
+            var par = ParameterMachineService.GetParameters(machine, (int)enPanel.KeopeMotors);
+
+            var result = new MotorKeopeParameterVueModel
+            {
+                fixedHead = par.Where(p => p.VarNumber == 428 || p.VarNumber == 432).OrderBy(n => n.VarNumber).ToList(),
+
+                mobileHead = par.Where(p => p.VarNumber == 430 || p.VarNumber == 434).OrderBy(n => n.VarNumber).ToList(),
+            };
+
+            foreach (var mot in result.fixedHead)
+            {
+                mot.Value = double.IsNaN(double.Parse(mot.Value)) ? "" : double.Parse(mot.Value).ToString("0.000");
+            }
+
+            foreach (var ax in result.mobileHead)
+            {
+                ax.Value = double.IsNaN(double.Parse(ax.Value)) ? "" : double.Parse(ax.Value).ToString("0.000");
+            }
+
 
             return result;
         }
@@ -45,12 +83,12 @@ namespace FomMonitoringBLL.ViewServices
 
             foreach(var mot in result.motors)
             {
-                mot.Value = Double.IsNaN(Double.Parse(mot.Value)) ? "" : Double.Parse(mot.Value).ToString("0.000");
+                mot.Value = double.IsNaN(double.Parse(mot.Value)) ? "" : double.Parse(mot.Value).ToString("0.000");
             }
 
             foreach (var ax in result.axes)
             {
-                ax.Value = Double.IsNaN(Double.Parse(ax.Value)) ? "" : Double.Parse(ax.Value).ToString("0.000");
+                ax.Value = double.IsNaN(double.Parse(ax.Value)) ? "" : double.Parse(ax.Value).ToString("0.000");
             }
 
 

@@ -69,6 +69,8 @@ namespace FomMonitoringCore.Framework.Common
         Efficiency = 9,
         [Description("blitzMotorAxes")]
         BlitzMotorAxes = 25,
+        [Description("keopeMotors")]
+        KeopeMotors = 27,
     }
 
     public enum enDataType

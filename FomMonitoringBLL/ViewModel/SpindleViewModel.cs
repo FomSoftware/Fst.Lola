@@ -11,6 +11,7 @@ namespace FomMonitoringBLL.ViewModel
         public SpindleVueModel vm_spindles { get; set; }
         public MotorAxesParameterVueModel vm_motoraxes_blitz { get; set; }
         public MachineInfoViewModel vm_machine_info { get; set; }
+        public MotorKeopeParameterVueModel vm_motor_keope { get; set; }
     }
 
     public class XSpindleViewModel
@@ -24,6 +25,12 @@ namespace FomMonitoringBLL.ViewModel
         public SortingViewModel sorting { get; set; }
     }
 
+    public class MotorKeopeParameterVueModel
+    {
+        public List<ParameterMachineValueModel> fixedHead { get; set; } = new List<ParameterMachineValueModel>();
+        public List<ParameterMachineValueModel> mobileHead { get; set; } = new List<ParameterMachineValueModel>();
+
+    }
 
     public class MotorAxesParameterVueModel
     {
