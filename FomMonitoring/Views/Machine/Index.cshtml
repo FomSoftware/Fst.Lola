@@ -19,11 +19,21 @@
                 @Html.Partial("_Productivity", Model.Productivity)
             </div>
         </div>
-            @if (Model.MachinePanels.Contains((int)enPanel.BlitzMotorAxes))
+        @if (Model.MachinePanels.Contains((int)enPanel.BlitzMotorAxes))
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    @Html.Partial("./MotorAxes/_Blitz", Model.Spindles)
+                </div>
+            </div>
+        }
+        else
+        {
+            if (Model.MachinePanels.Contains((int)enPanel.KeopeMotors))
             {
                 <div class="row">
                     <div class="col-sm-12">
-                        @Html.Partial("./MotorAxes/_Blitz", Model.Spindles)
+                        @Html.Partial("./Motor/_Keope", Model.Spindles)
                     </div>
                 </div>
             }
@@ -35,15 +45,17 @@
                     </div>
                 </div>
             }
-            @if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)
-            {
-                <div class="row">
-                    <div class="col-sm-12">
-                        @Html.Partial("_XSpindles", Model.XSpindles)
-                    </div>
+
+        }
+        @if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    @Html.Partial("_XSpindles", Model.XSpindles)
                 </div>
-            }
-        </div>
+            </div>
+        }
+    </div>
     <div class="col-lg-4 col-md-6 col-sm-12  card-wrap-2">
         <div class="row">
             <div class="col-sm-12">
