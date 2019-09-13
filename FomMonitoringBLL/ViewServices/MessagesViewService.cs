@@ -70,7 +70,7 @@ namespace FomMonitoringBLL.ViewServices
             List<MessageDataModel> messages = data.Select(a => new MessageDataModel()
             {
                 code = a.Code,
-                type = ((enTypeAlarm)ReadMessages.GetMessageType(a.Code, machine.Id)).GetDescription(),
+                type = ReadMessages.GetMessageType(a.Code, machine.Id) != null ? ((enTypeAlarm)ReadMessages.GetMessageType(a.Code, machine.Id)).GetDescription() : String.Empty,
                 //((enTypeAlarm)a.StateId).GetDescription(),
                 parameters = a.Params,
                 time = CommonViewService.getTimeViewModel(a.ElapsedTime),

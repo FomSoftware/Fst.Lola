@@ -27,7 +27,8 @@ namespace FomMonitoringCore.Framework.Common
             {
                 mm.Group = msg.MachineGroupId;
             }
-            mm.Type = msg.MessageTypeId.ToString();
+            if(msg != null)
+                mm.Type = msg.MessageTypeId.ToString();
 
         }       
 

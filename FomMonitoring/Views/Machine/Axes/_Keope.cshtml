@@ -1,1 +1,93 @@
-﻿
+﻿@model FomMonitoringBLL.ViewModel.SpindleViewModel
+@using FomMonitoringResources
+
+<div id="CardAxesKeope" class="portlet">
+    <div class="portlet-title">
+        <div class="portlet-kpi">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
+                <i class="fa icofom-assi fa-stack-1x fa-inverse" style="font-size:21px"></i>
+            </span>
+        </div>
+        <div class="title-kpi" style="max-width: 130px;">
+            <span>@Resource.Axes</span>
+            <div class="sub-period">@Resource.UntilNow</div>
+        </div>
+    </div>
+    <div class="portlet-body text-center" style="height:244px">
+        <div class="card-portlet">
+            <div v-if="axes != null && axes.length > 0" style="height:242px">
+                <hr style="background-color:#0c3817;height:2px;border:none" />
+                <div style="cursor:auto;height:100%">                 
+                    <table class="table-spindle .table-spindle-axes" style="height:100%">                                                
+                        <tr>
+                            <td class="td-tool td-tool-axes" >
+                                <label style="vertical-align: top;"> <img src="~/Images/icon/ico_contachilometri.png" style="width:23px" /></label>
+                                <label v-if="axes[0] != null && axes[0].Description != null" class="label-tools" v-html="axes[0].Description"></label>
+                            </td>
+                            <td class="td-tool tool-border-left td-tool-axes" >
+                                <label style="vertical-align: top;"><img src="~/Images/icon/ico_contachilometri.png" style="width:23px" /></label>
+                                <label v-if="axes[1] != null" class="label-tools" v-html="axes[1].Description"></label>
+                            </td>
+                            <td class="td-tool td-tool-axes" >
+                                <label style="vertical-align: top;"><img src="~/Images/icon/ico_contachilometri.png" style="width:23px" /></label>
+                                <label v-if="axes[2] != null" class="label-tools" v-html="axes[2].Description"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-tool">
+                                <label v-if="axes[0] != null && axes[0].Value != null" class="label-tools-value" v-html="axes[0].Value"></label>
+                            </td>
+                            <td class="td-tool tool-border-left">
+                                <label v-if="axes[1] != null && axes[1].Value != null" class="label-tools-value" v-html="axes[1].Value"></label>
+                            </td>
+                            <td class="td-tool">
+                                <label v-if="axes[2] != null && axes[2].Value != null" class="label-tools-value" v-html="axes[2].Value"></label>
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td class="td-tool td-tool-axes">
+                                <label style="vertical-align: top;"> <img src="~/Images/icon/ico_contachilometri.png" style="width:23px" /></label>
+                                <label v-if="axes[3] != null && axes[3].Description != null" class="label-tools" v-html="axes[3].Description"></label>
+                            </td>
+                            <td class="td-tool tool-border-left td-tool-axes">
+                                <label style="vertical-align: top;"><img src="~/Images/icon/ico_contachilometri.png" style="width:23px" /></label>
+                                <label v-if="axes[4] != null" class="label-tools" v-html="axes[4].Description"></label>
+                            </td>
+                            <td class="td-tool">
+                                            
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-tool">
+                                <label v-if="axes[3] != null && axes[3].Value != null" class="label-tools-value" v-html="axes[3].Value"></label>
+                            </td>
+                            <td class="td-tool tool-border-left">
+                                <label v-if="axes[4] != null && axes[4].Value != null" class="label-tools-value" v-html="axes[4].Value"></label>
+                            </td>
+                            <td class="td-tool">
+                                            
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <no-data v-else></no-data>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        var data = @Html.Raw(Json.Encode(Model));
+        AxesKeope.init(data);
+    });
+
+</script>

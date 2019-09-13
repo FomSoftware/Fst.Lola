@@ -24,6 +24,10 @@ namespace FomMonitoringBLL.ViewServices
                 if (MachineService.GetMachinePanels(context).Contains((int)enPanel.KeopeMotors))
                 {
                     result.vm_motor_keope = GetVueModelKeope(context.ActualMachine);
+                    if (MachineService.GetMachinePanels(context).Contains((int)enPanel.KeopeAxes))
+                    {
+                        result.vm_axes_keope = GetAxesVueModelKeope(context.ActualMachine);
+                    }
                 }
                 else
                 {
@@ -66,6 +70,24 @@ namespace FomMonitoringBLL.ViewServices
             }
 
 
+            return result;
+        }
+
+        private static AxesKeopeParameterVueModel GetAxesVueModelKeope(MachineInfoModel machine, bool xmodule = false)
+        {
+
+            var par = ParameterMachineService.GetParameters(machine, (int)enPanel.KeopeAxes);
+
+            var result = new AxesKeopeParameterVueModel
+            {
+                axes = par.Where(p => p.VarNumber == 450 || p.VarNumber == 452 || p.VarNumber == 454 || p.VarNumber == 456 || p.VarNumber == 458).OrderBy(n => n.VarNumber).ToList(),                
+            };
+
+            foreach (var ax in result.axes)
+            {
+                ax.Value = double.IsNaN(double.Parse(ax.Value)) ? "" : double.Parse(ax.Value).ToString("0.000");
+            }
+          
             return result;
         }
 
