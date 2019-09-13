@@ -19,7 +19,7 @@
             <div v-if="toolsTm != null && toolsTm.length > 0 && toolsTf != null && toolsTf.length > 0" style="height:242px">
                 <hr style="background-color:#0c3817;height:2px;border:none" />
                 <div style="cursor:auto;height:50%">
-                    <table class="table-spindle .table-spindle-tools" style="height:100%">
+                    <table class="table-spindle" style="height:100%">
                         <tr>
                             <td class="portlet-subtitle" style="font-size: 11px">
                                 @Html.Raw(Resource.FixedHead)
@@ -90,10 +90,10 @@
                                     </tr>
                                     <tr>
                                         <td class="td-tool">
-                                            <label v-if="toolsTm[0] != null && toolsTm[1].Value != null" class="label-tools-value" v-html="toolsTm[0].Value"></label>
+                                            <label v-if="toolsTm[0] != null && toolsTm[0].Value != null" class="label-tools-value" v-html="toolsTm[0].Value"></label>
                                         </td>
                                         <td class="td-tool tool-border-left">
-                                            <label v-if="toolsTm[1] != null && toolsTm[0].Value != null" class="label-tools-value" v-html="toolsTm[1].Value"></label>
+                                            <label v-if="toolsTm[1] != null && toolsTm[1].Value != null" class="label-tools-value" v-html="toolsTm[1].Value"></label>
                                         </td>
                                         <td class="td-tool">
                                             <label class="label-tools-value"></label>
@@ -119,6 +119,7 @@
     $(document).ready(function ()
     {
         var data = @Html.Raw(Json.Encode(Model));
+        console.log(data);
         ToolsBlitz.init(data);
     });
 

@@ -78,19 +78,19 @@ namespace FomMonitoringBLL.ViewServices
 
             var result = new ToolParameterVueModel
             {
-                toolsTf = par.Where(p => p.VarNumber == 416 || p.VarNumber == 418 || p.VarNumber == 420).OrderBy(n => n.VarNumber).ToList(),
+                toolsTf = par.Where(p => p.VarNumber == 416 || p.VarNumber == 420).OrderBy(n => n.VarNumber).ToList(),
 
-                toolsTm = par.Where(p => p.VarNumber == 422 || p.VarNumber == 424 || p.VarNumber == 426).OrderBy(n => n.VarNumber).ToList(),
+                toolsTm = par.Where(p => p.VarNumber == 422 || p.VarNumber == 426).OrderByDescending(n => n.VarNumber).ToList(),
             };
 
             foreach (var t1 in result.toolsTf)
             {
-                t1.Value = Double.IsNaN(Double.Parse(t1.Value)) ? "" : Double.Parse(t1.Value).ToString("0.000");
+                t1.Value = double.IsNaN(double.Parse(t1.Value)) ? "" : double.Parse(t1.Value).ToString("0.000");
             }
 
             foreach (var t2 in result.toolsTm)
             {
-                t2.Value = Double.IsNaN(Double.Parse(t2.Value)) ? "" : Double.Parse(t2.Value).ToString("0.000");
+                t2.Value = double.IsNaN(double.Parse(t2.Value)) ? "" : double.Parse(t2.Value).ToString("0.000");
             }
 
             return result;
