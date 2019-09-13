@@ -223,9 +223,13 @@
     {
         // update vue model
         var vm_spindles = data.vm_spindles;
-        vmSpindles.spindles = vm_spindles.spindles;
-        vmSpindles.sorting = vm_spindles.sorting;
-        vmSpindles.type = data.vm_machine_info.mtype;
+        if (vm_spindles != null) {
+            vmSpindles.spindles = vm_spindles.spindles;
+            vmSpindles.sorting = vm_spindles.sorting;
+            vmSpindles.type = data.vm_machine_info.mtype;
+        }
+       
+        
         //if (vmSpindles.spindles != null)
         //    $('.slimscroll').slimscroll({ scrollBy: '0px' });
         //else
