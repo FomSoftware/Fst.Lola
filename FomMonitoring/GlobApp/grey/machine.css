@@ -1001,16 +1001,22 @@
     height: 100%;
 }
 
-    .table-spindle-tools {
-        background-color: #bebebe
-    }
+    .table-spindle-axes .table-spindle-tools {
+    background-color: #bebebe
+}
 
-        .table-spindle tr:first-child td {
-            padding-bottom: 3px;
-            text-align: left;
-            font-size: 16px;
-            padding-left: 14px;            
-        }
+.td-tool-axes {
+    padding-top: 30px !important;
+    text-align: left;
+    padding-left: 14px;
+}
+
+.table-spindle tr:first-child td {
+    padding-bottom: 3px;
+    text-align: left;
+    font-size: 16px;
+    padding-left: 14px;
+}
 
         /*.table-spindle tr:first-child:not(.second-tr) td:last-child {
         width: 40%;

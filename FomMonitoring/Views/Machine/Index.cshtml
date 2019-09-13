@@ -55,6 +55,14 @@
                 </div>
             </div>
         }
+        @if (Model.MachinePanels.Contains((int)enPanel.KeopeAxes))
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    @Html.Partial("./Axes/_Keope", Model.Spindles)
+                </div>
+            </div>
+        }
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12 card-wrap-2">
         <div class="row">
