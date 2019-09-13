@@ -7,8 +7,6 @@ using System.Linq;
 
 namespace FomMonitoringBLL.ViewServices
 {
-
-
     public class PanelParametersViewService
     {
         public static PanelParametersViewModel GetParameters(ContextModel context)
