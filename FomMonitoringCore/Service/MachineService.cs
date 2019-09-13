@@ -262,47 +262,6 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        public static int? GetPanelId(ParameterMachineModelXml src, int idModel)
-        {
-            var panel = src.PANEL_ID;
-
-                try
-                {
-                    using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-                    {
-                        var pa = ent.Panel.FirstOrDefault(p => p.Id == panel);
-                        if (pa != null)
-                        {
-                            if (!pa.MachineModel.Any(mm => mm.Id == idModel))
-                            {
-                                pa.MachineModel.Add(ent.MachineModel.First(mm => mm.Id == idModel));
-                                var idPanels = ent.ParameterMachine.Where(pm => pm.MachineModelId == idModel).ToList();
-                                var toRmv = pa.MachineModel.Where(machineModel => machineModel.Id == idModel && !idPanels.Any(i => machineModel.Panel.Any(a => a.Id == i.PanelId))).ToList();
-                                if (toRmv.Any())
-                                {
-                                    foreach (var t in toRmv)
-                                        pa.MachineModel.Remove(t);
-
-                                    ent.SaveChanges();
-                                }
-                            }
-                        }
-
-                        ent.SaveChanges();
-
-                        return pa.Id;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    string errMessage = string.Format(ex.GetStringLog(), idModel.ToString());
-                    LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-                }
-            
-
-            return null;
-        }
-
 
         #endregion
     }

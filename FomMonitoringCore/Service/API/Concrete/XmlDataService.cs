@@ -36,13 +36,7 @@ namespace FomMonitoringCore.Service.API.Concrete
 
                 db.SaveChanges();
 
-                var panelAssociationToRemove = machineModel.Panel.Where(p => !panelsXml.Any(p2 => p2 == p.Id)).ToList();
-                foreach(var r in panelAssociationToRemove)
-                {
-                    machineModel.Panel.Remove(r);
-                }
                 
-                db.SaveChanges();
 
             }
 
