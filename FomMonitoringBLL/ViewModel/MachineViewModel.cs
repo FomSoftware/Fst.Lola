@@ -17,7 +17,7 @@ namespace FomMonitoringBLL.ViewModel
         public AlarmViewModel Alarms { get; set; }
         public MessageViewModel Messages { get; set; }
 
-        public SpindleViewModel Spindles { get; set; }
+        public PanelParametersViewModel PanelParameter { get; set; }
 
         public ToolViewModel Tools { get; set; }
 

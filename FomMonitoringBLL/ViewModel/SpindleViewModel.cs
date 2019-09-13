@@ -4,7 +4,7 @@ using System.Web;
 
 namespace FomMonitoringBLL.ViewModel
 {
-    public class SpindleViewModel
+    public class PanelParametersViewModel
     {
         public SpindleVueModel vm_spindles { get; set; }
         public MotorAxesParameterVueModel vm_motoraxes_blitz { get; set; }

@@ -25,7 +25,7 @@ namespace FomMonitoringBLL.ViewServices
             //machine.Alarms = AlarmsViewService.GetAlarms(context);
             machine.Messages = MessagesViewService.GetMessages(context);
             machine.Jobs = JobsViewService.GetJobs(context);
-            machine.Spindles = SpindlesViewService.GetSpindles(context);
+            machine.PanelParameter = PanelParametersViewService.GetParameters(context);
             machine.Tools = ToolsViewService.GetTools(context);           
             machine.MachineInfo = new MachineInfoViewModel
             {
@@ -34,7 +34,7 @@ namespace FomMonitoringBLL.ViewServices
                 id_mtype = context.ActualMachine.Type.Id,
                 machineName = context.ActualMachine.MachineName
             };
-            machine.XSpindles = SpindlesViewService.GetXSpindles(context);
+            machine.XSpindles = PanelParametersViewService.GetXSpindles(context);
             machine.XTools = XToolsViewService.GetXTools(context);
             machine.Maintenance = MaintenanceViewService.GetMessages(context);           
             return machine;

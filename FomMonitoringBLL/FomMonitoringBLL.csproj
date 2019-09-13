@@ -90,13 +90,14 @@
     <Compile Include="ViewServices\MaintenanceViewService.cs" />
     <Compile Include="ViewServices\MessagesViewService.cs" />
     <Compile Include="ViewModel\PanelParameterViewModel.cs" />
+    <Compile Include="ViewServices\PanelParametersViewService.cs" />
     <Compile Include="ViewServices\PlantMessagesViewService.cs" />
     <Compile Include="ViewServices\MesViewService.cs" />
     <Compile Include="ViewServices\EfficiencyViewService.cs" />
     <Compile Include="ViewServices\JobsViewService.cs" />
     <Compile Include="ViewServices\ProductivityViewService.cs" />
     <Compile Include="ViewServices\SharedViewService.cs" />
-    <Compile Include="ViewServices\SpindlesViewService.cs" />
+    <Compile Include="ViewServices\SpindleViewService.cs" />
     <Compile Include="ViewServices\ToolsViewService.cs" />
     <Compile Include="ViewServices\XToolsViewService.cs" />
     <Compile Include="ViewServices\UserManagerViewService.cs" />
