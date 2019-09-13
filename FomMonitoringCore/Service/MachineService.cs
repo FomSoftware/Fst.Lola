@@ -162,7 +162,7 @@ namespace FomMonitoringCore.Service
 
         public static List<MachineInfoModel> GetAllMachinesByPlantID(int PlantID)
         {
-            List<Framework.Model.MachineInfoModel> result = new List<Framework.Model.MachineInfoModel>();
+            List<MachineInfoModel> result = new List<MachineInfoModel>();
 
             try
             {
@@ -183,7 +183,7 @@ namespace FomMonitoringCore.Service
 
         public static List<MachineInfoModel> GetUserMachines(Guid UserID)
         {
-            List<Framework.Model.MachineInfoModel> result = new List<Framework.Model.MachineInfoModel>();
+            List<MachineInfoModel> result = new List<MachineInfoModel>();
 
             try
             {
@@ -204,7 +204,7 @@ namespace FomMonitoringCore.Service
 
         public static List<MachineInfoModel> GetAllMachines()
         {
-            List<Framework.Model.MachineInfoModel> result = new List<Framework.Model.MachineInfoModel>();
+            List<MachineInfoModel> result = new List<MachineInfoModel>();
 
             try
             {
