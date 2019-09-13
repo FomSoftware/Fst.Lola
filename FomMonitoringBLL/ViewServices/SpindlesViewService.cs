@@ -59,14 +59,14 @@ namespace FomMonitoringBLL.ViewServices
                 mobileHead = par.Where(p => p.VarNumber == 430 || p.VarNumber == 434).OrderBy(n => n.VarNumber).ToList(),
             };
 
-            foreach (var mot in result.fixedHead)
+            foreach (var motFh in result.fixedHead)
             {
-                mot.Value = double.IsNaN(double.Parse(mot.Value)) ? "" : double.Parse(mot.Value).ToString("0.000");
+                motFh.Value = double.IsNaN(double.Parse(motFh.Value)) ? "" : string.Format("{0:#,0}", double.Parse(motFh.Value));
             }
 
-            foreach (var ax in result.mobileHead)
+            foreach (var motMh in result.mobileHead)
             {
-                ax.Value = double.IsNaN(double.Parse(ax.Value)) ? "" : double.Parse(ax.Value).ToString("0.000");
+                motMh.Value = double.IsNaN(double.Parse(motMh.Value)) ? "" : string.Format("{0:#,0}", double.Parse(motMh.Value));
             }
 
 
