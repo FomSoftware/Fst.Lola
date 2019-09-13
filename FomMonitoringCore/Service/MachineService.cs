@@ -251,7 +251,7 @@ namespace FomMonitoringCore.Service
             {
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
-                    result = ent.Panel.Where(p => p.MachineModel.Any(f => f.Id  == context.ActualMachine.MachineModelId)).Select(a => a.Id).ToList();                   
+                    result = ent.Panel.Where(p => p.ParameterMachine.Any(f => f.MachineModelId  == context.ActualMachine.MachineModelId)).Select(a => a.Id).Distinct().ToList();                   
                 }
             }
             catch (Exception ex)

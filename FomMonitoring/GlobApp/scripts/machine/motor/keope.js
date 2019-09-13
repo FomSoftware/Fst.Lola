@@ -4,7 +4,7 @@
 
     var init = function (data)
     {
-        initVueModel(data.vm_motoraxes_blitz);
+        initVueModel(data.vm_motor_keope);
     }
 
     var initVueModel = function (data)
@@ -17,7 +17,7 @@
             },
             computed: {
                 colorKPI: function () {
-                    if (this.fixedHead == null && this.mobileHead == null || (this.fixedHead.length == 0 && this.mobileHead.length == 0))
+                    if ((this.fixedHead == null && this.mobileHead == null) || (this.fixedHead.length == 0 && this.mobileHead.length == 0))
                         return 'color-no-data';
 
                     var color = 'color-darkgreen';
