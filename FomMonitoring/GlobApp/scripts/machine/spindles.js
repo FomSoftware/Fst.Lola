@@ -222,7 +222,7 @@
     var update = function (data)
     {
         // update vue model
-        var vm_spindles = data.vm_spindles;
+        var vm_spindles = data ? data.vm_spindles : null;
         if (vm_spindles != null) {
             vmSpindles.spindles = vm_spindles.spindles;
             vmSpindles.sorting = vm_spindles.sorting;
