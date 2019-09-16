@@ -21,15 +21,15 @@ namespace FomMonitoringBLL.ViewServices
             {
                 if (MachineService.GetMachinePanels(context).Contains((int)enPanel.KeopeMotors))
                 {
-                    result.vm_motor_keope = GetVueModelKeope(context.ActualMachine);
-                    if (MachineService.GetMachinePanels(context).Contains((int)enPanel.KeopeAxes))
-                    {
-                        result.vm_axes_keope = GetAxesVueModelKeope(context.ActualMachine);
-                    }
+                    result.vm_motor_keope = GetVueModelKeope(context.ActualMachine);                   
                 }
                 else
                 {
                     result.vm_spindles = SpindleViewService.GetSpindles(context);
+                }
+                if (MachineService.GetMachinePanels(context).Contains((int)enPanel.KeopeAxes))
+                {
+                    result.vm_axes_keope = GetAxesVueModelKeope(context.ActualMachine);
                 }
 
             }
