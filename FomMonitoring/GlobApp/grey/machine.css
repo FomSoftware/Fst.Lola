@@ -1006,13 +1006,13 @@
 }
 
 .td-tool-axes {
-    padding-top: 30px !important;
+    padding-top: 24px !important;
     text-align: left;
     padding-left: 14px;
 }
 
 .table-spindle tr:first-child td {
-    padding-bottom: 3px;
+    padding-bottom: 0;
     text-align: left;
     font-size: 16px;
     padding-left: 14px;
