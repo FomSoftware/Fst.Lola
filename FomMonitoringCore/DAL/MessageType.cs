@@ -23,6 +23,7 @@ namespace FomMonitoringCore.DAL
         public int Id { get; set; }
         public int TypeCode { get; set; }
         public string TypeDesc { get; set; }
+        public bool DefaultVisibleLOLA { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MessagesIndex> MessagesIndex { get; set; }

@@ -17,5 +17,7 @@ namespace FomMonitoringCore.Framework.Model
         public enState enState { get; set; }
         public string TypeHistory { get; set; }
         public int? Group { get; set; }
+
+        public int? Type { get; set; }
     }
 }

@@ -138,16 +138,16 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        public static string GetColorAlarm(enState state)
+        public static string GetColorAlarm(enTypeAlarm type)
         {
             string Color = string.Empty;
 
-            switch (state)
+            switch (type)
             {
-                case enState.Pause:
+                case enTypeAlarm.Warning:
                     Color = "#ec0";
                     break;
-                case enState.Error:
+                case enTypeAlarm.Error:
                     Color = "#cc3333";
                     break;
                 default:

@@ -122,12 +122,7 @@ namespace FomMonitoringCore.Service.DataMapping
                         ent.SaveChanges();
                         ent.HistoryJob.AddRange(historyJob);
                         ent.SaveChanges();
-
-                        List<AlarmMachine> alarmMachine = errorSQLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<AlarmMachine>>();
-                        alarmMachine = alarmMachine.Where(w => w.StartTime > (machineActual.LastUpdate ?? new DateTime())).ToList();
-                        ent.AlarmMachine.AddRange(alarmMachine);
-                        ent.SaveChanges();
-
+                       
                         List<Piece> piece = pieceSQLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<Piece>>();
                         piece = piece.Where(w => w.EndTime > (machineActual.LastUpdate ?? new DateTime())).ToList();
                         ent.Piece.AddRange(piece);

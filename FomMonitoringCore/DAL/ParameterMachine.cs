@@ -41,6 +41,7 @@ namespace FomMonitoringCore.DAL
         public int MachineModelId { get; set; }
         public string Historicized { get; set; }
         public Nullable<int> PanelId { get; set; }
+        public string Panel { get; set; }
     
         public virtual MachineModel MachineModel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

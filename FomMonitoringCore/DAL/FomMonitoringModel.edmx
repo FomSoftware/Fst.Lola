@@ -123,6 +123,7 @@
           <Property Name="StateId" Type="int" />
           <Property Name="TypeHistory" Type="char" MaxLength="1" />
           <Property Name="Group" Type="int" />
+          <Property Name="Type" Type="int" />
         </EntityType>
         <EntityType Name="HistoryPiece">
           <Key>
@@ -269,6 +270,8 @@
           <Property Name="IsVisibleLOLA" Type="bit" Nullable="false" />
           <Property Name="MachineGroupId" Type="int" Nullable="false" />
           <Property Name="PeriodicSpan" Type="bigint" />
+          <Property Name="IsDisabled" Type="bit" Nullable="false" />
+          <Property Name="IsPeriodicM" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="MessageTranslation">
           <Key>
@@ -286,13 +289,14 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TypeCode" Type="int" Nullable="false" />
           <Property Name="TypeDesc" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="DefaultVisibleLOLA" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Panel">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="ParameterMachine">
           <Key>
@@ -316,6 +320,7 @@
           <Property Name="ThresholdMin" Type="nvarchar" MaxLength="50" />
           <Property Name="ThresholdMax" Type="nvarchar" MaxLength="50" />
           <Property Name="ThresholdLabel" Type="nvarchar" MaxLength="50" />
+          <Property Name="Panel" Type="nvarchar" MaxLength="50" />
           <Property Name="PanelId" Type="int" />
           <Property Name="Cluster" Type="nvarchar" MaxLength="50" />
           <Property Name="Historicized" Type="nvarchar" MaxLength="50" />
@@ -2175,6 +2180,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_State" FromRole="HistoryMessage" ToRole="State" />
           <Property Name="Params" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
 		  <Property Name="Group" Type="Int32" />
+          <Property Name="Type" Type="Int32" />
         </EntityType>
         <EntityType Name="MessageMachine">
           <Key>
@@ -2370,6 +2376,8 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <NavigationProperty Name="MessageTranslation" Relationship="FST_FomMonitoringModel.FK_MessageTranslation_MessageID" FromRole="MessagesIndex" ToRole="MessageTranslation" />
           <Property Name="IsVisibleLOLA" Type="Boolean" Nullable="false" />
           <Property Name="PeriodicSpan" Type="Int64" Nullable="true" />
+          <Property Name="IsDisabled" Type="Boolean" Nullable="false" />
+          <Property Name="IsPeriodicM" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="MessageTranslation">
           <Key>
@@ -2390,6 +2398,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="TypeCode" Type="Int32" Nullable="false" />
           <Property Name="TypeDesc" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="MessagesIndex" Relationship="FST_FomMonitoringModel.FK_MessagesIndex_MessageType" FromRole="MessageType" ToRole="MessagesIndex" />
+          <Property Name="DefaultVisibleLOLA" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_MessagesIndex_MachineGroup">
           <End Type="FST_FomMonitoringModel.MachineGroup" Role="MachineGroup" Multiplicity="1" />
@@ -2491,6 +2500,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="Historicized" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PanelId" Type="Int32" />
           <NavigationProperty Name="Panel1" Relationship="FST_FomMonitoringModel.FK_ParameterMachine_Panel" FromRole="ParameterMachine" ToRole="Panel" />
+          <Property Name="Panel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_ParameterMachine_MachineModel">
           <End Type="FST_FomMonitoringModel.MachineModel" Role="MachineModel" Multiplicity="1" />
@@ -2546,7 +2556,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ParameterMachine" Relationship="FST_FomMonitoringModel.FK_ParameterMachine_Panel" FromRole="Panel" ToRole="ParameterMachine" />
         </EntityType>
         <Association Name="FK_ParameterMachine_Panel">
@@ -3020,7 +3030,8 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="HistoryMessage">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.HistoryMessage">
               <MappingFragment StoreEntitySet="HistoryMessage">
-				<ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
                 <ScalarProperty Name="Params" ColumnName="Params" />
                 <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
@@ -3154,6 +3165,8 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="MessagesIndex">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.MessagesIndex">
               <MappingFragment StoreEntitySet="MessagesIndex">
+                <ScalarProperty Name="IsPeriodicM" ColumnName="IsPeriodicM" />
+                <ScalarProperty Name="IsDisabled" ColumnName="IsDisabled" />
                 <ScalarProperty Name="PeriodicSpan" ColumnName="PeriodicSpan" />
                 <ScalarProperty Name="IsVisibleLOLA" ColumnName="IsVisibleLOLA" />
                 <ScalarProperty Name="MachineGroupId" ColumnName="MachineGroupId" />
@@ -3177,6 +3190,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="MessageType">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.MessageType">
               <MappingFragment StoreEntitySet="MessageType">
+                <ScalarProperty Name="DefaultVisibleLOLA" ColumnName="DefaultVisibleLOLA" />
                 <ScalarProperty Name="TypeDesc" ColumnName="TypeDesc" />
                 <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -3186,6 +3200,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="ParameterMachine">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.ParameterMachine">
               <MappingFragment StoreEntitySet="ParameterMachine">
+                <ScalarProperty Name="Panel" ColumnName="Panel" />
                 <ScalarProperty Name="PanelId" ColumnName="PanelId" />
                 <ScalarProperty Name="Historicized" ColumnName="Historicized" />
                 <ScalarProperty Name="MachineModelId" ColumnName="MachineModelId" />

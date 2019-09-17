@@ -27,7 +27,7 @@ namespace FomMonitoringCore.Framework.Config
             config.NewConfig<HistoryAlarm, HistoryAlarmModel>()
                 .Map(dest => dest.enState, src => (enState)src.StateId);
             config.NewConfig<HistoryMessage, HistoryMessageModel>()
-                .Map(dest => dest.enState, src => (enState)src.StateId);
+                .Map(dest => dest.Type, src => (enTypeAlarm)src.Type);
             config.NewConfig<HistoryPiece, HistoryPieceModel>();
             config.NewConfig<HistoryState, HistoryStateModel>()
                 .Map(dest => dest.State, src => src.State)

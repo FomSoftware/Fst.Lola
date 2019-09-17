@@ -65,19 +65,21 @@ namespace FomMonitoringCore.Service
                                 var historyMessages = ent.HistoryMessage
                                     .Where(hm => hm.MachineId == machine.Id 
                                         && hm.Day.Value >= period.StartDate && hm.Day.Value <= period.EndDate).ToList()
+                                    .GroupBy(g => new
+                                    {
+                                        g.Day,                                      
+                                        g.MachineId,                                       
+                                        g.Type,
+                                        g.Period
+                                    }).ToList()
                                     .Select(s => new AggregationMessageModel
                                     {
-                                        Id = s.Id,
-                                        Code = s.Code,
-                                        StateId = s.StateId,
-                                        Count = s.Count,
-                                        Day = s.Day,
-                                        //ElapsedTime = s.ElapsedTime,
-                                        //Group = s.Group,
-                                        MachineId = s.MachineId,
-                                        //Params = s.Params,
-                                        Period = s.Period,
-                                        TypeHistory = "d"
+                                        Count = s.Sum(x => x.Count),
+                                        Day = s.Key.Day,
+                                        MachineId = s.Key.MachineId,
+                                        Period = s.Key.Period,
+                                        TypeHistory = "d",
+                                        Type = s.Key.Type
                                     }).ToList();
 
                                 return historyMessages.Adapt<List<HistoryMessageModel>>();
@@ -90,23 +92,16 @@ namespace FomMonitoringCore.Service
                                     {
                                         Year = g.Day.HasValue ? (int?)g.Day.Value.Year : null,
                                         Week = g.Day.Value.GetWeekNumber(),
-                                        g.MachineId,
-                                        g.Params,
-                                        g.Group,
-                                        g.StateId,
+                                        g.MachineId,                                       
+                                        g.Type,
                                         Period = g.Day.HasValue ? (int?)g.Day.Value.Year * 100 + g.Day.Value.GetWeekNumber() : null,
 
                                     }).ToList().Select(s => new AggregationMessageModel
-                                    {
-                                        Id = s.Max(m => m.Id),
-                                        Code = null,
-                                        StateId = s.Key.StateId,
-                                        Count = s.Count(),
+                                    {                                                                              
+                                        Count = s.Sum(x => x.Count),
                                         Day = s.Max(i => i.Day),
-                                        //ElapsedTime = s.Sum(i => i.ElapsedTime),
-                                        Group = s.Key.Group,
-                                        MachineId = s.Key.MachineId,
-                                        Params = s.Key.Params,
+                                        Type = s.Key.Type,
+                                        MachineId = s.Key.MachineId,                                   
                                         Period = s.Key.Period,
                                         TypeHistory = "w"
                                     }).ToList();
@@ -121,23 +116,16 @@ namespace FomMonitoringCore.Service
                                     {
                                         Year = g.Day.HasValue ? (int?)g.Day.Value.Year : null,
                                         Week = g.Day.Value.Month,
-                                        g.MachineId,
-                                        g.Params,
-                                        g.Group,
-                                        g.StateId,
+                                        g.MachineId,                                                                 
+                                        g.Type,
                                         Period = g.Day.HasValue ? (int?)g.Day.Value.Year * 100 + g.Day.Value.Month : null,
 
                                     }).ToList().Select(s => new AggregationMessageModel
-                                    {
-                                        Id = s.Max(m => m.Id),
-                                        Code = null,
-                                        StateId = s.Key.StateId,
-                                        Count = s.Count(),
+                                    {                                        
+                                        Type = s.Key.Type,
+                                        Count = s.Sum(x => x.Count),
                                         Day = s.Max(i => i.Day),
-                                        //ElapsedTime = s.Sum(i => i.ElapsedTime),
-                                        Group = s.Key.Group,
                                         MachineId = s.Key.MachineId,
-                                        Params = s.Key.Params,
                                         Period = s.Key.Period,
                                         TypeHistory = "m"
                                     }).ToList();
@@ -153,24 +141,18 @@ namespace FomMonitoringCore.Service
                                         Year = g.Day.HasValue ? (int?)g.Day.Value.Year : null,
                                         Week = g.Day.Value.Month,
                                         g.MachineId,
-                                        g.Params,
-                                        g.Group,
-                                        g.StateId,
+                                        g.Type,
                                         Period = g.Day.HasValue ? (int?)g.Day.Value.Year * 100 + GetQuarter(g.Day ?? DateTime.Now) : null,
 
                                     }).ToList().Select(s => new AggregationMessageModel
-                                    {
-                                        Id = s.Max(m => m.Id),
-                                        Code = null,
-                                        StateId = s.Key.StateId,
-                                        Count = s.Count(),
+                                    {                                                                   
+                                        Count = s.Sum(x => x.Count),
                                         Day = s.Max(i => i.Day),
                                         //ElapsedTime = s.Sum(i => i.ElapsedTime),
-                                        Group = s.Key.Group,
                                         MachineId = s.Key.MachineId,
-                                        Params = s.Key.Params,
                                         Period = s.Key.Period,
-                                        TypeHistory = "q"
+                                        TypeHistory = "q",
+                                        Type = s.Key.Type
                                     }).ToList();
 
                                 return historyMessagesQuarter.Adapt<List<HistoryMessageModel>>();
@@ -184,24 +166,18 @@ namespace FomMonitoringCore.Service
                                         Year = g.Day.HasValue ? (int?)g.Day.Value.Year : null,
                                         Week = g.Day.Value.Month,
                                         g.MachineId,
-                                        g.Params,
-                                        g.Group,
-                                        g.StateId,
+                                        g.Type,
                                         Period = g.Day.HasValue ? (int?)g.Day.Value.Year : null,
 
                                     }).ToList().Select(s => new AggregationMessageModel
-                                    {
-                                        Id = s.Max(m => m.Id),
-                                        Code = null,
-                                        StateId = s.Key.StateId,
-                                        Count = s.Count(),
+                                    {                                        
+                                        Count = s.Sum(x => x.Count),
                                         Day = s.Max(i => i.Day),
                                         //ElapsedTime = s.Sum(i => i.ElapsedTime),
-                                        Group = s.Key.Group,
                                         MachineId = s.Key.MachineId,
-                                        Params = s.Key.Params,
                                         Period = s.Key.Period,
-                                        TypeHistory = "y"
+                                        TypeHistory = "y",
+                                        Type = s.Key.Type
                                     }).ToList();
 
                                 return historyMessagesYear.Adapt<List<HistoryMessageModel>>();

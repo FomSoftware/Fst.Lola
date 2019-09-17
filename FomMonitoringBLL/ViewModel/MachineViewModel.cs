@@ -14,7 +14,6 @@ namespace FomMonitoringBLL.ViewModel
 
         public ProductivityViewModel Productivity { get; set; }
 
-        public AlarmViewModel Alarms { get; set; }
         public MessageViewModel Messages { get; set; }
 
         public PanelParametersViewModel PanelParameter { get; set; }

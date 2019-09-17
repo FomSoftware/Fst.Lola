@@ -46,7 +46,7 @@ namespace FomMonitoringCore.Framework.Common
         [Description("manual")]
         Manual = 4
     }
-
+    
     public enum enPanel
     {       
         [Description("toolsBlitz")]
@@ -103,7 +103,7 @@ namespace FomMonitoringCore.Framework.Common
         [Description("operator")]
         Operator = 2,        
         [Description("error")]
-        Errori = 11,
+        Error = 11,
         [Description("warning")]
         Interfaccia = 8,
         [Description("warning")]

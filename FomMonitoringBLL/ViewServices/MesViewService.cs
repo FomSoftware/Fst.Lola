@@ -93,14 +93,7 @@ namespace FomMonitoringBLL.ViewServices
                     {
                         total = data.PieceCompletedCount ?? 0
                     };
-                }
-
-                if (data.AlarmCount != null)
-                {
-                    mes.alarms = new AlarmDataModel();
-                    mes.alarms.quantity = data.AlarmCount ?? 0;
-                    mes.alarms.time = CommonViewService.getTimeViewModel(data.AlarmElapsedTime);
-                }
+                }              
 
                 result.Add(mes);
             }

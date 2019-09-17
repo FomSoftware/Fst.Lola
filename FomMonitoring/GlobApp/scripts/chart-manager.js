@@ -112,7 +112,8 @@
             chart.update(config);
 
         setInterval(function () {
-            $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
+            if ($('#' + chartID).highcharts())
+                $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
         }, 100);
     }
 
