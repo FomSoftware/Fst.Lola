@@ -51,6 +51,12 @@ namespace FomMonitoringCore.Service.DataMapping
                                             {
                                                 ParameterMachine pm = ent.ParameterMachine.FirstOrDefault(p => p.MachineModelId == mac.MachineModelId
                                                     && p.VarNumber == value.VariableNumber);
+
+                                                //ordino per data e poi per id perchè spesso arrivano valori diversi con la stessa data
+                                                decimal? previousValue = ent.ParameterMachineValue.Where(p => p.MachineId == mac.Id && p.VarNumber == pm.VarNumber)
+                                                    .OrderByDescending(p => p.UtcDateTime).ThenByDescending(t => t.Id).FirstOrDefault()?.VarValue;
+
+
                                                 if (mac != null && pm != null && (pm.Historicized == null || pm.Historicized == "1"))
                                                 {
                                                     ParameterMachineValue pmv = new ParameterMachineValue()
@@ -87,6 +93,12 @@ namespace FomMonitoringCore.Service.DataMapping
                                                     
                                                 }
                                                 ent.SaveChanges();
+
+                                                if (!String.IsNullOrEmpty(pm.ThresholdMax) && pm.ThresholdMax != "0" ||
+                                                    !String.IsNullOrEmpty(pm.ThresholdMin) && pm.ThresholdMin != "0")
+                                                {
+                                                    checkVariableTresholds(ent, mac, pm, value, previousValue, var.UtcDateTime );
+                                                }
                                             }
                                         }
                                     }
@@ -95,7 +107,8 @@ namespace FomMonitoringCore.Service.DataMapping
                                     break;
                             }
                         }
-                        //ent.ParameterMachineValue.AddRange(parameterList);                      
+                        //ent.ParameterMachineValue.AddRange(parameterList);                             
+
                         transaction.Complete();
                         result = true;
                     }
@@ -110,5 +123,56 @@ namespace FomMonitoringCore.Service.DataMapping
         }
 
 
+        private static void checkVariableTresholds(FST_FomMonitoringEntities ent, Machine machine, 
+                        ParameterMachine par, JsonVariableValueModel value, decimal? oldValue, DateTime utcDatetime)
+        {
+            if (ent == null || machine == null || par == null || utcDatetime == null || value == null)
+                return;
+            if (oldValue != null && oldValue >= value.VariableValue)
+                return;
+
+            //controllo se il valore oltrepassa la soglia e non esiste già un msessaggio lo inserisco                                      
+            decimal min = Convert.ToDecimal(par.ThresholdMin);
+            decimal max = Convert.ToDecimal(par.ThresholdMax);
+
+            if (value.VariableValue < min || value.VariableValue > max)
+            {                   
+                MessageMachine mes = ent.MessageMachine.Where(mm => mm.MachineId == machine.Id && mm.IsPeriodicMsg == true &&
+                                        mm.Code == par.ThresholdLabel).FirstOrDefault();
+                if (mes == null)
+                {
+                    MessageService.insertMessageMachine(ent, machine, par.ThresholdLabel, utcDatetime);
+                }
+                else if (oldValue != null)
+                {
+                    if (mes.Day < utcDatetime)
+                    {
+                        //verifico se il precedente valore era sotto la soglia inserisco un nuovo messaggio
+                        if (oldValue >= min && oldValue <= max)
+                        {
+                            MessageService.insertMessageMachine(ent, machine, par.ThresholdLabel, utcDatetime);
+                        }
+                        //in questo caso ero sopra la soglia e continuo ad essere sopra la soglia
+                        // controllo se il valore del parametro ha superato il prossimo multiplo del valore max
+                        else if (oldValue != null && oldValue != null)
+                        {                                                               
+                                decimal valOld = oldValue ?? 0;
+                                decimal valNew = value.VariableValue;
+                                if (valOld > max && valNew > valOld)
+                                {
+                                    decimal multiploOld = Math.Floor(valOld / max);
+                                    decimal multiploNew = Math.Floor(valNew / max);
+                                    if (multiploNew > multiploOld)
+                                        MessageService.insertMessageMachine(ent, machine, par.ThresholdLabel, utcDatetime);
+                                }
+                        }
+
+                    }
+                }
+            }                
+
+        }
+
     }
+
 }

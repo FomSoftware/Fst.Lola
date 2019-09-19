@@ -313,6 +313,7 @@ namespace FomMonitoringCore.Service
                     MessagesIndex msg = ent.MessagesIndex.FirstOrDefault(f => f.MessageCode == mm.Code && f.MessageCategoryId == cat && f.PeriodicSpan != null);
                     if (msg == null) return null;
                     long span = msg.PeriodicSpan ?? 0;
+
                     DateTime? initTime = ent.Machine.Find(mm.MachineId).ActivationDate;
                     if(mm.IgnoreDate != null)
                     {
@@ -321,10 +322,7 @@ namespace FomMonitoringCore.Service
                             initTime = initInterval;
                         else
                             return null;
-                    }
-                    
-                    
-
+                    }                                        
                     return DateTime.Now.Subtract(initTime.Value).Ticks;
                 }
             }
@@ -341,19 +339,20 @@ namespace FomMonitoringCore.Service
                 {
                     List<MessageMachine> query = ent.MessageMachine.Where(m => m.MachineId == machine.Id &&                                        
                                         m.Machine.ActivationDate != null &&
-                                        m.IsPeriodicMsg != null && m.IsPeriodicMsg == true).ToList();
+                                        m.IsPeriodicMsg != null && m.IsPeriodicMsg == true).OrderByDescending(o => o.Day).ToList();
       
                     query = query.Where(m =>
                     {
                         int cat = ent.Machine.Find(m.MachineId).MachineModel.MessageCategoryId;
-                        MessagesIndex msg = ent.MessagesIndex.FirstOrDefault(f => f.MessageCode == m.Code && f.MessageCategoryId == cat && f.PeriodicSpan != null);
+                        MessagesIndex msg = ent.MessagesIndex.FirstOrDefault(f => f.MessageCode == m.Code && f.MessageCategoryId == cat);
                         if (msg == null) return false;
                         long span = msg.PeriodicSpan ?? 0;
+                                     
+                        return (m.IgnoreDate == null && span > 0 && m.Machine.ActivationDate?.AddHours(span) <= DateTime.Now) ||
+                               (m.IgnoreDate != null && span > 0 && m.IgnoreDate < m.GetInitialSpanDate(span)) ||
+                               (m.IgnoreDate == null && span == 0);                      
 
-
-                        return (m.IgnoreDate == null && m.Machine.ActivationDate?.AddHours(span) <= DateTime.Now) ||
-                               (m.IgnoreDate != null && m.IgnoreDate < m.GetInitialSpanDate(span));
-                                }).ToList();
+                    }).ToList();
                   
                     result = query.Adapt<List<MessageMachine>, List<MessageMachineModel>>();
                 }
@@ -434,26 +433,19 @@ namespace FomMonitoringCore.Service
                         MachinId = machine.Id.ToString();
                         int cat = ent.Machine.Find(machine.Id).MachineModel.MessageCategoryId;
 
-                        List<MessagesIndex> messaggi = ent.MessagesIndex.Where(mi => mi.MessageCategoryId == cat && mi.PeriodicSpan != null).ToList();
+                        List<MessagesIndex> messaggi = ent.MessagesIndex.Where(mi => mi.MessageCategoryId == cat && mi.IsPeriodicM == true).ToList();
 
                         foreach (MessagesIndex messaggio in messaggi)
                         {
+                            //messaggi periodici in base alla data di attivazione e allo span specificato nel messageIndex
                             if (ent.MessageMachine.Any(mm => mm.MachineId == machine.Id && mm.IsPeriodicMsg == true &&
-                                                     mm.Code == messaggio.MessageCode) == false)
-                            {
-                                MessageMachine msg = new MessageMachine()
-                                {
-                                    Code = messaggio.MessageCode,
-                                    MachineId = machine.Id,
-                                    IsPeriodicMsg = true,
-                                    Day = DateTime.Now,
-                                    IsVisible = true
-                                };
-                                ent.MessageMachine.Add(msg);
-                                ent.SaveChanges();
+                                                         mm.Code == messaggio.MessageCode) == false)
+                            {                                
+                                insertMessageMachine(ent, machine, messaggio.MessageCode, DateTime.Now);                             
                             }
-                        }
-                    }               
+                            
+                        }                        
+                    }
                 }
             }
             catch (Exception ex)
@@ -462,6 +454,20 @@ namespace FomMonitoringCore.Service
                     MachinId, "");
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }        
+        }
+
+        public static void insertMessageMachine(FST_FomMonitoringEntities ent, Machine machine, string code, DateTime day)
+        {
+            MessageMachine msg = new MessageMachine()
+            {
+                Code = code,
+                MachineId = machine.Id,
+                IsPeriodicMsg = true,
+                Day = day,
+                IsVisible = true
+            };
+            ent.MessageMachine.Add(msg);
+            ent.SaveChanges();
         }
 
     }
