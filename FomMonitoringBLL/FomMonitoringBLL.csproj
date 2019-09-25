@@ -63,8 +63,10 @@
     <Compile Include="ViewModel\MotorAxesParameterVueModel.cs" />
     <Compile Include="ViewModel\MotorKeopeParameterVueModel.cs" />
     <Compile Include="ViewModel\ParameterMachineValueViewModel.cs" />
+    <Compile Include="ViewModel\PlantManagerViewModel.cs" />
     <Compile Include="ViewModel\PlantMessagesViewModel.cs" />
     <Compile Include="ViewModel\MesViewModel.cs" />
+    <Compile Include="ViewModel\PlantViewModel.cs" />
     <Compile Include="ViewModel\SharedViewModel.cs" />
     <Compile Include="ViewModel\I18nViewModel.cs" />
     <Compile Include="ViewModel\JobViewModel.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="ViewServices\MessagesViewService.cs" />
     <Compile Include="ViewModel\PanelParameterViewModel.cs" />
     <Compile Include="ViewServices\PanelParametersViewService.cs" />
+    <Compile Include="ViewServices\PlantManagerViewService.cs" />
     <Compile Include="ViewServices\PlantMessagesViewService.cs" />
     <Compile Include="ViewServices\MesViewService.cs" />
     <Compile Include="ViewServices\EfficiencyViewService.cs" />

@@ -388,6 +388,7 @@
     <Content Include="GlobApp\grey\login.css" />
     <Content Include="GlobApp\grey\machine.css" />
     <Content Include="GlobApp\grey\mes.css" />
+    <Content Include="GlobApp\grey\plant-manager.css" />
     <Content Include="GlobApp\grey\toolbar.css" />
     <Content Include="GlobApp\grey\user-manager.css" />
     <Content Include="GlobApp\grey\utilities.css" />
@@ -422,6 +423,7 @@
     <Content Include="GlobApp\scripts\machine\xtools.js" />
     <Content Include="GlobApp\scripts\machine\xspindles.js" />
     <Content Include="GlobApp\scripts\mes-manager.js" />
+    <Content Include="GlobApp\scripts\plant-manager.js" />
     <Content Include="GlobApp\scripts\plantmessages.js" />
     <Content Include="GlobApp\scripts\shared-manager.js" />
     <Content Include="GlobApp\scripts\machine-manager.js" />
@@ -816,6 +818,8 @@
     <Compile Include="Controllers\AppApiController.cs" />
     <Compile Include="Controllers\MesController.cs" />
     <Compile Include="Controllers\MachineController.cs" />
+    <Compile Include="Controllers\PlantController.cs" />
+    <Compile Include="Controllers\PlantManagerApiController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\UserManagerApiController.cs" />
     <Compile Include="Global.asax.cs">
@@ -861,6 +865,7 @@
     <Content Include="Views\Machine\MotorAxes\_Blitz.cshtml" />
     <Content Include="Views\Machine\Axes\_Keope.cshtml" />
     <Content Include="Views\Machine\Motor\_Keope.cshtml" />
+    <Content Include="Views\Plant\PlantManager.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

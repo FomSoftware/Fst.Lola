@@ -421,6 +421,7 @@
     <Compile Include="Service\PeriodService.cs" />
     <Compile Include="Service\PieceService.cs" />
     <Compile Include="Service\MesService.cs" />
+    <Compile Include="Service\PlantManagerService.cs" />
     <Compile Include="Service\SessionService.cs" />
     <Compile Include="Service\ToolService.cs" />
     <Compile Include="Service\SpindleService.cs" />

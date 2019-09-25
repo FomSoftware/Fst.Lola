@@ -308,9 +308,9 @@
                 if (result.user != null) {
                     vmUsers.actual = result.user;
                     vmUsers.roles.active = result.user.RoleCode;
-                    vmUsers.customers.active = result.user.CustomerName;
                     vmUsers.machines.all = result.machines;
                     vmUsers.languages.active = result.user.LanguageId;
+                    vmUsers.customers.active = result.user.CustomerName;
                     vmUsers.machines.active = _.pluck(result.user.Machines, 'Id');
 
                     $('#user-modal .modal-title').text(resource.ModifyUser);

@@ -56,7 +56,6 @@ namespace FomMonitoringBLL.ViewModel
     public class UserMachineViewModel
     {
         public int Id { get; set; }
-
         public string Serial { get; set; }
     }
 

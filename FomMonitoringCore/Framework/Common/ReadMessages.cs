@@ -15,7 +15,6 @@ namespace FomMonitoringCore.Framework.Common
 {
     public class ReadMessages
     {
-        static string dbConn = ApplicationSettingService.GetWebConfigKey("DbMessagesConnectionString");
 
         public static void ReadMessageVisibilityGroup(MessageMachine mm, MessagesIndex msg)
         {

@@ -43,7 +43,7 @@ namespace FomMonitoringCore.Service
                     using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                     {
                         ent.Configuration.LazyLoadingEnabled = false;
-                        var customerName = ent.UserCustomerMapping.Where(f => f.UserId == userId).Select(s => s.CustomerName).FirstOrDefault();
+                        var customerName = ent.UserCustomerMapping.FirstOrDefault(f => f.UserId == userId)?.CustomerName;
                         result.CustomerName = customerName;
 
                         var userMachines = ent.UserMachineMapping.Include("Machine").Where(w => w.UserId == userId).Select(s => s.Machine).ToList();
