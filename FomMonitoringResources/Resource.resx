@@ -653,4 +653,40 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="motore_lama_TM" xml:space="preserve">
     <value>Mobile head blade motor</value>
   </data>
+  <data name="AddPlant" xml:space="preserve">
+    <value>Add plant</value>
+  </data>
+  <data name="PlantAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="PlantCreated" xml:space="preserve">
+    <value>Plant created successfully</value>
+  </data>
+  <data name="PlantCustomers" xml:space="preserve">
+    <value>Customers</value>
+  </data>
+  <data name="PlantDelete" xml:space="preserve">
+    <value>Are you sure to delete this plant?</value>
+  </data>
+  <data name="PlantDeleted" xml:space="preserve">
+    <value>Plant deleted</value>
+  </data>
+  <data name="PlantDeletedConfirm" xml:space="preserve">
+    <value>Plant deleted successfully</value>
+  </data>
+  <data name="PlantImpossibileDeleted" xml:space="preserve">
+    <value>The plant cannot be deleted.</value>
+  </data>
+  <data name="PlantMachines" xml:space="preserve">
+    <value>Machines</value>
+  </data>
+  <data name="PlantModified" xml:space="preserve">
+    <value>Plant modified successfully</value>
+  </data>
+  <data name="PlantModify" xml:space="preserve">
+    <value>Plant modify</value>
+  </data>
+  <data name="PlantName" xml:space="preserve">
+    <value>Name</value>
+  </data>
 </root>

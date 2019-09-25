@@ -74,6 +74,15 @@ namespace FomMonitoring.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
         }
 
+        [HttpGet]
+        [Authorize(Roles = Common.Administrator + "," + Common.Customer)]
+        [Route("ajax/PlantManagerApi/GetMachinesByPlant/{id}")]
+        public HttpResponseMessage GetMachinesByPlant(int id)
+        {
+            var result = PlantManagerViewService.GetMachinesByPlant(id);
+            return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
+        }
+
         [HttpPut]
         [Authorize(Roles = Common.Administrator + "," + Common.Customer)]
         [Route("ajax/PlantManagerApi/EditPlant")]

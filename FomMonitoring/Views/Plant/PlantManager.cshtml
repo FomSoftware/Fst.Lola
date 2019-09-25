@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
         <div class="button-addplant" onclick="PlantManager.addClickEvent()">
-            <i class="icon-plus"></i>@Resource.AddUser
+            <i class="icon-plus"></i>@Resource.AddPlant
         </div>
     </div>
 </div>
@@ -48,7 +48,7 @@
                             {
                                 <!-- Select Basic -->
                                 <div class="form-group" id="form-customer-input">
-                                    <label class="col-md-4 control-label" for="role-input">@Resource.Customer:</label>
+                                    <label class="col-md-4 control-label" for="role-input">@Resource.PlantCustomers:</label>
                                     <div class="col-md-6">
                                         <select v-model="customers.active" class="form-control input-md modal-input" id="customer-input" v-on:change="changeCustomer()" title="@Resource.NothingSelected" type="text">
                                             <option v-for="customer in customers.all" v-bind:value="customer">{{customer}}</option>
@@ -61,10 +61,10 @@
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="role-input">@Resource.Machines:</label>
+                                <label class="col-md-4 control-label" for="role-input">@Resource.PlantMachines:</label>
                                 <div class="col-md-6">
                                     <select v-model="machines.active" class="form-control input-md modal-input" id="machines-input" title="@Resource.NothingSelected" type="text" multiple required>
-                                        <option v-for="machine in machines.all" v-bind:value="machine.Id">{{machine.Serial}}</option>
+                                        <option v-for="machine in machines.all" v-bind:value="machine.Id">({{machine.Serial}}) - {{machine.MachineName}}</option>
                                     </select>
                                     <div v-show="missing.Machines" class="validation">@Resource.FieldRequired.</div>
                                 </div>
@@ -87,41 +87,28 @@
     $(document).ready(function ()
     {
         var resource = {
-            Username: '@Resource.Username',
-            FirstName: '@Resource.FirstName',
-            LastName: '@Resource.LastName',
-            Name: '@Resource.Name',
-            Role:'@Resource.Role',
-            Customer: '@Resource.Customer',
-            Machines: '@Resource.Machines',
-            Language: '@Resource.Language',
+            PlantName: '@Resource.PlantName',
+            Address: '@Resource.PlantAddress',
+            PlantCustomer: '@Resource.PlantCustomers',
+            PlantMachines: '@Resource.PlantMachines',
             Modify: '@Resource.Modify',
-            Enable: '@Resource.Enable',
-            Disable: '@Resource.Disable',
             Delete: '@Resource.Delete',
-            DeleteUser: '@Resource.DeleteUser',
-            EnabledUser: '@Resource.EnableUser',
-            DisabledUser: '@Resource.DisableUser',
             Error: '@Resource.Error',
             Search: '@Resource.Search',
-            AddUser: '@Resource.AddUser',
-            NoRecordAvailables: '@Resource.NoRecordsAvailable',
+            AddPlant: '@Resource.AddPlant',
+            PlantCreated: '@Resource.PlantCreated',
             NothingFound: '@Resource.NothingFound',
-            ModifyUser: '@Resource.ModifyUser',
+            PlantDeleted: '@Resource.PlantDeleted',
+            PlantDeletedConfirm: '@Resource.PlantDeletedConfirm',
             ComeBack: '@Resource.ComeBack',
             Continue: '@Resource.Continue',
-            EmailNotValid: '@Resource.EmailNotValid',
-            PasswordShort: '@Resource.PasswordShort',
-            PasswordsNotSame: '@Resource.PasswordsNotSame',
-            CreatedUser: '@Resource.CreatedUser',
-            UserSuccessfullyModify: '@Resource.UserSuccessfullyModify',
-            UserSuccessfullyDeleted: '@Resource.UserSuccessfullyDeleted',
-            PasswordSuccessfullyReseted: '@Resource.PasswordSuccessfullyReseted',
+            PlantImpossibileDeleted: '@Resource.PlantImpossibileDeleted',
+            PlantMachines: '@Resource.PlantMachines',
+            PlantModify: '@Resource.PlantModify',
+            PlantModified: '@Resource.PlantModified',
             ErrorOccurred: '@Resource.ErrorOccurred',
-            ResetUserPassword: '@Resource.ResetUserPassword',
-            ResetPassword: '@Resource.ResetPassword',
-            UsernameExists: '@Resource.UsernameExists'
-         };
+            PlantDelete: '@Resource.PlantDelete'
+        };
 
         var data = @Html.Raw(Json.Encode(Model.User));
         PlantManager.init(data, "@ViewBag.BaseUrl", resource);

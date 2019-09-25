@@ -95,7 +95,14 @@
                             <a class="dd-item dd-item-longtext" href="@Url.Action("UserManager", "Admin")">
                                 <i class="fa fa-user fa-lg color-corporate"></i>
                                 <div><span>@Resource.UserManager</span></div>
-</a>
+                            </a>
+                        }
+                        @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer)
+                        {
+                            <a class="dd-item dd-item-longtext" href="@Url.Action("PlantManager", "Plant")">
+                                <i class="fa fa-user fa-lg color-corporate"></i>
+                                <div><span>Plant Manager</span></div>
+                            </a>
                         }
                         @if (Model.User.Role != enRole.Customer)
                         {
@@ -111,7 +118,7 @@
                         <a class="dd-item" href="@Url.Action("Logout", "Account")">
                             <i class="fa fa-power-off color-corporate fa-lg"></i>
                             <div><span>@Resource.Logout</span></div>
-                        </a>                      
+                        </a>
                     </div>
                 </div>
             </div>

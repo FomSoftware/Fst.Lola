@@ -20,12 +20,12 @@ namespace FomMonitoringBLL.ViewServices
                 usernameCustomer = context.User.Username;
 
             var plantsModel = PlantManagerService.GetPlants(usernameCustomer);
-            plantManager.Plants = plantsModel.Select(s => new PlantViewModel
+            plantManager.Plants = plantsModel.Where(p => !string.IsNullOrWhiteSpace(p.CustomerName)).Select(s => new PlantViewModel
             {
                 Id = s.Id,
                 Name = s.Name,
                 Address = s.Address,
-                MachineSerials = s.Machines.Select(u => u.Serial).ToList(),
+                MachineSerials = s.Machines.Select(u => $"({u.Serial})-{u.MachineName}").ToList(),
                 CustomerName = s.CustomerName,
                 Machines = s.Machines.Select(n => new UserMachineViewModel
                 {
@@ -109,6 +109,15 @@ namespace FomMonitoringBLL.ViewServices
             {
                 throw ex;
             }
+        }
+
+        public static IEnumerable<UserMachineViewModel> GetMachinesByPlant(int id)
+        {
+            return PlantManagerService.GetMachinesByPlant(id).Select(n => new UserMachineViewModel
+            {
+                Id = n.Id,
+                Serial = n.Serial
+            }).ToList();
         }
 
         public static bool CreatePlant(PlantViewModel plantModel, ContextModel context)

@@ -146,7 +146,7 @@ namespace FomMonitoringBLL.ViewServices
 
                 List<MachineInfoModel> machinesModel = UserManagerService.GetCustomerMachines(name);
                 if(machinesModel != null)
-                    result = machinesModel.Select(s => new UserMachineViewModel { Id = s.Id, Serial = s.Serial }).ToList();
+                    result = machinesModel.Select(s => new UserMachineViewModel { Id = s.Id, Serial = s.Serial, MachineName = s.MachineName }).ToList();
 
                 return result;
             }

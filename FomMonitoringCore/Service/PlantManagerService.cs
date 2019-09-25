@@ -24,7 +24,7 @@ namespace FomMonitoringCore.Service
                 {
                     using (UserManagerEntities entUM = new UserManagerEntities())
                     {
-                        ent.Configuration.LazyLoadingEnabled = false;
+                        //ent.Configuration.LazyLoadingEnabled = false;
                         // Recupero la lista degli utenti associati al cliente
                         List<Plant> customerPlants = new List<Plant>();
                         if (!string.IsNullOrWhiteSpace(usernameCustomer))
@@ -112,6 +112,24 @@ namespace FomMonitoringCore.Service
 
                     ent.SaveChanges();
                     return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                string errMessage = ex.GetStringLog();
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+                throw ex;
+            }
+        }
+
+        public static IEnumerable<MachineInfoModel> GetMachinesByPlant(int id)
+        {
+            try
+            {
+                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                {
+                    var plantMachines = ent.Plant.Find(id)?.Machine.ToList() ?? new List<Machine>();
+                    return plantMachines.Adapt<List<Machine>, List<MachineInfoModel>>();
                 }
             }
             catch (Exception ex)

@@ -61,6 +61,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add plant.
+        /// </summary>
+        public static string AddPlant {
+            get {
+                return ResourceManager.GetString("AddPlant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add user.
         /// </summary>
         public static string AddUser {
@@ -1188,11 +1197,110 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string PlantAddress {
+            get {
+                return ResourceManager.GetString("PlantAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plant created successfully.
+        /// </summary>
+        public static string PlantCreated {
+            get {
+                return ResourceManager.GetString("PlantCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customers.
+        /// </summary>
+        public static string PlantCustomers {
+            get {
+                return ResourceManager.GetString("PlantCustomers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure to delete this plant?.
+        /// </summary>
+        public static string PlantDelete {
+            get {
+                return ResourceManager.GetString("PlantDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plant deleted.
+        /// </summary>
+        public static string PlantDeleted {
+            get {
+                return ResourceManager.GetString("PlantDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plant deleted successfully.
+        /// </summary>
+        public static string PlantDeletedConfirm {
+            get {
+                return ResourceManager.GetString("PlantDeletedConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The plant cannot be deleted..
+        /// </summary>
+        public static string PlantImpossibileDeleted {
+            get {
+                return ResourceManager.GetString("PlantImpossibileDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Machines.
+        /// </summary>
+        public static string PlantMachines {
+            get {
+                return ResourceManager.GetString("PlantMachines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plant Messages.
         /// </summary>
         public static string PlantMessages {
             get {
                 return ResourceManager.GetString("PlantMessages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plant modified successfully.
+        /// </summary>
+        public static string PlantModified {
+            get {
+                return ResourceManager.GetString("PlantModified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plant modify.
+        /// </summary>
+        public static string PlantModify {
+            get {
+                return ResourceManager.GetString("PlantModify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string PlantName {
+            get {
+                return ResourceManager.GetString("PlantName", resourceCulture);
             }
         }
         

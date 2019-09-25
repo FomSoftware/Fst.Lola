@@ -99,8 +99,7 @@
         })
     };
 
-
-    //todo
+    
     var getMachinesByCustomer = function () {
         $('#customer-input').on('hidden.bs.select', function (e, clickedIndex, newValue, oldValue) {
             $('#machines-input').prop("disabled", false);
@@ -130,37 +129,25 @@
         data.forEach(function (elem, index) {
             elem.Name = elem.Name;
             elem.Modify = '<div class="button btn-modify" data-toggle="tooltip" title="' + resource.Modify + '" onclick="PlantManager.modifyClickEvent(\'' + elem.Id + '\')" data-id="' + elem.Id + '"><i class="fa fa-pencil"></i></div>';
-            if (elem.RoleCode != enRoles.Administrator && elem.RoleCode != enRoles.Customer)
-                elem.Delete = '<div class="button btn-modify" data-toggle="tooltip"  title="' + resource.Delete + '" onclick="PlantManager.deleteClickEvent(\'' + elem.Id + '\')" data-id="' + elem.Id + '"><i class="fa fa-trash"></i></div>';
-            else
-                elem.Delete = "";
-
+            elem.Delete = '<div class="button btn-modify" data-toggle="tooltip"  title="' + resource.Delete + '" onclick="PlantManager.deleteClickEvent(\'' + elem.Id + '\')" data-id="' + elem.Id + '"><i class="fa fa-trash"></i></div>';
 
             // contollo sulla lunghezza dei nomi delle macchine
             if (elem.MachineSerials != null && elem.MachineSerials.length > 1)
                 elem.Machines = '<div data-toggle="popover" data-content="' + elem.MachineSerials.join(", ") + '" data-placement="bottom" data-trigger="hover">' + elem.MachineSerials.slice(0, 25) + "..." + '</div>';
             else
                 elem.Machines = elem.MachineSerials;
-
-            
-
-
         });
 
         var columns = [
-            { title: resource.Name, data: "Name" },
+            { title: resource.PlantName, data: "Name"},
             { title: "Address", data: "Address" }
         ];
 
-
         if (roleUser != enRoles.Customer)
-            columns.push({ title: resource.Customer, data: "CustomerName" });
+            columns.push({ title: resource.PlantCustomer, data: "CustomerName" });
 
-        columns.push({ title: resource.Machines, data: "Machines", width: 40 });
-        //if (roleUser != enRoles.Customer)
-        //    columns.push({ title: resource.Customer, data: "CustomerName" });
+        columns.push({ title: resource.PlantMachines, data: "Machines" });
 
-        //columns.push({ title: resource.Machines, data: "Machines", width: 40 });
         columns.push({ title: "", data: "Modify", orderable: false });
         columns.push({ title: "", data: "Delete", orderable: false });
 
@@ -191,11 +178,19 @@
 
     var addClickEvent = function () {
         action = enAction.add;
-
-        $('#plant-modal .modal-title').text(resource.addPlant);
+        clearActualPlant();
+        $('#plant-modal .modal-title').text(resource.AddPlant);
         $('#plant-modal .form-check').hide();
         
+        if (roleUser == enRoles.Customer) {
             vmPlants.customers.active = contextUser.Username;
+        } else {
+            vmPlants.$nextTick(function () {
+                $('#plant-modal #customer-input').removeClass('input-read-only');
+                $('#plant-modal #machines-input').addClass('input-read-only');
+                $("[data-id='machines-input']").addClass('background-disabled');
+            });
+        }
         
         
 
@@ -226,16 +221,12 @@
                 contentType: "application/json; charset=utf-8",
                 success: function (result) {
                     if (result == true) {
-                        if (roleUser == enRoles.Customer) {
-                            successSwal(resource.CreatedUser + "\n Username: " + data.Username + "\n Password: " + data.Password);
-                        }
-                        else
-                            successSwal(resource.CreatedUser);
+                        successSwal(resource.PlantCreated);
                         clearActualPlant();
                         $('#plant-modal').modal('hide');
                         refreshTable();
                     } else {
-                        errorSwal(resource.UsernameExists);
+                        errorSwal(resource.Error);
                     }
                 },
                 error: function (xhr, status, error) {
@@ -247,6 +238,9 @@
     }
 
     var modifyClickEvent = function (userID) {
+
+        clearActualPlant();
+        $('#plant-modal #machines-input').removeClass('input-read-only');
         $.get({
             url: baseApiUrl + '/GetPlant/' + userID,
             contentType: "application/json; charset=utf-8",
@@ -258,7 +252,7 @@
                     vmPlants.machines.active = _.pluck(result.Plant.Machines, 'Id');
                     vmPlants.machines.all = result.Machines;
 
-                    $('#plant-modal .modal-title').text(resource.modifyPlant);
+                    $('#plant-modal .modal-title').text(resource.PlantModify);
                     $('#plant-modal').modal('show');
                     $('#plant-modal .js-modify').show();
                     $('#plant-modal .js-add').hide();
@@ -297,7 +291,7 @@
                 contentType: "application/json; charset=utf-8",
                 success: function (result) {
                     if (result == true) {
-                        successSwal(resource.UserSuccessfullyModify);
+                        successSwal(resource.PlantModified);
                         clearActualPlant();
                         $('#plant-modal').modal('hide');
                         refreshTable();
@@ -314,15 +308,33 @@
         }
     }
 
-    var deleteClickEvent = function (userID) {
-        vmPlants.actual.ID = userID;
-        var text = resource.DeleteUser;
-        var alert = alertSwal(text);
+    var deleteClickEvent = function (id) {
 
-        alert.then(function (result) {
-            if (result)
-                deletePlant(vmPlants.actual.ID)
+        $.ajax({
+            url: baseApiUrl + "/GetMachinesByPlant/" + id,
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                if (result.length > 0) {
+                    errorSwal(resource.ErrorOccurred);
+                }
+                else {
+                    vmPlants.actual.ID = id;
+                    var text = resource.PlantDelete;
+                    var alert = alertSwal(text);
+
+                    alert.then(function (result) {
+                        if (result)
+                            deletePlant(id);
+                    });
+                }
+            }
         });
+
+
+
+
+
     }
 
     var deletePlant = function (id) {
@@ -335,7 +347,7 @@
             contentType: "application/json; charset=utf-8",
             success: function (result) {
                 if (result == true) {
-                    successSwal(resource.UserSuccessfullyDeleted);
+                    successSwal(resource.PlantDeleted);
                     refreshTable();
                 } else {
                     errorSwal(resource.ErrorOccurred);
@@ -388,6 +400,7 @@
 
     var clearActualPlant = function () {
         vmPlants.actual = {};
+        vmPlants.customers.active = '';
         vmPlants.machines.active = [];
         if (roleUser != enRoles.Customer)
             vmPlants.machines.all = [];
