@@ -83,7 +83,7 @@ namespace FomMonitoringBLL.ViewServices
 
             foreach (var ax in result.axes)
             {
-                ax.Value = double.IsNaN(double.Parse(ax.Value)) ? "" : double.Parse(ax.Value).ToString("0.000");
+                ax.Value = double.IsNaN(double.Parse(ax.Value)) ? "" : (double.Parse(ax.Value) / 1000).ToString("0.000");
             }
           
             return result;
@@ -108,7 +108,7 @@ namespace FomMonitoringBLL.ViewServices
 
             foreach (var ax in result.axes)
             {
-                ax.Value = double.IsNaN(double.Parse(ax.Value)) ? "" : double.Parse(ax.Value).ToString("0.000");
+                ax.Value = double.IsNaN(double.Parse(ax.Value)) ? "" : (double.Parse(ax.Value)/1000).ToString("0.000");
             }
 
 
