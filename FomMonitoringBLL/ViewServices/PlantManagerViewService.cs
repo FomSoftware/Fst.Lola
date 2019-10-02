@@ -86,6 +86,33 @@ namespace FomMonitoringBLL.ViewServices
 
         }
 
+
+        public static PlantManagerViewModel GetPlantByMachine(int id)
+        {
+            var result = new PlantManagerViewModel();
+            var plantModel = PlantManagerService.GetPlantByMachine(id);
+
+            var plant = new PlantViewModel
+            {
+                Id = plantModel.Id,
+                Name = plantModel.Name,
+                Address = plantModel.Address,
+                CustomerName = plantModel.CustomerName,
+                MachineSerials = plantModel.Machines.Select(u => u.Serial).ToList(),
+                Machines = plantModel.Machines.Select(n => new UserMachineViewModel
+                {
+                    Id = n.Id,
+                    Serial = n.Serial
+                }).ToList()
+            };
+
+            result.Plant = plant;
+
+            result.Machines = UserManagerViewService.GetMachinesByCustomer(plantModel.CustomerName);
+            return result;
+
+        }
+
         public static bool EditPlant(PlantViewModel plantModel)
         {
             try

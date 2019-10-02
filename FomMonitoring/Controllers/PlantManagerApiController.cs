@@ -40,6 +40,17 @@ namespace FomMonitoring.Controllers
 
         [HttpGet]
         [Authorize(Roles = Common.Administrator + "," + Common.Customer)]
+        [Route("ajax/PlantManagerApi/GetPlantByMachine/{idMachine}")]
+        public HttpResponseMessage GetPlantByMachine(int idMachine)
+        {
+            ContextModel context = ContextService.GetContext();
+            PlantManagerViewModel plant = new PlantManagerViewModel();
+            plant = PlantManagerViewService.GetPlantByMachine(idMachine);
+            return Request.CreateResponse(HttpStatusCode.OK, plant, MediaTypeHeaderValue.Parse("application/json"));
+        }
+
+        [HttpGet]
+        [Authorize(Roles = Common.Administrator + "," + Common.Customer)]
         [Route("ajax/PlantManagerApi/GetCustomers")]
         public HttpResponseMessage GetCustomers()
         {

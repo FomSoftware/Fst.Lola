@@ -31,6 +31,7 @@
 
         initVueModelPlant();
         getData();
+        
     }
 
     var initVueModelPlant = function () {
@@ -51,6 +52,40 @@
                     Name: false,
                     Address: false
                 }
+            },
+            computed: {
+                activeMachines: function () {
+                    return this.machines.active;
+                }
+            },
+            watch: {
+                activeMachines: function (machine, oldmachine) {
+                    if (oldmachine != null && machine != null) {
+                        let intersection = machine.filter(x => !oldmachine.includes(x));
+                        console.log(intersection);
+                        if (intersection != null && intersection[0] != null) {
+                            requestAssociatedPlant(intersection[0]).then(r => {
+                                if (r.Plant != null && vmPlants.actual.Id != r.Plant.Id) {
+                                    var text = "Macchina già associata ad un plant, continuare?";
+                                    var alert = alertSwal(text);
+
+                                    alert.then(
+                                        (result) => {
+                                            if (result != true) {
+                                                vmPlants.machines.active = oldmachine;
+                                                vmPlants.$nextTick(function () {
+                                                    $('#customer-input').selectpicker('refresh');
+                                                    $('#machines-input').selectpicker('refresh');
+                                                });
+                                            }
+                                        });
+                                }
+                            });
+                        }
+
+                    }
+                }
+                
             },
             methods: {
                 formValidation: function () {
@@ -101,10 +136,13 @@
 
     
     var getMachinesByCustomer = function () {
-        $('#customer-input').on('hidden.bs.select', function (e, clickedIndex, newValue, oldValue) {
-            $('#machines-input').prop("disabled", false);
+        //$('#customer-input').on('hidden.bs.select', function (e, clickedIndex, newValue, oldValue) {
+        //    $('#machines-input').prop("disabled", false);
 
-            var customer = $("#customer-input option:selected").val();
+        //    var customer = $("#customer-input option:selected").val();
+
+        var customer = vmPlants.customers.active;
+        console.log(customer);
             if (customer != null && customer != '')
                 $.ajax({
                     url: baseUserApiUrl + "/GetMachinesByCustomer/" + customer,
@@ -122,7 +160,7 @@
                     }
                 });
 
-        });
+        //});
     }
 
     var initDataTable = function (renderID, data) {
@@ -184,6 +222,7 @@
         
         if (roleUser == enRoles.Customer) {
             vmPlants.customers.active = contextUser.Username;
+            getMachinesByCustomer();
         } else {
             vmPlants.$nextTick(function () {
                 $('#plant-modal #customer-input').removeClass('input-read-only');
@@ -249,15 +288,17 @@
                     vmPlants.actual = result.Plant;
 
                     vmPlants.customers.active = result.Plant.CustomerName;
-                    vmPlants.machines.active = _.pluck(result.Plant.Machines, 'Id');
-                    vmPlants.machines.all = result.Machines;
 
-                    $('#plant-modal .modal-title').text(resource.PlantModify);
-                    $('#plant-modal').modal('show');
-                    $('#plant-modal .js-modify').show();
-                    $('#plant-modal .js-add').hide();
+                    vmPlants.$nextTick(function () {
+                        vmPlants.machines.active = _.pluck(result.Plant.Machines, 'Id');
+                        vmPlants.machines.all = result.Machines;
 
+                        $('#plant-modal .modal-title').text(resource.PlantModify);
+                        $('#plant-modal').modal('show');
+                        $('#plant-modal .js-modify').show();
+                        $('#plant-modal .js-add').hide();
 
+                    });
                 } else
                     errorSwal(resource.ErrorOccurred);
             },
@@ -266,6 +307,15 @@
             }
         });
     }
+
+    var requestAssociatedPlant = function (idMachine) {
+        return $.ajax({
+            url: baseApiUrl + "/GetPlantByMachine/" + idMachine,
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+        });
+    }
+
 
     var modifyPlant = function () {
         action = enAction.modify;

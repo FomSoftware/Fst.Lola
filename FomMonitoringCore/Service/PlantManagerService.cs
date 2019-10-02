@@ -31,7 +31,7 @@ namespace FomMonitoringCore.Service
                         {
                             var gc = entUM.Users.FirstOrDefault(f => f.Username == usernameCustomer)?.ID;
                             
-                            customerPlants = ent.UserMachineMapping.Include("Machine").Include("Machine.Plant").Where(w => w.UserId == gc).Select(s => s.Machine.Plant).Distinct().ToList();
+                            customerPlants = ent.Plant.Where(w => w.UserId == gc).Distinct().ToList();
                             if (customerPlants.Count == 0) return result;
                         
                         }
@@ -91,6 +91,39 @@ namespace FomMonitoringCore.Service
             catch (Exception ex)
             {
                 string errMessage = string.Format(ex.GetStringLog(), plantId.ToString());
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+
+            return result;
+        }
+
+        public static PlantModel GetPlantByMachine(int id)
+        {
+            PlantModel result = null;
+
+            try
+            {
+                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                {
+
+                    var plant = ent.Plant.FirstOrDefault(f => f.Machine.Any(m => m.Id == id));
+                    if (plant == null) return result;
+
+                    result = plant.Adapt<Plant, PlantModel>();
+
+                    // Recupero le sue macchine ed il customer associato
+                    using (UserManagerEntities entUM = new UserManagerEntities())
+                    {
+                        entUM.Configuration.LazyLoadingEnabled = false;
+                        var customerName = entUM.Users.FirstOrDefault(f => f.ID == plant.UserId)?.Username;
+                        result.CustomerName = customerName;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string errMessage = string.Format(ex.GetStringLog(), id.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
