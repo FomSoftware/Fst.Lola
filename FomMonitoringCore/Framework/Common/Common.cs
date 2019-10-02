@@ -144,7 +144,7 @@ namespace FomMonitoringCore.Framework.Common
             switch (Granularity)
             {
                 case enAggregation.Day:
-                    startDateTrend = EndDate.AddDays(-7);
+                    startDateTrend = EndDate.AddDays(-30);
                     break;
                 case enAggregation.Week:
                     startDateTrend = EndDate.AddDays(-7 * 7);

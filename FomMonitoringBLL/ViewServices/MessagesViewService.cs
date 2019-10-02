@@ -111,7 +111,7 @@ namespace FomMonitoringBLL.ViewServices
            
             options.yTitle = string.Format("{0} (n)", Resource.Quantity);
 
-            List<DateTime> days = data.Where(w => w.Day != null).Select(s => s.Day.Value).Distinct().ToList();
+            List<DateTime> days = data.Where(w => w.Day != null && (w.Type == (int)enTypeAlarm.Warning || w.Type == (int)enTypeAlarm.Error)).Select(s => s.Day.Value).Distinct().ToList();
             options.categories = CommonViewService.GetTimeCategories(days, granularity);
 
             List<SerieViewModel> series = new List<SerieViewModel>();
