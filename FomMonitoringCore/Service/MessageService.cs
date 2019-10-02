@@ -318,7 +318,7 @@ namespace FomMonitoringCore.Service
                     if (msg == null) return null;
                     long span = msg.PeriodicSpan ?? 0;
 
-                    DateTime? initTime = ent.Machine.Find(mm.MachineId).ActivationDate;
+                    DateTime? initTime = ent.Machine.Find(mm.MachineId).ActivationDate?.AddHours(span);
                     if(mm.IgnoreDate != null)
                     {
                         DateTime ? initInterval = ent.MessageMachine.Find(mm.Id).GetInitialSpanDate(span);
@@ -442,12 +442,26 @@ namespace FomMonitoringCore.Service
                         foreach (MessagesIndex messaggio in messaggi)
                         {
                             //messaggi periodici in base alla data di attivazione e allo span specificato nel messageIndex
-                            if (ent.MessageMachine.Any(mm => mm.MachineId == machine.Id && mm.IsPeriodicMsg == true &&
-                                                         mm.Code == messaggio.MessageCode) == false)
+                            MessageMachine mess = ent.MessageMachine.FirstOrDefault(mm => mm.MachineId == machine.Id && mm.IsPeriodicMsg == true &&
+                                                         mm.Code == messaggio.MessageCode);
+
+                            // i messaggi delle macchine al cui modello è associato un messaggio di default 
+                            // hanno come data la data di attivazione della macchina
+                            DateTime data = (DateTime)machine.ActivationDate;
+
+                            if (messaggio.PeriodicSpan != null)
+                                data = (DateTime)machine.ActivationDate?.AddHours((long)messaggio.PeriodicSpan);
+
+                            if (mess == null)
                             {                                
-                                insertMessageMachine(ent, machine, messaggio.MessageCode, DateTime.Now);                             
+                                insertMessageMachine(ent, machine, messaggio.MessageCode, data);                             
                             }
-                            
+                            else if(mess.IgnoreDate != null && messaggio.PeriodicSpan != null)
+                            {
+                                // aggiorno la data di scadenza all'intervallo 
+                                mess.Day = (DateTime)mess.IgnoreDate?.AddHours((long)messaggio.PeriodicSpan);
+                                ent.SaveChanges();
+                            }                            
                         }                        
                     }
                 }
