@@ -75,11 +75,11 @@ namespace FomMonitoringBLL.ViewServices
                 parameters = a.Params,
                 time = CommonViewService.getTimeViewModel(a.ElapsedTime),
                 quantity = a.Count == null ? 0 : a.Count.Value,
-                day = a.Day == null ? "-" : a.Day.Value.ToString("t"),
-                description = (a.Code != null) ? ReadMessages.GetMessageDescription(a.Code, machine.Id, a.Params, CultureInfo.CurrentCulture.Name) : ""
+                day = a.Day == null ? "-" : a.Day.Value.ToString("t")
+                //description = (a.Code != null) ? ReadMessages.GetMessageDescription(a.Code, machine.Id, a.Params, CultureInfo.CurrentCulture.Name) : ""
             }).ToList();
 
-            messages = messages.OrderByDescending(o => o.time.elapsed).ToList();
+            messages = messages.OrderByDescending(o => o.quantity).ToList();
 
             SortingViewModel sorting = new SortingViewModel();
             sorting.duration = enSorting.Descending.GetDescription();

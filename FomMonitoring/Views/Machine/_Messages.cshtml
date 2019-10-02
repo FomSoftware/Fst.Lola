@@ -104,13 +104,10 @@
                                             <th style="padding-left:5px;padding-right:5px;width:20%">
                                                 <span class="value-title"> @Resource.Code </span>
                                             </th>                                            
-                                            <th style="width:23%" class="th-number sorting" v-bind:class="sorting.quantity" v-on:click="sortQuantity()">
+                                            <th class="th-number sorting" v-bind:class="sorting.quantity" v-on:click="sortQuantity()">
                                                 <i class="fa fa-exclamation-triangle color-aaa"></i>
                                                 <span class="value-title">qty</span>
-                                            </th>
-                                            <th style="width:57%">
-                                                <span class="value-title"> @Resource.Description </span>
-                                            </th>
+                                            </th>                                            
                                         </tr>
                                     </thead>
                                 </table>
@@ -126,10 +123,9 @@
                                                         <div class="subtitle-alert" v-bind:class="colorClass(message.type)">{{ message.type }}</div>
                                                     </div>
                                                 </td>                                                
-                                                <td style="min-width:65px;width:23%">
+                                                <td style="min-width:65px;">
                                                     <span class="label label-default">{{ message.quantity }}</span>
-                                                </td>
-                                                <td style="width:57%">{{ message.description }}</td>
+                                                </td>                                               
                                             </tr>
                                         </tbody>
                                     </table>
