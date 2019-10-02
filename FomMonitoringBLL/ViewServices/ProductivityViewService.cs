@@ -15,6 +15,15 @@ namespace FomMonitoringBLL.ViewServices
         {
             ProductivityViewModel result = new ProductivityViewModel();
 
+            result.vm_machine_info = new MachineInfoViewModel
+            {
+                model = context.ActualMachine.Model.Name,
+                mtype = context.ActualMachine.Type.Name,
+                id_mtype = context.ActualMachine.Type.Id,
+                machineName = context.ActualMachine.MachineName
+
+            };
+
             result.vm_productivity = GetVueModel(context.ActualMachine, context.ActualPeriod);
             result.opt_historical = GetHistoricalOptions(context.ActualMachine, context.ActualPeriod);
             result.opt_operators = GetOperatorsOptions(context.ActualMachine, context.ActualPeriod);
@@ -86,16 +95,18 @@ namespace FomMonitoringBLL.ViewServices
 
             // phases
             List<ProdDataModel> phases = new List<ProdDataModel>();
+            if (machine.MachineTypeId != (int)enMachineType.Troncatrice)
+            {
+                ProdDataModel working = new ProdDataModel();
+                working.text = Resource.Working;
+                working.perc = Common.GetPercentage(data.Select(s => s.ElapsedTimeWorking ?? 0).Sum(), grossTime);
+                phases.Add(working);
 
-            ProdDataModel working = new ProdDataModel();
-            working.text = Resource.Working;
-            working.perc = Common.GetPercentage(data.Select(s => s.ElapsedTimeWorking ?? 0).Sum(), grossTime);
-            phases.Add(working);
-
-            ProdDataModel trim = new ProdDataModel();
-            trim.text = Resource.Trim;
-            trim.perc = Common.GetPercentage(data.Select(s => s.ElapsedTimeTrim ?? 0).Sum(), grossTime);
-            phases.Add(trim);
+                ProdDataModel trim = new ProdDataModel();
+                trim.text = Resource.Trim;
+                trim.perc = Common.GetPercentage(data.Select(s => s.ElapsedTimeTrim ?? 0).Sum(), grossTime);
+                phases.Add(trim);
+            }
 
             ProdDataModel cut = new ProdDataModel();
             cut.text = Resource.Cut;

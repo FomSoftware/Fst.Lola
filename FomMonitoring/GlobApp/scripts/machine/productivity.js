@@ -64,7 +64,7 @@
         //    }
         //}
 
-        initVueModel(data.vm_productivity);
+        initVueModel(data.vm_productivity, data.vm_machine_info);
 
         if (data.opt_historical != null)
         {
@@ -85,11 +85,12 @@
         }
     }
 
-    var initVueModel = function (data)
+    var initVueModel = function (data, infoMachine)
     {
         vmProductivity = new Vue({
             el: '#CardProductivity',
             data: {
+                type: infoMachine.mtype,
                 kpi: data.kpi,
                 piece: data.piece,
                 material: data.material,
@@ -170,6 +171,7 @@
     {
         // update vue model
         var vm_prod = data.vm_productivity;
+        vmProductivity.type = data.vm_machine_info.mtype;
         vmProductivity.kpi = vm_prod.kpi;
         vmProductivity.piece = vm_prod.piece;
         vmProductivity.material = vm_prod.material;

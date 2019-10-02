@@ -15,6 +15,8 @@ namespace FomMonitoringBLL.ViewModel
 
         public ChartViewModel opt_shifts { get; set; }
 
+        public MachineInfoViewModel vm_machine_info { get; set; }
+
     }
 
     public class ProductivityVueModel
