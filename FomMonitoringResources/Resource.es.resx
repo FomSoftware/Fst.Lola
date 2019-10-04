@@ -653,4 +653,40 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   <data name="motore_lama_TM" xml:space="preserve">
     <value>Motor disco cabezal móvil</value>
   </data>
+  <data name="AddPlant" xml:space="preserve">
+    <value>Agregar planta</value>
+  </data>
+  <data name="PlantAddress" xml:space="preserve">
+    <value>Dirección </value>
+  </data>
+  <data name="PlantCustomers" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="PlantDelete" xml:space="preserve">
+    <value>¿Estás seguro de eliminar esta planta?</value>
+  </data>
+  <data name="PlantDeleted" xml:space="preserve">
+    <value>Planta eliminada</value>
+  </data>
+  <data name="PlantDeletedConfirm" xml:space="preserve">
+    <value>
+Planta eliminada con éxito</value>
+  </data>
+  <data name="PlantImpossibileDeleted" xml:space="preserve">
+    <value>
+La planta no se puede eliminar. Hay máquinas asociadas</value>
+  </data>
+  <data name="PlantMachines" xml:space="preserve">
+    <value>Máquinas</value>
+  </data>
+  <data name="PlantModified" xml:space="preserve">
+    <value>
+Planta modificada exitosamente</value>
+  </data>
+  <data name="PlantModify" xml:space="preserve">
+    <value>Modificar planta</value>
+  </data>
+  <data name="PlantName" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
 </root>

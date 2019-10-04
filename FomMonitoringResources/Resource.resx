@@ -472,7 +472,7 @@
     <value>Passwords are not the same</value>
   </data>
   <data name="Customer" xml:space="preserve">
-    <value>Cutomer</value>
+    <value>Customer</value>
   </data>
   <data name="FieldRequired" xml:space="preserve">
     <value>This field is required</value>

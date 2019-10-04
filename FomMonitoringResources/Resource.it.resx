@@ -653,4 +653,37 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="motore_lama_TM" xml:space="preserve">
     <value>Motore lama testa mobile</value>
   </data>
+  <data name="AddPlant" xml:space="preserve">
+    <value>Aggiungi plant</value>
+  </data>
+  <data name="PlantAddress" xml:space="preserve">
+    <value>Indirizzo</value>
+  </data>
+  <data name="PlantCustomers" xml:space="preserve">
+    <value>Cliente</value>
+  </data>
+  <data name="PlantDelete" xml:space="preserve">
+    <value>Confermi di voler eliminare il plant selezionato?</value>
+  </data>
+  <data name="PlantDeleted" xml:space="preserve">
+    <value>Plant eliminato</value>
+  </data>
+  <data name="PlantDeletedConfirm" xml:space="preserve">
+    <value>Plant eliminato correttamente</value>
+  </data>
+  <data name="PlantImpossibileDeleted" xml:space="preserve">
+    <value>Il plant non può essere eliminato. Esistono macchine associate</value>
+  </data>
+  <data name="PlantMachines" xml:space="preserve">
+    <value>Macchine</value>
+  </data>
+  <data name="PlantModified" xml:space="preserve">
+    <value>Plant modificato correttamente</value>
+  </data>
+  <data name="PlantModify" xml:space="preserve">
+    <value>Modifica plant</value>
+  </data>
+  <data name="PlantName" xml:space="preserve">
+    <value>Nome</value>
+  </data>
 </root>

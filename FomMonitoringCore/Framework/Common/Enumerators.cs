@@ -29,6 +29,8 @@ namespace FomMonitoringCore.Framework.Common
         Mes = 3,
         [Description("PlantMessages"), Controller("Mes")]
         PlantMessages = 4,
+        [Description(""), Controller("PlantManager")]
+        PlantManager = 5,
     }
 
     

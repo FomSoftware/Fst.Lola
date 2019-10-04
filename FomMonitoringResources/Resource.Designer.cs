@@ -304,7 +304,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cutomer.
+        ///   Looks up a localized string similar to Customer.
         /// </summary>
         public static string Customer {
             get {

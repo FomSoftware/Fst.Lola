@@ -196,6 +196,15 @@
                         </a>
                     </li>
                 }
+                @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer)
+                {
+                    <li>
+                        <a class="dd-item dd-item-longtext" href="@Url.Action("PlantManager", "Plant")">
+                            <i class="fa fa-industry fa-lg color-corporate"></i>
+                            <div>Plant Manager</div>
+                        </a>
+                    </li>
+                 }
                 @if (Model.User.Role != enRole.Customer)
                 {
                     <li>
@@ -204,19 +213,19 @@
                             <div>@Resource.ChangePassword</div>
                         </a>
                     </li>
-                }               
-                <li>
-                    <a class="dd-item dd-item-longtext" href="#" data-toggle="modal" onclick="UserManager.openDisclamerModal()">
-                        <i class="fa fa-handshake-o color-corporate fa-sm"></i>
-                        <div>@Resource.Disclamer</div>
-                    </a>
-                </li>
-                <li>
-                    <a class="dd-item" href="@Url.Action("Logout", "Account")">
-                        <i class="fa fa-power-off color-corporate fa-lg"></i>
-                        <div>@Resource.Logout</div>
-                    </a>
-                </li>
+                }
+                    <li>
+                        <a class="dd-item dd-item-longtext" href="#" data-toggle="modal" onclick="UserManager.openDisclamerModal()">
+                            <i class="fa fa-handshake-o color-corporate fa-sm"></i>
+                            <div>@Resource.Disclamer</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dd-item" href="@Url.Action("Logout", "Account")">
+                            <i class="fa fa-power-off color-corporate fa-lg"></i>
+                            <div>@Resource.Logout</div>
+                        </a>
+                    </li>
             </ul>
         </nav>
         <!-- #endregion -->

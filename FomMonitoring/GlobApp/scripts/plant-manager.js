@@ -178,7 +178,7 @@
 
         var columns = [
             { title: resource.PlantName, data: "Name"},
-            { title: "Address", data: "Address" }
+            { title: resource.Address, data: "Address" }
         ];
 
         if (roleUser != enRoles.Customer)

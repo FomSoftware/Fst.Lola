@@ -198,6 +198,19 @@ namespace FomMonitoringCore.Service
             return isInitialize;
         }
 
+        public static bool InitializePlantManagerLevel()
+        {
+            bool isInitialize = false;
+
+            ContextModel context = GetContext();
+            context.ActualPage = enPage.PlantManager;
+
+            isInitialize = true;
+            SetContext(context);
+
+            return isInitialize;
+        }
+
         public static bool InitializeAdminLevel()
         {
             bool isInitialize = false;

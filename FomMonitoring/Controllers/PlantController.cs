@@ -20,7 +20,7 @@ namespace FomMonitoring.Controllers
         [Route("{lang}/PlantManager")]
         public ActionResult PlantManager()
         {
-            ContextService.InitializeAdminLevel();
+            ContextService.InitializePlantManagerLevel();
 
             ContextModel context = ContextService.GetContext();
             HeaderViewModel header = SharedViewService.GetHeader(context);

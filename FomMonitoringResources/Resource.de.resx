@@ -388,7 +388,7 @@
     <value>Session abgelaufen oder abgebrochen</value>
   </data>
   <data name="NoPlant" xml:space="preserve">
-    <value>Sie sind keiner Anlage zugeordnet</value>
+    <value>Sie sind keiner Produktionsanlage zugeordnet</value>
   </data>
   <data name="NoMachine" xml:space="preserve">
     <value>Sie sind keiner Maschine zugeordnet</value>
@@ -400,7 +400,7 @@
     <value>Es ist ein Problem beim Zugriff aufgetreten</value>
   </data>
   <data name="Plant" xml:space="preserve">
-    <value>Fabrik</value>
+    <value>Produktionsanlage</value>
   </data>
   <data name="PassNotValid" xml:space="preserve">
     <value>Passwort nicht korrekt</value>
@@ -535,7 +535,7 @@
     <value>Lage</value>
   </data>
   <data name="Timestamp" xml:space="preserve">
-    <value />
+    <value>Datum / Uhrzeit</value>
   </data>
   <data name="Group" xml:space="preserve">
     <value>Gruppe</value>
@@ -563,7 +563,7 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>Regelmässige und ordentliche Wartung</value>
   </data>
   <data name="PlantMessages" xml:space="preserve">
-    <value>Nachrichten aus der Anlage</value>
+    <value>Nachrichten aus der Produktionsanlage</value>
   </data>
   <data name="DisclaimerLogin" xml:space="preserve">
     <value>LOLA wurde für die Mobilfunknutzung optimiert. &lt;br /&gt;Für die Liste den Abschnitt &lt;br /&gt;„Terms &amp; Conditions“ konsultieren</value>
@@ -651,5 +651,41 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   </data>
   <data name="motore_lama_TM" xml:space="preserve">
     <value>Sägeblattmotor Verfahrkopf</value>
+  </data>
+  <data name="AddPlant" xml:space="preserve">
+    <value>Produktionsanlage hinzufügen</value>
+  </data>
+  <data name="PlantAddress" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="PlantCreated" xml:space="preserve">
+    <value>Produktionsanlage erfolgreich angelegt</value>
+  </data>
+  <data name="PlantCustomers" xml:space="preserve">
+    <value>Kunden</value>
+  </data>
+  <data name="PlantDelete" xml:space="preserve">
+    <value>Möchten Sie diese Produktionsanlage wirklich löschen?</value>
+  </data>
+  <data name="PlantDeleted" xml:space="preserve">
+    <value>Produktionsanlage gelöscht</value>
+  </data>
+  <data name="PlantDeletedConfirm" xml:space="preserve">
+    <value>Produktionsanlage erfolgreich gelöscht</value>
+  </data>
+  <data name="PlantImpossibileDeleted" xml:space="preserve">
+    <value>Die Produktionsanlage kann nicht gelöscht werden.</value>
+  </data>
+  <data name="PlantMachines" xml:space="preserve">
+    <value>Maschinen</value>
+  </data>
+  <data name="PlantModified" xml:space="preserve">
+    <value>Produktionsanlage erfolgreich geändert</value>
+  </data>
+  <data name="PlantModify" xml:space="preserve">
+    <value>Produktionsanlage ändern</value>
+  </data>
+  <data name="PlantName" xml:space="preserve">
+    <value>Name</value>
   </data>
 </root>

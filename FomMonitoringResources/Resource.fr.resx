@@ -653,4 +653,37 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="motore_lama_TM" xml:space="preserve">
     <value>Moteur lame tête mobile</value>
   </data>
+  <data name="AddPlant" xml:space="preserve">
+    <value>Ajouter une plante</value>
+  </data>
+  <data name="PlantAddress" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="PlantCustomers" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="PlantDelete" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer l'usine sélectionnée?</value>
+  </data>
+  <data name="PlantDeleted" xml:space="preserve">
+    <value>Usine supprimé</value>
+  </data>
+  <data name="PlantDeletedConfirm" xml:space="preserve">
+    <value>Usine supprimé avec succès</value>
+  </data>
+  <data name="PlantImpossibileDeleted" xml:space="preserve">
+    <value>L'usine ne peut pas être supprimée. Il y a des machines associées</value>
+  </data>
+  <data name="PlantMachines" xml:space="preserve">
+    <value>Machines</value>
+  </data>
+  <data name="PlantModified" xml:space="preserve">
+    <value>Usine  modifiée avec succès</value>
+  </data>
+  <data name="PlantModify" xml:space="preserve">
+    <value>Usine modifier</value>
+  </data>
+  <data name="PlantName" xml:space="preserve">
+    <value>Nom</value>
+  </data>
 </root>
