@@ -1157,5 +1157,10 @@ td.tool-border-left {
     }
 }
 
+hr.axes {
+    background-color: #403D3D;
+    border: 0;
+    height: 100%;
+}
 
 
