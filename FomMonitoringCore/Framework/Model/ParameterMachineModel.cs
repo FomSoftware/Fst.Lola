@@ -19,20 +19,20 @@ namespace FomMonitoringCore.Framework.Model
         public string ConvertedValue (string format)
         {
             string res = this.Value;
-            if(!string.IsNullOrEmpty(this.Value) && !string.IsNullOrEmpty(this.CnUm) && !string.IsNullOrEmpty(this.HmiUm) 
-                && this.CnUm != this.HmiUm && !double.IsNaN(double.Parse(this.Value))
-                && Enum.IsDefined(typeof(enUnitaMisura), this.CnUm)
-                && Enum.IsDefined(typeof(enUnitaMisura), this.HmiUm))
+            double temp;
+            if(double.TryParse(this.Value, out temp) && !string.IsNullOrEmpty(this.CnUm) && !string.IsNullOrEmpty(this.HmiUm) 
+                && this.CnUm != this.HmiUm 
+                && Enum.IsDefined(typeof(enUnitaMisuraLength), this.CnUm)
+                && Enum.IsDefined(typeof(enUnitaMisuraLength), this.HmiUm))
             {
-                enUnitaMisura cn;
-                enUnitaMisura hmi;
+                enUnitaMisuraLength cn;
+                enUnitaMisuraLength hmi;
                 if (Enum.TryParse(this.CnUm, true, out cn) && Enum.TryParse(this.HmiUm, true, out hmi))
-                {
-                    
+                {                    
                     if (format != null)
                         res = (double.Parse(this.Value) * ((double)hmi / (double)cn)).ToString(format);
                     else
-                        res = (double.Parse(this.Value) * ((double)hmi / (double)cn)).ToString();
+                        res = (double.Parse(this.Value) * ((double)hmi / (double)cn)).ToString();                    
                 }
             }
             return res;

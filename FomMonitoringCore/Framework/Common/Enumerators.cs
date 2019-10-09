@@ -196,12 +196,27 @@ namespace FomMonitoringCore.Framework.Common
         Troncatrice = 4
     }
 
-    public enum enUnitaMisura
+    public enum enUnitaMisuraLength
     {
+        //lunghezze
         [Description("KM")]
         KM = 1,
         [Description("MT")]
-        MT = 1000
+        MT = 1000,
+        [Description("MM")]
+        MM = 1000000
+    }
+    public enum enUnitaMisuraTime
+    {
+        //timespan
+        [Description("MS")]
+        MS = 1000,
+        [Description("S")]
+        S = 1,
+        [Description("M")]
+        M = 60,
+        [Description("H")]
+        H = 3600  
     }
 
 }
