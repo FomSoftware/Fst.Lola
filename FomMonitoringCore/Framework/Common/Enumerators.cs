@@ -196,4 +196,12 @@ namespace FomMonitoringCore.Framework.Common
         Troncatrice = 4
     }
 
+    public enum enUnitaMisura
+    {
+        [Description("KM")]
+        KM = 1,
+        [Description("MT")]
+        MT = 1000
+    }
+
 }

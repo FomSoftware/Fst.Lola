@@ -73,7 +73,9 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(d => d.UtcDateTime, src => src.UtcDateTime)
                 .Map(d => d.Description, src => new System.Resources.ResourceManager(typeof(Resource)).GetString(src.ParameterMachine.Keyword))
                 .Map(d => d.Value, src => src.VarValue)
-                .Map(d => d.VarNumber, src => src.VarNumber);
+                .Map(d => d.VarNumber, src => src.VarNumber)
+                .Map(d => d.CnUm, src => src.ParameterMachine.CnUm)
+                .Map(d => d.HmiUm, src => src.ParameterMachine.HmiUm);
 
             config.NewConfig<ParameterMachine, Model.Xml.ParameterMachineModelXml>()
                 .Map(d => d.CLUSTER, src => src.Cluster)
