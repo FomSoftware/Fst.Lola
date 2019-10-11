@@ -39,7 +39,7 @@ namespace FomMonitoringBLL.ViewServices
                 quantity_day = j.PiecesProducedDay ?? 0,
                 quantity = j.PiecesProduced ?? 0,
                 pieces = j.TotalPieces ?? 0,
-                day = j.Day
+                day = j.Day.GetValueOrDefault()
             }).ToList();
 
             jobs = jobs.OrderBy(o => o.perc).ToList();

@@ -62,7 +62,7 @@
                                         </span>
                                     </td>
                                     <td style="width:55%">{{ message.description }}</td>
-                                    <td style="width:20%">{{ message.formatted_timestamp }}</td>
+                                    <td style="width:20%">{{ convert_timestamp(message.timestamp, message.utc) }}</td>
                                     <td style="min-width:80px;width:20%">                                     
                                         <time-span v-bind:duration="message.expiredSpan"></time-span>
                                     </td>

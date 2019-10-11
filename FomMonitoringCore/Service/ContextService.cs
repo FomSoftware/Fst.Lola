@@ -28,9 +28,7 @@ namespace FomMonitoringCore.Service
 
                 context.AllLanguages = UserManagerService.GetLanguages().OrderBy(o => o.IdLanguage).ToList();
 
-
-
-
+                
                 context.ActualLanguage = context.User.Language == null ? context.AllLanguages.FirstOrDefault() :
                     UserManagerService.GetLanguages().Where(lan => lan.ID == context.User.Language.ID).FirstOrDefault();
 
@@ -112,7 +110,11 @@ namespace FomMonitoringCore.Service
                 else
                     context.AllMachines = MachineService.GetUserMachines(context.User.ID);
 
-                context.ActualPeriod = new PeriodModel() { LastUpdate = new DataUpdateModel() { DateTime = DateTime.UtcNow } };
+                context.ActualPeriod = new PeriodModel() {
+                    LastUpdate = new DataUpdateModel() {
+                        DateTime = DateTime.UtcNow
+                    }
+                };
 
                 isInitialize = true;
 
@@ -187,7 +189,7 @@ namespace FomMonitoringCore.Service
 
             if (context.ActualMachine != null && context.ActualMachine.LastUpdate != null)
             {
-                DateTime LastUpdate = context.ActualMachine.LastUpdate.Value;
+                DateTime LastUpdate = context.ActualMachine.LastUpdate.Value.AddHours(context.ActualMachine.UTC ?? 0);
                 context.ActualPeriod = PeriodService.GetPeriodModel(LastUpdate.Date, LastUpdate, enAggregation.Day);
             }
 

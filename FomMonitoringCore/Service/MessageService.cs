@@ -145,7 +145,7 @@ namespace FomMonitoringCore.Service
                                         Week = g.Day.Value.Month,
                                         g.MachineId,
                                         g.Type,
-                                        Period = g.Day.HasValue ? (int?)g.Day.Value.Year * 100 + GetQuarter(g.Day ?? DateTime.Now) : null,
+                                        Period = g.Day.HasValue ? (int?)g.Day.Value.Year * 100 + GetQuarter(g.Day ?? DateTime.UtcNow) : null,
 
                                     }).ToList().Select(s => new AggregationMessageModel
                                     {                                                                   
@@ -290,8 +290,10 @@ namespace FomMonitoringCore.Service
                         MessagesIndex msg = ent.MessagesIndex.FirstOrDefault(f => f.MessageCode == m.Code && f.MessageCategoryId == cat);
                         if (msg == null) return false;
                         
-                        return (msg.IsVisibleLOLA);
+                        return msg.IsVisibleLOLA;
                     }).ToList();
+
+                    
 
                     result = query.Adapt<List<MessageMachine>, List<MessageMachineModel>>();
                 }
@@ -327,7 +329,7 @@ namespace FomMonitoringCore.Service
                         else
                             return null;
                     }                                        
-                    return DateTime.Now.Subtract(initTime.Value).Ticks;
+                    return DateTime.UtcNow.Subtract(initTime.Value).Ticks;
                 }
             }
             return null;
@@ -352,7 +354,7 @@ namespace FomMonitoringCore.Service
                         if (msg == null) return false;
                         long span = msg.PeriodicSpan ?? 0;
                                      
-                        return (m.IgnoreDate == null && span > 0 && m.Machine.ActivationDate?.AddHours(span) <= DateTime.Now) ||
+                        return (m.IgnoreDate == null && span > 0 && m.Machine.ActivationDate?.AddHours(span) <= DateTime.UtcNow) ||
                                (m.IgnoreDate != null && span > 0 && m.IgnoreDate < m.GetInitialSpanDate(span)) ||
                                (m.IgnoreDate == null && span == 0);                      
 
@@ -406,7 +408,7 @@ namespace FomMonitoringCore.Service
             {
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
-                    ent.MessageMachine.Find(messageId).IgnoreDate = DateTime.Now;
+                    ent.MessageMachine.Find(messageId).IgnoreDate = DateTime.UtcNow;
                     ent.SaveChanges();
                     return true;
                 }
@@ -429,8 +431,8 @@ namespace FomMonitoringCore.Service
             {
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
-                    List<Machine> machines = ent.Machine.Where(m => m.ExpirationDate != null && m.ExpirationDate >= DateTime.Now && 
-                                           m.ActivationDate != null && m.ActivationDate <= DateTime.Now).ToList();
+                    List<Machine> machines = ent.Machine.Where(m => m.ExpirationDate != null && m.ExpirationDate >= DateTime.UtcNow && 
+                                           m.ActivationDate != null && m.ActivationDate <= DateTime.UtcNow).ToList();
                     
                     foreach(Machine machine in machines)
                     {

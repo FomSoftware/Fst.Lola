@@ -103,7 +103,7 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.enState, src => (enState?)src.StateId ?? null);
             config.NewConfig<usp_MesUserMachines_Result, MesUserMachinesModel>()
                 .Map(dest => dest.enActualState, src => (enState?)src.ActualStateId ?? null)
-                .Map(dest => dest.Expired, src => src.ExpirationDate < DateTime.Now);
+                .Map(dest => dest.Expired, src => src.ExpirationDate < DateTime.UtcNow);
 
 
 

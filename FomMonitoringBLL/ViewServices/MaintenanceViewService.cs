@@ -38,8 +38,8 @@ namespace FomMonitoringBLL.ViewServices
                 code = a.Code,
                 type = ((enTypeAlarm)ReadMessages.GetMessageType(a.Code, machine.Id)).GetDescription(),
                 time = CommonViewService.getTimeViewModel(a.ElapsedTime),
-                timestamp = a.Day,
-               // expiredSpan = (a.IsPeriodicMsg == true ? MessageService.GetExpiredSpan(a) : 0),
+                timestamp = DateTime.SpecifyKind(a.Day.HasValue ? a.Day.Value : DateTime.MinValue, DateTimeKind.Utc),
+                utc = machine.UTC,
                 expiredSpan = CommonViewService.getTimeViewModel(MessageService.GetExpiredSpan(a)),
                 description = (a.Code != null) ? ReadMessages.GetMessageDescription(a.Code, machine.Id, null, CultureInfo.CurrentCulture.Name) : ""
             }).ToList();
@@ -56,7 +56,7 @@ namespace FomMonitoringBLL.ViewServices
             return result;
         }
 
-        public static bool IgnoreMessage(int MessageId )
+        public static bool IgnoreMessage(int MessageId)
         {
             return MessageService.IgnoreMessage(MessageId);
         }

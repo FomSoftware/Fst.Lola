@@ -366,7 +366,7 @@
             contentType: "application/json; charset=utf-8",
             success: function (result) {
                 if (result.length > 0) {
-                    errorSwal(resource.ErrorOccurred);
+                    errorSwal(resource.PlantImpossibileDeleted);
                 }
                 else {
                     vmPlants.actual.ID = id;
@@ -477,7 +477,7 @@
 
     var errorSwal = function (text) {
         swal({
-            title: "test",
+            title: "",
             text: text,
             icon: "error",
             allowOutsideClick: true,

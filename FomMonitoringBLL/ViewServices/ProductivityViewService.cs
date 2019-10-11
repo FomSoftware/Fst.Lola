@@ -191,7 +191,7 @@ namespace FomMonitoringBLL.ViewServices
             if (data.Count == 0)
                 return null;
 
-            List<DateTime> days = data.Select(s => (DateTime)s.Day).Distinct().ToList();
+            List<DateTime> days = data.Select(s => s.Day).Distinct().ToList();
             options.categories = CommonViewService.GetTimeCategories(days, granularity);
             options.yTitle = string.Format("{0} (%)", Resource.Efficiency);
             options.yTitle2 = string.Format("{0} (pz/h)", Resource.Productivity);

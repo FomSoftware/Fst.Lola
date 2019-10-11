@@ -109,7 +109,7 @@ namespace FomMonitoring.Controllers
         public HttpResponseMessage DeletePlant(int id)
         {
             var result = PlantManagerViewService.DeletePlant(id);
-            return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
+            return Request.CreateResponse(HttpStatusCode.InternalServerError, result, MediaTypeHeaderValue.Parse("application/json"));
         }
     }
 }

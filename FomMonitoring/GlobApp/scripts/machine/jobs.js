@@ -4,44 +4,7 @@
 
     var init = function (data)
     {
-        //var data = {
-        //    vm_jobs: {
-        //        jobs: [{
-        //            code: 'A00JO3',
-        //            perc: 72,
-        //            time: {
-        //                days: null,
-        //                hours: '01',
-        //                minutes: '23',
-        //                seconds: null,
-        //                elapsed: 3000
-        //            },
-        //            quantity: 1,
-        //            pieces: 30
-        //        }, {
-        //            code: 'A00JO5',
-        //            perc: 100,
-        //            time: {
-        //                days: null,
-        //                hours: '04',
-        //                minutes: '50',
-        //                seconds: null,
-        //                elapsed: 4000
-        //            },
-        //            quantity: 10,
-        //            pieces: 33
-        //        }],
-        //        sorting: {
-        //            duration: 'asc',
-        //            quantity: null,
-        //            code: null,
-        //            progress: null
-        //        }
-        //    }
-        //};
-
-        //if (data.vm_jobs != null)
-            dataBindVueModel(data.vm_jobs);
+        dataBindVueModel(data.vm_jobs);
     }
 
 

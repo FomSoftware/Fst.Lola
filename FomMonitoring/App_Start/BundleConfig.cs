@@ -18,9 +18,11 @@ namespace FomMonitoring.App_Start
                         "~/Content/google-font-lato.css",
                         "~/Content/google-font-roboto-mono.css",
                         "~/Content/icofom.css",
+                        "~/Content/daterangepicker.css",
                         "~/Content/font-awesome.min.css",
                         "~/Content/simple-line-icons.css",
-                        "~/Content/DataTables/css/jquery.dataTables.css"
+                        "~/Content/DataTables/css/jquery.dataTables.css",
+                        "~/Content/bootstrap-select.css"
                       ));
 
 
@@ -33,7 +35,12 @@ namespace FomMonitoring.App_Start
                         "~/Scripts/highcharts/5.0.14/modules/solid-gauge.js",
                         //"~/Scripts/highcharts/5.0.14/themes/dark-unica.js",
                         "~/Scripts/DataTables/jquery.dataTables.js",
-                        "~/Scripts/DataTables/dataTables.bootstrap.js"
+                        "~/Scripts/DataTables/dataTables.bootstrap.js",
+                        "~/Scripts/moment.js",
+                        "~/Scripts/moment-with-locales.js",
+                        "~/Scripts/daterangepicker.js",
+                        "~/Scripts/underscore.js",
+                        "~/Scripts/bootstrap-select.js"
                       ));
 
             #endregion
@@ -41,17 +48,8 @@ namespace FomMonitoring.App_Start
             #region GlobApp 
 
             bundles.Add(new StyleBundle("~/GlobApp/styles/FomMonitoringStylesAPP").Include(
-                        "~/GlobApp/plugins/bootstrap-select/css/bootstrap-select.min.css",
                         "~/GlobApp/plugins/swiper/css/swiper.css",
-                        "~/GlobApp/plugins/daterangepicker/daterangepicker.css",
                         "~/GlobApp/plugins/waitMe/waitMe.css",
-                        "~/GlobApp/plugins/bootstrap-select.css",
-                        //"~/GlobApp/styles/layout.css",
-                        //"~/GlobApp/styles/toolbar.css",
-                        //"~/GlobApp/styles/machine.css",
-                        //"~/GlobApp/styles/mes.css",
-                        //"~/GlobApp/styles/user-manager.css",
-                        //"~/GlobApp/styles/utilities.css",
                         "~/GlobApp/grey/plant-manager.css",
                         "~/GlobApp/grey/user-manager.css",
                         "~/GlobApp/grey/layout.css",
@@ -63,16 +61,10 @@ namespace FomMonitoring.App_Start
                      ));
 
 
-            bundles.Add(new ScriptBundle("~/GlobApp/scripts/FomMonitoringScriptsAPP").Include(
-                        "~/GlobApp/plugins/bootstrap-select/js/bootstrap-select.min.js",                        
+            bundles.Add(new ScriptBundle("~/GlobApp/scripts/FomMonitoringScriptsAPP").Include(                
                         "~/GlobApp/plugins/jquery-flip/jquery.flip.min.js",
                         "~/GlobApp/plugins/jquery-slimscroll/jquery.slimscroll.min.js",
-                        "~/GlobApp/plugins/bootstrap-select.js",
-                        "~/GlobApp/plugins/underscore/underscore-min.js",
                         "~/GlobApp/plugins/swiper/js/swiper.js",
-                        "~/GlobApp/plugins/daterangepicker/moment.js",
-                        "~/GlobApp/plugins/daterangepicker/moment-with-locales.js",
-                        "~/GlobApp/plugins/daterangepicker/daterangepicker.js",
                         "~/GlobApp/plugins/waitMe/waitMe.js",
                         "~/GlobApp/plugins/sweet-alert/sweetalert.min.js",
                         "~/GlobApp/plugins/jStorage/jstorage.js",

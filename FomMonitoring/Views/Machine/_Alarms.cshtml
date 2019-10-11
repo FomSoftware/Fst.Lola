@@ -69,7 +69,7 @@
                                             <div class="subtitle-alert" v-bind:class="colorClass(alarm.type)">{{ alarm.type }}</div>
                                         </div>
                                     </td>
-                                    <td>{{ alarm.formatted_timestamp }}</td>
+                                    <td>{{ convert_timestamp(alarm.timestamp) }}</td>
                                     <td>{{ alarm.description }}</td>
                                 </tr>                               
                             </tbody>

@@ -18,11 +18,11 @@ namespace FomMonitoringCore.DAL
             if (IgnoreDate != null)
                 result = IgnoreDate;
 
-            while ( result < DateTime.Now)
+            while ( result < DateTime.UtcNow)
             {
                 DateTime? newInit = result?.AddHours(PeriodicSpan);
 
-                if (newInit < DateTime.Now)
+                if (newInit < DateTime.UtcNow)
                 { 
                     result = result?.AddHours(PeriodicSpan);
                     if (result > IgnoreDate)

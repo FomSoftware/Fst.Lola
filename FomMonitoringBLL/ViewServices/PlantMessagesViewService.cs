@@ -2,6 +2,7 @@
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -19,12 +20,14 @@ namespace FomMonitoringBLL.ViewServices
                 id = context.ActualPlant.Id,
                 name = context.ActualPlant.Name
             };
-            SortingViewModel sorting = new SortingViewModel();
-            sorting.timestamp = enSorting.Descending.GetDescription();
-
-            //sorting.group = enSorting.Ascending.GetDescription();
+            SortingViewModel sorting = new SortingViewModel
+            {
+                timestamp = enSorting.Descending.GetDescription()
+            };
+            
             result.sorting = sorting;
 
+            result.UtcOffset = context.AllMachines.FirstOrDefault(w => w.Id == (result.messages?.FirstOrDefault()?.machine.id ?? 0))?.UTC ?? 0; 
             return result;
         }
 
@@ -39,7 +42,7 @@ namespace FomMonitoringBLL.ViewServices
             {
                 MachineMessagesDataViewModel machineMsgs = new MachineMessagesDataViewModel();
 
-                MachineInfoModel machine = allMachines.Where(w => w.Id == dataMachine.MachineId).FirstOrDefault();
+                MachineInfoModel machine = allMachines.FirstOrDefault(w => w.Id == dataMachine.MachineId);
 
                 if (machine == null)
                 {
@@ -66,7 +69,8 @@ namespace FomMonitoringBLL.ViewServices
                 {
                     code = a.Code,
                     parameters = a.Params,
-                    timestamp = a.Day,
+                    timestamp = DateTime.SpecifyKind(a.Day ?? DateTime.MinValue, DateTimeKind.Utc),
+                    utc = machine.UTC ?? 0,
                     type = ((enTypeAlarm)ReadMessages.GetMessageType(a.Code, machine.Id)).GetDescription(),
                     //((enTypeAlarm)a.StateId).GetDescription(),
                     group = ReadMessages.GetMessageGroup(a.Code, machine.Id, a.Group),

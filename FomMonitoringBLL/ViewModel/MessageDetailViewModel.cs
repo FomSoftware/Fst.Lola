@@ -11,7 +11,7 @@ namespace FomMonitoringBLL.ViewModel
         public string parameters { get; set; }
         public DateTime? timestamp { get; set; }
         public string type { get; set; }
-
+        public double utc { get; set; }
         public string group { get; set; }
         public string description { get; set; }
 

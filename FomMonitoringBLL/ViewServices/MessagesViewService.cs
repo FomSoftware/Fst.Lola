@@ -36,7 +36,8 @@ namespace FomMonitoringBLL.ViewServices
             {
                 code = a.Code,
                 parameters = a.Params,
-                timestamp = a.Day,
+                timestamp = DateTime.SpecifyKind(a.Day ?? DateTime.MinValue, DateTimeKind.Utc),
+                utc = actualMachine.UTC ?? 0,
                 type = ((enTypeAlarm)ReadMessages.GetMessageType(a.Code, actualMachine.Id)).GetDescription(),
                 //((enTypeAlarm)a.StateId).GetDescription(),
                 group = ReadMessages.GetMessageGroup(a.Code, actualMachine.Id, a.Group),

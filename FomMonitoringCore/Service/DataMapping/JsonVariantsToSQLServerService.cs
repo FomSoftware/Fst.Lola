@@ -44,7 +44,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                     variableList = JsonConvert.DeserializeObject<List<JsonVariablesModel>>(JsonConvert.SerializeObject(token.First));
                                     foreach (JsonVariablesModel var in variableList)
                                     {
-                                        var.UtcDateTime = (var.UtcDateTime.Year < 1900) ? System.DateTime.Now : var.UtcDateTime; 
+                                        var.UtcDateTime = (var.UtcDateTime.Year < 1900) ? DateTime.UtcNow : var.UtcDateTime; 
                                         if(var.Values != null && var.Values.Count > 0)
                                         {
                                             foreach(JsonVariableValueModel value in var.Values)

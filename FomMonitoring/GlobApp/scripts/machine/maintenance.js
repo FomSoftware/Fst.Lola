@@ -5,7 +5,6 @@
 
     var init = function (data, url)
     {
-
         initVueModel(data);
         urlIgnoreMessageAPI = url;      
     }
@@ -24,6 +23,9 @@
             computed: {                
             },
             methods: {       
+                convert_timestamp: function (timestamp, utc) {
+                    return moment.utc(timestamp).add(utc, 'hour').format('L LTS');
+                },
                 sortTimestamp: function () {
 
                     if (this.sorting.timestamp == 'desc') {

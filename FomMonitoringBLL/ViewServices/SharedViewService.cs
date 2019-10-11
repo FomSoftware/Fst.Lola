@@ -49,8 +49,8 @@ namespace FomMonitoringBLL.ViewServices
                 toolbar.period = new PeriodViewModel();
                 if(context.ActualPeriod.StartDate.Year == 1)
                 {
-                    context.ActualPeriod.StartDate = System.DateTime.Now.AddDays(-30);
-                    context.ActualPeriod.EndDate = System.DateTime.Now;
+                    context.ActualPeriod.StartDate = System.DateTime.UtcNow.AddDays(-30);
+                    context.ActualPeriod.EndDate = System.DateTime.UtcNow;
                 }
 
                 toolbar.period.start = context.ActualPeriod.StartDate;

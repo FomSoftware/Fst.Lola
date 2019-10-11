@@ -17,12 +17,11 @@
     {
         initHeaderMenu();
         initMobileMenuEventHandler();
-
         vmLastUpdate = new Vue({
             el: '#last-update',
             data: {
-                date: data.Date,
-                time: data.Time
+                date: moment.utc(data.DateTime).local().format('L'),
+                time: moment.utc(data.DateTime).local().format('LTS')
             }
         });
     }
@@ -199,6 +198,7 @@
 
     var getLocaleCalendar = function (language)
     {
+
         var moment_locale = moment().locale(language.initial).localeData();
 
         var daysOfWeek = moment_locale._weekdaysMin;

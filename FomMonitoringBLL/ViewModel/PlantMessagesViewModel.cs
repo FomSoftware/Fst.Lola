@@ -13,6 +13,7 @@ namespace FomMonitoringBLL.ViewModel
         public PlantInfoViewModel plant { get; set; }
 
         public SortingViewModel sorting { get; set; }
+        public double UtcOffset { get; set; }
     }
 
 

@@ -37,6 +37,7 @@ namespace FomMonitoringBLL.ViewModel
             get { return timestamp?.ToString(CultureInfo.CurrentCulture); }
         }
 
+        public double? utc { get; set; }
     }
 
 }

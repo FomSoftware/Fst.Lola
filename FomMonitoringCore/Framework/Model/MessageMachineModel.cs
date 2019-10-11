@@ -4,9 +4,22 @@ namespace FomMonitoringCore.Framework.Model
 {
     public class MessageMachineModel
     {
+        private DateTime? _day;
         public int Id { get; set; }
         public string Code { get; set; }
-        public DateTime? Day { get; set; }
+        public DateTime? Day {
+            get
+            {
+                return _day;
+            }
+            set
+            {
+                if(value.HasValue)
+                    _day = DateTime.SpecifyKind(value.Value, DateTimeKind.Utc);
+                else
+                    _day = null;
+            }
+        }
         public string Params { get; set; }
         public long? ElapsedTime { get; set; }
         public int? MachineId { get; set; }

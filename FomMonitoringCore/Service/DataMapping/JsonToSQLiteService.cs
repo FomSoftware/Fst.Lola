@@ -384,7 +384,7 @@ namespace FomMonitoringCore.Service.DataMapping
                 using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
                     JsonData jsonData = ent.JsonData.FirstOrDefault(f => f.Id == id);
-                    jsonData.ElaborationDate = DateTime.Now;
+                    jsonData.ElaborationDate = DateTime.UtcNow;
                     jsonData.IsElaborated = true;
                     jsonData.IsLoaded = IsLoaded;
                     ent.SaveChanges();
