@@ -200,7 +200,8 @@
             vmMessages.show.historical = false;
             ChartManager.destroyChart('msg_historical_chart');
         }
-       
+
+        UtcOffset = data.UtcOffset;
        
     }
 
