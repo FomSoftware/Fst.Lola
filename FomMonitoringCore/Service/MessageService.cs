@@ -439,7 +439,7 @@ namespace FomMonitoringCore.Service
                         MachinId = machine.Id.ToString();
                         int cat = ent.Machine.Find(machine.Id).MachineModel.MessageCategoryId;
 
-                        List<MessagesIndex> messaggi = ent.MessagesIndex.Where(mi => mi.MessageCategoryId == cat && mi.IsPeriodicM == true).ToList();
+                        List<MessagesIndex> messaggi = ent.MessagesIndex.Where(mi => mi.MessageCategoryId == cat && mi.IsPeriodicM == true && mi.PeriodicSpan != null).ToList();
 
                         foreach (MessagesIndex messaggio in messaggi)
                         {
@@ -451,14 +451,13 @@ namespace FomMonitoringCore.Service
                             // hanno come data la data di attivazione della macchina
                             DateTime data = (DateTime)machine.ActivationDate;
 
-                            if (messaggio.PeriodicSpan != null)
-                                data = (DateTime)machine.ActivationDate?.AddHours((long)messaggio.PeriodicSpan);
+                            data = (DateTime)machine.ActivationDate?.AddHours((long)messaggio.PeriodicSpan);
 
                             if (mess == null)
                             {                                
                                 insertMessageMachine(ent, machine, messaggio.MessageCode, data);                             
                             }
-                            else if(mess.IgnoreDate != null && messaggio.PeriodicSpan != null)
+                            else if(mess.IgnoreDate != null)
                             {
                                 // aggiorno la data di scadenza all'intervallo 
                                 mess.Day = (DateTime)mess.IgnoreDate?.AddHours((long)messaggio.PeriodicSpan);

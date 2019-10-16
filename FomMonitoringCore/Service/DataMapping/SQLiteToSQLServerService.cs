@@ -108,7 +108,8 @@ namespace FomMonitoringCore.Service.DataMapping
                         {
                             int cat = ent.MachineModel.Find(machineActual.MachineModelId).MessageCategoryId;
                             MessagesIndex msg = ent.MessagesIndex.FirstOrDefault(f => f.MessageCode == mm.Code && f.MessageCategoryId == cat);
-
+                            if (msg != null && msg.IsPeriodicM == true)
+                                mm.IsPeriodicMsg = true;
                             ReadMessages.ReadMessageVisibilityGroup(mm, msg);
                         }                                      
 
