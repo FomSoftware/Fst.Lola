@@ -203,7 +203,7 @@ namespace FomMonitoringCore.Service
                                     Id = s.Max(m => m.Id),
                                     Code = s.Key.Code,
                                     //StateId = s.Key.StateId,
-                                    Count = s.Count(),
+                                    Count = s.Sum(i => i.Count),
                                     Day = s.Max(i => i.Day),
                                     //ElapsedTime = s.Sum(i => i.ElapsedTime),
                                     //Group = s.Key.Group,
