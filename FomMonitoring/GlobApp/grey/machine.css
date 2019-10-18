@@ -75,7 +75,7 @@
 
     .portlet-title > div {
         display: inline-block;
-        vertical-align: middle;
+        vertical-align: top;
     }
 
     .portlet-title .portlet-kpi {
@@ -1080,6 +1080,7 @@
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
+    margin-bottom: 0;
 }
 
 .label-tools-value {
