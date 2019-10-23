@@ -1,6 +1,7 @@
 ﻿using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
+using FomMonitoringCore.Repository;
 using Mapster;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,19 @@ using System.Linq;
 
 namespace FomMonitoringCore.Service
 {
-    public class MessageService
+    public class MessageService : IMessageService
     {
+        private IMessageMachineRepository _messageMachineRepository;
+        private IMachineRepository _machineRepository;
+        private IMessagesIndexRepository _messagesIndexRepository;
+
+        public MessageService(IMessageMachineRepository messageMachineRepository, IMachineRepository machineRepository, IMessagesIndexRepository messagesIndexRepository)
+        {
+            _messageMachineRepository = messageMachineRepository;
+            _machineRepository = machineRepository;
+            _messagesIndexRepository = messagesIndexRepository;
+        }
+
         #region SP AGGREGATION
 
         /// <summary>
@@ -272,22 +284,21 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        public static List<MessageMachineModel> GetMessageDetails(MachineInfoModel machine, PeriodModel period)
+        public List<MessageMachineModel> GetMessageDetails(MachineInfoModel machine, PeriodModel period)
         {
             List<MessageMachineModel> result = new List<MessageMachineModel>();
 
             try
             {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-                {
-                    List<MessageMachine> query = ent.MessageMachine.Where(m => m.MachineId == machine.Id &&
-                                        m.Day >= period.StartDate && m.Day <= period.EndDate &&
-                                        m.IsPeriodicMsg == null || m.IsPeriodicMsg == false).ToList();
 
-                    query = query.Where(m =>
+                    List<MessageMachine> query = _messageMachineRepository.GetMachineMessages(machine.Id, period.StartDate, period.EndDate).ToList();
+
+                int cat = _machineRepository.GetByID(machine.Id).MachineModel.MessageCategoryId;
+                var msgs = _messagesIndexRepository.Get(m => m.MessageCategoryId == cat, tracked: false);
+
+                query = query.Where(m =>
                     {
-                        int cat = ent.Machine.Find(m.MachineId).MachineModel.MessageCategoryId;
-                        MessagesIndex msg = ent.MessagesIndex.FirstOrDefault(f => f.MessageCode == m.Code && f.MessageCategoryId == cat);
+                        var msg = msgs.FirstOrDefault(i => i.MessageCode.Trim().Equals(m.Code.Trim(), StringComparison.InvariantCultureIgnoreCase));
                         if (msg == null) return false;
                         
                         return msg.IsVisibleLOLA;
@@ -296,7 +307,7 @@ namespace FomMonitoringCore.Service
                     
 
                     result = query.Adapt<List<MessageMachine>, List<MessageMachineModel>>();
-                }
+                
             }
             catch (Exception ex)
             {

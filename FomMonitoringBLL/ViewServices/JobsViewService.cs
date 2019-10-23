@@ -10,23 +10,30 @@ using System.Threading.Tasks;
 
 namespace FomMonitoringBLL.ViewServices
 {
-    public class JobsViewService
+    public class JobsViewService : IJobsViewService
     {
-        public static JobViewModel GetJobs(ContextModel context)
+        private IJobService _jobService;
+
+        public JobsViewService(IJobService jobService)
+        {
+            _jobService = jobService;
+        }
+
+        public JobViewModel GetJobs(ContextModel context)
         {
             JobViewModel result = new JobViewModel();
 
-            List<HistoryJobModel> jobsData = JobService.GetAllHistoryJobs(context.ActualMachine, context.ActualPeriod);
+            List<HistoryJobModel> jobsData = _jobService.GetAllHistoryJobs(context.ActualMachine, context.ActualPeriod);
             result.vm_jobs = GetVueModel(context.ActualMachine, context.ActualPeriod);
 
             return result;
         }
 
-        private static JobVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
+        private JobVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
         {
             JobVueModel result = new JobVueModel();
 
-            List<HistoryJobModel> data = JobService.GetAggregationJobs(machine, period);
+            List<HistoryJobModel> data = _jobService.GetAggregationJobs(machine, period);
 
             if (data.Count == 0)
                 return result;

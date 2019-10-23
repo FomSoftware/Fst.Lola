@@ -17,12 +17,19 @@ namespace FomMonitoring.Controllers
     [SessionApi]
     public class PlantManagerApiController : ApiController
     {
+        private IContextService _contextService;
+
+        public PlantManagerApiController(IContextService contextService)
+        {
+            _contextService = contextService;
+        }
+
         [HttpGet]
         [Authorize]
         [Route("ajax/PlantManagerApi/GetPlants")]
         public HttpResponseMessage GetPlants()
         {
-            ContextModel context = ContextService.GetContext();
+            ContextModel context = _contextService.GetContext();
             PlantManagerViewModel plantManager = new PlantManagerViewModel();
             plantManager = PlantManagerViewService.GetPlants(context);
             return Request.CreateResponse(HttpStatusCode.OK, plantManager, MediaTypeHeaderValue.Parse("application/json"));
@@ -43,7 +50,7 @@ namespace FomMonitoring.Controllers
         [Route("ajax/PlantManagerApi/GetPlantByMachine/{idMachine}")]
         public HttpResponseMessage GetPlantByMachine(int idMachine)
         {
-            ContextModel context = ContextService.GetContext();
+            ContextModel context = _contextService.GetContext();
             PlantManagerViewModel plant = new PlantManagerViewModel();
             plant = PlantManagerViewService.GetPlantByMachine(idMachine);
             return Request.CreateResponse(HttpStatusCode.OK, plant, MediaTypeHeaderValue.Parse("application/json"));
@@ -54,7 +61,7 @@ namespace FomMonitoring.Controllers
         [Route("ajax/PlantManagerApi/GetCustomers")]
         public HttpResponseMessage GetCustomers()
         {
-            ContextModel context = ContextService.GetContext();
+            ContextModel context = _contextService.GetContext();
             List<string> customers = new List<string>();
             return Request.CreateResponse(HttpStatusCode.OK, customers, MediaTypeHeaderValue.Parse("application/json"));
         }
@@ -66,7 +73,7 @@ namespace FomMonitoring.Controllers
         {
             try
             {
-                ContextModel context = ContextService.GetContext();
+                ContextModel context = _contextService.GetContext();
                 var result = PlantManagerViewService.CreatePlant(plant, context);
                 return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
             }

@@ -1,4 +1,5 @@
 ﻿using FomMonitoringCore.DAL;
+using FomMonitoringCore.Repository;
 using FomMonitoringCore.Service;
 using Newtonsoft.Json;
 using System;
@@ -13,9 +14,27 @@ using System.Threading.Tasks;
 
 namespace FomMonitoringCore.Framework.Common
 {
-    public class ReadMessages
+    public class ReadMessages : IReadMessages
     {
+        private IMessageLanguagesRepository _messageLanguagesRepository;
+        private IMessageTranslationRepository _messageTranslationRepository;
+        private IMachineGroupRepository _machineGroupRepository;
+        private IMachineRepository _machineRepository;
+        private IMessagesIndexRepository _messagesIndexRepository;
 
+        public ReadMessages(
+            IMessageLanguagesRepository messageLanguagesRepository,
+            IMessagesIndexRepository messagesIndexRepository,
+            IMessageTranslationRepository messageTranslationRepository,
+            IMachineGroupRepository machineGroupRepository,
+            IMachineRepository machineRepository)
+        {
+            _messageLanguagesRepository = messageLanguagesRepository;
+            _messageTranslationRepository = messageTranslationRepository;
+            _machineGroupRepository = machineGroupRepository;
+            _machineRepository = machineRepository;
+            _messagesIndexRepository = messagesIndexRepository;
+        }
         public static void ReadMessageVisibilityGroup(MessageMachine mm, MessagesIndex msg)
         {
             bool result = false;            
@@ -32,73 +51,68 @@ namespace FomMonitoringCore.Framework.Common
         }       
 
 
-        public static string GetMessageDescription(string code, int machineId, string parameters, string language)
+        public string GetMessageDescription(string code, int machineId, string parameters, string language)
         {
             var result = "";
+
+            var cat = _machineRepository.GetByID(machineId)?.MachineModel?.MessageCategoryId;
+
+            if (!(cat > 0))
+                return string.Empty;
+
+            var la = _messageLanguagesRepository.GetFirstOrDefault(lan => lan.DotNetCulture.StartsWith(language));
+            if (la == null)
+                return string.Empty;
+
+            var languageId = la.Id;
+
+
+            result = _messageTranslationRepository.GetFirstOrDefault(t => t.MessageLanguageId == languageId && t.MessagesIndex.MessageCode == code && t.MessagesIndex.MessageCategoryId == cat)?.Translation;
+
+
+            if (result == null)
+                return string.Empty;
             
-
-            using (var ent = new FST_FomMonitoringEntities())
-            {
-                var cat = ent.Machine.Find(machineId)?.MachineModel?.MessageCategoryId;
-
-                if (!(cat > 0))
-                    return string.Empty;
-
-                var la = ent.MessageLanguages.FirstOrDefault(lan => lan.DotNetCulture.StartsWith(language));
-                if (la == null)
-                    return string.Empty;
-
-                var languageId = la.Id;
-
-                result = ent.MessageTranslation.FirstOrDefault(t => t.MessageLanguageId == languageId && t.MessagesIndex.MessageCode == code && t.MessagesIndex.MessageCategoryId == cat)?.Translation;
-
-                if (result == null)
-                    return string.Empty;
-            }
 
             if (string.IsNullOrEmpty(parameters))                
                 return result;
-            try
-            {
-                Dictionary<string, string> parDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(parameters);
 
-                foreach (string key in parDict.Keys)
-                {
-                    result = result.Replace(key, parDict[key]);
-                }
+            Dictionary<string, string> parDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(parameters);
+
+            foreach (string key in parDict.Keys)
+            {
+                result = result.Replace(key, parDict[key]);
             }
-            catch(Exception ex)
-            { }
+
                    
             
             return result;
         }
 
-        public static string GetMessageGroup(string code, int machineId, int? jsonGroupId)
+        public string GetMessageGroup(string code, int machineId, int? jsonGroupId)
         {
-            using (var ent = new FST_FomMonitoringEntities())
-            {
+
                 MachineGroup mg;
 
                 if (jsonGroupId != null && jsonGroupId != 0)
                 {
-                    mg = ent.MachineGroup.Find(jsonGroupId);
+                    mg = _machineGroupRepository.GetByID(jsonGroupId);
                 }
                 else
                 {
-                    var cat = ent.Machine.Find(machineId)?.MachineModel?.MessageCategoryId;
+                    var cat = _machineRepository.GetByID(machineId).MachineModel.MessageCategoryId;
 
                     if (!(cat > 0))
                         return string.Empty;
 
-                    var msg = ent.MessagesIndex.FirstOrDefault(mi => mi.MessageCode == code && mi.MessageCategoryId == cat);
+                    var msg = _messagesIndexRepository.GetByCodeCategory(code, cat);
                     if (msg == null)
                         return string.Empty;
 
                     if (msg.MachineGroup == null)
                         return string.Empty;
 
-                    mg = ent.MachineGroup.Find(msg.MachineGroup.Id);
+                    mg = _machineGroupRepository.GetByID(msg.MachineGroup.Id);
                 }
 
                 if (mg == null)
@@ -106,31 +120,28 @@ namespace FomMonitoringCore.Framework.Common
 
                 return mg.MachineGroupName;
 
-            }
+            
             
         }
 
-        public static int? GetMessageType(string code, int machineId)
-        {            
-            using (var ent = new FST_FomMonitoringEntities())
-            {
-                var cat = ent.Machine.Find(machineId)?.MachineModel?.MessageCategoryId;
+        public int? GetMessageType(string code, int machineId)
+        {   
+            var cat = _machineRepository.GetByID(machineId).MachineModel.MessageCategoryId;
 
-                if (!(cat > 0))
-                    return null;
+            if (!(cat > 0))
+                return null;
 
-                var msg = ent.MessagesIndex.FirstOrDefault(mi => mi.MessageCode == code && mi.MessageCategoryId == cat);
-                if (msg == null)
-                    return null;
+            var msg = _messagesIndexRepository.GetByCodeCategory(code, cat);
+            if (msg == null)
+                return null;
 
-                if (msg.MessageType == null)
-                    return null;
+            if (msg.MessageType == null)
+                return null;
 
-                return msg.MessageType.Id;
-            }        
+            return msg.MessageType.Id;               
         }
 
-        public static string ReplaceFirstOccurrence(string source, string find, string replace)
+        public string ReplaceFirstOccurrence(string source, string find, string replace)
         {
             int place = source.IndexOf(find);
             string result = source.Remove(place, find.Length).Insert(place, replace);

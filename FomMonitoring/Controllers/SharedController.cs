@@ -11,9 +11,16 @@ namespace FomMonitoring.Controllers
     [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Administrator + "," + Common.Customer)]
     public class SharedController : Controller
     {
+        private IContextService _contextService;
+
+        public SharedController(IContextService contextService)
+        {
+            _contextService = contextService;
+        }
+
         public ActionResult _Header()
         {
-            ContextModel context = ContextService.GetContext();
+            ContextModel context = _contextService.GetContext();
             HeaderViewModel header = SharedViewService.GetHeader(context);
 
             return PartialView(header);
@@ -21,7 +28,7 @@ namespace FomMonitoring.Controllers
 
         public ActionResult _Toolbar()
         {
-            ContextModel context = ContextService.GetContext();
+            ContextModel context = _contextService.GetContext();
             ToolbarViewModel toolbar = SharedViewService.GetToolbar(context);
 
             //if(context.ActualPage == enPage.Machine)

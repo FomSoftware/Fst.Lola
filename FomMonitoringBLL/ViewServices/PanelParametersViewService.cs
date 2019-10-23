@@ -7,27 +7,37 @@ using System.Linq;
 
 namespace FomMonitoringBLL.ViewServices
 {
-    public class PanelParametersViewService
+    public class PanelParametersViewService : IPanelParametersViewService
     {
-        public static PanelParametersViewModel GetParameters(ContextModel context)
+        private IMachineService _machineService;
+        private ISpindleViewService _spindleViewService;
+        private IParameterMachineService _parameterMachineService;
+
+        public PanelParametersViewService(IMachineService machineService, ISpindleViewService spindleViewService, IParameterMachineService parameterMachineService)
         {
+            _machineService = machineService;
+            _spindleViewService = spindleViewService;
+            _parameterMachineService = parameterMachineService;
+        }
+        public PanelParametersViewModel GetParameters(ContextModel context)
+        { 
             PanelParametersViewModel result = new PanelParametersViewModel();
 
-            if (MachineService.GetMachinePanels(context).Contains((int)enPanel.BlitzMotorAxes))
+            if (_machineService.GetMachinePanels(context).Contains((int)enPanel.BlitzMotorAxes))
             {
                 result.vm_motoraxes_blitz = GetVueModelBlitz(context.ActualMachine, true);
             }
             else
             {
-                if (MachineService.GetMachinePanels(context).Contains((int)enPanel.KeopeMotors))
+                if (_machineService.GetMachinePanels(context).Contains((int)enPanel.KeopeMotors))
                 {
                     result.vm_motor_keope = GetVueModelKeope(context.ActualMachine);                   
                 }
                 else
                 {
-                    result.vm_spindles = SpindleViewService.GetSpindles(context);
+                    result.vm_spindles = _spindleViewService.GetSpindles(context);
                 }
-                if (MachineService.GetMachinePanels(context).Contains((int)enPanel.KeopeAxes))
+                if (_machineService.GetMachinePanels(context).Contains((int)enPanel.KeopeAxes))
                 {
                     result.vm_axes_keope = GetAxesVueModelKeope(context.ActualMachine);
                 }
@@ -45,10 +55,10 @@ namespace FomMonitoringBLL.ViewServices
             return result;
         }
 
-        private static MotorKeopeParameterVueModel GetVueModelKeope(MachineInfoModel machine, bool xmodule = false)
+        private MotorKeopeParameterVueModel GetVueModelKeope(MachineInfoModel machine, bool xmodule = false)
         {
 
-            var par = ParameterMachineService.GetParameters(machine, (int)enPanel.KeopeMotors);
+            var par = _parameterMachineService.GetParameters(machine, (int)enPanel.KeopeMotors);
 
             var result = new MotorKeopeParameterVueModel
             {
@@ -71,10 +81,10 @@ namespace FomMonitoringBLL.ViewServices
             return result;
         }
 
-        private static AxesKeopeParameterVueModel GetAxesVueModelKeope(MachineInfoModel machine, bool xmodule = false)
+        private AxesKeopeParameterVueModel GetAxesVueModelKeope(MachineInfoModel machine, bool xmodule = false)
         {
 
-            var par = ParameterMachineService.GetParameters(machine, (int)enPanel.KeopeAxes);
+            var par = _parameterMachineService.GetParameters(machine, (int)enPanel.KeopeAxes);
 
             var result = new AxesKeopeParameterVueModel
             {
@@ -89,10 +99,10 @@ namespace FomMonitoringBLL.ViewServices
             return result;
         }
 
-        private static MotorAxesParameterVueModel GetVueModelBlitz(MachineInfoModel machine, bool xmodule = false)
+        private MotorAxesParameterVueModel GetVueModelBlitz(MachineInfoModel machine, bool xmodule = false)
         {
 
-            var par = ParameterMachineService.GetParameters(machine, (int)enPanel.BlitzMotorAxes);
+            var par = _parameterMachineService.GetParameters(machine, (int)enPanel.BlitzMotorAxes);
 
             var result = new MotorAxesParameterVueModel
             {

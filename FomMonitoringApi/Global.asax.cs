@@ -11,6 +11,7 @@ namespace FomMonitoringApi
         {
             TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetAssembly(typeof(MapsterConfig)));
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            IocConfig.ConfigureDependencyInjection();
         }
     }
 }

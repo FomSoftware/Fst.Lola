@@ -1,4 +1,5 @@
-﻿using FomMonitoringCore.Framework.Common;
+﻿using Autofac;
+using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using FomMonitoringCore.Service.DataMapping;
@@ -16,6 +17,11 @@ namespace FomMonitoringDatabaseMapping
             int result = 0;
             Inizialization();
 
+            var builder = new ContainerBuilder();
+
+            FomMonitoringCore.Ioc.IocContainerBuilder.BuildCore(builder, false);
+            var container = builder.Build();
+            var sQLiteToSQLServerService = container.Resolve<ISQLiteToSQLServerService>();
             try
             {
                 List<JsonDataModel> jsonDataModels = JsonToSQLiteService.GetAllJsonDataNotElaborated();
@@ -29,7 +35,7 @@ namespace FomMonitoringDatabaseMapping
                             if (!JsonToSQLiteService.MappingJsonDetailsToSQLite(jsonDataModel))
                                 throw new Exception("JSON to SQLite Error:");
 
-                            if (!SQLiteToSQLServerService.MappingSQLiteDetailsToSQLServer())
+                            if (!sQLiteToSQLServerService.MappingSQLiteDetailsToSQLServer())
                                 throw new Exception("SQLite to SQLServer Error:");
                         }
 
@@ -38,7 +44,7 @@ namespace FomMonitoringDatabaseMapping
                             if (!JsonToSQLiteService.MappingJsonHistoryToSQLite(jsonDataModel))
                                 throw new Exception("JSON to SQLite Error:");
 
-                            if (!SQLiteToSQLServerService.MappingSQLiteHistoryToSQLServer())
+                            if (!sQLiteToSQLServerService.MappingSQLiteHistoryToSQLServer())
                                 throw new Exception("SQLite to SQLServer Error:");
                         }
 

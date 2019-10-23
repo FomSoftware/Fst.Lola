@@ -1,0 +1,69 @@
+﻿using Autofac;
+using Autofac.Builder;
+using FomMonitoringCore.DAL;
+using FomMonitoringCore.Framework.Common;
+using FomMonitoringCore.Repository;
+using FomMonitoringCore.Service;
+using FomMonitoringCore.Service.API;
+using FomMonitoringCore.Service.API.Concrete;
+using FomMonitoringCore.Service.DataMapping;
+using FomMonitoringCore.Uow;
+using System.Collections.Generic;
+
+namespace FomMonitoringCore.Ioc
+{
+    public static class IocContainerBuilder
+    {
+        public static void BuildCore(ContainerBuilder builder, bool instancePerRequest = true)
+        {
+
+            var instancesFoRequest = new List<IRegistrationBuilder<object, object, object>>();
+
+
+            instancesFoRequest.Add(builder.RegisterType<JsonDataService>().As<IJsonDataService>());
+            instancesFoRequest.Add(builder.RegisterType<ContextService>().As<IContextService>());
+            instancesFoRequest.Add(builder.RegisterType<SpindleService>().As<ISpindleService>());
+            instancesFoRequest.Add(builder.RegisterType<JobService>().As<IJobService>());
+            instancesFoRequest.Add(builder.RegisterType<ParameterMachineService>().As<IParameterMachineService>());
+            instancesFoRequest.Add(builder.RegisterType<MachineService>().As<IMachineService>());
+            instancesFoRequest.Add(builder.RegisterType<XmlDataService>().As<IXmlDataService>());
+            instancesFoRequest.Add(builder.RegisterType<JwtManager>().As<IJwtManager>());
+            instancesFoRequest.Add(builder.RegisterType<MessageMachineRepository>().As<IMessageMachineRepository>());
+            instancesFoRequest.Add(builder.RegisterType<MachineModelRepository>().As<IMachineModelRepository>());
+            instancesFoRequest.Add(builder.RegisterType<MachineTypeRepository>().As<IMachineTypeRepository>());
+            instancesFoRequest.Add(builder.RegisterType<MachineRepository>().As<IMachineRepository>());
+            instancesFoRequest.Add(builder.RegisterType<PanelRepository>().As<IPanelRepository>());
+            instancesFoRequest.Add(builder.RegisterType<SpindleRepository>().As<ISpindleRepository>());
+            instancesFoRequest.Add(builder.RegisterType<HistoryJobRepository>().As<IHistoryJobRepository>());
+            instancesFoRequest.Add(builder.RegisterType<ParameterMachineRepository>().As<IParameterMachineRepository>());
+            instancesFoRequest.Add(builder.RegisterType<ParameterMachineValueRepository>().As<IParameterMachineValueRepository>());
+            instancesFoRequest.Add(builder.RegisterType<MessagesIndexRepository>().As<IMessagesIndexRepository>());
+
+            instancesFoRequest.Add(builder.RegisterType<MessageLanguagesRepository>().As<IMessageLanguagesRepository>());
+            instancesFoRequest.Add(builder.RegisterType<HistoryStateRepository>().As<IHistoryStateRepository>());
+            instancesFoRequest.Add(builder.RegisterType<MessageTranslationRepository>().As<IMessageTranslationRepository>());
+            instancesFoRequest.Add(builder.RegisterType<MachineGroupRepository>().As<IMachineGroupRepository>());
+            instancesFoRequest.Add(builder.RegisterType<HistoryPieceRepository>().As<IHistoryPieceRepository>());
+
+            instancesFoRequest.Add(builder.RegisterType<SQLiteToSQLServerService>().As<ISQLiteToSQLServerService>());
+            instancesFoRequest.Add(builder.RegisterType<ReadMessages>().As<IReadMessages>());
+            instancesFoRequest.Add(builder.RegisterType<PieceService>().As<IPieceService>());
+            instancesFoRequest.Add(builder.RegisterType<StateService>().As<IStateService>());
+            instancesFoRequest.Add(builder.RegisterType<MessageService>().As<IMessageService>());
+            instancesFoRequest.Add(builder.RegisterType<UnitOfWork>().As<IUnitOfWork>());
+
+
+            instancesFoRequest.Add(builder.RegisterType<FST_FomMonitoringEntities>().As<IFomMonitoringEntities>());
+            if (instancePerRequest)
+            {
+                foreach (var b in instancesFoRequest)
+                {
+                    b.InstancePerRequest();
+                }
+            }
+
+            builder.RegisterType<SessionWebAttribute>().PropertiesAutowired().InstancePerRequest();
+
+        }
+    }
+}

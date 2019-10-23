@@ -12,21 +12,56 @@ using System.Threading.Tasks;
 
 namespace FomMonitoringBLL.ViewServices
 {
-    public class MachineViewService
+    public class MachineViewService : IMachineViewService
     {
-        public static MachineViewModel GetMachine(ContextModel context)
+        private IMessagesViewService _messagesViewService;
+        private IMaintenanceViewService _maintenanceViewService;
+        private IEfficiencyViewService _efficiencyViewService;
+        private IProductivityViewService _productivityViewService;
+        private IMachineService _messagesService;
+        private IToolsViewService _toolsViewService;
+        private IPanelParametersViewService _panelParametersViewService;
+        private IXToolsViewService _xToolsViewService;
+        private ISpindleViewService _spindleViewService;
+        private IJobsViewService _jobsViewService;
+
+        public MachineViewService(
+            IMessagesViewService messagesViewService,
+            IMachineService messagesService,
+            IMaintenanceViewService maintenanceViewService,
+            IEfficiencyViewService efficiencyViewService,
+            IProductivityViewService productivityViewService,
+            IPanelParametersViewService panelParametersViewService,
+            IXToolsViewService xToolsViewService,
+            IToolsViewService toolsViewService,
+            ISpindleViewService spindleViewService,
+            IJobsViewService jobsViewService)
+        {
+            _messagesViewService = messagesViewService;
+            _maintenanceViewService = maintenanceViewService;
+            _efficiencyViewService = efficiencyViewService;
+            _productivityViewService = productivityViewService;
+            _messagesService = messagesService;
+            _toolsViewService = toolsViewService;
+            _panelParametersViewService = panelParametersViewService;
+            _xToolsViewService = xToolsViewService;
+            _spindleViewService = spindleViewService;
+            _jobsViewService = jobsViewService;
+        }
+
+        public MachineViewModel GetMachine(ContextModel context)
         {
             MachineViewModel machine = new MachineViewModel();
-            machine.MachinePanels = MachineService.GetMachinePanels(context);
+            machine.MachinePanels = _messagesService.GetMachinePanels(context);
 
             machine.LastUpdate = new DataUpdateModel() { DateTime = context.ActualPeriod.LastUpdate.DateTime };
-            machine.Efficiency = EfficiencyViewService.GetEfficiency(context);
-            machine.Productivity = ProductivityViewService.GetProductivity(context);
+            machine.Efficiency = _efficiencyViewService.GetEfficiency(context);
+            machine.Productivity = _productivityViewService.GetProductivity(context);
             //machine.Alarms = AlarmsViewService.GetAlarms(context);
-            machine.Messages = MessagesViewService.GetMessages(context);
-            machine.Jobs = JobsViewService.GetJobs(context);
-            machine.PanelParameter = PanelParametersViewService.GetParameters(context);
-            machine.Tools = ToolsViewService.GetTools(context);           
+            machine.Messages = _messagesViewService.GetMessages(context);
+            machine.Jobs = _jobsViewService.GetJobs(context);
+            machine.PanelParameter = _panelParametersViewService.GetParameters(context);
+            machine.Tools = _toolsViewService.GetTools(context);           
             machine.MachineInfo = new MachineInfoViewModel
             {
                 model = context.ActualMachine.Model.Name,
@@ -34,9 +69,9 @@ namespace FomMonitoringBLL.ViewServices
                 id_mtype = context.ActualMachine.Type.Id,
                 machineName = context.ActualMachine.MachineName
             };
-            machine.XSpindles = SpindleViewService.GetXSpindles(context);
-            machine.XTools = XToolsViewService.GetXTools(context);
-            machine.Maintenance = MaintenanceViewService.GetMessages(context);           
+            machine.XSpindles = _spindleViewService.GetXSpindles(context);
+            machine.XTools = _xToolsViewService.GetXTools(context);
+            machine.Maintenance = _maintenanceViewService.GetMessages(context);           
             return machine;
         }
     }

@@ -85,6 +85,17 @@
     <Compile Include="ViewModel\XSpindleViewModel.cs" />
     <Compile Include="ViewModel\XToolViewModel.cs" />
     <Compile Include="ViewServices\CommonViewService.cs" />
+    <Compile Include="ViewServices\IEfficiencyViewService.cs" />
+    <Compile Include="ViewServices\IJobsViewService.cs" />
+    <Compile Include="ViewServices\IMachineViewService.cs" />
+    <Compile Include="ViewServices\IMaintenanceViewService.cs" />
+    <Compile Include="ViewServices\IMessagesViewService.cs" />
+    <Compile Include="ViewServices\IPanelParametersViewService.cs" />
+    <Compile Include="ViewServices\IPlantMessagesViewService.cs" />
+    <Compile Include="ViewServices\IProductivityViewService.cs" />
+    <Compile Include="ViewServices\ISpindleViewService.cs" />
+    <Compile Include="ViewServices\IToolsViewService.cs" />
+    <Compile Include="ViewServices\IXToolsViewService.cs" />
     <Compile Include="ViewServices\MachineViewService.cs" />
     <Compile Include="ViewServices\MaintenanceViewService.cs" />
     <Compile Include="ViewServices\MessagesViewService.cs" />

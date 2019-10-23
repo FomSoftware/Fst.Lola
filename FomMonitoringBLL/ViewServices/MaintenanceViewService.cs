@@ -11,9 +11,16 @@ using System.Threading.Tasks;
 
 namespace FomMonitoringBLL.ViewServices
 {
-    public class MaintenanceViewService
+    public class MaintenanceViewService : IMaintenanceViewService
     {
-        public static MaintenanceViewModel GetMessages(ContextModel context)
+        private IReadMessages _readMessages;
+
+        public MaintenanceViewService(IReadMessages readMessages)
+        {
+            _readMessages = readMessages;
+        }
+
+        public MaintenanceViewModel GetMessages(ContextModel context)
         {
             MaintenanceViewModel result = new MaintenanceViewModel();
 
@@ -22,7 +29,7 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        private static MaintenceVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
+        private MaintenceVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
         {
             MaintenceVueModel result = new MaintenceVueModel();
 
@@ -36,12 +43,12 @@ namespace FomMonitoringBLL.ViewServices
             {
                 id = a.Id,
                 code = a.Code,
-                type = ((enTypeAlarm)ReadMessages.GetMessageType(a.Code, machine.Id)).GetDescription(),
+                type = ((enTypeAlarm)_readMessages.GetMessageType(a.Code, machine.Id)).GetDescription(),
                 time = CommonViewService.getTimeViewModel(a.ElapsedTime),
                 timestamp = DateTime.SpecifyKind(a.Day.HasValue ? a.Day.Value : DateTime.MinValue, DateTimeKind.Utc),
                 utc = machine.UTC,
                 expiredSpan = CommonViewService.getTimeViewModel(MessageService.GetExpiredSpan(a)),
-                description = (a.Code != null) ? ReadMessages.GetMessageDescription(a.Code, machine.Id, null, CultureInfo.CurrentCulture.Name) : ""
+                description = (a.Code != null) ? _readMessages.GetMessageDescription(a.Code, machine.Id, null, CultureInfo.CurrentCulture.Name) : ""
             }).ToList();
 
             messages = messages.OrderByDescending(o => o.time.elapsed).ToList();
@@ -56,7 +63,7 @@ namespace FomMonitoringBLL.ViewServices
             return result;
         }
 
-        public static bool IgnoreMessage(int MessageId)
+        public bool IgnoreMessage(int MessageId)
         {
             return MessageService.IgnoreMessage(MessageId);
         }

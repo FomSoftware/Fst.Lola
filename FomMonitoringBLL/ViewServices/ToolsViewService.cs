@@ -11,13 +11,22 @@ using System.Threading.Tasks;
 namespace FomMonitoringBLL.ViewServices
 {
 
-        public class ToolsViewService
-        {
+        public class ToolsViewService : IToolsViewService
+    {
+        private IMachineService _machineService;
+        private IContextService _contextService;
+        private IParameterMachineService _parameterMachineService;
 
-            public static ToolViewModel GetTools(ContextModel context)
+        public ToolsViewService(IMachineService machineService, IContextService contextService, IParameterMachineService parameterMachineService)
+        {
+            _machineService = machineService;
+            _contextService = contextService;
+            _parameterMachineService = parameterMachineService;
+        }
+            public ToolViewModel GetTools(ContextModel context)
             {
                 ToolViewModel result = new ToolViewModel();
-                if(MachineService.GetMachinePanels(context).Contains((int)enPanel.ToolsBlitz))
+                if(_machineService.GetMachinePanels(context).Contains((int)enPanel.ToolsBlitz))
                     result.vm_tools_blitz = GetVueModelBlitz(context.ActualMachine, true);
                 else
                     result.vm_tools = GetVueModel(context.ActualMachine, true);
@@ -27,7 +36,7 @@ namespace FomMonitoringBLL.ViewServices
             }
 
 
-            private static ToolVueModel GetVueModel(MachineInfoModel machine, bool xmodule = false)
+            private ToolVueModel GetVueModel(MachineInfoModel machine, bool xmodule = false)
             {
                 ToolVueModel result = new ToolVueModel();
 
@@ -52,7 +61,7 @@ namespace FomMonitoringBLL.ViewServices
                         historical = dataHistorical.Where(w => w.Code == t.Code).Select(h => new HistoricalModel()
                         {
                             date = h.DateReplaced.ToString(),
-                            type = CommonViewService.GetTypeTool(h).ToLocalizedString(),
+                            type = CommonViewService.GetTypeTool(h).ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage),
                             color_type = CommonViewService.GetTypeTool(h).GetDescription(),
                             duration = CommonViewService.getTimeViewModel(h.CurrentLife)
                         }).OrderByDescending(o => o.date).ToList()
@@ -71,10 +80,10 @@ namespace FomMonitoringBLL.ViewServices
                 return result;
             }
 
-            private static ToolParameterVueModel GetVueModelBlitz(MachineInfoModel machine, bool xmodule = false)
+            private ToolParameterVueModel GetVueModelBlitz(MachineInfoModel machine, bool xmodule = false)
             {
                 
-                var par = ParameterMachineService.GetParameters(machine, (int)enPanel.ToolsBlitz);
+                var par = _parameterMachineService.GetParameters(machine, (int)enPanel.ToolsBlitz);
 
                 var result = new ToolParameterVueModel
                 {

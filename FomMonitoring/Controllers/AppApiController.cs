@@ -13,6 +13,20 @@ namespace FomMonitoring.Controllers
     [SessionApi]
     public class AppApiController : ApiController
     {
+        private IContextService _contextService;
+        private IPlantMessagesViewService _plantMessagesViewService;
+        private IMachineViewService _machineViewService;
+
+        public AppApiController(
+            IPlantMessagesViewService plantMessagesViewService, 
+            IMachineViewService machineViewService,
+            IContextService contextService)
+        {
+            _contextService = contextService;
+            _plantMessagesViewService = plantMessagesViewService;
+            _machineViewService = machineViewService;
+        }
+
         [HttpPost]
         [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
         [Route("ajax/AppApi/GetMachineViewModel")]
@@ -20,21 +34,21 @@ namespace FomMonitoring.Controllers
         {
             if (filters.machine != null)
             {
-                bool isCorrect = ContextService.CheckSecurityParameterApi(filters.machine.id, enCheckParam.Machine);
+                bool isCorrect = _contextService.CheckSecurityParameterApi(filters.machine.id, enCheckParam.Machine);
 
                 if (!isCorrect)
                     return Request.CreateResponse(HttpStatusCode.BadRequest);
 
-                ContextService.SetActualMachine(filters.machine.id);
+                _contextService.SetActualMachine(filters.machine.id);
             }
 
             if (filters.period != null)
-                ContextService.SetActualPeriod(filters.period.start, filters.period.end);
+                _contextService.SetActualPeriod(filters.period.start, filters.period.end);
 
-            ContextService.CheckLastUpdate();
+            _contextService.CheckLastUpdate();
 
-            ContextModel context = ContextService.GetContext();
-            MachineViewModel machine = MachineViewService.GetMachine(context);
+            ContextModel context = _contextService.GetContext();
+            MachineViewModel machine = _machineViewService.GetMachine(context);
 
             return Request.CreateResponse(HttpStatusCode.OK, machine, MediaTypeHeaderValue.Parse("application/json"));
         }
@@ -45,14 +59,14 @@ namespace FomMonitoring.Controllers
         [Route("ajax/AppApi/GetMesViewModel")]
         public HttpResponseMessage GetMesViewModel([FromBody]int plantID)
         {
-            bool isCorrect = ContextService.CheckSecurityParameterApi(plantID, enCheckParam.Plant);
+            bool isCorrect = _contextService.CheckSecurityParameterApi(plantID, enCheckParam.Plant);
 
             if (!isCorrect)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
-            ContextService.SetActualPlant(plantID);
+            _contextService.SetActualPlant(plantID);
 
-            ContextModel context = ContextService.GetContext();
+            ContextModel context = _contextService.GetContext();
             MesViewModel mes = MesViewService.GetMes(context);
 
             return Request.CreateResponse(HttpStatusCode.OK, mes, MediaTypeHeaderValue.Parse("application/json"));
@@ -64,10 +78,10 @@ namespace FomMonitoring.Controllers
         public HttpResponseMessage GetPlantMessagesViewModel(FilterViewModel filters)
         {
             if (filters.period != null)
-                ContextService.SetActualPeriod(filters.period.start, filters.period.end);
+                _contextService.SetActualPeriod(filters.period.start, filters.period.end);
 
-            ContextModel context = ContextService.GetContext();
-            PlantMessagesViewModel mes = PlantMessagesViewService.GetPlantMessages(context);
+            ContextModel context = _contextService.GetContext();
+            PlantMessagesViewModel mes = _plantMessagesViewService.GetPlantMessages(context);
 
             return Request.CreateResponse(HttpStatusCode.OK, mes, MediaTypeHeaderValue.Parse("application/json"));
         }

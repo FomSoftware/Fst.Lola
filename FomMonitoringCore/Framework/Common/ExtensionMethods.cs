@@ -283,10 +283,10 @@ namespace FomMonitoringCore.Framework.Common
         /// </summary>
         /// <param name="enumerator"></param>
         /// <returns></returns>
-        public static string ToLocalizedString(this Enum enumerator)
+        public static string ToLocalizedString(this Enum enumerator, string initialsLanguage)
         {
             ResourceManager rm = new ResourceManager(typeof(Resource));
-            CultureInfo cultureInfo = CultureInfo.GetCultureInfo(ContextService.GetContext().ActualLanguage.InitialsLanguage);
+            CultureInfo cultureInfo = CultureInfo.GetCultureInfo(initialsLanguage);
             string resourceValue = rm.GetString(enumerator.ToString(), cultureInfo);
             return string.IsNullOrEmpty(resourceValue) || string.IsNullOrWhiteSpace(resourceValue) ? string.Format("{0}", enumerator.ToString().Trim()) : resourceValue;
         }

@@ -16,13 +16,19 @@ namespace FomMonitoring.Controllers
     
     public class UserManagerApiController : ApiController
     {
+        private IContextService _contextService;
+
+        public UserManagerApiController(IContextService contextService)
+        {
+            _contextService = contextService;
+        }
 
         [HttpGet]
         [Authorize]
         [Route("ajax/UserManagerApi/GetUsers")]
         public HttpResponseMessage GetUsers()
         {
-            ContextModel context = ContextService.GetContext();
+            ContextModel context = _contextService.GetContext();
             UserManagerViewModel userManager = new UserManagerViewModel();
             userManager = UserManagerViewService.GetUsers(context);
             return Request.CreateResponse(HttpStatusCode.OK, userManager, MediaTypeHeaderValue.Parse("application/json"));
@@ -43,7 +49,7 @@ namespace FomMonitoring.Controllers
         [Route("ajax/UserManagerApi/GetCustomers")]
         public HttpResponseMessage GetCustomers()
         {
-            ContextModel context = ContextService.GetContext();
+            ContextModel context = _contextService.GetContext();
             List<string> customers = new List<string>();
             return Request.CreateResponse(HttpStatusCode.OK, customers, MediaTypeHeaderValue.Parse("application/json"));
         }
@@ -55,7 +61,7 @@ namespace FomMonitoring.Controllers
         {
             try
             {
-                ContextModel context = ContextService.GetContext();
+                ContextModel context = _contextService.GetContext();
                 var result = UserManagerViewService.CreateUser(user, context);
                 return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
             }
@@ -88,7 +94,7 @@ namespace FomMonitoring.Controllers
         [Route("ajax/UserManagerApi/ChangePassword")]
         public HttpResponseMessage ChangePassword(ChangePasswordViewModel changePasswordInfo)
         {
-            ContextModel context = ContextService.GetContext();
+            ContextModel context = _contextService.GetContext();
             var result = UserManagerViewService.ChangePassword(context, changePasswordInfo);
             return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
         }
@@ -98,7 +104,7 @@ namespace FomMonitoring.Controllers
         [Route("ajax/UserManagerApi/CheckFirstLogin")]
         public HttpResponseMessage CheckFirstLogin()
         {
-            ContextModel context = ContextService.GetContext();
+            ContextModel context = _contextService.GetContext();
             var result = false;
             if (context.User.Role == enRole.Operator || context.User.Role == enRole.HeadWorkshop)
             {

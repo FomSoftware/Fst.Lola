@@ -27,6 +27,8 @@ namespace FomMonitoring
             TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetAssembly(typeof(MapsterConfig)));
             GlobalFilters.Filters.Add(new AjaxBaseUrlActionFilter(), 0);
             log4net.Config.XmlConfigurator.Configure();
+
+            IocConfig.ConfigureDependencyInjection();
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs args)

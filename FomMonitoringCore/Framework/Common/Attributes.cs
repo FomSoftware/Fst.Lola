@@ -1,5 +1,6 @@
 ﻿using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
+using FomMonitoringCore.Service.API;
 using FomMonitoringCore.Service.API.Concrete;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,11 @@ namespace FomMonitoringCore.Framework.Common
 
         public async Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
-            if (ContextService.GetContext() == null)
+            var requestScope = context.Request.GetDependencyScope();
+
+            // Resolve the service you want to use.
+            var contextService = requestScope.GetService(typeof(IContextService)) as IContextService;
+            if (contextService.GetContext() == null)
             {
                 context.ErrorResult = new AuthenticationFailureResult("Unauthorized", context.Request);
                 return;
@@ -54,6 +59,7 @@ namespace FomMonitoringCore.Framework.Common
 
     public class SessionWebAttribute : System.Web.Mvc.ActionFilterAttribute
     {
+        public IContextService ContextService { get; set; }
         public override void OnActionExecuting(ActionExecutingContext actionExecutingContext)
         {
             if (ContextService.GetContext() == null)
@@ -67,13 +73,16 @@ namespace FomMonitoringCore.Framework.Common
     {
         public string Realm { get; set; }
         public bool AllowMultiple => false;
-
+        private IJwtManager JwtManager;
         public async Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
             var request = context.Request;
             var ip = GetClientIp(request);
             var authorization = request.Headers.Authorization;
+            var requestScope = context.Request.GetDependencyScope();
 
+            // Resolve the service you want to use.
+            JwtManager = requestScope.GetService(typeof(IJwtManager)) as IJwtManager;
             if (authorization == null)
             {
                 context.ErrorResult = new AuthenticationFailureResult("Missing Authorization Value", request);
@@ -118,12 +127,11 @@ namespace FomMonitoringCore.Framework.Common
             }
         }
 
-        private static bool ValidateToken(string token, out string machineSerial)
+        private bool ValidateToken(string token, out string machineSerial)
         {
             machineSerial = null;
-
-            JwtManager jwtManager = new JwtManager();
-            var simplePrinciple = jwtManager.GetPrincipal(token);
+            
+            var simplePrinciple = JwtManager.GetPrincipal(token);
 
             if (simplePrinciple == null)
                 return false;
@@ -303,10 +311,10 @@ namespace FomMonitoringCore.Framework.Common
     {
         public override void OnResultExecuting(ResultExecutingContext filterContext)
         {
-            var applicationPath = System.Web.HttpContext.Current.Request.ApplicationPath;
+            var applicationPath = HttpContext.Current.Request.ApplicationPath;
             if (applicationPath == "/") applicationPath = "";
 
-            filterContext.Controller.ViewBag.BaseUrl = System.Web.HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + applicationPath;
+            filterContext.Controller.ViewBag.BaseUrl = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + applicationPath;
         }
     }
 }

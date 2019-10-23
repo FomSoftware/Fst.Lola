@@ -14,15 +14,29 @@ namespace FomMonitoring.Controllers
     [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
     public class MachineController : Controller
     {
+        private IMachineViewService _machineViewService;
+        private IMaintenanceViewService _maintenanceViewService;
+        private IContextService _contextService;
+
+        public MachineController(
+            IMachineViewService machineViewService, 
+            IMaintenanceViewService maintenanceViewService,
+            IContextService contextService)
+        {
+            _machineViewService = machineViewService;
+            _maintenanceViewService = maintenanceViewService;
+            _contextService = contextService;
+        }
+
         public ActionResult Index()
         {
-            if (!ContextService.InitializeMachineLevel())
+            if (!_contextService.InitializeMachineLevel())
                 return RedirectToAction("Logout", new { returnUrl = string.Empty, exception = 4 });
 
-            ContextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
+            _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
 
-            ContextModel context = ContextService.GetContext();
-            MachineViewModel machine = MachineViewService.GetMachine(context);
+            ContextModel context = _contextService.GetContext();
+            MachineViewModel machine = _machineViewService.GetMachine(context);
 
             return View(machine);
         }
@@ -32,18 +46,18 @@ namespace FomMonitoring.Controllers
         {
             try
             {
-                if (!ContextService.InitializeMachineLevel(MachineID))
+                if (!_contextService.InitializeMachineLevel(MachineID))
                     return RedirectToAction("Logout", new { returnUrl = string.Empty, exception = 4 });
 
-                bool isCorrect = ContextService.CheckSecurityParameterApi(MachineID, enCheckParam.Machine);
+                bool isCorrect = _contextService.CheckSecurityParameterApi(MachineID, enCheckParam.Machine);
 
                 if (!isCorrect)
                     return RedirectToAction("Logout", new { returnUrl = string.Empty, exception = 1 });
 
-                ContextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
+                _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
 
-                ContextModel context = ContextService.GetContext();
-                MachineViewModel machine = MachineViewService.GetMachine(context);
+                ContextModel context = _contextService.GetContext();
+                MachineViewModel machine = _machineViewService.GetMachine(context);
 
                 return View(machine);
             }
@@ -57,11 +71,11 @@ namespace FomMonitoring.Controllers
         [Route("Machine/IgnoreMessage/{MessageID}")]
         public ActionResult IgnoreMessage(int MessageID)
         {           
-            bool res = MaintenanceViewService.IgnoreMessage(MessageID);
+            bool res = _maintenanceViewService.IgnoreMessage(MessageID);
 
-            ContextModel context = ContextService.GetContext();
+            ContextModel context = _contextService.GetContext();
 
-            MaintenanceViewModel mvm = MaintenanceViewService.GetMessages(context);
+            MaintenanceViewModel mvm = _maintenanceViewService.GetMessages(context);
 
             return Json(mvm);
 

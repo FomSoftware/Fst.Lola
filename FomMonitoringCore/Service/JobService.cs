@@ -1,6 +1,7 @@
 ﻿using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
+using FomMonitoringCore.Repository;
 using Mapster;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,17 @@ using System.Transactions;
 
 namespace FomMonitoringCore.Service
 {
-    public class JobService
+    public class JobService : IJobService
     {
+        private IFomMonitoringEntities _context;
+        private IHistoryJobRepository _historyJobRepository;
+
+        public JobService(IFomMonitoringEntities context, IHistoryJobRepository historyJobRepository)
+        {
+            _context = context;
+            _historyJobRepository = historyJobRepository;
+        }
+
         #region SP AGGREGATION
 
         /// <summary>
@@ -19,17 +29,16 @@ namespace FomMonitoringCore.Service
         /// <param name="machine"></param>
         /// <param name="period"></param>
         /// <returns>Lista dei dettagli degli stati</returns>
-        public static List<HistoryJobModel> GetAggregationJobs(MachineInfoModel machine, PeriodModel period)
+        public List<HistoryJobModel> GetAggregationJobs(MachineInfoModel machine, PeriodModel period)
         {
             List<HistoryJobModel> result = new List<HistoryJobModel>();
 
             try
             {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-                {
-                    List<usp_AggregationJob_Result> query = ent.usp_AggregationJob(machine.Id, period.StartDate, period.EndDate, (int)period.Aggregation).ToList();
+
+                    List<usp_AggregationJob_Result> query = _context.usp_AggregationJob(machine.Id, period.StartDate, period.EndDate, (int)period.Aggregation).ToList();
                     result = query.Adapt<List<HistoryJobModel>>();
-                }
+                
             }
             catch (Exception ex)
             {
@@ -45,24 +54,20 @@ namespace FomMonitoringCore.Service
         #endregion
 
 
-        public static List<HistoryJobModel> GetAllHistoryJobs(MachineInfoModel machine, PeriodModel period)
+        public List<HistoryJobModel> GetAllHistoryJobs(MachineInfoModel machine, PeriodModel period)
         {
             List<HistoryJobModel> result = new List<HistoryJobModel>();
 
             try
             {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-                {
                     string aggType = period.Aggregation.GetDescription();
 
-                    List<HistoryJob> query = (from hs in ent.HistoryJob
-                                              where hs.MachineId == machine.Id
+                    List<HistoryJob> query = _historyJobRepository.Get(hs => hs.MachineId == machine.Id
                                               && hs.Day >= period.StartDate && hs.Day <= period.EndDate
-                                              && hs.TypeHistory == aggType
-                                              select hs).ToList();
+                                              && hs.TypeHistory == aggType, tracked: false).ToList();
 
                     result = query.Adapt<List<HistoryJobModel>>();
-                }
+                
             }
             catch (Exception ex)
             {
@@ -76,7 +81,7 @@ namespace FomMonitoringCore.Service
         }
 
 
-        public static int? GetJobIdByJobCode(string jobCode, int machineId)
+        public int? GetJobIdByJobCode(string jobCode, int machineId)
         {
             int? result = null;
             try
@@ -87,7 +92,11 @@ namespace FomMonitoringCore.Service
                     {
                         if (!string.IsNullOrEmpty(jobCode))
                         {
-                            HistoryJob historyJob = ent.HistoryJob.OrderByDescending(o => o.Id).FirstOrDefault(f => f.Code == jobCode && f.MachineId == machineId);
+
+                            HistoryJob historyJob = _historyJobRepository.Get(f => f.Code == jobCode && f.MachineId == machineId, o => o.OrderByDescending(i => i.Id), tracked: false).FirstOrDefault();
+
+
+                            //HistoryJob historyJob = ent.HistoryJob.OrderByDescending(o => o.Id).FirstOrDefault(f => f.Code == jobCode && f.MachineId == machineId);
                             result = historyJob != null ? historyJob.Id : (int?)null;
                         }
                         transaction.Complete();

@@ -9,9 +9,18 @@ using System.Linq;
 
 namespace FomMonitoringBLL.ViewServices
 {
-    public class ProductivityViewService
+    public class ProductivityViewService : IProductivityViewService
     {
-        public static ProductivityViewModel GetProductivity(ContextModel context)
+        private IPieceService _pieceService;
+        private IContextService _contextService;
+
+        public ProductivityViewService(IPieceService pieceService, IContextService contextService)
+        {
+            _pieceService = pieceService;
+            _contextService = contextService;
+        }
+
+        public ProductivityViewModel GetProductivity(ContextModel context)
         {
             ProductivityViewModel result = new ProductivityViewModel();
 
@@ -33,11 +42,11 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        private static ProductivityVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
+        private ProductivityVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
         {
             ProductivityVueModel result = new ProductivityVueModel();
 
-            List<HistoryPieceModel> data = PieceService.GetAggregationPieces(machine, period, enDataType.Dashboard);
+            List<HistoryPieceModel> data = _pieceService.GetAggregationPieces(machine, period, enDataType.Dashboard);
 
             if (data.Count == 0)
                 return result;
@@ -126,7 +135,7 @@ namespace FomMonitoringBLL.ViewServices
             result.phases = phases.OrderByDescending(o => o.perc).ToList();
 
             // operators
-            List<HistoryPieceModel> dataOperators = PieceService.GetAggregationPieces(machine, period, enDataType.Operators);
+            List<HistoryPieceModel> dataOperators = _pieceService.GetAggregationPieces(machine, period, enDataType.Operators);
 
             if (dataOperators.Count > 0)
             {
@@ -174,7 +183,7 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        private static ChartViewModel GetHistoricalOptions(MachineInfoModel machine, PeriodModel period)
+        private ChartViewModel GetHistoricalOptions(MachineInfoModel machine, PeriodModel period)
         {
             ChartViewModel options = new ChartViewModel();
 
@@ -186,7 +195,7 @@ namespace FomMonitoringBLL.ViewServices
             periodTrend.EndDate = period.EndDate;
             periodTrend.Aggregation = granularity;
 
-            List<HistoryPieceModel> data = PieceService.GetAggregationPieces(machine, periodTrend, enDataType.Historical).OrderBy(o => o.Day).ToList();
+            List<HistoryPieceModel> data = _pieceService.GetAggregationPieces(machine, periodTrend, enDataType.Historical).OrderBy(o => o.Day).ToList();
 
             if (data.Count == 0)
                 return null;
@@ -201,11 +210,11 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        private static ChartViewModel GetOperatorsOptions(MachineInfoModel machine, PeriodModel period)
+        private ChartViewModel GetOperatorsOptions(MachineInfoModel machine, PeriodModel period)
         {
             ChartViewModel options = new ChartViewModel();
 
-            List<HistoryPieceModel> data = PieceService.GetAggregationPieces(machine, period, enDataType.Operators);
+            List<HistoryPieceModel> data = _pieceService.GetAggregationPieces(machine, period, enDataType.Operators);
 
             if (data.Count == 0)
                 return null;
@@ -220,11 +229,11 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        private static ChartViewModel GetShiftsOptions(MachineInfoModel machine, PeriodModel period)
+        private ChartViewModel GetShiftsOptions(MachineInfoModel machine, PeriodModel period)
         {
             ChartViewModel options = new ChartViewModel();
 
-            List<HistoryPieceModel> data = PieceService.GetAggregationPieces(machine, period, enDataType.Shifts);
+            List<HistoryPieceModel> data = _pieceService.GetAggregationPieces(machine, period, enDataType.Shifts);
 
             if (data.Count == 0)
                 return null;
@@ -239,27 +248,27 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        private static List<SerieViewModel> GetSeriesChart(List<HistoryPieceModel> data)
+        private List<SerieViewModel> GetSeriesChart(List<HistoryPieceModel> data)
         {
             List<SerieViewModel> series = new List<SerieViewModel>();
 
             SerieViewModel serieEfficiency = new SerieViewModel();
             serieEfficiency.type = (int)enSerieProd.Efficiency;
-            serieEfficiency.name = enSerieProd.Efficiency.ToLocalizedString();
+            serieEfficiency.name = enSerieProd.Efficiency.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieEfficiency.color = CommonViewService.GetColorChart(enSerieProd.Efficiency);
             serieEfficiency.data = data.Select(s => Common.GetPercentage(s.ElapsedTimeProducing, s.ElapsedTime).RoundToInt()).ToList();
             series.Add(serieEfficiency);
 
             SerieViewModel serieGrossTime = new SerieViewModel();
             serieGrossTime.type = (int)enSerieProd.GrossTime;
-            serieGrossTime.name = enSerieProd.GrossTime.ToLocalizedString();
+            serieGrossTime.name = enSerieProd.GrossTime.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieGrossTime.color = CommonViewService.GetColorChart(enSerieProd.GrossTime);
             serieGrossTime.data = data.Select(s => Common.GetRatioProductivity(s.CompletedCount, s.ElapsedTime) ?? 0).ToList();
             series.Add(serieGrossTime);
 
             SerieViewModel serieNetTime = new SerieViewModel();
             serieNetTime.type = (int)enSerieProd.NetTime;
-            serieNetTime.name = enSerieProd.NetTime.ToLocalizedString();
+            serieNetTime.name = enSerieProd.NetTime.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieNetTime.color = CommonViewService.GetColorChart(enSerieProd.NetTime);
             serieNetTime.data = data.Select(s => Common.GetRatioProductivity(s.CompletedCount, s.ElapsedTimeProducing) ?? 0).ToList();
             series.Add(serieNetTime);

@@ -10,10 +10,15 @@ using System.Threading.Tasks;
 
 namespace FomMonitoringBLL.ViewServices
 {
-    public class XToolsViewService
+    public class XToolsViewService : IXToolsViewService
     {
+        private IContextService _contextService;
 
-        public static XToolViewModel GetXTools(ContextModel context)
+        public XToolsViewService(IContextService contextService)
+        {
+            _contextService = contextService;
+        }
+        public XToolViewModel GetXTools(ContextModel context)
         {
             XToolViewModel result = new XToolViewModel();
             result.vm_tools = GetVueModel(context.ActualMachine, true);
@@ -22,7 +27,7 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        private static ToolVueModel GetVueModel(MachineInfoModel machine, bool xmodule = false)
+        private ToolVueModel GetVueModel(MachineInfoModel machine, bool xmodule = false)
         {
             ToolVueModel result = new ToolVueModel();
 
@@ -47,7 +52,7 @@ namespace FomMonitoringBLL.ViewServices
                     historical = dataHistorical.Where(w => w.Code == t.Code).Select(h => new HistoricalModel()
                     {
                         date = h.DateReplaced.ToString(),
-                        type = CommonViewService.GetTypeTool(h).ToLocalizedString(),
+                        type = CommonViewService.GetTypeTool(h).ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage),
                         color_type = CommonViewService.GetTypeTool(h).GetDescription(),
                         duration = CommonViewService.getTimeViewModel(h.CurrentLife)
                     }).OrderByDescending(o => o.date).ToList()

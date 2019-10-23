@@ -9,9 +9,17 @@ using System.Linq;
 
 namespace FomMonitoringBLL.ViewServices
 {
-    public class EfficiencyViewService
+    public class EfficiencyViewService : IEfficiencyViewService
     {
-        public static EfficiencyViewModel GetEfficiency(ContextModel context)
+        private IStateService _stateService;
+        private IContextService _contextService;
+
+        public EfficiencyViewService(IStateService stateService, IContextService contextService)
+        {
+            _stateService = stateService;
+            _contextService = contextService;
+        }
+        public EfficiencyViewModel GetEfficiency(ContextModel context)
         {
             EfficiencyViewModel result = new EfficiencyViewModel();
             result.vm_machine_info = new MachineInfoViewModel
@@ -33,11 +41,11 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        public static EfficiencyVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
+        public EfficiencyVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
         {
             EfficiencyVueModel result = new EfficiencyVueModel();
 
-            List<HistoryStateModel> data = StateService.GetAggregationStates(machine, period, enDataType.Dashboard);
+            List<HistoryStateModel> data = _stateService.GetAggregationStates(machine, period, enDataType.Dashboard);
 
             if (data.Count == 0)
                 return result;
@@ -64,7 +72,7 @@ namespace FomMonitoringBLL.ViewServices
             // state prod
             StateViewModel prod = new StateViewModel();
             prod.code = enState.Production.GetDescription();
-            prod.text = enState.Production.ToLocalizedString();
+            prod.text = enState.Production.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             prod.perc = percProd;
             prod.time = CommonViewService.getTimeViewModel(totalProd);
             states.Add(prod);
@@ -72,7 +80,7 @@ namespace FomMonitoringBLL.ViewServices
             // state pause
             StateViewModel pause = new StateViewModel();
             pause.code = enState.Pause.GetDescription();
-            pause.text = enState.Pause.ToLocalizedString();
+            pause.text = enState.Pause.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
 
             HistoryStateModel statePause = data.Where(w => w.enState == enState.Pause).FirstOrDefault();
 
@@ -87,7 +95,7 @@ namespace FomMonitoringBLL.ViewServices
             // state manual
             StateViewModel manual = new StateViewModel();
             manual.code = enState.Manual.GetDescription();
-            manual.text = enState.Manual.ToLocalizedString();
+            manual.text = enState.Manual.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
 
             HistoryStateModel stateManual = data.Where(w => w.enState == enState.Manual).FirstOrDefault();
 
@@ -102,7 +110,7 @@ namespace FomMonitoringBLL.ViewServices
             // state error
             StateViewModel error = new StateViewModel();
             error.code = enState.Error.GetDescription();
-            error.text = enState.Error.ToLocalizedString();
+            error.text = enState.Error.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
 
             HistoryStateModel stateError = data.Where(w => w.enState == enState.Error).FirstOrDefault();
 
@@ -120,7 +128,7 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        private static ChartViewModel GetHistoricalOptions(MachineInfoModel machine, PeriodModel period)
+        private ChartViewModel GetHistoricalOptions(MachineInfoModel machine, PeriodModel period)
         {
             ChartViewModel options = new ChartViewModel();
 
@@ -132,7 +140,7 @@ namespace FomMonitoringBLL.ViewServices
             periodTrend.EndDate = period.EndDate;
             periodTrend.Aggregation = granularity;
 
-            List<HistoryStateModel> data = StateService.GetAggregationStates(machine, periodTrend, enDataType.Historical).Where(w => w.enState != enState.Off).OrderBy(o => o.Day).ToList();
+            List<HistoryStateModel> data = _stateService.GetAggregationStates(machine, periodTrend, enDataType.Historical).Where(w => w.enState != enState.Off).OrderBy(o => o.Day).ToList();
 
             if (data.Count == 0)
                 return null;
@@ -149,25 +157,25 @@ namespace FomMonitoringBLL.ViewServices
             List<SerieViewModel> series = new List<SerieViewModel>();
 
             SerieViewModel serieProd = new SerieViewModel();
-            serieProd.name = enState.Production.ToLocalizedString();
+            serieProd.name = enState.Production.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieProd.color = CommonViewService.GetColorState(enState.Production);
             serieProd.data = Common.ConvertElapsedByMeasurement(data.Where(w => w.enState == enState.Production).Select(s => s.ElapsedTime ?? 0).ToList(), measurement);
             series.Add(serieProd);
 
             SerieViewModel seriePause = new SerieViewModel();
-            seriePause.name = enState.Pause.ToLocalizedString();
+            seriePause.name = enState.Pause.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             seriePause.color = CommonViewService.GetColorState(enState.Pause);
             seriePause.data = Common.ConvertElapsedByMeasurement(data.Where(w => w.enState == enState.Pause).Select(s => s.ElapsedTime ?? 0).ToList(), measurement);
             series.Add(seriePause);
 
             SerieViewModel serieManual = new SerieViewModel();
-            serieManual.name = enState.Manual.ToLocalizedString();
+            serieManual.name = enState.Manual.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieManual.color = CommonViewService.GetColorState(enState.Manual);
             serieManual.data = Common.ConvertElapsedByMeasurement(data.Where(w => w.enState == enState.Manual).Select(s => s.ElapsedTime ?? 0).ToList(), measurement);
             series.Add(serieManual);
 
             SerieViewModel serieError = new SerieViewModel();
-            serieError.name = enState.Error.ToLocalizedString();
+            serieError.name = enState.Error.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieError.color = CommonViewService.GetColorState(enState.Error);
             serieError.data = Common.ConvertElapsedByMeasurement(data.Where(w => w.enState == enState.Error).Select(s => s.ElapsedTime ?? 0).ToList(), measurement);
             series.Add(serieError);
@@ -178,11 +186,11 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        private static ChartViewModel GetOperatorsOptions(MachineInfoModel machine, PeriodModel period)
+        private ChartViewModel GetOperatorsOptions(MachineInfoModel machine, PeriodModel period)
         {
             ChartViewModel options = new ChartViewModel();
 
-            List<HistoryStateModel> data = StateService.GetAggregationStates(machine, period, enDataType.Operators).Where(w => w.enState != enState.Off).OrderBy(o => o.Day).ToList();
+            List<HistoryStateModel> data = _stateService.GetAggregationStates(machine, period, enDataType.Operators).Where(w => w.enState != enState.Off).OrderBy(o => o.Day).ToList();
 
             if (data.Count == 0)
                 return null;
@@ -195,10 +203,10 @@ namespace FomMonitoringBLL.ViewServices
             return options;
         }
 
-        private static ChartViewModel GetKpisOptions(MachineInfoModel machine, PeriodModel period)
+        private ChartViewModel GetKpisOptions(MachineInfoModel machine, PeriodModel period)
         {
             ChartViewModel options = new ChartViewModel();
-            List<HistoryStateModel> data = StateService.GetAggregationStates(machine, period, enDataType.Dashboard);
+            List<HistoryStateModel> data = _stateService.GetAggregationStates(machine, period, enDataType.Dashboard);
 
 
             HistoryStateModel stateProd = data.Where(w => w.enState == enState.Production).FirstOrDefault();
@@ -220,11 +228,11 @@ namespace FomMonitoringBLL.ViewServices
             return options;
         }
 
-        private static ChartViewModel GetShiftsOptions(MachineInfoModel machine, PeriodModel period)
+        private ChartViewModel GetShiftsOptions(MachineInfoModel machine, PeriodModel period)
         {
             ChartViewModel options = new ChartViewModel();
 
-            List<HistoryStateModel> data = StateService.GetAggregationStates(machine, period, enDataType.Shifts).Where(w => w.enState != enState.Off).OrderBy(o => o.Day).ToList();
+            List<HistoryStateModel> data = _stateService.GetAggregationStates(machine, period, enDataType.Shifts).Where(w => w.enState != enState.Off).OrderBy(o => o.Day).ToList();
 
             if (data.Count == 0)
                 return null;
@@ -237,13 +245,13 @@ namespace FomMonitoringBLL.ViewServices
             return options;
         }
 
-        private static ChartViewModel GetStatesOptions(MachineInfoModel machine, PeriodModel period)
+        private ChartViewModel GetStatesOptions(MachineInfoModel machine, PeriodModel period)
         {
             ChartViewModel options = new ChartViewModel();
             options.series = new List<SerieViewModel>();
 
 
-            List<HistoryStateModel> data = StateService.GetAggregationStates(machine, period, enDataType.Dashboard);
+            List<HistoryStateModel> data = _stateService.GetAggregationStates(machine, period, enDataType.Dashboard);
 
             if (!data.Any())
                 return options;
@@ -273,28 +281,28 @@ namespace FomMonitoringBLL.ViewServices
 
             // state prod
             SerieViewModel prod = new SerieViewModel();
-            prod.name = enState.Production.ToLocalizedString();
+            prod.name = enState.Production.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             prod.y = percProd ?? 0;
             prod.color = CommonViewService.GetColorState(enState.Production);
             options.series.Add(prod);
             
             // state pause
             SerieViewModel pause = new SerieViewModel();
-            pause.name = enState.Pause.ToLocalizedString();
+            pause.name = enState.Pause.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             pause.y = percPause ?? 0;
             pause.color = CommonViewService.GetColorState(enState.Pause);
             options.series.Add(pause);
 
 
             SerieViewModel manual = new SerieViewModel();
-            manual.name = enState.Manual.ToLocalizedString();
+            manual.name = enState.Manual.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             manual.y = percManual ?? 0;
             manual.color = CommonViewService.GetColorState(enState.Manual);
             options.series.Add(manual);
 
 
             SerieViewModel error = new SerieViewModel();
-            error.name = enState.Error.ToLocalizedString();
+            error.name = enState.Error.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             error.y = percError ?? 0;
             error.color = CommonViewService.GetColorState(enState.Error);
             options.series.Add(error);
@@ -303,27 +311,27 @@ namespace FomMonitoringBLL.ViewServices
             return options;
         }
 
-        private static List<SerieViewModel> GetSeriesStackedBarChart(List<HistoryStateModel> data, List<string> categories, enDataType chart)
+        private List<SerieViewModel> GetSeriesStackedBarChart(List<HistoryStateModel> data, List<string> categories, enDataType chart)
         {
             List<SerieViewModel> series = new List<SerieViewModel>();
 
             SerieViewModel serieProd = new SerieViewModel();
-            serieProd.name = enState.Production.ToLocalizedString();
+            serieProd.name = enState.Production.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieProd.color = CommonViewService.GetColorState(enState.Production);
             serieProd.data = new List<int>();
 
             SerieViewModel seriePause = new SerieViewModel();
-            seriePause.name = enState.Pause.ToLocalizedString();
+            seriePause.name = enState.Pause.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             seriePause.color = CommonViewService.GetColorState(enState.Pause);
             seriePause.data = new List<int>();
 
             SerieViewModel serieManual = new SerieViewModel();
-            serieManual.name = enState.Manual.ToLocalizedString();
+            serieManual.name = enState.Manual.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieManual.color = CommonViewService.GetColorState(enState.Manual);
             serieManual.data = new List<int>();
 
             SerieViewModel serieError = new SerieViewModel();
-            serieError.name = enState.Error.ToLocalizedString();
+            serieError.name = enState.Error.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieError.color = CommonViewService.GetColorState(enState.Error);
             serieError.data = new List<int>();
 

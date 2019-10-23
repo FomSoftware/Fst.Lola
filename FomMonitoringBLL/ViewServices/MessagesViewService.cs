@@ -11,9 +11,20 @@ using System.Linq;
 
 namespace FomMonitoringBLL.ViewServices
 {
-    public class MessagesViewService
+    public class MessagesViewService : IMessagesViewService
     {
-        public static MessageViewModel GetMessages(ContextModel context)
+        private IMessageService _messageService;
+        private IReadMessages _readMessages;
+        private IContextService _contextService;
+
+        public MessagesViewService(IMessageService messageService, IReadMessages readMessages, IContextService contextService)
+        {
+            _messageService = messageService;
+            _readMessages = readMessages;
+            _contextService = contextService;
+        }
+
+        public MessageViewModel GetMessages(ContextModel context)
         {
             MessageViewModel result = new MessageViewModel();
 
@@ -23,11 +34,11 @@ namespace FomMonitoringBLL.ViewServices
             return result;
         }
 
-        private static MessageDetailsVueModel GetMessageDetails(MachineInfoModel actualMachine, PeriodModel actualPeriod)
+        private MessageDetailsVueModel GetMessageDetails(MachineInfoModel actualMachine, PeriodModel actualPeriod)
         {
             MessageDetailsVueModel result = new MessageDetailsVueModel();
 
-            List<MessageMachineModel> data = MessageService.GetMessageDetails(actualMachine, actualPeriod);
+            List<MessageMachineModel> data = _messageService.GetMessageDetails(actualMachine, actualPeriod);
 
             if (data.Count == 0)
                 return result;
@@ -38,10 +49,10 @@ namespace FomMonitoringBLL.ViewServices
                 parameters = a.Params,
                 timestamp = DateTime.SpecifyKind(a.Day ?? DateTime.MinValue, DateTimeKind.Utc),
                 utc = actualMachine.UTC ?? 0,
-                type = ((enTypeAlarm)ReadMessages.GetMessageType(a.Code, actualMachine.Id)).GetDescription(),
+                type = ((enTypeAlarm)_readMessages.GetMessageType(a.Code, actualMachine.Id)).GetDescription(),
                 //((enTypeAlarm)a.StateId).GetDescription(),
-                group = ReadMessages.GetMessageGroup(a.Code, actualMachine.Id, a.Group),
-                description = ReadMessages.GetMessageDescription(a.Code, actualMachine.Id, a.Params, CultureInfo.CurrentCulture.Name)
+                group = _readMessages.GetMessageGroup(a.Code, actualMachine.Id, a.Group),
+                description = _readMessages.GetMessageDescription(a.Code, actualMachine.Id, a.Params, CultureInfo.CurrentCulture.Name)
             }).ToList();
 
             messages = messages.OrderByDescending(o => o.timestamp).ToList();
@@ -59,7 +70,7 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        private static MessageVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
+        private MessageVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
         {
             MessageVueModel result = new MessageVueModel();
 
@@ -71,13 +82,13 @@ namespace FomMonitoringBLL.ViewServices
             List<MessageDataModel> messages = data.Select(a => new MessageDataModel()
             {
                 code = a.Code,
-                type = ReadMessages.GetMessageType(a.Code, machine.Id) != null ? ((enTypeAlarm)ReadMessages.GetMessageType(a.Code, machine.Id)).GetDescription() : String.Empty,
+                type = _readMessages.GetMessageType(a.Code, machine.Id) != null ? ((enTypeAlarm)_readMessages.GetMessageType(a.Code, machine.Id)).GetDescription() : String.Empty,
                 //((enTypeAlarm)a.StateId).GetDescription(),
                 parameters = a.Params,
                 time = CommonViewService.getTimeViewModel(a.ElapsedTime),
                 quantity = a.Count == null ? 0 : a.Count.Value,
                 day = a.Day == null ? "-" : a.Day.Value.ToString("t"),
-                description = (a.Code != null) ? ReadMessages.GetMessageDescription(a.Code, machine.Id, a.Params, CultureInfo.CurrentCulture.Name) : ""
+                description = (a.Code != null) ? _readMessages.GetMessageDescription(a.Code, machine.Id, a.Params, CultureInfo.CurrentCulture.Name) : ""
             }).ToList();
 
             messages = messages.OrderByDescending(o => o.quantity).ToList();
@@ -93,7 +104,7 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        private static ChartViewModel GetHistoricalOptions(MachineInfoModel machine, PeriodModel period)
+        private ChartViewModel GetHistoricalOptions(MachineInfoModel machine, PeriodModel period)
         {
             ChartViewModel options = new ChartViewModel();
 
@@ -118,13 +129,13 @@ namespace FomMonitoringBLL.ViewServices
             List<SerieViewModel> series = new List<SerieViewModel>();
 
             SerieViewModel serieOperator = new SerieViewModel();
-            serieOperator.name = enTypeAlarm.Warning.ToLocalizedString();
+            serieOperator.name = enTypeAlarm.Warning.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieOperator.color = CommonViewService.GetColorAlarm(enTypeAlarm.Warning);
             serieOperator.data = data.Where(w => w.Type == (int)enTypeAlarm.Warning).Select(s => s.Count ?? 0).ToList();
             series.Add(serieOperator);
 
             SerieViewModel serieError = new SerieViewModel();
-            serieError.name = enTypeAlarm.Error.ToLocalizedString();
+            serieError.name = enTypeAlarm.Error.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieError.color = CommonViewService.GetColorAlarm(enTypeAlarm.Error);
             serieError.data = data.Where(w => w.Type == (int)enTypeAlarm.Error).Select(s => s.Count ?? 0).ToList();
             series.Add(serieError);

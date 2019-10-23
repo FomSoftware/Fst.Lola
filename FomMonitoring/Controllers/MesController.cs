@@ -13,16 +13,25 @@ namespace FomMonitoring.Controllers
     [Authorize(Roles = Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
     public class MesController : Controller
     {
+        private IPlantMessagesViewService _plantMessagesViewService;
+        private IContextService _contextService;
+
+        public MesController(IPlantMessagesViewService plantMessagesViewService, IContextService contextService)
+        {
+            _plantMessagesViewService = plantMessagesViewService;
+            _contextService = contextService;
+        }
+
         public ActionResult Index()
         {
-            if (!ContextService.InitializeMesLevel())
+            if (!_contextService.InitializeMesLevel())
             {
                 //sbagliato, la action Logout su MesController non esiste
                 return RedirectToAction("Logout", "Account", new { returnUrl = string.Empty, exception = 3 });
             }
-            ContextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
+            _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
 
-            ContextModel context = ContextService.GetContext();
+            ContextModel context = _contextService.GetContext();
             MesViewModel mes = MesViewService.GetMes(context);
 
             return View("Mes", mes);
@@ -31,10 +40,10 @@ namespace FomMonitoring.Controllers
         
         public ActionResult PlantMessages()
         {
-            ContextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
-            ContextModel context = ContextService.GetContext();
+            _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
+            ContextModel context = _contextService.GetContext();
             context.ActualPage = enPage.PlantMessages;
-            PlantMessagesViewModel mes = PlantMessagesViewService.GetPlantMessages(context);
+            PlantMessagesViewModel mes = _plantMessagesViewService.GetPlantMessages(context);
 
             return View("PlantMessages", mes);
 

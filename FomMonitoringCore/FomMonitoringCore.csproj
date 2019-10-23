@@ -56,6 +56,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -241,6 +244,7 @@
     <Compile Include="DAL\ParameterMachineValue.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Partials\IFomMonitoringEntities.cs" />
     <Compile Include="DAL\Partials\MessageMachine.cs" />
     <Compile Include="DAL\Piece.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
@@ -349,6 +353,7 @@
     <Compile Include="Framework\Common\EmailSender.cs" />
     <Compile Include="Framework\Common\Enumerators.cs" />
     <Compile Include="Framework\Common\ExtensionMethods.cs" />
+    <Compile Include="Framework\Common\IReadMessages.cs" />
     <Compile Include="Framework\Common\ReadMessages.cs" />
     <Compile Include="Framework\Config\MapsterConfig.cs" />
     <Compile Include="Framework\Model\AggregationBarModel.cs" />
@@ -393,7 +398,40 @@
     <Compile Include="Framework\Model\UserIdentityModel.cs" />
     <Compile Include="Framework\Model\UserMachineMappingModel.cs" />
     <Compile Include="Framework\Model\UserModel.cs" />
+    <Compile Include="Ioc\IocContainerBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\HistoryJobRepository.cs" />
+    <Compile Include="Repository\HistoryPieceRepository.cs" />
+    <Compile Include="Repository\HistoryStateRepository.cs" />
+    <Compile Include="Repository\IGenericRepository.cs" />
+    <Compile Include="Repository\IHistoryJobRepository.cs" />
+    <Compile Include="Repository\IHistoryPieceRepository.cs" />
+    <Compile Include="Repository\IHistoryStateRepository.cs" />
+    <Compile Include="Repository\IMachineGroupRepository.cs" />
+    <Compile Include="Repository\IMachineModelRepository.cs" />
+    <Compile Include="Repository\IMachineRepository.cs" />
+    <Compile Include="Repository\IMachineTypeRepository.cs" />
+    <Compile Include="Repository\IMessageLanguagesRepository.cs" />
+    <Compile Include="Repository\IMessageMachineRepository.cs" />
+    <Compile Include="Repository\IMessagesIndexRepository.cs" />
+    <Compile Include="Repository\IMessageTranslationRepository.cs" />
+    <Compile Include="Repository\IPanelRepository.cs" />
+    <Compile Include="Repository\IParameterMachineRepository.cs" />
+    <Compile Include="Repository\IParameterMachineValueRepository.cs" />
+    <Compile Include="Repository\ISpindleRepository.cs" />
+    <Compile Include="Repository\MachineGroupRepository.cs" />
+    <Compile Include="Repository\MachineModelRepository.cs" />
+    <Compile Include="Repository\MachineRepository.cs" />
+    <Compile Include="Repository\MachineTypeRepository.cs" />
+    <Compile Include="Repository\MessageLanguagesRepository.cs" />
+    <Compile Include="Repository\MessageMachineRepository.cs" />
+    <Compile Include="Repository\MessagesIndexRepository.cs" />
+    <Compile Include="Repository\MessageTranslationRepository.cs" />
+    <Compile Include="Repository\PanelRepository.cs" />
+    <Compile Include="Repository\ParameterMachineRepository.cs" />
+    <Compile Include="Repository\ParameterMachineValueRepository.cs" />
+    <Compile Include="Repository\SpindleRepository.cs" />
     <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\AlarmService.cs" />
     <Compile Include="Service\API\Concrete\JsonDataService.cs" />
@@ -410,9 +448,18 @@
     <Compile Include="Service\BarService.cs" />
     <Compile Include="Service\CacheService.cs" />
     <Compile Include="Service\ContextService.cs" />
+    <Compile Include="Service\DataMapping\ISQLiteToSQLServerService.cs" />
     <Compile Include="Service\DataMapping\JsonToSQLiteService.cs" />
     <Compile Include="Service\DataMapping\JsonVariantsToSQLServerService.cs" />
     <Compile Include="Service\DataMapping\SQLiteToSQLServerService.cs" />
+    <Compile Include="Service\IContextService.cs" />
+    <Compile Include="Service\IJobService.cs" />
+    <Compile Include="Service\IMachineService.cs" />
+    <Compile Include="Service\IMessageService.cs" />
+    <Compile Include="Service\IParameterMachineService.cs" />
+    <Compile Include="Service\IPieceService.cs" />
+    <Compile Include="Service\ISpindleService.cs" />
+    <Compile Include="Service\IStateService.cs" />
     <Compile Include="Service\JobService.cs" />
     <Compile Include="Service\LogService.cs" />
     <Compile Include="Service\MachineService.cs" />
@@ -429,6 +476,8 @@
     <Compile Include="Service\APIClient\Concrete\JsonAPIClientService.cs" />
     <Compile Include="Service\APIClient\IJsonAPIClientService.cs" />
     <Compile Include="Service\UserManagerService.cs" />
+    <Compile Include="Uow\IUnitOfWork.cs" />
+    <Compile Include="Uow\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

@@ -16,16 +16,22 @@ namespace FomMonitoring.Controllers
     [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Administrator + "," + Common.Customer)]
     public class PlantController : Controller
     {
+        private IContextService _contextService;
+
+        public PlantController (IContextService contextService)
+        {
+            _contextService = contextService;
+        }
         // GET: Plant
         [Route("{lang}/PlantManager")]
         public ActionResult PlantManager()
         {
-            ContextService.InitializePlantManagerLevel();
+            _contextService.InitializePlantManagerLevel();
 
-            ContextModel context = ContextService.GetContext();
+            ContextModel context = _contextService.GetContext();
             HeaderViewModel header = SharedViewService.GetHeader(context);
 
-            ContextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
+            _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
 
             return View(header);
         }

@@ -7,19 +7,24 @@ namespace FomMonitoringCore.Service.API.Concrete
 {
     public class JwtManager : IJwtManager
     {
+        public JwtManager(IMachineService machineService)
+        {
+            _machineService = machineService;
+        }
         /// <summary>
         /// Use the below code to generate symmetric Secret Key
         ///     var hmac = new HMACSHA256();
         ///     var key = Convert.ToBase64String(hmac.Key);
         /// </summary>
         private const string Secret = "5WKenA5ZkB4K6pe8OBi0/KqaK9atKPAdBY6FqtZGC3axVibfwNruwj3+hOoIRqj8VHQXpepX9jThSrDwOveFMg==";
+        private IMachineService _machineService;
 
         public string GenerateToken(string machineSerial, int expireMinutes = 2)
         {
             var symmetricKey = Convert.FromBase64String(Secret);
             var tokenHandler = new JwtSecurityTokenHandler();
 
-            var date = MachineService.GetLastUpdateByMachineSerial(machineSerial);
+            var date = _machineService.GetLastUpdateByMachineSerial(machineSerial);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] {

@@ -3,6 +3,7 @@ using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Framework.Model.Xml;
 using FomMonitoringCore.Service.API;
 using FomMonitoringCore.Service.API.Concrete;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace FomMonitoringApi.Controllers
@@ -12,15 +13,15 @@ namespace FomMonitoringApi.Controllers
     {
         private readonly IXmlDataService _xmlDataService;
 
-        public ParameterController()
+        public ParameterController(IXmlDataService xmlDataService)
         {
-            _xmlDataService = new XmlDataService();
+            _xmlDataService = xmlDataService;
         }
 
         [HttpPost]
-        public IHttpActionResult Load(ParametersMachineModelXml pmm)
+        public async Task<IHttpActionResult> Load(ParametersMachineModelXml pmm)
         {
-            _xmlDataService.AddOrUpdateMachineParameter(pmm);
+            await _xmlDataService.AddOrUpdateMachineParameterAsync(pmm);
             return Ok();
         }
     }

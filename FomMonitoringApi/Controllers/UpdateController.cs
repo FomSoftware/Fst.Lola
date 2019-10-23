@@ -12,11 +12,6 @@ namespace FomMonitoringApi.Controllers
     {
         private readonly IJsonDataService _jsonDataService;
 
-        public UpdateController()
-        {
-            _jsonDataService = new JsonDataService();
-        }
-
         public UpdateController(IJsonDataService jsonDataService)
         {
             _jsonDataService = jsonDataService;

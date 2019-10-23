@@ -10,9 +10,16 @@ using UserManager.DAL;
 
 namespace FomMonitoringCore.Service
 {
-    public class ContextService
+    public class ContextService : IContextService
     {
-        public static bool InitializeContext()
+        private IMachineService _machineService;
+
+        public ContextService(IMachineService machineService)
+        {
+            _machineService = machineService;
+        }
+
+        public bool InitializeContext()
         {
             bool contextIsSet = false;
 
@@ -52,7 +59,7 @@ namespace FomMonitoringCore.Service
             return contextIsSet;
         }
 
-        public static ContextModel GetContext()
+        public ContextModel GetContext()
         {
             ContextModel context = SessionService.GetSessionValue<ContextModel>("Context");
             bool isWebApiRequest = HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath.StartsWith("~/ajax");
@@ -72,12 +79,12 @@ namespace FomMonitoringCore.Service
             return context;
         }
 
-        public static void SetContext(ContextModel context)
+        public void SetContext(ContextModel context)
         {
             SessionService.SetSessionValue("Context", context);
         }
 
-        public static bool InitializeMessagesMachineLevel()
+        public bool InitializeMessagesMachineLevel()
         {
             bool isInitialize = false;
 
@@ -88,7 +95,7 @@ namespace FomMonitoringCore.Service
 
         }
 
-            public static bool InitializeMesLevel()
+        public bool InitializeMesLevel()
         {
             bool isInitialize = false;
 
@@ -106,9 +113,9 @@ namespace FomMonitoringCore.Service
                     context.ActualPlant = context.AllPlants.FirstOrDefault();
 
                 if (context.User.Role == enRole.Administrator)
-                    context.AllMachines = MachineService.GetAllMachines();
+                    context.AllMachines = _machineService.GetAllMachines();
                 else
-                    context.AllMachines = MachineService.GetUserMachines(context.User.ID);
+                    context.AllMachines = _machineService.GetUserMachines(context.User.ID);
 
                 context.ActualPeriod = new PeriodModel() {
                     LastUpdate = new DataUpdateModel() {
@@ -124,7 +131,7 @@ namespace FomMonitoringCore.Service
             return isInitialize;
         }
 
-        public static bool InitializeMachineLevel(int? MachineID = null)
+        public bool InitializeMachineLevel(int? MachineID = null)
         {
             bool isInitialize = false;
 
@@ -140,7 +147,7 @@ namespace FomMonitoringCore.Service
             {
                 if (MachineID != null)
                 {
-                    MachineInfoModel machine = MachineService.GetMachineInfo(MachineID.Value);
+                    MachineInfoModel machine = _machineService.GetMachineInfo(MachineID.Value);
 
                     if (machine == null)
                         return isInitialize;
@@ -148,9 +155,9 @@ namespace FomMonitoringCore.Service
                     context.ActualPlant = context.AllPlants.FirstOrDefault(w => w.Id == machine.PlantId);
 
                     if (context.User.Role == enRole.Administrator)
-                        context.AllMachines = MachineService.GetAllMachines();
+                        context.AllMachines = _machineService.GetAllMachines();
                     else
-                        context.AllMachines = MachineService.GetUserMachines(context.User.ID);
+                        context.AllMachines = _machineService.GetUserMachines(context.User.ID);
 
                     if (context.AllMachines.Count == 0)
                         return isInitialize;
@@ -163,9 +170,9 @@ namespace FomMonitoringCore.Service
                         context.ActualPlant = context.AllPlants.FirstOrDefault();
 
                     if (context.User.Role == enRole.Administrator)
-                        context.AllMachines = MachineService.GetAllMachines();
+                        context.AllMachines = _machineService.GetAllMachines();
                     else
-                        context.AllMachines = MachineService.GetUserMachines(context.User.ID);
+                        context.AllMachines = _machineService.GetUserMachines(context.User.ID);
 
                     if (context.AllMachines.Count == 0)
                         return isInitialize;
@@ -176,7 +183,7 @@ namespace FomMonitoringCore.Service
             }
             else
             {
-                context.AllMachines = MachineService.GetUserMachines(context.User.ID);
+                context.AllMachines = _machineService.GetUserMachines(context.User.ID);
 
                 if (context.AllMachines.Count == 0)
                     return isInitialize;
@@ -200,7 +207,7 @@ namespace FomMonitoringCore.Service
             return isInitialize;
         }
 
-        public static bool InitializePlantManagerLevel()
+        public bool InitializePlantManagerLevel()
         {
             bool isInitialize = false;
 
@@ -213,7 +220,7 @@ namespace FomMonitoringCore.Service
             return isInitialize;
         }
 
-        public static bool InitializeAdminLevel()
+        public bool InitializeAdminLevel()
         {
             bool isInitialize = false;
 
@@ -226,7 +233,7 @@ namespace FomMonitoringCore.Service
             return isInitialize;
         }
 
-        public static void SetActualPage(enPage Page)
+        public void SetActualPage(enPage Page)
         {
             ContextModel context = GetContext();
             context.ActualPage = Page;
@@ -234,7 +241,7 @@ namespace FomMonitoringCore.Service
             SetContext(context);
         }
 
-        public static void SetActualLanguage(string LanguageNameISO)
+        public void SetActualLanguage(string LanguageNameISO)
         {
             ContextModel context = GetContext();
 
@@ -244,7 +251,7 @@ namespace FomMonitoringCore.Service
             SetContext(context);
         }
 
-        public static void SetActualPlant(int id)
+        public void SetActualPlant(int id)
         {
             ContextModel context = GetContext();
 
@@ -253,16 +260,16 @@ namespace FomMonitoringCore.Service
                 context.ActualPlant = context.AllPlants.Where(w => w.Id == id).FirstOrDefault();
 
                 if (context.User.Role == enRole.Administrator)
-                    context.AllMachines = MachineService.GetAllMachines();
+                    context.AllMachines = _machineService.GetAllMachines();
                 else
-                    context.AllMachines = MachineService.GetUserMachines(context.User.ID);
+                    context.AllMachines = _machineService.GetUserMachines(context.User.ID);
                 //  context.AllMachines = MachineService.GetAllMachinesByPlantID(context.ActualPlant.Id);
             }
 
             SetContext(context);
         }
 
-        public static void SetActualMachine(int id)
+        public void SetActualMachine(int id)
         {
             ContextModel context = GetContext();
 
@@ -280,7 +287,7 @@ namespace FomMonitoringCore.Service
             SetContext(context);
         }
 
-        public static void SetActualPeriod(DateTime start, DateTime end)
+        public void SetActualPeriod(DateTime start, DateTime end)
         {
             ContextModel context = GetContext();
 
@@ -291,11 +298,11 @@ namespace FomMonitoringCore.Service
             SetContext(context);
         }
 
-        public static void CheckLastUpdate()
+        public void CheckLastUpdate()
         {
             ContextModel context = GetContext();
 
-            MachineInfoModel machine = MachineService.GetMachineInfo(context.ActualMachine.Id);
+            MachineInfoModel machine = _machineService.GetMachineInfo(context.ActualMachine.Id);
 
             if (context.ActualPeriod.LastUpdate.DateTime != machine.LastUpdate.Value)
                 context.ActualPeriod.LastUpdate.DateTime = machine.LastUpdate.Value;
@@ -303,7 +310,7 @@ namespace FomMonitoringCore.Service
             SetContext(context);
         }
 
-        public static bool CheckSecurityParameterApi(int ID, enCheckParam check)
+        public bool CheckSecurityParameterApi(int ID, enCheckParam check)
         {
             bool isCorrect = false;
 

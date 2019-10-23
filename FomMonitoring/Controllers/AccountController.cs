@@ -15,6 +15,13 @@ namespace FomMonitoring.Controllers
 {
     public class AccountController : Controller
     {
+        private IContextService _contextService;
+
+        public AccountController(IContextService contextService)
+        {
+            _contextService = contextService;
+        }
+
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl, int exception = 0)
@@ -143,7 +150,7 @@ namespace FomMonitoring.Controllers
                         if (localLoginResult.Result)
                         {
                             FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
-                            if (ContextService.InitializeContext())
+                            if (_contextService.InitializeContext())
                                 return RedirectToLocal(returnUrl);
 
                             ModelState.AddModelError("", Resource.LoginProblem);
@@ -175,7 +182,7 @@ namespace FomMonitoring.Controllers
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
-            ContextModel context = ContextService.GetContext();
+            ContextModel context = _contextService.GetContext();
 
             if (context == null)
                 return RedirectToAction("Logout");

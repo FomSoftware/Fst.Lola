@@ -10,11 +10,6 @@ namespace FomMonitoringApi.Controllers
     {
         private readonly IJwtManager _jwtManager;
 
-        public TokenController()
-        {
-            _jwtManager = new JwtManager();
-        }
-
         public TokenController(IJwtManager jwtManager)
         {
             _jwtManager = jwtManager;

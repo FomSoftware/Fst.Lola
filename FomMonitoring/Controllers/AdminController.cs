@@ -12,16 +12,22 @@ namespace FomMonitoring.Controllers
     [Authorize(Roles = Common.Administrator + "," + Common.Customer)]
     public class AdminController : Controller
     {
+        private IContextService _contextService;
+
+        public AdminController (IContextService contextService)
+        {
+            _contextService = contextService;
+        }
         // GET: Account
         [Route("{lang}/UserManager")]
         public ActionResult UserManager()
         {
-            ContextService.InitializeAdminLevel();
+            _contextService.InitializeAdminLevel();
 
-            ContextModel context = ContextService.GetContext();
+            ContextModel context = _contextService.GetContext();
             HeaderViewModel header = SharedViewService.GetHeader(context);
 
-            ContextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
+            _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
 
             return View(header);
         }

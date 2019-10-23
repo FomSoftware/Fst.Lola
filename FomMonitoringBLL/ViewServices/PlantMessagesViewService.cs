@@ -9,9 +9,18 @@ using System.Linq;
 
 namespace FomMonitoringBLL.ViewServices
 {
-    public class PlantMessagesViewService
+    public class PlantMessagesViewService : IPlantMessagesViewService
     {
-        public static PlantMessagesViewModel GetPlantMessages(ContextModel context)
+        private IMessageService _messageService;
+        private IReadMessages _readMessages;
+
+        public PlantMessagesViewService(IMessageService messageService, IReadMessages readMessages)
+        {
+            _messageService = messageService;
+            _readMessages = readMessages;
+        }
+
+        public PlantMessagesViewModel GetPlantMessages(ContextModel context)
         {
             PlantMessagesViewModel result = new PlantMessagesViewModel();           
             result.messages = GetVueModel(context.ActualPlant, context.AllMachines, context.ActualPeriod);
@@ -32,7 +41,7 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        public static List<MachineMessagesDataViewModel> GetVueModel(PlantModel plant, List<MachineInfoModel> allMachines, PeriodModel period)
+        public List<MachineMessagesDataViewModel> GetVueModel(PlantModel plant, List<MachineInfoModel> allMachines, PeriodModel period)
         {
             List<MachineMessagesDataViewModel> result = new List<MachineMessagesDataViewModel>();
 
@@ -60,7 +69,7 @@ namespace FomMonitoringBLL.ViewServices
                 };
 
                
-                List<MessageMachineModel> data = MessageService.GetMessageDetails(machine, period);
+                List<MessageMachineModel> data = _messageService.GetMessageDetails(machine, period);
 
                 if (data.Count == 0)
                     continue;
@@ -71,11 +80,11 @@ namespace FomMonitoringBLL.ViewServices
                     parameters = a.Params,
                     timestamp = DateTime.SpecifyKind(a.Day ?? DateTime.MinValue, DateTimeKind.Utc),
                     utc = machine.UTC ?? 0,
-                    type = ((enTypeAlarm)ReadMessages.GetMessageType(a.Code, machine.Id)).GetDescription(),
+                    type = ((enTypeAlarm)_readMessages.GetMessageType(a.Code, machine.Id)).GetDescription(),
                     //((enTypeAlarm)a.StateId).GetDescription(),
-                    group = ReadMessages.GetMessageGroup(a.Code, machine.Id, a.Group),
+                    group = _readMessages.GetMessageGroup(a.Code, machine.Id, a.Group),
                     time = CommonViewService.getTimeViewModel(a.ElapsedTime),
-                    description = ReadMessages.GetMessageDescription(a.Code, machine.Id, a.Params, CultureInfo.CurrentCulture.Name)
+                    description = _readMessages.GetMessageDescription(a.Code, machine.Id, a.Params, CultureInfo.CurrentCulture.Name)
 
                 }).ToList();
 

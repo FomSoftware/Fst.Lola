@@ -10,9 +10,18 @@ using System.Transactions;
 
 namespace FomMonitoringCore.Service.DataMapping
 {
-    public class SQLiteToSQLServerService
+    public class SQLiteToSQLServerService : ISQLiteToSQLServerService
     {
-        public static bool MappingSQLiteDetailsToSQLServer()
+        private IMachineService _machineService;
+        private IJobService _jobService;
+
+        public SQLiteToSQLServerService(IMachineService machineService, IJobService jobService)
+        {
+            _machineService = machineService;
+            _jobService = jobService;
+        }
+
+        public bool MappingSQLiteDetailsToSQLServer()
         {
             bool result = false;
             try
@@ -43,7 +52,7 @@ namespace FomMonitoringCore.Service.DataMapping
                 string matricola = infoSQLite.OrderByDescending(o => o.Id).FirstOrDefault().MachineSerial;
                 using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
                 {
-                    List<Machine> machine = infoSQLite.Adapt<List<Machine>>();
+                    List<Machine> machine = infoSQLite.BuildAdapter().AddParameters("machineService", _machineService).AdaptToType<List<Machine>>();
                     using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                     {
                         Machine machineActual = ent.Machine.FirstOrDefault(f => f.Serial == matricola);
@@ -124,7 +133,7 @@ namespace FomMonitoringCore.Service.DataMapping
                         ent.HistoryJob.AddRange(historyJob);
                         ent.SaveChanges();
                        
-                        List<Piece> piece = pieceSQLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<Piece>>();
+                        List<Piece> piece = pieceSQLite.BuildAdapter().AddParameters("jobService", _jobService).AddParameters("machineService", _machineService).AddParameters("machineId", machineActual.Id).AdaptToType<List<Piece>>();
                         piece = piece.Where(w => w.EndTime > (machineActual.LastUpdate ?? new DateTime())).ToList();
                         ent.Piece.AddRange(piece);
                         ent.SaveChanges();
@@ -136,7 +145,7 @@ namespace FomMonitoringCore.Service.DataMapping
                         ent.Spindle.AddRange(spindle);
                         ent.SaveChanges();
 
-                        List<StateMachine> state = stateSQLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<StateMachine>>();
+                        List<StateMachine> state = stateSQLite.BuildAdapter().AddParameters("machineService", _machineService).AddParameters("machineId", machineActual.Id).AdaptToType<List<StateMachine>>();
                         state = state.Where(w => w.EndTime > (machineActual.LastUpdate ?? new DateTime())).ToList();
                         ent.StateMachine.AddRange(state);
                         ent.SaveChanges();
@@ -176,7 +185,7 @@ namespace FomMonitoringCore.Service.DataMapping
             return result;
         }
 
-        public static bool MappingSQLiteHistoryToSQLServer()
+        public bool MappingSQLiteHistoryToSQLServer()
         {
             bool result = false;
             try

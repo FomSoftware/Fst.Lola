@@ -11,21 +11,29 @@ namespace FomMonitoringCore.Service.API.Concrete
 {
     public class JsonDataService : IJsonDataService
     {
+        private IFomMonitoringEntities _context;
+
+        public JsonDataService(IFomMonitoringEntities context)
+        {
+            _context = context;
+        }
+
         public bool AddJsonData(string json, bool isCumulative)
         {
             bool result = false;
             try
             {
                 using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
+
                     JsonData jsonData = new JsonData();
                     jsonData.Json = json;
                     jsonData.IsCumulative = isCumulative;
-                    ent.JsonData.Add(jsonData);
-                    ent.SaveChanges();
+                    _context.Set<JsonData>().Add(jsonData);
+                    _context.SaveChanges();
                     transaction.Complete();
                     result = true;
+
                 }
             }
             catch (Exception ex)
@@ -42,7 +50,6 @@ namespace FomMonitoringCore.Service.API.Concrete
             try
             {
                 using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.ReadUncommitted }))
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
                     JObject jObject = JsonConvert.DeserializeObject<JObject>(json);
                     JToken token = jObject.Root.First;
@@ -50,10 +57,10 @@ namespace FomMonitoringCore.Service.API.Concrete
                     {
                         dynamic currentStateDynamic = JsonConvert.DeserializeObject<List<dynamic>>(JsonConvert.SerializeObject(token.First)).First();
                         string machineSerial = currentStateDynamic.MachineSerial;
-                        Machine machine = ent.Machine.FirstOrDefault(f => f.Serial == machineSerial);
+                        Machine machine = _context.Set<Machine>().FirstOrDefault(f => f.Serial == machineSerial);
                         if (machine != null)
                         {
-                            CurrentState currentState = ent.CurrentState.FirstOrDefault(f => f.MachineId == machine.Id);
+                            CurrentState currentState = _context.Set<CurrentState>().FirstOrDefault(f => f.MachineId == machine.Id);
                             bool currentStateExists = true;
                             if (currentState == null)
                             {
@@ -73,9 +80,9 @@ namespace FomMonitoringCore.Service.API.Concrete
                             currentState.StateTransitionDescription = currentStateDynamic.StateTransitionDescription;
                             if (!currentStateExists)
                             {
-                                ent.CurrentState.Add(currentState);
+                                _context.Set<CurrentState>().Add(currentState);
                             }
-                            ent.SaveChanges();
+                            _context.SaveChanges();
                             result = true;
                         }
                         transaction.Complete();
@@ -96,7 +103,6 @@ namespace FomMonitoringCore.Service.API.Concrete
             try
             {
                 using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
                 {
                     JObject jObject = JsonConvert.DeserializeObject<JObject>(json);
                     JToken token = jObject.Root.First;
@@ -104,11 +110,11 @@ namespace FomMonitoringCore.Service.API.Concrete
                     {
                         dynamic currentStateDynamic = JsonConvert.DeserializeObject<List<dynamic>>(JsonConvert.SerializeObject(token.First)).First();
                         string machineSerial = currentStateDynamic.MachineSerial;
-                        Machine machine = ent.Machine.FirstOrDefault(f => f.Serial == machineSerial);
+                        Machine machine = _context.Set<Machine>().FirstOrDefault(f => f.Serial == machineSerial);
                         if (machine != null)
                         {
-                            result = ent.usp_CleanMachineData(machine.Id).Select(s => s.Value).FirstOrDefault() == 1;
-                            ent.SaveChanges();
+                            result = _context.usp_CleanMachineData(machine.Id).Select(s => s.Value).FirstOrDefault() == 1;
+                            _context.SaveChanges();
                         }
                         else
                         {

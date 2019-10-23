@@ -8,14 +8,21 @@ using System.Linq;
 
 namespace FomMonitoringBLL.ViewServices
 {
-    public class SpindleViewService
+    public class SpindleViewService : ISpindleViewService
     {
-        public static SpindleVueModel GetSpindles(ContextModel context)
+        private ISpindleService _spindleService;
+
+        public SpindleViewService(ISpindleService spindleService)
+        {
+            _spindleService = spindleService;
+        }
+
+        public SpindleVueModel GetSpindles(ContextModel context)
         {
             return GetVueModel(context.ActualMachine, true);
         }
 
-        public static XSpindleViewModel GetXSpindles(ContextModel context)
+        public XSpindleViewModel GetXSpindles(ContextModel context)
         {
             XSpindleViewModel result = new XSpindleViewModel();
             result.vm_spindles = GetVueModel(context.ActualMachine, true);
@@ -23,11 +30,11 @@ namespace FomMonitoringBLL.ViewServices
             return result;
         }
 
-        private static SpindleVueModel GetVueModel(MachineInfoModel machine, bool xmodule = false)
+        private SpindleVueModel GetVueModel(MachineInfoModel machine, bool xmodule = false)
         {
             SpindleVueModel result = new SpindleVueModel();
 
-            List<SpindleModel> data = SpindleService.GetSpindles(machine, xmodule);
+            List<SpindleModel> data = _spindleService.GetSpindles(machine, xmodule);
 
             if (data.Count == 0)
                 return result;
@@ -69,7 +76,7 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        private static ChartViewModel GetBandsOptions(SpindleModel spindle)
+        private ChartViewModel GetBandsOptions(SpindleModel spindle)
         {
             ChartViewModel options = new ChartViewModel();
 

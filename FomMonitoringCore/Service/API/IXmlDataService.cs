@@ -10,6 +10,6 @@ namespace FomMonitoringCore.Service.API
 {
     public interface IXmlDataService
     {
-        void AddOrUpdateMachineParameter(ParametersMachineModelXml m);
+        Task AddOrUpdateMachineParameterAsync(ParametersMachineModelXml m);
     }
 }
