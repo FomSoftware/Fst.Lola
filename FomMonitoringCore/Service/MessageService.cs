@@ -486,7 +486,7 @@ namespace FomMonitoringCore.Service
             }        
         }
 
-        public static void insertMessageMachine(FST_FomMonitoringEntities ent, Machine machine, string code, DateTime day)
+        public static void insertMessageMachine(IFomMonitoringEntities ent, Machine machine, string code, DateTime day)
         {
             MessageMachine msg = new MessageMachine()
             {
@@ -496,7 +496,7 @@ namespace FomMonitoringCore.Service
                 Day = day,
                 IsVisible = true
             };
-            ent.MessageMachine.Add(msg);
+            ent.Set<MessageMachine>().Add(msg);
             ent.SaveChanges();
         }
 

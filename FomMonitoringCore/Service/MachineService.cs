@@ -47,9 +47,7 @@ namespace FomMonitoringCore.Service
 
                 
                 try
-                {
-
-                    _unitOfWork.StartTransaction(_context);
+                {                
                     if (modelCode != null)
                     {
                         MachineModel machineModel = _machineModelRepository.Get(f => f.ModelCodev997 == modelCode).FirstOrDefault();
@@ -63,15 +61,12 @@ namespace FomMonitoringCore.Service
                     {
                         MachineModel machineModel = _machineModelRepository.Get(f => f.Name == modelName).FirstOrDefault();                       
                         result = machineModel != null ? machineModel.Id : (int?)null;
-                    }
-                _unitOfWork.CommitTransaction();
-                    
+                    }                
                 }
                 catch (Exception ex)
                 {
                     string errMessage = string.Format(ex.GetStringLog(), modelName.ToString());
-                    LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-                _unitOfWork.RollbackTransaction();
+                    LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);                
                 }
 
             
@@ -106,7 +101,6 @@ namespace FomMonitoringCore.Service
 
                 try
                 {
-
                     Machine machine = _machineRepository.Get(f => f.Serial == machineSerial).FirstOrDefault();
                 if (machine != null && machine.LastUpdate != null)
                     {
@@ -151,14 +145,12 @@ namespace FomMonitoringCore.Service
             bool result = false;
 
                 try
-                {
-                    _unitOfWork.StartTransaction(_context);
+                {                    
                     MachineModel machineModel = new MachineModel();
                     machineModel.Name = modelName;
                     machineModel.ModelCodev997 = modelCode;
                     _machineModelRepository.Insert(machineModel);
-                    _context.SaveChanges();
-                    _unitOfWork.CommitTransaction();
+                    _context.SaveChanges();                   
                     result = true;
                 }
             
@@ -166,7 +158,6 @@ namespace FomMonitoringCore.Service
                 {
                     string errMessage = string.Format(ex.GetStringLog(), modelName.ToString());
                     LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-                    _unitOfWork.RollbackTransaction();
                 }
             
             return result;
@@ -199,12 +190,9 @@ namespace FomMonitoringCore.Service
             List<MachineInfoModel> result = new List<MachineInfoModel>();
 
             try
-            {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-                {
-                    var query = ent.UserMachineMapping.Where(w => w.UserId == UserID).Select(s => s.Machine).ToList();
-                    result = query.Where(w => w.LastUpdate != null).Adapt<List<MachineInfoModel>>();
-                }
+            {                
+                    var query = _context.Set<UserMachineMapping>().Where(w => w.UserId == UserID).Select(s => s.Machine).ToList();
+                    result = query.Where(w => w.LastUpdate != null).Adapt<List<MachineInfoModel>>();           
             }
             catch (Exception ex)
             {

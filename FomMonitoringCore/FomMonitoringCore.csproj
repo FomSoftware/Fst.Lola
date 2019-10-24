@@ -245,6 +245,7 @@
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\Partials\IFomMonitoringEntities.cs" />
+    <Compile Include="DAL_SQLite\Partials\IFST_FomMonitoringSQLiteEntities.cs" />
     <Compile Include="DAL\Partials\MessageMachine.cs" />
     <Compile Include="DAL\Piece.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
@@ -448,10 +449,13 @@
     <Compile Include="Service\BarService.cs" />
     <Compile Include="Service\CacheService.cs" />
     <Compile Include="Service\ContextService.cs" />
+    <Compile Include="Service\DataMapping\IJsonToSQLiteService.cs" />
+    <Compile Include="Service\DataMapping\IJsonVariantsToSQLServerService.cs" />
     <Compile Include="Service\DataMapping\ISQLiteToSQLServerService.cs" />
     <Compile Include="Service\DataMapping\JsonToSQLiteService.cs" />
     <Compile Include="Service\DataMapping\JsonVariantsToSQLServerService.cs" />
     <Compile Include="Service\DataMapping\SQLiteToSQLServerService.cs" />
+    <Compile Include="Service\IBarService.cs" />
     <Compile Include="Service\IContextService.cs" />
     <Compile Include="Service\IJobService.cs" />
     <Compile Include="Service\IMachineService.cs" />
