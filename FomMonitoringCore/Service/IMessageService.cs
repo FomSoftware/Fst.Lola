@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Model;
 
 namespace FomMonitoringCore.Service
@@ -7,5 +9,6 @@ namespace FomMonitoringCore.Service
     {
         List<MessageMachineModel> GetMessageDetails(MachineInfoModel machine, PeriodModel period);
         void CheckMaintenance();
+        void InsertMessageMachine(Machine machine, string code, DateTime day);
     }
 }

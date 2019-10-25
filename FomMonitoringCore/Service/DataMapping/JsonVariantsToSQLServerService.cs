@@ -17,15 +17,15 @@ namespace FomMonitoringCore.Service.DataMapping
 {
     public class JsonVariantsToSQLServerService : IJsonVariantsToSQLServerService
     {
-        private IFomMonitoringEntities _FomMonitoringEntities;
-        private IMessageService _MessageService;
+        private IFomMonitoringEntities _context;
+        private IMessageService _messageService;
         IUnitOfWork _UnitOfWork;
-        public JsonVariantsToSQLServerService(IFomMonitoringEntities FomMonitoringEntities, IUnitOfWork UnitOfWork,
-            IMessageService MessageService)
+        public JsonVariantsToSQLServerService(IFomMonitoringEntities context, IUnitOfWork UnitOfWork,
+            IMessageService messageService)
         {
-            _MessageService = MessageService;
+            _messageService = messageService;
             _UnitOfWork = UnitOfWork;
-            _FomMonitoringEntities = FomMonitoringEntities;
+            _context = context;
         }
         public bool MappingJsonVariantsToSQLite(JsonDataModel jsonDataModel)
         {
@@ -37,13 +37,13 @@ namespace FomMonitoringCore.Service.DataMapping
                 List<JsonVariablesModel> variableList = new List<JsonVariablesModel>();
                 List<ParameterMachineValue> parameterList = new List<ParameterMachineValue>();
 
-                _UnitOfWork.StartTransaction(_FomMonitoringEntities);
+                _UnitOfWork.StartTransaction(_context);
                  
                     JToken tt = json.Root.FirstOrDefault(n => n.Path.ToLower() == "info");
                        
                     info ii = JsonConvert.DeserializeObject<List<info>>(JsonConvert.SerializeObject(tt.First)).FirstOrDefault();
 
-                    Machine mac = _FomMonitoringEntities.Set<Machine>().FirstOrDefault(m => m.Serial == ii.MachineSerial);
+                    Machine mac = _context.Set<Machine>().FirstOrDefault(m => m.Serial == ii.MachineSerial);
 
                     foreach (JToken token in json.Root)
                     {
@@ -58,11 +58,11 @@ namespace FomMonitoringCore.Service.DataMapping
                                     {
                                         foreach(JsonVariableValueModel value in var.Values)
                                         {
-                                            ParameterMachine pm = _FomMonitoringEntities.Set<ParameterMachine>().FirstOrDefault(p => p.MachineModelId == mac.MachineModelId
+                                            ParameterMachine pm = _context.Set<ParameterMachine>().FirstOrDefault(p => p.MachineModelId == mac.MachineModelId
                                                 && p.VarNumber == value.VariableNumber);
 
                                             //ordino per data e poi per id perchè spesso arrivano valori diversi con la stessa data
-                                            decimal? previousValue = _FomMonitoringEntities.Set<ParameterMachineValue>().Where(p => p.MachineId == mac.Id && p.VarNumber == pm.VarNumber)
+                                            decimal? previousValue = _context.Set<ParameterMachineValue>().Where(p => p.MachineId == mac.Id && p.VarNumber == pm.VarNumber)
                                                 .OrderByDescending(p => p.UtcDateTime).ThenByDescending(t => t.Id).FirstOrDefault()?.VarValue;
 
 
@@ -76,11 +76,11 @@ namespace FomMonitoringCore.Service.DataMapping
                                                     VarNumber = value.VariableNumber,
                                                     VarValue = value.VariableValue
                                                 };
-                                            _FomMonitoringEntities.Set<ParameterMachineValue>().Add(pmv);
+                                            _context.Set<ParameterMachineValue>().Add(pmv);
                                             }
                                             else if(mac != null && pm != null && pm.Historicized == "0")
                                             {
-                                                ParameterMachineValue pmv = _FomMonitoringEntities.Set<ParameterMachineValue>().FirstOrDefault(pp => pp.MachineId == mac.Id
+                                                ParameterMachineValue pmv = _context.Set<ParameterMachineValue>().FirstOrDefault(pp => pp.MachineId == mac.Id
                                                     && pp.VarNumber == value.VariableNumber);
                                                 if(pmv != null)
                                                 {
@@ -97,11 +97,11 @@ namespace FomMonitoringCore.Service.DataMapping
                                                         VarNumber = value.VariableNumber,
                                                         VarValue = value.VariableValue
                                                     };
-                                                _FomMonitoringEntities.Set<ParameterMachineValue>().Add(pmv);                                                       
+                                                _context.Set<ParameterMachineValue>().Add(pmv);                                                       
                                                 }
                                                     
                                             }
-                                        _FomMonitoringEntities.SaveChanges();
+                                        _context.SaveChanges();
 
                                         if (!String.IsNullOrEmpty(pm.ThresholdMax) && pm.ThresholdMax != "0" ||
                                             !String.IsNullOrEmpty(pm.ThresholdMin) && pm.ThresholdMin != "0")
@@ -146,11 +146,11 @@ namespace FomMonitoringCore.Service.DataMapping
 
             if (value.VariableValue < min || value.VariableValue > max)
             {                   
-                MessageMachine mes = _FomMonitoringEntities.Set<MessageMachine>().Where(mm => mm.MachineId == machine.Id && mm.IsPeriodicMsg == true &&
+                MessageMachine mes = _context.Set<MessageMachine>().Where(mm => mm.MachineId == machine.Id && mm.IsPeriodicMsg == true &&
                                         mm.Code == par.ThresholdLabel).FirstOrDefault();
                 if (mes == null)
                 {
-                    MessageService.insertMessageMachine(_FomMonitoringEntities, machine, par.ThresholdLabel, utcDatetime);
+                    _messageService.InsertMessageMachine( machine, par.ThresholdLabel, utcDatetime);
                 }
                 else if (oldValue != null)
                 {
@@ -159,7 +159,7 @@ namespace FomMonitoringCore.Service.DataMapping
                         //verifico se il precedente valore era sotto la soglia inserisco un nuovo messaggio
                         if (oldValue >= min && oldValue <= max)
                         {
-                            MessageService.insertMessageMachine(_FomMonitoringEntities, machine, par.ThresholdLabel, utcDatetime);
+                            _messageService.InsertMessageMachine( machine, par.ThresholdLabel, utcDatetime);
                         }
                         //in questo caso ero sopra la soglia e continuo ad essere sopra la soglia
                         // controllo se il valore del parametro ha superato il prossimo multiplo del valore max
@@ -172,7 +172,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                     decimal multiploOld = Math.Floor(valOld / max);
                                     decimal multiploNew = Math.Floor(valNew / max);
                                     if (multiploNew > multiploOld)
-                                        MessageService.insertMessageMachine(_FomMonitoringEntities, machine, par.ThresholdLabel, utcDatetime);
+                                    _messageService.InsertMessageMachine(machine, par.ThresholdLabel, utcDatetime);
                                 }
                         }
 
