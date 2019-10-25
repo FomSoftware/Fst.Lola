@@ -13,11 +13,13 @@ namespace FomMonitoringBLL.ViewServices
     {
         private IPieceService _pieceService;
         private IContextService _contextService;
+        private IBarService _barService;
 
-        public ProductivityViewService(IPieceService pieceService, IContextService contextService)
+        public ProductivityViewService(IPieceService pieceService, IContextService contextService, IBarService barService)
         {
             _pieceService = pieceService;
             _contextService = contextService;
+            _barService = barService;
         }
 
         public ProductivityViewModel GetProductivity(ContextModel context)
@@ -77,7 +79,7 @@ namespace FomMonitoringBLL.ViewServices
             result.piece = piece;
 
             // materials
-            List<HistoryBarModel> dataBars = BarService.GetAggregationBar(machine, period);
+            List<HistoryBarModel> dataBars = _barService.GetAggregationBar(machine, period);
 
             if (dataBars.Count > 0)
             {

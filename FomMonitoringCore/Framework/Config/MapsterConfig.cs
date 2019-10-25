@@ -198,7 +198,7 @@ namespace FomMonitoringCore.Framework.Config
             config.NewConfig<DAL_SQLite.piece, Piece>()
                 .Ignore(dest => dest.Id)
                 .IgnoreAllVirtual()
-                .Map(dest => dest.BarId, src => BarService.GetBarIdByBarIdOldAndMachineId(src.BarId, (int)MapContext.Current.Parameters["machineId"]))
+                .Map(dest => dest.BarId, src => ((IBarService)MapContext.Current.Parameters["barService"]).GetBarIdByBarIdOldAndMachineId(src.BarId, (int)MapContext.Current.Parameters["machineId"]))
                 .Map(dest => dest.ElapsedTime, src => src.TimeSpan)
                 .Map(dest => dest.ElapsedTimeProducing, src => src.TimeSpanProducing)
                 .Map(dest => dest.IsCompleted, src => src.Completed)

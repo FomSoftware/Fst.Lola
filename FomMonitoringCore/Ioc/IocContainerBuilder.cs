@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Builder;
 using FomMonitoringCore.DAL;
+using FomMonitoringCore.DAL_SQLite;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Repository;
 using FomMonitoringCore.Service;
@@ -55,13 +56,24 @@ namespace FomMonitoringCore.Ioc
             instancesFoRequest.Add(builder.RegisterType<MessageService>().As<IMessageService>());
             instancesFoRequest.Add(builder.RegisterType<UnitOfWork>().As<IUnitOfWork>());
 
-
             instancesFoRequest.Add(builder.RegisterType<FST_FomMonitoringEntities>().As<IFomMonitoringEntities>());
+            instancesFoRequest.Add(builder.RegisterType<JsonToSQLiteService>().As<IJsonToSQLiteService>());
+            instancesFoRequest.Add(builder.RegisterType<FST_FomMonitoringSQLiteEntities>().As<IFomMonitoringSQLiteEntities>());
+            instancesFoRequest.Add(builder.RegisterType<JsonVariantsToSQLServerService>().As<IJsonVariantsToSQLServerService>());
+            instancesFoRequest.Add(builder.RegisterType<BarService>().As<IBarService>());
+
             if (instancePerRequest)
             {
                 foreach (var b in instancesFoRequest)
                 {
                     b.InstancePerRequest();
+                }
+            }
+            else
+            {
+                foreach (var b in instancesFoRequest)
+                {
+                    b.SingleInstance();
                 }
             }
 

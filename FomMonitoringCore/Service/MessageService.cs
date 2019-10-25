@@ -14,14 +14,12 @@ namespace FomMonitoringCore.Service
         private IMessageMachineRepository _messageMachineRepository;
         private IMachineRepository _machineRepository;
         private IMessagesIndexRepository _messagesIndexRepository;
-        private IFomMonitoringEntities _context;
 
-        public MessageService(IMessageMachineRepository messageMachineRepository, IMachineRepository machineRepository, IMessagesIndexRepository messagesIndexRepository, IFomMonitoringEntities context)
+        public MessageService(IMessageMachineRepository messageMachineRepository, IMachineRepository machineRepository, IMessagesIndexRepository messagesIndexRepository)
         {
             _messageMachineRepository = messageMachineRepository;
             _machineRepository = machineRepository;
             _messagesIndexRepository = messagesIndexRepository;
-            _context = context;
         }
 
         #region SP AGGREGATION
@@ -437,26 +435,27 @@ namespace FomMonitoringCore.Service
 
         /// Per ogni macchina non scaduta e con data di attivazione valida estrae i messaggi periodici da controllare 
         /// e per ognuno se non esiste già nella tabella MessageMachine, inserisce un nuovo messaggio periodico.
-        public void CheckMaintenance()
+        public static void CheckMaintenance()
         {
             string MachinId = null;
             try
             {
-
-                    List<Machine> machines = _machineRepository.Get(m => m.ExpirationDate != null && m.ExpirationDate >= DateTime.UtcNow && 
+                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                {
+                    List<Machine> machines = ent.Machine.Where(m => m.ExpirationDate != null && m.ExpirationDate >= DateTime.UtcNow && 
                                            m.ActivationDate != null && m.ActivationDate <= DateTime.UtcNow).ToList();
                     
                     foreach(Machine machine in machines)
                     {
                         MachinId = machine.Id.ToString();
-                        int cat = _machineRepository.GetByID(machine.Id).MachineModel.MessageCategoryId;
+                        int cat = ent.Machine.Find(machine.Id).MachineModel.MessageCategoryId;
 
-                        List<MessagesIndex> messaggi = _messagesIndexRepository.Get(mi => mi.MessageCategoryId == cat && mi.IsPeriodicM == true && mi.PeriodicSpan != null).ToList();
+                        List<MessagesIndex> messaggi = ent.MessagesIndex.Where(mi => mi.MessageCategoryId == cat && mi.IsPeriodicM == true && mi.PeriodicSpan != null).ToList();
 
                         foreach (MessagesIndex messaggio in messaggi)
                         {
                             //messaggi periodici in base alla data di attivazione e allo span specificato nel messageIndex
-                            MessageMachine mess = _messageMachineRepository.GetFirstOrDefault(mm => mm.MachineId == machine.Id && mm.IsPeriodicMsg == true &&
+                            MessageMachine mess = ent.MessageMachine.FirstOrDefault(mm => mm.MachineId == machine.Id && mm.IsPeriodicMsg == true &&
                                                          mm.Code == messaggio.MessageCode);
 
                             // i messaggi delle macchine al cui modello è associato un messaggio di default 
@@ -467,17 +466,17 @@ namespace FomMonitoringCore.Service
 
                             if (mess == null)
                             {                                
-                                insertMessageMachine( machine, messaggio.MessageCode, data);                             
+                                insertMessageMachine(ent, machine, messaggio.MessageCode, data);                             
                             }
                             else if(mess.IgnoreDate != null)
                             {
                                 // aggiorno la data di scadenza all'intervallo 
                                 mess.Day = (DateTime)mess.IgnoreDate?.AddHours((long)messaggio.PeriodicSpan);
-                                _context.SaveChanges();
+                                ent.SaveChanges();
                             }                            
                         }                        
                     }
-                
+                }
             }
             catch (Exception ex)
             {
@@ -487,7 +486,7 @@ namespace FomMonitoringCore.Service
             }        
         }
 
-        public void insertMessageMachine(Machine machine, string code, DateTime day)
+        public static void insertMessageMachine(IFomMonitoringEntities ent, Machine machine, string code, DateTime day)
         {
             MessageMachine msg = new MessageMachine()
             {
@@ -497,8 +496,8 @@ namespace FomMonitoringCore.Service
                 Day = day,
                 IsVisible = true
             };
-            _messageMachineRepository.Insert(msg);
-            _context.SaveChanges();
+            ent.Set<MessageMachine>().Add(msg);
+            ent.SaveChanges();
         }
 
     }

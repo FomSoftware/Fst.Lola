@@ -85,23 +85,14 @@ namespace FomMonitoringCore.Service
         {
             int? result = null;
             try
-            {
-                using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
+            {                
+                if (!string.IsNullOrEmpty(jobCode))
                 {
-                    using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-                    {
-                        if (!string.IsNullOrEmpty(jobCode))
-                        {
+                    HistoryJob historyJob = _historyJobRepository.Get(f => f.Code == jobCode && f.MachineId == machineId, o => o.OrderByDescending(i => i.Id), tracked: false).FirstOrDefault();
 
-                            HistoryJob historyJob = _historyJobRepository.Get(f => f.Code == jobCode && f.MachineId == machineId, o => o.OrderByDescending(i => i.Id), tracked: false).FirstOrDefault();
-
-
-                            //HistoryJob historyJob = ent.HistoryJob.OrderByDescending(o => o.Id).FirstOrDefault(f => f.Code == jobCode && f.MachineId == machineId);
-                            result = historyJob != null ? historyJob.Id : (int?)null;
-                        }
-                        transaction.Complete();
-                    }
-                }
+                    //HistoryJob historyJob = ent.HistoryJob.OrderByDescending(o => o.Id).FirstOrDefault(f => f.Code == jobCode && f.MachineId == machineId);
+                    result = historyJob != null ? historyJob.Id : (int?)null;
+                }     
             }
             catch (Exception ex)
             {

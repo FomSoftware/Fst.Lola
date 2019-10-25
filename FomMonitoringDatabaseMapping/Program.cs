@@ -22,9 +22,11 @@ namespace FomMonitoringDatabaseMapping
             FomMonitoringCore.Ioc.IocContainerBuilder.BuildCore(builder, false);
             var container = builder.Build();
             var sQLiteToSQLServerService = container.Resolve<ISQLiteToSQLServerService>();
+            var jsonToSQLiteService = container.Resolve<IJsonToSQLiteService>();
+            var jsonVariantsToSQLServerService = container.Resolve<IJsonVariantsToSQLServerService>();
             try
             {
-                List<JsonDataModel> jsonDataModels = JsonToSQLiteService.GetAllJsonDataNotElaborated();
+                List<JsonDataModel> jsonDataModels = jsonToSQLiteService.GetAllJsonDataNotElaborated();
                 result = jsonDataModels.Count;
                 foreach (JsonDataModel jsonDataModel in jsonDataModels)
                 {
@@ -32,7 +34,7 @@ namespace FomMonitoringDatabaseMapping
                     {
                         if (!jsonDataModel.IsCumulative)
                         {
-                            if (!JsonToSQLiteService.MappingJsonDetailsToSQLite(jsonDataModel))
+                            if (!jsonToSQLiteService.MappingJsonDetailsToSQLite(jsonDataModel))
                                 throw new Exception("JSON to SQLite Error:");
 
                             if (!sQLiteToSQLServerService.MappingSQLiteDetailsToSQLServer())
@@ -41,23 +43,23 @@ namespace FomMonitoringDatabaseMapping
 
                         if (jsonDataModel.IsCumulative)
                         {
-                            if (!JsonToSQLiteService.MappingJsonHistoryToSQLite(jsonDataModel))
+                            if (!jsonToSQLiteService.MappingJsonHistoryToSQLite(jsonDataModel))
                                 throw new Exception("JSON to SQLite Error:");
 
                             if (!sQLiteToSQLServerService.MappingSQLiteHistoryToSQLServer())
                                 throw new Exception("SQLite to SQLServer Error:");
                         }
 
-                        if(!JsonVariantsToSQLServerService.MappingJsonVariantsToSQLite(jsonDataModel))
+                        if(!jsonVariantsToSQLServerService.MappingJsonVariantsToSQLite(jsonDataModel))
                             throw new Exception("JSON variables reading Error:");
 
 
-                        JsonToSQLiteService.SaveElaboration(jsonDataModel.Id, true);
+                        jsonToSQLiteService.SaveElaboration(jsonDataModel.Id, true);
                         result--;
                     }
                     catch (Exception ex)
                     {
-                        JsonToSQLiteService.SaveElaboration(jsonDataModel.Id, false);
+                        jsonToSQLiteService.SaveElaboration(jsonDataModel.Id, false);
                         string errMessage = string.Format(ex.GetStringLog(), string.Join(", ", args), jsonDataModel.Id);
                         LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
                     }

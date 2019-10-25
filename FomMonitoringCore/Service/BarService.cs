@@ -9,8 +9,14 @@ using System.Transactions;
 
 namespace FomMonitoringCore.Service
 {
-    public class BarService
+    public class BarService : IBarService
     {
+        private IFomMonitoringEntities _context;
+        public BarService(IFomMonitoringEntities context)
+        {
+            _context = context;
+        }
+
         #region SP AGGREGATION
 
         /// <summary>
@@ -19,17 +25,14 @@ namespace FomMonitoringCore.Service
         /// <param name="machine"></param>
         /// <param name="period"></param>
         /// <returns>Lista dei dettagli di barre e spezzoni</returns>
-        public static List<HistoryBarModel> GetAggregationBarSP(MachineInfoModel machine, PeriodModel period)
+        public List<HistoryBarModel> GetAggregationBarSP(MachineInfoModel machine, PeriodModel period)
         {
             List<HistoryBarModel> result = new List<HistoryBarModel>();
 
             try
-            {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-                {
-                    List<usp_AggregationBar_Result> query = ent.usp_AggregationBar(machine.Id, period.StartDate, period.EndDate, (int)period.Aggregation).ToList();
-                    result = query.Adapt<List<HistoryBarModel>>();
-                }
+            {                
+                List<usp_AggregationBar_Result> query = _context.usp_AggregationBar(machine.Id, period.StartDate, period.EndDate, (int)period.Aggregation).ToList();
+                result = query.Adapt<List<HistoryBarModel>>();                
             }
             catch (Exception ex)
             {
@@ -52,15 +55,13 @@ namespace FomMonitoringCore.Service
         /// <param name="machine"></param>
         /// <param name="period"></param>
         /// <returns>Lista dei dettagli di barre e spezzoni</returns>
-        public static List<HistoryBarModel> GetAggregationBar(MachineInfoModel machine, PeriodModel period)
+        public List<HistoryBarModel> GetAggregationBar(MachineInfoModel machine, PeriodModel period)
         {
             var result = new List<HistoryBarModel>();
 
             try
-            {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-                {
-                    result = ent.HistoryBar.Where(hb => hb.MachineId == machine.Id && hb.Day >= period.StartDate && hb.Day <= period.EndDate).GroupBy(g => g.MachineId).Select(n => new HistoryBarModel
+            {              
+                    result = _context.Set<HistoryBar>().Where(hb => hb.MachineId == machine.Id && hb.Day >= period.StartDate && hb.Day <= period.EndDate).GroupBy(g => g.MachineId).Select(n => new HistoryBarModel
                     {
                         Count = n.Count(),
                         Id = n.Max(i => i.Id),
@@ -72,8 +73,7 @@ namespace FomMonitoringCore.Service
                         Period = null,
                         System = null,
                         TypeHistory = "d"
-                    }).ToList();
-                }
+                    }).ToList();                
             }
             catch (Exception ex)
             {
@@ -88,23 +88,16 @@ namespace FomMonitoringCore.Service
 
         #endregion
 
-        public static int? GetBarIdByBarIdOldAndMachineId(int? barIdOld, int machineId)
+        public int? GetBarIdByBarIdOldAndMachineId(int? barIdOld, int machineId)
         {
             int? result = null;
             try
-            {
-                using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
-                {
-                    using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+            {                                
+                    if (barIdOld.HasValue)
                     {
-                        if (barIdOld.HasValue)
-                        {
-                            Bar bar = ent.Bar.FirstOrDefault(f => f.IdOld == barIdOld.Value && f.MachineId == machineId);
-                            result = bar == null ? (int?)null : bar.Id;
-                        }
-                        transaction.Complete();
-                    }
-                }
+                        Bar bar = _context.Set<Bar>().FirstOrDefault(f => f.IdOld == barIdOld.Value && f.MachineId == machineId);
+                        result = bar == null ? (int?)null : bar.Id;
+                    }                                              
             }
             catch (Exception ex)
             {
