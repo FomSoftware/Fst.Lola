@@ -6,5 +6,6 @@ namespace FomMonitoringCore.Service
     public interface IMessageService
     {
         List<MessageMachineModel> GetMessageDetails(MachineInfoModel machine, PeriodModel period);
+        void CheckMaintenance();
     }
 }

@@ -16,6 +16,13 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
 {
     public class JsonAPIClientService : IJsonAPIClientService
     {
+        private IFomMonitoringEntities _context;
+
+        public JsonAPIClientService(IFomMonitoringEntities context)
+        {
+            _context = context;
+        }
+
         public enLoginResult ValidateCredentialsViaRemoteApi(string username, string password)
         {
             string apiUrl = ApplicationSettingService.GetWebConfigKey("RemoteLoginSOAPUrl");
@@ -109,8 +116,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
 
                 JsonCustomersModel customers = JsonConvert.DeserializeObject<JsonCustomersModel>(document.InnerText, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });                
 
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-                {
+
                     //elimino i customer non più presenti nella vip area
 
                     List<UserModel> dbCustomers =UserManagerService.GetAllCustomers();
@@ -122,7 +128,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                         //rimuovo prima le associazioni
                         List<Guid> ids = custmerToRemove.Select(a => a.ID).ToList();
                         List<string> names = custmerToRemove.Select(a => a.Username).ToList();
-                        List<UserCustomerMapping> us = ent.UserCustomerMapping.Where(uc => names.Contains(uc.CustomerName)).ToList();
+                        List<UserCustomerMapping> us = _context.Set<UserCustomerMapping>().Where(uc => names.Contains(uc.CustomerName)).ToList();
 
                         //utenti associati al customer
                         List<UserModel> usCust = new List<UserModel>();
@@ -132,16 +138,16 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                         }
 
                         if (us.Any())
-                        { 
-                            ent.UserCustomerMapping.RemoveRange(us);
-                            ent.SaveChanges();
+                        {
+                            _context.Set<UserCustomerMapping>().RemoveRange(us);
+                            _context.SaveChanges();
                         }
 
-                        List<UserMachineMapping> um = ent.UserMachineMapping.Where(mh => ids.Contains(mh.UserId)).ToList();
+                        List<UserMachineMapping> um = _context.Set<UserMachineMapping>().Where(mh => ids.Contains(mh.UserId)).ToList();
                         if (um.Any())
                         {
-                            ent.UserMachineMapping.RemoveRange(um);
-                            ent.SaveChanges();
+                            _context.Set<UserMachineMapping>().RemoveRange(um);
+                            _context.SaveChanges();
                         }
 
                         usCust.AddRange(custmerToRemove);
@@ -179,7 +185,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             }
 
                             //Aggiungo eventuali nuovi clienti nel DB dei dati
-                            UserCustomerMapping userCustomer = ent.UserCustomerMapping.FirstOrDefault(f => f.UserId == user.ID);
+                            UserCustomerMapping userCustomer = _context.Set<UserCustomerMapping>().FirstOrDefault(f => f.UserId == user.ID);
                             if (userCustomer == null)
                             {
                                 userCustomer = new UserCustomerMapping()
@@ -187,20 +193,20 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                                     UserId = user.ID,
                                     CustomerName = user.Username
                                 };
-                                ent.UserCustomerMapping.Add(userCustomer);
-                                ent.SaveChanges();
+                            _context.Set<UserCustomerMapping>().Add(userCustomer);
+                            _context.SaveChanges();
                             }
 
                             //Prendo la lista delle macchine esistenti nel DB a partire da quelle arrivate da JSON
                             List<string> machinesSerial = customer.machines.Select(s => s.serial).ToList();
-                            List<Machine> machines = ent.Machine.Where(w => machinesSerial.Contains(w.Serial)).ToList();
+                            List<Machine> machines = _context.Set<Machine>().Where(w => machinesSerial.Contains(w.Serial)).ToList();
 
                             //Rimuovo le associazioni cliente <=> macchina per macchine non più monitorate
                             List<int> machinesId = machines.Select(s => s.Id).ToList();
-                            List<Guid> clientUsersMachines = ent.UserMachineMapping.Where(w => machinesId.Contains(w.MachineId)).Select(s => s.UserId).Distinct().ToList();
-                            List<UserMachineMapping> usersMachinesToRemove = ent.UserMachineMapping.Where(w => !machinesId.Contains(w.MachineId) && clientUsersMachines.Contains(w.UserId)).ToList();
-                            ent.UserMachineMapping.RemoveRange(usersMachinesToRemove);
-                            ent.SaveChanges();
+                            List<Guid> clientUsersMachines = _context.Set<UserMachineMapping>().Where(w => machinesId.Contains(w.MachineId)).Select(s => s.UserId).Distinct().ToList();
+                            List<UserMachineMapping> usersMachinesToRemove = _context.Set<UserMachineMapping>().Where(w => !machinesId.Contains(w.MachineId) && clientUsersMachines.Contains(w.UserId)).ToList();
+                            _context.Set<UserMachineMapping>().RemoveRange(usersMachinesToRemove);
+                            _context.SaveChanges();
                             var plant = MesService.GetOrSetPlantDefaultByUser(user.ID);
 
                             //Inserisco i nuovi mapping cliente <=> macchina
@@ -212,7 +218,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                                     DateTime expirationDate = jm.expirationDate;
                                     DateTime activationDate = jm.activationDate;
                                     string machineName = jm.machineName;
-                                    List<UserMachineMapping> usersMachineMapped = ent.UserMachineMapping.Where(w => w.MachineId == machine.Id).ToList();
+                                    List<UserMachineMapping> usersMachineMapped = _context.Set<UserMachineMapping>().Where(w => w.MachineId == machine.Id).ToList();
                                     if (usersMachineMapped.Any())
                                     {
                                         /*foreach (UserMachineMapping userMachineMapped in usersMachineMapped)
@@ -231,12 +237,12 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                                             MachineId = machine.Id,
                                             UserId = user.ID
                                         };
-                                        ent.UserMachineMapping.Add(userMachine);
-                                        ent.SaveChanges();
+                                        _context.Set<UserMachineMapping>().Add(userMachine);
+                                        _context.SaveChanges();
                                     }
                                     //aggiorno l'activationDate della macchina prendendo la più vecchia
                                     // aggiorno anche il plantId
-                                    Machine ma = ent.Machine.Find(machine.Id);
+                                    Machine ma = _context.Set<Machine>().Find(machine.Id);
                                     ma.PlantId = plant;
                                     if (ma.ActivationDate == null || ma.ActivationDate > activationDate)
                                     {
@@ -250,7 +256,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                                     {
                                         ma.MachineName = machineName;
                                     }
-                                    ent.SaveChanges();
+                                    _context.SaveChanges();
                                 }
 
                             }
@@ -262,7 +268,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                         }
                     }
                     
-                }
+                
             }
             catch (Exception ex)
             {

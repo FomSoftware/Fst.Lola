@@ -1,8 +1,10 @@
-﻿using FomMonitoringCore.Framework.Common;
+﻿using Autofac;
+using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Service;
+using Mapster;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,9 +14,15 @@ namespace FomMonitoringCheckMaintenance
     {
         static void Main(string[] args)
         {
+            Inizialization();
+            var builder = new ContainerBuilder();
+
+            FomMonitoringCore.Ioc.IocContainerBuilder.BuildCore(builder, false);
+            var container = builder.Build();
+            var messageService = container.Resolve<IMessageService>();
             try
             {
-                MessageService.CheckMaintenance();
+                messageService.CheckMaintenance();
             }
             catch (Exception ex)
             {
@@ -22,6 +30,11 @@ namespace FomMonitoringCheckMaintenance
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
+        }
+
+        private static void Inizialization()
+        {
+            TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetAssembly(typeof(FomMonitoringCore.Framework.Config.MapsterConfig)));
         }
     }
 }

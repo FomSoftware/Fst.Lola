@@ -1,4 +1,5 @@
-﻿using FomMonitoringCore.Framework.Common;
+﻿using Autofac;
+using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Config;
 using FomMonitoringCore.Service;
 using FomMonitoringCore.Service.APIClient;
@@ -19,9 +20,14 @@ namespace FomMonitoringUpdateUsers
             int result = 1;
             Inizialization();
 
+            var builder = new ContainerBuilder();
+
+            FomMonitoringCore.Ioc.IocContainerBuilder.BuildCore(builder, false);
+            var container = builder.Build();
+            var jsonAPIClientService = container.Resolve<IJsonAPIClientService>();
+
             try
             {
-                IJsonAPIClientService jsonAPIClientService = new JsonAPIClientService();
                 if (jsonAPIClientService.UpdateActiveCustomersAndMachines())
                     result--;
                 else

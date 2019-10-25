@@ -6,6 +6,8 @@ using FomMonitoringCore.Repository;
 using FomMonitoringCore.Service;
 using FomMonitoringCore.Service.API;
 using FomMonitoringCore.Service.API.Concrete;
+using FomMonitoringCore.Service.APIClient;
+using FomMonitoringCore.Service.APIClient.Concrete;
 using FomMonitoringCore.Service.DataMapping;
 using FomMonitoringCore.Uow;
 using System.Collections.Generic;
@@ -20,6 +22,7 @@ namespace FomMonitoringCore.Ioc
             var instancesFoRequest = new List<IRegistrationBuilder<object, object, object>>();
 
 
+            instancesFoRequest.Add(builder.RegisterType<JsonAPIClientService>().As<IJsonAPIClientService>());
             instancesFoRequest.Add(builder.RegisterType<JsonDataService>().As<IJsonDataService>());
             instancesFoRequest.Add(builder.RegisterType<ContextService>().As<IContextService>());
             instancesFoRequest.Add(builder.RegisterType<SpindleService>().As<ISpindleService>());
