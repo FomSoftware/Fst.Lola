@@ -1,4 +1,5 @@
-﻿using FomMonitoringCore.Framework.Common;
+﻿using FomMonitoringCore.DAL;
+using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using FomMonitoringCore.Service.APIClient;
@@ -16,10 +17,13 @@ namespace FomMonitoring.Controllers
     public class AccountController : Controller
     {
         private IContextService _contextService;
+        private IMesService _mesService;
+        private IFomMonitoringEntities _dbcontext;
 
-        public AccountController(IContextService contextService)
+        public AccountController(IContextService contextService, IMesService mesService)
         {
             _contextService = contextService;
+            _mesService = mesService;
         }
 
         [HttpGet]
@@ -138,7 +142,7 @@ namespace FomMonitoring.Controllers
                 var remoteLogin = bool.Parse(ApplicationSettingService.GetWebConfigKey("RemoteLogin"));
                 if (remoteLogin)
                 {
-                    IJsonAPIClientService jsonAPIClientService = new JsonAPIClientService();
+                    IJsonAPIClientService jsonAPIClientService = new JsonAPIClientService(_dbcontext, _mesService);
                     remoteLoginResult = jsonAPIClientService.ValidateCredentialsViaRemoteApi(model.Username, model.Password);
                 }
 

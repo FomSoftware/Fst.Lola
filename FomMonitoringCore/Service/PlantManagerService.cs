@@ -12,48 +12,52 @@ using UserManager.DAL;
 
 namespace FomMonitoringCore.Service
 {
-    public class PlantManagerService
+    public class PlantManagerService : IPlantManagerService
     {
-        public static List<PlantModel> GetPlants(string usernameCustomer)
+        private IFomMonitoringEntities _context;
+
+        public PlantManagerService(IFomMonitoringEntities context)
+        {
+            _context = context;
+        }
+
+        public List<PlantModel> GetPlants(string usernameCustomer)
         {
             List<PlantModel> result = null;
-
             try
-            {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+            {                
+                using (UserManagerEntities entUM = new UserManagerEntities())
                 {
-                    using (UserManagerEntities entUM = new UserManagerEntities())
+                    //ent.Configuration.LazyLoadingEnabled = false;
+                    // Recupero la lista degli utenti associati al cliente
+                    List<Plant> customerPlants = new List<Plant>();
+                    if (!string.IsNullOrWhiteSpace(usernameCustomer))
                     {
-                        //ent.Configuration.LazyLoadingEnabled = false;
-                        // Recupero la lista degli utenti associati al cliente
-                        List<Plant> customerPlants = new List<Plant>();
-                        if (!string.IsNullOrWhiteSpace(usernameCustomer))
-                        {
-                            var gc = entUM.Users.FirstOrDefault(f => f.Username == usernameCustomer)?.ID;
+                        var gc = entUM.Users.FirstOrDefault(f => f.Username == usernameCustomer)?.ID;
                             
-                            customerPlants = ent.Plant.Where(w => w.UserId == gc).Distinct().ToList();
-                            if (customerPlants.Count == 0) return result;
-                        
-                        }
-                        else
-                        {
-                            customerPlants = ent.Plant.Include("Machine").ToList();
-                        }
-
-                        result = customerPlants.Adapt<List<Plant>, List<PlantModel>>();
-                        // Associo il cliente all'utente
-                        if (!string.IsNullOrWhiteSpace(usernameCustomer))
-                        {
-                            result.ForEach(fe => fe.CustomerName = usernameCustomer);
-                        }
-                        else
-                        {
-                            var userCustomer = ent.UserCustomerMapping.ToList();
-                            result.ForEach(fe => fe.CustomerName = userCustomer.FirstOrDefault(w => w.UserId == fe.UserId)?.CustomerName);
-                        }
+                        customerPlants = _context.Set<Plant>().Where(w => w.UserId == gc).Distinct().ToList();
+                        if (customerPlants.Count == 0) return result;
                         
                     }
+                    else
+                    {
+                        customerPlants = _context.Set<Plant>().Include("Machine").ToList();
+                    }
+
+                    result = customerPlants.Adapt<List<Plant>, List<PlantModel>>();
+                    // Associo il cliente all'utente
+                    if (!string.IsNullOrWhiteSpace(usernameCustomer))
+                    {
+                        result.ForEach(fe => fe.CustomerName = usernameCustomer);
+                    }
+                    else
+                    {
+                        var userCustomer = _context.Set<UserCustomerMapping>().ToList();
+                        result.ForEach(fe => fe.CustomerName = userCustomer.FirstOrDefault(w => w.UserId == fe.UserId)?.CustomerName);
+                    }
+                        
                 }
+                
             }
             catch (Exception ex)
             {
@@ -64,29 +68,26 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        public static PlantModel GetPlant(int plantId)
+        public PlantModel GetPlant(int plantId)
         {
             PlantModel result = null;
 
             try
-            {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+            {               
+                var plant = _context.Set<Plant>().FirstOrDefault(f => f.Id == plantId);
+                if (plant == null) return result;
+
+                result = plant.Adapt<Plant, PlantModel>();
+
+                // Recupero le sue macchine ed il customer associato
+                using (UserManagerEntities entUM = new UserManagerEntities())
                 {
-                    
-                    var plant = ent.Plant.FirstOrDefault(f => f.Id == plantId);
-                    if (plant == null) return result;
-
-                    result = plant.Adapt<Plant, PlantModel>();
-
-                    // Recupero le sue macchine ed il customer associato
-                    using (UserManagerEntities entUM = new UserManagerEntities())
-                    {
-                        entUM.Configuration.LazyLoadingEnabled = false;
-                        var customerName = entUM.Users.FirstOrDefault(f => f.ID == plant.UserId)?.Username;
-                        result.CustomerName = customerName;
+                    entUM.Configuration.LazyLoadingEnabled = false;
+                    var customerName = entUM.Users.FirstOrDefault(f => f.ID == plant.UserId)?.Username;
+                    result.CustomerName = customerName;
                         
-                    }
                 }
+                
             }
             catch (Exception ex)
             {
@@ -97,29 +98,25 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        public static PlantModel GetPlantByMachine(int id)
+        public PlantModel GetPlantByMachine(int id)
         {
             PlantModel result = null;
 
             try
-            {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+            {                
+                var plant = _context.Set<Plant>().FirstOrDefault(f => f.Machine.Any(m => m.Id == id));
+                if (plant == null) return result;
+
+                result = plant.Adapt<Plant, PlantModel>();
+
+                // Recupero le sue macchine ed il customer associato
+                using (UserManagerEntities entUM = new UserManagerEntities())
                 {
+                    entUM.Configuration.LazyLoadingEnabled = false;
+                    var customerName = entUM.Users.FirstOrDefault(f => f.ID == plant.UserId)?.Username;
+                    result.CustomerName = customerName;
 
-                    var plant = ent.Plant.FirstOrDefault(f => f.Machine.Any(m => m.Id == id));
-                    if (plant == null) return result;
-
-                    result = plant.Adapt<Plant, PlantModel>();
-
-                    // Recupero le sue macchine ed il customer associato
-                    using (UserManagerEntities entUM = new UserManagerEntities())
-                    {
-                        entUM.Configuration.LazyLoadingEnabled = false;
-                        var customerName = entUM.Users.FirstOrDefault(f => f.ID == plant.UserId)?.Username;
-                        result.CustomerName = customerName;
-
-                    }
-                }
+                }                
             }
             catch (Exception ex)
             {
@@ -130,22 +127,20 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        public static bool DeletePlant(int id)
+        public bool DeletePlant(int id)
         {
             try
-            {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+            {               
+                var plant = _context.Set<Plant>().Find(id);
+                if(plant != null)
                 {
-                    var plant = ent.Plant.Find(id);
-                    if(plant != null)
-                    {
 
-                        ent.Plant.Remove(plant);
-                    }
-
-                    ent.SaveChanges();
-                    return true;
+                    _context.Set<Plant>().Remove(plant);
                 }
+
+                _context.SaveChanges();
+                return true;
+                
             }
             catch (Exception ex)
             {
@@ -155,15 +150,12 @@ namespace FomMonitoringCore.Service
             }
         }
 
-        public static IEnumerable<MachineInfoModel> GetMachinesByPlant(int id)
+        public IEnumerable<MachineInfoModel> GetMachinesByPlant(int id)
         {
             try
             {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-                {
-                    var plantMachines = ent.Plant.Find(id)?.Machine.ToList() ?? new List<Machine>();
-                    return plantMachines.Adapt<List<Machine>, List<MachineInfoModel>>();
-                }
+               var plantMachines = _context.Set<Plant>().Find(id)?.Machine.ToList() ?? new List<Machine>();
+               return plantMachines.Adapt<List<Machine>, List<MachineInfoModel>>();               
             }
             catch (Exception ex)
             {
@@ -173,7 +165,7 @@ namespace FomMonitoringCore.Service
             }
         }
 
-        public static int CreatePlant(PlantModel plant)
+        public int CreatePlant(PlantModel plant)
         {
             try
             {
@@ -184,34 +176,30 @@ namespace FomMonitoringCore.Service
                     customerId = entUM.Users.FirstOrDefault(f => f.Username == plant.CustomerName)?.ID;
                 }
 
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-                { 
+                var addPlant = new Plant
+                {
+                    Id = plant.Id,
+                    Address = plant.Address,
+                    Name = plant.Name,
+                    UserId = customerId
+                };
 
-                    var addPlant = new Plant
-                    {
-                        Id = plant.Id,
-                        Address = plant.Address,
-                        Name = plant.Name,
-                        UserId = customerId
-                    };
+                _context.Set<Plant>().Add(addPlant);
+                _context.SaveChanges();
 
+                var idsMachines = plant.Machines.Select(i => i.Id).ToList();
 
-                    ent.Plant.Add(addPlant);
-                    ent.SaveChanges();
+                var newMachine = _context.Set<Machine>().Where(m => idsMachines.Any(mi => mi == m.Id)).ToList();
+                newMachine.ForEach(m => {
+                    m.Plant = addPlant;
+                    m.PlantId = addPlant.Id;
+                });
 
-                    var idsMachines = plant.Machines.Select(i => i.Id).ToList();
-
-                    var newMachine = ent.Machine.Where(m => idsMachines.Any(mi => mi == m.Id)).ToList();
-                    newMachine.ForEach(m => {
-                        m.Plant = addPlant;
-                        m.PlantId = addPlant.Id;
-                    });
-
-                    ent.SaveChanges();
+                _context.SaveChanges();
 
 
-                    return addPlant.Id;
-                }
+                return addPlant.Id;
+                
             }
             catch (Exception ex)
             {
@@ -221,7 +209,7 @@ namespace FomMonitoringCore.Service
             }
         }
 
-        public static bool ModifyPlant(PlantModel plant)
+        public bool ModifyPlant(PlantModel plant)
         {
             try
             {
@@ -230,38 +218,34 @@ namespace FomMonitoringCore.Service
                 {
                     entUM.Configuration.LazyLoadingEnabled = false;
                     customerId = entUM.Users.FirstOrDefault(f => f.Username == plant.CustomerName)?.ID;
-                }
+                }               
+                var updPlant = _context.Set<Plant>().Find(plant.Id) ?? new Plant();
 
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-                {
-                    var updPlant = ent.Plant.Find(plant.Id) ?? new Plant();
+                updPlant.Id = plant.Id;
+                updPlant.Name = plant.Name;
+                updPlant.Address = plant.Address;
+                updPlant.UserId = customerId;
 
-                    updPlant.Id = plant.Id;
-                    updPlant.Name = plant.Name;
-                    updPlant.Address = plant.Address;
-                    updPlant.UserId = customerId;
+                _context.Set<Plant>().AddOrUpdate(updPlant);
+                _context.SaveChanges();
 
-                    ent.Plant.AddOrUpdate(updPlant);
-                    ent.SaveChanges();
-
-
-                    var idsMachines = plant.Machines.Select(i => i.Id).ToList();
-                    var oldMachine = updPlant.Machine.Where(m => !idsMachines.Any(mi => mi == m.Id)).ToList();
-                    oldMachine.ForEach(m => {
-                        m.Plant = null;
-                        m.PlantId = null;
-                    });
+                var idsMachines = plant.Machines.Select(i => i.Id).ToList();
+                var oldMachine = updPlant.Machine.Where(m => !idsMachines.Any(mi => mi == m.Id)).ToList();
+                oldMachine.ForEach(m => {
+                    m.Plant = null;
+                    m.PlantId = null;
+                });
                     
-                    var newMachine = ent.Machine.Where(m => idsMachines.Any(mi => mi == m.Id)).ToList();
-                    newMachine.ForEach(m => {
-                        m.Plant = updPlant;
-                        m.PlantId = updPlant.Id;
-                    });
+                var newMachine = _context.Set<Machine>().Where(m => idsMachines.Any(mi => mi == m.Id)).ToList();
+                newMachine.ForEach(m => {
+                    m.Plant = updPlant;
+                    m.PlantId = updPlant.Id;
+                });
 
-                    ent.SaveChanges();
+                _context.SaveChanges();
 
-                    return true;
-                }
+                return true;
+                
             }
             catch (Exception ex)
             {

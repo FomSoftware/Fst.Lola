@@ -16,15 +16,18 @@ namespace FomMonitoring.Controllers
         private IContextService _contextService;
         private IPlantMessagesViewService _plantMessagesViewService;
         private IMachineViewService _machineViewService;
+        private IMesViewService _mesViewService;
 
         public AppApiController(
             IPlantMessagesViewService plantMessagesViewService, 
             IMachineViewService machineViewService,
-            IContextService contextService)
+            IContextService contextService,
+            IMesViewService mesViewService)
         {
             _contextService = contextService;
             _plantMessagesViewService = plantMessagesViewService;
             _machineViewService = machineViewService;
+            _mesViewService = mesViewService;
         }
 
         [HttpPost]
@@ -67,7 +70,7 @@ namespace FomMonitoring.Controllers
             _contextService.SetActualPlant(plantID);
 
             ContextModel context = _contextService.GetContext();
-            MesViewModel mes = MesViewService.GetMes(context);
+            MesViewModel mes = _mesViewService.GetMes(context);
 
             return Request.CreateResponse(HttpStatusCode.OK, mes, MediaTypeHeaderValue.Parse("application/json"));
         }

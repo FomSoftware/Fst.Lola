@@ -14,10 +14,12 @@ namespace FomMonitoringBLL.ViewServices
     public class MaintenanceViewService : IMaintenanceViewService
     {
         private IReadMessages _readMessages;
+        private IMessageService _messageService;
 
-        public MaintenanceViewService(IReadMessages readMessages)
+        public MaintenanceViewService(IReadMessages readMessages, IMessageService messageService)
         {
             _readMessages = readMessages;
+            _messageService = messageService;
         }
 
         public MaintenanceViewModel GetMessages(ContextModel context)
@@ -33,7 +35,7 @@ namespace FomMonitoringBLL.ViewServices
         {
             MaintenceVueModel result = new MaintenceVueModel();
 
-            List<MessageMachineModel> data = MessageService.GetMaintenanceMessages(machine, period);
+            List<MessageMachineModel> data = _messageService.GetMaintenanceMessages(machine, period);
 
             if (data.Count == 0)
                 return result;
@@ -47,7 +49,7 @@ namespace FomMonitoringBLL.ViewServices
                 time = CommonViewService.getTimeViewModel(a.ElapsedTime),
                 timestamp = DateTime.SpecifyKind(a.Day.HasValue ? a.Day.Value : DateTime.MinValue, DateTimeKind.Utc),
                 utc = machine.UTC,
-                expiredSpan = CommonViewService.getTimeViewModel(MessageService.GetExpiredSpan(a)),
+                expiredSpan = CommonViewService.getTimeViewModel(_messageService.GetExpiredSpan(a)),
                 description = (a.Code != null) ? _readMessages.GetMessageDescription(a.Code, machine.Id, null, CultureInfo.CurrentCulture.Name) : ""
             }).ToList();
 
@@ -65,7 +67,7 @@ namespace FomMonitoringBLL.ViewServices
 
         public bool IgnoreMessage(int MessageId)
         {
-            return MessageService.IgnoreMessage(MessageId);
+            return _messageService.IgnoreMessage(MessageId);
         }
 
 

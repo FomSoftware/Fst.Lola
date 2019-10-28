@@ -7,9 +7,15 @@ using System.Linq;
 
 namespace FomMonitoringBLL.ViewServices
 {
-    public class MesViewService
+    public class MesViewService : IMesViewService
     {
-        public static MesViewModel GetMes(ContextModel context)
+        private IMesService _mesService;
+        public MesViewService(IMesService mesService)
+        {
+            _mesService = mesService;
+        }
+
+        public MesViewModel GetMes(ContextModel context)
         {
             MesViewModel result = new MesViewModel();
             result.machines = GetVueModel(context.ActualPlant, context.AllMachines, !(context.User.Role == enRole.Administrator || context.User.Role == enRole.Assistance));
@@ -17,11 +23,11 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        public static List<MesDataViewModel> GetVueModel(PlantModel plant, List<MachineInfoModel> allMachines, bool onlyActive)
+        public List<MesDataViewModel> GetVueModel(PlantModel plant, List<MachineInfoModel> allMachines, bool onlyActive)
         {
             List<MesDataViewModel> result = new List<MesDataViewModel>();
 
-            List<MesUserMachinesModel> dataAllMachines = MesService.GetPlantData(plant);
+            List<MesUserMachinesModel> dataAllMachines = _mesService.GetPlantData(plant);
             if (onlyActive)
             {
                 dataAllMachines = dataAllMachines.Where(m => m.Expired == false).ToList();

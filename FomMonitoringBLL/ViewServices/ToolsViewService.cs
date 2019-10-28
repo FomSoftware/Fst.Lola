@@ -16,12 +16,15 @@ namespace FomMonitoringBLL.ViewServices
         private IMachineService _machineService;
         private IContextService _contextService;
         private IParameterMachineService _parameterMachineService;
+        private IToolService _toolService;
 
-        public ToolsViewService(IMachineService machineService, IContextService contextService, IParameterMachineService parameterMachineService)
+        public ToolsViewService(IMachineService machineService, IContextService contextService,
+             IToolService toolService, IParameterMachineService parameterMachineService)
         {
             _machineService = machineService;
             _contextService = contextService;
             _parameterMachineService = parameterMachineService;
+            _toolService = toolService;
         }
             public ToolViewModel GetTools(ContextModel context)
             {
@@ -40,7 +43,7 @@ namespace FomMonitoringBLL.ViewServices
             {
                 ToolVueModel result = new ToolVueModel();
 
-                List<ToolMachineModel> data = ToolService.GetTools(machine, xmodule);
+                List<ToolMachineModel> data = _toolService.GetTools(machine, xmodule);
 
                 List<ToolMachineModel> dataTools = data.Where(w => w.IsActive == true).ToList();
                 List<ToolMachineModel> dataHistorical = data.Where(w => w.IsActive == false).ToList();

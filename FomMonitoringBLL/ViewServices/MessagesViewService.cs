@@ -74,7 +74,7 @@ namespace FomMonitoringBLL.ViewServices
         {
             MessageVueModel result = new MessageVueModel();
 
-            List<HistoryMessageModel> data = MessageService.GetAggregationMessages(machine, period, enDataType.Summary);
+            List<HistoryMessageModel> data = _messageService.GetAggregationMessages(machine, period, enDataType.Summary);
 
             if (data.Count == 0)
                 return result;
@@ -116,7 +116,7 @@ namespace FomMonitoringBLL.ViewServices
             periodTrend.EndDate = period.EndDate;
             periodTrend.Aggregation = granularity;
 
-            List<HistoryMessageModel> data = MessageService.GetAggregationMessages(machine, periodTrend, enDataType.Historical)?.OrderBy(o => o.Day).ToList() ?? new List<HistoryMessageModel>();
+            List<HistoryMessageModel> data = _messageService.GetAggregationMessages(machine, periodTrend, enDataType.Historical)?.OrderBy(o => o.Day).ToList() ?? new List<HistoryMessageModel>();
 
             if (data.Count == 0)
                 return null;

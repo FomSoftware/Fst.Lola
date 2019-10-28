@@ -17,10 +17,12 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
     public class JsonAPIClientService : IJsonAPIClientService
     {
         private IFomMonitoringEntities _context;
+        private IMesService _mesService;
 
-        public JsonAPIClientService(IFomMonitoringEntities context)
+        public JsonAPIClientService(IFomMonitoringEntities context, IMesService mesService)
         {
             _context = context;
+            _mesService = mesService;
         }
 
         public enLoginResult ValidateCredentialsViaRemoteApi(string username, string password)
@@ -207,7 +209,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             List<UserMachineMapping> usersMachinesToRemove = _context.Set<UserMachineMapping>().Where(w => !machinesId.Contains(w.MachineId) && clientUsersMachines.Contains(w.UserId)).ToList();
                             _context.Set<UserMachineMapping>().RemoveRange(usersMachinesToRemove);
                             _context.SaveChanges();
-                            var plant = MesService.GetOrSetPlantDefaultByUser(user.ID);
+                            var plant = _mesService.GetOrSetPlantDefaultByUser(user.ID);
 
                             //Inserisco i nuovi mapping cliente <=> macchina
                             foreach (var machine in machines)

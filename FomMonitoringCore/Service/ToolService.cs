@@ -9,34 +9,40 @@ using System.Text.RegularExpressions;
 
 namespace FomMonitoringCore.Service
 {
-    public class ToolService
+    public class ToolService : IToolService
     {
-        public static List<ToolMachineModel> GetTools(MachineInfoModel machine, bool xmodule = false)
+        private IFomMonitoringEntities _context;
+
+        public ToolService(IFomMonitoringEntities context)
+        {
+            _context = context;
+        }
+
+        public List<ToolMachineModel> GetTools(MachineInfoModel machine, bool xmodule = false)
         {
             List<ToolMachineModel> result = new List<ToolMachineModel>();
 
             try
             {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                
+                List<ToolMachine> query = null;                   
+                if (machine.Type.Id == (int)enMachineType.LineaTaglioLavoro)
                 {
-                    List<ToolMachine> query = null;                   
-                    if (machine.Type.Id == (int)enMachineType.LineaTaglioLavoro)
+                    Regex regex = new Regex(@"^[1-2]\d{2}$");
+                    if (xmodule)
                     {
-                        Regex regex = new Regex(@"^[1-2]\d{2}$");
-                        if (xmodule)
-                        {
-                            query = ent.ToolMachine.Where(w => w.MachineId == machine.Id).ToList().Where(w => regex.IsMatch(w.Code)).ToList();
-                        }
-                        else
-                        {
-                            query = ent.ToolMachine.Where(w => w.MachineId == machine.Id).ToList().Where(w => !regex.IsMatch(w.Code)).ToList();
-                        }
+                        query = _context.Set<ToolMachine>().Where(w => w.MachineId == machine.Id).ToList().Where(w => regex.IsMatch(w.Code)).ToList();
                     }
                     else
-                        query = ent.ToolMachine.Where(w => w.MachineId == machine.Id).ToList();
-
-                    result = query.Adapt<List<ToolMachineModel>>();
+                    {
+                        query = _context.Set<ToolMachine>().Where(w => w.MachineId == machine.Id).ToList().Where(w => !regex.IsMatch(w.Code)).ToList();
+                    }
                 }
+                else
+                    query = _context.Set<ToolMachine>().Where(w => w.MachineId == machine.Id).ToList();
+
+                result = query.Adapt<List<ToolMachineModel>>();
+                
             }
             catch (Exception ex)
             {

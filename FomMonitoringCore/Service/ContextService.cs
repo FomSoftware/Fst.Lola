@@ -13,10 +13,12 @@ namespace FomMonitoringCore.Service
     public class ContextService : IContextService
     {
         private IMachineService _machineService;
+        private IMesService _mesService;
 
-        public ContextService(IMachineService machineService)
+        public ContextService(IMachineService machineService, IMesService mesService)
         {
             _machineService = machineService;
+            _mesService = mesService;
         }
 
         public bool InitializeContext()
@@ -103,9 +105,9 @@ namespace FomMonitoringCore.Service
             context.ActualPage = enPage.Mes;
 
             if (context.User.Role == enRole.Administrator)
-                context.AllPlants = MesService.GetAllPlantsMachines();
+                context.AllPlants = _mesService.GetAllPlantsMachines();
             else
-                context.AllPlants = MesService.GetUserPlants(context.User.ID);
+                context.AllPlants = _mesService.GetUserPlants(context.User.ID);
 
             if (context.AllPlants.Count > 0)
             {
@@ -139,9 +141,9 @@ namespace FomMonitoringCore.Service
             context.ActualPage = enPage.Machine;
 
             if (context.User.Role == enRole.Administrator)
-                context.AllPlants = MesService.GetAllPlantsMachines();
+                context.AllPlants = _mesService.GetAllPlantsMachines();
             else
-                context.AllPlants = MesService.GetUserPlants(context.User.ID);
+                context.AllPlants = _mesService.GetUserPlants(context.User.ID);
 
             if (context.AllPlants.Count > 0)
             {

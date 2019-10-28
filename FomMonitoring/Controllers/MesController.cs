@@ -15,11 +15,13 @@ namespace FomMonitoring.Controllers
     {
         private IPlantMessagesViewService _plantMessagesViewService;
         private IContextService _contextService;
+        private IMesViewService _mesViewService;
 
-        public MesController(IPlantMessagesViewService plantMessagesViewService, IContextService contextService)
+        public MesController(IPlantMessagesViewService plantMessagesViewService, IContextService contextService, IMesViewService mesViewService)
         {
             _plantMessagesViewService = plantMessagesViewService;
             _contextService = contextService;
+            _mesViewService = mesViewService;
         }
 
         public ActionResult Index()
@@ -32,7 +34,7 @@ namespace FomMonitoring.Controllers
             _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
 
             ContextModel context = _contextService.GetContext();
-            MesViewModel mes = MesViewService.GetMes(context);
+            MesViewModel mes = _mesViewService.GetMes(context);
 
             return View("Mes", mes);
         }

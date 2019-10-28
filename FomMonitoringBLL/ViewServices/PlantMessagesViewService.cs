@@ -13,11 +13,13 @@ namespace FomMonitoringBLL.ViewServices
     {
         private IMessageService _messageService;
         private IReadMessages _readMessages;
+        private IMesService _mesService;
 
-        public PlantMessagesViewService(IMessageService messageService, IReadMessages readMessages)
+        public PlantMessagesViewService(IMessageService messageService, IReadMessages readMessages, IMesService mesService)
         {
             _messageService = messageService;
             _readMessages = readMessages;
+            _mesService = mesService;
         }
 
         public PlantMessagesViewModel GetPlantMessages(ContextModel context)
@@ -45,7 +47,7 @@ namespace FomMonitoringBLL.ViewServices
         {
             List<MachineMessagesDataViewModel> result = new List<MachineMessagesDataViewModel>();
 
-            List<MesUserMachinesModel> dataAllMachines = MesService.GetPlantData(plant);
+            List<MesUserMachinesModel> dataAllMachines = _mesService.GetPlantData(plant);
 
             foreach (MesUserMachinesModel dataMachine in dataAllMachines)
             {

@@ -90,7 +90,9 @@
     <Compile Include="ViewServices\IMachineViewService.cs" />
     <Compile Include="ViewServices\IMaintenanceViewService.cs" />
     <Compile Include="ViewServices\IMessagesViewService.cs" />
+    <Compile Include="ViewServices\IMesViewService.cs" />
     <Compile Include="ViewServices\IPanelParametersViewService.cs" />
+    <Compile Include="ViewServices\IPlantManagerViewService.cs" />
     <Compile Include="ViewServices\IPlantMessagesViewService.cs" />
     <Compile Include="ViewServices\IProductivityViewService.cs" />
     <Compile Include="ViewServices\ISpindleViewService.cs" />

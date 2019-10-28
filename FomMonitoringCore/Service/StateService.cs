@@ -37,17 +37,14 @@ namespace FomMonitoringCore.Service
             List<HistoryStateModel> result = new List<HistoryStateModel>();
 
             try
-            {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-                {
-                    string aggType = period.Aggregation.GetDescription();
+            {                
+                string aggType = period.Aggregation.GetDescription();
 
-                    List<HistoryState> query = _historyStateRepository.Get(hs => hs.MachineId == machine.Id
-                                                && hs.Day >= period.StartDate && hs.Day <= period.EndDate
-                                                && hs.TypeHistory == aggType).ToList();
+                List<HistoryState> query = _historyStateRepository.Get(hs => hs.MachineId == machine.Id
+                                            && hs.Day >= period.StartDate && hs.Day <= period.EndDate
+                                            && hs.TypeHistory == aggType).ToList();
 
-                    result = query.Adapt<List<HistoryStateModel>>();
-                }
+                result = query.Adapt<List<HistoryStateModel>>();                
             }
             catch (Exception ex)
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FomMonitoringCore.DAL;
+using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 
 namespace FomMonitoringCore.Service
@@ -10,5 +11,12 @@ namespace FomMonitoringCore.Service
         List<MessageMachineModel> GetMessageDetails(MachineInfoModel machine, PeriodModel period);
         void CheckMaintenance();
         void InsertMessageMachine(Machine machine, string code, DateTime day);
+        List<HistoryMessageModel> GetAggregationMessages_SP(MachineInfoModel machine, PeriodModel period, enDataType dataType);
+        List<HistoryMessageModel> GetAggregationMessages(MachineInfoModel machine, PeriodModel period, enDataType dataType);
+        List<HistoryMessageModel> GetAllHistoryMessages(MachineInfoModel machine, PeriodModel period);
+        long? GetExpiredSpan(MessageMachineModel mm);
+        List<MessageMachineModel> GetMaintenanceMessages(MachineInfoModel machine, PeriodModel period);
+        List<MessageMachineModel> GetAllCurrentMessages(MachineInfoModel machine, PeriodModel period);
+        bool IgnoreMessage(int messageId);
     }
 }

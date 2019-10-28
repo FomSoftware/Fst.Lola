@@ -18,11 +18,14 @@ namespace FomMonitoring.Controllers
     public class PlantManagerApiController : ApiController
     {
         private IContextService _contextService;
+        private IPlantManagerViewService _plantService;
 
-        public PlantManagerApiController(IContextService contextService)
+        public PlantManagerApiController(IContextService contextService, IPlantManagerViewService plantService)
         {
             _contextService = contextService;
+            _plantService = plantService;
         }
+
 
         [HttpGet]
         [Authorize]
@@ -31,7 +34,7 @@ namespace FomMonitoring.Controllers
         {
             ContextModel context = _contextService.GetContext();
             PlantManagerViewModel plantManager = new PlantManagerViewModel();
-            plantManager = PlantManagerViewService.GetPlants(context);
+            plantManager = _plantService.GetPlants(context);
             return Request.CreateResponse(HttpStatusCode.OK, plantManager, MediaTypeHeaderValue.Parse("application/json"));
         }
 
@@ -41,7 +44,7 @@ namespace FomMonitoring.Controllers
         public HttpResponseMessage GetPlant(int id)
         {
             PlantManagerViewModel plant = new PlantManagerViewModel();
-            plant = PlantManagerViewService.GetPlant(id);
+            plant = _plantService.GetPlant(id);
             return Request.CreateResponse(HttpStatusCode.OK, plant, MediaTypeHeaderValue.Parse("application/json"));
         }
 
@@ -52,7 +55,7 @@ namespace FomMonitoring.Controllers
         {
             ContextModel context = _contextService.GetContext();
             PlantManagerViewModel plant = new PlantManagerViewModel();
-            plant = PlantManagerViewService.GetPlantByMachine(idMachine);
+            plant = _plantService.GetPlantByMachine(idMachine);
             return Request.CreateResponse(HttpStatusCode.OK, plant, MediaTypeHeaderValue.Parse("application/json"));
         }
 
@@ -74,7 +77,7 @@ namespace FomMonitoring.Controllers
             try
             {
                 ContextModel context = _contextService.GetContext();
-                var result = PlantManagerViewService.CreatePlant(plant, context);
+                var result = _plantService.CreatePlant(plant, context);
                 return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
             }
             catch (InvalidOperationException ex)
@@ -88,7 +91,7 @@ namespace FomMonitoring.Controllers
         [Route("ajax/PlantManagerApi/GetPlantsByCustomer/{id}")]
         public HttpResponseMessage GetPlantsByCustomer(string id)
         {
-            var result = PlantManagerViewService.GetPlantsByCustomer(id);
+            var result = _plantService.GetPlantsByCustomer(id);
             return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
         }
 
@@ -97,7 +100,7 @@ namespace FomMonitoring.Controllers
         [Route("ajax/PlantManagerApi/GetMachinesByPlant/{id}")]
         public HttpResponseMessage GetMachinesByPlant(int id)
         {
-            var result = PlantManagerViewService.GetMachinesByPlant(id);
+            var result = _plantService.GetMachinesByPlant(id);
             return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
         }
 
@@ -106,7 +109,7 @@ namespace FomMonitoring.Controllers
         [Route("ajax/PlantManagerApi/EditPlant")]
         public HttpResponseMessage EditPlant(PlantViewModel plant)
         {
-            var result = PlantManagerViewService.EditPlant(plant);
+            var result = _plantService.EditPlant(plant);
             return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
         }
 
@@ -115,7 +118,7 @@ namespace FomMonitoring.Controllers
         [Route("ajax/PlantManagerApi/DeletePlant/{id}")]
         public HttpResponseMessage DeletePlant(int id)
         {
-            var result = PlantManagerViewService.DeletePlant(id);
+            var result = _plantService.DeletePlant(id);
             return Request.CreateResponse(HttpStatusCode.InternalServerError, result, MediaTypeHeaderValue.Parse("application/json"));
         }
     }

@@ -460,10 +460,13 @@
     <Compile Include="Service\IJobService.cs" />
     <Compile Include="Service\IMachineService.cs" />
     <Compile Include="Service\IMessageService.cs" />
+    <Compile Include="Service\IMesService.cs" />
     <Compile Include="Service\IParameterMachineService.cs" />
     <Compile Include="Service\IPieceService.cs" />
+    <Compile Include="Service\IPlantManagerService.cs" />
     <Compile Include="Service\ISpindleService.cs" />
     <Compile Include="Service\IStateService.cs" />
+    <Compile Include="Service\IToolService.cs" />
     <Compile Include="Service\JobService.cs" />
     <Compile Include="Service\LogService.cs" />
     <Compile Include="Service\MachineService.cs" />

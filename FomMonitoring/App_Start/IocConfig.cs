@@ -38,6 +38,8 @@ namespace FomMonitoring
             builder.RegisterType<ToolsViewService>().As<IToolsViewService>().InstancePerRequest();
             builder.RegisterType<PanelParametersViewService>().As<IPanelParametersViewService>().InstancePerRequest();
             builder.RegisterType<XToolsViewService>().As<IXToolsViewService>().InstancePerRequest();
+            builder.RegisterType<PlantManagerViewService> ().As<IPlantManagerViewService> ().InstancePerRequest();
+            builder.RegisterType<MesViewService>().As<IMesViewService>().InstancePerRequest();
 
             var container = builder.Build();
 

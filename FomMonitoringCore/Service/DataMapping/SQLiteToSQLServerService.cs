@@ -19,10 +19,11 @@ namespace FomMonitoringCore.Service.DataMapping
         private IFomMonitoringEntities _FomMonitoringEntities;
         private IFomMonitoringSQLiteEntities _FomMonitoringSQLiteEntities;
         private IUnitOfWork _unitOfWork;
+        private IMesService _mesService;
 
         public SQLiteToSQLServerService(IMachineService machineService, IJobService jobService,
             IFomMonitoringEntities FomMonitoringEntities, IFomMonitoringSQLiteEntities FomMonitoringSQLiteEntities,
-            IUnitOfWork unitOfWork, IBarService barService)
+            IUnitOfWork unitOfWork, IBarService barService, IMesService mesService)
         {
             _machineService = machineService;
             _jobService = jobService;
@@ -30,6 +31,7 @@ namespace FomMonitoringCore.Service.DataMapping
             _FomMonitoringSQLiteEntities = FomMonitoringSQLiteEntities;
             _unitOfWork = unitOfWork;
             _barService = barService;
+            _mesService = mesService;
         }
 
         public bool MappingSQLiteDetailsToSQLServer()
@@ -61,7 +63,7 @@ namespace FomMonitoringCore.Service.DataMapping
                 string matricola = infoSQLite.OrderByDescending(o => o.Id).FirstOrDefault().MachineSerial;
                 _unitOfWork.StartTransaction(_FomMonitoringEntities);
 
-                List<Machine> machine = infoSQLite.BuildAdapter().AddParameters("machineService", _machineService).AdaptToType<List<Machine>>();                
+                List<Machine> machine = infoSQLite.BuildAdapter().AddParameters("machineService", _machineService).AddParameters("mesService", _mesService).AdaptToType<List<Machine>>();                
                 Machine machineActual = _FomMonitoringEntities.Set<Machine>().FirstOrDefault(f => f.Serial == matricola);
                 if (machineActual == null)
                 {

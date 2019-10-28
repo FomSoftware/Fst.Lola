@@ -8,10 +8,16 @@ using FomMonitoringCore.Service;
 
 namespace FomMonitoringBLL.ViewServices
 {
-    public class PlantManagerViewService
+    public class PlantManagerViewService : IPlantManagerViewService
     {
+        IPlantManagerService _plantManagerService;
 
-        public static PlantManagerViewModel GetPlants(ContextModel context)
+        public PlantManagerViewService(IPlantManagerService plantManagerService)
+        {
+            _plantManagerService = plantManagerService;
+        }
+
+        public PlantManagerViewModel GetPlants(ContextModel context)
         {
             var plantManager = new PlantManagerViewModel();
             string usernameCustomer = null;
@@ -19,7 +25,7 @@ namespace FomMonitoringBLL.ViewServices
             if (context.User.Role != enRole.Administrator)
                 usernameCustomer = context.User.Username;
 
-            var plantsModel = PlantManagerService.GetPlants(usernameCustomer);
+            var plantsModel = _plantManagerService.GetPlants(usernameCustomer);
             plantManager.Plants = plantsModel.Where(p => !string.IsNullOrWhiteSpace(p.CustomerName)).Select(s => new PlantViewModel
             {
                 Id = s.Id,
@@ -40,11 +46,11 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        public static PlantManagerViewModel GetPlantsByCustomer(string idCustomer)
+        public PlantManagerViewModel GetPlantsByCustomer(string idCustomer)
         {
             var plantManager = new PlantManagerViewModel();
 
-            var plantsModel = PlantManagerService.GetPlants(idCustomer);
+            var plantsModel = _plantManagerService.GetPlants(idCustomer);
             plantManager.Plants = plantsModel.Select(s => new PlantViewModel
             {
                 Id = s.Id,
@@ -61,10 +67,10 @@ namespace FomMonitoringBLL.ViewServices
             return plantManager;
         }
 
-        public static PlantManagerViewModel GetPlant(int id)
+        public PlantManagerViewModel GetPlant(int id)
         {
             var result = new PlantManagerViewModel();
-            var plantModel = PlantManagerService.GetPlant(id);
+            var plantModel = _plantManagerService.GetPlant(id);
 
             var plant = new PlantViewModel
             {
@@ -87,10 +93,10 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        public static PlantManagerViewModel GetPlantByMachine(int id)
+        public PlantManagerViewModel GetPlantByMachine(int id)
         {
             var result = new PlantManagerViewModel();
-            var plantModel = PlantManagerService.GetPlantByMachine(id);
+            var plantModel = _plantManagerService.GetPlantByMachine(id);
 
             var plant = new PlantViewModel
             {
@@ -113,7 +119,7 @@ namespace FomMonitoringBLL.ViewServices
 
         }
 
-        public static bool EditPlant(PlantViewModel plantModel)
+        public bool EditPlant(PlantViewModel plantModel)
         {
             try
             {
@@ -130,7 +136,7 @@ namespace FomMonitoringBLL.ViewServices
                     LastDateUpdate = DateTime.UtcNow
                 };
 
-                return PlantManagerService.ModifyPlant(plant);
+                return _plantManagerService.ModifyPlant(plant);
             }
             catch (Exception ex)
             {
@@ -138,16 +144,16 @@ namespace FomMonitoringBLL.ViewServices
             }
         }
 
-        public static IEnumerable<UserMachineViewModel> GetMachinesByPlant(int id)
+        public IEnumerable<UserMachineViewModel> GetMachinesByPlant(int id)
         {
-            return PlantManagerService.GetMachinesByPlant(id).Select(n => new UserMachineViewModel
+            return _plantManagerService.GetMachinesByPlant(id).Select(n => new UserMachineViewModel
             {
                 Id = n.Id,
                 Serial = n.Serial
             }).ToList();
         }
 
-        public static bool CreatePlant(PlantViewModel plantModel, ContextModel context)
+        public bool CreatePlant(PlantViewModel plantModel, ContextModel context)
         {
             try
             {
@@ -165,7 +171,7 @@ namespace FomMonitoringBLL.ViewServices
                 };
 
 
-                PlantManagerService.CreatePlant(plant);
+                _plantManagerService.CreatePlant(plant);
                 
                 return true;
             }
@@ -178,9 +184,9 @@ namespace FomMonitoringBLL.ViewServices
             }
         }
 
-        public static bool DeletePlant(int id)
+        public bool DeletePlant(int id)
         {
-            return PlantManagerService.DeletePlant(id);
+            return _plantManagerService.DeletePlant(id);
         }
         
     }

@@ -10,102 +10,97 @@ using UserManager.DAL;
 
 namespace FomMonitoringCore.Service
 {
-    public class MesService
+    public class MesService : IMesService
     {
         #region API
 
-        public static int? GetPlantDefaultByMachine(string machineSerial)
+        private IFomMonitoringEntities _context;
+
+        public MesService(IFomMonitoringEntities context)
         {
-            using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-            {
-                using (UserManagerEntities uent = new UserManagerEntities())
-                {
-                    var userIds = ent.Machine.Where(m => m.Serial == machineSerial).SelectMany(n => n.UserMachineMapping).Select(um => um.UserId).ToList();
-                    var plant = ent.Plant.FirstOrDefault(p => userIds.Any(g => g == p.UserId));
-                    return plant?.Id;
-                }
-            }
+            _context = context;
         }
 
-        public static int? GetOrSetPlantDefaultByUser(Guid userId)
-        {
-            using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-            {
-                using (UserManagerEntities uent = new UserManagerEntities())
-                {
-                    var userM = ent.UserCustomerMapping.FirstOrDefault(m => m.UserId == userId);
-                    var plant = ent.Plant.FirstOrDefault(p => userId == p.UserId);
 
-                    if(plant == null)
-                    {
-                        var user = uent.Users.FirstOrDefault(u => u.ID == userM.UserId);
-                        plant = AddPlant(user);
-                    }
-                    return plant?.Id;
-                }
-            }
+        public int? GetPlantDefaultByMachine(string machineSerial)
+        {                          
+            var userIds = _context.Set<Machine>().Where(m => m.Serial == machineSerial).SelectMany(n => n.UserMachineMapping).Select(um => um.UserId).ToList();
+            var plant = _context.Set<Plant>().FirstOrDefault(p => userIds.Any(g => g == p.UserId));
+            return plant?.Id;                
+            
         }
 
-        public static int? GetOrSetPlantIdByPlantName(string plantName, string plantAddress, string machineSerial)
+        public int? GetOrSetPlantDefaultByUser(Guid userId)
+        {            
+            using (UserManagerEntities uent = new UserManagerEntities())
+            {
+                var userM = _context.Set<UserCustomerMapping>().FirstOrDefault(m => m.UserId == userId);
+                var plant = _context.Set<Plant>().FirstOrDefault(p => userId == p.UserId);
+
+                if(plant == null)
+                {
+                    var user = uent.Users.FirstOrDefault(u => u.ID == userM.UserId);
+                    plant = AddPlant(user);
+                }
+                return plant?.Id;
+            }
+            
+        }
+
+        public int? GetOrSetPlantIdByPlantName(string plantName, string plantAddress, string machineSerial)
         {
             int? result = null;
             try
-            {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+            {                
+                Machine machine = _context.Set<Machine>().FirstOrDefault(m => m.Serial == machineSerial);
+                UserManager.DAL.Users user;
+                Plant plant = null;
+                IEnumerable<Guid> userIds;
+                userIds = _context.Set<Machine>().Where(m => m.Serial == machineSerial).SelectMany(n => n.UserMachineMapping).Select(um => um.UserId).ToList();
+              
+                using (UserManager.DAL.UserManagerEntities uent = new UserManager.DAL.UserManagerEntities())
                 {
-                    Machine machine = ent.Machine.FirstOrDefault(m => m.Serial == machineSerial);
-                    UserManager.DAL.Users user;
-                    Plant plant = null;
-                    IEnumerable<Guid> userIds;
-                    userIds = ent.Machine.Where(m => m.Serial == machineSerial).SelectMany(n => n.UserMachineMapping).Select(um => um.UserId).ToList();
+                    //l'utente a cui appartiene il plant tra tutti quelli 
+                    //a cui la macchina è associata sarà sempre il customer
+                    //e ve ne sarà sempre e solo uno
+                    user = uent.Users.FirstOrDefault(u => userIds.Any(us => us == u.ID) && u.Roles_Users.Any(ur => ur.Roles.IdRole == (int)UserManager.Framework.Common.Enumerators.UserRole.Customer));
+                }                
 
-                    //devo isolare questo contesto per non abilitare il sqlServer alla transazioni distribuite essendo su un db diverso - mbelletti
-                    using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.RequiresNew))
-                    {
-                        using (UserManager.DAL.UserManagerEntities uent = new UserManager.DAL.UserManagerEntities())
-                        {
-                            //l'utente a cui appartiene il plant tra tutti quelli 
-                            //a cui la macchina è associata sarà sempre il customer
-                            //e ve ne sarà sempre e solo uno
-                            user = uent.Users.FirstOrDefault(u => userIds.Any(us => us == u.ID) && u.Roles_Users.Any(ur => ur.Roles.IdRole == (int)UserManager.Framework.Common.Enumerators.UserRole.Customer));
-                        }
-                    }
-
-                    if (machine != null && machine.Plant != null && machine.Plant.UserId == user?.ID)
-                    {                        
-                        return machine.Plant.Id;
-                    }                   
-                    //se c'è il pant con il nome inviato dalla macchina lo associo
-                    if (!string.IsNullOrWhiteSpace(plantName))
-                    {
-                        plant = ent.Plant.FirstOrDefault(f => f.Name == plantName && f.Address == plantAddress);
-                    }
-                    //se non c'è cerco il primo plant associato all'utente della macchina,
-                    //N.B. quando non ci sarà più solo il plant di default modificare
-                    
-                    if (plant == null && user != null)
-                    {
-                        plant = ent.Plant.FirstOrDefault(f => f.UserId == user.ID);
-                    }
-                    if (plant != null && user != null)
-                    {
-                        plant.UserId = user.ID;
-                    }
-                    //se non c'è creo il plant di default per l'utente, 
-                    // precondizione: il record dalla VIP area che associa la macchina ad un utente deve esistere
-                    //altrimenti non si saprebbe a chi associare il plant, la macchina viene inserita con plantid null
-                    if (plant == null && user != null)
-                    {
-                        plant = AddPlant(user, plantName, plantAddress);
-                    }
-
-                    if (plant != null)
-                    {
-                        result = plant.Id;
-
-                        ent.SaveChanges();
-                    }
+                if (machine != null && machine.Plant != null && machine.Plant.UserId == user?.ID)
+                {                        
+                    return machine.Plant.Id;
+                }                   
+                //se c'è il pant con il nome inviato dalla macchina lo associo
+                if (!string.IsNullOrWhiteSpace(plantName))
+                {
+                    plant = _context.Set<Plant>().FirstOrDefault(f => f.Name == plantName && f.Address == plantAddress);
                 }
+                //se non c'è cerco il primo plant associato all'utente della macchina,
+                //N.B. quando non ci sarà più solo il plant di default modificare
+                    
+                if (plant == null && user != null)
+                {
+                    plant = _context.Set<Plant>().FirstOrDefault(f => f.UserId == user.ID);
+                }
+                if (plant != null && user != null)
+                {
+                    plant.UserId = user.ID;
+                }
+                //se non c'è creo il plant di default per l'utente, 
+                // precondizione: il record dalla VIP area che associa la macchina ad un utente deve esistere
+                //altrimenti non si saprebbe a chi associare il plant, la macchina viene inserita con plantid null
+                if (plant == null && user != null)
+                {
+                    plant = AddPlant(user, plantName, plantAddress);
+                }
+
+                if (plant != null)
+                {
+                    result = plant.Id;
+
+                    _context.SaveChanges();
+                }
+                
                 
             }
             catch (Exception ex)
@@ -116,7 +111,7 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        public static Plant AddPlant(Users user, string plantName = null, string plantAddress = null)
+        public Plant AddPlant(Users user, string plantName = null, string plantAddress = null)
         {
             Plant result = null;
 
@@ -126,22 +121,15 @@ namespace FomMonitoringCore.Service
             }
 
             try
-            {
-                using (TransactionScope transaction = new TransactionScope(TransactionScopeOption.Required))
-                {
-                    using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-                    {
-                        Plant plant = new Plant();
-                        plant.Name = plantName;
-                        plant.Address = plantAddress;
-                        plant.UserId = user?.ID;
-                        ent.Plant.Add(plant);
-                        ent.SaveChanges();
-                        transaction.Complete();
-
-                        result = plant;
-                    }
-                }
+            {                
+                Plant plant = new Plant();
+                plant.Name = plantName;
+                plant.Address = plantAddress;
+                plant.UserId = user?.ID;
+                _context.Set<Plant>().Add(plant);
+                _context.SaveChanges();
+                    
+                result = plant;                                
             }
             catch (Exception ex)
             {
@@ -155,17 +143,14 @@ namespace FomMonitoringCore.Service
 
         #region APP WEB
 
-        public static List<PlantModel> GetUserPlants(Guid UserID)
+        public List<PlantModel> GetUserPlants(Guid UserID)
         {
             List<PlantModel> result = new List<PlantModel>();
 
             try
-            {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-                {
-                    var query = ent.UserMachineMapping.Where(w => w.UserId == UserID && w.Machine.PlantId != null).Select(s => s.Machine.Plant).Distinct().ToList();
-                    result = query.Adapt<List<PlantModel>>();
-                }
+            {               
+                var query = _context.Set<UserMachineMapping>().Where(w => w.UserId == UserID && w.Machine.PlantId != null).Select(s => s.Machine.Plant).Distinct().ToList();
+                result = query.Adapt<List<PlantModel>>();                
             }
             catch (Exception ex)
             {
@@ -177,17 +162,14 @@ namespace FomMonitoringCore.Service
         }
 
 
-        public static List<MesUserMachinesModel> GetPlantData(PlantModel plant)
+        public List<MesUserMachinesModel> GetPlantData(PlantModel plant)
         {
             List<MesUserMachinesModel> result = new List<MesUserMachinesModel>();
 
             try
-            {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-                {
-                    List<usp_MesUserMachines_Result> query = ent.usp_MesUserMachines(plant.Id, DateTime.UtcNow.Date).ToList();
-                    result = query.Adapt<List<MesUserMachinesModel>>();
-                }
+            {               
+                List<usp_MesUserMachines_Result> query = _context.usp_MesUserMachines(plant.Id, DateTime.UtcNow.Date).ToList();
+                result = query.Adapt<List<MesUserMachinesModel>>();                
             }
             catch (Exception ex)
             {
@@ -198,17 +180,14 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        public static List<PlantModel> GetAllPlantsMachines()
+        public List<PlantModel> GetAllPlantsMachines()
         {
             List<PlantModel> result = new List<PlantModel>();
 
             try
-            {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
-                {
-                    var query = ent.Machine.Where(w => w.Plant != null).Select(s => s.Plant).Distinct().ToList();
-                    result = query.Adapt<List<PlantModel>>();
-                }
+            {               
+                    var query = _context.Set<Machine>().Where(w => w.Plant != null).Select(s => s.Plant).Distinct().ToList();
+                    result = query.Adapt<List<PlantModel>>();                
             }
             catch (Exception ex)
             {

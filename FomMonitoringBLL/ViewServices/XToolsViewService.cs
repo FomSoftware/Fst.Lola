@@ -1,4 +1,5 @@
 ﻿using FomMonitoringBLL.ViewModel;
+using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
@@ -13,10 +14,12 @@ namespace FomMonitoringBLL.ViewServices
     public class XToolsViewService : IXToolsViewService
     {
         private IContextService _contextService;
+        private IToolService _toolService;
 
-        public XToolsViewService(IContextService contextService)
+        public XToolsViewService(IContextService contextService, IToolService toolService)
         {
             _contextService = contextService;
+            _toolService = toolService;
         }
         public XToolViewModel GetXTools(ContextModel context)
         {
@@ -31,7 +34,7 @@ namespace FomMonitoringBLL.ViewServices
         {
             ToolVueModel result = new ToolVueModel();
 
-            List<ToolMachineModel> data = ToolService.GetTools(machine, xmodule);
+            List<ToolMachineModel> data = _toolService.GetTools(machine, xmodule);
 
             List<ToolMachineModel> dataTools = data.Where(w => w.IsActive == true).ToList();
             List<ToolMachineModel> dataHistorical = data.Where(w => w.IsActive == false).ToList();
