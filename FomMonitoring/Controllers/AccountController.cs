@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.Security;
 
 namespace FomMonitoring.Controllers
@@ -201,19 +202,19 @@ namespace FomMonitoring.Controllers
             switch (context.User.Role)
             {
                 case enRole.Administrator:
-                    result = RedirectToAction("Index", "Mes");
+                    result = RedirectToAction("Index", "Mes", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
                     break;
 
                 case enRole.HeadWorkshop:
-                    result = RedirectToAction("Index", "Mes");
+                    result = RedirectToAction("Index", "Mes", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
                     break;
 
                 case enRole.Operator:
-                    result = RedirectToAction("Index", "Machine");
+                    result = RedirectToAction("Index", "Machine", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
                     break;
 
                 case enRole.Customer:
-                    result = RedirectToAction("Index", "Mes");
+                    result = RedirectToAction("Index", "Mes", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
                     break;
 
                 default:

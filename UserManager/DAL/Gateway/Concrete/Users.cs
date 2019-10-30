@@ -29,6 +29,7 @@ namespace UserManager.DAL.Gateway.Concrete
                         .Include("Groups_Users.Groups")
                         .Include("Roles_Users")
                         .Include("Roles_Users.Roles")
+                        .Include("Languages")
                         .SingleOrDefault(i => i.Username == Username && i.Domain == Domain);
                 else
                     User = userManagerEntities.Users
@@ -36,6 +37,7 @@ namespace UserManager.DAL.Gateway.Concrete
                         .Include("Groups_Users.Groups")
                         .Include("Roles_Users")
                         .Include("Roles_Users.Roles")
+                        .Include("Languages")
                         .SingleOrDefault(i => i.Username == Username);
 
                 if (null == User) { Message = "Username is wrong"; return false; }
