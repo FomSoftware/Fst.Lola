@@ -1,6 +1,7 @@
 ﻿using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
+using FomMonitoringCore.Repository;
 using Mapster;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace FomMonitoringCore.Service
         #region API
 
         private IFomMonitoringEntities _context;
-
+        
         public MesService(IFomMonitoringEntities context)
         {
             _context = context;
@@ -199,6 +200,36 @@ namespace FomMonitoringCore.Service
         }
 
         #endregion
+
+
+        public void CheckOfflineMachines()
+        {
+            string MachinId = null;
+            try
+            {
+                List<Machine> machines = _context.Set<Machine>().Where(m => m.CurrentState.FirstOrDefault() != null && 
+                                                            m.CurrentState.FirstOrDefault().StateId != (int)enState.Off).ToList();
+
+                foreach (Machine machine in machines)
+                {
+                    CurrentState st = machine.CurrentState.FirstOrDefault();
+                    int interval = Int32.Parse(System.Configuration.ConfigurationManager.AppSettings.Get("CheckOfflineInterval"));
+                    if (st.LastUpdated < DateTime.UtcNow.AddSeconds(interval * -1))
+                    {
+                        st.LastUpdated = DateTime.UtcNow;
+                        st.StateId = (int)enState.Off;
+                    }                   
+                }
+                _context.SaveChanges();
+                
+            }
+            catch (Exception ex)
+            {
+                string errMessage = string.Format(ex.GetStringLog(),
+                    MachinId, "");
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+        }
 
     }
 }

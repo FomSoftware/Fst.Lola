@@ -16,5 +16,7 @@ namespace FomMonitoringCore.Service
         List<PlantModel> GetUserPlants(Guid UserID);
         List<MesUserMachinesModel> GetPlantData(PlantModel plant);
         List<PlantModel> GetAllPlantsMachines();
+
+        void CheckOfflineMachines();
     }
 }

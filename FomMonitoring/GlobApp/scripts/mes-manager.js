@@ -286,7 +286,8 @@
                         'fa-play': state.code == 'prod',
                         'icofom-pause': state.code == 'pause',
                         'icofom-manual': state.code == 'manual',
-                        'fa-exclamation-triangle': state.code == 'error'
+                        'fa-exclamation-triangle': state.code == 'error',
+                        'fa-times': state.code == 'off'
                     }
                 },
                 iconMachine: function(machine)

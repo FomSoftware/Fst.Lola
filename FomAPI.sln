@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManager", "UserManager\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringCheckMaintenance", "FomMonitoringCheckMaintenance\FomMonitoringCheckMaintenance.csproj", "{5C20D561-B53A-4A83-A965-50A25B6B8156}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringCheckOffline", "FomMonitoringCheckOffline\FomMonitoringCheckOffline.csproj", "{6D3B1C77-C544-4C9D-9704-11B5BBE67505}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,14 @@ Global
 		{5C20D561-B53A-4A83-A965-50A25B6B8156}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5C20D561-B53A-4A83-A965-50A25B6B8156}.Release|x86.ActiveCfg = Release|Any CPU
 		{5C20D561-B53A-4A83-A965-50A25B6B8156}.Release|x86.Build.0 = Release|Any CPU
+		{6D3B1C77-C544-4C9D-9704-11B5BBE67505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D3B1C77-C544-4C9D-9704-11B5BBE67505}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D3B1C77-C544-4C9D-9704-11B5BBE67505}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6D3B1C77-C544-4C9D-9704-11B5BBE67505}.Debug|x86.Build.0 = Debug|Any CPU
+		{6D3B1C77-C544-4C9D-9704-11B5BBE67505}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D3B1C77-C544-4C9D-9704-11B5BBE67505}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D3B1C77-C544-4C9D-9704-11B5BBE67505}.Release|x86.ActiveCfg = Release|Any CPU
+		{6D3B1C77-C544-4C9D-9704-11B5BBE67505}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
