@@ -31,6 +31,7 @@ namespace FomMonitoringCore.DAL
         public string ProfileCode { get; set; }
         public Nullable<System.DateTime> StartTime { get; set; }
         public string System { get; set; }
+        public string JobCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Piece> Piece { get; set; }

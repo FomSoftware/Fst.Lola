@@ -54,7 +54,7 @@ namespace FomMonitoringBLL.ViewServices
 
             long? totalProd = stateProd?.ElapsedTime;
             long? totalOn = data.Where(w => w.enState != enState.Off).Select(s => s.ElapsedTime).Sum();
-            long? totalOff = data.Where(w => w.enState == enState.Off).Select(s => s.ElapsedTime).Sum();
+            //long? totalOff = data.Where(w => w.enState == enState.Off).Select(s => s.ElapsedTime).Sum();
 
             decimal? percProd = Common.GetPercentage(totalProd, totalOn);
             decimal? overfeed = stateProd?.OverfeedAvg;
@@ -64,7 +64,7 @@ namespace FomMonitoringBLL.ViewServices
 
             TotalTimeModel total = new TotalTimeModel();
             total.on = CommonViewService.getTimeViewModel(totalOn);
-            total.off = CommonViewService.getTimeViewModel(totalOff);
+            //total.off = CommonViewService.getTimeViewModel(totalOff);
             result.total = total;
 
             List<StateViewModel> states = new List<StateViewModel>();

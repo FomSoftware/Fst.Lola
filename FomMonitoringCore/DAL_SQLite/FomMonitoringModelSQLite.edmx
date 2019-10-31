@@ -21,6 +21,7 @@
           <Property Name="Length" Type="float" />
           <Property Name="IsOffcut" Type="bit" />
           <Property Name="BadAreas" Type="varchar(max)" />
+          <Property Name="JobCode" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="error">
           <Key>
@@ -503,6 +504,7 @@
           <Property Name="Length" Type="Double" />
           <Property Name="IsOffcut" Type="Boolean" />
           <Property Name="BadAreas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="JobCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="true" />
         </EntityType>
         <EntityType Name="message">
           <Key>
@@ -752,6 +754,7 @@
           <EntitySetMapping Name="bar">
             <EntityTypeMapping TypeName="FomMonitoringSQLiteModel.bar">
               <MappingFragment StoreEntitySet="bar">
+                <ScalarProperty Name="JobCode" ColumnName="JobCode" />
                 <ScalarProperty Name="BadAreas" ColumnName="BadAreas" />
                 <ScalarProperty Name="IsOffcut" ColumnName="IsOffcut" />
                 <ScalarProperty Name="Length" ColumnName="Length" />

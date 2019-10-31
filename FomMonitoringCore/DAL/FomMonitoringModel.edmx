@@ -45,6 +45,7 @@
           <Property Name="ProfileCode" Type="varchar" MaxLength="100" />
           <Property Name="StartTime" Type="datetime" />
           <Property Name="System" Type="varchar" MaxLength="100" />
+          <Property Name="JobCode" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="CurrentState">
           <Key>
@@ -1671,6 +1672,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="System" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Piece" Relationship="FST_FomMonitoringModel.FK_Piece_Bar" FromRole="Bar" ToRole="Piece" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_Bar_Machine" FromRole="Bar" ToRole="Machine" />
+          <Property Name="JobCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="true" />
         </EntityType>
         <Association Name="FK_Piece_Bar">
           <End Type="FST_FomMonitoringModel.Bar" Role="Bar" Multiplicity="0..1" />
@@ -2733,6 +2735,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="Bar">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.Bar">
               <MappingFragment StoreEntitySet="Bar">
+                <ScalarProperty Name="JobCode" ColumnName="JobCode" />
                 <ScalarProperty Name="System" ColumnName="System" />
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="ProfileCode" ColumnName="ProfileCode" />

@@ -199,22 +199,27 @@ namespace FomMonitoring.Controllers
                 return Redirect(returnUrl);
 
             RedirectToRouteResult result = null;
+            //le parti commentate vanno bene ma il bug non è stato quotato, per rilasciarlo scommentare anche Users.cs linea 32 e 40
             switch (context.User.Role)
             {
                 case enRole.Administrator:
-                    result = RedirectToAction("Index", "Mes", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
+                    result = RedirectToAction("Index", "Mes");
+                    //result = RedirectToAction("Index", "Mes", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
                     break;
 
                 case enRole.HeadWorkshop:
-                    result = RedirectToAction("Index", "Mes", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
+                    result = RedirectToAction("Index", "Mes");
+                    //result = RedirectToAction("Index", "Mes", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
                     break;
 
                 case enRole.Operator:
-                    result = RedirectToAction("Index", "Machine", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
+                    result = RedirectToAction("Index", "Machine");
+                    //result = RedirectToAction("Index", "Machine", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
                     break;
 
                 case enRole.Customer:
-                    result = RedirectToAction("Index", "Mes", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
+                    result = RedirectToAction("Index", "Mes");
+                    //result = RedirectToAction("Index", "Mes", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
                     break;
 
                 default:

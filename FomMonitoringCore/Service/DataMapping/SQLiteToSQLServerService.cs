@@ -115,9 +115,25 @@ namespace FomMonitoringCore.Service.DataMapping
 
                 List<Bar> bar = barSQLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<Bar>>();
                 bar = bar.Where(w => w.StartTime > (machineActual.LastUpdate ?? new DateTime())).ToList();
-                _FomMonitoringEntities.Set<Bar>().AddRange(bar);
-                _FomMonitoringEntities.SaveChanges();
 
+                if(bar != null)
+                {
+                    foreach (Bar bb in bar)
+                    {
+                        Bar trovato = _FomMonitoringEntities.Set<Bar>().Where(m => m.Index == bb.Index && m.JobCode == bb.JobCode).FirstOrDefault();
+                        // se esiste già una barra con lo stesso jobcode e index uguale non aggiungo il record
+                        if (trovato != null && trovato.JobCode != null)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            _FomMonitoringEntities.Set<Bar>().Add(bb);
+                            _FomMonitoringEntities.SaveChanges();
+                        }                            
+                    }
+                }
+                //_FomMonitoringEntities.Set<Bar>().AddRange(bar);
                 List<MessageMachine> messageMachine = messageSQLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<MessageMachine>>();
                 messageMachine = messageMachine.Where(w => w.StartTime > (machineActual.LastUpdate ?? new DateTime())).ToList();
 

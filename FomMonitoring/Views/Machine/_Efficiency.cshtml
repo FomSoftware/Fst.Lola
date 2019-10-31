@@ -96,28 +96,30 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <hr />
+
                             <!-- OFF STATE -->
-                            <div class="progress-label clearfix">
-                                <div class="progress-title">
-                                    <span class="fa-stack v-middle font-normal">
-                                        <i class="fa fa-square fa-stack-2x cr-stop"></i>
-                                        <i class="fa fa-remove fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                    <span class="v-middle">
-                                        @Resource.StateOff
-                                    </span>
-                                </div>
-                                <div class="progress-time margin-top-5" style="margin-bottom: 0px;">
-                                    <div class="icon fa fa-power-off"></div>
-                                    <div>
-                                        <div class="title-time">@Resource.TimeOff</div>
-                                        <div class="value-time">
-                                            <time-span v-bind:duration="total.off"></time-span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--
+        <hr />
+        <div class="progress-label clearfix">
+        <div class="progress-title">
+            <span class="fa-stack v-middle font-normal">
+                <i class="fa fa-square fa-stack-2x cr-stop"></i>
+                <i class="fa fa-remove fa-stack-1x fa-inverse"></i>
+            </span>
+            <span class="v-middle">
+                @Resource.StateOff
+            </span>
+        </div>
+        <div class="progress-time margin-top-5" style="margin-bottom: 0px;">
+            <div class="icon fa fa-power-off"></div>
+            <div>
+                <div class="title-time">@Resource.TimeOff</div>
+                <div class="value-time">
+                    <time-span v-bind:duration="total.off"></time-span>
+                </div>
+            </div>
+        </div>
+    </div>-->
                         </div>
                     </div>
                     <div class="col-xs-1 no-padding-left text-center" v-if="type != '@enMachineType.Troncatrice.GetDescription()'">

@@ -26,5 +26,6 @@ namespace FomMonitoringCore.DAL_SQLite
         public Nullable<double> Length { get; set; }
         public Nullable<bool> IsOffcut { get; set; }
         public string BadAreas { get; set; }
+        public string JobCode { get; set; }
     }
 }
