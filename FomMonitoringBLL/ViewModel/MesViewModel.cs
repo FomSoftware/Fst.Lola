@@ -27,6 +27,8 @@ namespace FomMonitoringBLL.ViewModel
         public EfficiencyVueModel efficiency { get; set; }
 
         public ProductivityVueModel productivity { get; set; }
-      
+
+        public ErrorViewModel errors { get; set; }
+
     }
 }

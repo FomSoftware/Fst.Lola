@@ -99,9 +99,15 @@ namespace FomMonitoringBLL.ViewServices
                     {
                         total = data.PieceCompletedCount ?? 0
                     };
-                }              
+                }
 
-                result.Add(mes);
+                if (data.AlarmCount != null)
+                {
+                    mes.errors = new ErrorViewModel();
+                    mes.errors.quantity = data.AlarmCount;
+                }
+
+                    result.Add(mes);
             }
 
             return result;

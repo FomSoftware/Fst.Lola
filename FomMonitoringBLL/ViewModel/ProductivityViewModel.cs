@@ -36,6 +36,11 @@ namespace FomMonitoringBLL.ViewModel
         public ProdDataModel redone { get; set; }
     }
 
+    public class ErrorViewModel
+    {
+        public int? quantity { get; set; }       
+    }
+
     public class MaterialViewModel
     {
         public int total { get; set; }

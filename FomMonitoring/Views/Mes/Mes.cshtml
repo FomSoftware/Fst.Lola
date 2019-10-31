@@ -166,8 +166,8 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-3 text-right">
-                                <span class="fa-stack fa-lg" v-if="machine.alarms != null">
-                                    <i class="fa fa-circle fa-stack-2x" v-bind:class="colorAlarms(machine.alarms.quantity)"></i>
+                                <span class="fa-stack fa-lg" v-if="machine.errors != null">
+                                    <i class="fa fa-circle fa-stack-2x" v-bind:class="colorAlarms(machine.errors.quantity)"></i>
                                     <i class="fa fa-exclamation-triangle fa-stack-1x fa-inverse"></i>
                                 </span>
                                 <span class="fa-stack fa-lg" v-else>
@@ -176,16 +176,10 @@
                                 </span>
                             </div>
                             <div class="col-xs-9 padding-left-5">
-                                <div class="item-label clearfix" v-if="machine.alarms != null">
+                                <div class="item-label clearfix" v-if="machine.errors != null">
                                     <div class="pull-left">
-                                        <div>{{ machine.alarms.quantity }}<em>n</em></div>
-                                    </div>
-                                    <div class="pull-right text-right">
-                                        <div>
-                                            <i class="fa fa-clock-o color-aaa"></i>
-                                            <time-span v-bind:duration="machine.alarms.time"></time-span>
-                                        </div>
-                                    </div>
+                                        <div>{{ machine.errors.quantity }}</div>
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>
@@ -309,8 +303,8 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-3 text-right">
-                                <span class="fa-stack fa-lg" v-if="machine.alarms != null">
-                                    <i class="fa fa-circle fa-stack-2x" v-bind:class="colorAlarms(machine.alarms.quantity)"></i>
+                                <span class="fa-stack fa-lg" v-if="machine.errors != null">
+                                    <i class="fa fa-circle fa-stack-2x" v-bind:class="colorAlarms(machine.errors.quantity)"></i>
                                     <i class="fa icofom-alarms fa-stack-1x fa-inverse"></i>
                                 </span>
                                 <span class="fa-stack fa-lg" v-else>
@@ -319,16 +313,10 @@
                                 </span>
                             </div>
                             <div class="col-xs-9 padding-left-5">
-                                <div class="item-label clearfix" v-if="machine.alarms != null">
+                                <div class="item-label clearfix" v-if="machine.errors != null">
                                     <div class="pull-left">
-                                        <div>{{ machine.alarms.quantity }}<em>n</em></div>
-                                    </div>
-                                    <div class="pull-right text-right">
-                                        <div>
-                                            <i class="fa fa-clock-o color-aaa"></i>
-                                            <time-span v-bind:duration="machine.alarms.time"></time-span>
-                                        </div>
-                                    </div>
+                                        <div>{{ machine.errors.quantity }}</div>
+                                    </div>                                   
                                 </div>
                             </div>
                         </div>
