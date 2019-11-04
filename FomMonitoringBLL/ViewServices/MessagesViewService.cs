@@ -109,11 +109,11 @@ namespace FomMonitoringBLL.ViewServices
             ChartViewModel options = new ChartViewModel();
 
             enAggregation granularity = Common.GetAggregationType(period.StartDate, period.EndDate);
-            DateTime startDateTrend = Common.GetStartDateTrend(period.EndDate, granularity);
+            //DateTime startDateTrend = Common.GetStartDateTrend(period.EndDate, granularity);
 
             PeriodModel periodTrend = new PeriodModel();
-            periodTrend.StartDate = startDateTrend;
-            periodTrend.EndDate = period.EndDate;
+            periodTrend.StartDate = period.StartDate.ToUniversalTime();
+            periodTrend.EndDate = period.EndDate.ToUniversalTime();
             periodTrend.Aggregation = granularity;
 
             List<HistoryMessageModel> data = _messageService.GetAggregationMessages(machine, periodTrend, enDataType.Historical)?.OrderBy(o => o.Day).ToList() ?? new List<HistoryMessageModel>();
