@@ -96,17 +96,17 @@
             Error: '@Resource.Error',
             Search: '@Resource.Search',
             AddPlant: '@Resource.AddPlant',
-            PlantCreated: '@Resource.PlantCreated',
-            NothingFound: '@Resource.NothingFound',
+            PlantCreated: '@Html.Encode(Resource.PlantCreated)',
+            NothingFound: '@Html.Raw(Resource.NothingFound)',
             PlantDeleted: '@Resource.PlantDeleted',
             PlantDeletedConfirm: '@Resource.PlantDeletedConfirm',
             ComeBack: '@Resource.ComeBack',
             Continue: '@Resource.Continue',
-            PlantImpossibileDeleted: '@Resource.PlantImpossibileDeleted',
+            PlantImpossibileDeleted: '@Html.Raw(Resource.PlantImpossibileDeleted)',
             PlantMachines: '@Resource.PlantMachines',
             PlantModify: '@Resource.PlantModify',
             PlantModified: '@Resource.PlantModified',
-            ErrorOccurred: '@Resource.ErrorOccurred',
+            ErrorOccurred: '@Html.Raw(Resource.ErrorOccurred)',
             PlantDelete: '@Resource.PlantDelete'
         };
 
