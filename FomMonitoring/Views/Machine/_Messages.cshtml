@@ -42,8 +42,9 @@
                     <table class="table table-alerts table-header">
                         <thead>
                             <tr>
-                                <th style="padding-left:5px;padding-right:5px;width:15%;min-width: 75px;">
-                                    <span class="value-title">
+                                <th class="code-header" style="padding-right:5px;"></th>
+                                <th style="padding-right:5px;width:10%;min-width: 75px;">
+                                    <span class="value-title" style="padding-left:8px">
                                         @Resource.Code
                                     </span>
                                 </th>
@@ -71,8 +72,10 @@
                         <table class="table table-alerts">
                             <tbody>
                                 <tr v-for="message in details">
-                                    <td style="width:15%">
+                                    <td style="width:4%">
                                         <div class="item-icon fa fa-2x" v-bind:class="iconClass(message.type)"></div>
+                                    </td>
+                                    <td style="width:10%">
                                         <div class="item-alert">
                                             <div class="code-alert">{{ message.code }}</div>
                                             <div class="subtitle-alert" v-bind:class="colorClass(message.type)">{{ message.type }}</div>

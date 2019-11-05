@@ -1165,3 +1165,44 @@ hr.axes {
 }
 
 
+.code-header {
+    width: 4%;
+}
+
+@media (max-width: 1396px) {
+
+    .code-header {
+        width: 6%;
+    }
+}
+
+
+@media (max-width: 1096px) {
+
+    .code-header {
+        width: 13%;
+    }
+
+}
+
+@media (max-width: 991px) {
+
+    .code-header {
+        width: 5%;
+    }
+
+    th.sorting{
+        padding-left: 0 !important;
+    }
+}
+
+@media (max-width: 755px) {
+
+    .code-header {
+        width: 7%;
+    }
+
+    th.sorting {
+        padding-left: 0 !important;
+    }
+}
