@@ -689,4 +689,7 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="PlantName" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="PasswordPolicy" xml:space="preserve">
+    <value>The password must be at least 6 characters</value>
+  </data>
 </root>

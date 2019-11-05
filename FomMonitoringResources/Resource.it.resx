@@ -686,4 +686,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="PlantName" xml:space="preserve">
     <value>Nome</value>
   </data>
+  <data name="PasswordPolicy" xml:space="preserve">
+    <value>La password deve essere almeno di 6 caratteri</value>
+  </data>
 </root>

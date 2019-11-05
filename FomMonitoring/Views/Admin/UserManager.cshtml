@@ -61,8 +61,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="email-input">Email:</label>
                                 <div class="col-md-6">
-                                    <input v-model="actual.Email" name="email-input" class="form-control input-md modal-input" id="email-input" type="text" placeholder="Email" maxlength="50" required>
-                                    <div v-show="missing.Email" class="validation">@Resource.FieldRequired.</div>
+                                    <input v-model="actual.Email" name="email-input" class="form-control input-md modal-input" id="email-input" type="text" placeholder="Email" maxlength="50">
                                 </div>
                             </div>
 
@@ -132,19 +131,33 @@
 
                             @if (Model.User.Role == enRole.Customer)
                             {
-                                <!-- Text input-->
-                                <div class="form-group display-none" id="form-group-password" >
+                                <div class="form-group" id="form-group-password">
                                     <label class="col-md-4 control-label" for="lastname-input">Password:</label>
                                     <div class="col-md-6">
-                                        <input v-model="actual.Password" name="password-input" class="form-control input-md modal-input" id="password-input" type="text" placeholder="Password" maxlength="50" required>
+                                        <div class="input-group">
+                                            <input v-model="actual.Password" name="password-input" class="form-control input-md modal-input" id="password-input" type="text" placeholder="Password" maxlength="50" required>
+                                            <span class="input-group-btn" style="padding-top:8px;">
+                                                <button type="button" role="button" class="btn btn-annulla" data-container="body" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="@Resource.PasswordPolicy">
+                                                    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                                                </button>
+                                            </span>
+                                        </div>
                                         <div v-show="missing.Password" class="validation">@Resource.FieldRequired.</div>
                                     </div>
                                 </div>
                                 <!-- Text input-->
-                                <div class="form-group display-none" id="form-group-confirm-password">
+                                <div class="form-group" id="form-group-confirm-password">
                                     <label class="col-md-4 control-label" for="lastname-input">@Resource.RepeatPassword:</label>
                                     <div class="col-md-6">
-                                        <input v-model="actual.ConfirmPassword" name="confirm-password-input" class="form-control input-md modal-input" id="confirm-password-input" type="text" placeholder="Conferma Password" maxlength="50" required>
+                                        <div class="input-group">
+                                            <input v-model="actual.ConfirmPassword" name="confirm-password-input" class="form-control input-md modal-input" id="confirm-password-input" type="text" placeholder="Confirm Password" maxlength="50" required>
+                                            <span class="input-group-btn" style="padding-top:8px;">
+                                                <button type="button" role="button" class="btn btn-annulla" data-container="body" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="@Resource.PasswordPolicy">
+                                                    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+
                                         <div v-show="missing.ConfirmPassword" class="validation">@Resource.FieldRequired.</div>
                                     </div>
                                 </div>
@@ -174,6 +187,8 @@
 <script type="text/javascript">
     $(document).ready(function ()
     {
+
+        $('[data-toggle="popover"]').popover();
         var resource = {
             Username: '@Resource.Username',
             FirstName: '@Resource.FirstName',

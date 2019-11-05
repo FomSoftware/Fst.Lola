@@ -236,6 +236,8 @@
 
     $(document).ready(function ()
     {
+        $('[data-toggle="popover"]').popover();
+       
         var data = @Html.Raw(Json.Encode(Model.ActualPeriod));
         var user = @Html.Raw(Json.Encode(Model.User));
 

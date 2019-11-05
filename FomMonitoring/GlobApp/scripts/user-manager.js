@@ -60,7 +60,6 @@
                     Username: false,
                     Firstname: false,
                     LastName: false,
-                    Email: false,
                     Role: false,
                     Customer: false,
                     Machines: false,
@@ -75,7 +74,6 @@
                     this.actual.Username == undefined || this.actual.Username == null || this.actual.Username.trim() == "" ? this.missing.Username = true : this.missing.Username = false
                     this.actual.FirstName == undefined || this.actual.FirstName == null || this.actual.FirstName.trim() == "" ? this.missing.FirstName = true : this.missing.FirstName = false
                     this.actual.LastName == undefined || this.actual.LastName == null || this.actual.LastName.trim() == "" ? this.missing.LastName = true : this.missing.LastName = false
-                    this.actual.Email == undefined || this.actual.Email == null || this.actual.Email.trim() == "" ? this.missing.Email = true : this.missing.Email = false
                     this.roles.active.length == 0 ? this.missing.Role = true : this.missing.Role = false
                     this.customers.active == "" && roleUser != enRoles.Customer ? this.missing.Customer = true : this.missing.Customer = false
                     this.machines.active.length == 0 ? this.missing.Machines = true : this.missing.Machines = false
@@ -514,7 +512,6 @@
         vmUsers.missing.Username = false;
         vmUsers.missing.FirstName = false;
         vmUsers.missing.LastName = false;
-        vmUsers.missing.Email = false;
         vmUsers.missing.Role = false;
         vmUsers.missing.Customer = false;
         vmUsers.missing.Machines = false;
@@ -544,7 +541,6 @@
         if (vmUsers.missing.Username == false &&
             vmUsers.missing.Firstname == false &&
             vmUsers.missing.LastName == false &&
-            vmUsers.missing.Email == false &&
             vmUsers.missing.Role == false &&
             vmUsers.missing.Customer == false &&
             vmUsers.missing.Machines == false &&
@@ -552,7 +548,7 @@
             vmUsers.missing.Password == false &&
             vmUsers.missing.ConfirmPassword == false) {
 
-            if (!controlValidationEmail(vmUsers.actual.Email)) {
+            if (vmUsers.actual.Email != null && !controlValidationEmail(vmUsers.actual.Email)) {
                 errorSwal(resource.EmailNotValid);
                 return false;
             }

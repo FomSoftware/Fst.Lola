@@ -1107,6 +1107,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The password must be at least 6 characters.
+        /// </summary>
+        public static string PasswordPolicy {
+            get {
+                return ResourceManager.GetString("PasswordPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The old password is incorrect.
         /// </summary>
         public static string PasswordSamePrevious {
