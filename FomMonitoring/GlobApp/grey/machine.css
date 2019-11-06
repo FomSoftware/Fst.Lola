@@ -1176,6 +1176,19 @@ hr.axes {
     }
 }
 
+@media (max-width: 1296px) {
+
+    .code-header {
+        width: 8%;
+    }
+}
+
+@media (max-width: 1196px) {
+
+    .code-header {
+        width: 11%;
+    }
+}
 
 @media (max-width: 1096px) {
 
@@ -1196,6 +1209,14 @@ hr.axes {
     }
 }
 
+
+@media (max-width: 768px) {
+
+    .code-header {
+        width: 6%;
+    }
+}
+
 @media (max-width: 755px) {
 
     .code-header {
@@ -1204,5 +1225,27 @@ hr.axes {
 
     th.sorting {
         padding-left: 0 !important;
+    }
+}
+
+
+@media (max-width: 660px) {
+
+    .code-header {
+        width: 11%;
+    }
+}
+
+@media (max-width: 560px) {
+
+    .code-header {
+        width: 15%;
+    }
+}
+
+@media (max-width: 460px) {
+
+    .code-header {
+        width: 18%;
     }
 }
