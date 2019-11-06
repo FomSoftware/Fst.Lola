@@ -145,37 +145,41 @@
                     ChartManager.destroyChart('efc_kpi_chart');
                 }
 
-                // chart historical
-                if (data.opt_historical != null) {
-                    vmEfficiency.show.historical = true;
-                    ChartManager.lineChart('efc_historical_chart', data.opt_historical);
-                }
-                else {
-                    vmEfficiency.show.historical = false;
-                    ChartManager.destroyChart('efc_historical_chart');
-                }
-
-                // chart operators
-                if (data.opt_operators != null) {
-                    vmEfficiency.show.operators = true;
-                    ChartManager.stackedBarChart('efc_operators_chart', data.opt_operators);
-                }
-                else {
-                    vmEfficiency.show.operators = false;
-                    ChartManager.destroyChart('efc_operators_chart');
-                }
-
-                // chart shifts
-                if (data.opt_shifts != null) {
-                    vmEfficiency.show.shifts = true;
-                    ChartManager.stackedBarChart('efc_shifts_chart', data.opt_shifts);
-                }
-                else {
-                    vmEfficiency.show.shifts = false;
-                    ChartManager.destroyChart('efc_shifts_chart');
-                }
+                
+                
             });
         }
+
+        // chart historical
+        if (data.opt_historical != null) {
+            vmEfficiency.show.historical = true;
+            ChartManager.lineChart('efc_historical_chart', data.opt_historical);
+        }
+        else {
+            vmEfficiency.show.historical = false;
+            ChartManager.destroyChart('efc_historical_chart');
+        }
+
+        // chart operators
+        if (data.opt_operators != null) {
+            vmEfficiency.show.operators = true;
+            ChartManager.stackedBarChart('efc_operators_chart', data.opt_operators);
+        }
+        else {
+            vmEfficiency.show.operators = false;
+            ChartManager.destroyChart('efc_operators_chart');
+        }
+
+        // chart shifts
+        if (data.opt_shifts != null) {
+            vmEfficiency.show.shifts = true;
+            ChartManager.stackedBarChart('efc_shifts_chart', data.opt_shifts);
+        }
+        else {
+            vmEfficiency.show.shifts = false;
+            ChartManager.destroyChart('efc_shifts_chart');
+        }
+
         
     }
 

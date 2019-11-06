@@ -22,10 +22,7 @@
             el: '#CardPlantMessages',
             data: {
                 messages: data.messages,          
-                sorting: data.sorting,
-                show: {
-                    historical: false
-                }
+                sorting: data.sorting
             },
             computed: {
                 colorAlarms: function ()
@@ -189,18 +186,10 @@
     var update = function (data)
     {
         // update vue model
-        var vm_messages = data.messages;
-        if (vm_messages) {
-            vmMessages.messages = vm_messages;
-            vmMessages.sorting = data.sorting;
-        }
+        vmMessages.messages = data.messages;
+        vmMessages.sorting = data.sorting;
+       
         
-       if (vmMessages)
-        {
-            vmMessages.show.historical = false;
-            ChartManager.destroyChart('msg_historical_chart');
-        }
-
         UtcOffset = data.UtcOffset;
        
     }
