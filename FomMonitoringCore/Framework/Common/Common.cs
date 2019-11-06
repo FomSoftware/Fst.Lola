@@ -137,30 +137,20 @@ namespace FomMonitoringCore.Framework.Common
         /// <param name="EndDate">EndDate</param>
         /// <param name="Granularity">Granularity</param>
         /// <returns>Data di inizio</returns>
-        public static DateTime GetStartDateTrend(DateTime EndDate, enAggregation Granularity)
+
+        public static DateTime GetStartDateTrend(DateTime EndDate, DateTime StartDate, enAggregation Granularity)
         {
-            DateTime startDateTrend = new DateTime();
 
-            switch (Granularity)
+            var daysDiff = (EndDate - StartDate).Days;
+
+            if(daysDiff < 7)
             {
-                case enAggregation.Day:
-                    startDateTrend = EndDate.AddDays(-30);
-                    break;
-                case enAggregation.Week:
-                    startDateTrend = EndDate.AddDays(-7 * 7);
-                    break;
-                case enAggregation.Month:
-                    startDateTrend = EndDate.AddMonths(-7);
-                    break;
-                case enAggregation.Quarter:
-                    break;
-                case enAggregation.Year:
-                    break;
-                default:
-                    break;
+                return EndDate.AddDays(-7);
             }
-
-            return startDateTrend;
+            else
+            {
+                return StartDate;
+            }
         }
 
         /// <summary>
