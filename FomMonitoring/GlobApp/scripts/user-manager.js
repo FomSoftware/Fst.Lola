@@ -548,7 +548,10 @@
             vmUsers.missing.Password == false &&
             vmUsers.missing.ConfirmPassword == false) {
 
-            if (vmUsers.actual.Email != null && !controlValidationEmail(vmUsers.actual.Email)) {
+            if (vmUsers.actual.Email == "") {
+                vmUsers.actual.Email = null;
+            }
+            else if (vmUsers.actual.Email != null && !controlValidationEmail(vmUsers.actual.Email)) {
                 errorSwal(resource.EmailNotValid);
                 return false;
             }
