@@ -686,4 +686,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="PlantName" xml:space="preserve">
     <value>Nom</value>
   </data>
+  <data name="PasswordPolicy" xml:space="preserve">
+    <value>Le mot de passe doit comporter au moins 6 caractères.</value>
+  </data>
 </root>

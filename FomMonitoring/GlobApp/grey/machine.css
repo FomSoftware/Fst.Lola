@@ -1165,13 +1165,13 @@ hr.axes {
 }
 
 
-.code-header {
+.icon-message-header {
     width: 4%;
 }
 
 @media (max-width: 1396px) {
 
-    .code-header {
+    .icon-message-header {
         width: 6%;
     }
 }
@@ -1179,7 +1179,7 @@ hr.axes {
 
 @media (max-width: 1096px) {
 
-    .code-header {
+    .icon-message-header {
         width: 13%;
     }
 
@@ -1187,7 +1187,7 @@ hr.axes {
 
 @media (max-width: 991px) {
 
-    .code-header {
+    .icon-message-header {
         width: 5%;
     }
 
@@ -1198,11 +1198,20 @@ hr.axes {
 
 @media (max-width: 755px) {
 
-    .code-header {
+    .icon-message-header {
         width: 7%;
     }
 
     th.sorting {
         padding-left: 0 !important;
     }
+}
+
+@media (max-width: 500px) {
+
+    .code-header {
+        padding-left: 10% !important;
+        padding-right: 10% !important;
+    }
+
 }

@@ -688,4 +688,7 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="PlantName" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="PasswordPolicy" xml:space="preserve">
+    <value>Das Kennwort muss aus mindestens 6 Zeichen bestehen</value>
+  </data>
 </root>

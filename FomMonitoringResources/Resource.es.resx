@@ -689,4 +689,7 @@ Planta modificada exitosamente</value>
   <data name="PlantName" xml:space="preserve">
     <value>Nombre</value>
   </data>
+  <data name="PasswordPolicy" xml:space="preserve">
+    <value>La contraseña debe tener al menos 6 caracteres.</value>
+  </data>
 </root>
