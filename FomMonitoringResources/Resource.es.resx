@@ -669,19 +669,16 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
     <value>Planta eliminada</value>
   </data>
   <data name="PlantDeletedConfirm" xml:space="preserve">
-    <value>
-Planta eliminada con éxito</value>
+    <value>Planta eliminada con éxito</value>
   </data>
   <data name="PlantImpossibileDeleted" xml:space="preserve">
-    <value>
-La planta no se puede eliminar. Hay máquinas asociadas</value>
+    <value>La planta no se puede eliminar. Hay máquinas asociadas</value>
   </data>
   <data name="PlantMachines" xml:space="preserve">
     <value>Máquinas</value>
   </data>
   <data name="PlantModified" xml:space="preserve">
-    <value>
-Planta modificada exitosamente</value>
+    <value>Planta modificada exitosamente</value>
   </data>
   <data name="PlantModify" xml:space="preserve">
     <value>Modificar planta</value>

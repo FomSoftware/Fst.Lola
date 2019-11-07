@@ -50,7 +50,7 @@
                                 <div class="form-group" id="form-customer-input">
                                     <label class="col-md-4 control-label" for="role-input">@Resource.PlantCustomers:</label>
                                     <div class="col-md-6">
-                                        <select v-model="customers.active" class="form-control input-md modal-input" id="customer-input" v-on:change="changeCustomer()" title="@Resource.NothingSelected" type="text">
+                                        <select v-model="customers.active" class="form-control input-md modal-input" id="customer-input" v-on:change="changeCustomer()" title="@Resource.NothingSelected" type="text" required>
                                             <option v-for="customer in customers.all" v-bind:value="customer">{{customer}}</option>
                                         </select>
                                         <div v-show="missing.Customer" class="validation">@Resource.FieldRequired.</div>
@@ -87,27 +87,27 @@
     $(document).ready(function ()
     {
         var resource = {
-            PlantName: '@Resource.PlantName',
-            Address: '@Resource.PlantAddress',
-            PlantCustomer: '@Resource.PlantCustomers',
-            PlantMachines: '@Resource.PlantMachines',
-            Modify: '@Resource.Modify',
-            Delete: '@Resource.Delete',
-            Error: '@Resource.Error',
-            Search: '@Resource.Search',
-            AddPlant: '@Resource.AddPlant',
+            PlantName: '@Html.Raw(Resource.PlantName)',
+            Address: '@Html.Raw(Resource.PlantAddress)',
+            PlantCustomer: '@Html.Raw(Resource.PlantCustomers)',
+            PlantMachines: '@Html.Raw(Resource.PlantMachines)',
+            Modify: '@Html.Raw(Resource.Modify)',
+            Delete: '@Html.Raw(Resource.Delete)',
+            Error: '@Html.Raw(Resource.Error)',
+            Search: '@Html.Raw(Resource.Search)',
+            AddPlant: '@Html.Raw(Resource.AddPlant)',
             PlantCreated: '@Html.Encode(Resource.PlantCreated)',
             NothingFound: '@Html.Raw(Resource.NothingFound)',
-            PlantDeleted: '@Resource.PlantDeleted',
-            PlantDeletedConfirm: '@Resource.PlantDeletedConfirm',
-            ComeBack: '@Resource.ComeBack',
-            Continue: '@Resource.Continue',
+            PlantDeleted: '@Html.Raw(Resource.PlantDeleted)',
+            PlantDeletedConfirm: '@Html.Raw(Resource.PlantDeletedConfirm)',
+            ComeBack: '@Html.Raw(Resource.ComeBack)',
+            Continue: '@Html.Raw(Resource.Continue)',
             PlantImpossibileDeleted: '@Html.Raw(Resource.PlantImpossibileDeleted)',
-            PlantMachines: '@Resource.PlantMachines',
-            PlantModify: '@Resource.PlantModify',
-            PlantModified: '@Resource.PlantModified',
+            PlantMachines: '@Html.Raw(@Resource.PlantMachines)',
+            PlantModify: '@Html.Raw(Resource.PlantModify)',
+            PlantModified: '@Html.Raw(Resource.PlantModified)',
             ErrorOccurred: '@Html.Raw(Resource.ErrorOccurred)',
-            PlantDelete: '@Resource.PlantDelete'
+            PlantDelete: '@Html.Raw(Resource.PlantDelete)'
         };
 
         var data = @Html.Raw(Json.Encode(Model.User));
