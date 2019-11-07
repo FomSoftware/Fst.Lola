@@ -7,7 +7,7 @@
 
         initVueModel(data);
 
-        if (data.opt_historical != null && (data.vm_details.messages != null || data.vm_messages.messages != null)) {
+        if (data.opt_historical != null) {
             vmMessages.show.historical = true;
             ChartManager.lineChart('msg_historical_chart', data.opt_historical);
         }
@@ -148,6 +148,12 @@
                         $this.find('.click-more > .icon-plus').toggleClass('icon-minus');
                     }
                 },
+                showDetails: function () {
+                    if (this.show.historical )
+                        return true;
+                    else
+                        return false;
+                },
                 isThereDesc: function (message)
                 {
                     var desc = false;
@@ -173,7 +179,7 @@
         vmMessages.sortingDet = data.vm_details.sorting;
 
         // update historical chart
-        if (data.opt_historical != null && (data.vm_details.messages != null || data.vm_messages.messages != null))
+        if (data.opt_historical != null)
         {
             vmMessages.show.historical = true;
             ChartManager.lineChart('msg_historical_chart', data.opt_historical);
