@@ -1228,3 +1228,29 @@ hr.axes {
     }
 
 }
+
+
+.border-panel {
+    border-top-width: 2px;
+    border-top-style: solid;
+}
+
+    .border-panel.color-red {
+        border-top-color: #D32337;
+        color: initial !important;
+    }
+
+    .border-panel.color-orange {
+        border-top-color: #FF7F00;
+        color: initial !important;
+    }
+
+    .border-panel.color-yellow {
+        border-top-color: #F9ED4B;
+        color: initial !important;
+    }
+
+    .border-panel.color-green {
+        border-top-color: #8EBF36;
+        color: initial !important;
+    }

@@ -10,7 +10,7 @@
             </span>
         </div>
         <div class="title-kpi">
-            <span>@Resource.Productivity</span>
+            <span>@Resource.Production</span>
             <span v-if="kpi != null" class="value-kpi" v-bind:class="colorKPI" v-cloak>
                 {{ kpi.value }}<small>pz/h</small>
             </span>
@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div class="portlet-body">
+    <div class="portlet-body border-panel" v-bind:class="colorKPI">
         <div class="card-portlet card-productivity" v-cloak>
             <div class="front">
                 <div v-if="showDashboard">

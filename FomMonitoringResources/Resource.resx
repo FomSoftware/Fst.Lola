@@ -538,7 +538,7 @@
     <value>Date/Time</value>
   </data>
   <data name="PeriodicMaintenance" xml:space="preserve">
-    <value>Periodic Ordinary Maintenance</value>
+    <value>Periodic/Ordinary Maintenance</value>
   </data>
   <data name="Group" xml:space="preserve">
     <value>Group</value>

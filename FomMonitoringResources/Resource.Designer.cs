@@ -1170,7 +1170,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Periodic Ordinary Maintenance.
+        ///   Looks up a localized string similar to Periodic/Ordinary Maintenance.
         /// </summary>
         public static string PeriodicMaintenance {
             get {
