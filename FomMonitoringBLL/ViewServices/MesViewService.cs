@@ -40,7 +40,7 @@ namespace FomMonitoringBLL.ViewServices
 
                 MachineInfoModel machine = allMachines.Where(w => w.Id == dataMachine.MachineId).FirstOrDefault();
 
-                if (machine == null || machine.Type == null)
+                if (machine == null || machine.Type == null || machine.Model == null)
                 {
                     continue;
                 }
