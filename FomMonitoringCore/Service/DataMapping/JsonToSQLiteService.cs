@@ -62,7 +62,7 @@ namespace FomMonitoringCore.Service.DataMapping
                 List<tool> toolSQLite = new List<tool>();
                 _unitOfWork.StartTransaction(_FomMonitoringSQLiteEntities);
                 
-                _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE bar");
+               /* _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE bar");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE error");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyJob");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE info");
@@ -70,7 +70,17 @@ namespace FomMonitoringCore.Service.DataMapping
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE spindle");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE state");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE tool");
-                _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE message");
+                _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE message");*/
+                _FomMonitoringSQLiteEntities.Set<bar>().RemoveRange(_FomMonitoringSQLiteEntities.Set<bar>());
+                _FomMonitoringSQLiteEntities.Set<error>().RemoveRange(_FomMonitoringSQLiteEntities.Set<error>());
+                _FomMonitoringSQLiteEntities.Set<historyJob>().RemoveRange(_FomMonitoringSQLiteEntities.Set<historyJob>());
+                _FomMonitoringSQLiteEntities.Set<info>().RemoveRange(_FomMonitoringSQLiteEntities.Set<info>());
+                _FomMonitoringSQLiteEntities.Set<piece>().RemoveRange(_FomMonitoringSQLiteEntities.Set<piece>());
+                _FomMonitoringSQLiteEntities.Set<spindle>().RemoveRange(_FomMonitoringSQLiteEntities.Set<spindle>());
+                _FomMonitoringSQLiteEntities.Set<state>().RemoveRange(_FomMonitoringSQLiteEntities.Set<state>());
+                _FomMonitoringSQLiteEntities.Set<tool>().RemoveRange(_FomMonitoringSQLiteEntities.Set<tool>());
+                _FomMonitoringSQLiteEntities.Set<message>().RemoveRange(_FomMonitoringSQLiteEntities.Set<message>());
+              
 
                 foreach (JToken token in json.Root)
                     {
@@ -256,6 +266,11 @@ namespace FomMonitoringCore.Service.DataMapping
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE tool");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE message");
 
+                _FomMonitoringSQLiteEntities.SaveChanges();
+                _unitOfWork.CommitTransaction();
+
+
+                _unitOfWork.StartTransaction(_FomMonitoringSQLiteEntities);
                 foreach (JToken token in json.Root)
                 {
                     switch (token.Path.ToLower())
