@@ -1908,6 +1908,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User not enabled.
+        /// </summary>
+        public static string UserNotEnabled {
+            get {
+                return ResourceManager.GetString("UserNotEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incorrect username or password.
         /// </summary>
         public static string UserPassNotValid {

@@ -160,10 +160,22 @@ namespace FomMonitoring.Controllers
 
                             ModelState.AddModelError("", Resource.LoginProblem);
                         }
+
                         if(remoteLoginResult == enLoginResult.Ok && localLoginResult.Result == false)
+                        {
                             ModelState.AddModelError("", Resource.NoMachine);
+                        }
                         else
-                            ModelState.AddModelError("", Resource.PassNotValid);
+                        {
+                            if (localLoginResult.Message == "User is not enabled")
+                            {
+                                ModelState.AddModelError("", Resource.UserNotEnabled);
+                            }
+                            else
+                            {
+                                ModelState.AddModelError("", Resource.PassNotValid);
+                            }
+                        }
                         break;
 
                     case enLoginResult.Disabled:

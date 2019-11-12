@@ -764,4 +764,7 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="OtherMachineData" xml:space="preserve">
     <value>Other machine data</value>
   </data>
+  <data name="UserNotEnabled" xml:space="preserve">
+    <value>User not enabled</value>
+  </data>
 </root>
