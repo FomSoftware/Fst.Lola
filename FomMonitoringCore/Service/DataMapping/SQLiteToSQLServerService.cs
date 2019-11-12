@@ -120,7 +120,7 @@ namespace FomMonitoringCore.Service.DataMapping
                 {
                     foreach (Bar bb in bar)
                     {
-                        Bar trovato = _FomMonitoringEntities.Set<Bar>().Where(m => m.Index == bb.Index && m.JobCode == bb.JobCode).FirstOrDefault();
+                        Bar trovato = _FomMonitoringEntities.Set<Bar>().FirstOrDefault(m => m.Index == bb.Index && m.JobCode == bb.JobCode && bb.MachineId == m.MachineId);
                         // se esiste già una barra con lo stesso jobcode e index uguale non aggiungo il record
                         if (trovato != null && trovato.JobCode != null)
                         {
