@@ -23,64 +23,82 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-.icofom-motori:before {
-    content: "\e902";
-}
-
-.icofom-assi:before {
-    content: "\e901";
+.icofom-elettromandrino:before {
+    content: "\e900";
 }
 
 .icofom-motoriassi:before {
-  content: "\e900";
+    content: "\e901";
 }
+
+.icofom-assi:before {
+    content: "\e902";
+}
+
+.icofom-motori:before {
+    content: "\e903";
+}
+
 .icofom-centrolavoro:before {
-  content: "\e94b";
+    content: "\e94b";
 }
+
 .icofom-lineataglio:before {
-  content: "\e94c";
+    content: "\e94c";
 }
+
 .icofom-lineatagliolavoro:before {
-  content: "\e94d";
+    content: "\e94d";
 }
+
 .icofom-troncatrice:before {
-  content: "\e94e";
+    content: "\e94e";
 }
+
 .icofom-alarms:before {
-  content: "\e94f";
+    content: "\e94f";
 }
+
 .icofom-efficiency:before {
-  content: "\e950";
+    content: "\e950";
 }
+
 .icofom-fresa:before {
-  content: "\e951";
+    content: "\e951";
 }
+
 .icofom-jobs:before {
-  content: "\e952";
-  margin-left: -1px;
+    content: "\e952";
 }
+
 .icofom-lama:before {
-  content: "\e953";
+    content: "\e953";
 }
+
 .icofom-manual:before {
-  content: "\e954";
+    content: "\e954";
 }
+
 .icofom-overfeed:before {
-  content: "\e955";
+    content: "\e955";
 }
+
 .icofom-pause:before {
-  content: "\e956";
+    content: "\e956";
 }
+
 .icofom-productivity:before {
-  content: "\e957";
+    content: "\e957";
 }
+
 .icofom-punta:before {
-  content: "\e958";
+    content: "\e958";
 }
+
 .icofom-spindles:before {
-  content: "\e959";
+    content: "\e959";
 }
+
 .icofom-user:before {
-  content: "\e95a";
+    content: "\e95a";
 }
