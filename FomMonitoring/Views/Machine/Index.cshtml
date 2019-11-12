@@ -100,7 +100,19 @@
     <div class="col-lg-4 col-md-12 col-sm-12 card-wrap-2">
         @Html.Partial("_Maintenance", Model.Maintenance)
     </div>
-   
+    @*@if (Model.MachinePanels.Contains((int)enPanel.Electrospindle))
+    {
+        <div class="col-lg-4 col-md-12 col-sm-12 card-wrap-2">
+            @Html.Partial("./ElectroSpindle/_ElectroSpindle", Model.PanelParameter)
+        </div>
+    }*@
+    @if (Model.MachinePanels.Contains((int)enPanel.OtherMachineData))
+    {
+        <div class="col-lg-4 col-md-12 col-sm-12 card-wrap-2">
+            @Html.Partial("./ElectroSpindle/_OtherMachineData", Model.PanelParameter)
+        </div>
+    }
+
 </div>
 
 

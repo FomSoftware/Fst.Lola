@@ -689,4 +689,49 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="PasswordPolicy" xml:space="preserve">
     <value>Le mot de passe doit comporter au moins 6 caractères.</value>
   </data>
+  <data name="oreMandrinoAttivo" xml:space="preserve">
+    <value>Heures tot. travail électrobroche</value>
+  </data>
+  <data name="d_NumeroSblocchiUtensile" xml:space="preserve">
+    <value>Nb déblocages pince électrobroche</value>
+  </data>
+  <data name="lw_contatoreSovracorrente" xml:space="preserve">
+    <value>Q.té surabsorption</value>
+  </data>
+  <data name="vitaUtensile_x" xml:space="preserve">
+    <value>Heures de vie effective outil</value>
+  </data>
+  <data name="lw_numeroCicliXFlow" xml:space="preserve">
+    <value>Nb cycles XFLOW</value>
+  </data>
+  <data name="oreVitaMacchina" xml:space="preserve">
+    <value>Heures de vie machine</value>
+  </data>
+  <data name="durataIngrassatura" xml:space="preserve">
+    <value>Heures depuis dernier graissage</value>
+  </data>
+  <data name="lw_mPercorsiAsseX" xml:space="preserve">
+    <value>KM axe X</value>
+  </data>
+  <data name="lw_mPercorsiAsseY" xml:space="preserve">
+    <value>KM axe Y</value>
+  </data>
+  <data name="lw_mPercorsiAsseZ" xml:space="preserve">
+    <value>KM axe Z</value>
+  </data>
+  <data name="lw_gradiPercorsiAsseA" xml:space="preserve">
+    <value>Nb rotations (180°) axe A</value>
+  </data>
+  <data name="tempoAttualeProgramma" xml:space="preserve">
+    <value>Temps résiduel pièce individuelle</value>
+  </data>
+  <data name="lw_clickMicroIsolaSX" xml:space="preserve">
+    <value>Nb clics capteur chariot îlot D</value>
+  </data>
+  <data name="lw_clickMicroIsolaDX" xml:space="preserve">
+    <value>Nb clics capteur chariot îlot G</value>
+  </data>
+  <data name="w_numeroCambiUtensileSlot_X" xml:space="preserve">
+    <value>Déblocage fourche magasin pos.</value>
+  </data>
 </root>

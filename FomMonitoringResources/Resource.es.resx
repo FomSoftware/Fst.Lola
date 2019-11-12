@@ -689,4 +689,49 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   <data name="PasswordPolicy" xml:space="preserve">
     <value>La contraseña debe tener al menos 6 caracteres.</value>
   </data>
+  <data name="oreMandrinoAttivo" xml:space="preserve">
+    <value>Tot. horas uso electromandril</value>
+  </data>
+  <data name="d_NumeroSblocchiUtensile" xml:space="preserve">
+    <value>Nº desbloqueos pinza electrom.</value>
+  </data>
+  <data name="lw_contatoreSovracorrente" xml:space="preserve">
+    <value>Cant. sobreabsorción</value>
+  </data>
+  <data name="vitaUtensile_x" xml:space="preserve">
+    <value>Horas efectivas vida herram.</value>
+  </data>
+  <data name="lw_numeroCicliXFlow" xml:space="preserve">
+    <value>Nº ciclos XFLOW</value>
+  </data>
+  <data name="oreVitaMacchina" xml:space="preserve">
+    <value>Horas vida máquina</value>
+  </data>
+  <data name="durataIngrassatura" xml:space="preserve">
+    <value>Horas desde último engrase</value>
+  </data>
+  <data name="lw_mPercorsiAsseX" xml:space="preserve">
+    <value>KM eje X</value>
+  </data>
+  <data name="lw_mPercorsiAsseY" xml:space="preserve">
+    <value>KM eje Y</value>
+  </data>
+  <data name="lw_mPercorsiAsseZ" xml:space="preserve">
+    <value>KM eje Z</value>
+  </data>
+  <data name="lw_gradiPercorsiAsseA" xml:space="preserve">
+    <value>Nº rotaciones (180°) eje A</value>
+  </data>
+  <data name="tempoAttualeProgramma" xml:space="preserve">
+    <value>Tiempo restante pieza simple</value>
+  </data>
+  <data name="lw_clickMicroIsolaSX" xml:space="preserve">
+    <value>Nº clicks sensor carro isla DCH</value>
+  </data>
+  <data name="lw_clickMicroIsolaDX" xml:space="preserve">
+    <value>Nº clicks sensor carro isla IZD</value>
+  </data>
+  <data name="w_numeroCambiUtensileSlot_X" xml:space="preserve">
+    <value>Desbloq. horquilla almacén pos. </value>
+  </data>
 </root>

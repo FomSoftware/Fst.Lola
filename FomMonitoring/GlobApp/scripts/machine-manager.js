@@ -47,7 +47,7 @@
             Efficiency.update(data.Efficiency);
             Productivity.update(data.Productivity);
             //Alarms.update(data.Alarms);
-            Spindles.update(data.Spindles);
+            Spindles.update(data.PanelParameter);
             XSpindles.update(data.XSpindles);
             ToolsBlitz.update(data.Tools);
             Tools.update(data.Tools);
@@ -55,6 +55,10 @@
             Jobs.update(data.Jobs);
             Messages.update(data.Messages);
             Maintenance.update(data.Maintenance);
+            MotorAxesBlitz.update(data.PanelParameter);
+            MotorKeope.update(data.PanelParameter);
+            AxesKeope.update(data.PanelParameter);
+
 
             Vue.nextTick(function ()
             {

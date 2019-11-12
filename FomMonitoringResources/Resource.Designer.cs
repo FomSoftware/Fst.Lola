@@ -340,6 +340,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No. electrosp. gripper releases.
+        /// </summary>
+        public static string d_NumeroSblocchiUtensile {
+            get {
+                return ResourceManager.GetString("d_NumeroSblocchiUtensile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string Date {
@@ -437,6 +446,15 @@ namespace FomMonitoringResources {
         public static string Done {
             get {
                 return ResourceManager.GetString("Done", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hours since last greasing.
+        /// </summary>
+        public static string durataIngrassatura {
+            get {
+                return ResourceManager.GetString("durataIngrassatura", resourceCulture);
             }
         }
         
@@ -671,6 +689,78 @@ namespace FomMonitoringResources {
         public static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LH w.area carr. sensor Click No..
+        /// </summary>
+        public static string lw_clickMicroIsolaDX {
+            get {
+                return ResourceManager.GetString("lw_clickMicroIsolaDX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RH w.area carr. sensor Click No..
+        /// </summary>
+        public static string lw_clickMicroIsolaSX {
+            get {
+                return ResourceManager.GetString("lw_clickMicroIsolaSX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excessive absorption q.ty.
+        /// </summary>
+        public static string lw_contatoreSovracorrente {
+            get {
+                return ResourceManager.GetString("lw_contatoreSovracorrente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A axis No. turns (180°).
+        /// </summary>
+        public static string lw_gradiPercorsiAsseA {
+            get {
+                return ResourceManager.GetString("lw_gradiPercorsiAsseA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X axis KM.
+        /// </summary>
+        public static string lw_mPercorsiAsseX {
+            get {
+                return ResourceManager.GetString("lw_mPercorsiAsseX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y axis KM.
+        /// </summary>
+        public static string lw_mPercorsiAsseY {
+            get {
+                return ResourceManager.GetString("lw_mPercorsiAsseY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Z axis KM.
+        /// </summary>
+        public static string lw_mPercorsiAsseZ {
+            get {
+                return ResourceManager.GetString("lw_mPercorsiAsseZ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No. XFLOW cycles.
+        /// </summary>
+        public static string lw_numeroCicliXFlow {
+            get {
+                return ResourceManager.GetString("lw_numeroCicliXFlow", resourceCulture);
             }
         }
         
@@ -1031,6 +1121,24 @@ namespace FomMonitoringResources {
         public static string Ore_vita_lama_ef {
             get {
                 return ResourceManager.GetString("Ore_vita_lama_ef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tot. electrosp. working hours.
+        /// </summary>
+        public static string oreMandrinoAttivo {
+            get {
+                return ResourceManager.GetString("oreMandrinoAttivo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Machine working hours.
+        /// </summary>
+        public static string oreVitaMacchina {
+            get {
+                return ResourceManager.GetString("oreVitaMacchina", resourceCulture);
             }
         }
         
@@ -1530,6 +1638,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Single piece time remaining.
+        /// </summary>
+        public static string tempoAttualeProgramma {
+            get {
+                return ResourceManager.GetString("tempoAttualeProgramma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This Month.
         /// </summary>
         public static string ThisMonth {
@@ -1742,6 +1859,24 @@ namespace FomMonitoringResources {
         public static string Usury {
             get {
                 return ResourceManager.GetString("Usury", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tool actual working hours.
+        /// </summary>
+        public static string vitaUtensile_x {
+            get {
+                return ResourceManager.GetString("vitaUtensile_x", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Magazine fork release pos. .
+        /// </summary>
+        public static string w_numeroCambiUtensileSlot_X {
+            get {
+                return ResourceManager.GetString("w_numeroCambiUtensileSlot_X", resourceCulture);
             }
         }
         

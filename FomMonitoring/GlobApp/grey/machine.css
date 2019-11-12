@@ -1143,7 +1143,11 @@ td.td-tool {
     width: 33%;
     padding-top:5px;
 }
-
+td.td-other-data {
+    vertical-align: top;
+    width: 25%;
+    padding-top: 5px;
+}
 td.tool-border-left {
     /*border-left: 1px solid #676767;*/
     background-color: #b4b4b4
@@ -1254,3 +1258,33 @@ hr.axes {
         border-top-color: #8EBF36;
         color: initial !important;
     }
+
+    .border-panel.color-progress {
+        border-top-color: #ec6035;
+        color: initial !important;
+    }
+
+.label-other-data-value {
+    font-size: 16pt;
+    font-weight: 400;
+    color: #403D3D;
+    word-wrap: break-word;
+    margin-bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.label-other-title {
+    font-size: 12px;
+    font-weight: 400;
+    color: #403D3D;
+    word-wrap: break-word;
+    margin-bottom: 0;
+    width: calc(100% - 23px);
+    float: right;
+    padding-left: 8px;
+}
+
+.td-other-data label {
+    padding-top: 8px;
+}

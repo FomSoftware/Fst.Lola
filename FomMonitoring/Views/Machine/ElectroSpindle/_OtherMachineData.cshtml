@@ -1,0 +1,119 @@
+﻿
+@model FomMonitoringBLL.ViewModel.PanelParametersViewModel
+@using FomMonitoringResources
+
+<div id="CardOtherDataMachine" class="portlet">
+    <div class="portlet-title">
+        <div class="portlet-kpi">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
+                <i class="fa fa-database fa-stack-1x fa-inverse" style="font-size:21px"></i>
+            </span>
+        </div>
+        <div class="title-kpi" style="max-width: 130px;">
+            <span>Other data</span>
+            <div class="sub-period">@Resource.UntilNow</div>
+        </div>
+    </div>
+    <div class="portlet-body text-center" style="height:244px">
+        <div class="card-portlet">
+            <div v-if="values != null" style="height:242px">
+                <hr style="background-color:#0c3817;height:2px;border:none" />
+                <div style="cursor:auto;height:100%">
+                    <table class="table-spindle">
+                        <tr>
+                            <td>
+                                <table style="width: 100%; height:100%">
+                                    <tr>
+                                        <td class="td-other-data">
+                                            <label style="vertical-align: top; width:20px"><i class="fa fa-spinner fa-lg" aria-hidden="true"></i></label>
+                                            <label v-if="values.CycleCountXFlow != null" class="label-other-title" v-html="values.CycleCountXFlow.Description"></label>
+                                        </td>
+                                        <td class="td-other-data  tool-border-left">
+                                            <label style="vertical-align: top; width:20px;"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                            <label v-if="values.OreVitaMacchina != null" class="label-other-title" v-html="values.OreVitaMacchina.Description"></label>
+                                        </td>
+                                        <td class="td-other-data">
+                                            <label style="vertical-align: top; width:20px;"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                            <label v-if="values.OreParzialiDaIngrassaggio != null" class="label-other-title" v-html="values.OreParzialiDaIngrassaggio.Description"></label>
+                                        </td>
+                                        <td class="td-other-data  tool-border-left"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-other-data">
+                                            <label v-if="values.CycleCountXFlow && values.CycleCountXFlow.ConvertedValue != null" class="label-other-data-value" v-html="values.CycleCountXFlow.ConvertedValue"></label>
+                                        </td>
+                                        <td class="td-other-data tool-border-left">
+                                            <label v-if="values.OreVitaMacchina != null && values.OreVitaMacchina.ConvertedValue" class="label-other-data-value" v-html="values.OreVitaMacchina.ConvertedValue"></label>
+                                        </td>
+                                        <td class="td-other-data">
+                                            <label v-if="values.OreParzialiDaIngrassaggio != null && values.OreParzialiDaIngrassaggio.ConvertedValue" class="label-other-data-value" v-html="values.OreParzialiDaIngrassaggio.ConvertedValue"></label>
+                                        </td>
+                                        <td class="td-other-data tool-border-left">
+                                            <label class="label-other-data-value"></label>
+                                        </td>
+                                    </tr>
+                                    <tr style="height:3px;">
+                                        <td style="padding-left:0;"><hr width="80%" style="margin-right:0;" class="axes" /></td>
+                                        <td style="padding-left:0;"><hr width="100%" style="padding-left:0;" class="axes" /></td>
+                                        <td style="padding-left:0;"><hr width="100%"  class="axes" /></td>
+                                        <td style="padding-left:0;"><hr width="80%" style="margin-left:0;" class="axes" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-other-data">
+                                            <label> <img src="~/Images/icon/ico_contachilometri.png" style="width:23px" /></label>
+                                            <label v-if="values.AsseXKm != null" class="label-other-title" v-html="values.AsseXKm.Description"></label>
+                                        </td>
+                                        <td class="td-other-data tool-border-left">
+                                            <label> <img src="~/Images/icon/ico_contachilometri.png" style="width:23px" /></label>
+                                            <label v-if="values.AsseYKm != null" class="label-other-title" v-html="values.AsseYKm.Description"></label>
+                                        </td>
+                                        <td class="td-other-data">
+                                            <label> <img src="~/Images/icon/ico_contachilometri.png" style="width:23px" /></label>
+                                            <label v-if="values.AsseZKm != null" class="label-other-title" v-html="values.AsseZKm.Description"></label>
+                                        </td>
+                                        <td class="td-other-data tool-border-left">
+                                            <label style="vertical-align: top;"><i class="fa fa-openid fa-lg" aria-hidden="true"></i></label>
+                                            <label v-if="values.CountRotationA != null" class="label-other-title" v-html="values.CountRotationA.Description"></label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-other-data">
+                                            <label v-if="values.AsseXKm != null && values.AsseXKm.ConvertedValue" class="label-other-data-value" v-html="values.AsseXKm.ConvertedValue"></label>
+                                        </td>
+                                        <td class="td-other-data tool-border-left">
+                                            <label v-if="values.AsseYKm != null && values.AsseYKm.ConvertedValue" class="label-other-data-value" v-html="values.AsseYKm.ConvertedValue"></label>
+                                        </td>
+                                        <td class="td-other-data">
+                                            <label v-if="values.AsseZKm != null && values.AsseZKm.ConvertedValue" class="label-other-data-value" v-html="values.AsseZKm.ConvertedValue"></label>
+                                        </td>
+                                        <td class="td-other-data tool-border-left">
+                                            <label v-if="values.CountRotationA != null && values.CountRotationA.ConvertedValue" class="label-other-data-value" v-html="values.CountRotationA.ConvertedValue"></label>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <no-data v-else></no-data>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        var data = @Html.Raw(Json.Encode(Model));
+        OtherData.init(data);
+    });
+
+</script>
+
+

@@ -422,6 +422,8 @@
     <Content Include="GlobApp\plugins\waitMe\waitMe.min.css" />
     <Content Include="GlobApp\plugins\waitMe\waitMe.min.js" />
     <Content Include="GlobApp\scripts\machine\axes\keope.js" />
+    <Content Include="GlobApp\scripts\machine\electrospindle\electrospindle.js" />
+    <Content Include="GlobApp\scripts\machine\electrospindle\otherdata.js" />
     <Content Include="GlobApp\scripts\machine\maintenance.js" />
     <Content Include="GlobApp\scripts\machine\messages.js" />
     <Content Include="GlobApp\scripts\machine\motoraxes\blitz.js" />
@@ -997,6 +999,8 @@
     <Content Include="Views\Machine\Motor\_Keope.cshtml" />
     <Content Include="Views\Plant\PlantManager.cshtml" />
     <Content Include="Scripts\underscore.min.map" />
+    <Content Include="Views\Machine\ElectroSpindle\_OtherMachineData.cshtml" />
+    <Content Include="Views\Machine\ElectroSpindle\_ElectroSpindle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

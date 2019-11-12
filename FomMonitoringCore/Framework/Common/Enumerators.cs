@@ -75,6 +75,10 @@ namespace FomMonitoringCore.Framework.Common
         KeopeAxes = 26,
         [Description("keopeMotors")]
         KeopeMotors = 27,
+        [Description("otherMachineData")]
+        OtherMachineData = 29,
+        [Description("Electrospindle")]
+        Electrospindle = 31,
     }
 
     public enum enDataType
@@ -210,13 +214,13 @@ namespace FomMonitoringCore.Framework.Common
     {
         //timespan
         [Description("MS")]
-        MS = 1000,
+        MS = 3600000,
         [Description("S")]
-        S = 1,
+        S = 3600,
         [Description("M")]
         M = 60,
         [Description("H")]
-        H = 3600  
+        H = 1  
     }
 
 }

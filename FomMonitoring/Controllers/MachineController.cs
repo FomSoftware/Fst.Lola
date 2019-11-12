@@ -30,15 +30,24 @@ namespace FomMonitoring.Controllers
 
         public ActionResult Index()
         {
-            if (!_contextService.InitializeMachineLevel())
-                return RedirectToAction("Logout", new { returnUrl = string.Empty, exception = 4 });
+            try
+            {
 
-            _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
+                if (!_contextService.InitializeMachineLevel())
+                    return RedirectToAction("Logout", new { returnUrl = string.Empty, exception = 4 });
 
-            ContextModel context = _contextService.GetContext();
-            MachineViewModel machine = _machineViewService.GetMachine(context);
+                _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
 
-            return View(machine);
+                ContextModel context = _contextService.GetContext();
+                MachineViewModel machine = _machineViewService.GetMachine(context);
+
+                return View(machine);
+            }
+            catch(Exception ex)
+            {
+                Debugger.Break();
+                throw ex;
+            }
         }
 
         [Route("{lang}/Machine/Index/{MachineID}")]

@@ -692,4 +692,49 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="PasswordPolicy" xml:space="preserve">
     <value>The password must be at least 6 characters</value>
   </data>
+  <data name="oreMandrinoAttivo" xml:space="preserve">
+    <value>Tot. electrosp. working hours</value>
+  </data>
+  <data name="d_NumeroSblocchiUtensile" xml:space="preserve">
+    <value>No. electrosp. gripper releases</value>
+  </data>
+  <data name="lw_contatoreSovracorrente" xml:space="preserve">
+    <value>Excessive absorption q.ty</value>
+  </data>
+  <data name="vitaUtensile_x" xml:space="preserve">
+    <value>Tool actual working hours</value>
+  </data>
+  <data name="lw_numeroCicliXFlow" xml:space="preserve">
+    <value>No. XFLOW cycles</value>
+  </data>
+  <data name="oreVitaMacchina" xml:space="preserve">
+    <value>Machine working hours</value>
+  </data>
+  <data name="durataIngrassatura" xml:space="preserve">
+    <value>Hours since last greasing</value>
+  </data>
+  <data name="lw_mPercorsiAsseX" xml:space="preserve">
+    <value>X axis KM</value>
+  </data>
+  <data name="lw_mPercorsiAsseY" xml:space="preserve">
+    <value>Y axis KM</value>
+  </data>
+  <data name="lw_mPercorsiAsseZ" xml:space="preserve">
+    <value>Z axis KM</value>
+  </data>
+  <data name="lw_gradiPercorsiAsseA" xml:space="preserve">
+    <value>A axis No. turns (180°)</value>
+  </data>
+  <data name="tempoAttualeProgramma" xml:space="preserve">
+    <value>Single piece time remaining</value>
+  </data>
+  <data name="lw_clickMicroIsolaSX" xml:space="preserve">
+    <value>RH w.area carr. sensor Click No.</value>
+  </data>
+  <data name="lw_clickMicroIsolaDX" xml:space="preserve">
+    <value>LH w.area carr. sensor Click No.</value>
+  </data>
+  <data name="w_numeroCambiUtensileSlot_X" xml:space="preserve">
+    <value>Magazine fork release pos. </value>
+  </data>
 </root>

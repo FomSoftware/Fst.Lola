@@ -43,7 +43,17 @@ namespace FomMonitoringBLL.ViewServices
                 }
 
             }
-            
+
+            if (_machineService.GetMachinePanels(context).Contains((int)enPanel.Electrospindle))
+            {
+                result.vm_electro_spindle = GetElectroSpindleVueModel(context.ActualMachine);
+            }
+            if (_machineService.GetMachinePanels(context).Contains((int)enPanel.OtherMachineData))
+            {
+                result.vm_other_data = GetOtherDataVueModel(context.ActualMachine);
+            }
+
+
             result.vm_machine_info = new MachineInfoViewModel
             {
                 model = context.ActualMachine.Model.Name,
@@ -51,6 +61,31 @@ namespace FomMonitoringBLL.ViewServices
                 id_mtype = context.ActualMachine.Type.Id,
                 machineName = context.ActualMachine.MachineName
             };
+
+            return result;
+        }
+
+        private OtherDataParameterVueModel GetOtherDataVueModel(MachineInfoModel machine)
+        {
+            var par = _parameterMachineService.GetParameters(machine, (int)enPanel.OtherMachineData);
+            var result = new OtherDataParameterVueModel
+            {
+                AsseXKm = par.FirstOrDefault(p => p.VarNumber == 3000),
+                AsseYKm = par.FirstOrDefault(p => p.VarNumber == 3002),
+                AsseZKm = par.FirstOrDefault(p => p.VarNumber == 3004),
+                CountRotationA = par.FirstOrDefault(p => p.VarNumber == 3006),
+                CycleCountXFlow = par.FirstOrDefault(p => p.VarNumber == 3200),
+                OreVitaMacchina = par.FirstOrDefault(p => p.VarNumber == 369),
+                OreParzialiDaIngrassaggio = par.FirstOrDefault(p => p.VarNumber == 365)
+            };
+            return result;
+        }
+
+        private ElectroSpindleParameterVueModel GetElectroSpindleVueModel(MachineInfoModel machine)
+        {
+            var par = _parameterMachineService.GetParameters(machine, (int)enPanel.Electrospindle);
+            var result = new ElectroSpindleParameterVueModel();
+
 
             return result;
         }
@@ -93,7 +128,7 @@ namespace FomMonitoringBLL.ViewServices
 
             foreach (var ax in result.axes)
             {
-                ax.Value = double.IsNaN(double.Parse(ax.Value)) ? "" : ax.ConvertedValue("0.000");
+                ax.Value = double.IsNaN(double.Parse(ax.Value)) ? "" : ax.ConvertedDistanceValue("0.000");
             }
           
             return result;
@@ -118,7 +153,7 @@ namespace FomMonitoringBLL.ViewServices
 
             foreach (var ax in result.axes)
             {
-                ax.Value = double.IsNaN(double.Parse(ax.Value)) ? "" : ax.ConvertedValue("0.000");
+                ax.Value = double.IsNaN(double.Parse(ax.Value)) ? "" : ax.ConvertedDistanceValue("0.000");
             }
 
 

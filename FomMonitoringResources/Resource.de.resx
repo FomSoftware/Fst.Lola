@@ -691,4 +691,49 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="PasswordPolicy" xml:space="preserve">
     <value>Das Kennwort muss aus mindestens 6 Zeichen bestehen</value>
   </data>
+  <data name="oreMandrinoAttivo" xml:space="preserve">
+    <value>Gesamtarbeitsst. Spindel</value>
+  </data>
+  <data name="d_NumeroSblocchiUtensile" xml:space="preserve">
+    <value>Anz. Entriegel. Zange E-spindel</value>
+  </data>
+  <data name="lw_contatoreSovracorrente" xml:space="preserve">
+    <value>Menge überm. Stromaufnahme</value>
+  </data>
+  <data name="vitaUtensile_x" xml:space="preserve">
+    <value>Eff. Lebensdauer Werkzeug</value>
+  </data>
+  <data name="lw_numeroCicliXFlow" xml:space="preserve">
+    <value>Anz. Zyklen XFLOW</value>
+  </data>
+  <data name="oreVitaMacchina" xml:space="preserve">
+    <value>Lebensdauer Maschine</value>
+  </data>
+  <data name="durataIngrassatura" xml:space="preserve">
+    <value>Stunden seit letzter Schmierung</value>
+  </data>
+  <data name="lw_mPercorsiAsseX" xml:space="preserve">
+    <value>KM - X-Achse</value>
+  </data>
+  <data name="lw_mPercorsiAsseY" xml:space="preserve">
+    <value>KM - Y-Achse</value>
+  </data>
+  <data name="lw_mPercorsiAsseZ" xml:space="preserve">
+    <value>KM - Z-Achse</value>
+  </data>
+  <data name="lw_gradiPercorsiAsseA" xml:space="preserve">
+    <value>Anz. Drehungen (180°) A-Achse</value>
+  </data>
+  <data name="tempoAttualeProgramma" xml:space="preserve">
+    <value>Restzeit einzelnes Werkstück</value>
+  </data>
+  <data name="lw_clickMicroIsolaSX" xml:space="preserve">
+    <value>Klickzahl Sensor Wagen Insel RE</value>
+  </data>
+  <data name="lw_clickMicroIsolaDX" xml:space="preserve">
+    <value>Klickzahl Sensor Wagen Insel LI</value>
+  </data>
+  <data name="w_numeroCambiUtensileSlot_X" xml:space="preserve">
+    <value>Entriegelung Gabel Lager Position</value>
+  </data>
 </root>
