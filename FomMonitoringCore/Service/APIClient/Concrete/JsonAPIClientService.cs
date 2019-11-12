@@ -245,7 +245,10 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                                     //aggiorno l'activationDate della macchina prendendo la più vecchia
                                     // aggiorno anche il plantId
                                     Machine ma = _context.Set<Machine>().Find(machine.Id);
-                                    ma.PlantId = plant;
+                                    if(ma.PlantId == null)
+                                    {
+                                        ma.PlantId = plant;
+                                    }
                                     if (ma.ActivationDate == null || ma.ActivationDate > activationDate)
                                     {
                                         ma.ActivationDate = activationDate;

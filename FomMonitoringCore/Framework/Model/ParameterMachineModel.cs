@@ -57,15 +57,15 @@ namespace FomMonitoringCore.Framework.Model
                 {
                     case enUnitaMisuraTime.S:
                         timeSpan = new TimeSpan(0, 0, d);
-                        res = $"{timeSpan.TotalHours.RoundToInt()}H {timeSpan.Minutes}min";
+                        res = $"{timeSpan.TotalHours.RoundToInt()}h {timeSpan.Minutes}min";
                         return res;
                     case enUnitaMisuraTime.M:
                         timeSpan = new TimeSpan(0, d, 0);
-                        res = $"{timeSpan.TotalHours.RoundToInt()}H {timeSpan.Minutes}min";
+                        res = $"{timeSpan.TotalHours.RoundToInt()}h {timeSpan.Minutes}min";
                         return res;
                     case enUnitaMisuraTime.H:
                         timeSpan = new TimeSpan(d, 0, 0);
-                        res = $"{timeSpan.TotalHours.RoundToInt()}H {timeSpan.Minutes}min";
+                        res = $"{timeSpan.TotalHours.RoundToInt()}h {timeSpan.Minutes}min";
                         return res;
                 }
                 

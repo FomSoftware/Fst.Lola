@@ -477,6 +477,24 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Elapsed time.
+        /// </summary>
+        public static string ElapsedTime {
+            get {
+                return ResourceManager.GetString("ElapsedTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Electrospindle.
+        /// </summary>
+        public static string Electrospindle {
+            get {
+                return ResourceManager.GetString("Electrospindle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email is not valid.
         /// </summary>
         public static string EmailNotValid {
@@ -761,6 +779,60 @@ namespace FomMonitoringResources {
         public static string lw_numeroCicliXFlow {
             get {
                 return ResourceManager.GetString("lw_numeroCicliXFlow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range rpm 0-1500.
+        /// </summary>
+        public static string lw_tempiMandrinoASoglia_0 {
+            get {
+                return ResourceManager.GetString("lw_tempiMandrinoASoglia_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range rpm 1501-5500.
+        /// </summary>
+        public static string lw_tempiMandrinoASoglia_1 {
+            get {
+                return ResourceManager.GetString("lw_tempiMandrinoASoglia_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range rpm 5501-8000.
+        /// </summary>
+        public static string lw_tempiMandrinoASoglia_2 {
+            get {
+                return ResourceManager.GetString("lw_tempiMandrinoASoglia_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range rpm 8001-11500.
+        /// </summary>
+        public static string lw_tempiMandrinoASoglia_3 {
+            get {
+                return ResourceManager.GetString("lw_tempiMandrinoASoglia_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range rpm 11501-14500.
+        /// </summary>
+        public static string lw_tempiMandrinoASoglia_4 {
+            get {
+                return ResourceManager.GetString("lw_tempiMandrinoASoglia_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range rpm 14501-20000.
+        /// </summary>
+        public static string lw_tempiMandrinoASoglia_5 {
+            get {
+                return ResourceManager.GetString("lw_tempiMandrinoASoglia_5", resourceCulture);
             }
         }
         
@@ -1139,6 +1211,15 @@ namespace FomMonitoringResources {
         public static string oreVitaMacchina {
             get {
                 return ResourceManager.GetString("oreVitaMacchina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other machine data.
+        /// </summary>
+        public static string OtherMachineData {
+            get {
+                return ResourceManager.GetString("OtherMachineData", resourceCulture);
             }
         }
         

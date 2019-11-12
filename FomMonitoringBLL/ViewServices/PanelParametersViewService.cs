@@ -84,7 +84,18 @@ namespace FomMonitoringBLL.ViewServices
         private ElectroSpindleParameterVueModel GetElectroSpindleVueModel(MachineInfoModel machine)
         {
             var par = _parameterMachineService.GetParameters(machine, (int)enPanel.Electrospindle);
-            var result = new ElectroSpindleParameterVueModel();
+            var result = new ElectroSpindleParameterVueModel
+            {
+                OreLavoroTotali = par.FirstOrDefault(p => p.VarNumber == 368),
+                SblocchiPinza = par.FirstOrDefault(p => p.VarNumber == 103),
+                QtaSovrassorbimento = par.FirstOrDefault(p => p.VarNumber == 3024),
+                RpmRange1500 = par.FirstOrDefault(p => p.VarNumber == 3030),
+                RpmRange5500 = par.FirstOrDefault(p => p.VarNumber == 3032),
+                RpmRange8000 = par.FirstOrDefault(p => p.VarNumber == 3034),
+                RpmRange11500 = par.FirstOrDefault(p => p.VarNumber == 3036),
+                RpmRange14500 = par.FirstOrDefault(p => p.VarNumber == 3038),
+                RpmRange20000 = par.FirstOrDefault(p => p.VarNumber == 3040),
+            };
 
 
             return result;

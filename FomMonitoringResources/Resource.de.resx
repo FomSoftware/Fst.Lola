@@ -736,4 +736,31 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="w_numeroCambiUtensileSlot_X" xml:space="preserve">
     <value>Entriegelung Gabel Lager Position</value>
   </data>
+  <data name="lw_tempiMandrinoASoglia_0" xml:space="preserve">
+    <value>Reichweite rpm 0-1500</value>
+  </data>
+  <data name="lw_tempiMandrinoASoglia_1" xml:space="preserve">
+    <value>Reichweite rpm 1501-5500</value>
+  </data>
+  <data name="lw_tempiMandrinoASoglia_2" xml:space="preserve">
+    <value>Reichweite rpm 5501-8000</value>
+  </data>
+  <data name="lw_tempiMandrinoASoglia_3" xml:space="preserve">
+    <value>Reichweite rpm 8001-11500</value>
+  </data>
+  <data name="lw_tempiMandrinoASoglia_4" xml:space="preserve">
+    <value>Reichweite rpm 11501-14500</value>
+  </data>
+  <data name="lw_tempiMandrinoASoglia_5" xml:space="preserve">
+    <value>Reichweite rpm 14501-20000</value>
+  </data>
+  <data name="ElapsedTime" xml:space="preserve">
+    <value>Verstrichene Zeit</value>
+  </data>
+  <data name="Electrospindle" xml:space="preserve">
+    <value>Elektrospindel</value>
+  </data>
+  <data name="OtherMachineData" xml:space="preserve">
+    <value>Sonstige Maschinendaten</value>
+  </data>
 </root>

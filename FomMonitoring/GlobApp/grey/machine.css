@@ -1241,27 +1241,27 @@ hr.axes {
 
     .border-panel.color-red {
         border-top-color: #D32337;
-        color: initial !important;
+        color: #403D3D !important;
     }
 
     .border-panel.color-orange {
         border-top-color: #FF7F00;
-        color: initial !important;
+        color: #403D3D !important;
     }
 
     .border-panel.color-yellow {
         border-top-color: #F9ED4B;
-        color: initial !important;
+        color: #403D3D !important;
     }
 
     .border-panel.color-green {
         border-top-color: #8EBF36;
-        color: initial !important;
+        color: #403D3D !important;
     }
 
     .border-panel.color-progress {
         border-top-color: #ec6035;
-        color: initial !important;
+        color: #403D3D !important;
     }
 
 .label-other-data-value {
@@ -1287,4 +1287,39 @@ hr.axes {
 
 .td-other-data label {
     padding-top: 8px;
+}
+
+
+.label-electrospindle-data-value {
+    font-size: 16pt;
+    font-weight: 400;
+    color: #403D3D;
+    word-wrap: break-word;
+    margin-bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.label-electrospindle-title {
+    font-size: 12px;
+    font-weight: 400;
+    color: #403D3D;
+    word-wrap: break-word;
+    margin-bottom: 0;
+    width: calc(100% - 23px);
+    float: right;
+    padding-left: 8px;
+    padding-top: 5px;
+}
+
+.label-electrospindle-title-bottom {
+    font-size: 12px;
+    font-weight: 400;
+    color: #403D3D;
+    word-wrap: break-word;
+    margin-bottom: 0;
+    width: calc(100% - 23px);
+    float: right;
+    padding-left: 8px;
+    padding-top: 0;
 }

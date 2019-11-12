@@ -31,7 +31,15 @@ namespace FomMonitoringBLL.ViewModel
 
     public class ElectroSpindleParameterVueModel
     {
-
+        public ParameterMachineValueModel OreLavoroTotali { get; set; }
+        public ParameterMachineValueModel SblocchiPinza { get; set; }
+        public ParameterMachineValueModel QtaSovrassorbimento { get; set; }
+        public ParameterMachineValueModel RpmRange1500 { get; set; }
+        public ParameterMachineValueModel RpmRange5500 { get; set; }
+        public ParameterMachineValueModel RpmRange8000 { get; set; }
+        public ParameterMachineValueModel RpmRange11500 { get; set; }
+        public ParameterMachineValueModel RpmRange14500 { get; set; }
+        public ParameterMachineValueModel RpmRange20000 { get; set; }
     }
 
 }

@@ -734,4 +734,32 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="w_numeroCambiUtensileSlot_X" xml:space="preserve">
     <value>Déblocage fourche magasin pos.</value>
   </data>
+  <data name="lw_tempiMandrinoASoglia_0" xml:space="preserve">
+    <value>Intervalle rpm 0-1500</value>
+  </data>
+  <data name="lw_tempiMandrinoASoglia_1" xml:space="preserve">
+    <value>Intervalle rpm 1501-5500</value>
+  </data>
+  <data name="lw_tempiMandrinoASoglia_2" xml:space="preserve">
+    <value>Intervalle rpm 5501-8000</value>
+  </data>
+  <data name="lw_tempiMandrinoASoglia_3" xml:space="preserve">
+    <value>Intervalle rpm 8001-11500</value>
+  </data>
+  <data name="lw_tempiMandrinoASoglia_4" xml:space="preserve">
+    <value>Intervalle rpm 11501-14500</value>
+  </data>
+  <data name="lw_tempiMandrinoASoglia_5" xml:space="preserve">
+    <value>Intervalle rpm 14501-20000</value>
+  </data>
+  <data name="ElapsedTime" xml:space="preserve">
+    <value>Temps écoulé</value>
+  </data>
+  <data name="Electrospindle" xml:space="preserve">
+    <value>Électrobroche</value>
+  </data>
+  <data name="OtherMachineData" xml:space="preserve">
+    <value>
+Autres données de la machine</value>
+  </data>
 </root>

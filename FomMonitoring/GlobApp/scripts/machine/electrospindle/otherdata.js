@@ -27,7 +27,7 @@
     var update = function (data) {
         // update vue model
 
-        var vm_other = data;
+        var vm_other = data.vm_other_data;
         if (vm_other != null) {
             vmOther.values = vm_other;
         }

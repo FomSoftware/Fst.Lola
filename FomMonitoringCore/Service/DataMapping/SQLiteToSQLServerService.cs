@@ -107,7 +107,6 @@ namespace FomMonitoringCore.Service.DataMapping
                     machineActual.StateProductivityGreenThreshold = machineFromSQLite.StateProductivityGreenThreshold;
                     machineActual.StateProductivityYellowThreshold = machineFromSQLite.StateProductivityYellowThreshold;
                     machineActual.UTC = machineFromSQLite.UTC;
-                    machineActual.PlantId = machineFromSQLite.PlantId;
 
 
                 }

@@ -58,7 +58,8 @@
             MotorAxesBlitz.update(data.PanelParameter);
             MotorKeope.update(data.PanelParameter);
             AxesKeope.update(data.PanelParameter);
-
+            ElectroSpindle.update(data.PanelParameter);
+            OtherData.update(data.PanelParameter);
 
             Vue.nextTick(function ()
             {
