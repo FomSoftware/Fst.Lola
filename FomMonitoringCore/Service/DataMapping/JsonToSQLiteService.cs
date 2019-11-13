@@ -71,15 +71,32 @@ namespace FomMonitoringCore.Service.DataMapping
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE state");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE tool");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE message");*/
-                _FomMonitoringSQLiteEntities.Set<bar>().RemoveRange(_FomMonitoringSQLiteEntities.Set<bar>());
-                _FomMonitoringSQLiteEntities.Set<error>().RemoveRange(_FomMonitoringSQLiteEntities.Set<error>());
-                _FomMonitoringSQLiteEntities.Set<historyJob>().RemoveRange(_FomMonitoringSQLiteEntities.Set<historyJob>());
-                _FomMonitoringSQLiteEntities.Set<info>().RemoveRange(_FomMonitoringSQLiteEntities.Set<info>());
-                _FomMonitoringSQLiteEntities.Set<piece>().RemoveRange(_FomMonitoringSQLiteEntities.Set<piece>());
-                _FomMonitoringSQLiteEntities.Set<spindle>().RemoveRange(_FomMonitoringSQLiteEntities.Set<spindle>());
-                _FomMonitoringSQLiteEntities.Set<state>().RemoveRange(_FomMonitoringSQLiteEntities.Set<state>());
-                _FomMonitoringSQLiteEntities.Set<tool>().RemoveRange(_FomMonitoringSQLiteEntities.Set<tool>());
-                _FomMonitoringSQLiteEntities.Set<message>().RemoveRange(_FomMonitoringSQLiteEntities.Set<message>());
+                if(_FomMonitoringSQLiteEntities.Set<bar>() != null)
+                    _FomMonitoringSQLiteEntities.Set<bar>().RemoveRange(_FomMonitoringSQLiteEntities.Set<bar>());
+
+                if(_FomMonitoringSQLiteEntities.Set<error>() != null)
+                    _FomMonitoringSQLiteEntities.Set<error>().RemoveRange(_FomMonitoringSQLiteEntities.Set<error>());
+
+                if (_FomMonitoringSQLiteEntities.Set<historyJob>() != null)
+                    _FomMonitoringSQLiteEntities.Set<historyJob>().RemoveRange(_FomMonitoringSQLiteEntities.Set<historyJob>());
+
+                if (_FomMonitoringSQLiteEntities.Set<info>() != null)
+                    _FomMonitoringSQLiteEntities.Set<info>().RemoveRange(_FomMonitoringSQLiteEntities.Set<info>());
+
+                if (_FomMonitoringSQLiteEntities.Set<piece>() != null)
+                    _FomMonitoringSQLiteEntities.Set<piece>().RemoveRange(_FomMonitoringSQLiteEntities.Set<piece>());
+
+                if (_FomMonitoringSQLiteEntities.Set<spindle>() != null)
+                    _FomMonitoringSQLiteEntities.Set<spindle>().RemoveRange(_FomMonitoringSQLiteEntities.Set<spindle>());
+
+                if (_FomMonitoringSQLiteEntities.Set<state>() != null)
+                    _FomMonitoringSQLiteEntities.Set<state>().RemoveRange(_FomMonitoringSQLiteEntities.Set<state>());
+
+                if (_FomMonitoringSQLiteEntities.Set<tool>() != null)
+                    _FomMonitoringSQLiteEntities.Set<tool>().RemoveRange(_FomMonitoringSQLiteEntities.Set<tool>());
+
+                if (_FomMonitoringSQLiteEntities.Set<message>() != null)
+                    _FomMonitoringSQLiteEntities.Set<message>().RemoveRange(_FomMonitoringSQLiteEntities.Set<message>());
               
 
                 foreach (JToken token in json.Root)
