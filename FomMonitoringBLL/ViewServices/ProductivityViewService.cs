@@ -46,7 +46,7 @@ namespace FomMonitoringBLL.ViewServices
 
         private ProductivityVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
         {
-            ProductivityVueModel result = new ProductivityVueModel();
+             ProductivityVueModel result = new ProductivityVueModel();
 
             List<HistoryPieceModel> data = _pieceService.GetAggregationPieces(machine, period, enDataType.Dashboard);
 

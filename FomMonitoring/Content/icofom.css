@@ -23,20 +23,24 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.icofom-elettromandrino:before {
+.icofom-assekm:before {
     content: "\e900";
 }
 
-.icofom-motoriassi:before {
+.icofom-elettromandrino:before {
     content: "\e901";
 }
 
-.icofom-assi:before {
+.icofom-motoriassi:before {
     content: "\e902";
 }
 
-.icofom-motori:before {
+.icofom-assi:before {
     content: "\e903";
+}
+
+.icofom-motori:before {
+    content: "\e904";
 }
 
 .icofom-centrolavoro:before {

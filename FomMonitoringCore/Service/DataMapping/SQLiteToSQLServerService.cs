@@ -152,10 +152,16 @@ namespace FomMonitoringCore.Service.DataMapping
                 List<HistoryJob> historyJob = historyJobSQLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<HistoryJob>>();
                 DateTime minDateHistoryJob = historyJob.Any(a => a.Day.HasValue) ? historyJob.Where(w => w.Day.HasValue && w.MachineId == machineActual.Id).Select(s => s.Day).Min().Value : DateTime.UtcNow;
                 List<HistoryJob> removeHistoryJob = _FomMonitoringEntities.Set<HistoryJob>().Where(w => w.Day.HasValue && w.Day.Value >= minDateHistoryJob && w.MachineId == machineActual.Id).ToList();
-                _FomMonitoringEntities.Set<HistoryJob>().RemoveRange(removeHistoryJob);
-                _FomMonitoringEntities.SaveChanges();
-                _FomMonitoringEntities.Set<HistoryJob>().AddRange(historyJob);
-                _FomMonitoringEntities.SaveChanges();
+                if (removeHistoryJob != null)
+                {
+                    _FomMonitoringEntities.Set<HistoryJob>().RemoveRange(removeHistoryJob);
+                    _FomMonitoringEntities.SaveChanges();
+                }
+                if (historyJob != null)
+                {
+                    _FomMonitoringEntities.Set<HistoryJob>().AddRange(historyJob);
+                    _FomMonitoringEntities.SaveChanges();
+                }
                        
                 List<Piece> piece = pieceSQLite.BuildAdapter().AddParameters("barService", _barService).AddParameters("jobService", _jobService).AddParameters("machineService", _machineService).AddParameters("machineId", machineActual.Id).AdaptToType<List<Piece>>();
                 piece = piece.Where(w => w.EndTime > (machineActual.LastUpdate ?? new DateTime())).ToList();
