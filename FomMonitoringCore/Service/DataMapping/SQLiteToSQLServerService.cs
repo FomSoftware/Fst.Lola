@@ -150,13 +150,13 @@ namespace FomMonitoringCore.Service.DataMapping
                 _FomMonitoringEntities.SaveChanges();
                         
                 List<HistoryJob> historyJob = historyJobSQLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<HistoryJob>>();
-                DateTime minDateHistoryJob = historyJob.Any(a => a.Day.HasValue) ? historyJob.Where(w => w.Day.HasValue && w.MachineId == machineActual.Id).Select(s => s.Day).Min().Value : DateTime.UtcNow;
+               /* DateTime minDateHistoryJob = historyJob.Any(a => a.Day.HasValue) ? historyJob.Where(w => w.Day.HasValue && w.MachineId == machineActual.Id).Select(s => s.Day).Min().Value : DateTime.UtcNow;
                 List<HistoryJob> removeHistoryJob = _FomMonitoringEntities.Set<HistoryJob>().Where(w => w.Day.HasValue && w.Day.Value >= minDateHistoryJob && w.MachineId == machineActual.Id).ToList();
                 if (removeHistoryJob != null)
                 {
                     _FomMonitoringEntities.Set<HistoryJob>().RemoveRange(removeHistoryJob);
                     _FomMonitoringEntities.SaveChanges();
-                }
+                }*/
                 if (historyJob != null)
                 {
                     _FomMonitoringEntities.Set<HistoryJob>().AddRange(historyJob);
