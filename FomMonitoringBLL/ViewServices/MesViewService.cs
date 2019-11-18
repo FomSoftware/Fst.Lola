@@ -9,7 +9,7 @@ namespace FomMonitoringBLL.ViewServices
 {
     public class MesViewService : IMesViewService
     {
-        private IMesService _mesService;
+        private readonly IMesService _mesService;
         public MesViewService(IMesService mesService)
         {
             _mesService = mesService;
@@ -17,8 +17,10 @@ namespace FomMonitoringBLL.ViewServices
 
         public MesViewModel GetMes(ContextModel context)
         {
-            MesViewModel result = new MesViewModel();
-            result.machines = GetVueModel(context.ActualPlant, context.AllMachines, !(context.User.Role == enRole.Administrator || context.User.Role == enRole.Assistance));
+            var result = new MesViewModel
+            {
+                machines = GetVueModel(context.ActualPlant, context.AllMachines, !(context.User.Role == enRole.Administrator || context.User.Role == enRole.Assistance))
+            };
             return result;
         }
 
@@ -38,14 +40,14 @@ namespace FomMonitoringBLL.ViewServices
             {
                 MesDataViewModel mes = new MesDataViewModel();
 
-                MachineInfoModel machine = allMachines.Where(w => w.Id == dataMachine.MachineId).FirstOrDefault();
+                MachineInfoModel machine = allMachines.FirstOrDefault(w => w.Id == dataMachine.MachineId);
 
-                if (machine == null || machine.Type == null || machine.Model == null)
+                if (machine?.Type == null || machine.Model == null)
                 {
                     continue;
                 }
 
-                mes.info = new MachineInfoViewModel()
+                mes.info = new MachineInfoViewModel
                 {
                     id = machine.Id,
                     description = machine.Description == string.Empty ? null : machine.Description,
@@ -66,18 +68,22 @@ namespace FomMonitoringBLL.ViewServices
 
                 if (data.enActualState != null)
                 {
-                    mes.state = new StateViewModel();
-                    mes.state.code = data.enActualState.GetDescription();
-                    mes.state.text = data.enActualState.ToString();
+                    mes.state = new StateViewModel
+                    {
+                        code = data.enActualState.GetDescription(),
+                        text = data.enActualState.ToString()
+                    };
 
                     mes.error = data.ActualStateCode;
                 }
 
                 if (data.ActualJobPerc != null)
                 {
-                    mes.job = new JobDataModel();
-                    mes.job.code = data.ActualJobCode;
-                    mes.job.perc = (data.ActualJobPerc ?? 0).RoundToInt();
+                    mes.job = new JobDataModel
+                    {
+                        code = data.ActualJobCode,
+                        perc = (data.ActualJobPerc ?? 0).RoundToInt()
+                    };
                 }
 
                 mes.@operator = data.ActualOperator;

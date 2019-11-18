@@ -1,11 +1,8 @@
 ﻿using FomMonitoringBLL.ViewModel;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Framework.Common;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FomMonitoringBLL.ViewServices
 {
@@ -36,7 +33,7 @@ namespace FomMonitoringBLL.ViewServices
             if (context.ActualPage == enPage.Mes)
             {
                 toolbar.plants = GetListPlants(context);
-                toolbar.selected_plant = toolbar.plants.Where(w => w.id == context.ActualPlant.Id).FirstOrDefault();
+                toolbar.selected_plant = toolbar.plants.FirstOrDefault(w => w.id == context.ActualPlant.Id);
                 toolbar.period = new PeriodViewModel();
                 toolbar.period.start = context.ActualPeriod.StartDate;
                 toolbar.period.end = context.ActualPeriod.EndDate;
@@ -45,7 +42,7 @@ namespace FomMonitoringBLL.ViewServices
             if (context.ActualPage == enPage.PlantMessages)
             {
                 toolbar.plants = GetListPlants(context);
-                toolbar.selected_plant = toolbar.plants.Where(w => w.id == context.ActualPlant.Id).FirstOrDefault();
+                toolbar.selected_plant = toolbar.plants.FirstOrDefault(w => w.id == context.ActualPlant.Id);
                 toolbar.period = new PeriodViewModel();
                 if(context.ActualPeriod.StartDate.Year == 1)
                 {
@@ -64,7 +61,7 @@ namespace FomMonitoringBLL.ViewServices
                 toolbar.period.end = context.ActualPeriod.EndDate;
 
                 toolbar.machines = GetListMachines(context);
-                toolbar.selected_machine = toolbar.machines.Where(w => w.id == context.ActualMachine.Id).FirstOrDefault();
+                toolbar.selected_machine = toolbar.machines.FirstOrDefault(w => w.id == context.ActualMachine.Id);
             }
 
             return toolbar;
@@ -72,9 +69,7 @@ namespace FomMonitoringBLL.ViewServices
 
         public static List<MachineInfoViewModel> GetListMachines(ContextModel context)
         {
-            List<MachineInfoViewModel> machines = new List<MachineInfoViewModel>();
-
-            machines = context.AllMachines.Where(w => w.PlantId == context.ActualPlant?.Id).Select(m => new MachineInfoViewModel()
+            var machines = context.AllMachines.Where(w => w.PlantId == context.ActualPlant?.Id).Select(m => new MachineInfoViewModel()
             {
                 id = m.Id,
                 serial = m.Serial,
@@ -93,9 +88,7 @@ namespace FomMonitoringBLL.ViewServices
 
         public static List<PlantInfoViewModel> GetListPlants(ContextModel context)
         {
-            List<PlantInfoViewModel> plants = new List<PlantInfoViewModel>();
-
-            plants = context.AllPlants.Select(p => new PlantInfoViewModel()
+            var plants = context.AllPlants.Select(p => new PlantInfoViewModel
             {
                 id = p.Id,
                 name = p.Name

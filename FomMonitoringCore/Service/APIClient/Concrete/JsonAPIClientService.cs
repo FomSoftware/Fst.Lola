@@ -16,8 +16,8 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
 {
     public class JsonAPIClientService : IJsonAPIClientService
     {
-        private IFomMonitoringEntities _context;
-        private IMesService _mesService;
+        private readonly IFomMonitoringEntities _context;
+        private readonly IMesService _mesService;
 
         public JsonAPIClientService(IFomMonitoringEntities context, IMesService mesService)
         {
@@ -27,11 +27,11 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
 
         public enLoginResult ValidateCredentialsViaRemoteApi(string username, string password)
         {
-            string apiUrl = ApplicationSettingService.GetWebConfigKey("RemoteLoginSOAPUrl");
+            var apiUrl = ApplicationSettingService.GetWebConfigKey("RemoteLoginSOAPUrl");
             var apiUsername = ApplicationSettingService.GetWebConfigKey("RemoteLoginSOAPUsername");
             var apiPassword = ApplicationSettingService.GetWebConfigKey("RemoteLoginSOAPPassword");
 
-            HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(apiUrl);
+            var webRequest = (HttpWebRequest)WebRequest.Create(apiUrl);
             webRequest.Headers.Add("SOAPAction", "http://tempuri.org/IService/verificaUtentePassword");
             webRequest.ContentType = "text/xml;charset=\"utf-8\"";
             webRequest.Accept = "text/xml";
@@ -39,33 +39,34 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
             webRequest.CookieContainer = new CookieContainer();
             webRequest.Credentials = new NetworkCredential(apiUsername, apiPassword, "");
 
-            XmlDocument soapEnvelopeXml = new XmlDocument();
-            soapEnvelopeXml.LoadXml(string.Format(@"<soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:tem=""http://tempuri.org/""><soapenv:Header></soapenv:Header><soapenv:Body><tem:verificaUtentePassword><tem:utente>{0}</tem:utente><tem:password>{1}</tem:password></tem:verificaUtentePassword></soapenv:Body></soapenv:Envelope>", username, password));
+            var soapEnvelopeXml = new XmlDocument();
+            soapEnvelopeXml.LoadXml(
+                $@"<soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:tem=""http://tempuri.org/""><soapenv:Header></soapenv:Header><soapenv:Body><tem:verificaUtentePassword><tem:utente>{username}</tem:utente><tem:password>{password}</tem:password></tem:verificaUtentePassword></soapenv:Body></soapenv:Envelope>");
 
-            using (Stream stream = webRequest.GetRequestStream())
+            using (var stream = webRequest.GetRequestStream())
             {
                 soapEnvelopeXml.Save(stream);
             }
 
-            IAsyncResult asyncResult = webRequest.BeginGetResponse(null, null);
+            var asyncResult = webRequest.BeginGetResponse(null, null);
             asyncResult.AsyncWaitHandle.WaitOne();
 
             string soapResult;
-            using (WebResponse webResponse = webRequest.EndGetResponse(asyncResult))
+            using (var webResponse = webRequest.EndGetResponse(asyncResult))
             {
-                using (StreamReader rd = new StreamReader(webResponse.GetResponseStream()))
+                using (var rd = new StreamReader(webResponse.GetResponseStream()))
                 {
                     soapResult = rd.ReadToEnd();
                 }
             }
 
-            XmlDocument document = new XmlDocument();
+            var document = new XmlDocument();
             document.LoadXml(soapResult);
 
-            enLoginResult result = enLoginResult.NotExists;
+            var result = enLoginResult.NotExists;
             try
             {
-                JsonLoginModel login = JsonConvert.DeserializeObject<JsonLoginModel>(document.InnerText);
+                var login = JsonConvert.DeserializeObject<JsonLoginModel>(document.InnerText);
                 result = login.enResult ?? result;
             }
             catch (Exception ex)
@@ -78,14 +79,14 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
 
         public bool UpdateActiveCustomersAndMachines()
         {
-            bool result = true;
+            var result = true;
             try
             {
-                string apiUrl = ApplicationSettingService.GetWebConfigKey("UpdateCustomersAndMachinesSOAPUrl");
+                var apiUrl = ApplicationSettingService.GetWebConfigKey("UpdateCustomersAndMachinesSOAPUrl");
                 var apiUsername = ApplicationSettingService.GetWebConfigKey("UpdateCustomersAndMachinesSOAPUsername");
                 var apiPassword = ApplicationSettingService.GetWebConfigKey("UpdateCustomersAndMachinesSOAPPassword");
 
-                HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(apiUrl);
+                var webRequest = (HttpWebRequest)WebRequest.Create(apiUrl);
                 webRequest.Headers.Add("SOAPAction", "http://tempuri.org/IService/ottieniListaMacchineRegistrate");
                 webRequest.ContentType = "text/xml;charset=\"utf-8\"";
                 webRequest.Accept = "text/xml";
@@ -93,48 +94,48 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                 webRequest.CookieContainer = new CookieContainer();
                 webRequest.Credentials = new NetworkCredential(apiUsername, apiPassword, "");
 
-                XmlDocument soapEnvelopeXml = new XmlDocument();
+                var soapEnvelopeXml = new XmlDocument();
                 soapEnvelopeXml.LoadXml(@"<soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:tem=""http://tempuri.org/""><soapenv:Header></soapenv:Header><soapenv:Body><tem:ottieniListaMacchineRegistrate/></soapenv:Body></soapenv:Envelope>");
 
-                using (Stream stream = webRequest.GetRequestStream())
+                using (var stream = webRequest.GetRequestStream())
                 {
                     soapEnvelopeXml.Save(stream);
                 }
 
-                IAsyncResult asyncResult = webRequest.BeginGetResponse(null, null);
+                var asyncResult = webRequest.BeginGetResponse(null, null);
                 asyncResult.AsyncWaitHandle.WaitOne();
 
                 string soapResult;
-                using (WebResponse webResponse = webRequest.EndGetResponse(asyncResult))
+                using (var webResponse = webRequest.EndGetResponse(asyncResult))
                 {
-                    using (StreamReader rd = new StreamReader(webResponse.GetResponseStream()))
+                    using (var rd = new StreamReader(webResponse.GetResponseStream()))
                     {
                         soapResult = rd.ReadToEnd();
                     }
                 }
 
-                XmlDocument document = new XmlDocument();
+                var document = new XmlDocument();
                 document.LoadXml(soapResult);
 
-                JsonCustomersModel customers = JsonConvert.DeserializeObject<JsonCustomersModel>(document.InnerText, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });                
+                var customers = JsonConvert.DeserializeObject<JsonCustomersModel>(document.InnerText, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });                
 
 
                     //elimino i customer non più presenti nella vip area
 
-                    List<UserModel> dbCustomers =UserManagerService.GetAllCustomers();
-                    IEnumerable<string> customerNames = customers.customers.Select(j => j.username).Distinct();
-                    List<UserModel> custmerToRemove = dbCustomers.Where(e => !customerNames.Contains(e.Username)).ToList<UserModel>();
+                    var dbCustomers =UserManagerService.GetAllCustomers();
+                    var customerNames = customers.customers.Select(j => j.username).Distinct();
+                    var custmerToRemove = dbCustomers.Where(e => !customerNames.Contains(e.Username)).ToList();
 
-                    if (custmerToRemove != null && custmerToRemove.Count() > 0)
+                    if (custmerToRemove.Any())
                     {
                         //rimuovo prima le associazioni
-                        List<Guid> ids = custmerToRemove.Select(a => a.ID).ToList();
-                        List<string> names = custmerToRemove.Select(a => a.Username).ToList();
-                        List<UserCustomerMapping> us = _context.Set<UserCustomerMapping>().Where(uc => names.Contains(uc.CustomerName)).ToList();
+                        var ids = custmerToRemove.Select(a => a.ID).ToList();
+                        var names = custmerToRemove.Select(a => a.Username).ToList();
+                        var us = _context.Set<UserCustomerMapping>().Where(uc => names.Contains(uc.CustomerName)).ToList();
 
                         //utenti associati al customer
-                        List<UserModel> usCust = new List<UserModel>();
-                        foreach (UserCustomerMapping item in us)
+                        var usCust = new List<UserModel>();
+                        foreach (var item in us)
                         {
                             usCust.AddRange(UserManagerService.GetUsers(item.CustomerName));
                         }
@@ -145,7 +146,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             _context.SaveChanges();
                         }
 
-                        List<UserMachineMapping> um = _context.Set<UserMachineMapping>().Where(mh => ids.Contains(mh.UserId)).ToList();
+                        var um = _context.Set<UserMachineMapping>().Where(mh => ids.Contains(mh.UserId)).ToList();
                         if (um.Any())
                         {
                             _context.Set<UserMachineMapping>().RemoveRange(um);
@@ -153,7 +154,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                         }
 
                         usCust.AddRange(custmerToRemove);
-                        using (TransactionScope transactionSuppress = new TransactionScope(TransactionScopeOption.Suppress))
+                        using (var transactionSuppress = new TransactionScope(TransactionScopeOption.Suppress))
                         {
                             UserManagerService.RemoveUsers(usCust);
                             transactionSuppress.Complete();
@@ -166,13 +167,13 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                         try
                         {
                             //Aggiungo eventuali nuovi clienti
-                            UserModel user = new UserModel();
-                            using (TransactionScope transactionSuppress = new TransactionScope(TransactionScopeOption.Suppress))
+                            var user = new UserModel();
+                            using (var transactionSuppress = new TransactionScope(TransactionScopeOption.Suppress))
                             {
                                 user = UserManagerService.GetUser(customer.username);
                                 if (user == null)
                                 {
-                                    user = new UserModel()
+                                    user = new UserModel
                                     {
                                         Username = customer.username,
                                         FirstName = customer.username,
@@ -187,10 +188,10 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             }
 
                             //Aggiungo eventuali nuovi clienti nel DB dei dati
-                            UserCustomerMapping userCustomer = _context.Set<UserCustomerMapping>().FirstOrDefault(f => f.UserId == user.ID);
+                            var userCustomer = _context.Set<UserCustomerMapping>().FirstOrDefault(f => f.UserId == user.ID);
                             if (userCustomer == null)
                             {
-                                userCustomer = new UserCustomerMapping()
+                                userCustomer = new UserCustomerMapping
                                 {
                                     UserId = user.ID,
                                     CustomerName = user.Username
@@ -200,13 +201,13 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             }
 
                             //Prendo la lista delle macchine esistenti nel DB a partire da quelle arrivate da JSON
-                            List<string> machinesSerial = customer.machines.Select(s => s.serial).ToList();
-                            List<Machine> machines = _context.Set<Machine>().Where(w => machinesSerial.Contains(w.Serial)).ToList();
+                            var machinesSerial = customer.machines.Select(s => s.serial).ToList();
+                            var machines = _context.Set<Machine>().Where(w => machinesSerial.Contains(w.Serial)).ToList();
 
                             //Rimuovo le associazioni cliente <=> macchina per macchine non più monitorate
-                            List<int> machinesId = machines.Select(s => s.Id).ToList();
-                            List<Guid> clientUsersMachines = _context.Set<UserMachineMapping>().Where(w => machinesId.Contains(w.MachineId)).Select(s => s.UserId).Distinct().ToList();
-                            List<UserMachineMapping> usersMachinesToRemove = _context.Set<UserMachineMapping>().Where(w => !machinesId.Contains(w.MachineId) && clientUsersMachines.Contains(w.UserId)).ToList();
+                            var machinesId = machines.Select(s => s.Id).ToList();
+                            var clientUsersMachines = _context.Set<UserMachineMapping>().Where(w => machinesId.Contains(w.MachineId)).Select(s => s.UserId).Distinct().ToList();
+                            var usersMachinesToRemove = _context.Set<UserMachineMapping>().Where(w => !machinesId.Contains(w.MachineId) && clientUsersMachines.Contains(w.UserId)).ToList();
                             _context.Set<UserMachineMapping>().RemoveRange(usersMachinesToRemove);
                             _context.SaveChanges();
                             var plant = _mesService.GetOrSetPlantDefaultByUser(user.ID);
@@ -214,13 +215,13 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             //Inserisco i nuovi mapping cliente <=> macchina
                             foreach (var machine in machines)
                             {
-                                JsonMachine jm = customer.machines.FirstOrDefault(f => f.serial == machine.Serial);
+                                var jm = customer.machines.FirstOrDefault(f => f.serial == machine.Serial);
                                 if (jm != null)
                                 {
-                                    DateTime expirationDate = jm.expirationDate;
-                                    DateTime activationDate = jm.activationDate;
-                                    string machineName = jm.machineName;
-                                    List<UserMachineMapping> usersMachineMapped = _context.Set<UserMachineMapping>().Where(w => w.MachineId == machine.Id).ToList();
+                                    var expirationDate = jm.expirationDate;
+                                    var activationDate = jm.activationDate;
+                                    var machineName = jm.machineName;
+                                    var usersMachineMapped = _context.Set<UserMachineMapping>().Where(w => w.MachineId == machine.Id).ToList();
                                     if (usersMachineMapped.Any())
                                     {
                                         /*foreach (UserMachineMapping userMachineMapped in usersMachineMapped)
@@ -232,7 +233,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                                     }
                                     else
                                     {
-                                        UserMachineMapping userMachine = new UserMachineMapping()
+                                        var userMachine = new UserMachineMapping()
                                         {
                                             //ExpirationDate = expirationDate,
                                             //ActivationDate = activationDate,
@@ -244,7 +245,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                                     }
                                     //aggiorno l'activationDate della macchina prendendo la più vecchia
                                     // aggiorno anche il plantId
-                                    Machine ma = _context.Set<Machine>().Find(machine.Id);
+                                    var ma = _context.Set<Machine>().Find(machine.Id);
                                     if(ma.PlantId == null)
                                     {
                                         ma.PlantId = plant;

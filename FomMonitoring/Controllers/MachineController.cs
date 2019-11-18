@@ -34,7 +34,7 @@ namespace FomMonitoring.Controllers
             {
 
                 if (!_contextService.InitializeMachineLevel())
-                    return RedirectToAction("Logout", new { returnUrl = string.Empty, exception = 4 });
+                    return RedirectToAction("Logout", "Account", new { returnUrl = string.Empty, exception = 4 });
 
                 _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
 
@@ -56,12 +56,12 @@ namespace FomMonitoring.Controllers
             try
             {
                 if (!_contextService.InitializeMachineLevel(MachineID))
-                    return RedirectToAction("Logout", new { returnUrl = string.Empty, exception = 4 });
+                    return RedirectToAction("Logout", "Account", new { returnUrl = string.Empty, exception = 4 });
 
                 bool isCorrect = _contextService.CheckSecurityParameterApi(MachineID, enCheckParam.Machine);
 
                 if (!isCorrect)
-                    return RedirectToAction("Logout", new { returnUrl = string.Empty, exception = 1 });
+                    return RedirectToAction("Logout", "Account", new { returnUrl = string.Empty, exception = 1 });
 
                 _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
 
