@@ -77,8 +77,10 @@ namespace FomMonitoringCore.Framework.Common
         KeopeMotors = 27,
         [Description("otherMachineData")]
         OtherMachineData = 29,
-        [Description("Electrospindle")]
+        [Description("electrospindle")]
         Electrospindle = 31,
+        [Description("toolsFmcLmx")]
+        ToolsFmcLmx = 32
     }
 
     public enum enDataType

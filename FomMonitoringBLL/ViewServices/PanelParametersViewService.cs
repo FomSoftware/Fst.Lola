@@ -12,13 +12,16 @@ namespace FomMonitoringBLL.ViewServices
         private IMachineService _machineService;
         private ISpindleViewService _spindleViewService;
         private IParameterMachineService _parameterMachineService;
+        private IToolService _toolsService;
 
-        public PanelParametersViewService(IMachineService machineService, ISpindleViewService spindleViewService, IParameterMachineService parameterMachineService)
+        public PanelParametersViewService(IMachineService machineService, ISpindleViewService spindleViewService, IParameterMachineService parameterMachineService, IToolService toolsService)
         {
             _machineService = machineService;
             _spindleViewService = spindleViewService;
             _parameterMachineService = parameterMachineService;
+            _toolsService = toolsService;
         }
+
         public PanelParametersViewModel GetParameters(ContextModel context)
         { 
             PanelParametersViewModel result = new PanelParametersViewModel();
@@ -52,7 +55,10 @@ namespace FomMonitoringBLL.ViewServices
             {
                 result.vm_other_data = GetOtherDataVueModel(context.ActualMachine);
             }
-
+            if (_machineService.GetMachinePanels(context).Contains((int)enPanel.ToolsFmcLmx))
+            {
+                result.vm_tools_fmc_lmx = GetToolsFmcLmxVueModel(context.ActualMachine);
+            }
 
             result.vm_machine_info = new MachineInfoViewModel
             {
@@ -80,6 +86,25 @@ namespace FomMonitoringBLL.ViewServices
             };
             return result;
         }
+
+        private ToolsFmcLmxParameterVueModel GetToolsFmcLmxVueModel(MachineInfoModel context)
+        {
+            var par = _parameterMachineService.GetParameters(context, (int)enPanel.ToolsFmcLmx);
+            var tools = _toolsService.GetTools(context);
+            var dtos = tools.Select(n => new ToolParameterMachineValueModel
+            {
+                Code = par.FirstOrDefault(p => p.Cluster == n.Code)?.Cluster,
+                Description = n.Description,
+                ElapsedLife = par.FirstOrDefault(p => p.Cluster == n.Code)?.ConvertedValue
+            }).ToList();
+
+            var result = new ToolsFmcLmxParameterVueModel
+            {
+                ToolsInfo = dtos
+            };
+            return result;
+        }
+
 
         private ElectroSpindleParameterVueModel GetElectroSpindleVueModel(MachineInfoModel machine)
         {

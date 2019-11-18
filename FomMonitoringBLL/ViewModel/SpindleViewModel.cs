@@ -1,5 +1,6 @@
 ﻿using FomMonitoringCore.Framework.Model;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
@@ -14,7 +15,7 @@ namespace FomMonitoringBLL.ViewModel
         public AxesKeopeParameterVueModel vm_axes_keope { get; set; }
         public OtherDataParameterVueModel vm_other_data { get; set; }
         public ElectroSpindleParameterVueModel vm_electro_spindle { get; set; }
-        
+        public ToolsFmcLmxParameterVueModel vm_tools_fmc_lmx { get; set; }
     }
 
 
@@ -42,4 +43,15 @@ namespace FomMonitoringBLL.ViewModel
         public ParameterMachineValueModel RpmRange20000 { get; set; }
     }
 
+    public class ToolsFmcLmxParameterVueModel
+    {
+        public IEnumerable<ToolParameterMachineValueModel> ToolsInfo { get; set; } = new List<ToolParameterMachineValueModel>();
+    }
+
+    public class ToolParameterMachineValueModel
+    {
+        public string Code { get; set; }
+        public string Description { get; set; }
+        public string ElapsedLife { get; set; }
+    }
 }

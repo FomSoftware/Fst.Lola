@@ -52,7 +52,8 @@ namespace FomMonitoringCore.Service
                         {
                             VarNumber = int.Parse(pm.VarNumber),
                             Description = new System.Resources.ResourceManager(typeof(Resource)).GetString(pm.Keyword),
-                            Value = pm.DefaultValue
+                            Value = pm.DefaultValue,
+                            Cluster = pm.Cluster
                         };
                         result.Add(valoreVuoto);
                     }

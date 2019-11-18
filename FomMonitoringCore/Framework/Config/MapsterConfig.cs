@@ -75,7 +75,8 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(d => d.Value, src => src.VarValue)
                 .Map(d => d.VarNumber, src => src.VarNumber)
                 .Map(d => d.CnUm, src => src.ParameterMachine.CnUm)
-                .Map(d => d.HmiUm, src => src.ParameterMachine.HmiUm);
+                .Map(d => d.HmiUm, src => src.ParameterMachine.HmiUm)
+                .Map(d => d.Cluster, src => src.ParameterMachine.Cluster);
 
             config.NewConfig<ParameterMachine, Model.Xml.ParameterMachineModelXml>()
                 .Map(d => d.CLUSTER, src => src.Cluster)

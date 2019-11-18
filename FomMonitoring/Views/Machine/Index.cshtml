@@ -81,11 +81,22 @@
         }
         else
         {
-            <div class="row">
-                <div class="col-sm-12">
-                    @Html.Partial("_Tools", Model.Tools)
+            if (Model.MachinePanels.Contains((int)enPanel.ToolsFmcLmx))
+            {
+                <div class="row">
+                    <div class="col-sm-12">
+                        @Html.Partial("./Tools/_FmcLmx", Model.PanelParameter)
+                    </div>
                 </div>
-            </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-sm-12">
+                        @Html.Partial("_Tools", Model.Tools)
+                    </div>
+                </div>
+            }
         }
 
         @if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)

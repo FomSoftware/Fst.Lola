@@ -12,6 +12,7 @@ namespace FomMonitoringCore.Framework.Model
         public int VarNumber { get; set; }
         public string Description { get; set; }
         public string Value { get; set; }
+        public string Cluster { get; set; }
         public string ConvertedValue => Convert();
         public DateTime? UtcDateTime { get; set; }
         public string CnUm { get; set; }

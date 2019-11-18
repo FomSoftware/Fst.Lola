@@ -428,6 +428,7 @@
     <Content Include="GlobApp\scripts\machine\messages.js" />
     <Content Include="GlobApp\scripts\machine\motoraxes\blitz.js" />
     <Content Include="GlobApp\scripts\machine\motor\keope.js" />
+    <Content Include="GlobApp\scripts\machine\tools\fmcLmx.js" />
     <Content Include="GlobApp\scripts\machine\tools\blitz.js" />
     <Content Include="GlobApp\scripts\machine\xtools.js" />
     <Content Include="GlobApp\scripts\machine\xspindles.js" />
@@ -1001,6 +1002,7 @@
     <Content Include="Scripts\underscore.min.map" />
     <Content Include="Views\Machine\ElectroSpindle\_OtherMachineData.cshtml" />
     <Content Include="Views\Machine\ElectroSpindle\_ElectroSpindle.cshtml" />
+    <Content Include="Views\Machine\Tools\_FmcLmx.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

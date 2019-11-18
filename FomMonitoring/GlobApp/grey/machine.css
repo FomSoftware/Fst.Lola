@@ -1076,7 +1076,7 @@
     }
 
 .label-tools {
-    font-size: 12px;
+    font-size: 11pt;
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
@@ -1263,6 +1263,10 @@ hr.axes {
         border-top-color: #ec6035;
         color: #403D3D !important;
     }
+    .border-panel.color-no-data {
+        color: #403D3D !important;
+    }
+
 
 .label-other-data-value {
     font-size: 16pt;
@@ -1322,4 +1326,37 @@ hr.axes {
     float: right;
     padding-left: 8px;
     padding-top: 0;
+}
+
+
+hr.tools {
+    background-color: #d2d2d2;
+    border: 0;
+    height: 100%;
+}
+
+td.td-tools-dark {
+    width: 30%;
+    background-color: #b4b4b4;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 8px;
+}
+
+td.td-tools-light {
+    width: 40%;
+    background-color: #bebebe;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 8px;
+}
+
+.label-tools-value {
+    padding-left: 30px;
+    display: block;
+}
+
+.table-tools-fmc {
+    width: 100%;
+    text-align: left;
 }

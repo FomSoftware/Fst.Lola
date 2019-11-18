@@ -93,7 +93,8 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/motor/keope.js",
                         "~/GlobApp/scripts/machine/axes/keope.js",
                         "~/GlobApp/scripts/machine/electrospindle/electrospindle.js",
-                        "~/GlobApp/scripts/machine/electrospindle/otherdata.js"
+                        "~/GlobApp/scripts/machine/electrospindle/otherdata.js",
+                        "~/GlobApp/scripts/machine/tools/fmcLmx.js"
                       ));
 
             #endregion
