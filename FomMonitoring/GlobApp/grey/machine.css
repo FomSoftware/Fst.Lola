@@ -1081,6 +1081,7 @@
     color: #403D3D;
     word-wrap: break-word;
     margin-bottom: 0;
+    max-width: 78%;
 }
 
 .label-tools-value {
@@ -1336,11 +1337,15 @@ hr.tools {
 }
 
 td.td-tools-dark {
-    width: 30%;
+    width: 20%;
     background-color: #b4b4b4;
     padding-left: 10px;
     padding-top: 10px;
     padding-bottom: 8px;
+}
+
+td.td-tools-dark-life {
+    width: 40%;
 }
 
 td.td-tools-light {

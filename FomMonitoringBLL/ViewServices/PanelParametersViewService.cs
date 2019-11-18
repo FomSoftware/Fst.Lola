@@ -90,7 +90,7 @@ namespace FomMonitoringBLL.ViewServices
         private ToolsFmcLmxParameterVueModel GetToolsFmcLmxVueModel(MachineInfoModel context)
         {
             var par = _parameterMachineService.GetParameters(context, (int)enPanel.ToolsFmcLmx);
-            var tools = _toolsService.GetTools(context);
+            var tools = _toolsService.GetTools(context).Where(n => n.IsActive);
             var dtos = tools.Select(n => new ToolParameterMachineValueModel
             {
                 Code = par.FirstOrDefault(p => p.Cluster == n.Code)?.Cluster,

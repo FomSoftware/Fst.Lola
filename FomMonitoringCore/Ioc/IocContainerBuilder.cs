@@ -49,7 +49,7 @@ namespace FomMonitoringCore.Ioc
             instancesFoRequest.Add(builder.RegisterType<MachineGroupRepository>().As<IMachineGroupRepository>());
             instancesFoRequest.Add(builder.RegisterType<HistoryPieceRepository>().As<IHistoryPieceRepository>());
 
-            instancesFoRequest.Add(builder.RegisterType<SQLiteToSQLServerService>().As<ISQLiteToSQLServerService>());
+            instancesFoRequest.Add(builder.RegisterType<SqLiteToSqlServerService>().As<ISQLiteToSQLServerService>());
             instancesFoRequest.Add(builder.RegisterType<ReadMessages>().As<IReadMessages>());
             instancesFoRequest.Add(builder.RegisterType<PieceService>().As<IPieceService>());
             instancesFoRequest.Add(builder.RegisterType<StateService>().As<IStateService>());
