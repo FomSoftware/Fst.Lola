@@ -1280,7 +1280,7 @@ hr.axes {
 }
 
 .label-other-title {
-    font-size: 12px;
+    font-size: 11pt;
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
@@ -1306,7 +1306,7 @@ hr.axes {
 }
 
 .label-electrospindle-title {
-    font-size: 12px;
+    font-size: 10pt;
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
@@ -1318,7 +1318,7 @@ hr.axes {
 }
 
 .label-electrospindle-title-bottom {
-    font-size: 12px;
+    font-size: 10pt;
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
@@ -1381,3 +1381,8 @@ td.td-tools-light {
     .table-electro-spindle .fa-lg, .table-other-data .fa-lg {
         font-size: 20px;
     }
+
+.electro-spindle-icon {
+    clear: both;
+    float: left;
+}
