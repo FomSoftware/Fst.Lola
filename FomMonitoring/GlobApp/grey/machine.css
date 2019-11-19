@@ -1365,3 +1365,19 @@ td.td-tools-light {
     width: 100%;
     text-align: left;
 }
+
+.table-electro-spindle, .table-other-data {
+    height: 100%;
+    table-layout: fixed;
+}
+
+    .table-electro-spindle tr:first-child td, .table-other-data tr:first-child td {
+        padding-bottom: 0;
+        text-align: left;
+        font-size: 18px;
+        padding-left: 4px;
+    }
+
+    .table-electro-spindle .fa-lg, .table-other-data .fa-lg {
+        font-size: 20px;
+    }
