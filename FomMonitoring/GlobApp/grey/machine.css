@@ -1015,7 +1015,7 @@
     padding-bottom: 0;
     text-align: left;
     font-size: 16px;
-    padding-left: 14px;
+    padding-left: 6px;
 }
 
         /*.table-spindle tr:first-child:not(.second-tr) td:last-child {
@@ -1085,7 +1085,7 @@
 }
 
 .label-tools-value {
-    font-size: 11pt;
+    font-size: 16pt;
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
@@ -1357,7 +1357,6 @@ td.td-tools-light {
 }
 
 .label-tools-value {
-    padding-left: 30px;
     display: block;
 }
 
@@ -1385,4 +1384,8 @@ td.td-tools-light {
 .electro-spindle-icon {
     clear: both;
     float: left;
+}
+
+.font-11-pt {
+    font-size: 11pt !important;
 }
