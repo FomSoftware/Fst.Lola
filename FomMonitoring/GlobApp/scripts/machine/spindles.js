@@ -4,72 +4,6 @@
 
     var init = function (data)
     {
-        //var data = {
-        //    vm_spindles: {
-        //        spindles: [{
-        //            code: 'M366',
-        //            perc: 69,
-        //            velocity: 17.000,
-        //            workover: {
-        //                power: {
-        //                    days: null,
-        //                    hours: null,
-        //                    minutes: '10',
-        //                    seconds: null
-        //                },
-        //                vibration: 2,
-        //                heating: 3
-        //            },
-        //            info: {
-        //                install: '01/12/2017',
-        //                maintenance: '03/01/2018',
-        //                change: 2
-        //            },
-        //            time: {
-        //                work: {
-        //                    days: null,
-        //                    hours: null,
-        //                    minutes: '10',
-        //                    seconds: null
-        //                },
-        //                residual: {
-        //                    days: null,
-        //                    hours: null,
-        //                    minutes: '10',
-        //                    seconds: null,
-        //                    elapsed: 1000,
-        //                }
-        //            },
-        //            bands: [
-        //                ['1K', 237],
-        //                ['2K', 161],
-        //                ['3K', 142],
-        //                ['4K', 140],
-        //                ['5K', 125],
-        //                ['6K', 121],
-        //                ['7K', 118],
-        //                ['8K', 117],
-        //                ['9K', 111],
-        //                ['10K', 111],
-        //                ['11K', 111],
-        //                ['12K', 131],
-        //                ['13K', 131],
-        //                ['14K', 131],
-        //                ['15K', 131],
-        //                ['16K', 131],
-        //                ['17K', 131],
-        //                ['18K', 131],
-        //                ['19K', 131],
-        //                ['20K', 131]
-        //            ]
-        //        }],
-        //        sorting: {
-        //            code: null,
-        //            time: 'asc'
-        //        }
-        //    }
-        //}
-
         initVueModel(data);
     }
 
@@ -223,7 +157,7 @@
     {
         // update vue model
         var vm_spindles = data ? data.vm_spindles : null;
-        if (vm_spindles != null) {
+        if (vm_spindles != null && vmSpindles != null) {
             vmSpindles.spindles = vm_spindles.spindles;
             vmSpindles.sorting = vm_spindles.sorting;
             vmSpindles.type = data.vm_machine_info.mtype;
