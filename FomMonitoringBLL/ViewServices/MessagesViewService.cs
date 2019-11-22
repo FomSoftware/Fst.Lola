@@ -13,9 +13,9 @@ namespace FomMonitoringBLL.ViewServices
 {
     public class MessagesViewService : IMessagesViewService
     {
-        private IMessageService _messageService;
-        private IReadMessages _readMessages;
-        private IContextService _contextService;
+        private readonly IMessageService _messageService;
+        private readonly IReadMessages _readMessages;
+        private readonly IContextService _contextService;
 
         public MessagesViewService(IMessageService messageService, IReadMessages readMessages, IContextService contextService)
         {
@@ -26,7 +26,7 @@ namespace FomMonitoringBLL.ViewServices
 
         public MessageViewModel GetMessages(ContextModel context)
         {
-            MessageViewModel result = new MessageViewModel();
+            var result = new MessageViewModel();
 
             result.vm_messages = GetVueModel(context.ActualMachine, context.ActualPeriod);
             result.opt_historical = GetHistoricalOptions(context.ActualMachine, context.ActualPeriod);
@@ -36,14 +36,14 @@ namespace FomMonitoringBLL.ViewServices
 
         private MessageDetailsVueModel GetMessageDetails(MachineInfoModel actualMachine, PeriodModel actualPeriod)
         {
-            MessageDetailsVueModel result = new MessageDetailsVueModel();
+            var result = new MessageDetailsVueModel();
 
-            List<MessageMachineModel> data = _messageService.GetMessageDetails(actualMachine, actualPeriod);
+            var data = _messageService.GetMessageDetails(actualMachine, actualPeriod);
 
             if (data.Count == 0)
                 return result;
 
-            List<MessageDetailViewModel> messages = data.Select(a => new MessageDetailViewModel()
+            var messages = data.Select(a => new MessageDetailViewModel()
             {
                 code = a.Code,
                 parameters = a.Params,
@@ -57,7 +57,7 @@ namespace FomMonitoringBLL.ViewServices
 
             messages = messages.OrderByDescending(o => o.timestamp).ToList();
 
-            SortingViewModel sorting = new SortingViewModel();
+            var sorting = new SortingViewModel();
             sorting.timestamp = enSorting.Descending.GetDescription();
 
             sorting.group = enSorting.Ascending.GetDescription();
@@ -72,29 +72,31 @@ namespace FomMonitoringBLL.ViewServices
 
         private MessageVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
         {
-            MessageVueModel result = new MessageVueModel();
+            var result = new MessageVueModel();
 
-            List<HistoryMessageModel> data = _messageService.GetAggregationMessages(machine, period, enDataType.Summary);
+            var data = _messageService.GetAggregationMessages(machine, period, enDataType.Summary);
 
             if (data.Count == 0)
                 return result;
 
-            List<MessageDataModel> messages = data.Select(a => new MessageDataModel()
+            var messages = data.Select(a => new MessageDataModel()
             {
                 code = a.Code,
                 type = _readMessages.GetMessageType(a.Code, machine.Id) != null ? ((enTypeAlarm)_readMessages.GetMessageType(a.Code, machine.Id)).GetDescription() : String.Empty,
                 //((enTypeAlarm)a.StateId).GetDescription(),
                 parameters = a.Params,
                 time = CommonViewService.getTimeViewModel(a.ElapsedTime),
-                quantity = a.Count == null ? 0 : a.Count.Value,
+                quantity = a.Count ?? 0,
                 day = a.Day == null ? "-" : a.Day.Value.ToString("t"),
                 description = (a.Code != null) ? _readMessages.GetMessageDescription(a.Code, machine.Id, a.Params, CultureInfo.CurrentCulture.Name) : ""
             }).ToList();
 
             messages = messages.OrderByDescending(o => o.quantity).ToList();
 
-            SortingViewModel sorting = new SortingViewModel();
-            sorting.duration = enSorting.Descending.GetDescription();
+            var sorting = new SortingViewModel
+            {
+                duration = enSorting.Descending.GetDescription()
+            };
 
             result.messages = messages;
             result.sorting = sorting;
@@ -106,36 +108,38 @@ namespace FomMonitoringBLL.ViewServices
 
         private ChartViewModel GetHistoricalOptions(MachineInfoModel machine, PeriodModel period)
         {
-            ChartViewModel options = new ChartViewModel();
+            var options = new ChartViewModel();
 
-            enAggregation granularity = Common.GetAggregationType(period.StartDate, period.EndDate);
-            DateTime startDateTrend = Common.GetStartDateTrend(period.EndDate, period.StartDate, granularity);
+            var granularity = Common.GetAggregationType(period.StartDate, period.EndDate);
+            var startDateTrend = Common.GetStartDateTrend(period.EndDate, period.StartDate, granularity);
 
-            PeriodModel periodTrend = new PeriodModel();
+            var periodTrend = new PeriodModel
+            {
+                StartDate = startDateTrend.ToUniversalTime(),
+                EndDate = period.EndDate.ToUniversalTime(),
+                Aggregation = granularity
+            };
 
-            periodTrend.StartDate = startDateTrend.ToUniversalTime();
-            periodTrend.EndDate = period.EndDate.ToUniversalTime();
-            periodTrend.Aggregation = granularity;
 
-            List<HistoryMessageModel> data = _messageService.GetAggregationMessages(machine, periodTrend, enDataType.Historical)?.OrderBy(o => o.Day).ToList() ?? new List<HistoryMessageModel>();
+            var data = _messageService.GetAggregationMessages(machine, periodTrend, enDataType.Historical)?.OrderBy(o => o.Day).ToList() ?? new List<HistoryMessageModel>();
 
             if (data.Count == 0)
                 return null;
            
-            options.yTitle = string.Format("{0} (n)", Resource.Quantity);
+            options.yTitle = $"{Resource.Quantity} (n)";
 
-            List<DateTime> days = data.Where(w => w.Day != null && (w.Type == (int)enTypeAlarm.Warning || w.Type == (int)enTypeAlarm.Error)).Select(s => s.Day.Value).Distinct().ToList();
+            var days = data.Where(w => w.Day != null && (w.Type == (int)enTypeAlarm.Warning || w.Type == (int)enTypeAlarm.Error)).Select(s => s.Day.Value).Distinct().ToList();
             options.categories = CommonViewService.GetTimeCategories(days, granularity);
 
-            List<SerieViewModel> series = new List<SerieViewModel>();
+            var series = new List<SerieViewModel>();
 
-            SerieViewModel serieOperator = new SerieViewModel();
+            var serieOperator = new SerieViewModel();
             serieOperator.name = enTypeAlarm.Warning.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieOperator.color = CommonViewService.GetColorAlarm(enTypeAlarm.Warning);
             serieOperator.data = data.Where(w => w.Type == (int)enTypeAlarm.Warning).Select(s => s.Count ?? 0).ToList();
             series.Add(serieOperator);
 
-            SerieViewModel serieError = new SerieViewModel();
+            var serieError = new SerieViewModel();
             serieError.name = enTypeAlarm.Error.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieError.color = CommonViewService.GetColorAlarm(enTypeAlarm.Error);
             serieError.data = data.Where(w => w.Type == (int)enTypeAlarm.Error).Select(s => s.Count ?? 0).ToList();

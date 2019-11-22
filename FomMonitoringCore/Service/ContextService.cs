@@ -6,14 +6,13 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Web;
-using UserManager.DAL;
 
 namespace FomMonitoringCore.Service
 {
     public class ContextService : IContextService
     {
-        private IMachineService _machineService;
-        private IMesService _mesService;
+        private readonly IMachineService _machineService;
+        private readonly IMesService _mesService;
 
         public ContextService(IMachineService machineService, IMesService mesService)
         {
@@ -23,34 +22,31 @@ namespace FomMonitoringCore.Service
 
         public bool InitializeContext()
         {
-            bool contextIsSet = false;
-
             try
             {
-                UserModel ActualUser = AccountService.Init().GetLoggedUser();
+                var actualUser = AccountService.Init().GetLoggedUser();
 
-                if (ActualUser == null)
-                    return contextIsSet;
+                if (actualUser == null)
+                    return false;
 
-                ContextModel context = new ContextModel();
-                context.User = ActualUser;
+                var context = new ContextModel();
+                context.User = actualUser;
 
                 context.AllLanguages = UserManagerService.GetLanguages().OrderBy(o => o.IdLanguage).ToList();
 
                 
                 context.ActualLanguage = context.User.Language == null ? context.AllLanguages.FirstOrDefault() :
-                    UserManagerService.GetLanguages().Where(lan => lan.ID == context.User.Language.ID).FirstOrDefault();
+                    UserManagerService.GetLanguages().FirstOrDefault(lan => lan.ID == context.User.Language.ID);
 
                 SetContext(context);
 
 
-                UserIdentityModel UserIdentity = new UserIdentityModel(ActualUser.Username, new List<string> { ActualUser.Role.ToString().SHA256Encript() });
-                HttpContext.Current.User = UserIdentity;
+                var userIdentity = new UserIdentityModel(actualUser.Username, new List<string> { actualUser.Role.ToString().SHA256Encript() });
+                HttpContext.Current.User = userIdentity;
 
-                HttpCookie cookie = new HttpCookie(ActualUser.Username, ActualUser.Role.ToString().SHA256Encript());
+                var cookie = new HttpCookie(actualUser.Username, actualUser.Role.ToString().SHA256Encript());
                 HttpContext.Current.Response.Cookies.Add(cookie);
-
-                contextIsSet = true;
+                
 
             }
             catch (Exception ex)
@@ -58,25 +54,25 @@ namespace FomMonitoringCore.Service
                 LogService.WriteLog(ex.GetStringLog(), LogService.TypeLevel.Error, ex);
             }
 
-            return contextIsSet;
+            return true;
         }
 
         public ContextModel GetContext()
         {
-            ContextModel context = SessionService.GetSessionValue<ContextModel>("Context");
-            bool isWebApiRequest = HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath.StartsWith("~/ajax");
-            if (isWebApiRequest)
+            var context = SessionService.GetSessionValue<ContextModel>("Context");
+            var isWebApiRequest = HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath != null && HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath.StartsWith("~/ajax");
+            if (!isWebApiRequest)
+                return context;
+
+            const string defaultLanguage = "en";
+            var lang = context.ActualLanguage.InitialsLanguage ?? defaultLanguage;
+            try
             {
-                string defaultLanguage = "en";
-                string lang = context.ActualLanguage.InitialsLanguage ?? defaultLanguage;
-                try
-                {
-                    Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
-                }
-                catch (Exception)
-                {
-                    Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = new CultureInfo(defaultLanguage);
-                }
+                Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+            }
+            catch (Exception)
+            {
+                Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = new CultureInfo(defaultLanguage);
             }
             return context;
         }
@@ -88,20 +84,16 @@ namespace FomMonitoringCore.Service
 
         public bool InitializeMessagesMachineLevel()
         {
-            bool isInitialize = false;
 
-            ContextModel context = GetContext();
+            var context = GetContext();
             context.ActualPage = enPage.PlantMessages;                       
-            return isInitialize;
-
+            return false;
 
         }
 
         public bool InitializeMesLevel()
         {
-            bool isInitialize = false;
-
-            ContextModel context = GetContext();
+            var context = GetContext();
             context.ActualPage = enPage.Mes;
 
             if (context.User.Role == enRole.Administrator)
@@ -109,7 +101,7 @@ namespace FomMonitoringCore.Service
             else
                 context.AllPlants = _mesService.GetUserPlants(context.User.ID);
 
-            if (context.AllPlants.Count > 0)
+            if (context.AllPlants.Any())
             {
                 if(context.ActualPlant == null)
                     context.ActualPlant = context.AllPlants.FirstOrDefault();
@@ -124,20 +116,18 @@ namespace FomMonitoringCore.Service
                         DateTime = DateTime.UtcNow
                     }
                 };
-
-                isInitialize = true;
+                
 
                 SetContext(context);
             }
 
-            return isInitialize;
+            return true;
         }
 
-        public bool InitializeMachineLevel(int? MachineID = null)
+        public bool InitializeMachineLevel(int? machineId = null)
         {
-            bool isInitialize = false;
 
-            ContextModel context = GetContext();
+            var context = GetContext();
             context.ActualPage = enPage.Machine;
 
             if (context.User.Role == enRole.Administrator)
@@ -145,14 +135,14 @@ namespace FomMonitoringCore.Service
             else
                 context.AllPlants = _mesService.GetUserPlants(context.User.ID);
 
-            if (context.AllPlants.Count > 0)
+            if (context.AllPlants.Any())
             {
-                if (MachineID != null)
+                if (machineId != null)
                 {
-                    MachineInfoModel machine = _machineService.GetMachineInfo(MachineID.Value);
+                    var machine = _machineService.GetMachineInfo(machineId.Value);
 
                     if (machine == null)
-                        return isInitialize;
+                        return false;
 
                     context.ActualPlant = context.AllPlants.FirstOrDefault(w => w.Id == machine.PlantId);
 
@@ -162,9 +152,9 @@ namespace FomMonitoringCore.Service
                         context.AllMachines = _machineService.GetUserMachines(context.User.ID);
 
                     if (context.AllMachines.Count == 0)
-                        return isInitialize;
+                        return false;
 
-                    context.ActualMachine = context.AllMachines.Where(w => w.Id == MachineID.Value).FirstOrDefault();
+                    context.ActualMachine = context.AllMachines.FirstOrDefault(w => w.Id == machineId.Value);
                 }
                 else
                 {
@@ -177,7 +167,7 @@ namespace FomMonitoringCore.Service
                         context.AllMachines = _machineService.GetUserMachines(context.User.ID);
 
                     if (context.AllMachines.Count == 0)
-                        return isInitialize;
+                        return false;
 
                     if (context.ActualMachine == null)
                         context.ActualMachine = context.AllMachines.FirstOrDefault();
@@ -188,83 +178,76 @@ namespace FomMonitoringCore.Service
                 context.AllMachines = _machineService.GetUserMachines(context.User.ID);
 
                 if (context.AllMachines.Count == 0)
-                    return isInitialize;
+                    return false;
 
-                if (MachineID != null)
-                    context.ActualMachine = context.AllMachines.Where(w => w.Id == MachineID.Value).FirstOrDefault();
+                if (machineId != null)
+                    context.ActualMachine = context.AllMachines.FirstOrDefault(w => w.Id == machineId.Value);
                 else
                     context.ActualMachine = context.AllMachines.FirstOrDefault();
             }
 
-            if (context.ActualMachine != null && context.ActualMachine.LastUpdate != null)
+            if (context.ActualMachine?.LastUpdate != null)
             {
-                context.ActualPeriod = PeriodService.GetPeriodModel(DateTime.UtcNow.AddDays(-7), DateTime.UtcNow, enAggregation.Day);
+                context.ActualPeriod = PeriodService.GetPeriodModel(context.ActualMachine?.LastUpdate?.AddDays(-6) ?? DateTime.UtcNow.AddDays(-6), context.ActualMachine?.LastUpdate ?? DateTime.UtcNow, enAggregation.Day);
             }
-
-            isInitialize = true;
-
+            
             SetContext(context);
 
-            return isInitialize;
+            return true;
         }
 
         public bool InitializePlantManagerLevel()
         {
-            bool isInitialize = false;
 
-            ContextModel context = GetContext();
+            var context = GetContext();
             context.ActualPage = enPage.PlantManager;
-
-            isInitialize = true;
+            
             SetContext(context);
 
-            return isInitialize;
+            return true;
         }
 
         public bool InitializeAdminLevel()
         {
-            bool isInitialize = false;
 
-            ContextModel context = GetContext();
+            var context = GetContext();
             context.ActualPage = enPage.UserManager;
-
-            isInitialize = true;
+            
             SetContext(context);
 
-            return isInitialize;
+            return true;
         }
 
-        public void SetActualPage(enPage Page)
+        public void SetActualPage(enPage page)
         {
-            ContextModel context = GetContext();
-            context.ActualPage = Page;
+            var context = GetContext();
+            context.ActualPage = page;
 
             SetContext(context);
         }
 
-        public void SetActualLanguage(string LanguageNameISO)
+        public void SetActualLanguage(string languageNameIso)
         {
-            ContextModel context = GetContext();
+            var context = GetContext();
 
-            if (context.ActualLanguage.InitialsLanguage != LanguageNameISO)
-                context.ActualLanguage = context.AllLanguages.Where(w => w.InitialsLanguage == LanguageNameISO).FirstOrDefault();
+            if (context.ActualLanguage.InitialsLanguage != languageNameIso)
+                context.ActualLanguage = context.AllLanguages.FirstOrDefault(w => w.InitialsLanguage == languageNameIso);
 
             SetContext(context);
         }
 
         public void SetActualPlant(int id)
         {
-            ContextModel context = GetContext();
+            var context = GetContext();
 
             if (context.ActualPlant.Id != id)
             {
-                context.ActualPlant = context.AllPlants.Where(w => w.Id == id).FirstOrDefault();
+                context.ActualPlant = context.AllPlants.FirstOrDefault(w => w.Id == id);
 
                 if (context.User.Role == enRole.Administrator)
                     context.AllMachines = _machineService.GetAllMachines();
                 else
                     context.AllMachines = _machineService.GetUserMachines(context.User.ID);
-                //  context.AllMachines = MachineService.GetAllMachinesByPlantID(context.ActualPlant.Id);
             }
 
             SetContext(context);
@@ -272,16 +255,16 @@ namespace FomMonitoringCore.Service
 
         public void SetActualMachine(int id)
         {
-            ContextModel context = GetContext();
+            var context = GetContext();
 
             if (context.ActualMachine.Id != id)
             {
-                context.ActualMachine = context.AllMachines.Where(w => w.Id == id).FirstOrDefault();
+                context.ActualMachine = context.AllMachines.FirstOrDefault(w => w.Id == id);
 
-                if (context.ActualMachine != null && context.ActualMachine.LastUpdate != null)
+                if (context.ActualMachine?.LastUpdate != null)
                 {
-                    DateTime LastUpdate = context.ActualMachine.LastUpdate.Value;
-                    context.ActualPeriod = PeriodService.GetPeriodModel(LastUpdate.Date, LastUpdate, enAggregation.Day);
+                    var lastUpdate = context.ActualMachine.LastUpdate.Value;
+                    context.ActualPeriod = PeriodService.GetPeriodModel(lastUpdate.Date, lastUpdate, enAggregation.Day);
                 }
             }
 
@@ -290,7 +273,7 @@ namespace FomMonitoringCore.Service
 
         public void SetActualPeriod(DateTime start, DateTime end)
         {
-            ContextModel context = GetContext();
+            var context = GetContext();
 
             context.ActualPeriod.StartDate = start;
             context.ActualPeriod.EndDate = end;
@@ -301,30 +284,30 @@ namespace FomMonitoringCore.Service
 
         public void CheckLastUpdate()
         {
-            ContextModel context = GetContext();
+            var context = GetContext();
 
-            MachineInfoModel machine = _machineService.GetMachineInfo(context.ActualMachine.Id);
+            var machine = _machineService.GetMachineInfo(context.ActualMachine.Id);
 
-            if (context.ActualPeriod.LastUpdate.DateTime != machine.LastUpdate.Value)
+            if (machine.LastUpdate != null && context.ActualPeriod.LastUpdate.DateTime != machine.LastUpdate.Value)
                 context.ActualPeriod.LastUpdate.DateTime = machine.LastUpdate.Value;
 
             SetContext(context);
         }
 
-        public bool CheckSecurityParameterApi(int ID, enCheckParam check)
+        public bool CheckSecurityParameterApi(int id, enCheckParam check)
         {
-            bool isCorrect = false;
+            var isCorrect = false;
 
-            ContextModel context = GetContext();
+            var context = GetContext();
 
             switch (check)
             {
                 case enCheckParam.Machine:
-                    if (context.AllMachines.Count > 0 && context.AllMachines.Where(w => w.Id == ID).FirstOrDefault() != null)
+                    if (context.AllMachines.Count > 0 && context.AllMachines.FirstOrDefault(w => w.Id == id) != null)
                         isCorrect = true;
                     break;
                 case enCheckParam.Plant:
-                    if (context.AllPlants.Count > 0 && context.AllPlants.Where(w => w.Id == ID).FirstOrDefault() != null)
+                    if (context.AllPlants.Count > 0 && context.AllPlants.FirstOrDefault(w => w.Id == id) != null)
                         isCorrect = true;
                     break;
             }

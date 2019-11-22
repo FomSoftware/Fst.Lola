@@ -11,9 +11,9 @@ namespace FomMonitoringBLL.ViewServices
 {
     public class ProductivityViewService : IProductivityViewService
     {
-        private IPieceService _pieceService;
-        private IContextService _contextService;
-        private IBarService _barService;
+        private readonly IPieceService _pieceService;
+        private readonly IContextService _contextService;
+        private readonly IBarService _barService;
 
         public ProductivityViewService(IPieceService pieceService, IContextService contextService, IBarService barService)
         {
@@ -24,7 +24,7 @@ namespace FomMonitoringBLL.ViewServices
 
         public ProductivityViewModel GetProductivity(ContextModel context)
         {
-            ProductivityViewModel result = new ProductivityViewModel();
+            var result = new ProductivityViewModel();
 
             result.vm_machine_info = new MachineInfoViewModel
             {
@@ -46,32 +46,32 @@ namespace FomMonitoringBLL.ViewServices
 
         private ProductivityVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
         {
-             ProductivityVueModel result = new ProductivityVueModel();
+             var result = new ProductivityVueModel();
 
-            List<HistoryPieceModel> data = _pieceService.GetAggregationPieces(machine, period, enDataType.Dashboard);
+            var data = _pieceService.GetAggregationPieces(machine, period, enDataType.Dashboard);
 
             if (data.Count == 0)
                 return result;
 
             // tempo lordo
-            long? grossTime = data.Select(s => s.ElapsedTime).Sum();
-            int doneCount = data.Select(s => s.CompletedCount).Sum() ?? 0;
-            int redoneCount = data.Select(s => s.RedoneCount).Sum() ?? 0;
+            var grossTime = data.Select(s => s.ElapsedTime).Sum();
+            var doneCount = data.Select(s => s.CompletedCount).Sum() ?? 0;
+            var redoneCount = data.Select(s => s.RedoneCount).Sum() ?? 0;
 
             // kpi pezzi all'ora
-            int? ratio = Common.GetRatioProductivity(doneCount, grossTime);
+            var ratio = Common.GetRatioProductivity(doneCount, grossTime);
             result.kpi = CommonViewService.getKpiViewModel(ratio, machine.PiecesProductivityGreenThreshold, machine.PiecesProductivityYellowThreshold);
 
             // pieces
-            PieceViewModel piece = new PieceViewModel();
+            var piece = new PieceViewModel();
             piece.total = doneCount + redoneCount;
 
-            ProdDataModel done = new ProdDataModel();
+            var done = new ProdDataModel();
             done.perc = Common.GetPercentage(doneCount, piece.total);
             done.number = doneCount;
             piece.done = done;
 
-            ProdDataModel redone = new ProdDataModel();
+            var redone = new ProdDataModel();
             redone.perc = Common.GetPercentage(redoneCount, piece.total);
             redone.number = redoneCount;
             piece.redone = redone;
@@ -79,25 +79,25 @@ namespace FomMonitoringBLL.ViewServices
             result.piece = piece;
 
             // materials
-            List<HistoryBarModel> dataBars = _barService.GetAggregationBar(machine, period);
+            var dataBars = _barService.GetAggregationBar(machine, period);
 
             if (dataBars.Count > 0)
             {
-                int barLength = dataBars.Select(s => s.Length ?? 0).Sum().RoundToInt();
+                var barLength = dataBars.Select(s => s.Length ?? 0).Sum().RoundToInt();
                 //int cutoffLength = dataBars.Select(s => s.OffcutCount ?? 0).Sum();
-                int totalLength = barLength; //+ cutoffLength;
+                var totalLength = barLength; //+ cutoffLength;
 
-                MaterialViewModel material = new MaterialViewModel();
+                var material = new MaterialViewModel();
                 material.total = ((double)totalLength / 1000).RoundToInt();
 
-                ProdDataModel bar = new ProdDataModel();
+                var bar = new ProdDataModel();
                 bar.perc = Common.GetPercentage(barLength, totalLength);
                 bar.number = ((double)barLength / 1000).RoundToInt();
                 material.bar = bar;
 
                 //Nelle troncatrici questi dati sono nascosti, non ci sono, 
                 //per le altre è da verificare cosa prendono
-                ProdDataModel cutoff = new ProdDataModel();
+                var cutoff = new ProdDataModel();
                 /*cutoff.perc = Common.GetPercentage(cutoffLength, totalLength);
                 cutoff.number = ((double)cutoffLength / 1000).RoundToInt();*/
                 material.cutoff = cutoff;
@@ -107,30 +107,30 @@ namespace FomMonitoringBLL.ViewServices
 
 
             // phases
-            List<ProdDataModel> phases = new List<ProdDataModel>();
+            var phases = new List<ProdDataModel>();
             if (machine.MachineTypeId != (int)enMachineType.Troncatrice)
             {
-                ProdDataModel working = new ProdDataModel();
+                var working = new ProdDataModel();
                 working.text = Resource.Working;
                 working.perc = Common.GetPercentage(data.Select(s => s.ElapsedTimeWorking ?? 0).Sum(), grossTime);
                 phases.Add(working);
 
-                ProdDataModel trim = new ProdDataModel();
+                var trim = new ProdDataModel();
                 trim.text = Resource.Trim;
                 trim.perc = Common.GetPercentage(data.Select(s => s.ElapsedTimeTrim ?? 0).Sum(), grossTime);
                 phases.Add(trim);
             }
 
-            ProdDataModel cut = new ProdDataModel();
+            var cut = new ProdDataModel();
             cut.text = Resource.Cut;
             cut.perc = Common.GetPercentage(data.Select(s => s.ElapsedTimeCut ?? 0).Sum(), grossTime);
             phases.Add(cut);
 
-            long timeAnuba = data.Select(s => s.ElapsedTimeAnuba ?? 0).Sum();
+            var timeAnuba = data.Select(s => s.ElapsedTimeAnuba ?? 0).Sum();
 
             if (timeAnuba > 0)
             {
-                ProdDataModel anuba = new ProdDataModel();
+                var anuba = new ProdDataModel();
                 anuba.text = "Anuba";
                 anuba.perc = Common.GetPercentage(timeAnuba, grossTime);
                 phases.Add(anuba);
@@ -139,7 +139,7 @@ namespace FomMonitoringBLL.ViewServices
             result.phases = phases.OrderByDescending(o => o.perc).ToList();
 
             // operators
-            List<HistoryPieceModel> dataOperators = _pieceService.GetAggregationPieces(machine, period, enDataType.Operators);
+            var dataOperators = _pieceService.GetAggregationPieces(machine, period, enDataType.Operators);
 
             if (dataOperators.Count > 0)
             {
@@ -189,23 +189,23 @@ namespace FomMonitoringBLL.ViewServices
 
         private ChartViewModel GetHistoricalOptions(MachineInfoModel machine, PeriodModel period)
         {
-            ChartViewModel options = new ChartViewModel();
+            var options = new ChartViewModel();
 
-            enAggregation granularity = Common.GetAggregationType(period.StartDate, period.EndDate);
-            DateTime startDateTrend = Common.GetStartDateTrend(period.EndDate, period.StartDate, granularity);
+            var granularity = Common.GetAggregationType(period.StartDate, period.EndDate);
+            var startDateTrend = Common.GetStartDateTrend(period.EndDate, period.StartDate, granularity);
 
-            PeriodModel periodTrend = new PeriodModel();
+            var periodTrend = new PeriodModel();
 
             periodTrend.StartDate = startDateTrend.ToUniversalTime();
             periodTrend.EndDate = period.EndDate.ToUniversalTime();
             periodTrend.Aggregation = granularity;
 
-            List<HistoryPieceModel> data = _pieceService.GetAggregationPieces(machine, periodTrend, enDataType.Historical).OrderBy(o => o.Day).ToList();
+            var data = _pieceService.GetAggregationPieces(machine, periodTrend, enDataType.Historical).OrderBy(o => o.Day).ToList();
 
             if (data.Count == 0)
                 return null;
 
-            List<DateTime> days = data.Select(s => s.Day).Distinct().ToList();
+            var days = data.Select(s => s.Day).Distinct().ToList();
             options.categories = CommonViewService.GetTimeCategories(days, granularity);
             options.yTitle = string.Format("{0} (%)", Resource.Efficiency);
             options.yTitle2 = string.Format("{0} (pz/h)", Resource.Productivity);
@@ -217,14 +217,14 @@ namespace FomMonitoringBLL.ViewServices
 
         private ChartViewModel GetOperatorsOptions(MachineInfoModel machine, PeriodModel period)
         {
-            ChartViewModel options = new ChartViewModel();
+            var options = new ChartViewModel();
 
-            List<HistoryPieceModel> data = _pieceService.GetAggregationPieces(machine, period, enDataType.Operators);
+            var data = _pieceService.GetAggregationPieces(machine, period, enDataType.Operators);
 
             if (data.Count == 0)
                 return null;
 
-            List<string> operators = data.Select(s => s.Operator).Distinct().ToList();
+            var operators = data.Select(s => s.Operator).Distinct().ToList();
             options.categories = operators;
             options.yTitle = string.Format("{0} (%)", Resource.Efficiency);
             options.yTitle2 = string.Format("{0} (pz/h)", Resource.Productivity);
@@ -236,14 +236,14 @@ namespace FomMonitoringBLL.ViewServices
 
         private ChartViewModel GetShiftsOptions(MachineInfoModel machine, PeriodModel period)
         {
-            ChartViewModel options = new ChartViewModel();
+            var options = new ChartViewModel();
 
-            List<HistoryPieceModel> data = _pieceService.GetAggregationPieces(machine, period, enDataType.Shifts);
+            var data = _pieceService.GetAggregationPieces(machine, period, enDataType.Shifts);
 
             if (data.Count == 0)
                 return null;
 
-            List<int> shifts = data.Select(s => (int)s.Shift).Distinct().ToList();
+            var shifts = data.Select(s => (int)s.Shift).Distinct().ToList();
             options.categories = shifts.Select(s => string.Format("{0}° {1}", s.ToString(), Resource.Shift)).ToList();
             options.yTitle = string.Format("{0} (%)", Resource.Efficiency);
             options.yTitle2 = string.Format("{0} (pz/h)", Resource.Productivity);
@@ -255,23 +255,23 @@ namespace FomMonitoringBLL.ViewServices
 
         private List<SerieViewModel> GetSeriesChart(List<HistoryPieceModel> data)
         {
-            List<SerieViewModel> series = new List<SerieViewModel>();
+            var series = new List<SerieViewModel>();
 
-            SerieViewModel serieEfficiency = new SerieViewModel();
+            var serieEfficiency = new SerieViewModel();
             serieEfficiency.type = (int)enSerieProd.Efficiency;
             serieEfficiency.name = enSerieProd.Efficiency.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieEfficiency.color = CommonViewService.GetColorChart(enSerieProd.Efficiency);
             serieEfficiency.data = data.Select(s => Common.GetPercentage(s.ElapsedTimeProducing, s.ElapsedTime).RoundToInt()).ToList();
             series.Add(serieEfficiency);
 
-            SerieViewModel serieGrossTime = new SerieViewModel();
+            var serieGrossTime = new SerieViewModel();
             serieGrossTime.type = (int)enSerieProd.GrossTime;
             serieGrossTime.name = enSerieProd.GrossTime.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieGrossTime.color = CommonViewService.GetColorChart(enSerieProd.GrossTime);
             serieGrossTime.data = data.Select(s => Common.GetRatioProductivity(s.CompletedCount, s.ElapsedTime) ?? 0).ToList();
             series.Add(serieGrossTime);
 
-            SerieViewModel serieNetTime = new SerieViewModel();
+            var serieNetTime = new SerieViewModel();
             serieNetTime.type = (int)enSerieProd.NetTime;
             serieNetTime.name = enSerieProd.NetTime.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieNetTime.color = CommonViewService.GetColorChart(enSerieProd.NetTime);
