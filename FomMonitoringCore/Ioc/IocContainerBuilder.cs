@@ -59,7 +59,7 @@ namespace FomMonitoringCore.Ioc
             instancesFoRequest.Add(builder.RegisterType<FST_FomMonitoringEntities>().As<IFomMonitoringEntities>());
             instancesFoRequest.Add(builder.RegisterType<JsonToSQLiteService>().As<IJsonToSQLiteService>());
             instancesFoRequest.Add(builder.RegisterType<FST_FomMonitoringSQLiteEntities>().As<IFomMonitoringSQLiteEntities>());
-            instancesFoRequest.Add(builder.RegisterType<JsonVariantsToSQLServerService>().As<IJsonVariantsToSQLServerService>());
+            instancesFoRequest.Add(builder.RegisterType<JsonVariantsToSqlServerService>().As<IJsonVariantsToSQLServerService>());
             instancesFoRequest.Add(builder.RegisterType<BarService>().As<IBarService>());
             instancesFoRequest.Add(builder.RegisterType<MesService>().As<IMesService>());
             instancesFoRequest.Add(builder.RegisterType<PlantManagerService>().As<IPlantManagerService>());
