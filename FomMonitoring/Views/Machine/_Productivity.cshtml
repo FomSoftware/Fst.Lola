@@ -34,10 +34,6 @@
                         <i class="fa fa-user"></i>
                         <span>@Resource.Operators</span>
                     </div>
-                    <div class="dd-item js-flip slide-turni" data-group="productivity" v-show="show.shifts">
-                        <i class="fa fa-sun-o"></i>
-                        <span>@Resource.Shifts</span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -199,10 +195,6 @@
                         <div class="swiper-slide">
                             <div id="prd_operators_chart"></div>
                             <no-data v-if="!show.operators"></no-data>
-                        </div>
-                        <div class="swiper-slide">
-                            <div id="prd_shifts_chart"></div>
-                            <no-data v-if="!show.shifts"></no-data>
                         </div>
                     </div>
                 </div>
