@@ -117,13 +117,13 @@
 
     @if (Model.MachinePanels.Contains((int)enPanel.Electrospindle))
     {
-        <div class="col-lg-4 col-md-12 col-sm-12 card-wrap-2">
+        <div class="col-lg-4 col-md-6 col-sm-12 card-wrap-2">
             @Html.Partial("./ElectroSpindle/_ElectroSpindle", Model.PanelParameter)
         </div>
     }
     @if (Model.MachinePanels.Contains((int)enPanel.OtherMachineData))
     {
-        <div class="col-lg-4 col-md-12 col-sm-12 card-wrap-2">
+        <div class="col-lg-4 col-md-6 col-sm-12 card-wrap-2">
             @Html.Partial("./ElectroSpindle/_OtherMachineData", Model.PanelParameter)
         </div>
     }

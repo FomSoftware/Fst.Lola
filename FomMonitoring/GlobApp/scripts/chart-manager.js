@@ -391,6 +391,10 @@
             Highcharts.chart(chartID, config);
         else
             chart.update(config);
+
+        setInterval(function () {
+            $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
+        }, 100);
     }
 
     var dualAxesBarChart = function (chartID, options)
@@ -471,6 +475,10 @@
             Highcharts.chart(chartID, config);
         else
             chart.update(config);
+
+        setInterval(function () {
+            $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
+        }, 100);
     }
 
     var stateMachinePieChart = function (chartID, options) {

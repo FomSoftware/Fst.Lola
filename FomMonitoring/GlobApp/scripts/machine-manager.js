@@ -18,7 +18,7 @@
         });
 
         
-    }
+    };
 
     var callAjaxMachineViewModelData = function (filters)
     {
@@ -77,7 +77,7 @@
             console.debug(errorThrown);
             location.reload();
         });
-    }
+    };
 
     var initProgressBar = function ()
     {
@@ -87,7 +87,7 @@
 
         $('.overfeed .overfeed-bar').css("height",
             function () { return $(this).attr("aria-valuenow") + "%"; });
-    }
+    };
 
     var initScrollBar = function ()
     {
@@ -114,9 +114,9 @@
                 allowPageScroll: true
             });
         });
-    }
+    };
 
-   
+
     var initFlipCard = function ()
     {
         $(".card").flip({
@@ -124,7 +124,7 @@
             reverse: true,
             trigger: "click"
         });
-    }
+    };
 
     var initFlipAndSwipMenu = function ()
     {
@@ -138,9 +138,11 @@
         {
             $(this).parent().find('.active').removeClass('active');
             $(this).addClass('active');
-
+            
             var card_class = '.card-' + $(this).data('group');
+            $(card_class + " .front").children().hide();
             $(card_class).flip(true);
+            $(card_class + " .back").children().show();
         });
 
         $(".js-unflip").click(function (e)
@@ -149,7 +151,11 @@
             $(this).addClass('active');
 
             var card_class = '.card-' + $(this).data('group');
+
+
+            $(card_class + " .back").children().hide();
             $(card_class).flip(false);
+            $(card_class + " .front").children().show();
         });
 
         var swiper_efficiency = new Swiper('.swiper-container.efficiency', {
@@ -160,17 +166,17 @@
         var swiper_productivity = new Swiper('.swiper-container.productivity', {
             direction: 'horizontal',
             loop: false
-        })
+        });
 
         var swiper_alarm = new Swiper('.swiper-container.alarms', {
             direction: 'horizontal',
             loop: false
-        })
+        });
 
         var swiper_message = new Swiper('.swiper-container.messages', {
             direction: 'horizontal',
             loop: false
-        })
+        });
 
         $('.slide-summary').click(function (e) {
             e.preventDefault();
@@ -225,7 +231,7 @@
                 swiper_productivity.slideTo(2, 300);
         });
 
-    }
+    };
 
     var initVueComponents = function ()
     {
@@ -243,7 +249,7 @@
             props: ['spindle'],
             template: '#modal-spindle'
         });
-    }
+    };
 
     var getColorKPI = function (color_name)
     {
@@ -265,13 +271,13 @@
         }
 
         return color;
-    }
+    };
 
     return {
         init: init,
         callAjaxMachineViewModelData: callAjaxMachineViewModelData,
         initVueComponents: initVueComponents,
         getColorKPI: getColorKPI
-    }
+    };
 
 }();

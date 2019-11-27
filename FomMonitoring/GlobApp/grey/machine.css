@@ -1407,3 +1407,7 @@ td.td-tools-light {
 td.td-electrospindle-data {
     width: 33.33%;
 }
+
+.front, .back {
+    background-color: #cbcaca;
+}
