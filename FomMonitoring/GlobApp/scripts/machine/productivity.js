@@ -94,8 +94,7 @@
                 time: data.time,
                 show: {
                     historical: false,
-                    operators: false,
-                    shifts: false
+                    operators: false
                 }
             },
             filters: {
@@ -115,7 +114,7 @@
                 },
                 showDetails: function()
                 {
-                    if (this.show.historical || this.show.operators || this.show.shifts)
+                    if (this.show.historical || this.show.operators)
                         return true;
                     else
                         return false;

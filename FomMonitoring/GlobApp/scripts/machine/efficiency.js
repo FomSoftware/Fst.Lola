@@ -26,10 +26,6 @@
                 ChartManager.stackedBarChart('efc_operators_chart', data.opt_operators);
         }
 
-        if (data.opt_shifts != null && data.opt_shifts.series.length > 0) {
-                vmEfficiency.show.shifts = true;
-                ChartManager.stackedBarChart('efc_shifts_chart', data.opt_shifts);
-        }
 
     }
 
@@ -46,8 +42,7 @@
                 states: data.vm_efficiency.states,
                 show: {
                     historical: false,
-                    operators: false,
-                    shifts: false
+                    operators: false
                 }
             },
             filters: {
@@ -90,7 +85,7 @@
                 },
                 showDetails: function()
                 {
-                    if (this.show.historical || this.show.operators || this.show.shifts)
+                    if (this.show.historical || this.show.operators)
                         return true;
                     else
                         return false;
@@ -170,17 +165,7 @@
             ChartManager.destroyChart('efc_operators_chart');
         }
 
-        // chart shifts
-        if (data.opt_shifts != null) {
-            vmEfficiency.show.shifts = true;
-            ChartManager.stackedBarChart('efc_shifts_chart', data.opt_shifts);
-        }
-        else {
-            vmEfficiency.show.shifts = false;
-            ChartManager.destroyChart('efc_shifts_chart');
-        }
 
-        
     }
 
     return {

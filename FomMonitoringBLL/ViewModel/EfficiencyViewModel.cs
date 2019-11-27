@@ -15,8 +15,6 @@ namespace FomMonitoringBLL.ViewModel
 
         public ChartViewModel opt_operators { get; set; }
 
-        public ChartViewModel opt_shifts { get; set; }
-
         public ChartViewModel opt_states { get; set; }
 
         public MachineInfoViewModel vm_machine_info { get; set; }
