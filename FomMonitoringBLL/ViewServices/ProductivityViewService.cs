@@ -38,8 +38,6 @@ namespace FomMonitoringBLL.ViewServices
             result.vm_productivity = GetVueModel(context.ActualMachine, context.ActualPeriod);
             result.opt_historical = GetHistoricalOptions(context.ActualMachine, context.ActualPeriod);
             result.opt_operators = GetOperatorsOptions(context.ActualMachine, context.ActualPeriod);
-            result.opt_shifts = GetShiftsOptions(context.ActualMachine, context.ActualPeriod);
-
             return result;
         }
 
@@ -233,7 +231,7 @@ namespace FomMonitoringBLL.ViewServices
             return options;
         }
 
-
+        //obsoleto: card eliminata
         private ChartViewModel GetShiftsOptions(MachineInfoModel machine, PeriodModel period)
         {
             var options = new ChartViewModel();

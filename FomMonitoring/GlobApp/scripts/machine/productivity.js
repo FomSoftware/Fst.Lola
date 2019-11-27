@@ -78,11 +78,6 @@
             ChartManager.dualAxesBarChart('prd_operators_chart', data.opt_operators);
         }
 
-        if (data.opt_shifts != null)
-        {
-            vmProductivity.show.shifts = true;
-            ChartManager.dualAxesBarChart('prd_shifts_chart', data.opt_shifts);
-        }
     }
 
     var initVueModel = function (data, infoMachine)
@@ -99,8 +94,7 @@
                 time: data.time,
                 show: {
                     historical: false,
-                    operators: false,
-                    shifts: false
+                    operators: false
                 }
             },
             filters: {
@@ -120,7 +114,7 @@
                 },
                 showDetails: function()
                 {
-                    if (this.show.historical || this.show.operators || this.show.shifts)
+                    if (this.show.historical || this.show.operators)
                         return true;
                     else
                         return false;
@@ -203,17 +197,6 @@
             ChartManager.destroyChart('prd_operators_chart');
         }
 
-        // chart shifts
-        if (data.opt_shifts != null)
-        {
-            vmProductivity.show.shifts = true;
-            ChartManager.dualAxesBarChart('prd_shifts_chart', data.opt_shifts);
-        }
-        else
-        {
-            vmProductivity.show.shifts = false;
-            ChartManager.destroyChart('prd_shifts_chart');
-        }
     }
 
     return {

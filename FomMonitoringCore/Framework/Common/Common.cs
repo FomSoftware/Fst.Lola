@@ -93,8 +93,8 @@ namespace FomMonitoringCore.Framework.Common
                 {
                     double TotalHours = new TimeSpan(time.Value).TotalHours;
 
-                    if (TotalHours < 1)
-                        TotalHours = 1;
+                    /*if (TotalHours < 1)
+                        TotalHours = 1;*/
 
                     result = ((decimal)(pieces.Value / TotalHours)).RoundToInt();
                 }

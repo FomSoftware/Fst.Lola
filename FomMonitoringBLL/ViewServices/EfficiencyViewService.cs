@@ -34,7 +34,6 @@ namespace FomMonitoringBLL.ViewServices
             result.opt_historical = GetHistoricalOptions(context.ActualMachine, context.ActualPeriod);
             result.opt_kpis = GetKpisOptions(context.ActualMachine, context.ActualPeriod);
             result.opt_operators = GetOperatorsOptions(context.ActualMachine, context.ActualPeriod);
-            result.opt_shifts = GetShiftsOptions(context.ActualMachine, context.ActualPeriod);
             result.opt_states = GetStatesOptions(context.ActualMachine, context.ActualPeriod);
 
             return result;
@@ -250,6 +249,7 @@ namespace FomMonitoringBLL.ViewServices
             return options;
         }
 
+        //obsoleto rimosso dalla card
         private ChartViewModel GetShiftsOptions(MachineInfoModel machine, PeriodModel period)
         {
             var options = new ChartViewModel();
@@ -366,9 +366,6 @@ namespace FomMonitoringBLL.ViewServices
                 {
                     case enDataType.Operators:
                         dataCategorie = data.Where(w => w.Operator == categorie).ToList();
-                        break;
-                    case enDataType.Shifts:
-                        dataCategorie = data.Where(w => w.Shift.ToString() == categorie).ToList();
                         break;
                 }
 
