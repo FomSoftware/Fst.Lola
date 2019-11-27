@@ -134,7 +134,7 @@ namespace FomMonitoringCore.Service.DataMapping
                 var messageMachine = messageSqLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<MessageMachine>>();
                 messageMachine = messageMachine.Where(w => w.StartTime > (machineActual.LastUpdate ?? new DateTime())).ToList();
 
-                //devo eliminare quei messaggi che hanno scope = 0 da mdb
+                //devo eliminare quei messaggi che hanno isLolaVisible = 0 da mdb
                 foreach(var mm in messageMachine.ToList())
                 {
                     var cat = _fomMonitoringEntities.Set<MachineModel>().Find(machineActual.MachineModelId)?.MessageCategoryId;
@@ -142,7 +142,9 @@ namespace FomMonitoringCore.Service.DataMapping
                     if (msg != null && msg.IsPeriodicM)
                         mm.IsPeriodicMsg = true;
                     ReadMessages.ReadMessageVisibilityGroup(mm, msg);
-                }                                      
+                }
+                //IS-754 escludere tutti quelli che hanno isLolaVisible = false 
+                messageMachine = messageMachine.Where(f => f.IsVisible == true).ToList<MessageMachine>();
 
                 _fomMonitoringEntities.Set<MessageMachine>().AddRange(messageMachine);
                 _fomMonitoringEntities.SaveChanges();
