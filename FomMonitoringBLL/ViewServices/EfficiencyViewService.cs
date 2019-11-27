@@ -201,6 +201,29 @@ namespace FomMonitoringBLL.ViewServices
             return options;
         }
 
+        private long CalculateEfficiencyOperator(string operatorName, IList<HistoryStateModel> states, MachineInfoModel machine)
+        {
+            long efficiency;
+            var totalTime = states.Where(w => w.Operator == operatorName).Sum(w => w.ElapsedTime ?? 0);
+
+            if (totalTime == 0)
+            {
+                return 0;
+            }
+
+
+            if (machine.MachineTypeId == 4)
+            {
+                efficiency = states
+                    .Where(w => (w.enState == enState.Manual || w.enState == enState.Production) &&
+                                w.Operator == operatorName).Sum(w => w.ElapsedTime ?? 0);
+                return (efficiency * 100) / totalTime;
+            }
+            efficiency = states
+                .Where(w => w.enState == enState.Production &&
+                            w.Operator == operatorName).Sum(w => w.ElapsedTime ?? 0);
+            return (efficiency * 100) / totalTime;
+        }
 
         private ChartViewModel GetOperatorsOptions(MachineInfoModel machine, PeriodModel period)
         {
@@ -211,7 +234,13 @@ namespace FomMonitoringBLL.ViewServices
             if (data.Count == 0)
                 return null;
 
-            var operators = data.Select(s => s.Operator).Distinct().ToList();
+            var operators = data
+                .Select(s => new {s.Operator, Efficiency = CalculateEfficiencyOperator(s.Operator, data, machine)})
+                .OrderByDescending(p => p.Efficiency)
+                .Select(x => x.Operator)
+                .Distinct()
+                .ToList();
+
             options.categories = operators;
             options.yTitle = $"{Resource.TimeOn} (%)";
             options.series = GetSeriesStackedBarChart(data, operators, enDataType.Operators);
