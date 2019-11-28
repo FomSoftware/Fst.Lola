@@ -231,10 +231,8 @@ namespace FomMonitoringBLL.ViewServices
                 return null;
 
             //ordinamento in base all'efficienza
-            if (machine.MachineTypeId == (int?) enMachineType.Troncatrice)
-            {
-                states = states.OrderByDescending(s => Common.GetRatioProductivity(s.CompletedCount, s.ProducingTime)).ToList();
-            }
+            states = states.OrderByDescending(s => Common.GetRatioProductivity(s.CompletedCount, s.ProducingTime)).ToList();
+            
 
             var operators = states.Select(s => s.Operator).ToList();
             options.categories = operators;
