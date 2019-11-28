@@ -180,19 +180,6 @@ namespace FomMonitoringCore.DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AggregationJob_Result>("usp_AggregationJob", machineIdParameter, startDateParameter, endDateParameter, aggregationParameter);
         }
     
-        public virtual ObjectResult<usp_MesUserMachines_Result> usp_MesUserMachines(Nullable<int> plantId, Nullable<System.DateTime> date)
-        {
-            var plantIdParameter = plantId.HasValue ?
-                new ObjectParameter("plantId", plantId) :
-                new ObjectParameter("plantId", typeof(int));
-    
-            var dateParameter = date.HasValue ?
-                new ObjectParameter("date", date) :
-                new ObjectParameter("date", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_MesUserMachines_Result>("usp_MesUserMachines", plantIdParameter, dateParameter);
-        }
-    
         public virtual ObjectResult<Nullable<int>> usp_CleanMachineData(Nullable<int> machineId)
         {
             var machineIdParameter = machineId.HasValue ?

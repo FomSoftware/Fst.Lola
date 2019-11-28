@@ -1,4 +1,5 @@
-﻿@model FomMonitoringBLL.ViewModel.MesViewModel
+﻿@using FomMonitoringResources
+@model FomMonitoringBLL.ViewModel.MesViewModel
 
 @{
     ViewBag.AppTitle = "Machine Monitoring";
@@ -178,8 +179,11 @@
                             <div class="col-xs-9 padding-left-5">
                                 <div class="item-label clearfix" v-if="machine.errors != null">
                                     <div class="pull-left">
+                                        @Resource.AlarmsNumber
+                                    </div> 
+                                    <div class="pull-right text-right">
                                         <div>{{ machine.errors.quantity }}</div>
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </div>
                         </div>

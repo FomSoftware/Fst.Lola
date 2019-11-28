@@ -993,10 +993,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
         <Function Name="usp_CleanMachineData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="machineId" Type="int" Mode="In" />
         </Function>
-        <Function Name="usp_MesUserMachines" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="plantId" Type="int" Mode="In" />
-          <Parameter Name="date" Type="datetime" Mode="In" />
-        </Function>
         <EntityContainer Name="FST_FomMonitoringModelStoreContainer">
           <EntitySet Name="JsonData" EntityType="Self.JsonData" Schema="api" store:Type="Tables" />
           <EntitySet Name="AlarmMachine" EntityType="Self.AlarmMachine" Schema="dbo" store:Type="Tables" />
@@ -1340,10 +1336,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
             <Parameter Name="aggregation" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="usp_MesUserMachines" ReturnType="Collection(FST_FomMonitoringModel.usp_MesUserMachines_Result)">
-            <Parameter Name="plantId" Mode="In" Type="Int32" />
-            <Parameter Name="date" Mode="In" Type="DateTime" />
           </FunctionImport>
           <AssociationSet Name="FK_Bar_Machine" Association="FST_FomMonitoringModel.FK_Bar_Machine">
             <End Role="Machine" EntitySet="Machine" />
@@ -2066,24 +2058,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Type="Int32" Name="PiecesProducedDay" Nullable="true" />
           <Property Type="Int32" Name="TotalPieces" Nullable="true" />
           <Property Type="String" Name="TypeHistory" Nullable="true" MaxLength="1" />
-        </ComplexType>
-        <ComplexType Name="usp_MesUserMachines_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="Int32" Name="MachineId" Nullable="false" />
-          <Property Type="Double" Name="StateEfficiency" Nullable="true" />
-          <Property Type="Double" Name="StateOverfeedAvg" Nullable="true" />
-          <Property Type="Int32" Name="PieceCompletedCount" Nullable="true" />
-          <Property Type="Int64" Name="PieceElapsedTime" Nullable="true" />
-          <Property Type="Int64" Name="PieceElapsedTimeProducing" Nullable="true" />
-          <Property Type="Int32" Name="PieceRedoneCount" Nullable="true" />
-          <Property Type="Int32" Name="AlarmCount" Nullable="true" />
-          <Property Type="Int64" Name="AlarmElapsedTime" Nullable="true" />
-          <Property Type="Int32" Name="ActualStateId" Nullable="true" />
-          <Property Type="String" Name="ActualStateCode" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="ActualJobCode" Nullable="true" MaxLength="100" />
-          <Property Type="Double" Name="ActualJobPerc" Nullable="true" />
-          <Property Type="String" Name="ActualOperator" Nullable="true" MaxLength="100" />
-          <Property Type="DateTime" Name="ExpirationDate" Nullable="true" Precision="23" />
         </ComplexType>
         <Association Name="FK_Bar_Machine">
           <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
@@ -2958,28 +2932,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
                 <ScalarProperty Name="PiecesProducedDay" ColumnName="PiecesProducedDay" />
                 <ScalarProperty Name="TotalPieces" ColumnName="TotalPieces" />
                 <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_MesUserMachines" FunctionName="FST_FomMonitoringModel.Store.usp_MesUserMachines">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FST_FomMonitoringModel.usp_MesUserMachines_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
-                <ScalarProperty Name="StateEfficiency" ColumnName="StateEfficiency" />
-                <ScalarProperty Name="StateOverfeedAvg" ColumnName="StateOverfeedAvg" />
-                <ScalarProperty Name="PieceCompletedCount" ColumnName="PieceCompletedCount" />
-                <ScalarProperty Name="PieceElapsedTime" ColumnName="PieceElapsedTime" />
-                <ScalarProperty Name="PieceElapsedTimeProducing" ColumnName="PieceElapsedTimeProducing" />
-                <ScalarProperty Name="PieceRedoneCount" ColumnName="PieceRedoneCount" />
-                <ScalarProperty Name="AlarmCount" ColumnName="AlarmCount" />
-                <ScalarProperty Name="AlarmElapsedTime" ColumnName="AlarmElapsedTime" />
-                <ScalarProperty Name="ActualStateId" ColumnName="ActualStateId" />
-                <ScalarProperty Name="ActualStateCode" ColumnName="ActualStateCode" />
-                <ScalarProperty Name="ActualJobCode" ColumnName="ActualJobCode" />
-                <ScalarProperty Name="ActualJobPerc" ColumnName="ActualJobPerc" />
-                <ScalarProperty Name="ActualOperator" ColumnName="ActualOperator" />
-                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -162,23 +162,100 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
+        
 
         public List<MesUserMachinesModel> GetPlantData(PlantModel plant)
         {
-            List<MesUserMachinesModel> result = new List<MesUserMachinesModel>();
+            var result = new List<MesUserMachinesModel>();
 
             try
-            {               
-                List<usp_MesUserMachines_Result> query = _context.usp_MesUserMachines(plant.Id, DateTime.UtcNow.Date).ToList();
-                result = query.Adapt<List<MesUserMachinesModel>>();                
+            {
+
+                var date = DateTime.UtcNow.Date;
+                var machines = _context.Set<Machine>().Where(n => n.PlantId == plant.Id && (n.ExpirationDate == null || n.ExpirationDate > date)).ToList();
+
+                var dtos = machines.Select(CreateMesMachineDto).ToList();
+
+
+                //List<usp_MesUserMachines_Result> query = _context.usp_MesUserMachines(plant.Id, DateTime.UtcNow.Date).ToList();
+                result = dtos.Adapt<List<MesUserMachinesModel>>().OrderBy(n => n.Id).ToList();                
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format("{0} (PlantID = '{1}')", ex.GetStringLog(), plant != null ? plant.Id : 0);
+                var errMessage = $"{ex.GetStringLog()} (PlantID = '{plant?.Id ?? 0}')";
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
             return result;
+        }
+
+        private MachineMesDataModel CreateMesMachineDto(Machine machine)
+        {
+            var date = DateTime.UtcNow.Date;
+            var currentState = machine.CurrentState.FirstOrDefault(cs => cs.LastUpdated.HasValue && cs.LastUpdated.Value.Date == date);
+            var historyMessage = machine.HistoryMessage.Where(cs => cs.Day.HasValue && cs.Day.Value.Date == date && cs.Type == 11).ToList();
+            var historyPiece = machine.HistoryPiece.Where(cs => cs.Day.HasValue && cs.Day.Value.Date == date && cs.Shift == null && cs.Operator == null).ToList();
+            var historyEfficiency = machine.HistoryState.Where(cs => cs.Day.HasValue && cs.Day.Value.Date == date && cs.Shift == null && cs.Operator == null).ToList();
+
+
+            var m = new MachineMesDataModel();
+            m.Id = machine.Id;
+            m.MachineId = machine.Id;
+            m.ExpirationDate = machine.ExpirationDate;
+            if (currentState != null)
+            {
+                m.ActualJobCode = currentState.JobCode;
+                m.ActualJobPerc = currentState.JobTotalPieces > 0 ? currentState.JobProducedPieces * 100 / currentState.JobTotalPieces : 0;
+                m.ActualOperator = currentState.Operator;
+                m.ActualStateCode = currentState.StateId == 3 ? currentState.StateTransitionCode : string.Empty;
+                m.ActualStateId = currentState.StateId;
+            }
+
+            if (historyMessage.Any())
+            {
+                m.AlarmCount = historyMessage.Sum(hm => hm.Count ?? 0);
+                m.AlarmElapsedTime = historyMessage.Sum(hm => hm.ElapsedTime ?? 0);
+            }
+
+            if (historyEfficiency.Any())
+            {
+                if (machine.MachineTypeId == 4)
+                {
+                    var efficiencyValue = historyEfficiency.Where(he => he.StateId == 1 || he.StateId == 4)
+                        .Sum(he => he.ElapsedTime);
+
+                    var totalElapsed = historyEfficiency.Where(he => he.StateId > 0)
+                        .Sum(he => he.ElapsedTime);
+
+                    m.StateEfficiency = totalElapsed > 0 ? efficiencyValue * 100 / totalElapsed : 0;
+                }
+                else
+                {
+                    var efficiencyValue = historyEfficiency.Where(he => he.StateId == 1)
+                        .Sum(he => he.ElapsedTime);
+
+                    var totalElapsed = historyEfficiency.Where(he => he.StateId > 0)
+                        .Sum(he => he.ElapsedTime);
+
+                    m.StateEfficiency = totalElapsed > 0 ? efficiencyValue * 100 / totalElapsed : 0;
+
+                }
+
+                m.StateOverfeedAvg = historyEfficiency.Max(n => n.OverfeedAvg);
+            }
+
+            if (historyPiece.Any())
+            {
+                m.PieceCompletedCount = historyPiece.Sum(hm => hm.CompletedCount ?? 0);
+                m.PieceElapsedTime = historyPiece.Sum(hm => hm.ElapsedTime ?? 0);
+                m.PieceElapsedTimeProducing = historyPiece.Sum(hm => hm.ElapsedTimeProducing ?? 0);
+            }
+
+
+
+
+
+            return m;
         }
 
         public List<PlantModel> GetAllPlantsMachines()

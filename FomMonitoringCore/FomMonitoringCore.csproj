@@ -289,9 +289,6 @@
     <Compile Include="DAL\usp_AggregationState_Result.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL\usp_MesUserMachines_Result.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DAL_SQLite\bar.cs">
       <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
     </Compile>
@@ -377,6 +374,7 @@
     <Compile Include="Framework\Model\LanguagesModel.cs" />
     <Compile Include="Framework\Model\LoginModel.cs" />
     <Compile Include="Framework\Model\MachineInfoModel.cs" />
+    <Compile Include="Framework\Model\MachineMesDataModel.cs" />
     <Compile Include="Framework\Model\MachineModelModel.cs" />
     <Compile Include="Framework\Model\MachineTypeModel.cs" />
     <Compile Include="Framework\Model\MessageModel.cs" />

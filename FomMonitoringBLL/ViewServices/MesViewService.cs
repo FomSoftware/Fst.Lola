@@ -112,8 +112,7 @@ namespace FomMonitoringBLL.ViewServices
                     mes.errors = new ErrorViewModel();
                     mes.errors.quantity = data.AlarmCount;
                 }
-
-                    result.Add(mes);
+                result.Add(mes);
             }
 
             return result;

@@ -52,14 +52,14 @@ namespace FomMonitoringBLL.ViewServices
             var stateProd = data.FirstOrDefault(w => w.enState == enState.Production);
 
             var totalProd = stateProd?.ElapsedTime;
+
+
+
             var totalOn = data.Where(w => w.enState != enState.Off).Select(s => s.ElapsedTime).Sum();
             //long? totalOff = data.Where(w => w.enState == enState.Off).Select(s => s.ElapsedTime).Sum();
 
             decimal? percProd = Common.GetPercentage(totalProd, totalOn);
-            var overfeed = stateProd?.OverfeedAvg;
 
-            result.kpi = CommonViewService.getKpiViewModel(percProd, machine.StateProductivityGreenThreshold, machine.StateProductivityYellowThreshold);
-            result.overfeed = CommonViewService.getKpiViewModel(overfeed, machine.OverfeedGreenThreshold, machine.OverfeedYellowThreshold);
 
             var total = new TotalTimeModel();
             total.on = CommonViewService.getTimeViewModel(totalOn);
@@ -111,7 +111,7 @@ namespace FomMonitoringBLL.ViewServices
             error.code = enState.Error.GetDescription();
             error.text = enState.Error.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
 
-            var stateError = data.Where(w => w.enState == enState.Error).FirstOrDefault();
+            var stateError = data.FirstOrDefault(w => w.enState == enState.Error);
 
             if (stateError != null)
             {
@@ -122,6 +122,23 @@ namespace FomMonitoringBLL.ViewServices
             states.Add(error);
 
             result.states = states.OrderByDescending(o => o.perc).ToList();
+
+
+            var overfeed = stateProd?.OverfeedAvg;
+
+            decimal percKpi;
+            if (machine.MachineTypeId == 4)
+            {
+                percKpi = (percProd ?? 0) + (manual.perc ?? 0);
+            }
+            else
+            {
+                percKpi = (percProd ?? 0);
+            }
+
+            result.kpi = CommonViewService.getKpiViewModel(percKpi, machine.StateProductivityGreenThreshold, machine.StateProductivityYellowThreshold);
+            result.overfeed = CommonViewService.getKpiViewModel(overfeed, machine.OverfeedGreenThreshold, machine.OverfeedYellowThreshold);
+
 
             return result;
         }
@@ -147,8 +164,8 @@ namespace FomMonitoringBLL.ViewServices
             // calcolo dell'unità di misura delle serie del grafico sul valore medio 
             var avgData = (long)data.Average(a => a.ElapsedTime ?? 0);
             var measurement = Common.GetTimeMeasurement(avgData);
-            options.yTitle = string.Format("{0} ({1})", Resource.Duration, measurement.GetDescription());
-            options.valueSuffix = string.Format(" {0}", measurement.GetDescription());
+            options.yTitle = $"{Resource.Duration} ({measurement.GetDescription()})";
+            options.valueSuffix = $" {measurement.GetDescription()}";
 
             var days = data.Where(w => w.Day != null).Select(s => s.Day.Value).Distinct().ToList();
             options.categories = CommonViewService.GetTimeCategories(days, granularity);
@@ -184,6 +201,29 @@ namespace FomMonitoringBLL.ViewServices
             return options;
         }
 
+        private long CalculateEfficiencyOperator(string operatorName, IList<HistoryStateModel> states, MachineInfoModel machine)
+        {
+            long efficiency;
+            var totalTime = states.Where(w => w.Operator == operatorName).Sum(w => w.ElapsedTime ?? 0);
+
+            if (totalTime == 0)
+            {
+                return 0;
+            }
+
+
+            if (machine.MachineTypeId == 4)
+            {
+                efficiency = states
+                    .Where(w => (w.enState == enState.Manual || w.enState == enState.Production) &&
+                                w.Operator == operatorName).Sum(w => w.ElapsedTime ?? 0);
+                return (efficiency * 100) / totalTime;
+            }
+            efficiency = states
+                .Where(w => w.enState == enState.Production &&
+                            w.Operator == operatorName).Sum(w => w.ElapsedTime ?? 0);
+            return (efficiency * 100) / totalTime;
+        }
 
         private ChartViewModel GetOperatorsOptions(MachineInfoModel machine, PeriodModel period)
         {
@@ -194,9 +234,15 @@ namespace FomMonitoringBLL.ViewServices
             if (data.Count == 0)
                 return null;
 
-            var operators = data.Select(s => s.Operator).Distinct().ToList();
+            var operators = data
+                .Select(s => new {s.Operator, Efficiency = CalculateEfficiencyOperator(s.Operator, data, machine)})
+                .OrderByDescending(p => p.Efficiency)
+                .Select(x => x.Operator)
+                .Distinct()
+                .ToList();
+
             options.categories = operators;
-            options.yTitle = string.Format("{0} (%)", Resource.TimeOn);
+            options.yTitle = $"{Resource.TimeOn} (%)";
             options.series = GetSeriesStackedBarChart(data, operators, enDataType.Operators);
 
             return options;
@@ -208,13 +254,18 @@ namespace FomMonitoringBLL.ViewServices
             var data = _stateService.GetAggregationStates(machine, period, enDataType.Dashboard);
 
 
-            var stateProd = data.Where(w => w.enState == enState.Production).FirstOrDefault();
+            var stateProd = data.FirstOrDefault(w => w.enState == enState.Production);
 
-            var totalProd = stateProd?.ElapsedTime;
+            var stateManual = data.FirstOrDefault(w => w.enState == enState.Manual);
+
+            
+            
+
+            var totalValue = machine.MachineTypeId == 4 ? stateProd?.ElapsedTime + stateManual?.ElapsedTime : stateProd?.ElapsedTime;
             var totalOn = data.Where(w => w.enState != enState.Off).Select(s => s.ElapsedTime).Sum();
             var totalOff = data.Where(w => w.enState == enState.Off).Select(s => s.ElapsedTime).Sum();
 
-            decimal? percProd = Common.GetPercentage(totalProd, totalOn);
+            decimal? percProd = Common.GetPercentage(totalValue, totalOn);
             var overfeed = stateProd?.OverfeedAvg;
 
             options.series = new List<SerieViewModel>(){
@@ -238,8 +289,8 @@ namespace FomMonitoringBLL.ViewServices
                 return null;
 
             var shifts = data.Select(s => s.Shift.ToString()).Distinct().ToList();
-            options.categories = shifts.Select(s => string.Format("{0}° {1}", s, Resource.Shift)).ToList();
-            options.yTitle = string.Format("{0} (%)", Resource.TimeOn);
+            options.categories = shifts.Select(s => $"{s}° {Resource.Shift}").ToList();
+            options.yTitle = $"{Resource.TimeOn} (%)";
             options.series = GetSeriesStackedBarChart(data, shifts, enDataType.Shifts);
 
             return options;

@@ -29,7 +29,6 @@ namespace FomMonitoringCore.DAL
         ObjectResult<usp_AggregationAlarm_Result> usp_AggregationAlarm(Nullable<int> machineId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<int> aggregation, Nullable<int> dataType);
         ObjectResult<usp_AggregationJob_Result> usp_AggregationJob(Nullable<int> machineId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<int> aggregation);
         int usp_HistoricizingAll(Nullable<int> machineId);
-        ObjectResult<usp_MesUserMachines_Result> usp_MesUserMachines(Nullable<int> plantId, Nullable<System.DateTime> date);
         ObjectResult<usp_AggregationMessage_Result> usp_AggregationMessage(Nullable<int> machineId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<int> aggregation, Nullable<int> dataType);
 
     }
