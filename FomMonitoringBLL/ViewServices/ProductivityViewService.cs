@@ -88,7 +88,7 @@ namespace FomMonitoringBLL.ViewServices
             {
                 var barLength = dataBars.Select(s => s.Length ?? 0).Sum().RoundToInt();
                 int cutoffLength = dataBars.Select(s => s.OffcutLength ?? 0).Sum();
-                var totalLength = barLength; //TODO --> + cutoffLength;
+                var totalLength = barLength + cutoffLength;
 
                 var material = new MaterialViewModel();
                 material.total = ((double)totalLength / 1000).RoundToInt();
