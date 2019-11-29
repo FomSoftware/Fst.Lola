@@ -166,14 +166,14 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        public List<OperatorStateMachineModel> GetOperatorsActivity(MachineInfoModel machine, DateTime dateFrom, DateTime dateTo)
+        public List<EfficiencyStateMachineModel> GetOperatorsActivity(MachineInfoModel machine, DateTime dateFrom, DateTime dateTo)
         {
             var tmp =  _context.Set<HistoryState>()
                  .Where(w => w.MachineId == machine.Id && w.Day >= dateFrom && w.Day <= dateTo && w.Operator != null)
                  .GroupBy(g => g.Operator).ToList();
 
-            List<OperatorStateMachineModel> totTime = tmp.Select(s => new OperatorStateMachineModel
-                 {
+            List<EfficiencyStateMachineModel> totTime = tmp.Select(s => new EfficiencyStateMachineModel
+            {
                      TotalTime = s.Sum(x => x.ElapsedTime),
                      Operator = s.Key,
                      machineType = machine.MachineTypeId
@@ -204,6 +204,36 @@ namespace FomMonitoringCore.Service
 
             return totTime;
 
+        }
+
+        public List<EfficiencyStateMachineModel> GetDayActivity(MachineInfoModel machine, List<DateTime> days)
+        {
+            List<EfficiencyStateMachineModel> res = new List<EfficiencyStateMachineModel>();
+            foreach (var day in days)
+            {
+                EfficiencyStateMachineModel result = new EfficiencyStateMachineModel();
+                DateTime dateTo = day.AddDays(1);
+                result.StatesTime = _context.Set<HistoryState>()
+                    .Where(w => w.MachineId == machine.Id && w.Day >= day && w.Day <= dateTo)
+                    .GroupBy(g => g.StateId).ToDictionary(s => s.Key, s => s.Sum(x => x.ElapsedTime));
+
+                result.TotalTime = 0;
+                if (result.StatesTime != null && result.StatesTime.Count > 0)
+                {
+                    result.TotalTime = result.StatesTime.Values.Sum();
+                }
+
+                result.machineType = machine.MachineTypeId;
+                result.Day = day;
+
+                //tot. pezzi prodotti
+                var tmp2 = _context.Set<HistoryPiece>()
+                    .Where(w => w.MachineId == machine.Id && w.Day >= day && w.Day <= dateTo).ToList();
+                result.CompletedCount = tmp2.Sum(x => x.CompletedCount);
+                res.Add(result);
+            }
+            
+            return res;
         }
 
         #endregion

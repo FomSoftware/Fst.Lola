@@ -37,16 +37,16 @@ namespace FomMonitoringBLL.ViewServices
                 machineName = context.ActualMachine.MachineName
 
             };
-            List<OperatorStateMachineModel> operatorActivities = _stateService.GetOperatorsActivity(context.ActualMachine, context.ActualPeriod.StartDate, context.ActualPeriod.EndDate);
+            List<EfficiencyStateMachineModel> operatorActivities = _stateService.GetOperatorsActivity(context.ActualMachine, context.ActualPeriod.StartDate, context.ActualPeriod.EndDate);
 
             result.vm_productivity = GetVueModel( operatorActivities, context.ActualMachine, context.ActualPeriod);
-            result.opt_historical = GetHistoricalOptions(context.ActualMachine, context.ActualPeriod);
+            result.opt_historical = GetHistoricalOptions( context.ActualMachine, context.ActualPeriod);
             result.opt_operators = GetOperatorsOptions(operatorActivities, context.ActualMachine, context.ActualPeriod);
             return result;
         }
 
 
-        private ProductivityVueModel GetVueModel(List<OperatorStateMachineModel> operatorActivities, MachineInfoModel machine, PeriodModel period)
+        private ProductivityVueModel GetVueModel(List<EfficiencyStateMachineModel> operatorActivities, MachineInfoModel machine, PeriodModel period)
         {
              var result = new ProductivityVueModel();
 
@@ -209,18 +209,20 @@ namespace FomMonitoringBLL.ViewServices
 
             if (data.Count == 0)
                 return null;
-
             var days = data.Select(s => s.Day).Distinct().ToList();
+
+            List<EfficiencyStateMachineModel> valori = _stateService.GetDayActivity(machine, days);
+            
             options.categories = CommonViewService.GetTimeCategories(days, granularity);
             options.yTitle = string.Format("{0} (%)", Resource.Efficiency);
             options.yTitle2 = string.Format("{0} (pz/h)", Resource.Productivity);
-            options.series = GetSeriesChart(data);
+            options.series = GetSeriesChartProd(valori);
 
             return options;
         }
 
 
-        private ChartViewModel GetOperatorsOptions(List<OperatorStateMachineModel> states, MachineInfoModel machine, PeriodModel period)
+        private ChartViewModel GetOperatorsOptions(List<EfficiencyStateMachineModel> states, MachineInfoModel machine, PeriodModel period)
         {
             var options = new ChartViewModel();
 
@@ -231,9 +233,8 @@ namespace FomMonitoringBLL.ViewServices
                 return null;
 
             //ordinamento in base all'efficienza
-            states = states.OrderByDescending(s => Common.GetRatioProductivity(s.CompletedCount, s.ProducingTime)).ToList();
+            states = states.OrderByDescending(s => Common.GetRatioProductivity(s.CompletedCount, s.TotalTime)).ToList();
             
-
             var operators = states.Select(s => s.Operator).ToList();
             options.categories = operators;
             options.yTitle = string.Format("{0} (%)", Resource.Efficiency);
@@ -262,7 +263,7 @@ namespace FomMonitoringBLL.ViewServices
             return options;
         }*/
 
-        private List<SerieViewModel> GetSeriesChartProd(List<OperatorStateMachineModel> data)
+        private List<SerieViewModel> GetSeriesChartProd(List<EfficiencyStateMachineModel> data)
         {
             var series = new List<SerieViewModel>();
           
@@ -290,7 +291,7 @@ namespace FomMonitoringBLL.ViewServices
             return series;
         }
 
-        private List<SerieViewModel> GetSeriesChart(List<HistoryPieceModel> data)
+        /*private List<SerieViewModel> GetSeriesChart(List<HistoryPieceModel> data)
         {
             var series = new List<SerieViewModel>();
 
@@ -316,7 +317,7 @@ namespace FomMonitoringBLL.ViewServices
             series.Add(serieNetTime);
 
             return series;
-        }
+        }*/
 
     }
 }
