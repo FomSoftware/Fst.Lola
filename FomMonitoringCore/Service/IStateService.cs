@@ -12,6 +12,7 @@ namespace FomMonitoringCore.Service
         List<HistoryStateModel> GetAllHistoryStatesByMachineId(int machineId, DateTime dateFrom, DateTime dateTo, enAggregation typePeriod);
         List<HistoryStateModel> GetHistoryStateByMachineIdStateId(int machineId, int stateId, DateTime dateFrom, DateTime dateTo, enAggregation typePeriod);
         DateTime? GetOldestDateByMachineIdTypePeriod(int machineId, enAggregation typePeriod);
-        List<OperatorStateMachineModel> GetOperatorsActivity(MachineInfoModel machineId, DateTime dateFrom, DateTime dateTo);
+        List<EfficiencyStateMachineModel> GetOperatorsActivity(MachineInfoModel machineId, DateTime dateFrom, DateTime dateTo);
+        List<EfficiencyStateMachineModel> GetDayActivity(MachineInfoModel machine, List<DateTime> days);
     }
 }

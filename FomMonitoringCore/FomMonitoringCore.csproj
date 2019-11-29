@@ -379,6 +379,7 @@
     <Compile Include="Framework\Model\MachineTypeModel.cs" />
     <Compile Include="Framework\Model\MessageModel.cs" />
     <Compile Include="Framework\Model\MessageMachineModel.cs" />
+    <Compile Include="Framework\Model\EfficiencyStateMachineModel.cs" />
     <Compile Include="Framework\Model\OperatorStateMachineModel.cs" />
     <Compile Include="Framework\Model\ParameterMachineModel.cs" />
     <Compile Include="Framework\Model\Xml\ParameterMachineModelXml.cs" />
