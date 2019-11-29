@@ -169,7 +169,8 @@ namespace FomMonitoringCore.Service
         public List<EfficiencyStateMachineModel> GetOperatorsActivity(MachineInfoModel machine, DateTime dateFrom, DateTime dateTo)
         {
             var tmp =  _context.Set<HistoryState>()
-                 .Where(w => w.MachineId == machine.Id && w.Day >= dateFrom && w.Day <= dateTo && w.Operator != null)
+                 .Where(w => w.MachineId == machine.Id && w.Day >= dateFrom && w.Day <= dateTo && w.Operator != null 
+                             && w.StateId != (int?)enState.Off && w.Shift == null)
                  .GroupBy(g => g.Operator).ToList();
 
             List<EfficiencyStateMachineModel> totTime = tmp.Select(s => new EfficiencyStateMachineModel
@@ -194,7 +195,7 @@ namespace FomMonitoringCore.Service
                     //tempo netto
                     var tmp3 = _context.Set<HistoryState>()
                         .Where(w => w.MachineId == machine.Id && w.Day >= dateFrom && w.Day <= dateTo 
-                                    && w.Operator == item.Operator && 
+                                    && w.Operator == item.Operator &&  w.Shift == null &&
                                     (w.StateId == (int)enState.Production || w.StateId == (int) enState.Manual)).ToList();
 
                     item.StatesTime = tmp3.GroupBy(g => g.StateId )
@@ -214,7 +215,8 @@ namespace FomMonitoringCore.Service
                 EfficiencyStateMachineModel result = new EfficiencyStateMachineModel();
                 DateTime dateTo = day.AddDays(1);
                 result.StatesTime = _context.Set<HistoryState>()
-                    .Where(w => w.MachineId == machine.Id && w.Day >= day && w.Day <= dateTo)
+                    .Where(w => w.MachineId == machine.Id && w.Day >= day && w.Day <= dateTo && w.StateId != (int?)enState.Off
+                                && w.Operator != null && w.Shift == null)
                     .GroupBy(g => g.StateId).ToDictionary(s => s.Key, s => s.Sum(x => x.ElapsedTime));
 
                 result.TotalTime = 0;
