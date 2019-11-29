@@ -6,6 +6,7 @@ using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace FomMonitoringCore.Service
 {
@@ -163,6 +164,46 @@ namespace FomMonitoringCore.Service
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
+        }
+
+        public List<OperatorStateMachineModel> GetOperatorsActivity(MachineInfoModel machine, DateTime dateFrom, DateTime dateTo)
+        {
+            var tmp =  _context.Set<HistoryState>()
+                 .Where(w => w.MachineId == machine.Id && w.Day >= dateFrom && w.Day <= dateTo && w.Operator != null)
+                 .GroupBy(g => g.Operator).ToList();
+
+            List<OperatorStateMachineModel> totTime = tmp.Select(s => new OperatorStateMachineModel
+                 {
+                     TotalTime = s.Sum(x => x.ElapsedTime),
+                     Operator = s.Key,
+                     machineType = machine.MachineTypeId
+                 }).ToList();
+
+            if (totTime.Count > 0)
+            {
+                foreach (var item in totTime)
+                {
+                    //tot. pezzi prodotti
+                    var tmp2 = _context.Set<HistoryPiece>()
+                        .Where(w => w.MachineId == machine.Id && w.Day >= dateFrom && w.Day <= dateTo &&
+                                    w.Operator == item.Operator).ToList();
+
+                    item.CompletedCount = tmp2.GroupBy(g => g.Operator)
+                        .Select(s => s.Sum(x => x.CompletedCount)).FirstOrDefault();
+
+                    //tempo netto
+                    var tmp3 = _context.Set<HistoryState>()
+                        .Where(w => w.MachineId == machine.Id && w.Day >= dateFrom && w.Day <= dateTo 
+                                    && w.Operator == item.Operator && 
+                                    (w.StateId == (int)enState.Production || w.StateId == (int) enState.Manual)).ToList();
+
+                    item.StatesTime = tmp3.GroupBy(g => g.StateId )
+                        .ToDictionary(s => s.Key, s => s.Sum(x => x.ElapsedTime));
+                }
+            }
+
+            return totTime;
+
         }
 
         #endregion

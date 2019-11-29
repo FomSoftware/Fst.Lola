@@ -14,12 +14,15 @@ namespace FomMonitoringBLL.ViewServices
         private readonly IPieceService _pieceService;
         private readonly IContextService _contextService;
         private readonly IBarService _barService;
+        private readonly IStateService _stateService;
 
-        public ProductivityViewService(IPieceService pieceService, IContextService contextService, IBarService barService)
+        public ProductivityViewService(IPieceService pieceService, IContextService contextService, 
+            IBarService barService, IStateService stateService)
         {
             _pieceService = pieceService;
             _contextService = contextService;
             _barService = barService;
+            _stateService = stateService;
         }
 
         public ProductivityViewModel GetProductivity(ContextModel context)
@@ -34,25 +37,27 @@ namespace FomMonitoringBLL.ViewServices
                 machineName = context.ActualMachine.MachineName
 
             };
+            List<OperatorStateMachineModel> operatorActivities = _stateService.GetOperatorsActivity(context.ActualMachine, context.ActualPeriod.StartDate, context.ActualPeriod.EndDate);
 
-            result.vm_productivity = GetVueModel(context.ActualMachine, context.ActualPeriod);
+            result.vm_productivity = GetVueModel( operatorActivities, context.ActualMachine, context.ActualPeriod);
             result.opt_historical = GetHistoricalOptions(context.ActualMachine, context.ActualPeriod);
-            result.opt_operators = GetOperatorsOptions(context.ActualMachine, context.ActualPeriod);
+            result.opt_operators = GetOperatorsOptions(operatorActivities, context.ActualMachine, context.ActualPeriod);
             return result;
         }
 
 
-        private ProductivityVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
+        private ProductivityVueModel GetVueModel(List<OperatorStateMachineModel> operatorActivities, MachineInfoModel machine, PeriodModel period)
         {
              var result = new ProductivityVueModel();
 
             var data = _pieceService.GetAggregationPieces(machine, period, enDataType.Dashboard);
-
+            //var operatorActivities =_stateService.GetOperatorsActivity(machine, period.StartDate, period.EndDate);
             if (data.Count == 0)
                 return result;
 
-            // tempo lordo
-            var grossTime = data.Select(s => s.ElapsedTime).Sum();
+            // tempo lordo: devo andare sulla tabella degli stati perchè non ce l'ho sui pezzi
+            var grossTime = operatorActivities.Sum(m => m.TotalTime);
+            //var grossTime = data.Select(s => s.ElapsedTime).Sum();
             var doneCount = data.Select(s => s.CompletedCount).Sum() ?? 0;
             var redoneCount = data.Select(s => s.RedoneCount).Sum() ?? 0;
 
@@ -137,18 +142,20 @@ namespace FomMonitoringBLL.ViewServices
             result.phases = phases.OrderByDescending(o => o.perc).ToList();
 
             // operators
-            var dataOperators = _pieceService.GetAggregationPieces(machine, period, enDataType.Operators);
+            //var dataOperators = _pieceService.GetAggregationPieces(machine, period, enDataType.Operators);
+
+            var dataOperators = operatorActivities;
 
             if (dataOperators.Count > 0)
             {
-                var groupOperator = dataOperators.GroupBy(g => new { g.Operator, g.ElapsedTime }).ToList();
+                var groupOperator = dataOperators.GroupBy(g => new { g.Operator, g.TotalTime }).ToList();
 
                 if (groupOperator.Count <= 3)
                 {
                     result.operators = groupOperator.Select(o => new ProdDataModel()
                     {
                         text = o.Key.Operator,
-                        perc = Common.GetPercentage(o.Key.ElapsedTime ?? 0, grossTime)
+                        perc = Common.GetPercentage(o.Key.TotalTime ?? 0, grossTime)
                     }).OrderByDescending(p => p.perc).ToList();
                 }
                 else
@@ -161,13 +168,13 @@ namespace FomMonitoringBLL.ViewServices
                         result.operators = firstGroup.Select(o => new ProdDataModel()
                         {
                             text = o.Key.Operator,
-                            perc = Common.GetPercentage(o.Key.ElapsedTime ?? 0, grossTime)
+                            perc = Common.GetPercentage(o.Key.TotalTime ?? 0, grossTime)
                         }).ToList();
                     }
 
                     if (secondGroup.Count > 0)
                     {
-                        var elpasedTimeTotal = secondGroup.Select(s => s.Key.ElapsedTime ?? 0).Sum();
+                        var elpasedTimeTotal = secondGroup.Select(s => s.Key.TotalTime ?? 0).Sum();
 
                         result.operators.Add(new ProdDataModel()
                         {
@@ -213,26 +220,31 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        private ChartViewModel GetOperatorsOptions(MachineInfoModel machine, PeriodModel period)
+        private ChartViewModel GetOperatorsOptions(List<OperatorStateMachineModel> states, MachineInfoModel machine, PeriodModel period)
         {
             var options = new ChartViewModel();
 
-            var data = _pieceService.GetAggregationPieces(machine, period, enDataType.Operators);
+            //var data = _pieceService.GetAggregationPieces(machine, period, enDataType.Operators);
+            //var states = _stateService.GetOperatorsActivity(machine, period.StartDate, period.EndDate);
 
-            if (data.Count == 0)
+            if (states.Count == 0)
                 return null;
 
-            var operators = data.Select(s => s.Operator).Distinct().ToList();
+            //ordinamento in base all'efficienza
+            states = states.OrderByDescending(s => Common.GetRatioProductivity(s.CompletedCount, s.ProducingTime)).ToList();
+            
+
+            var operators = states.Select(s => s.Operator).ToList();
             options.categories = operators;
             options.yTitle = string.Format("{0} (%)", Resource.Efficiency);
             options.yTitle2 = string.Format("{0} (pz/h)", Resource.Productivity);
-            options.series = GetSeriesChart(data);
+            options.series = GetSeriesChartProd(states);
 
             return options;
         }
 
         //obsoleto: card eliminata
-        private ChartViewModel GetShiftsOptions(MachineInfoModel machine, PeriodModel period)
+        /*private ChartViewModel GetShiftsOptions(MachineInfoModel machine, PeriodModel period)
         {
             var options = new ChartViewModel();
 
@@ -248,8 +260,35 @@ namespace FomMonitoringBLL.ViewServices
             options.series = GetSeriesChart(data);
 
             return options;
-        }
+        }*/
 
+        private List<SerieViewModel> GetSeriesChartProd(List<OperatorStateMachineModel> data)
+        {
+            var series = new List<SerieViewModel>();
+          
+            var serieEfficiency = new SerieViewModel();
+            serieEfficiency.type = (int)enSerieProd.Efficiency;
+            serieEfficiency.name = enSerieProd.Efficiency.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
+            serieEfficiency.color = CommonViewService.GetColorChart(enSerieProd.Efficiency);
+            serieEfficiency.data = data.Select(s => Common.GetPercentage(s.ProducingTime, s.TotalTime).RoundToInt()).ToList();
+            series.Add(serieEfficiency);
+
+            var serieGrossTime = new SerieViewModel();
+            serieGrossTime.type = (int)enSerieProd.GrossTime;
+            serieGrossTime.name = enSerieProd.GrossTime.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
+            serieGrossTime.color = CommonViewService.GetColorChart(enSerieProd.GrossTime);
+            serieGrossTime.data = data.Select(s => Common.GetRatioProductivity(s.CompletedCount, s.TotalTime) ?? 0).ToList();
+            series.Add(serieGrossTime);
+
+            var serieNetTime = new SerieViewModel();
+            serieNetTime.type = (int)enSerieProd.NetTime;
+            serieNetTime.name = enSerieProd.NetTime.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
+            serieNetTime.color = CommonViewService.GetColorChart(enSerieProd.NetTime);
+            serieNetTime.data = data.Select(s => Common.GetRatioProductivity(s.CompletedCount, s.ProducingTime) ?? 0).ToList();
+            series.Add(serieNetTime);
+
+            return series;
+        }
 
         private List<SerieViewModel> GetSeriesChart(List<HistoryPieceModel> data)
         {
