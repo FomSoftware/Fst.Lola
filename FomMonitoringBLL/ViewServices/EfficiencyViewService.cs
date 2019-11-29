@@ -3,7 +3,6 @@ using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using FomMonitoringResources;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -212,7 +211,7 @@ namespace FomMonitoringBLL.ViewServices
             }
 
 
-            if (machine.MachineTypeId == 4)
+            if (machine.MachineTypeId == (int)enMachineType.Troncatrice)
             {
                 efficiency = states
                     .Where(w => (w.enState == enState.Manual || w.enState == enState.Production) &&
@@ -257,16 +256,12 @@ namespace FomMonitoringBLL.ViewServices
             var stateProd = data.FirstOrDefault(w => w.enState == enState.Production);
 
             var stateManual = data.FirstOrDefault(w => w.enState == enState.Manual);
-
-            
             
 
             var totalValue = machine.MachineTypeId == 4 ? stateProd?.ElapsedTime + stateManual?.ElapsedTime : stateProd?.ElapsedTime;
             var totalOn = data.Where(w => w.enState != enState.Off).Select(s => s.ElapsedTime).Sum();
-            var totalOff = data.Where(w => w.enState == enState.Off).Select(s => s.ElapsedTime).Sum();
 
             decimal? percProd = Common.GetPercentage(totalValue, totalOn);
-            var overfeed = stateProd?.OverfeedAvg;
 
             options.series = new List<SerieViewModel>(){
                 new SerieViewModel {

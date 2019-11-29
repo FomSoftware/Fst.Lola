@@ -14,9 +14,9 @@ namespace FomMonitoring.Controllers
     [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
     public class MachineController : Controller
     {
-        private IMachineViewService _machineViewService;
-        private IMaintenanceViewService _maintenanceViewService;
-        private IContextService _contextService;
+        private readonly IMachineViewService _machineViewService;
+        private readonly IMaintenanceViewService _maintenanceViewService;
+        private readonly IContextService _contextService;
 
         public MachineController(
             IMachineViewService machineViewService, 
@@ -38,8 +38,8 @@ namespace FomMonitoring.Controllers
 
                 _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
 
-                ContextModel context = _contextService.GetContext();
-                MachineViewModel machine = _machineViewService.GetMachine(context);
+                var context = _contextService.GetContext();
+                var machine = _machineViewService.GetMachine(context);
 
                 return View(machine);
             }
@@ -58,15 +58,15 @@ namespace FomMonitoring.Controllers
                 if (!_contextService.InitializeMachineLevel(MachineID))
                     return RedirectToAction("Logout", "Account", new { returnUrl = string.Empty, exception = 4 });
 
-                bool isCorrect = _contextService.CheckSecurityParameterApi(MachineID, enCheckParam.Machine);
+                var isCorrect = _contextService.CheckSecurityParameterApi(MachineID, enCheckParam.Machine);
 
                 if (!isCorrect)
                     return RedirectToAction("Logout", "Account", new { returnUrl = string.Empty, exception = 1 });
 
                 _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
 
-                ContextModel context = _contextService.GetContext();
-                MachineViewModel machine = _machineViewService.GetMachine(context);
+                var context = _contextService.GetContext();
+                var machine = _machineViewService.GetMachine(context);
 
                 return View(machine);
             }
@@ -80,11 +80,11 @@ namespace FomMonitoring.Controllers
         [Route("Machine/IgnoreMessage/{MessageID}")]
         public ActionResult IgnoreMessage(int MessageID)
         {           
-            bool res = _maintenanceViewService.IgnoreMessage(MessageID);
+            var res = _maintenanceViewService.IgnoreMessage(MessageID);
 
-            ContextModel context = _contextService.GetContext();
+            var context = _contextService.GetContext();
 
-            MaintenanceViewModel mvm = _maintenanceViewService.GetMessages(context);
+            var mvm = _maintenanceViewService.GetMessages(context);
 
             return Json(mvm);
 
