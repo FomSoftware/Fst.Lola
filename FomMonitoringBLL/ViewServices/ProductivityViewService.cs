@@ -82,8 +82,8 @@ namespace FomMonitoringBLL.ViewServices
             if (dataBars.Count > 0)
             {
                 var barLength = dataBars.Select(s => s.Length ?? 0).Sum().RoundToInt();
-                //int cutoffLength = dataBars.Select(s => s.OffcutCount ?? 0).Sum();
-                var totalLength = barLength; //+ cutoffLength;
+                int cutoffLength = dataBars.Select(s => s.OffcutLength ?? 0).Sum();
+                var totalLength = barLength + cutoffLength;
 
                 var material = new MaterialViewModel();
                 material.total = ((double)totalLength / 1000).RoundToInt();
@@ -96,8 +96,8 @@ namespace FomMonitoringBLL.ViewServices
                 //Nelle troncatrici questi dati sono nascosti, non ci sono, 
                 //per le altre è da verificare cosa prendono
                 var cutoff = new ProdDataModel();
-                /*cutoff.perc = Common.GetPercentage(cutoffLength, totalLength);
-                cutoff.number = ((double)cutoffLength / 1000).RoundToInt();*/
+                cutoff.perc = Common.GetPercentage(cutoffLength, totalLength);
+                cutoff.number = ((double)cutoffLength / 1000).RoundToInt();
                 material.cutoff = cutoff;
 
                 result.material = material;

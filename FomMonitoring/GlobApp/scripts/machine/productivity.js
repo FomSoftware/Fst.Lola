@@ -4,66 +4,6 @@
 
     var init = function (data)
     {
-        //var data = {
-        //    vm_productivity: {
-        //        kpi: {
-        //            value: 55,
-        //            threshold: {
-        //                green: 80,
-        //                yellow: 60
-        //            }
-        //        },
-        //        piece: {
-        //            total: 155,
-        //            done: {
-        //                perc: 75,
-        //                number: 76
-        //            },
-        //            redone: {
-        //                perc: 25,
-        //                number: 26
-        //            }
-        //        },
-        //        material: {
-        //            total: 235,
-        //            bar: {
-        //                perc: 77,
-        //                number: 49
-        //            },
-        //            cutoff: {
-        //                perc: 23,
-        //                number: 19
-        //            }
-        //        },
-        //        phases: [{
-        //            text: 'Lavorazione',
-        //            perc: 60
-        //        }, {
-        //            text: 'Intestatura',
-        //            perc: 20
-        //        }, {
-        //            text: 'Taglio',
-        //            perc: 20
-        //        }],
-        //        operators: [{
-        //            text: 'Developer 1',
-        //            perc: 60
-        //        }, {
-        //            text: 'Developer 2',
-        //            perc: 20
-        //        }, {
-        //            text: 'Others',
-        //            perc: 20
-        //        }],
-        //        time: {
-        //            days: null,
-        //            hours: '02',
-        //            minutes: '11',
-        //            seconds: null
-        //        }
-        //    }
-        //}
-
         initVueModel(data.vm_productivity, data.vm_machine_info);
 
         if (data.opt_historical != null)
