@@ -212,9 +212,7 @@ namespace FomMonitoringBLL.ViewServices
             var days = data.Select(s => s.Day).Distinct().ToList();
 
             List<EfficiencyStateMachineModel> valori = _stateService.GetDayActivity(machine, days);
-            //ordinamento in base all'efficienza
-            //valori = valori.OrderByDescending(s => Common.GetRatioProductivity(s.CompletedCount, s.TotalTime)).ToList();
-
+            
             options.categories = CommonViewService.GetTimeCategories(days, granularity);
             options.yTitle = string.Format("{0} (%)", Resource.Efficiency);
             options.yTitle2 = string.Format("{0} (pz/h)", Resource.Productivity);
