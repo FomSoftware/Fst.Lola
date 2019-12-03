@@ -22,7 +22,7 @@ namespace FomMonitoringCore.Framework.Model
         {
             get
             {
-                return DateTime.ToString("d");
+                return DateTime.ToLocalTime().ToString("d");
             }
         }
 
@@ -30,7 +30,7 @@ namespace FomMonitoringCore.Framework.Model
         {
             get
             {
-                return DateTime.ToString("T");
+                return DateTime.ToLocalTime().ToString("T");
             }
         }
     }
