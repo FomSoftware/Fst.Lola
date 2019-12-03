@@ -1,4 +1,5 @@
-﻿using FomMonitoringCore.Framework.Common;
+﻿using FomMonitoringCore.DAL;
+using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using System;
 using System.Collections.Generic;
@@ -79,6 +80,7 @@ namespace FomMonitoringBLL.ViewModel
         public bool expired { get; set; }
 
         public string machineName { get; set; }
+
     }
 
 

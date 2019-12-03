@@ -32,6 +32,7 @@
                 phases: data.phases,
                 operators: data.operators,
                 time: data.time,
+                productionVariables: data.productionVariables,
                 show: {
                     historical: false,
                     operators: false
@@ -112,6 +113,7 @@
         vmProductivity.phases = vm_prod.phases;
         vmProductivity.operators = vm_prod.operators;
         vmProductivity.time = vm_prod.time;
+        vmProductivity.productionVariables = vm_prod.productionVariables;
 
         // chart historical
         if (data.opt_historical != null)

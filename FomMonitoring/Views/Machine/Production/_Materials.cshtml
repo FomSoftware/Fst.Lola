@@ -1,0 +1,37 @@
+﻿@model FomMonitoringBLL.ViewModel.ProductivityViewModel
+@using FomMonitoringResources
+
+<div v-if="material != null">
+    <div class="item clearfix">
+        <div class="item-title">
+            @Resource.Material
+        </div>
+        <div class="item-label">
+            <div class="icon fa fa-eraser"></div>
+            <div>
+                <span class="value-title">
+                    @Resource.Used
+                </span>
+                <span class="value">
+                    {{ material.total }}<em>m</em>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="progress prod">
+        <div class="progress-bar bg-line" v-bind:aria-valuenow="material.bar.perc"></div>
+        <div class="progress-bar bg-broken-line" v-bind:aria-valuenow="material.cutoff.perc"></div>
+    </div>
+    <table class="table-legend">
+        <tr>
+            <td><div class="square bg-line"></div>@Resource.Bars</td>
+            <td>{{ material.bar.perc | round }}<em>%</em></td>
+            <td>{{ material.bar.number }}<em>m</em></td>
+        </tr>
+        <tr>
+            <td><div class="square bg-broken-line"></div>@Resource.Cutoff</td>
+            <td>{{ material.cutoff.perc | round }}<em>%</em></td>
+            <td>{{ material.cutoff.number }}<em>m</em></td>
+        </tr>
+    </table>
+</div>
