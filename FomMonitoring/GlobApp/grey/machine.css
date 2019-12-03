@@ -39,7 +39,7 @@
     letter-spacing: 2px;
     background-color: #403D3D;
     padding: 5px 7px;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
     height: 44px;
 	color:white;
@@ -83,7 +83,7 @@
     }
 
         .portlet-title .portlet-kpi .fa-stack.fa-lg {
-            font-size: 1.1em;
+            font-size: 1em;
         }
 
         .portlet-title .portlet-kpi .fa-stack .icofom-efficiency {
@@ -113,7 +113,7 @@
         }
 
     .portlet-title .value-kpi {
-        font-size: 1.2em;
+        font-size: 1em;
         letter-spacing: 0px;
         margin-left: -5px;
     }
