@@ -83,7 +83,9 @@ namespace FomMonitoringCore.Framework.Common
         ToolsFmcLmx = 32,
         [Description("productionFmc34")]
         ProductionFmc34 = 36,
-        [Description("productionLMX")]
+        [Description("ordersFmc34")]
+        OrdersFmc34 = 37,
+       [Description("productionLMX")]
         ProductionLMX = 38
     }
 

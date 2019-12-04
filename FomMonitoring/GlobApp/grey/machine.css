@@ -472,23 +472,26 @@
 
     /*#region progress bar */
 
-    .progress {
-        height: 35px;
-        background-color: #ddd;
-        margin-bottom: 5px;
+.progress {
+    background-color: #ddd;
+    margin-bottom: 0;
+}
+    .progress-job {
+        height: 15px;
     }
 
         .progress .progress-bar {
-            height: 35px;
             transition-duration: 2s;
             transition-duration: 3s;
             overflow: hidden;
         }
 
-            .progress .progress-bar > i {
-                line-height: 1.7em;
-                font-size: 1.7em;
-            }
+
+
+.progress .progress-bar > i {
+    line-height: 1.7em;
+    font-size: 1.7em;
+}
 
         .progress.slim {
             height: 5px;
@@ -787,7 +790,7 @@
         }
 
         .table.table-alerts > tbody > tr > td {
-            vertical-align: middle;
+            vertical-align: top;
             border-top: 1px solid #ddd;
             padding: 5px 8px;
         }
@@ -863,7 +866,6 @@
     @media(min-width: 768px) {
 
         .table-jobs > tbody > tr > td:first-child {
-            padding-left: 38px !important;
             position: relative;
         }
     }
@@ -1077,7 +1079,7 @@
     }
 
 .label-tools {
-    font-size: 11pt;
+    font-size: 13px;
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
@@ -1086,7 +1088,7 @@
 }
 
 .label-tools-value {
-    font-size: 16pt;
+    font-size: 21px;
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
@@ -1095,13 +1097,13 @@
 }
 
     .label-tools-value.fmc {
-        font-size: 11pt;
+        font-size: 13px;
         padding-left: 27px;
     }
 
 .label-tools-value.fmc.center {
     width: 100%;
-    font-size: 11pt;
+    font-size: 13px;
     padding-left: 0;
     text-align: center;
 }
@@ -1285,7 +1287,7 @@ hr.axes {
 
 
 .label-other-data-value {
-    font-size: 16pt;
+    font-size: 21px;
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
@@ -1295,7 +1297,7 @@ hr.axes {
 }
 
 .label-other-title {
-    font-size: 11pt;
+    font-size: 13px;
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
@@ -1311,7 +1313,7 @@ hr.axes {
 
 
 .label-electrospindle-data-value {
-    font-size: 16pt;
+    font-size: 21px;
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
@@ -1321,7 +1323,7 @@ hr.axes {
 }
 
 .label-electrospindle-title {
-    font-size: 11pt;
+    font-size: 13px;
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
@@ -1333,7 +1335,7 @@ hr.axes {
 }
 
 .label-electrospindle-title-bottom {
-    font-size: 11pt;
+    font-size: 13px;
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
