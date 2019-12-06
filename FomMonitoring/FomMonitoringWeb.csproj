@@ -440,7 +440,6 @@
     <Content Include="GlobApp\scripts\machine\jobs.js" />
     <Content Include="GlobApp\scripts\machine\tools.js" />
     <Content Include="GlobApp\scripts\machine\spindles.js" />
-    <Content Include="GlobApp\scripts\machine\alarms.js" />
     <Content Include="GlobApp\scripts\machine\productivity.js" />
     <Content Include="GlobApp\scripts\machine\efficiency.js" />
     <Content Include="GlobApp\scripts\user-manager.js" />
@@ -977,7 +976,6 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Machine\_Efficiency.cshtml" />
     <Content Include="Views\Machine\_Productivity.cshtml" />
-    <Content Include="Views\Machine\_Alarms.cshtml" />
     <Content Include="Views\Machine\_Spindles.cshtml" />
     <Content Include="Views\Machine\_Tools.cshtml" />
     <Content Include="Views\Machine\_Jobs.cshtml" />

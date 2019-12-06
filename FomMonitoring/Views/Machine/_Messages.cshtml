@@ -19,15 +19,15 @@
                     <i class="icon-options-vertical"></i>
                 </div>
                 <div class="dropdown-content right">
-                    <div class="dd-item js-unflip active" data-group="messages">
+                    <div class="dd-item active slide-dashboard" data-group="messages">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </div>
-                    <div class="dd-item js-flip slide-history" data-group="messages" v-show="show.historical">
+                    <div class="dd-item slide-history" data-group="messages" v-show="show.historical">
                         <i class="fa fa-history"></i>
                         <span>@Resource.Historical</span>
                     </div>
-                    <div class="dd-item js-flip slide-summary" data-group="messages">
+                    <div class="dd-item slide-summary" data-group="messages">
                         <i class="fa fa-archive"></i>
                         <span>Summary</span>
                     </div>
@@ -37,114 +37,114 @@
     </div>
     <div class="portlet-body border-panel" v-bind:class="colorAlarms">
         <div class="card-portlet card-messages" v-cloak>
-            <div class="front" style="padding: 0px;">
-                <div v-if="details != null" class="table-container">                    
-                    <table class="table table-alerts table-header">
-                        <thead>
-                            <tr>
-                                <th  class="icon-message-header" style="padding-right:5px;"></th>
-                                <th  class="code-header" style="padding-right:5px;width:10%;min-width: 75px;">
-                                    <span class="value-title" style="padding-left:8px">
-                                        @Resource.Code
-                                    </span>
-                                </th>
-                                <th style="width:15%" class="th-duration sorting" v-bind:class="sortingDet.timestamp" v-on:click="sortTimestamp()">
-                                    <i class="fa fa-clock-o color-aaa"></i>
-                                    <span class="value-title">
-                                        @Resource.Timestamp
-                                    </span>
-                                </th>
-                                <th style="width:15%;min-width: 80px;" class="th-duration sorting" v-bind:class="sortingDet.group" v-on:click="sortGroup()">
-                                    <span class="value-title">
-                                        @Resource.Group
-                                    </span>
-                                </th>
-                                <th style="width:55%">
-                                    <span class="value-title" style="padding-left:8px">
-                                        @Resource.Description
-                                    </span>
-                                </th>
-                            </tr>
-                        </thead>
 
-                    </table>
-                    <div class="slimscroll">
-                        <table class="table table-alerts">
-                            <tbody>
-                                <tr v-for="message in details">
-                                    <td style="width:4%">
-                                        <div class="item-icon fa fa-2x" v-bind:class="iconClass(message.type)"></div>
-                                    </td>
-                                    <td style="width:10%">
-                                        <div class="item-alert">
-                                            <div class="code-alert">{{ message.code }}</div>
-                                            <div class="subtitle-alert" v-bind:class="colorClass(message.type)">{{ message.type }}</div>
-                                        </div>
-                                    </td>
-                                    <td style="width:15%">{{ convert_timestamp(message.timestamp, message.utc) }}</td>
-                                    <td style="min-width:80px;width:15%">{{ message.group }}</td>
-                                    <td style="width:55%">{{ message.description }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <no-data v-else></no-data>
-            </div>
-            <div class="back" style="padding: 0px;">
-                <div class="swiper-container messages">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div id="msg_historical_chart"></div>
-                            <no-data v-if="!show.historical"></no-data>
-                        </div>
-                        <div class="swiper-slide">
-                            <div id="msg_summary" v-if="messages != null" class="table-container">
+            <div class="swiper-container messages">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div v-if="details != null" class="table-container">
+                            <table class="table table-alerts table-header">
+                                <thead>
+                                    <tr>
+                                        <th class="icon-message-header" style="padding-right:5px;"></th>
+                                        <th class="code-header" style="padding-right:5px;width:10%;min-width: 75px;">
+                                            <span class="value-title" style="padding-left:8px">
+                                                @Resource.Code
+                                            </span>
+                                        </th>
+                                        <th style="width:15%" class="th-duration sorting" v-bind:class="sortingDet.timestamp" v-on:click="sortTimestamp()">
+                                            <i class="fa fa-clock-o color-aaa"></i>
+                                            <span class="value-title">
+                                                @Resource.Timestamp
+                                            </span>
+                                        </th>
+                                        <th style="width:15%;min-width: 80px;" class="th-duration sorting" v-bind:class="sortingDet.group" v-on:click="sortGroup()">
+                                            <span class="value-title">
+                                                @Resource.Group
+                                            </span>
+                                        </th>
+                                        <th style="width:55%">
+                                            <span class="value-title" style="padding-left:8px">
+                                                @Resource.Description
+                                            </span>
+                                        </th>
+                                    </tr>
+                                </thead>
 
-                                <table class="table table-alerts table-header">
-                                    <thead>
-                                        <tr>
-                                            <th style="padding-left:5px;padding-right:5px;width:20%">
-                                                <span class="value-title"> @Resource.Code </span>
-                                            </th>
-                                            <th style="width:23%" class="th-number sorting" v-bind:class="sorting.quantity" v-on:click="sortQuantity()">
-                                                <i class="fa fa-exclamation-triangle color-aaa"></i>
-                                                <span class="value-title">qty</span>
-                                            </th>
-                                            <th style="width:57%">
-                                                <span class="value-title"> @Resource.Description </span>
-                                            </th>
+                            </table>
+                            <div class="slimscroll">
+                                <table class="table table-alerts">
+                                    <tbody>
+                                        <tr v-for="message in details">
+                                            <td style="width:4%">
+                                                <div class="item-icon fa fa-2x" v-bind:class="iconClass(message.type)"></div>
+                                            </td>
+                                            <td style="width:10%">
+                                                <div class="item-alert">
+                                                    <div class="code-alert">{{ message.code }}</div>
+                                                    <div class="subtitle-alert" v-bind:class="colorClass(message.type)">{{ message.type }}</div>
+                                                </div>
+                                            </td>
+                                            <td style="width:15%">{{ convert_timestamp(message.timestamp, message.utc) }}</td>
+                                            <td style="min-width:80px;width:15%">{{ message.group }}</td>
+                                            <td style="width:55%">{{ message.description }}</td>
                                         </tr>
-                                    </thead>
+                                    </tbody>
                                 </table>
-                                <div class="slimscroll">
-                                    <table class="table table-alerts">
-
-                                        <tbody v-for="message in messages">
-                                            <tr>
-                                                <td style="width:20%">
-                                                    <div class="item-icon fa fa-2x" v-bind:class="iconClass(message.type)"></div>
-                                                    <div class="item-alert">
-                                                        <div class="code-alert">{{ message.code }}</div>
-                                                        <div class="subtitle-alert" v-bind:class="colorClass(message.type)">{{ message.type }}</div>
-                                                    </div>
-                                                </td>                                                
-                                                <td style="min-width:65px;width:23%">
-                                                    <span class="label label-default">{{ message.quantity }}</span>
-                                                </td>    
-                                                <td style="width:57%">{{ message.description }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
                             </div>
-                            <no-data v-else></no-data>
                         </div>
+                        <no-data v-else></no-data>
+                    </div>
+                    <div class="swiper-slide">
+                        <div id="msg_historical_chart"></div>
+                        <no-data v-if="!show.historical"></no-data>
+                    </div>
+                    <div class="swiper-slide">
+                        <div id="msg_summary" v-if="messages != null" class="table-container">
+
+                            <table class="table table-alerts table-header">
+                                <thead>
+                                <tr>
+                                    <th style="padding-left: 5px; padding-right: 5px; width: 20%">
+                                        <span class="value-title"> @Resource.Code </span>
+                                    </th>
+                                    <th style="width: 23%" class="th-number sorting" v-bind:class="sorting.quantity" v-on:click="sortQuantity()">
+                                        <i class="fa fa-exclamation-triangle color-aaa"></i>
+                                        <span class="value-title">qty</span>
+                                    </th>
+                                    <th style="width: 57%">
+                                        <span class="value-title"> @Resource.Description </span>
+                                    </th>
+                                </tr>
+                                </thead>
+                            </table>
+                            <div class="slimscroll">
+                                <table class="table table-alerts">
+
+                                    <tbody v-for="message in messages">
+                                    <tr>
+                                        <td style="width: 20%">
+                                            <div class="item-icon fa fa-2x" v-bind:class="iconClass(message.type)"></div>
+                                            <div class="item-alert">
+                                                <div class="code-alert">{{ message.code }}</div>
+                                                <div class="subtitle-alert" v-bind:class="colorClass(message.type)">{{ message.type }}</div>
+                                            </div>
+                                        </td>
+                                        <td style="min-width: 65px; width: 23%">
+                                            <span class="label label-default">{{ message.quantity }}</span>
+                                        </td>
+                                        <td style="width: 57%">{{ message.description }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <no-data v-else></no-data>
                     </div>
                 </div>
+            </div>
+
         </div>
     </div>
-</div>
 </div>
 <script type="text/javascript">
 

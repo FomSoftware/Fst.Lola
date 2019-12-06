@@ -17,9 +17,7 @@ namespace FomMonitoringCore.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Machine()
         {
-            this.AlarmMachine = new HashSet<AlarmMachine>();
             this.CurrentState = new HashSet<CurrentState>();
-            this.HistoryAlarm = new HashSet<HistoryAlarm>();
             this.HistoryBar = new HashSet<HistoryBar>();
             this.HistoryPiece = new HashSet<HistoryPiece>();
             this.HistoryState = new HashSet<HistoryState>();
@@ -67,11 +65,7 @@ namespace FomMonitoringCore.DAL
         public string MachineName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AlarmMachine> AlarmMachine { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CurrentState> CurrentState { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HistoryAlarm> HistoryAlarm { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoryBar> HistoryBar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

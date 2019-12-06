@@ -21,11 +21,8 @@ namespace FomMonitoringCore.Framework.Config
             TypeAdapterConfig.GlobalSettings.Default.AddDestinationTransform((string x) => x.Trim());
 
             // DAL to Model
-            config.NewConfig<AlarmMachine, AlarmMachineModel>();
             config.NewConfig<MessageMachine, MessageMachineModel>();
             config.NewConfig<Bar, BarModel>();
-            config.NewConfig<HistoryAlarm, HistoryAlarmModel>()
-                .Map(dest => dest.enState, src => (enState)src.StateId);
             config.NewConfig<HistoryMessage, HistoryMessageModel>()
                 .Map(dest => dest.Type, src => (enTypeAlarm)src.Type);
             config.NewConfig<HistoryPiece, HistoryPieceModel>();
@@ -102,8 +99,6 @@ namespace FomMonitoringCore.Framework.Config
             // SP to Model
             config.NewConfig<usp_AggregationState_Result, HistoryStateModel>()
                 .Map(dest => dest.enState, src => (enState?)src.StateId ?? null);
-            config.NewConfig<usp_AggregationAlarm_Result, HistoryAlarmModel>()
-                .Map(dest => dest.enState, src => (enState?)src.StateId ?? null);
             config.NewConfig<MachineMesDataModel, MesUserMachinesModel>()
                 .Map(dest => dest.enActualState, src => (enState?)src.ActualStateId ?? null)
                 .Map(dest => dest.Expired, src => src.ExpirationDate < DateTime.UtcNow);
@@ -120,14 +115,6 @@ namespace FomMonitoringCore.Framework.Config
                 .IgnoreAllVirtual()
                 .Map(dest => dest.IdOld, src => src.Id)
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
-            config.NewConfig<DAL_SQLite.error, AlarmMachine>()
-                .Ignore(dest => dest.Id)
-                .IgnoreAllVirtual()
-                .Map(dest => dest.Day, src => src.Time.HasValue ? src.Time.Value : (DateTime?)null)
-                .Map(dest => dest.StartTime, src => src.Time)
-                .Map(dest => dest.ElapsedTime, src => src.TimeSpanDuration)
-                .Map(dest => dest.StateId, src => src.State)
-                .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
 
             config.NewConfig<DAL_SQLite.message, MessageMachine>()
                 .Ignore(dest => dest.Id)
@@ -139,12 +126,6 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.Day, src => src.Code)
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
 
-            config.NewConfig<DAL_SQLite.historyAlarm, HistoryAlarm>()
-                .Ignore(dest => dest.Id)
-                .IgnoreAllVirtual()
-                .Map(dest => dest.Period, src => src.Day != null ? ((src.Day.Value.Year * 10000) + (src.Day.Value.Month * 100) + (src.Day.Value.Day)) : (int?)null)
-                .Map(dest => dest.TypeHistory, src => "d")
-                .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
 
             config.NewConfig<DAL_SQLite.historyMessage, HistoryMessage>()
                 .Ignore(dest => dest.Id)
@@ -202,7 +183,7 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.ElapsedTimeProducing, src => src.TimeSpanProducing)
                 .Map(dest => dest.IsCompleted, src => src.Completed)
                 .Map(dest => dest.IsRedone, src => src.Redone)
-                .Map(dest => dest.Day, src => src.EndTime.HasValue && src.TimeSpan.HasValue ? src.EndTime.Value.AddTicks(-src.TimeSpan.Value) : (DateTime?)null)
+                .Map(dest => dest.Day, src => src.EndTime.HasValue && src.TimeSpan.HasValue ? src.EndTime.Value.AddTicks(-src.TimeSpan.Value).ToNullIfTooEarlyForDb() : (DateTime?)null)
                 .Map(dest => dest.JobId, src => ((IJobService)MapContext.Current.Parameters["jobService"]).GetJobIdByJobCode(src.JobCode, (int)MapContext.Current.Parameters["machineId"]))
                 .Map(dest => dest.Operator, src => string.IsNullOrEmpty(src.Operator) || string.IsNullOrWhiteSpace(src.Operator) ? "Other" : src.Operator)
                 .Map(dest => dest.Shift, src => ((IMachineService)MapContext.Current.Parameters["machineService"]).GetShiftByStartTime((int)MapContext.Current.Parameters["machineId"], (src.EndTime.HasValue && src.TimeSpan.HasValue ? src.EndTime.Value.AddTicks(-src.TimeSpan.Value) : (DateTime?)null)))

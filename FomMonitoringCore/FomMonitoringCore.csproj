@@ -148,9 +148,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\AlarmMachine.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DAL\Bar.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
@@ -182,9 +179,6 @@
       <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="DAL\FomMonitoringUpdateUsers.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\HistoryAlarm.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\HistoryBar.cs">
@@ -356,11 +350,9 @@
     <Compile Include="Framework\Config\MapsterConfig.cs" />
     <Compile Include="Framework\Model\AggregationBarModel.cs" />
     <Compile Include="Framework\Model\AggregationMessageModel.cs" />
-    <Compile Include="Framework\Model\AlarmMachineModel.cs" />
     <Compile Include="Framework\Model\BarModel.cs" />
     <Compile Include="Framework\Model\ContextModel.cs" />
     <Compile Include="Framework\Model\CurrentStateModel.cs" />
-    <Compile Include="Framework\Model\HistoryAlarmModel.cs" />
     <Compile Include="Framework\Model\HistoryBarModel.cs" />
     <Compile Include="Framework\Model\HistoryMessageModel.cs" />
     <Compile Include="Framework\Model\HistoryPieceModel.cs" />
@@ -434,7 +426,6 @@
     <Compile Include="Repository\ParameterMachineValueRepository.cs" />
     <Compile Include="Repository\SpindleRepository.cs" />
     <Compile Include="Service\AccountService.cs" />
-    <Compile Include="Service\AlarmService.cs" />
     <Compile Include="Service\API\Concrete\JsonDataService.cs" />
     <Compile Include="Service\API\Concrete\XmlDataService.cs" />
     <Compile Include="Service\API\IBasicManager.cs" />

@@ -464,6 +464,9 @@
             plotOptions: {
                 bar: {
                     pointPadding: 0.2
+                },
+                series: {
+                    lineWidth: 0
                 }
             },
             series: getProductivitySeries(options.series, 'bar')

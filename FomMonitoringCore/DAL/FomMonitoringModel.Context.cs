@@ -27,8 +27,6 @@ namespace FomMonitoringCore.DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AlarmMachine> AlarmMachine { get; set; }
-        public virtual DbSet<HistoryAlarm> HistoryAlarm { get; set; }
         public virtual DbSet<MachineModel> MachineModel { get; set; }
         public virtual DbSet<State> State { get; set; }
         public virtual DbSet<HistoryBar> HistoryBar { get; set; }

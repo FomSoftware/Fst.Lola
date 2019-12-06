@@ -258,13 +258,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 }
                 _fomMonitoringEntities.SaveChanges();
 
-                var historyAlarm = historyAlarmSqLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<HistoryAlarm>>();
-                var minDateHistoryAlarm = historyAlarm.Any(a => a.Day.HasValue) ? historyAlarm.Where(w => w.Day.HasValue && w.MachineId == machineActual.Id).Select(s => s.Day).Min().Value : new DateTime();
-                var removeHistoryAlarm = _fomMonitoringEntities.Set<HistoryAlarm>().Where(w => w.Day.HasValue && w.Day.Value >= minDateHistoryAlarm && w.MachineId == machineActual.Id).ToList();
-                _fomMonitoringEntities.Set<HistoryAlarm>().RemoveRange(removeHistoryAlarm);
-                _fomMonitoringEntities.SaveChanges();
-                _fomMonitoringEntities.Set<HistoryAlarm>().AddRange(historyAlarm);
-                _fomMonitoringEntities.SaveChanges();
 
                 var historyMessage = historyMessageSqLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<HistoryMessage>>();
                 var minDateHistoryMessage = historyMessage.Any(a => a.Day.HasValue) ? historyMessage.Where(w => w.Day.HasValue && w.MachineId == machineActual.Id).Select(s => s.Day).Min().Value : new DateTime();

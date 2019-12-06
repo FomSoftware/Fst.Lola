@@ -22,15 +22,15 @@
                     <i class="icon-options-vertical"></i>
                 </div>
                 <div class="dropdown-content right">
-                    <div class="dd-item js-unflip active" data-group="productivity">
+                    <div class="dd-item active slide-dashboard" data-group="productivity">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </div>
-                    <div class="dd-item js-flip slide-history" data-group="productivity" v-show="show.historical">
+                    <div class="dd-item slide-history" data-group="productivity" v-show="show.historical">
                         <i class="fa fa-history"></i>
                         <span>@Resource.Historical</span>
                     </div>
-                    <div class="dd-item js-flip slide-operator" data-group="productivity" v-show="show.operators">
+                    <div class="dd-item slide-operator" data-group="productivity" v-show="show.operators">
                         <i class="fa fa-user"></i>
                         <span>@Resource.Operators</span>
                     </div>
@@ -39,140 +39,140 @@
         </div>
     </div>
     <div class="portlet-body border-panel" v-bind:class="colorKPI">
-        <div class="card-portlet card-productivity" v-cloak>
-            <div class="front">
-                <div v-if="showDashboard">
-                    <div class="row">
-                        <!-- PIECES -->
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div v-if="piece != null">
-                                <div class="item clearfix">
-                                    <div class="item-title">
-                                        @Resource.Pieces
-                                    </div>
-                                    <div class="item-label">
-                                        <div class="icon fa fa-puzzle-piece"></div>
-                                        <div>
-                                            <div class="value-title">
-                                                @Resource.Made
-                                            </div>
-                                            <div class="value">
-                                                {{ piece.total }}<em>pz</em>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="progress prod">
-                                    <div class="progress-bar bg-max-piece" v-bind:aria-valuenow="piece.done.perc"></div>
-                                    <div class="progress-bar bg-min-piece" v-bind:aria-valuenow="piece.redone.perc"></div>
-                                </div>
-                                <table class="table-legend">
-                                    <tr>
-                                        <td><div class="square bg-max-piece"></div>@Resource.Done</td>
-                                        <td>{{ piece.done.perc | round }}<em>%</em></td>
-                                        <td>{{ piece.done.number }}<em>pz</em></td>
-                                    </tr>
-                                    <tr v-if="type != '@enMachineType.Troncatrice.GetDescription()'">
-                                        <td><div class="square bg-min-piece"></div>@Resource.Redone</td>
-                                        <td>{{ piece.redone.perc | round }}<em>%</em></td>
-                                        <td>{{ piece.redone.number }}<em>pz</em></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- MATERIALS -->
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div v-if="material != null">
-                                <div class="item clearfix">
-                                    <div class="item-title">
-                                        @Resource.Material
-                                    </div>
-                                    <div class="item-label">
-                                        <div class="icon fa fa-eraser"></div>
-                                        <div>
-                                            <div class="value-title">
-                                                @Resource.Used
-                                            </div>
-                                            <div class="value">
-                                                {{ material.total }}<em>m</em>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="progress prod">
-                                    <div class="progress-bar bg-line" v-bind:aria-valuenow="material.bar.perc"></div>
-                                    <div class="progress-bar bg-broken-line" v-bind:aria-valuenow="material.cutoff.perc"></div>
-                                </div>
-                                <table class="table-legend">
-                                    <tr>
-                                        <td><div class="square bg-line"></div>@Resource.Bars</td>
-                                        <td>{{ material.bar.perc | round }}<em>%</em></td>
-                                        <td>{{ material.bar.number }}<em>m</em></td>
-                                    </tr>
-                                    <tr>
-                                        <td><div class="square bg-broken-line"></div>@Resource.Cutoff</td>
-                                        <td>{{ material.cutoff.perc | round }}<em>%</em></td>
-                                        <td>{{ material.cutoff.number }}<em>m</em></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <div class="item clearfix" v-if="phases != null">
-                                <div class="item-title">
-                                    @Resource.Phases
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 hidden-xs">
-                            <div class="item clearfix" v-if="operators != null">
-                                <div class="item-title" style="float: none;">
-                                    @Resource.Operators
-                                </div>
-                            </div>
-                        </div>
-                        <!-- PHASE -->
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div v-if="phases != null">
-                                <div class="progress prod">
-                                    <div v-for="(phase, i) in phases" class="progress-bar" v-bind:class="bgPhase(i)" v-bind:aria-valuenow="phase.perc"></div>
-                                </div>
-                                <table class="table-legend">
-                                    <tr v-for="(phase, i) in phases">
-                                        <td><div class="square" v-bind:class="bgPhase(i)"></div>{{ phase.text }}</td>
-                                        <td>{{ phase.perc | round }}<em>%</em></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- OPERATOR -->
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div v-if="operators != null">
-                                <div class="item clearfix visible-xs-block">
-                                    <div class="item-title" style="margin: 0 0 5px;">
-                                        @Resource.Operators
-                                    </div>
-                                </div>
-                                <div class="progress prod">
-                                    <div v-for="(operator, i) in operators" class="progress-bar" v-bind:class="bgOperator(i)" v-bind:aria-valuenow="operator.perc"></div>
-                                </div>
-                                <table class="table-legend">
-                                    <tr v-for="(operator, i) in operators">
-                                        <td><div class="square bg-first-oper" v-bind:class="bgOperator(i)"></div>{{ operator.text }}</td>
-                                        <td>{{ operator.perc | round }}<em>%</em></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <no-data v-else></no-data>
-            </div>
-            <div class="back">
+        <div class="card-portlet card-productivity" style="padding: 5px 10px;" v-cloak>
+
                 <div class="swiper-container productivity">
                     <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div v-if="showDashboard">
+                                <div class="row">
+                                    <!-- PIECES -->
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div v-if="piece != null">
+                                            <div class="item clearfix">
+                                                <div class="item-title">
+                                                    @Resource.Pieces
+                                                </div>
+                                                <div class="item-label">
+                                                    <div class="icon fa fa-puzzle-piece"></div>
+                                                    <div>
+                                                        <div class="value-title">
+                                                            @Resource.Made
+                                                        </div>
+                                                        <div class="value">
+                                                            {{ piece.total }}<em>pz</em>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="progress prod">
+                                                <div class="progress-bar bg-max-piece" v-bind:aria-valuenow="piece.done.perc"></div>
+                                                <div class="progress-bar bg-min-piece" v-bind:aria-valuenow="piece.redone.perc"></div>
+                                            </div>
+                                            <table class="table-legend">
+                                                <tr>
+                                                    <td><div class="square bg-max-piece"></div>@Resource.Done</td>
+                                                    <td>{{ piece.done.perc | round }}<em>%</em></td>
+                                                    <td>{{ piece.done.number }}<em>pz</em></td>
+                                                </tr>
+                                                <tr v-if="type != '@enMachineType.Troncatrice.GetDescription()'">
+                                                    <td><div class="square bg-min-piece"></div>@Resource.Redone</td>
+                                                    <td>{{ piece.redone.perc | round }}<em>%</em></td>
+                                                    <td>{{ piece.redone.number }}<em>pz</em></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- MATERIALS -->
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div v-if="material != null">
+                                            <div class="item clearfix">
+                                                <div class="item-title">
+                                                    @Resource.Material
+                                                </div>
+                                                <div class="item-label">
+                                                    <div class="icon fa fa-eraser"></div>
+                                                    <div>
+                                                        <div class="value-title">
+                                                            @Resource.Used
+                                                        </div>
+                                                        <div class="value">
+                                                            {{ material.total }}<em>m</em>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="progress prod">
+                                                <div class="progress-bar bg-line" v-bind:aria-valuenow="material.bar.perc"></div>
+                                                <div class="progress-bar bg-broken-line" v-bind:aria-valuenow="material.cutoff.perc"></div>
+                                            </div>
+                                            <table class="table-legend">
+                                                <tr>
+                                                    <td><div class="square bg-line"></div>@Resource.Bars</td>
+                                                    <td>{{ material.bar.perc | round }}<em>%</em></td>
+                                                    <td>{{ material.bar.number }}<em>m</em></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><div class="square bg-broken-line"></div>@Resource.Cutoff</td>
+                                                    <td>{{ material.cutoff.perc | round }}<em>%</em></td>
+                                                    <td>{{ material.cutoff.number }}<em>m</em></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="item clearfix" v-if="phases != null">
+                                            <div class="item-title">
+                                                @Resource.Phases
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 hidden-xs">
+                                        <div class="item clearfix" v-if="operators != null">
+                                            <div class="item-title" style="float: none;">
+                                                @Resource.Operators
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- PHASE -->
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div v-if="phases != null">
+                                            <div class="progress prod">
+                                                <div v-for="(phase, i) in phases" class="progress-bar" v-bind:class="bgPhase(i)" v-bind:aria-valuenow="phase.perc"></div>
+                                            </div>
+                                            <table class="table-legend">
+                                                <tr v-for="(phase, i) in phases">
+                                                    <td><div class="square" v-bind:class="bgPhase(i)"></div>{{ phase.text }}</td>
+                                                    <td>{{ phase.perc | round }}<em>%</em></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- OPERATOR -->
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div v-if="operators != null">
+                                            <div class="item clearfix visible-xs-block">
+                                                <div class="item-title" style="margin: 0 0 5px;">
+                                                    @Resource.Operators
+                                                </div>
+                                            </div>
+                                            <div class="progress prod">
+                                                <div v-for="(operator, i) in operators" class="progress-bar" v-bind:class="bgOperator(i)" v-bind:aria-valuenow="operator.perc"></div>
+                                            </div>
+                                            <table class="table-legend">
+                                                <tr v-for="(operator, i) in operators">
+                                                    <td><div class="square bg-first-oper" v-bind:class="bgOperator(i)"></div>{{ operator.text }}</td>
+                                                    <td>{{ operator.perc | round }}<em>%</em></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <no-data v-else></no-data>
+                        </div>
                         <div class="swiper-slide">
                             <div id="prd_historical_chart"></div>
                             <no-data v-if="!show.historical"></no-data>
@@ -181,9 +181,9 @@
                             <div id="prd_operators_chart"></div>
                             <no-data v-if="!show.operators"></no-data>
                         </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>

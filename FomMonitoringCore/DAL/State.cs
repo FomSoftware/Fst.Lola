@@ -17,8 +17,6 @@ namespace FomMonitoringCore.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public State()
         {
-            this.AlarmMachine = new HashSet<AlarmMachine>();
-            this.HistoryAlarm = new HashSet<HistoryAlarm>();
             this.HistoryState = new HashSet<HistoryState>();
             this.StateMachine = new HashSet<StateMachine>();
             this.CurrentState = new HashSet<CurrentState>();
@@ -30,10 +28,6 @@ namespace FomMonitoringCore.DAL
         public string Description { get; set; }
         public string Name { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AlarmMachine> AlarmMachine { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HistoryAlarm> HistoryAlarm { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoryState> HistoryState { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
