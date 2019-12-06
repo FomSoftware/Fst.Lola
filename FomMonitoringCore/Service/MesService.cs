@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
+using System.Web.UI.WebControls;
 using UserManager.DAL;
 
 namespace FomMonitoringCore.Service
@@ -217,24 +218,28 @@ namespace FomMonitoringCore.Service
                 m.AlarmElapsedTime = historyMessage.Sum(hm => hm.ElapsedTime ?? 0);
             }
 
+            long? efficiencyValue = 0;
+            long? totalElapsed = 0;
+
             if (historyEfficiency.Any())
             {
+                
                 if (machine.MachineTypeId == 4)
                 {
-                    var efficiencyValue = historyEfficiency.Where(he => he.StateId == 1 || he.StateId == 4)
+                    efficiencyValue = historyEfficiency.Where(he => he.StateId == 1 || he.StateId == 4)
                         .Sum(he => he.ElapsedTime);
 
-                    var totalElapsed = historyEfficiency.Where(he => he.StateId > 0)
+                    totalElapsed = historyEfficiency.Where(he => he.StateId > 0)
                         .Sum(he => he.ElapsedTime);
 
                     m.StateEfficiency = totalElapsed > 0 ? efficiencyValue * 100 / totalElapsed : 0;
                 }
                 else
                 {
-                    var efficiencyValue = historyEfficiency.Where(he => he.StateId == 1)
+                    efficiencyValue = historyEfficiency.Where(he => he.StateId == 1)
                         .Sum(he => he.ElapsedTime);
 
-                    var totalElapsed = historyEfficiency.Where(he => he.StateId > 0)
+                    totalElapsed = historyEfficiency.Where(he => he.StateId > 0)
                         .Sum(he => he.ElapsedTime);
 
                     m.StateEfficiency = totalElapsed > 0 ? efficiencyValue * 100 / totalElapsed : 0;
@@ -247,8 +252,10 @@ namespace FomMonitoringCore.Service
             if (historyPiece.Any())
             {
                 m.PieceCompletedCount = historyPiece.Sum(hm => hm.CompletedCount ?? 0);
-                m.PieceElapsedTime = historyPiece.Sum(hm => hm.ElapsedTime ?? 0);
-                m.PieceElapsedTimeProducing = historyPiece.Sum(hm => hm.ElapsedTimeProducing ?? 0);
+                //m.PieceElapsedTime = historyPiece.Sum(hm => hm.ElapsedTime ?? 0);
+                //m.PieceElapsedTimeProducing = historyPiece.Sum(hm => hm.ElapsedTimeProducing ?? 0);
+                m.PieceElapsedTime = totalElapsed ;
+                m.PieceElapsedTimeProducing = efficiencyValue;
             }
 
 
