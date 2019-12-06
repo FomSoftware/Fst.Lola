@@ -1,0 +1,19 @@
+﻿@model FomMonitoringBLL.ViewModel.ProductivityViewModel
+@using FomMonitoringResources
+
+<div v-if="operators != null">
+    <div class="item clearfix visible-xs-block">
+        <div class="item-title" style="margin: 0 0 5px;">
+            @Resource.Operators
+        </div>
+    </div>
+    <div class="progress prod">
+        <div v-for="(operator, i) in operators" class="progress-bar" v-bind:class="bgOperator(i)" v-bind:aria-valuenow="operator.perc"></div>
+    </div>
+    <table class="table-legend">
+        <tr v-for="(operator, i) in operators">
+            <td><div class="square bg-first-oper" v-bind:class="bgOperator(i)"></div>{{ operator.text }}</td>
+            <td>{{ operator.perc | round }}<em>%</em></td>
+        </tr>
+    </table>
+</div>

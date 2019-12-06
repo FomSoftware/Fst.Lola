@@ -22,6 +22,7 @@ namespace FomMonitoringCore.Service
         private IPanelRepository _panelRepository;
         private IMachineRepository _machineRepository;
         private IFomMonitoringEntities _context;
+        private IParameterMachineService _parameterMachineService;
         private IUnitOfWork _unitOfWork;
 
         public MachineService(
@@ -29,7 +30,8 @@ namespace FomMonitoringCore.Service
             IMachineModelRepository machineModelRepository,
             IPanelRepository panelRepository,
             IFomMonitoringEntities context,
-            IMachineRepository machineRepository, 
+            IMachineRepository machineRepository,
+            IParameterMachineService parameterMachineService,
             IUnitOfWork unitOfWork)
         {
             _machineRepository = machineRepository;
@@ -38,6 +40,7 @@ namespace FomMonitoringCore.Service
             _panelRepository = panelRepository;
             _context = context;
             _unitOfWork = unitOfWork;
+            _parameterMachineService = parameterMachineService;
         }
         #region API
 
@@ -243,18 +246,30 @@ namespace FomMonitoringCore.Service
 
         public List<int> GetMachinePanels(ContextModel context)
         {
+            return GetMachinePanels(context.ActualMachine.MachineModelId);
+        }
+
+        public List<int> GetMachinePanels(int? MachineModelId)
+        {
             List<int> result = new List<int>();
             try
             {
-                result = _panelRepository.Get(p => p.ParameterMachine.Any(f => f.MachineModelId  == context.ActualMachine.MachineModelId)).Select(a => a.Id).Distinct().ToList();                   
+                result = _panelRepository.Get(p => p.ParameterMachine.Any(f => f.MachineModelId == MachineModelId)).Select(a => a.Id).Distinct().ToList();
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), context.ActualMachine.MachineModelId.ToString());
+                string errMessage = string.Format(ex.GetStringLog(), MachineModelId.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
         }
+
+        public ParameterMachineValueModel GetProductionValueModel(MachineInfoModel context, enPanel pp)
+        {
+            var par = _parameterMachineService.GetParameters(context, (int)pp).FirstOrDefault();
+            return par;
+        }
+
 
 
         #endregion

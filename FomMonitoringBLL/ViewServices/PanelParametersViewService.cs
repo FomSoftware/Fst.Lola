@@ -59,6 +59,7 @@ namespace FomMonitoringBLL.ViewServices
             {
                 result.vm_tools_fmc_lmx = GetToolsFmcLmxVueModel(context.ActualMachine);
             }
+           
 
             result.vm_machine_info = new MachineInfoViewModel
             {

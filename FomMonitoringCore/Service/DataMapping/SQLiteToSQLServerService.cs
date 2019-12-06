@@ -143,8 +143,8 @@ namespace FomMonitoringCore.Service.DataMapping
                         mm.IsPeriodicMsg = true;
                     ReadMessages.ReadMessageVisibilityGroup(mm, msg);
                 }
-                //IS-754 escludere tutti quelli che hanno isLolaVisible = false 
-                messageMachine = messageMachine.Where(f => f.IsVisible).ToList();
+                //IS-754 escludere tutti quelli che hanno isLolaVisible = false && type error o warning 
+                messageMachine = messageMachine.Where(f => f.IsVisible && f.Type != null && (f.Type == "11" || f.Type == "12")).ToList();
 
                 _fomMonitoringEntities.Set<MessageMachine>().AddRange(messageMachine);
                 _fomMonitoringEntities.SaveChanges();

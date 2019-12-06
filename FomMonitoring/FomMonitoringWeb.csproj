@@ -17,7 +17,7 @@
     <AssemblyName>FomMonitoring</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>62186</IISExpressSSLPort>
+    <IISExpressSSLPort>44391</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
@@ -1001,6 +1001,10 @@
     <Content Include="Views\Machine\ElectroSpindle\_OtherMachineData.cshtml" />
     <Content Include="Views\Machine\ElectroSpindle\_ElectroSpindle.cshtml" />
     <Content Include="Views\Machine\Tools\_FmcLmx.cshtml" />
+    <Content Include="Views\Machine\Production\_Pieces.cshtml" />
+    <Content Include="Views\Machine\Production\_Materials.cshtml" />
+    <Content Include="Views\Machine\Production\_Operators.cshtml" />
+    <Content Include="Views\Machine\Production\_Phases.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

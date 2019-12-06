@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FomMonitoringCore.Framework.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,6 +26,7 @@ namespace FomMonitoringBLL.ViewModel
         public List<ProdDataModel> phases { get; set; }
         public List<ProdDataModel> operators { get; set; }
         public TimeViewModel time { get; set; }
+        public ParameterMachineValueModel productionVariables { get; set; }
     }
 
     public class PieceViewModel

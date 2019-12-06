@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 
 namespace FomMonitoringCore.Service
@@ -16,5 +17,8 @@ namespace FomMonitoringCore.Service
         int? GetMachineTypeIdByTypeName(string typeName);
         int? GetShiftByStartTime(int machineId, DateTime? startTime);
         List<MachineInfoModel> GetUserMachines(Guid UserID);
+
+        List<int> GetMachinePanels(int? MachineModelId);
+        ParameterMachineValueModel GetProductionValueModel(MachineInfoModel context, enPanel pp);
     }
 }

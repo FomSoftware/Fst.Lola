@@ -37,12 +37,20 @@
                 sortingCode: function ()
                 {
                     if (this.sorting.code != null)
-                        return 'active ' + this.sorting.code;
+                        return this.sorting.code;
                 },
                 sortingProgress: function ()
                 {
                     if (this.sorting.progress != null)
-                        return 'active ' + this.sorting.progress;
+                        return this.sorting.progress;
+                },
+                sortingDay: function () {
+                    if (this.sorting.day != null)
+                        return this.sorting.day;
+                },
+                sortingQuantity: function () {
+                    if (this.sorting.quantity != null)
+                        return this.sorting.quantity;
                 }
             },
             methods: {

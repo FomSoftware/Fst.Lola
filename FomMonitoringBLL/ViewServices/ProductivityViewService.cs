@@ -6,6 +6,7 @@ using FomMonitoringResources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FomMonitoringCore.DAL;
 
 namespace FomMonitoringBLL.ViewServices
 {
@@ -15,14 +16,16 @@ namespace FomMonitoringBLL.ViewServices
         private readonly IContextService _contextService;
         private readonly IBarService _barService;
         private readonly IStateService _stateService;
+        private readonly IMachineService _machineService;
 
         public ProductivityViewService(IPieceService pieceService, IContextService contextService, 
-            IBarService barService, IStateService stateService)
+            IBarService barService, IStateService stateService, IMachineService machineService)
         {
             _pieceService = pieceService;
             _contextService = contextService;
             _barService = barService;
             _stateService = stateService;
+            _machineService = machineService;
         }
 
         public ProductivityViewModel GetProductivity(ContextModel context)
@@ -42,9 +45,29 @@ namespace FomMonitoringBLL.ViewServices
             result.vm_productivity = GetVueModel( operatorActivities, context.ActualMachine, context.ActualPeriod);
             result.opt_historical = GetHistoricalOptions( context.ActualMachine, context.ActualPeriod);
             result.opt_operators = GetOperatorsOptions(operatorActivities, context.ActualMachine, context.ActualPeriod);
+           
+
             return result;
         }
 
+        private ParameterMachineValueModel GetVariables(MachineInfoModel machine)
+        {
+            ParameterMachineValueModel result = null;
+            List<int> panels = _machineService.GetMachinePanels(machine.MachineModelId);
+
+            if (panels != null)
+            {
+                if(panels.Contains((int) enPanel.ProductionFmc34))
+                {
+                   result = _machineService.GetProductionValueModel(machine, enPanel.ProductionFmc34);
+                }
+                else if (panels.Contains((int) enPanel.ProductionLMX))
+                {
+                    result = _machineService.GetProductionValueModel(machine, enPanel.ProductionLMX);
+                }
+        }
+        return result;
+        }
 
         private ProductivityVueModel GetVueModel(List<EfficiencyStateMachineModel> operatorActivities, MachineInfoModel machine, PeriodModel period)
         {
@@ -187,6 +210,8 @@ namespace FomMonitoringBLL.ViewServices
 
             // gross time
             result.time = CommonViewService.getTimeViewModel(grossTime);
+
+            result.productionVariables = GetVariables(machine);
 
             return result;
         }

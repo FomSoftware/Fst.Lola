@@ -80,7 +80,13 @@ namespace FomMonitoringCore.Framework.Common
         [Description("electrospindle")]
         Electrospindle = 31,
         [Description("toolsFmcLmx")]
-        ToolsFmcLmx = 32
+        ToolsFmcLmx = 32,
+        [Description("productionFmc34")]
+        ProductionFmc34 = 36,
+        [Description("ordersFmc34")]
+        OrdersFmc34 = 37,
+       [Description("productionLMX")]
+        ProductionLMX = 38
     }
 
     public enum enDataType
