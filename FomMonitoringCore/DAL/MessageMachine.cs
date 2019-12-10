@@ -14,6 +14,12 @@ namespace FomMonitoringCore.DAL
     
     public partial class MessageMachine
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MessageMachine()
+        {
+            this.MessageMachineNotification = new HashSet<MessageMachineNotification>();
+        }
+    
         public int Id { get; set; }
         public string Code { get; set; }
         public Nullable<System.DateTime> Day { get; set; }
@@ -31,5 +37,7 @@ namespace FomMonitoringCore.DAL
     
         public virtual Machine Machine { get; set; }
         public virtual State State { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MessageMachineNotification> MessageMachineNotification { get; set; }
     }
 }

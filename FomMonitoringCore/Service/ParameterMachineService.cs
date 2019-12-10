@@ -11,8 +11,8 @@ namespace FomMonitoringCore.Service
 {
     public class ParameterMachineService : IParameterMachineService
     {
-        private IParameterMachineValueRepository _parameterMachineValueRepository;
-        private IParameterMachineRepository _parameterMachineRepository;
+        private readonly IParameterMachineValueRepository _parameterMachineValueRepository;
+        private readonly IParameterMachineRepository _parameterMachineRepository;
 
         public ParameterMachineService(IParameterMachineValueRepository parameterMachineValueRepository, IParameterMachineRepository parameterMachineRepository)
         {

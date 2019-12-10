@@ -35,16 +35,16 @@ namespace FomMonitoringCore.Service
         /// <returns>Lista dei dettagli degli stati</returns>
         public List<HistoryMessageModel> GetAggregationMessages_SP(MachineInfoModel machine, PeriodModel period, enDataType dataType)
         {
-            List<HistoryMessageModel> result = new List<HistoryMessageModel>();
+            var result = new List<HistoryMessageModel>();
 
             try
             {                
-                    List<usp_AggregationMessage_Result> query = _context.usp_AggregationMessage(machine.Id, period.StartDate, period.EndDate, (int)period.Aggregation, (int)dataType).ToList();
+                    var query = _context.usp_AggregationMessage(machine.Id, period.StartDate, period.EndDate, (int)period.Aggregation, (int)dataType).ToList();
                     result = query.Adapt<List<HistoryMessageModel>>();                
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(),
+                var errMessage = string.Format(ex.GetStringLog(),
                     machine.Id.ToString(),
                     string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString()),
                     dataType.ToString());
@@ -226,7 +226,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(),
+                var errMessage = string.Format(ex.GetStringLog(),
                     machine.Id.ToString(),
                     string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString()),
                     dataType.ToString());
@@ -239,8 +239,8 @@ namespace FomMonitoringCore.Service
 
         private static int GetQuarter(DateTime fromDate)
         {
-            int month = fromDate.Month - 1;
-            int month2 = Math.Abs(month / 3) + 1;
+            var month = fromDate.Month - 1;
+            var month2 = Math.Abs(month / 3) + 1;
             return month2;
         }
 
@@ -252,13 +252,13 @@ namespace FomMonitoringCore.Service
         /// <returns>Lista dei dettagli degli stati</returns>
         public List<HistoryMessageModel> GetAllHistoryMessages(MachineInfoModel machine, PeriodModel period)
         {
-            List<HistoryMessageModel> result = new List<HistoryMessageModel>();
+            var result = new List<HistoryMessageModel>();
 
             try
             {                
-                string aggType = period.Aggregation.GetDescription();
+                var aggType = period.Aggregation.GetDescription();
 
-                List<HistoryMessage> query = (from hs in _context.Set<HistoryMessage>()
+                var query = (from hs in _context.Set<HistoryMessage>()
                                               where hs.MachineId == machine.Id
                                                 && hs.Day >= period.StartDate && hs.Day <= period.EndDate
                                                 && hs.TypeHistory == aggType
@@ -269,7 +269,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(),
+                var errMessage = string.Format(ex.GetStringLog(),
                     machine.Id.ToString(),
                     string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString()));
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
@@ -280,14 +280,14 @@ namespace FomMonitoringCore.Service
 
         public List<MessageMachineModel> GetMessageDetails(MachineInfoModel machine, PeriodModel period)
         {
-            List<MessageMachineModel> result = new List<MessageMachineModel>();
+            var result = new List<MessageMachineModel>();
 
             try
             {
 
-                    List<MessageMachine> query = _messageMachineRepository.GetMachineMessages(machine.Id, period.StartDate, period.EndDate).ToList();
+                    var query = _messageMachineRepository.GetMachineMessages(machine.Id, period.StartDate, period.EndDate).ToList();
 
-                int cat = _machineRepository.GetByID(machine.Id).MachineModel.MessageCategoryId;
+                var cat = _machineRepository.GetByID(machine.Id).MachineModel.MessageCategoryId;
                 var msgs = _messagesIndexRepository.Get(m => m.MessageCategoryId == cat, tracked: false);
 
                 query = query.Where(m =>
@@ -305,7 +305,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(),
+                var errMessage = string.Format(ex.GetStringLog(),
                     machine.Id.ToString(),
                     string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString()));
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
@@ -318,15 +318,15 @@ namespace FomMonitoringCore.Service
         {            
             if(mm.IsPeriodicMsg == true)
             {
-                int cat = _context.Set<Machine>().Find(mm.MachineId).MachineModel.MessageCategoryId;
-                MessagesIndex msg = _context.Set<MessagesIndex>().FirstOrDefault(f => f.MessageCode == mm.Code && f.MessageCategoryId == cat && f.PeriodicSpan != null);
+                var cat = _context.Set<Machine>().Find(mm.MachineId).MachineModel.MessageCategoryId;
+                var msg = _context.Set<MessagesIndex>().FirstOrDefault(f => f.MessageCode == mm.Code && f.MessageCategoryId == cat && f.PeriodicSpan != null);
                 if (msg == null) return null;
-                long span = msg.PeriodicSpan ?? 0;
+                var span = msg.PeriodicSpan ?? 0;
 
-                DateTime? initTime = _context.Set<Machine>().Find(mm.MachineId).ActivationDate?.AddHours(span);
+                var initTime = _context.Set<Machine>().Find(mm.MachineId).ActivationDate?.AddHours(span);
                 if(mm.IgnoreDate != null)
                 {
-                    DateTime ? initInterval = _context.Set<MessageMachine>().Find(mm.Id).GetInitialSpanDate(span);
+                    var initInterval = _context.Set<MessageMachine>().Find(mm.Id).GetInitialSpanDate(span);
                     if (mm.IgnoreDate < initInterval)
                         initTime = initInterval;
                     else
@@ -340,20 +340,20 @@ namespace FomMonitoringCore.Service
 
         public List<MessageMachineModel> GetMaintenanceMessages(MachineInfoModel machine, PeriodModel period)
         {
-            List<MessageMachineModel> result = new List<MessageMachineModel>();
+            var result = new List<MessageMachineModel>();
 
             try
             {                
-                    List<MessageMachine> query = _context.Set<MessageMachine>().Where(m => m.MachineId == machine.Id &&                                        
+                    var query = _context.Set<MessageMachine>().Where(m => m.MachineId == machine.Id &&                                        
                                         m.Machine.ActivationDate != null &&
                                         m.IsPeriodicMsg != null && m.IsPeriodicMsg == true).OrderByDescending(o => o.Day).ToList();
       
                     query = query.Where(m =>
                     {
-                        int cat = _context.Set<Machine>().Find(m.MachineId).MachineModel.MessageCategoryId;
-                        MessagesIndex msg = _context.Set<MessagesIndex>().FirstOrDefault(f => f.MessageCode == m.Code && f.MessageCategoryId == cat);
+                        var cat = _context.Set<Machine>().Find(m.MachineId)?.MachineModel.MessageCategoryId;
+                        var msg = _context.Set<MessagesIndex>().FirstOrDefault(f => f.MessageCode == m.Code && f.MessageCategoryId == cat);
                         if (msg == null) return false;
-                        long span = msg.PeriodicSpan ?? 0;
+                        var span = msg.PeriodicSpan ?? 0;
                                      
                         return (m.IgnoreDate == null && span > 0 && m.Machine.ActivationDate?.AddHours(span) <= DateTime.UtcNow) ||
                                (m.IgnoreDate != null && span > 0 && m.IgnoreDate < m.GetInitialSpanDate(span)) ||
@@ -365,7 +365,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(),
+                var errMessage = string.Format(ex.GetStringLog(),
                     machine.Id.ToString(),
                     string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString()));
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
@@ -374,14 +374,23 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
+        public List<MessageMachineModel> GetMaintenanceNotifications(MachineInfoModel machine, PeriodModel period, string userId)
+        {
+            var notificationsUser = GetMaintenanceMessages(machine, period);
+            var notificationsRead = _context.Set<MessageMachineNotification>().Where(n => n.UserId == userId)
+                .Select(nu => nu.IdMessageMachine).ToList();
+            notificationsUser = notificationsUser.Where(o => notificationsRead.All(i => i != o.Id)).ToList();
+            return notificationsUser;
+        }
+
 
         public List<MessageMachineModel> GetAllCurrentMessages(MachineInfoModel machine, PeriodModel period)
         {
-            List<MessageMachineModel> result = new List<MessageMachineModel>();
+            var result = new List<MessageMachineModel>();
 
             try
             {                
-                    List<MessageMachine> query = (from hs in _context.Set<MessageMachine>()
+                    var query = (from hs in _context.Set<MessageMachine>()
                                                   where hs.MachineId == machine.Id
                                                   && hs.Day >= period.StartDate && hs.Day <= period.EndDate
                                                   select hs).ToList();
@@ -390,7 +399,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(),
+                var errMessage = string.Format(ex.GetStringLog(),
                     machine.Id.ToString(),
                     string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString()));
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
@@ -408,11 +417,23 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(),
+                var errMessage = string.Format(ex.GetStringLog(),
                     messageId.ToString(), "");
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return false;
+        }
+
+        public void SetNotificationAsRead(int id, string userId)
+        {
+            _context.Set<MessageMachineNotification>().Add(new MessageMachineNotification
+            {
+                IdMessageMachine = id,
+                ReadingDate = DateTime.UtcNow,
+                UserId = userId
+            });
+
+            _context.SaveChanges();
         }
 
         /// Per ogni macchina non scaduta e con data di attivazione valida estrae i messaggi periodici da controllare 
@@ -423,25 +444,25 @@ namespace FomMonitoringCore.Service
             try
             {
 
-                    List<Machine> machines = _machineRepository.Get(m => m.ExpirationDate != null && m.ExpirationDate >= DateTime.UtcNow && 
+                    var machines = _machineRepository.Get(m => m.ExpirationDate != null && m.ExpirationDate >= DateTime.UtcNow && 
                                            m.ActivationDate != null && m.ActivationDate <= DateTime.UtcNow).ToList();
                     
-                    foreach(Machine machine in machines)
+                    foreach(var machine in machines)
                     {
                         MachinId = machine.Id.ToString();
-                        int cat = _machineRepository.GetByID(machine.Id).MachineModel.MessageCategoryId;
+                        var cat = _machineRepository.GetByID(machine.Id).MachineModel.MessageCategoryId;
 
-                        List<MessagesIndex> messaggi = _messagesIndexRepository.Get(mi => mi.MessageCategoryId == cat && mi.IsPeriodicM == true && mi.PeriodicSpan != null).ToList();
+                        var messaggi = _messagesIndexRepository.Get(mi => mi.MessageCategoryId == cat && mi.IsPeriodicM == true && mi.PeriodicSpan != null).ToList();
 
-                        foreach (MessagesIndex messaggio in messaggi)
+                        foreach (var messaggio in messaggi)
                         {
                             //messaggi periodici in base alla data di attivazione e allo span specificato nel messageIndex
-                            MessageMachine mess = _messageMachineRepository.GetFirstOrDefault(mm => mm.MachineId == machine.Id && mm.IsPeriodicMsg == true &&
+                            var mess = _messageMachineRepository.GetFirstOrDefault(mm => mm.MachineId == machine.Id && mm.IsPeriodicMsg == true &&
                                                          mm.Code == messaggio.MessageCode);
 
                             // i messaggi delle macchine al cui modello è associato un messaggio di default 
                             // hanno come data la data di attivazione della macchina
-                            DateTime data = (DateTime)machine.ActivationDate;
+                            var data = (DateTime)machine.ActivationDate;
 
                             data = (DateTime)machine.ActivationDate?.AddHours((long)messaggio.PeriodicSpan);
 
@@ -461,7 +482,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(),
+                var errMessage = string.Format(ex.GetStringLog(),
                     MachinId, "");
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }        
@@ -469,7 +490,7 @@ namespace FomMonitoringCore.Service
 
         public void InsertMessageMachine(Machine machine, string code, DateTime day)
         {
-            MessageMachine msg = new MessageMachine()
+            var msg = new MessageMachine()
             {
                 Code = code,
                 MachineId = machine.Id,

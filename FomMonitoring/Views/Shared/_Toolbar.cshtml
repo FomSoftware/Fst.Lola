@@ -177,6 +177,14 @@
     {
         var data = @Html.Raw(Json.Encode(Model));
         SharedManager.initToolbar(data);
+
+        @if (Model.role != enRole.Administrator) {
+            <text>
+                var urlNotification = '@Url.HttpRouteUrl("DefaultApi", new {controller = "AppApi", action = "GetNotificationViewModel" })';
+                var urlSetNotification = '@Url.HttpRouteUrl("DefaultApi", new {controller = "AppApi", action = "SetNotificationRead" })';
+                NotificationManager.init(urlNotification, urlSetNotification);
+            </text>
+        }
     });
 
     </script>

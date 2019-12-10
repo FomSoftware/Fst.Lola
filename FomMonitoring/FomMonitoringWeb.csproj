@@ -17,7 +17,7 @@
     <AssemblyName>FomMonitoring</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>44391</IISExpressSSLPort>
+    <IISExpressSSLPort>62186</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
@@ -363,6 +363,8 @@
     <Content Include="Content\icofom.css" />
     <Content Include="Content\simple-line-icons.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg">
       <SubType>Designer</SubType>
@@ -433,6 +435,7 @@
     <Content Include="GlobApp\scripts\machine\xtools.js" />
     <Content Include="GlobApp\scripts\machine\xspindles.js" />
     <Content Include="GlobApp\scripts\mes-manager.js" />
+    <Content Include="GlobApp\scripts\notification-manager.js" />
     <Content Include="GlobApp\scripts\plant-manager.js" />
     <Content Include="GlobApp\scripts\plantmessages.js" />
     <Content Include="GlobApp\scripts\shared-manager.js" />
@@ -792,6 +795,8 @@
     <Content Include="fonts\Lato-Light.ttf" />
     <Content Include="fonts\Lato-Regular.ttf" />
     <Content Include="Content\bootstrap-select.css.map" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <None Include="Properties\PublishProfiles\Alten.pubxml">
       <SubType>Designer</SubType>
     </None>
@@ -930,6 +935,8 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
     <Content Include="Scripts\vue.js" />

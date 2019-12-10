@@ -17,14 +17,15 @@ namespace FomMonitoring.Controllers
 {
     public class AccountController : Controller
     {
-        private IContextService _contextService;
-        private IMesService _mesService;
-        private IFomMonitoringEntities _dbcontext;
+        private readonly IContextService _contextService;
+        private readonly IMesService _mesService;
+        private readonly IFomMonitoringEntities _dbContext;
 
-        public AccountController(IContextService contextService, IMesService mesService)
+        public AccountController(IContextService contextService, IMesService mesService, IFomMonitoringEntities dbContext)
         {
             _contextService = contextService;
             _mesService = mesService;
+            _dbContext = dbContext;
         }
 
         [HttpGet]
@@ -143,7 +144,7 @@ namespace FomMonitoring.Controllers
                 var remoteLogin = bool.Parse(ApplicationSettingService.GetWebConfigKey("RemoteLogin"));
                 if (remoteLogin)
                 {
-                    IJsonAPIClientService jsonAPIClientService = new JsonAPIClientService(_dbcontext, _mesService);
+                    IJsonAPIClientService jsonAPIClientService = new JsonAPIClientService(_dbContext, _mesService);
                     remoteLoginResult = jsonAPIClientService.ValidateCredentialsViaRemoteApi(model.Username, model.Password);
                 }
 
@@ -156,8 +157,11 @@ namespace FomMonitoring.Controllers
                         {
                             FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
                             if (_contextService.InitializeContext())
+                            {
+                                ClearNotificationTable();
                                 return RedirectToLocal(returnUrl);
-
+                            }
+                            
                             ModelState.AddModelError("", Resource.LoginProblem);
                         }
 
@@ -190,6 +194,8 @@ namespace FomMonitoring.Controllers
                         ModelState.AddModelError("", Resource.LoginProblem);
                         break;
                 }
+
+
                 return View(model);
             }
 
@@ -197,14 +203,25 @@ namespace FomMonitoring.Controllers
             return View(model);
         }
 
+        private void ClearNotificationTable()
+        {
+            var user = AccountService.Init().GetLoggedUser();
+            var toRemove = _dbContext.Set<MessageMachineNotification>().Where(m => m.UserId == user.ID.ToString());
+            if (toRemove.Any())
+            {
+                _dbContext.Set<MessageMachineNotification>().RemoveRange(toRemove);
+                _dbContext.SaveChanges();
+            }
+        }
+
         private ActionResult RedirectToLocal(string returnUrl)
         {
-            ContextModel context = _contextService.GetContext();
+            var context = _contextService.GetContext();
 
             if (context == null)
                 return RedirectToAction("Logout");
 
-            string url = "/Machine";
+            var url = "/Machine";
             returnUrl = returnUrl == "/" ? url : returnUrl;
 
             if (!string.IsNullOrEmpty(returnUrl) && returnUrl != url && Url.IsLocalUrl(returnUrl))

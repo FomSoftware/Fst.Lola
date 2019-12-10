@@ -102,6 +102,7 @@
     <Compile Include="ViewServices\MaintenanceViewService.cs" />
     <Compile Include="ViewServices\MessagesViewService.cs" />
     <Compile Include="ViewModel\PanelParameterViewModel.cs" />
+    <Compile Include="ViewServices\NotificationViewService.cs" />
     <Compile Include="ViewServices\PanelParametersViewService.cs" />
     <Compile Include="ViewServices\PlantManagerViewService.cs" />
     <Compile Include="ViewServices\PlantMessagesViewService.cs" />

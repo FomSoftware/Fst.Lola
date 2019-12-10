@@ -280,7 +280,7 @@
     <value>Spezzoni</value>
   </data>
   <data name="Code" xml:space="preserve">
-    <value>Codice</value>
+    <value>Code</value>
   </data>
   <data name="Position" xml:space="preserve">
     <value>Posizione</value>
@@ -760,5 +760,11 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   </data>
   <data name="OtherMachineData" xml:space="preserve">
     <value>Altri dati macchina</value>
+  </data>
+  <data name="NPiecesNetTime" xml:space="preserve">
+    <value>N. Pezzi/T.Netto</value>
+  </data>
+  <data name="NPiecesGrossTime" xml:space="preserve">
+    <value>N. Pezzi/T.Lordo</value>
   </data>
 </root>

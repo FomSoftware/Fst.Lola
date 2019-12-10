@@ -301,14 +301,14 @@ namespace FomMonitoringBLL.ViewServices
 
             var serieGrossTime = new SerieViewModel();
             serieGrossTime.type = (int)enSerieProd.GrossTime;
-            serieGrossTime.name = enSerieProd.GrossTime.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
+            serieGrossTime.name = new System.Resources.ResourceManager(typeof(Resource)).GetString("NPiecesGrossTime");// enSerieProd.GrossTime.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage) + " pz/h";
             serieGrossTime.color = CommonViewService.GetColorChart(enSerieProd.GrossTime);
             serieGrossTime.data = data.Select(s => Common.GetRatioProductivity(s.CompletedCount, s.TotalTime) ?? 0).ToList();
             series.Add(serieGrossTime);
 
             var serieNetTime = new SerieViewModel();
             serieNetTime.type = (int)enSerieProd.NetTime;
-            serieNetTime.name = enSerieProd.NetTime.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
+            serieNetTime.name = new System.Resources.ResourceManager(typeof(Resource)).GetString("NPiecesNetTime");// enSerieProd.NetTime.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage) + " pz/h";
             serieNetTime.color = CommonViewService.GetColorChart(enSerieProd.NetTime);
             serieNetTime.data = data.Select(s => Common.GetRatioProductivity(s.CompletedCount, s.ProducingTime) ?? 0).ToList();
             series.Add(serieNetTime);

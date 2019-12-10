@@ -763,4 +763,8 @@ em,
     }
 }
 
-/*#endregion*/
+
+#toast-container > div {
+    width: 435px;
+}
+    /*#endregion*/

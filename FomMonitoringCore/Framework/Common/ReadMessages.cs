@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Data.Odbc;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -53,40 +54,52 @@ namespace FomMonitoringCore.Framework.Common
 
         public string GetMessageDescription(string code, int machineId, string parameters, string language)
         {
-            var result = "";
-
-            var cat = _machineRepository.GetByID(machineId)?.MachineModel?.MessageCategoryId;
-
-            if (!(cat > 0))
-                return string.Empty;
-
-            var la = _messageLanguagesRepository.GetFirstOrDefault(lan => lan.DotNetCulture.StartsWith(language));
-            if (la == null)
-                return string.Empty;
-
-            var languageId = la.Id;
-
-
-            result = _messageTranslationRepository.GetFirstOrDefault(t => t.MessageLanguageId == languageId && t.MessagesIndex.MessageCode == code && t.MessagesIndex.MessageCategoryId == cat)?.Translation;
-
-
-            if (result == null)
-                return string.Empty;
-            
-
-            if (string.IsNullOrEmpty(parameters))                
-                return result;
-
-            Dictionary<string, string> parDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(parameters);
-
-            foreach (string key in parDict.Keys)
+            try
             {
-                result = result.Replace(key, parDict[key]);
+                var result = "";
+
+                var cat = _machineRepository.GetByID(machineId)?.MachineModel?.MessageCategoryId;
+
+                if (!(cat > 0))
+                    return string.Empty;
+
+                var la = _messageLanguagesRepository.GetFirstOrDefault(lan => lan.DotNetCulture.StartsWith(language));
+                if (la == null)
+                    return string.Empty;
+
+                var languageId = la.Id;
+
+
+                result = _messageTranslationRepository.GetFirstOrDefault(t =>
+                    t.MessageLanguageId == languageId && t.MessagesIndex.MessageCode == code &&
+                    t.MessagesIndex.MessageCategoryId == cat)?.Translation;
+
+
+                if (result == null)
+                    return string.Empty;
+
+
+                if (string.IsNullOrEmpty(parameters))
+                    return result;
+
+                Dictionary<string, string> parDict =
+                    JsonConvert.DeserializeObject<Dictionary<string, string>>(parameters);
+
+                foreach (string key in parDict.Keys)
+                {
+                    result = result.Replace(key, parDict[key]);
+                }
+
+
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                Debugger.Break();
             }
 
-                   
-            
-            return result;
+            return null;
         }
 
         public string GetMessageGroup(string code, int machineId, int? jsonGroupId)
@@ -125,20 +138,24 @@ namespace FomMonitoringCore.Framework.Common
         }
 
         public int? GetMessageType(string code, int machineId)
-        {   
-            var cat = _machineRepository.GetByID(machineId).MachineModel.MessageCategoryId;
+        {
+            try
+            {
+                var cat = _machineRepository.GetByID(machineId).MachineModel.MessageCategoryId;
 
-            if (!(cat > 0))
-                return null;
+                if (!(cat > 0))
+                    return null;
 
-            var msg = _messagesIndexRepository.GetByCodeCategory(code, cat);
-            if (msg == null)
-                return null;
+                var msg = _messagesIndexRepository.GetByCodeCategory(code, cat);
 
-            if (msg.MessageType == null)
-                return null;
+                return msg?.MessageType?.Id;
+            }
+            catch (Exception e)
+            {
+                Debugger.Break();
+            }
 
-            return msg.MessageType.Id;               
+            return null;
         }
 
         public string ReplaceFirstOccurrence(string source, string find, string replace)

@@ -61,12 +61,13 @@
             watch: {
                 activeMachines: function (machine, oldmachine) {
                     if (oldmachine != null && machine != null) {
-                        let intersection = machine.filter(x => !oldmachine.includes(x));
+                        var intersection = machine.filter(x => !oldmachine.includes(x));
                         console.log(intersection);
                         if (intersection != null && intersection[0] != null) {
                             requestAssociatedPlant(intersection[0]).then(r => {
                                 if (r.Plant != null && vmPlants.actual.Id != r.Plant.Id) {
-                                    var text = "Macchina già associata ad un plant, continuare?";
+                                    var text = "Macchina già associata al plant {0}, continuare?";
+                                    text = text.replace("{0}", r.Plant.Name);
                                     var alert = alertSwal(text);
 
                                     alert.then(

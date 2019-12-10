@@ -22,7 +22,8 @@ namespace FomMonitoring.App_Start
                         "~/Content/font-awesome.min.css",
                         "~/Content/simple-line-icons.css",
                         "~/Content/DataTables/css/jquery.dataTables.css",
-                        "~/Content/bootstrap-select.css"
+                        "~/Content/bootstrap-select.css",
+                        "~/Content/toastr.css"
                       ));
 
 
@@ -40,7 +41,8 @@ namespace FomMonitoring.App_Start
                         "~/Scripts/moment-with-locales.js",
                         "~/Scripts/daterangepicker.js",
                         "~/Scripts/underscore.js",
-                        "~/Scripts/bootstrap-select.js"
+                        "~/Scripts/bootstrap-select.js",
+                        "~/Scripts/toastr.js"
                       ));
 
             #endregion
@@ -94,7 +96,8 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/axes/keope.js",
                         "~/GlobApp/scripts/machine/electrospindle/electrospindle.js",
                         "~/GlobApp/scripts/machine/electrospindle/otherdata.js",
-                        "~/GlobApp/scripts/machine/tools/fmcLmx.js"
+                        "~/GlobApp/scripts/machine/tools/fmcLmx.js",
+                        "~/GlobApp/scripts/notification-manager.js"
                       ));
 
             #endregion

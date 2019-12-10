@@ -762,4 +762,10 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>
 Autres données de la machine</value>
   </data>
+  <data name="NPiecesNetTime" xml:space="preserve">
+    <value>N. de pièces / temps net</value>
+  </data>
+  <data name="NPiecesGrossTime" xml:space="preserve">
+    <value>N. de pièces / temps brut</value>
+  </data>
 </root>

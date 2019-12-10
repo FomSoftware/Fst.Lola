@@ -16,7 +16,9 @@ namespace FomMonitoringCore.Service
         List<HistoryMessageModel> GetAllHistoryMessages(MachineInfoModel machine, PeriodModel period);
         long? GetExpiredSpan(MessageMachineModel mm);
         List<MessageMachineModel> GetMaintenanceMessages(MachineInfoModel machine, PeriodModel period);
+        List<MessageMachineModel> GetMaintenanceNotifications(MachineInfoModel machine, PeriodModel period, string userId);
         List<MessageMachineModel> GetAllCurrentMessages(MachineInfoModel machine, PeriodModel period);
         bool IgnoreMessage(int messageId);
+        void SetNotificationAsRead(int id, string userId);
     }
 }

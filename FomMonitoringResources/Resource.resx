@@ -767,4 +767,10 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="UserNotEnabled" xml:space="preserve">
     <value>User not enabled</value>
   </data>
+  <data name="NPiecesNetTime" xml:space="preserve">
+    <value>No. Pieces/Net Time</value>
+  </data>
+  <data name="NPiecesGrossTime" xml:space="preserve">
+    <value>No. pieces / gross time</value>
+  </data>
 </root>

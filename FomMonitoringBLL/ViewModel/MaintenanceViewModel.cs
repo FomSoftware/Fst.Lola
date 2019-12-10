@@ -23,6 +23,8 @@ namespace FomMonitoringBLL.ViewModel
     public class ManteinanceDataModel
     {
         public int id { get; set; }
+        public string machineName { get; set; }
+        public string machineModel { get; set; }
         public string code { get; set; }
         public string type { get; set; }
         public TimeViewModel time { get; set; }

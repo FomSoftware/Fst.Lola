@@ -231,6 +231,15 @@
           <Property Name="IgnoreDate" Type="datetime" />
           <Property Name="IsPeriodicMsg" Type="bit" />
         </EntityType>
+        <EntityType Name="MessageMachineNotification">
+          <Key>
+            <PropertyRef Name="IdMessageMachine" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="IdMessageMachine" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ReadingDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="MessagesIndex">
           <Key>
             <PropertyRef Name="Id" />
@@ -678,6 +687,18 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MessageMachineNotification_MessageMachine">
+          <End Role="MessageMachine" Type="Self.MessageMachine" Multiplicity="1" />
+          <End Role="MessageMachineNotification" Type="Self.MessageMachineNotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageMachine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageMachineNotification">
+              <PropertyRef Name="IdMessageMachine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MessagesIndex_MachineGroup">
           <End Role="MachineGroup" Type="Self.MachineGroup" Multiplicity="1" />
           <End Role="MessagesIndex" Type="Self.MessagesIndex" Multiplicity="*" />
@@ -925,6 +946,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySet Name="MessageCategory" EntityType="Self.MessageCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MessageLanguages" EntityType="Self.MessageLanguages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MessageMachine" EntityType="Self.MessageMachine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageMachineNotification" EntityType="Self.MessageMachineNotification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MessagesIndex" EntityType="Self.MessagesIndex" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MessageTranslation" EntityType="Self.MessageTranslation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MessageType" EntityType="Self.MessageType" Schema="dbo" store:Type="Tables" />
@@ -1038,6 +1060,10 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <AssociationSet Name="FK_MachineModel_MessageCategory" Association="Self.FK_MachineModel_MessageCategory">
             <End Role="MessageCategory" EntitySet="MessageCategory" />
             <End Role="MachineModel" EntitySet="MachineModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageMachineNotification_MessageMachine" Association="Self.FK_MessageMachineNotification_MessageMachine">
+            <End Role="MessageMachine" EntitySet="MessageMachine" />
+            <End Role="MessageMachineNotification" EntitySet="MessageMachineNotification" />
           </AssociationSet>
           <AssociationSet Name="FK_MessagesIndex_MachineGroup" Association="Self.FK_MessagesIndex_MachineGroup">
             <End Role="MachineGroup" EntitySet="MachineGroup" />
@@ -1315,6 +1341,11 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <AssociationSet Name="FK_ParameterMachine_Panel" Association="FST_FomMonitoringModel.FK_ParameterMachine_Panel">
             <End Role="Panel" EntitySet="Panel" />
             <End Role="ParameterMachine" EntitySet="ParameterMachine" />
+          </AssociationSet>
+          <EntitySet Name="MessageMachineNotification" EntityType="FST_FomMonitoringModel.MessageMachineNotification" />
+          <AssociationSet Name="FK_MessageMachineNotification_MessageMachine" Association="FST_FomMonitoringModel.FK_MessageMachineNotification_MessageMachine">
+            <End Role="MessageMachine" EntitySet="MessageMachine" />
+            <End Role="MessageMachineNotification" EntitySet="MessageMachineNotification" />
           </AssociationSet>
 		  </EntityContainer>
         <EntityType Name="MachineModel">
@@ -1973,6 +2004,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="IsVisible" Type="Boolean" Nullable="false" />
           <Property Name="IgnoreDate" Type="DateTime" Precision="3" Nullable="true" />
           <Property Name="IsPeriodicMsg" Type="Boolean" Nullable="true" />
+          <NavigationProperty Name="MessageMachineNotification" Relationship="FST_FomMonitoringModel.FK_MessageMachineNotification_MessageMachine" FromRole="MessageMachine" ToRole="MessageMachineNotification" />
         </EntityType>
         <Association Name="FK_HistoryMessage_Machine">
           <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
@@ -2339,6 +2371,28 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             </Principal>
             <Dependent Role="ParameterMachine">
               <PropertyRef Name="PanelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MessageMachineNotification">
+          <Key>
+            <PropertyRef Name="IdMessageMachine" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="IdMessageMachine" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ReadingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MessageMachine" Relationship="FST_FomMonitoringModel.FK_MessageMachineNotification_MessageMachine" FromRole="MessageMachineNotification" ToRole="MessageMachine" />
+        </EntityType>
+        <Association Name="FK_MessageMachineNotification_MessageMachine">
+          <End Type="FST_FomMonitoringModel.MessageMachine" Role="MessageMachine" Multiplicity="1" />
+          <End Type="FST_FomMonitoringModel.MessageMachineNotification" Role="MessageMachineNotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageMachine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageMachineNotification">
+              <PropertyRef Name="IdMessageMachine" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2945,6 +2999,15 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
               <MappingFragment StoreEntitySet="Panel">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageMachineNotification">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.MessageMachineNotification">
+              <MappingFragment StoreEntitySet="MessageMachineNotification">
+                <ScalarProperty Name="ReadingDate" ColumnName="ReadingDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IdMessageMachine" ColumnName="IdMessageMachine" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

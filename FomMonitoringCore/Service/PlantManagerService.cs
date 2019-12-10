@@ -213,11 +213,11 @@ namespace FomMonitoringCore.Service
         {
             try
             {
-                Guid? customerId = null;
-                using (UserManagerEntities entUM = new UserManagerEntities())
+                Guid? customerId;
+                using (var entUm = new UserManagerEntities())
                 {
-                    entUM.Configuration.LazyLoadingEnabled = false;
-                    customerId = entUM.Users.FirstOrDefault(f => f.Username == plant.CustomerName)?.ID;
+                    entUm.Configuration.LazyLoadingEnabled = false;
+                    customerId = entUm.Users.FirstOrDefault(f => f.Username == plant.CustomerName)?.ID;
                 }               
                 var updPlant = _context.Set<Plant>().Find(plant.Id) ?? new Plant();
 
@@ -230,7 +230,7 @@ namespace FomMonitoringCore.Service
                 _context.SaveChanges();
 
                 var idsMachines = plant.Machines.Select(i => i.Id).ToList();
-                var oldMachine = updPlant.Machine.Where(m => !idsMachines.Any(mi => mi == m.Id)).ToList();
+                var oldMachine = updPlant.Machine.Where(m => idsMachines.All(mi => mi != m.Id)).ToList();
                 oldMachine.ForEach(m => {
                     m.Plant = null;
                     m.PlantId = null;

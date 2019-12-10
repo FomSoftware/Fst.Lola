@@ -763,4 +763,10 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="OtherMachineData" xml:space="preserve">
     <value>Sonstige Maschinendaten</value>
   </data>
+  <data name="NPiecesNetTime" xml:space="preserve">
+    <value>Stückzahl / Nettozeit</value>
+  </data>
+  <data name="NPiecesGrossTime" xml:space="preserve">
+    <value>Stückzahl / Bruttozeit</value>
+  </data>
 </root>

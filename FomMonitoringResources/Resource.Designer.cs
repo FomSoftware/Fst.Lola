@@ -1062,6 +1062,24 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No. pieces / gross time.
+        /// </summary>
+        public static string NPiecesGrossTime {
+            get {
+                return ResourceManager.GetString("NPiecesGrossTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No. Pieces/Net Time.
+        /// </summary>
+        public static string NPiecesNetTime {
+            get {
+                return ResourceManager.GetString("NPiecesNetTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to N. accensioni/ &lt;br /&gt;spegnimenti &lt;br/&gt; motore lama TF.
         /// </summary>
         public static string Num_LamaON_TF {

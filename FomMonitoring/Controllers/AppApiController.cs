@@ -13,21 +13,24 @@ namespace FomMonitoring.Controllers
     [SessionApi]
     public class AppApiController : ApiController
     {
-        private IContextService _contextService;
-        private IPlantMessagesViewService _plantMessagesViewService;
-        private IMachineViewService _machineViewService;
-        private IMesViewService _mesViewService;
+        private readonly IContextService _contextService;
+        private readonly IPlantMessagesViewService _plantMessagesViewService;
+        private readonly IMachineViewService _machineViewService;
+        private readonly IMesViewService _mesViewService;
+        private readonly INotificationViewService _notificationManagerViewService;
 
         public AppApiController(
             IPlantMessagesViewService plantMessagesViewService, 
             IMachineViewService machineViewService,
             IContextService contextService,
-            IMesViewService mesViewService)
+            IMesViewService mesViewService,
+            INotificationViewService notificationManagerViewService)
         {
             _contextService = contextService;
             _plantMessagesViewService = plantMessagesViewService;
             _machineViewService = machineViewService;
             _mesViewService = mesViewService;
+            _notificationManagerViewService = notificationManagerViewService;
         }
 
         [HttpPost]
@@ -74,6 +77,32 @@ namespace FomMonitoring.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, mes, MediaTypeHeaderValue.Parse("application/json"));
         }
+
+        [HttpPost]
+        [Authorize(Roles = Common.HeadWorkshop + "," + Common.Operator + "," + Common.Customer)]
+        [Route("ajax/AppApi/GetNotificationViewModel")]
+        public HttpResponseMessage GetNotificationsViewModel()
+        {
+          
+            var context = _contextService.GetContext();
+            var notification = _notificationManagerViewService.GetNotification(context);
+
+            return Request.CreateResponse(HttpStatusCode.OK, notification, MediaTypeHeaderValue.Parse("application/json"));
+        }
+
+
+        [HttpPost]
+        [Authorize(Roles = Common.HeadWorkshop + "," + Common.Operator + "," + Common.Customer)]
+        [Route("ajax/AppApi/SetNotificationRead")]
+        public HttpResponseMessage SetNotificationRead([FromBody]int idNotification)
+        {
+
+            var context = _contextService.GetContext();
+            _notificationManagerViewService.SetNotificationAsRead(idNotification, context);
+
+            return Request.CreateResponse(HttpStatusCode.OK, new {}, MediaTypeHeaderValue.Parse("application/json"));
+        }
+
 
         [HttpPost]
         [Authorize(Roles = Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
