@@ -170,7 +170,7 @@ namespace FomMonitoringCore.Service
         {
             var tmp =  _context.Set<HistoryState>()
                  .Where(w => w.MachineId == machine.Id && w.Day >= dateFrom && w.Day <= dateTo && w.Operator != null 
-                             && w.StateId != (int?)enState.Off && w.Shift == null)
+                             && w.StateId != (int?)enState.Offline && w.Shift == null)
                  .GroupBy(g => g.Operator).ToList();
 
             List<EfficiencyStateMachineModel> totTime = tmp.Select(s => new EfficiencyStateMachineModel
@@ -215,7 +215,7 @@ namespace FomMonitoringCore.Service
                 EfficiencyStateMachineModel result = new EfficiencyStateMachineModel();
                 DateTime dateTo = day.AddDays(1);
                 result.StatesTime = _context.Set<HistoryState>()
-                    .Where(w => w.MachineId == machine.Id && w.Day >= day && w.Day <= dateTo && w.StateId != (int?)enState.Off
+                    .Where(w => w.MachineId == machine.Id && w.Day >= day && w.Day <= dateTo && w.StateId != (int?)enState.Offline
                                 && w.Operator != null && w.Shift == null)
                     .GroupBy(g => g.StateId).ToDictionary(s => s.Key, s => s.Sum(x => x.ElapsedTime));
 

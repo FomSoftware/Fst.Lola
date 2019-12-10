@@ -292,7 +292,7 @@ namespace FomMonitoringCore.Service
             try
             {
                 List<Machine> machines = _context.Set<Machine>().Where(m => m.CurrentState.FirstOrDefault() != null && 
-                                                            m.CurrentState.FirstOrDefault().StateId != (int)enState.Off).ToList();
+                                                            m.CurrentState.FirstOrDefault().StateId != (int)enState.Offline).ToList();
 
                 foreach (Machine machine in machines)
                 {
@@ -301,7 +301,7 @@ namespace FomMonitoringCore.Service
                     if (st.LastUpdated < DateTime.UtcNow.AddSeconds(interval * -1))
                     {
                         st.LastUpdated = DateTime.UtcNow;
-                        st.StateId = (int)enState.Off;
+                        st.StateId = (int)enState.Offline;
                     }                   
                 }
                 _context.SaveChanges();

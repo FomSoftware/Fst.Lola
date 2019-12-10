@@ -54,8 +54,8 @@ namespace FomMonitoringBLL.ViewServices
 
 
 
-            var totalOn = data.Where(w => w.enState != enState.Off).Select(s => s.ElapsedTime).Sum();
-            //long? totalOff = data.Where(w => w.enState == enState.Off).Select(s => s.ElapsedTime).Sum();
+            var totalOn = data.Where(w => w.enState != enState.Offline).Select(s => s.ElapsedTime).Sum();
+            //long? totalOff = data.Where(w => w.enState == enState.Offline).Select(s => s.ElapsedTime).Sum();
 
             decimal? percProd = Common.GetPercentage(totalProd, totalOn);
 
@@ -155,7 +155,7 @@ namespace FomMonitoringBLL.ViewServices
             periodTrend.EndDate = period.EndDate.ToUniversalTime();
             periodTrend.Aggregation = granularity;
 
-            var data = _stateService.GetAggregationStates(machine, periodTrend, enDataType.Historical).Where(w => w.enState != enState.Off).OrderBy(o => o.Day).ToList();
+            var data = _stateService.GetAggregationStates(machine, periodTrend, enDataType.Historical).Where(w => w.enState != enState.Offline).OrderBy(o => o.Day).ToList();
 
             if (data.Count == 0)
                 return null;
@@ -228,7 +228,7 @@ namespace FomMonitoringBLL.ViewServices
         {
             var options = new ChartViewModel();
 
-            var data = _stateService.GetAggregationStates(machine, period, enDataType.Operators).Where(w => w.enState != enState.Off).OrderBy(o => o.Day).ToList();
+            var data = _stateService.GetAggregationStates(machine, period, enDataType.Operators).Where(w => w.enState != enState.Offline).OrderBy(o => o.Day).ToList();
 
             if (data.Count == 0)
                 return null;
@@ -259,7 +259,7 @@ namespace FomMonitoringBLL.ViewServices
             
 
             var totalValue = machine.MachineTypeId == 4 ? stateProd?.ElapsedTime + stateManual?.ElapsedTime : stateProd?.ElapsedTime;
-            var totalOn = data.Where(w => w.enState != enState.Off).Select(s => s.ElapsedTime).Sum();
+            var totalOn = data.Where(w => w.enState != enState.Offline).Select(s => s.ElapsedTime).Sum();
 
             decimal? percProd = Common.GetPercentage(totalValue, totalOn);
 
@@ -278,7 +278,7 @@ namespace FomMonitoringBLL.ViewServices
         {
             var options = new ChartViewModel();
 
-            var data = _stateService.GetAggregationStates(machine, period, enDataType.Shifts).Where(w => w.enState != enState.Off).OrderBy(o => o.Day).ToList();
+            var data = _stateService.GetAggregationStates(machine, period, enDataType.Shifts).Where(w => w.enState != enState.Offline).OrderBy(o => o.Day).ToList();
 
             if (data.Count == 0)
                 return null;
@@ -313,8 +313,8 @@ namespace FomMonitoringBLL.ViewServices
             long? totalError = stateError?.ElapsedTime ?? 0;
             long? totalManual = stateManual?.ElapsedTime ?? 0;
 
-            var totalOn = data.Where(w => w.enState != enState.Off).Select(s => s.ElapsedTime).Sum();
-            var totalOff = data.Where(w => w.enState == enState.Off).Select(s => s.ElapsedTime).Sum();
+            var totalOn = data.Where(w => w.enState != enState.Offline).Select(s => s.ElapsedTime).Sum();
+            var totalOff = data.Where(w => w.enState == enState.Offline).Select(s => s.ElapsedTime).Sum();
 
             decimal? percProd = Common.GetPercentage(totalProd, totalOn);
             decimal? percPause = Common.GetPercentage(totalPause, totalOn);
@@ -396,7 +396,7 @@ namespace FomMonitoringBLL.ViewServices
                 if (dataCategorie.Count == 0)
                     continue;
 
-                var totalOn = dataCategorie.Where(w => w.enState != enState.Off).Select(s => s.ElapsedTime).Sum();
+                var totalOn = dataCategorie.Where(w => w.enState != enState.Offline).Select(s => s.ElapsedTime).Sum();
 
                 var stateProd = dataCategorie.Where(w => w.enState == enState.Production).FirstOrDefault();
 

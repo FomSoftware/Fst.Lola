@@ -38,7 +38,7 @@ namespace FomMonitoringCore.Framework.Common
     public enum enState
     {
         [Description("off")]
-        Off = 0,
+        Offline = 0,
         [Description("prod")]
         Production = 1,
         [Description("pause")]
