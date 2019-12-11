@@ -80,6 +80,7 @@ namespace FomMonitoringBLL.ViewServices
 
             // tempo lordo: devo andare sulla tabella degli stati perchè non ce l'ho sui pezzi
             var grossTime = operatorActivities.Sum(m => m.TotalTime);
+            var netTime = operatorActivities.Sum(m => m.ProducingTime);
             //var grossTime = data.Select(s => s.ElapsedTime).Sum();
             var doneCount = data.Select(s => s.CompletedCount).Sum() ?? 0;
             var redoneCount = data.Select(s => s.RedoneCount).Sum() ?? 0;
@@ -145,12 +146,20 @@ namespace FomMonitoringBLL.ViewServices
                 trim.text = Resource.Trim;
                 trim.perc = Common.GetPercentage(data.Select(s => s.ElapsedTimeTrim ?? 0).Sum(), grossTime);
                 phases.Add(trim);
-            }
 
-            var cut = new ProdDataModel();
-            cut.text = Resource.Cut;
-            cut.perc = Common.GetPercentage(data.Select(s => s.ElapsedTimeCut ?? 0).Sum(), grossTime);
-            phases.Add(cut);
+                var cut = new ProdDataModel();
+                cut.text = Resource.Cut;
+                cut.perc = Common.GetPercentage(data.Select(s => s.ElapsedTimeCut ?? 0).Sum(), grossTime);
+                phases.Add(cut);
+            }
+            else
+            {
+                var cut = new ProdDataModel();
+                cut.text = Resource.Cut;
+                cut.perc = Common.GetPercentage(netTime, grossTime);
+                phases.Add(cut);
+            }
+            
 
             var timeAnuba = data.Select(s => s.ElapsedTimeAnuba ?? 0).Sum();
 

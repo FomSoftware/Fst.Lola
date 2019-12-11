@@ -132,7 +132,7 @@
                                         <div>{{ machine.efficiency.kpi.value | round }}<em>%</em></div>
                                     </div>
                                     <div class="pull-right text-right">
-                                        <div>
+                                        <div v-if="machine.info.id_mtype != 4">
                                             <i class="fa icofom-overfeed color-aaa"></i>
                                             <span>{{ machine.efficiency.overfeed.value | round }}<em>%</em></span>
                                         </div>
@@ -272,7 +272,7 @@
                                         <div>{{ machine.efficiency.kpi.value | round }}<em>%</em></div>
                                     </div>
                                     <div class="pull-right text-right">
-                                        <div>
+                                        <div v-if="machine.info.id_mtype != 4">
                                             <i class="fa icofom-overfeed color-aaa"></i>
                                             <span>{{ machine.efficiency.overfeed.value }}<em>%</em></span>
                                         </div>
