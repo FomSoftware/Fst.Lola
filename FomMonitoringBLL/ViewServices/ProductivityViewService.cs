@@ -260,11 +260,11 @@ namespace FomMonitoringBLL.ViewServices
             //ordinamento in base all'efficienza
             states = states.OrderByDescending(s => Common.GetRatioProductivity(s.CompletedCount, s.TotalTime)).ToList();
             
-            var operators = states.Select(s => s.Operator).ToList();
+            var operators = states.Select(s => s.Operator).Take(5).ToList();
             options.categories = operators;
             options.yTitle = string.Format("{0} (%)", Resource.Efficiency);
             options.yTitle2 = string.Format("{0} (pz/h)", Resource.Productivity);
-            options.series = GetSeriesChartProd(states);
+            options.series = GetSeriesChartProd(states.Take(5));
 
             return options;
         }
@@ -288,7 +288,7 @@ namespace FomMonitoringBLL.ViewServices
             return options;
         }*/
 
-        private List<SerieViewModel> GetSeriesChartProd(List<EfficiencyStateMachineModel> data)
+        private List<SerieViewModel> GetSeriesChartProd(IEnumerable<EfficiencyStateMachineModel> data)
         {
             var series = new List<SerieViewModel>();
           
