@@ -239,9 +239,9 @@ namespace FomMonitoringBLL.ViewServices
             List<EfficiencyStateMachineModel> valori = _stateService.GetDayActivity(machine, days);
             
             options.categories = CommonViewService.GetTimeCategories(days, granularity);
-            options.yTitle = string.Format("{0} (%)", Resource.Efficiency);
-            options.yTitle2 = string.Format("{0} (pz/h)", Resource.Productivity);
-            options.series = GetSeriesChartProd(valori);
+            options.yTitle = $"{Resource.Efficiency} (%)";
+            options.yTitle2 = $"{Resource.Productivity} (pz/h)";
+            options.series = GetSeriesChartProd(valori, false);
 
             return options;
         }
@@ -260,11 +260,12 @@ namespace FomMonitoringBLL.ViewServices
             //ordinamento in base all'efficienza
             states = states.OrderByDescending(s => Common.GetRatioProductivity(s.CompletedCount, s.TotalTime)).ToList();
             
-            var operators = states.Select(s => s.Operator).Take(5).ToList();
+            var operators = states.Select(s => s.Operator).Take(4).ToList();
+            operators.Add("Others");
             options.categories = operators;
-            options.yTitle = string.Format("{0} (%)", Resource.Efficiency);
-            options.yTitle2 = string.Format("{0} (pz/h)", Resource.Productivity);
-            options.series = GetSeriesChartProd(states.Take(5));
+            options.yTitle = $"{Resource.Efficiency} (%)";
+            options.yTitle2 = $"{Resource.Productivity} (pz/h)";
+            options.series = GetSeriesChartProd(states, true);
 
             return options;
         }
@@ -288,15 +289,25 @@ namespace FomMonitoringBLL.ViewServices
             return options;
         }*/
 
-        private List<SerieViewModel> GetSeriesChartProd(IEnumerable<EfficiencyStateMachineModel> data)
+        private List<SerieViewModel> GetSeriesChartProd(IList<EfficiencyStateMachineModel> data, bool aggregateOthers)
         {
             var series = new List<SerieViewModel>();
-          
+            var dataOther = new List<EfficiencyStateMachineModel>();
+            if (aggregateOthers)
+            {
+                dataOther = data.Skip(4).ToList();
+                data = data.Take(4).ToList();
+            }
+
             var serieEfficiency = new SerieViewModel();
             serieEfficiency.type = (int)enSerieProd.Efficiency;
             serieEfficiency.name = enSerieProd.Efficiency.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieEfficiency.color = CommonViewService.GetColorChart(enSerieProd.Efficiency);
             serieEfficiency.data = data.Select(s => Common.GetPercentage(s.ProducingTime, s.TotalTime).RoundToInt()).ToList();
+            if (dataOther.Any())
+            {
+                serieEfficiency.data.Add(Common.GetPercentage(dataOther.Sum(s => s.ProducingTime), dataOther.Sum(s => s.TotalTime)).RoundToInt());
+            }
             series.Add(serieEfficiency);
 
             var serieGrossTime = new SerieViewModel();
@@ -304,6 +315,8 @@ namespace FomMonitoringBLL.ViewServices
             serieGrossTime.name = new System.Resources.ResourceManager(typeof(Resource)).GetString("NPiecesGrossTime");// enSerieProd.GrossTime.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage) + " pz/h";
             serieGrossTime.color = CommonViewService.GetColorChart(enSerieProd.GrossTime);
             serieGrossTime.data = data.Select(s => Common.GetRatioProductivity(s.CompletedCount, s.TotalTime) ?? 0).ToList();
+            if (dataOther.Any())
+                serieGrossTime.data.Add(Common.GetRatioProductivity(dataOther.Sum(s => s.CompletedCount), dataOther.Sum(s => s.TotalTime)) ?? 0);
             series.Add(serieGrossTime);
 
             var serieNetTime = new SerieViewModel();
@@ -311,6 +324,8 @@ namespace FomMonitoringBLL.ViewServices
             serieNetTime.name = new System.Resources.ResourceManager(typeof(Resource)).GetString("NPiecesNetTime");// enSerieProd.NetTime.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage) + " pz/h";
             serieNetTime.color = CommonViewService.GetColorChart(enSerieProd.NetTime);
             serieNetTime.data = data.Select(s => Common.GetRatioProductivity(s.CompletedCount, s.ProducingTime) ?? 0).ToList();
+            if (dataOther.Any())
+                serieNetTime.data.Add(Common.GetRatioProductivity(dataOther.Sum(s => s.CompletedCount), dataOther.Sum(s => s.ProducingTime)) ?? 0);
             series.Add(serieNetTime);
 
             return series;

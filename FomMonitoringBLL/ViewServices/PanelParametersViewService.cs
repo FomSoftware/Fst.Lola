@@ -9,10 +9,10 @@ namespace FomMonitoringBLL.ViewServices
 {
     public class PanelParametersViewService : IPanelParametersViewService
     {
-        private IMachineService _machineService;
-        private ISpindleViewService _spindleViewService;
-        private IParameterMachineService _parameterMachineService;
-        private IToolService _toolsService;
+        private readonly IMachineService _machineService;
+        private readonly ISpindleViewService _spindleViewService;
+        private readonly IParameterMachineService _parameterMachineService;
+        private readonly IToolService _toolsService;
 
         public PanelParametersViewService(IMachineService machineService, ISpindleViewService spindleViewService, IParameterMachineService parameterMachineService, IToolService toolsService)
         {
@@ -141,12 +141,12 @@ namespace FomMonitoringBLL.ViewServices
 
             foreach (var motFh in result.fixedHead)
             {
-                motFh.Value = double.IsNaN(double.Parse(motFh.Value)) ? "" : string.Format("{0:#,0}", double.Parse(motFh.Value));
+                motFh.Value = double.IsNaN(double.Parse(motFh.Value)) ? "" : $"{double.Parse(motFh.Value):#,0}";
             }
 
             foreach (var motMh in result.mobileHead)
             {
-                motMh.Value = double.IsNaN(double.Parse(motMh.Value)) ? "" : string.Format("{0:#,0}", double.Parse(motMh.Value));
+                motMh.Value = double.IsNaN(double.Parse(motMh.Value)) ? "" : $"{double.Parse(motMh.Value):#,0}";
             }
 
 

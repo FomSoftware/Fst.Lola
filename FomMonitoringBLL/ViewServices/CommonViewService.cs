@@ -59,7 +59,7 @@ namespace FomMonitoringBLL.ViewServices
                     categories = days.Select(s => s.ToString("dd/MM")).ToList();
                     break;
                 case enAggregation.Week:
-                    categories = days.Select(s => string.Format("w{0}", s.GetWeekNumber())).Distinct().ToList();
+                    categories = days.Select(s => $"w{s.GetWeekNumber()}").Distinct().ToList();
                     break;
                 case enAggregation.Month:
                     categories = days.Select(s => s.ToString("MMM", CultureInfo.InvariantCulture)).Distinct().ToList();
