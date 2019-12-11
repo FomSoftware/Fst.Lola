@@ -188,7 +188,7 @@ namespace FomMonitoringCore.Service
 
             if (context.ActualMachine?.LastUpdate != null)
             {
-                context.ActualPeriod = PeriodService.GetPeriodModel(context.ActualMachine?.LastUpdate?.AddDays(-6) ?? DateTime.UtcNow.AddDays(-6), context.ActualMachine?.LastUpdate ?? DateTime.UtcNow, enAggregation.Day);
+                context.ActualPeriod = PeriodService.GetPeriodModel(context.ActualMachine?.LastUpdate ?? DateTime.UtcNow, context.ActualMachine?.LastUpdate ?? DateTime.UtcNow, enAggregation.Day);
             }
             
             SetContext(context);
