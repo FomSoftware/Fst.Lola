@@ -50,7 +50,7 @@ namespace FomMonitoringBLL.ViewServices
                 var userId = context.User.ID.ToString();
                 var data = _messageService.GetMaintenanceNotifications(machine, period, userId);
 
-                data = data.Where(m => m.Day.HasValue && m.Day.Value == DateTime.UtcNow.Date).ToList();
+                data = data.Where(m => m.Day.HasValue && m.Day.Value.Date == DateTime.UtcNow.Date).ToList();
 
                 var mes = data.Select(a =>
                     new ManteinanceDataModel
