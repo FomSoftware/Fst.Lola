@@ -6,6 +6,7 @@
     }
 
     var initVueModel = function (data) {
+        console.log(JSON.stringify(data));
         vmOther = new Vue({
             el: '#CardOtherDataMachine',
             data: {
@@ -21,6 +22,21 @@
                     return color;
                 },
             },
+            methods: {
+                noData: function () {
+                    if (this.values.CycleCountXFlow == null ||
+                        this.values.OreVitaMacchina == null ||
+                        this.values.OreParzialiDaIngrassaggio == null ||
+                        this.values.AsseXKm == null ||
+                        this.values.AsseYKm == null ||
+                        this.values.AsseZKm == null ||
+                        this.values.CountRotationA == null) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
         });
     }
 

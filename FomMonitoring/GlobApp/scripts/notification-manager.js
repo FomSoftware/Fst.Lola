@@ -95,6 +95,7 @@
 
         }
 
+        context.update();
         context.interval = setInterval(function() {
             context.update();
         }, 10000);
