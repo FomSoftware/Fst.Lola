@@ -466,6 +466,12 @@
                     pointPadding: 0.2
                 },
                 series: {
+                    states: {
+                        hover: {
+                            enabled: false,
+                            lineWidth: 0
+                        }
+                    },
                     lineWidth: 0
                 }
             },
