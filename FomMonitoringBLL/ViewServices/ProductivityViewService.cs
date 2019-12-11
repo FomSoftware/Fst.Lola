@@ -235,8 +235,8 @@ namespace FomMonitoringBLL.ViewServices
 
             var periodTrend = new PeriodModel();
 
-            periodTrend.StartDate = startDateTrend.ToUniversalTime();
-            periodTrend.EndDate = period.EndDate.ToUniversalTime();
+            periodTrend.StartDate = startDateTrend.ToUniversalTime().Date;
+            periodTrend.EndDate = period.EndDate.ToUniversalTime().Date.AddDays(1).AddTicks(-1);
             periodTrend.Aggregation = granularity;
 
             var data = _pieceService.GetAggregationPieces(machine, periodTrend, enDataType.Historical).OrderBy(o => o.Day).ToList();
@@ -245,7 +245,7 @@ namespace FomMonitoringBLL.ViewServices
                 return null;
             var days = data.Select(s => s.Day).Distinct().ToList();
 
-            List<EfficiencyStateMachineModel> valori = _stateService.GetDayActivity(machine, days);
+            var valori = _stateService.GetDayActivity(machine, days);
             
             options.categories = CommonViewService.GetTimeCategories(days, granularity);
             options.yTitle = $"{Resource.Efficiency} (%)";

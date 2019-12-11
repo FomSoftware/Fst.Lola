@@ -145,7 +145,7 @@ namespace FomMonitoringCore.Framework.Common
 
             if(daysDiff < 6)
             {
-                return EndDate.AddDays(-6);
+                return EndDate.AddDays(-6).Date;
             }
             else
             {
