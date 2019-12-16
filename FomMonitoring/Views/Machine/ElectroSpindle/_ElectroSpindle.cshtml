@@ -100,7 +100,7 @@
                                             <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></label>
                                             <label v-if="values.SblocchiPinza != null" class="label-electrospindle-title-bottom" v-html="values.SblocchiPinza.Description"></label>
                                         </td>
-                                        <td class="td-electrospindle-data">
+                                        <td v-if="values.QtaSovrassorbimento != null" class="td-electrospindle-data">
                                             <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-sort-amount-asc fa-lg" aria-hidden="true"></i></label>
                                             <label v-if="values.QtaSovrassorbimento != null" class="label-electrospindle-title-bottom" v-html="values.QtaSovrassorbimento.Description"></label>
                                         </td>
@@ -112,7 +112,7 @@
                                         <td class="td-electrospindle-data tool-border-left">
                                             <label v-if="values.SblocchiPinza != null && values.SblocchiPinza.ConvertedValue" class="label-electrospindle-data-value" v-html="values.SblocchiPinza.ConvertedValue"></label>
                                         </td>
-                                        <td class="td-electrospindle-data">
+                                        <td class="td-electrospindle-data" v-if="values.ShowSovrassorbimento == true">
                                             <label v-if="values.QtaSovrassorbimento != null && values.QtaSovrassorbimento.ConvertedValue" class="label-electrospindle-data-value" v-html="values.QtaSovrassorbimento.ConvertedValue"></label>
                                         </td>
                                     </tr>

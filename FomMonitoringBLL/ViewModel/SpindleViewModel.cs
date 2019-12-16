@@ -41,6 +41,7 @@ namespace FomMonitoringBLL.ViewModel
         public ParameterMachineValueModel RpmRange11500 { get; set; }
         public ParameterMachineValueModel RpmRange14500 { get; set; }
         public ParameterMachineValueModel RpmRange20000 { get; set; }
+        public bool ShowSovrassorbimento { get; set; }
     }
 
     public class ToolsFmcLmxParameterVueModel
