@@ -68,7 +68,10 @@ namespace FomMonitoringBLL.ViewServices
                 id_mtype = context.ActualMachine.Type.Id,
                 machineName = context.ActualMachine.MachineName
             };
-            machine.XSpindles = _spindleViewService.GetXSpindles(context);
+            if (!machine.MachinePanels.Contains((int) enPanel.XSpindles))
+            {
+                machine.XSpindles = _spindleViewService.GetXSpindles(context);
+            }
             machine.XTools = _xToolsViewService.GetXTools(context);
             machine.Maintenance = _maintenanceViewService.GetMessages(context);           
             return machine;

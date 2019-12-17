@@ -3,6 +3,7 @@ using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace FomMonitoringBLL.ViewServices
@@ -47,7 +48,8 @@ namespace FomMonitoringBLL.ViewServices
 
             }
 
-            if (_machineService.GetMachinePanels(context).Contains((int)enPanel.Electrospindle))
+            if (_machineService.GetMachinePanels(context).Contains((int)enPanel.Electrospindle) ||
+                _machineService.GetMachinePanels(context).Contains((int)enPanel.XSpindles))
             {
                 result.vm_electro_spindle = GetElectroSpindleVueModel(context.ActualMachine);
             }
@@ -109,20 +111,41 @@ namespace FomMonitoringBLL.ViewServices
 
         private ElectroSpindleParameterVueModel GetElectroSpindleVueModel(MachineInfoModel machine)
         {
-            var par = _parameterMachineService.GetParameters(machine, (int)enPanel.Electrospindle);
-            var result = new ElectroSpindleParameterVueModel
+            List<int> panels = _machineService.GetMachinePanels(machine.Model.Id);
+            ElectroSpindleParameterVueModel result = null;
+            if (panels.Contains((int) enPanel.Electrospindle))
             {
-                OreLavoroTotali = par.FirstOrDefault(p => p.VarNumber == 368),
-                SblocchiPinza = par.FirstOrDefault(p => p.VarNumber == 103),
-                QtaSovrassorbimento = par.FirstOrDefault(p => p.VarNumber == 3024),
-                RpmRange1500 = par.FirstOrDefault(p => p.VarNumber == 3030),
-                RpmRange5500 = par.FirstOrDefault(p => p.VarNumber == 3032),
-                RpmRange8000 = par.FirstOrDefault(p => p.VarNumber == 3034),
-                RpmRange11500 = par.FirstOrDefault(p => p.VarNumber == 3036),
-                RpmRange14500 = par.FirstOrDefault(p => p.VarNumber == 3038),
-                RpmRange20000 = par.FirstOrDefault(p => p.VarNumber == 3040),
-            };
-
+                var par = _parameterMachineService.GetParameters(machine, (int) enPanel.Electrospindle);
+                result = new ElectroSpindleParameterVueModel
+                {
+                    OreLavoroTotali = par.FirstOrDefault(p => p.VarNumber == 368),
+                    SblocchiPinza = par.FirstOrDefault(p => p.VarNumber == 103),
+                    QtaSovrassorbimento = par.FirstOrDefault(p => p.VarNumber == 3024),
+                    RpmRange1500 = par.FirstOrDefault(p => p.VarNumber == 3030),
+                    RpmRange5500 = par.FirstOrDefault(p => p.VarNumber == 3032),
+                    RpmRange8000 = par.FirstOrDefault(p => p.VarNumber == 3034),
+                    RpmRange11500 = par.FirstOrDefault(p => p.VarNumber == 3036),
+                    RpmRange14500 = par.FirstOrDefault(p => p.VarNumber == 3038),
+                    RpmRange20000 = par.FirstOrDefault(p => p.VarNumber == 3040),
+                    ShowSovrassorbimento = true
+                };
+            }
+            else if (panels.Contains((int) enPanel.XSpindles))
+            {
+                var par = _parameterMachineService.GetParameters(machine, (int)enPanel.XSpindles);
+                result = new ElectroSpindleParameterVueModel
+                {
+                    OreLavoroTotali = par.FirstOrDefault(p => p.VarNumber == 40162),
+                    SblocchiPinza = par.FirstOrDefault(p => p.VarNumber == 40300),
+                    RpmRange1500 = par.FirstOrDefault(p => p.VarNumber == 40121),
+                    RpmRange5500 = par.FirstOrDefault(p => p.VarNumber == 40122),
+                    RpmRange8000 = par.FirstOrDefault(p => p.VarNumber == 40123),
+                    RpmRange11500 = par.FirstOrDefault(p => p.VarNumber == 40124),
+                    RpmRange14500 = par.FirstOrDefault(p => p.VarNumber == 40125),
+                    RpmRange20000 = par.FirstOrDefault(p => p.VarNumber == 40126),
+                    ShowSovrassorbimento = false
+                };
+            }
 
             return result;
         }
