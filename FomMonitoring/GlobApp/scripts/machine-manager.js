@@ -184,12 +184,18 @@
         $('.slide-dashboard').click(function (e) {
             e.preventDefault();
             var group = $(this).data('group');
-            if (group == 'messages')
+            if (group == 'messages') {
+                showStandardPeriod("#CardMessages");
                 swiper_message.slideTo(0, 300);
-            if (group == 'efficiency')
+            }
+            if (group == 'efficiency') {
+                showStandardPeriod("#CardEfficiency");
                 swiper_efficiency.slideTo(0, 300);
-            if (group == 'productivity')
+            }
+            if (group == 'productivity') {
+                showStandardPeriod("#CardProductivity");
                 swiper_productivity.slideTo(0, 300);
+            }
 
             setGroupActive(group, ".slide-dashboard");
 
@@ -198,8 +204,10 @@
         $('.slide-summary').click(function (e) {
             e.preventDefault();
             var group = $(this).data('group');
-            if (group == 'messages')
+            if (group == 'messages') {
+                showStandardPeriod("#CardMessages");
                 swiper_message.slideTo(2, 300);
+            }
 
             setGroupActive(group, ".slide-summary");
         });
@@ -210,14 +218,20 @@
             e.preventDefault();
             var group = $(this).data('group');
 
-            if (group == 'efficiency')
+            if (group == 'efficiency') {
+                showHistoricalPeriod("#CardEfficiency");
                 swiper_efficiency.slideTo(1, 300);
+            }
 
-            if (group == 'productivity')
+            if (group == 'productivity') {
+                showHistoricalPeriod("#CardProductivity");
                 swiper_productivity.slideTo(1, 300);
+            }
 
-            if (group == 'messages')
+            if (group == 'messages') {
+                showHistoricalPeriod("#CardMessages");
                 swiper_message.slideTo(1, 300);
+            }
 
 
             setGroupActive(group, ".slide-history");
@@ -228,11 +242,15 @@
             e.preventDefault();
             var group = $(this).data('group');
 
-            if (group == 'efficiency')
+            if (group == 'efficiency') {
+                showStandardPeriod("#CardEfficiency");
                 swiper_efficiency.slideTo(2, 300);
+            }
 
-            if (group == 'productivity')
+            if (group == 'productivity') {
+                showStandardPeriod("#CardProductivity");
                 swiper_productivity.slideTo(2, 300);
+            }
 
             setGroupActive(group, ".slide-operator");
         });
@@ -242,16 +260,30 @@
             e.preventDefault();
             var group = $(this).data('group');
 
-            if (group == 'efficiency')
+            if (group == 'efficiency') {
+                showStandardPeriod("#CardEfficiency");
                 swiper_efficiency.slideTo(3, 300);
+            }
 
-            if (group == 'productivity')
+            if (group == 'productivity') {
+                showStandardPeriod("#CardProductivity");
                 swiper_productivity.slideTo(3, 300);
+            }
 
             setGroupActive(group, ".slide-turni");
         });
 
     };
+
+    var showHistoricalPeriod = function(idCard) {
+        $(idCard).find(".js-historical-period").show();
+        $(idCard).find(".js-period").hide();
+    }
+
+    var showStandardPeriod = function (idCard) {
+        $(idCard).find(".js-historical-period").hide();
+        $(idCard).find(".js-period").show();
+    }
 
     var initVueComponents = function ()
     {

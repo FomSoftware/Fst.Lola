@@ -126,12 +126,16 @@
     var initCalendar = function (period, language, page)
     {
         moment.locale(language.initial);
+        var formatLabel = moment.localeData().longDateFormat('L');
+        var formatCalendar = moment.localeData().longDateFormat('ll');
+
+
+
+        
 
         var start = moment(period.start);
         var end = moment(period.end);
 
-        var formatLabel = moment.localeData().longDateFormat('L');
-        var formatCalendar = moment.localeData().longDateFormat('ll');
 
         var ranges = getRangesCalendar(language);
         var range = _.map(ranges, function (val, key)
@@ -140,13 +144,16 @@
                 return key;
         });
 
-        var label = _.find(range, function (el) { return el != null })
+
+
+        var label = _.find(range, function(el) { return el != null });
 
         if (_.isEmpty(label))
             label = getLabelCalendar(start, end, formatLabel);
 
         $('.js-period').text(label);
 
+        setHistoricalRange(start, end, label, formatLabel);
         // first load
         $('#calendar .text-period').html(getLabelCalendar(start, end, formatCalendar));
 
@@ -177,7 +184,22 @@
 
             $('#calendar .text-period').html(getLabelCalendar(start, end, formatCalendar));
             $('.js-period').text(label);
+            setHistoricalRange(this.startDate, this.endDate, label, formatLabel);
         });
+    }
+
+    var setHistoricalRange = function(start, end, defaultLabel, formatLabel) {
+        var hstart = moment(start);
+        var hend = moment(end);
+        var diff = hend.diff(hstart, 'days');
+        if (diff <= 7) {
+            var historicalStart = moment(hend).subtract(6, 'days');
+
+            var historicalLabel = getLabelCalendar(historicalStart, hend, formatLabel);
+            $('.js-historical-period').text(historicalLabel);
+        } else {
+            $('.js-historical-period').text(defaultLabel);
+        }
     }
 
     var getRangesCalendar = function (language)
