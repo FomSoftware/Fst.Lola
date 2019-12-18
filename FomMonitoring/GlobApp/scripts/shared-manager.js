@@ -20,7 +20,7 @@
         vmLastUpdate = new Vue({
             el: '#last-update',
             data: {
-                date: data.Date, //moment.utc(data.DateTime).local().format('L'),
+                date: data.Date,//moment.utc(data.DateTime).local().format('L'),
                 time: data.Time //moment.utc(data.DateTime).local().format('LTS')
             }
         });
