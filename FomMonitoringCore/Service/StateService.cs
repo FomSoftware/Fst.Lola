@@ -187,7 +187,7 @@ namespace FomMonitoringCore.Service
                     //tot. pezzi prodotti
                     var tmp2 = _context.Set<HistoryPiece>()
                         .Where(w => w.MachineId == machine.Id && w.Day >= dateFrom && w.Day <= dateTo &&
-                                    w.Operator == item.Operator).ToList();
+                                    w.Operator == item.Operator && w.Shift == null && w.Operator != null).ToList();
 
                     item.CompletedCount = tmp2.GroupBy(g => g.Operator)
                         .Select(s => s.Sum(x => x.CompletedCount)).FirstOrDefault();
@@ -195,7 +195,7 @@ namespace FomMonitoringCore.Service
                     //tempo netto
                     var tmp3 = _context.Set<HistoryState>()
                         .Where(w => w.MachineId == machine.Id && w.Day >= dateFrom && w.Day <= dateTo 
-                                    && w.Operator == item.Operator &&  w.Shift == null &&
+                                    && w.Operator == item.Operator &&  w.Shift == null && w.Operator != null &&
                                     (w.StateId == (int)enState.Production || w.StateId == (int) enState.Manual)).ToList();
 
                     item.StatesTime = tmp3.GroupBy(g => g.StateId )

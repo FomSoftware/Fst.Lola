@@ -221,7 +221,7 @@
     var update = function (data)
     {
         // update vue model
-        if (data != null) {
+        if (data) {
             var vm_spindles = data.vm_spindles;
             if (vmSpindles) {
                 vmSpindles.spindles = vm_spindles.spindles;
@@ -230,7 +230,13 @@
             else {
                 initVueModel(data.vm_spindles);
             }
-        }
+            
+        } 
+       
+        //if (vmSpindles.spindles != null)
+        //    $('.slimscroll').slimscroll({ scrollBy: '0px' });
+        //else
+        //    $(".slimscroll").slimScroll({ destroy: true });
 
     }
 
