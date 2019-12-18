@@ -230,7 +230,8 @@ namespace FomMonitoringCore.Service
 
                 //tot. pezzi prodotti
                 var tmp2 = _context.Set<HistoryPiece>()
-                    .Where(w => w.MachineId == machine.Id && w.Day >= day && w.Day <= dateTo).ToList();
+                    .Where(w => w.MachineId == machine.Id && w.Day >= day && w.Day <= dateTo
+                                && w.Operator != null && w.Shift == null).ToList();
                 result.CompletedCount = tmp2.Sum(x => x.CompletedCount);
                 res.Add(result);
             }
