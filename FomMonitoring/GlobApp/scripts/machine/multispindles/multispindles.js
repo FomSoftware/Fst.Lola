@@ -18,13 +18,19 @@
     {
         initVueModel(data.vm_multi_spindle);
 
+        //inizializzo con la posizione minima selezionata es. 11
         $("g[data-MMspindle-index = '" + selectedPosition + "'] circle").css({ 'fill': 'black' });
         $("g[data-MMspindle-index = '" + selectedPosition + "'] text").css({ 'fill': 'white' });
 
         $("g[data-MMspindle-index]").click(function (e) {
             console.log(e.target.textContent);
-            cp(selectedPosition, e.target.textContent);
-
+            //chiamata ajax per caricare le variabili della posizione selezionata
+            if (selectedPosition !== parseInt(e.target.textContent))
+            {
+                //qui va la chiamata ajax per caricare le variabili della posizione selezionata
+                cp(selectedPosition, e.target.textContent);
+            }
+            
         });
     }
 
