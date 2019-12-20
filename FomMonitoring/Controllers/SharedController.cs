@@ -38,5 +38,11 @@ namespace FomMonitoring.Controllers
 
             return PartialView(toolbar);
         }
+
+        [ChildActionOnly]
+        public ActionResult GetHtmlPage(string path)
+        {
+            return new FilePathResult(path, "text/html");
+        }
     }
 }

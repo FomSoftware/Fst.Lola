@@ -60,6 +60,7 @@
             AxesKeope.update(data.PanelParameter);
             ElectroSpindle.update(data.PanelParameter);
             OtherData.update(data.PanelParameter);
+            MultiSpindle.update(data.PanelParameter);
 
             Vue.nextTick(function ()
             {

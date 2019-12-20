@@ -767,4 +767,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="NPiecesGrossTime" xml:space="preserve">
     <value>N. Pezzi/T.Lordo</value>
   </data>
+  <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
+    <value>Range rpm</value>
+  </data>
 </root>

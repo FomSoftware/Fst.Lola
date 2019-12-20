@@ -768,4 +768,7 @@ Autres données de la machine</value>
   <data name="NPiecesGrossTime" xml:space="preserve">
     <value>N. de pièces / temps brut</value>
   </data>
+  <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
+    <value>Range Rpm</value>
+  </data>
 </root>

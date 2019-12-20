@@ -773,4 +773,7 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="NPiecesGrossTime" xml:space="preserve">
     <value>No. pieces / gross time</value>
   </data>
+  <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
+    <value>Range Rpm</value>
+  </data>
 </root>

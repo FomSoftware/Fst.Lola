@@ -767,4 +767,7 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   <data name="NPiecesGrossTime" xml:space="preserve">
     <value>N. de piezas / tiempo bruto</value>
   </data>
+  <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
+    <value>Range Rpm</value>
+  </data>
 </root>

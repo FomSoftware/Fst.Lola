@@ -769,4 +769,7 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="NPiecesGrossTime" xml:space="preserve">
     <value>Stückzahl / Bruttozeit</value>
   </data>
+  <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
+    <value>Range Rpm</value>
+  </data>
 </root>

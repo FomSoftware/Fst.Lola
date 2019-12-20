@@ -26,14 +26,14 @@ namespace FomMonitoringBLL.ViewServices
         public PanelParametersViewModel GetParameters(ContextModel context)
         { 
             PanelParametersViewModel result = new PanelParametersViewModel();
-
-            if (_machineService.GetMachinePanels(context).Contains((int)enPanel.BlitzMotorAxes))
+            List<int> panels = _machineService.GetMachinePanels(context);
+            if (panels.Contains((int)enPanel.BlitzMotorAxes))
             {
                 result.vm_motoraxes_blitz = GetVueModelBlitz(context.ActualMachine, true);
             }
             else
             {
-                if (_machineService.GetMachinePanels(context).Contains((int)enPanel.KeopeMotors))
+                if (panels.Contains((int)enPanel.KeopeMotors))
                 {
                     result.vm_motor_keope = GetVueModelKeope(context.ActualMachine);                   
                 }
@@ -41,27 +41,31 @@ namespace FomMonitoringBLL.ViewServices
                 {
                     result.vm_spindles = _spindleViewService.GetSpindles(context);
                 }
-                if (_machineService.GetMachinePanels(context).Contains((int)enPanel.KeopeAxes))
+                if (panels.Contains((int)enPanel.KeopeAxes))
                 {
                     result.vm_axes_keope = GetAxesVueModelKeope(context.ActualMachine);
                 }
 
             }
 
-            if (_machineService.GetMachinePanels(context).Contains((int)enPanel.Electrospindle) ||
-                _machineService.GetMachinePanels(context).Contains((int)enPanel.XSpindles))
+            if (panels.Contains((int)enPanel.Electrospindle) ||
+                panels.Contains((int)enPanel.XSpindles))
             {
                 result.vm_electro_spindle = GetElectroSpindleVueModel(context.ActualMachine);
             }
-            if (_machineService.GetMachinePanels(context).Contains((int)enPanel.OtherMachineData))
+            if (panels.Contains((int)enPanel.OtherMachineData))
             {
                 result.vm_other_data = GetOtherDataVueModel(context.ActualMachine);
             }
-            if (_machineService.GetMachinePanels(context).Contains((int)enPanel.ToolsFmcLmx))
+            if (panels.Contains((int)enPanel.ToolsFmcLmx))
             {
                 result.vm_tools_fmc_lmx = GetToolsFmcLmxVueModel(context.ActualMachine);
             }
-           
+            if (panels.Contains((int)enPanel.Multispindle))
+            {
+                result.vm_multi_spindle = GetMultiSpindleVueModel(context.ActualMachine, 11);
+            }
+
 
             result.vm_machine_info = new MachineInfoViewModel
             {
@@ -147,6 +151,28 @@ namespace FomMonitoringBLL.ViewServices
                 };
             }
 
+            return result;
+        }
+
+        private MultiSpindleParameterVueModel GetMultiSpindleVueModel(MachineInfoModel machine, int? position)
+        {
+            if (position == null)
+                position = 11;
+            MultiSpindleParameterVueModel result = null;
+          
+            var par = _parameterMachineService.GetParameters(machine, (int)enPanel.Multispindle);
+            result = new MultiSpindleParameterVueModel
+            {
+                OreLavoroTotali = par.FirstOrDefault(p => p.VarNumber == 40141),
+                RpmRange1500 = par.FirstOrDefault(p => p.VarNumber == 40001),
+                RpmRange3999 = par.FirstOrDefault(p => p.VarNumber == 40002),
+                RpmRange7999 = par.FirstOrDefault(p => p.VarNumber == 40003),
+                RpmRange11500 = par.FirstOrDefault(p => p.VarNumber == 40004),
+                RpmRange14500 = par.FirstOrDefault(p => p.VarNumber == 40005),
+                RpmRange20000 = par.FirstOrDefault(p => p.VarNumber == 40006),
+                Posizione = (int)position
+               
+            };
             return result;
         }
 
