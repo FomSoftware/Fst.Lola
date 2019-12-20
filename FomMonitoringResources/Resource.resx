@@ -776,7 +776,7 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
     <value>Range Rpm</value>
   </data>
-  <data name="OreLavoroTot" xml:space="preserve">
+  <data name="TabRpmTotMandriniMM" xml:space="preserve">
     <value>Ore di Lavoro Totali</value>
   </data>
 </root>

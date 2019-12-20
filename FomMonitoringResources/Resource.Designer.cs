@@ -1215,15 +1215,6 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ore di Lavoro Totali.
-        /// </summary>
-        public static string OreLavoroTot {
-            get {
-                return ResourceManager.GetString("OreLavoroTot", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Tot. electrosp. working hours.
         /// </summary>
         public static string oreMandrinoAttivo {
@@ -1742,6 +1733,15 @@ namespace FomMonitoringResources {
         public static string Status {
             get {
                 return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ore di Lavoro Totali.
+        /// </summary>
+        public static string TabRpmTotMandriniMM {
+            get {
+                return ResourceManager.GetString("TabRpmTotMandriniMM", resourceCulture);
             }
         }
         
