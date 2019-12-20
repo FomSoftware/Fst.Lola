@@ -771,4 +771,7 @@ Autres données de la machine</value>
   <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
     <value>Range Rpm</value>
   </data>
+  <data name="OreLavoroTot" xml:space="preserve">
+    <value />
+  </data>
 </root>

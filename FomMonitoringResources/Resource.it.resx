@@ -770,4 +770,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
     <value>Range rpm</value>
   </data>
+  <data name="OreLavoroTot" xml:space="preserve">
+    <value>Ore di Lavoro Totali</value>
+  </data>
 </root>
