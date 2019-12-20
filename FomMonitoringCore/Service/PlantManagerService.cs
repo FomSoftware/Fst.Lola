@@ -108,7 +108,8 @@ namespace FomMonitoringCore.Service
                 if (plant == null) return result;
 
                 result = plant.Adapt<Plant, PlantModel>();
-
+                result.Machines = result.Machines
+                    .Where(d => d.ExpirationDate == null || d.ExpirationDate > DateTime.UtcNow).ToList();
                 // Recupero le sue macchine ed il customer associato
                 using (UserManagerEntities entUM = new UserManagerEntities())
                 {
@@ -154,7 +155,7 @@ namespace FomMonitoringCore.Service
         {
             try
             {
-               var plantMachines = _context.Set<Plant>().Find(id)?.Machine.ToList() ?? new List<Machine>();
+               var plantMachines = _context.Set<Plant>().Find(id)?.Machine.Where(m => m.ExpirationDate == null || m.ExpirationDate < DateTime.UtcNow).ToList() ?? new List<Machine>();
                return plantMachines.Adapt<List<Machine>, List<MachineInfoModel>>();               
             }
             catch (Exception ex)

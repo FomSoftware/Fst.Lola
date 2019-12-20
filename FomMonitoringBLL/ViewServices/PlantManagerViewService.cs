@@ -31,9 +31,9 @@ namespace FomMonitoringBLL.ViewServices
                 Id = s.Id,
                 Name = s.Name,
                 Address = s.Address,
-                MachineSerials = s.Machines.Select(u => $"({u.Serial})-{u.MachineName}").ToList(),
+                MachineSerials = s.Machines.Where(m => m.ExpirationDate == null || m.ExpirationDate > DateTime.UtcNow).Select(u => $"({u.Serial})-{u.MachineName}").ToList(),
                 CustomerName = s.CustomerName,
-                Machines = s.Machines.Select(n => new UserMachineViewModel
+                Machines = s.Machines.Where(m => m.ExpirationDate == null || m.ExpirationDate > DateTime.UtcNow).Select(n => new UserMachineViewModel
                 {
                     Id = n.Id,
                     Serial = n.Serial
@@ -79,7 +79,7 @@ namespace FomMonitoringBLL.ViewServices
                 Address = plantModel.Address,
                 CustomerName = plantModel.CustomerName,
                 MachineSerials = plantModel.Machines.Select(u => u.Serial).ToList(),
-                Machines = plantModel.Machines.Select(n => new UserMachineViewModel {
+                Machines = plantModel.Machines.Where(n => n.ExpirationDate == null || n.ExpirationDate > DateTime.UtcNow).Select(n => new UserMachineViewModel {
                     Id = n.Id,
                     Serial = n.Serial
                 }).ToList()
@@ -87,7 +87,7 @@ namespace FomMonitoringBLL.ViewServices
 
             result.Plant = plant;
 
-            result.Machines = UserManagerViewService.GetMachinesByCustomer(plantModel.CustomerName);
+            result.Machines = UserManagerViewService.GetMachinesByCustomer(plantModel.CustomerName, false);
             return result;
 
         }
@@ -114,7 +114,7 @@ namespace FomMonitoringBLL.ViewServices
 
             result.Plant = plant;
 
-            result.Machines = UserManagerViewService.GetMachinesByCustomer(plantModel.CustomerName);
+            result.Machines = UserManagerViewService.GetMachinesByCustomer(plantModel.CustomerName, false);
             return result;
 
         }
