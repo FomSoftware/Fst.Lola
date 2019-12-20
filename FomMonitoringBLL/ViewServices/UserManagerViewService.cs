@@ -138,15 +138,21 @@ namespace FomMonitoringBLL.ViewServices
             }
         }
 
-        public static List<UserMachineViewModel> GetMachinesByCustomer(string name)
+        public static List<UserMachineViewModel> GetMachinesByCustomer(string name, bool includeExpired = true)
         {
             try
             {
                 List<UserMachineViewModel> result = new List<UserMachineViewModel>();
 
                 List<MachineInfoModel> machinesModel = UserManagerService.GetCustomerMachines(name);
-                if(machinesModel != null)
-                    result = machinesModel.Select(s => new UserMachineViewModel { Id = s.Id, Serial = s.Serial, MachineName = s.MachineName }).ToList();
+
+                if (!includeExpired)
+                    machinesModel = machinesModel
+                        .Where(m => m.ExpirationDate == null || m.ExpirationDate > DateTime.UtcNow).ToList();
+
+                if (machinesModel != null)
+                    result = machinesModel
+                        .Select(s => new UserMachineViewModel { Id = s.Id, Serial = s.Serial, MachineName = s.MachineName }).ToList();
 
                 return result;
             }

@@ -35,5 +35,6 @@ namespace FomMonitoringCore.Framework.Model
         public double? StateProductivityYellowThreshold { get; set; }
         public double? UTC { get; set; }
         public string MachineName { get; set; }
+        public DateTime? ExpirationDate { get; set; }
     }
 }
