@@ -13,6 +13,7 @@
         $("g[data-MMspindle-index = '" + pos + "'] text").css({ 'fill': 'white' });
         $("g[data-MMspindle-index = '" + pos + "'] circle").attr("r", "11");
         $("text[data-mmspindle-selected = '11']").text(pos);
+        $("g[data-MMspindle-index]").css({ "cursor": "pointer" });
         selectedPosition = pos;
 
         var request = $.ajax({
@@ -44,7 +45,6 @@
             console.debug(jqXHR);
             console.debug(textStatus);
             console.debug(errorThrown);
-            location.reload();
         });
 
     };
