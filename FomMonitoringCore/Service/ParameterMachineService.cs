@@ -20,11 +20,12 @@ namespace FomMonitoringCore.Service
             _parameterMachineRepository = parameterMachineRepository;
         }
 
-        public List<ParameterMachineValueModel> GetParameters(MachineInfoModel machine, int idPanel)
+        public List<ParameterMachineValueModel> GetParameters(MachineInfoModel machine, int idPanel, int? idCluster = null)
         {
             var result = new List<ParameterMachineValueModel>();
 
-            var parametersValues = _parameterMachineValueRepository.Get(p => p.MachineId == machine.Id, tracked: false).GroupBy(g => g.VarNumber);
+            //var parametersValues = _parameterMachineValueRepository.Get(p => p.MachineId == machine.Id, tracked: false).GroupBy(g => g.VarNumber);
+            var parametersValues = _parameterMachineValueRepository.GetByParameters(machine.Id, idPanel, idCluster).GroupBy(g => g.VarNumber);
 
             var varNums = new Dictionary<string, ParameterMachineValueModel>();
             foreach(var i in parametersValues)
@@ -53,7 +54,8 @@ namespace FomMonitoringCore.Service
                             VarNumber = int.Parse(pm.VarNumber),
                             Description = new System.Resources.ResourceManager(typeof(Resource)).GetString(pm.Keyword),
                             Value = pm.DefaultValue,
-                            Cluster = pm.Cluster
+                            Cluster = pm.Cluster,
+                            Keyword = pm.Keyword
                         };
                         result.Add(valoreVuoto);
                     }

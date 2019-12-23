@@ -1,26 +1,63 @@
 ﻿var MultiSpindles = function ()
 {
     var vmMultiSpindles;
+    var urlParametersApi;
     var selectedPosition = 11;
 
     var cp = function changePosition(oldPos, pos) {
         $("g[data-MMspindle-index = '" + oldPos + "'] circle").css({ 'fill': 'white' });
+        $("g[data-MMspindle-index = '" + oldPos + "'] circle").attr("r", "9");
         $("g[data-MMspindle-index = '" + oldPos + "'] text").css({ 'fill': 'black' });
         $("g[data-MMspindle-index = '" + oldPos + "']").css({ 'transform': 'scale(1)' });
         $("g[data-MMspindle-index = '" + pos + "'] circle").css({ 'fill': 'black' });
         $("g[data-MMspindle-index = '" + pos + "'] text").css({ 'fill': 'white' });
-        /*$("g[data-MMspindle-index = '" + pos + "']").css({ 'transform': 'scale(1.2)', 'transform-origin': '100% 55%' });*/
+        $("g[data-MMspindle-index = '" + pos + "'] circle").attr("r", "11");
         $("text[data-mmspindle-selected = '11']").text(pos);
         selectedPosition = pos;
+
+        var request = $.ajax({
+            type: "POST",
+            url: urlParametersApi,
+            contentType: 'application/json',
+            data: JSON.stringify({
+                panelId: 3,
+                cluster: pos
+            }),
+            beforeSend: function () {
+                WaitmeManager.start('body');
+            },
+            complete: function () {
+                WaitmeManager.end('body');
+            }
+        });
+
+        request.done(function (data) {
+            $(".slimscroll").slimScroll({ destroy: true });
+            MultiSpindles.update(data);
+            Vue.nextTick(function () {
+                initScrollBar();
+            });
+
+        });
+
+        request.fail(function (jqXHR, textStatus, errorThrown) {
+            console.debug(jqXHR);
+            console.debug(textStatus);
+            console.debug(errorThrown);
+            location.reload();
+        });
+
     };
 
-    var init = function (data)
-    {
+    var init = function (data, urlApi, posLabel) {
+        urlParametersApi = urlApi;
         initVueModel(data.vm_multi_spindle);
 
         //inizializzo con la posizione minima selezionata es. 11
         $("g[data-MMspindle-index = '" + selectedPosition + "'] circle").css({ 'fill': 'black' });
         $("g[data-MMspindle-index = '" + selectedPosition + "'] text").css({ 'fill': 'white' });
+        $('[data-MMspindle-label="POSIZIONE"]').text(posLabel);
+        $("g[data-MMspindle-index = '" + selectedPosition + "'] circle").attr("r", "11");
 
         $("g[data-MMspindle-index]").click(function (e) {
             console.log(e.target.textContent);
@@ -43,8 +80,6 @@
             },
             computed: {
                 colorKPI: function () {
-                    if (this == null)
-                        return 'color-no-data';
 
                     var color = 'color-darkgreen';
 
@@ -72,9 +107,9 @@
     var update = function (data) {
         // update vue model
 
-        var vm_multi_spindle = data.vm_multi_spindle;
+        var vm_multi_spindle = data;
         if (vm_multi_spindle != null) {
-            vmMultiSpindle.values = vm_multi_spindle;
+            vmMultiSpindles.values = vm_multi_spindle;
         }
 
     }

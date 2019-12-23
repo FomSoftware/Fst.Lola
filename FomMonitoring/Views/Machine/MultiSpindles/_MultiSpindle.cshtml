@@ -123,9 +123,11 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function() {
+    $(document).ready(function () {
+        var urlApiParameters = '@Url.HttpRouteUrl("DefaultApi", new {controller = "AppApi", action = "GetParametersValueViewModel" })';
         var data = @Html.Raw(Json.Encode(Model));
-        MultiSpindles.init(data);
+        var posLabel = "@Resource.Position";
+        MultiSpindles.init(data, urlApiParameters, posLabel);
 
     });
 

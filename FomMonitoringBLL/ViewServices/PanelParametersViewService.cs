@@ -154,24 +154,28 @@ namespace FomMonitoringBLL.ViewServices
             return result;
         }
 
-        private MultiSpindleParameterVueModel GetMultiSpindleVueModel(MachineInfoModel machine, int? position)
+        public MultiSpindleParameterVueModel GetMultiSpindleVueModel(MachineInfoModel machine, int? position)
         {
-            if (position == null)
-                position = 11;
-            MultiSpindleParameterVueModel result = null;
-          
-            var par = _parameterMachineService.GetParameters(machine, (int)enPanel.Multispindle);
-            result = new MultiSpindleParameterVueModel
+            
+            var par = _parameterMachineService.GetParameters(machine, (int)enPanel.Multispindle, position ?? 11);
+            var result = GetMultiSpindleVueModelCluster(par, position ?? 11);
+            return result;
+        }
+
+        private MultiSpindleParameterVueModel GetMultiSpindleVueModelCluster(List<ParameterMachineValueModel> par, int cluster)
+        {
+            
+            var result = new MultiSpindleParameterVueModel
             {
-                OreLavoroTotali = par.FirstOrDefault(p => p.VarNumber == 40141),
-                RpmRange1500 = par.FirstOrDefault(p => p.VarNumber == 40001),
-                RpmRange3999 = par.FirstOrDefault(p => p.VarNumber == 40002),
-                RpmRange7999 = par.FirstOrDefault(p => p.VarNumber == 40003),
-                RpmRange11500 = par.FirstOrDefault(p => p.VarNumber == 40004),
-                RpmRange14500 = par.FirstOrDefault(p => p.VarNumber == 40005),
-                RpmRange20000 = par.FirstOrDefault(p => p.VarNumber == 40006),
-                Posizione = (int)position
-               
+                OreLavoroTotali = par.FirstOrDefault(p => p.Cluster == cluster.ToString() && p.VarNumber == 40141),
+                RpmRange1500 = par.FirstOrDefault(p => p.Cluster == cluster.ToString() && p.Keyword.EndsWith("_1")),
+                RpmRange3999 = par.FirstOrDefault(p => p.Cluster == cluster.ToString() && p.Keyword.Contains("_2")),
+                RpmRange7999 = par.FirstOrDefault(p => p.Cluster == cluster.ToString() && p.Keyword.Contains("_3")),
+                RpmRange11500 = par.FirstOrDefault(p => p.Cluster == cluster.ToString() && p.Keyword.Contains("_4")),
+                RpmRange14500 = par.FirstOrDefault(p => p.Cluster == cluster.ToString() && p.Keyword.Contains("_5")),
+                RpmRange20000 = par.FirstOrDefault(p => p.Cluster == cluster.ToString() && p.Keyword.Contains("_6")),
+                Posizione = cluster
+
             };
             return result;
         }

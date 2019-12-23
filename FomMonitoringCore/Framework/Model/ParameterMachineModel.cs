@@ -16,6 +16,7 @@ namespace FomMonitoringCore.Framework.Model
         public string ConvertedValue => Convert();
         public DateTime? UtcDateTime { get; set; }
         public string CnUm { get; set; }
+        public string Keyword { get; set; }
         public string HmiUm { get; set; }
 
         public string ConvertedDistanceValue(string format = "0.000")

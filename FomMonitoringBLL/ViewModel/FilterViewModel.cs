@@ -11,5 +11,7 @@ namespace FomMonitoringBLL.ViewModel
         public MachineInfoViewModel machine { get; set; }
 
         public PeriodViewModel period { get; set; }
+        public int panelId { get; set; }
+        public int cluster { get; set; }
     }
 }

@@ -18,19 +18,22 @@ namespace FomMonitoring.Controllers
         private readonly IMachineViewService _machineViewService;
         private readonly IMesViewService _mesViewService;
         private readonly INotificationViewService _notificationManagerViewService;
+        private readonly IPanelParametersViewService _panelParametersViewService;
 
         public AppApiController(
             IPlantMessagesViewService plantMessagesViewService, 
             IMachineViewService machineViewService,
             IContextService contextService,
             IMesViewService mesViewService,
-            INotificationViewService notificationManagerViewService)
+            INotificationViewService notificationManagerViewService,
+            IPanelParametersViewService panelParametersViewService)
         {
             _contextService = contextService;
             _plantMessagesViewService = plantMessagesViewService;
             _machineViewService = machineViewService;
             _mesViewService = mesViewService;
             _notificationManagerViewService = notificationManagerViewService;
+            _panelParametersViewService = panelParametersViewService;
         }
 
         [HttpPost]
@@ -40,7 +43,7 @@ namespace FomMonitoring.Controllers
         {
             if (filters.machine != null)
             {
-                bool isCorrect = _contextService.CheckSecurityParameterApi(filters.machine.id, enCheckParam.Machine);
+                var isCorrect = _contextService.CheckSecurityParameterApi(filters.machine.id, enCheckParam.Machine);
 
                 if (!isCorrect)
                     return Request.CreateResponse(HttpStatusCode.BadRequest);
@@ -53,8 +56,8 @@ namespace FomMonitoring.Controllers
 
             _contextService.CheckLastUpdate();
 
-            ContextModel context = _contextService.GetContext();
-            MachineViewModel machine = _machineViewService.GetMachine(context);
+            var context = _contextService.GetContext();
+            var machine = _machineViewService.GetMachine(context);
 
             return Request.CreateResponse(HttpStatusCode.OK, machine, MediaTypeHeaderValue.Parse("application/json"));
         }
@@ -65,15 +68,15 @@ namespace FomMonitoring.Controllers
         [Route("ajax/AppApi/GetMesViewModel")]
         public HttpResponseMessage GetMesViewModel([FromBody]int plantID)
         {
-            bool isCorrect = _contextService.CheckSecurityParameterApi(plantID, enCheckParam.Plant);
+            var isCorrect = _contextService.CheckSecurityParameterApi(plantID, enCheckParam.Plant);
 
             if (!isCorrect)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
             _contextService.SetActualPlant(plantID);
 
-            ContextModel context = _contextService.GetContext();
-            MesViewModel mes = _mesViewService.GetMes(context);
+            var context = _contextService.GetContext();
+            var mes = _mesViewService.GetMes(context);
 
             return Request.CreateResponse(HttpStatusCode.OK, mes, MediaTypeHeaderValue.Parse("application/json"));
         }
@@ -112,10 +115,28 @@ namespace FomMonitoring.Controllers
             if (filters.period != null)
                 _contextService.SetActualPeriod(filters.period.start, filters.period.end);
 
-            ContextModel context = _contextService.GetContext();
-            PlantMessagesViewModel mes = _plantMessagesViewService.GetPlantMessages(context);
+            var context = _contextService.GetContext();
+            var mes = _plantMessagesViewService.GetPlantMessages(context);
 
             return Request.CreateResponse(HttpStatusCode.OK, mes, MediaTypeHeaderValue.Parse("application/json"));
+        }
+
+
+        [HttpPost]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Route("ajax/AppApi/GetParametersValueViewModel")]
+        public HttpResponseMessage GetParametersValueViewModel(FilterViewModel filters)
+        {
+
+            var context = _contextService.GetContext();
+            if (filters.panelId == (int) enPanel.Multispindle)
+            {
+                var result = _panelParametersViewService.GetMultiSpindleVueModel(context.ActualMachine, filters.cluster);
+
+                return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
+            }
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
+
         }
     }
 }

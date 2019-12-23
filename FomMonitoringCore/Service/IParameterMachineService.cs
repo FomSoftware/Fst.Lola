@@ -5,6 +5,6 @@ namespace FomMonitoringCore.Service
 {
     public interface IParameterMachineService
     {
-        List<ParameterMachineValueModel> GetParameters(MachineInfoModel machine, int idPanel);
+        List<ParameterMachineValueModel> GetParameters(MachineInfoModel machine, int idPanel, int? idCluster = null);
     }
 }

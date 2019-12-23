@@ -59,7 +59,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                 if (var.Values != null && var.Values.Count > 0)
                                 {
                                     var addedEntities = new List<dynamic>();
-                                    var.Values.AsParallel().ForAll(value =>
+                                    var.Values.ForEach(value =>
                                     {
                                         var pm = pms.FirstOrDefault(p => p.VarNumber == value.VariableNumber);
                                         if (pm == null)
