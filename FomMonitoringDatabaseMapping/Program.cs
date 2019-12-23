@@ -6,7 +6,11 @@ using FomMonitoringCore.Service.DataMapping;
 using Mapster;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
+using System.Timers;
+using FomMonitoringCore.DAL;
+using FomMonitoringCore.Uow;
 
 namespace FomMonitoringDatabaseMapping
 {
@@ -24,45 +28,69 @@ namespace FomMonitoringDatabaseMapping
             var sQLiteToSQLServerService = container.Resolve<ISQLiteToSQLServerService>();
             var jsonToSQLiteService = container.Resolve<IJsonToSQLiteService>();
             var jsonVariantsToSQLServerService = container.Resolve<IJsonVariantsToSQLServerService>();
+            var context = container.Resolve<IFomMonitoringEntities>();
+            var unitOfWork = container.Resolve<IUnitOfWork>();
             try
             {
                 List<JsonDataModel> jsonDataModels = jsonToSQLiteService.GetAllJsonDataNotElaborated();
                 result = jsonDataModels.Count;
                 foreach (JsonDataModel jsonDataModel in jsonDataModels)
                 {
-                    try
-                    {
-                        if (!jsonDataModel.IsCumulative)
-                        {
-                            if (!jsonToSQLiteService.MappingJsonDetailsToSQLite(jsonDataModel))
-                                throw new Exception("JSON to SQLite Error:");
+                    var timer = new Stopwatch();
+                    
 
-                            if (!sQLiteToSQLServerService.MappingSQLiteDetailsToSQLServer())
-                                throw new Exception("SQLite to SQLServer Error:");
+                        timer.Start();
+                        try
+                        {
+                            unitOfWork.StartTransaction(context);
+                            if (!jsonDataModel.IsCumulative)
+                            {
+                                if (!jsonToSQLiteService.MappingJsonDetailsToSQLite(jsonDataModel))
+                                    throw new Exception("JSON to SQLite Error:");
+
+                                if (!sQLiteToSQLServerService.MappingSQLiteDetailsToSQLServer())
+                                    throw new Exception("SQLite to SQLServer Error:");
+                            }
+
+                            if (jsonDataModel.IsCumulative)
+                            {
+                                if (!jsonToSQLiteService.MappingJsonHistoryToSQLite(jsonDataModel))
+                                    throw new Exception("JSON to SQLite Error:");
+
+                                if (!sQLiteToSQLServerService.MappingSQLiteHistoryToSQLServer())
+                                    throw new Exception("SQLite to SQLServer Error:");
+                            }
+
+                            if (!jsonVariantsToSQLServerService.MappingJsonParametersToSqlServer(jsonDataModel))
+                                throw new Exception("JSON variables reading Error:");
+
+
+                            if (jsonToSQLiteService.SaveElaboration(jsonDataModel.Id, true))
+                            {
+                                context.SaveChanges();
+                                unitOfWork.CommitTransaction();
+                            }
+                            else
+                            {
+                                unitOfWork.RollbackTransaction();
+                                throw new Exception($"Save elaboration failed: jsonId {jsonDataModel.Id}");
+                            }
+
+                            result--;
+                        }
+                        catch (Exception ex)
+                        {
+                            unitOfWork.RollbackTransaction();
+                            jsonToSQLiteService.SaveElaboration(jsonDataModel.Id, false);
+                            string errMessage = string.Format(ex.GetStringLog(), string.Join(", ", args),
+                                jsonDataModel.Id);
+                            LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
                         }
 
-                        if (jsonDataModel.IsCumulative)
-                        {
-                            if (!jsonToSQLiteService.MappingJsonHistoryToSQLite(jsonDataModel))
-                                throw new Exception("JSON to SQLite Error:");
+                        timer.Stop();
+                     
+                        LogService.WriteLog($"Json {jsonDataModel.Id} elaborato in {timer.Elapsed.TotalSeconds} secondi", LogService.TypeLevel.Info);
 
-                            if (!sQLiteToSQLServerService.MappingSQLiteHistoryToSQLServer())
-                                throw new Exception("SQLite to SQLServer Error:");
-                        }
-
-                        if(!jsonVariantsToSQLServerService.MappingJsonVariantsToSQLite(jsonDataModel))
-                            throw new Exception("JSON variables reading Error:");
-
-
-                        jsonToSQLiteService.SaveElaboration(jsonDataModel.Id, true);
-                        result--;
-                    }
-                    catch (Exception ex)
-                    {
-                        jsonToSQLiteService.SaveElaboration(jsonDataModel.Id, false);
-                        string errMessage = string.Format(ex.GetStringLog(), string.Join(", ", args), jsonDataModel.Id);
-                        LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-                    }
                 }
             }
             catch (Exception ex)

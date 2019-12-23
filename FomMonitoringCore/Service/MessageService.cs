@@ -499,7 +499,6 @@ namespace FomMonitoringCore.Service
                 IsVisible = true
             };
             _context.Set<MessageMachine>().Add(msg);
-            _context.SaveChanges();
         }
 
     }

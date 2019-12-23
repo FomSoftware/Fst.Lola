@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using FomMonitoringCore.DAL;
 using FomMonitoringCore.DAL_SQLite;
@@ -15,24 +16,20 @@ namespace FomMonitoringCore.Service.DataMapping
     {
         private readonly IFomMonitoringEntities _context;
         private readonly IMessageService _messageService;
-        private readonly IUnitOfWork _unitOfWork;
 
         public JsonVariantsToSqlServerService(IFomMonitoringEntities context, IUnitOfWork unitOfWork,
             IMessageService messageService)
         {
             _messageService = messageService;
-            _unitOfWork = unitOfWork;
             _context = context;
         }
 
-        public bool MappingJsonVariantsToSQLite(JsonDataModel jsonDataModel)
+        public bool MappingJsonParametersToSqlServer(JsonDataModel jsonDataModel)
         {
             var result = false;
             try
             {
                 var json = JsonConvert.DeserializeObject<JObject>(jsonDataModel.Json);
-
-                _unitOfWork.StartTransaction(_context);
 
                 var tt = json.Root.First(n => n.Path.ToLower() == "info");
 
@@ -40,7 +37,15 @@ namespace FomMonitoringCore.Service.DataMapping
                     .FirstOrDefault();
 
                 var mac = _context.Set<Machine>().FirstOrDefault(m => m.Serial == ii.MachineSerial);
+                if (mac == null)
+                    return false;
 
+                var pms = _context.Set<ParameterMachine>().AsNoTracking().Where(p =>
+                    p.MachineModelId == mac.MachineModelId).ToList();
+
+                var oldValues = _context.Set<ParameterMachineValue>().Where(p =>
+                        p.MachineId == mac.Id).GroupBy(o => o.VarNumber).Select(o => o.OrderByDescending(p => p.UtcDateTime).FirstOrDefault()).ToList();
+                
                 foreach (var token in json.Root)
                     switch (token.Path.ToLower())
                     {
@@ -52,23 +57,21 @@ namespace FomMonitoringCore.Service.DataMapping
                             {
                                 var.UtcDateTime = var.UtcDateTime.Year < 1900 ? DateTime.UtcNow : var.UtcDateTime;
                                 if (var.Values != null && var.Values.Count > 0)
-                                    foreach (var value in var.Values)
+                                {
+                                    var addedEntities = new List<dynamic>();
+                                    var.Values.AsParallel().ForAll(value =>
                                     {
-                                        var pm = _context.Set<ParameterMachine>().FirstOrDefault(p =>
-                                            p.MachineModelId == mac.MachineModelId
-                                            && p.VarNumber == value.VariableNumber);
+                                        var pm = pms.FirstOrDefault(p => p.VarNumber == value.VariableNumber);
+                                        if (pm == null)
+                                            return;
 
                                         //ordino per data e poi per id perchè spesso arrivano valori diversi con la stessa data
-                                        var previousValue = _context.Set<ParameterMachineValue>().Where(p =>
-                                                p.MachineId == mac.Id && p.VarNumber == pm.VarNumber)
-                                            .OrderByDescending(p => p.UtcDateTime).ThenByDescending(t => t.Id)
-                                            .FirstOrDefault()?.VarValue;
+                                        var previousValue = oldValues.FirstOrDefault(p => p.VarNumber == value.VariableNumber)?.VarValue;
+                                        var exists = oldValues.Any(p => p.VarNumber == value.VariableNumber && p.UtcDateTime == var.UtcDateTime);
 
-
-                                        if (mac != null && pm != null &&
-                                            (pm.Historicized == null || pm.Historicized == "1"))
+                                        if ((pm.Historicized == null || pm.Historicized == "1") && !exists)
                                         {
-                                            var pmv = new ParameterMachineValue
+                                            var pmv = new
                                             {
                                                 MachineId = mac.Id,
                                                 ParameterMachineId = pm.Id,
@@ -76,51 +79,74 @@ namespace FomMonitoringCore.Service.DataMapping
                                                 VarNumber = value.VariableNumber,
                                                 VarValue = value.VariableValue
                                             };
-                                            _context.Set<ParameterMachineValue>().Add(pmv);
+                                            addedEntities.Add(pmv);
                                         }
-                                        else if (mac != null && pm != null && pm.Historicized == "0")
+                                        else if (pm.Historicized == "0" || exists)
                                         {
-                                            var pmv = _context.Set<ParameterMachineValue>().FirstOrDefault(pp =>
-                                                pp.MachineId == mac.Id
-                                                && pp.VarNumber == value.VariableNumber);
+                                            var pmv = oldValues.FirstOrDefault(p => p.VarNumber == value.VariableNumber);
+
                                             if (pmv != null)
                                             {
-                                                pmv.UtcDateTime = var.UtcDateTime;
-                                                pmv.VarValue = value.VariableValue;
+                                                if (pm.Historicized == "0" && pmv.UtcDateTime < var.UtcDateTime)
+                                                {
+                                                    pmv.UtcDateTime = var.UtcDateTime;
+
+                                                    pmv.VarValue = value.VariableValue;
+                                                }
+                                                else
+                                                {
+                                                    if (pm.Historicized != "0" && exists)
+                                                    {
+                                                        pmv.VarValue = value.VariableValue;
+                                                    }
+                                                }
                                             }
                                             else
                                             {
-                                                pmv = new ParameterMachineValue
+                                                var nVar = new
                                                 {
                                                     MachineId = mac.Id,
                                                     ParameterMachineId = pm.Id,
                                                     UtcDateTime = var.UtcDateTime,
                                                     VarNumber = value.VariableNumber,
                                                     VarValue = value.VariableValue
+                                                    
                                                 };
-                                                _context.Set<ParameterMachineValue>().Add(pmv);
+
+                                                addedEntities.Add(nVar);
                                             }
                                         }
 
-                                        _context.SaveChanges();
 
                                         if (!string.IsNullOrEmpty(pm.ThresholdMax) && pm.ThresholdMax != "0" ||
                                             !string.IsNullOrEmpty(pm.ThresholdMin) && pm.ThresholdMin != "0")
                                             checkVariableTresholds(mac, pm, value, previousValue, var.UtcDateTime);
-                                    }
+                                    });
+
+
+                                    if (addedEntities.Any())
+                                        _context.Set<ParameterMachineValue>().AddRange(addedEntities.Select(a => new ParameterMachineValue
+                                        {
+                                            MachineId = a.MachineId,
+                                            ParameterMachineId = a.ParameterMachineId,
+                                            UtcDateTime = a.UtcDateTime,
+                                            VarNumber = a.VarNumber,
+                                            VarValue = a.VarValue
+                                        }).ToList());
+
+                                    addedEntities.Clear();
+                                }
                             }
 
                             break;
-                    }                          
+                    }
 
-                _unitOfWork.CommitTransaction();
                 result = true;
             }
             catch (Exception ex)
             {
                 var errMessage = string.Format(ex.GetStringLog(), jsonDataModel.Id.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-                _unitOfWork.RollbackTransaction();
             }
 
             return result;

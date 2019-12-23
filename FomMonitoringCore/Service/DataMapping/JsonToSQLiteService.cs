@@ -17,14 +17,11 @@ namespace FomMonitoringCore.Service.DataMapping
     {
         private IFomMonitoringEntities _FomMonitoringEntities;
         private IFomMonitoringSQLiteEntities _FomMonitoringSQLiteEntities;
-        private IUnitOfWork _unitOfWork;
         
-        public JsonToSQLiteService(IFomMonitoringEntities FomMonitoringEntities, IFomMonitoringSQLiteEntities FomMonitoringSQLiteEntities,
-                            IUnitOfWork unitOfWork)
+        public JsonToSQLiteService(IFomMonitoringEntities FomMonitoringEntities, IFomMonitoringSQLiteEntities FomMonitoringSQLiteEntities)
         {
             _FomMonitoringEntities = FomMonitoringEntities;
             _FomMonitoringSQLiteEntities = FomMonitoringSQLiteEntities;
-            _unitOfWork = unitOfWork;
         }
 
         public List<JsonDataModel> GetAllJsonDataNotElaborated()
@@ -60,7 +57,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 List<spindle> spindleSQLite = new List<spindle>();
                 List<state> stateSQLite = new List<state>();
                 List<tool> toolSQLite = new List<tool>();
-                _unitOfWork.StartTransaction(_FomMonitoringSQLiteEntities);
                 
                /* _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE bar");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE error");
@@ -240,15 +236,13 @@ namespace FomMonitoringCore.Service.DataMapping
 
                 _FomMonitoringSQLiteEntities.Set<message>().AddRange(messageSQLite);
                 _FomMonitoringSQLiteEntities.SaveChanges();
-
-                _unitOfWork.CommitTransaction();
+                
                 result = true;                
             }
             catch (Exception ex)
             {
                 string errMessage = string.Format(ex.GetStringLog(), jsonDataModel.Id.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-                _unitOfWork.RollbackTransaction();
             }
             return result;
         }
@@ -269,8 +263,7 @@ namespace FomMonitoringCore.Service.DataMapping
                 List<spindle> spindleSQLite = new List<spindle>();
                 List<tool> toolSQLite = new List<tool>();
                 List<message> messageSQLite = new List<message>();
-
-                _unitOfWork.StartTransaction(_FomMonitoringSQLiteEntities);
+                
 
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyBar");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyPiece");
@@ -284,10 +277,8 @@ namespace FomMonitoringCore.Service.DataMapping
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE message");
 
                 _FomMonitoringSQLiteEntities.SaveChanges();
-                _unitOfWork.CommitTransaction();
 
-
-                _unitOfWork.StartTransaction(_FomMonitoringSQLiteEntities);
+                
                 foreach (JToken token in json.Root)
                 {
                     switch (token.Path.ToLower())
@@ -400,8 +391,7 @@ namespace FomMonitoringCore.Service.DataMapping
 
                 _FomMonitoringSQLiteEntities.Set<message>().AddRange(messageSQLite);
                 _FomMonitoringSQLiteEntities.SaveChanges();
-
-                _unitOfWork.CommitTransaction();
+                
                 result = true;                    
                 
             }
@@ -409,7 +399,6 @@ namespace FomMonitoringCore.Service.DataMapping
             {
                 string errMessage = string.Format(ex.GetStringLog(), jsonDataModel.Id.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-                _unitOfWork.RollbackTransaction();
             }
             return result;
         }

@@ -16,18 +16,16 @@ namespace FomMonitoringCore.Service.DataMapping
         private readonly IBarService _barService;
         private readonly IFomMonitoringEntities _fomMonitoringEntities;
         private readonly IFomMonitoringSQLiteEntities _fomMonitoringSqLiteEntities;
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IMesService _mesService;
 
         public SqLiteToSqlServerService(IMachineService machineService, IJobService jobService,
             IFomMonitoringEntities fomMonitoringEntities, IFomMonitoringSQLiteEntities fomMonitoringSqLiteEntities,
-            IUnitOfWork unitOfWork, IBarService barService, IMesService mesService)
+            IBarService barService, IMesService mesService)
         {
             _machineService = machineService;
             _jobService = jobService;
             _fomMonitoringEntities = fomMonitoringEntities;
             _fomMonitoringSqLiteEntities = fomMonitoringSqLiteEntities;
-            _unitOfWork = unitOfWork;
             _barService = barService;
             _mesService = mesService;
         }
@@ -49,7 +47,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 
 
                 var matricola = infoSqLite.OrderByDescending(o => o.Id).FirstOrDefault()?.MachineSerial;
-                _unitOfWork.StartTransaction(_fomMonitoringEntities);
 
                 var machine = infoSqLite.BuildAdapter().AddParameters("machineService", _machineService).AddParameters("mesService", _mesService).AdaptToType<List<Machine>>();                
                 var machineActual = _fomMonitoringEntities.Set<Machine>().FirstOrDefault(f => f.Serial == matricola);
@@ -201,8 +198,7 @@ namespace FomMonitoringCore.Service.DataMapping
 
                 _fomMonitoringEntities.usp_HistoricizingAll(machineActual.Id);
                 _fomMonitoringEntities.SaveChanges();
-
-                _unitOfWork.CommitTransaction();
+                
                 result = true;
                 
                 
@@ -211,7 +207,6 @@ namespace FomMonitoringCore.Service.DataMapping
             {
                 var errMessage = string.Format(ex.GetStringLog());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-                _unitOfWork.RollbackTransaction();
             }
             return result;
         }
@@ -233,8 +228,7 @@ namespace FomMonitoringCore.Service.DataMapping
                 var toolSqLite = _fomMonitoringSqLiteEntities.Set<tool>().ToList();
                 
                 var matricola = infoSqLite.OrderByDescending(o => o.Id).FirstOrDefault()?.MachineSerial;
-
-                _unitOfWork.StartTransaction(_fomMonitoringEntities);
+                
                 var machine = infoSqLite.Adapt<List<Machine>>();
                 var machineActual = _fomMonitoringEntities.Set<Machine>().FirstOrDefault(f => f.Serial == matricola);
                 if (machineActual == null)
@@ -319,15 +313,13 @@ namespace FomMonitoringCore.Service.DataMapping
                     machineActual.LastUpdate = lastState.Day;
 
                 _fomMonitoringEntities.SaveChanges();
-
-                _unitOfWork.CommitTransaction();
+                
                 result = true;                                    
             }
             catch (Exception ex)
             {
                 var errMessage = string.Format(ex.GetStringLog());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-                _unitOfWork.RollbackTransaction();
             }
             return result;
         }
