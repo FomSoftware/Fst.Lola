@@ -37,9 +37,17 @@
                     </div>
                 </div>
             }
+            else if (Model.MachinePanels.Contains((int)enPanel.Multispindle))
+            {
+                <div class="row">
+                    <div class="col-sm-12">
+                        @Html.Partial("./MultiSpindles/_Multispindle", Model.PanelParameter)
+                    </div>
+                </div>
+            }
             else
             {
-                if (Model.MachineInfo.id_mtype == (int) enMachineType.LineaTaglioLavoro)
+                if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)
                 {
                     <div class="row">
                         <div class="col-sm-12">

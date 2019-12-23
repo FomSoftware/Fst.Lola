@@ -176,18 +176,21 @@ namespace FomMonitoringCore.Service.DataMapping
                 state = state.Where(w => w.EndTime > (machineActual.LastUpdate ?? new DateTime())).ToList();
                 _fomMonitoringEntities.Set<StateMachine>().AddRange(state);
                 _fomMonitoringEntities.SaveChanges();
-
+               
                 var tool = toolSqLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<ToolMachine>>();
-                var removeTools = toolSqLite.Join(_fomMonitoringEntities.Set<ToolMachine>(), to => to.Code, from => from.Code, (to, from) => new { From = from, To = to })
-                    .Where(w => w.From.MachineId == machineActual.Id && w.From.Code == w.To.Code && w.From.DateLoaded == w.To.DateLoaded).Select(s => s.From).ToList();
-                _fomMonitoringEntities.Set<ToolMachine>().RemoveRange(removeTools);
-                _fomMonitoringEntities.SaveChanges();
-                var modifyTools = _fomMonitoringEntities.Set<ToolMachine>().Where(w => w.MachineId == machineActual.Id && w.IsActive).ToList();
-                foreach (var modifyTool in modifyTools)
+                if (tool != null && tool.Any())
                 {
-                    modifyTool.IsActive = false;
+                    var removeTools = toolSqLite.Join(_fomMonitoringEntities.Set<ToolMachine>(), to => to.Code, from => from.Code, (to, from) => new { From = from, To = to })
+                        .Where(w => w.From.MachineId == machineActual.Id && w.From.Code == w.To.Code && w.From.DateLoaded == w.To.DateLoaded).Select(s => s.From).ToList();
+                    _fomMonitoringEntities.Set<ToolMachine>().RemoveRange(removeTools);
+                    _fomMonitoringEntities.SaveChanges();
+                    var modifyTools = _fomMonitoringEntities.Set<ToolMachine>().Where(w => w.MachineId == machineActual.Id && w.IsActive).ToList();
+                    foreach (var modifyTool in modifyTools)
+                    {
+                        modifyTool.IsActive = false;
+                    }
+                    _fomMonitoringEntities.SaveChanges();
                 }
-                _fomMonitoringEntities.SaveChanges();
                 _fomMonitoringEntities.Set<ToolMachine>().AddRange(tool);
                 _fomMonitoringEntities.SaveChanges();
 

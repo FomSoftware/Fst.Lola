@@ -16,6 +16,7 @@ namespace FomMonitoringBLL.ViewModel
         public OtherDataParameterVueModel vm_other_data { get; set; }
         public ElectroSpindleParameterVueModel vm_electro_spindle { get; set; }
         public ToolsFmcLmxParameterVueModel vm_tools_fmc_lmx { get; set; }
+        public MultiSpindleParameterVueModel vm_multi_spindle { get; set; }
     }
 
 
@@ -42,6 +43,18 @@ namespace FomMonitoringBLL.ViewModel
         public ParameterMachineValueModel RpmRange14500 { get; set; }
         public ParameterMachineValueModel RpmRange20000 { get; set; }
         public bool ShowSovrassorbimento { get; set; }
+    }
+
+    public class MultiSpindleParameterVueModel
+    {
+        public ParameterMachineValueModel OreLavoroTotali { get; set; }
+        public ParameterMachineValueModel RpmRange1500 { get; set; }
+        public ParameterMachineValueModel RpmRange3999 { get; set; }
+        public ParameterMachineValueModel RpmRange7999 { get; set; }
+        public ParameterMachineValueModel RpmRange11500 { get; set; }
+        public ParameterMachineValueModel RpmRange14500 { get; set; }
+        public ParameterMachineValueModel RpmRange20000 { get; set; }
+        public int Posizione { get; set; }
     }
 
     public class ToolsFmcLmxParameterVueModel

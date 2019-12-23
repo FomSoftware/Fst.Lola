@@ -17,7 +17,7 @@
     <AssemblyName>FomMonitoring</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>62186</IISExpressSSLPort>
+    <IISExpressSSLPort>44391</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
@@ -430,6 +430,7 @@
     <Content Include="GlobApp\scripts\machine\messages.js" />
     <Content Include="GlobApp\scripts\machine\motoraxes\blitz.js" />
     <Content Include="GlobApp\scripts\machine\motor\keope.js" />
+    <Content Include="GlobApp\scripts\machine\multispindles\multispindles.js" />
     <Content Include="GlobApp\scripts\machine\tools\fmcLmx.js" />
     <Content Include="GlobApp\scripts\machine\tools\blitz.js" />
     <Content Include="GlobApp\scripts\machine\xtools.js" />
@@ -460,6 +461,7 @@
     <Content Include="Images\logo\Lola-35.png" />
     <Content Include="Images\logo\Lola-lg.png" />
     <Content Include="Images\logo\Powered_by_FOM-350x200px.png" />
+    <Content Include="Images\multispindle\bottone-posizione.svg" />
     <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
@@ -1012,6 +1014,7 @@
     <Content Include="Views\Machine\Production\_Materials.cshtml" />
     <Content Include="Views\Machine\Production\_Operators.cshtml" />
     <Content Include="Views\Machine\Production\_Phases.cshtml" />
+    <Content Include="Views\Machine\MultiSpindles\_MultiSpindle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

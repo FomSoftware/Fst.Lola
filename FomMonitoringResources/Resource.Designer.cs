@@ -1737,6 +1737,24 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ore di Lavoro Totali.
+        /// </summary>
+        public static string TabRpmTotMandriniMM {
+            get {
+                return ResourceManager.GetString("TabRpmTotMandriniMM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range Rpm.
+        /// </summary>
+        public static string TabSoglieRpmMandriniMM {
+            get {
+                return ResourceManager.GetString("TabSoglieRpmMandriniMM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Single piece time remaining.
         /// </summary>
         public static string tempoAttualeProgramma {
