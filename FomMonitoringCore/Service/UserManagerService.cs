@@ -449,7 +449,6 @@ namespace FomMonitoringCore.Service
                 string errMessage = ex.GetStringLog();
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
                 result = false;
-                throw ex;
             }
 
             return result;
