@@ -73,10 +73,9 @@
 
         request.fail(function (jqXHR, textStatus, errorThrown)
         {
-            console.debug(jqXHR);
-            console.debug(textStatus);
-            console.debug(errorThrown);
-            location.reload();
+            console.error(jqXHR);
+            console.error(textStatus);
+            console.error(errorThrown);
         });
     };
 
@@ -273,8 +272,13 @@
 
             setGroupActive(group, ".slide-turni");
         });
+        
 
     };
+
+
+
+
 
     var showHistoricalPeriod = function(idCard) {
         $(idCard).find(".js-historical-period").show();

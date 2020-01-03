@@ -83,7 +83,7 @@ namespace FomMonitoring.Controllers
 
         [HttpPost]
         [Authorize(Roles = Common.HeadWorkshop + "," + Common.Operator + "," + Common.Customer)]
-        [Route("ajax/AppApi/GetNotificationViewModel")]
+        [Route("ajax/AppApi/GetNotificationsViewModel")]
         public HttpResponseMessage GetNotificationsViewModel()
         {
           

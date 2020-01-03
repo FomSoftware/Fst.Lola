@@ -176,7 +176,7 @@
 
         @if (Model.role != enRole.Administrator) {
             <text>
-                var urlNotification = '@Url.HttpRouteUrl("DefaultApi", new {controller = "AppApi", action = "GetNotificationViewModel" })';
+                var urlNotification = '@Url.HttpRouteUrl("DefaultApi", new {controller = "AppApi", action = "GetNotificationsViewModel" })';
                 var urlSetNotification = '@Url.HttpRouteUrl("DefaultApi", new {controller = "AppApi", action = "SetNotificationRead" })';
                 NotificationManager.init(urlNotification, urlSetNotification);
             </text>

@@ -111,10 +111,10 @@
         else
             chart.update(config);
 
-        setInterval(function () {
-            if ($('#' + chartID).highcharts())
-                $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
-        }, 100);
+        //setInterval(function () {
+        //    if ($('#' + chartID).highcharts())
+        //        $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
+        //}, 250);
     }
 
     var columnChart = function (chartID, options)
@@ -305,9 +305,9 @@
             chart.update(config);
 
 
-        setInterval(function () {
-            $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
-        }, 100);
+        //setInterval(function () {
+        //    $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
+        //}, 250);
             
         
     }
@@ -392,9 +392,9 @@
         else
             chart.update(config);
 
-        setInterval(function () {
-            $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
-        }, 100);
+        //setInterval(function () {
+        //    $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
+        //}, 250);
     }
 
     var dualAxesBarChart = function (chartID, options)
@@ -485,9 +485,9 @@
         else
             chart.update(config);
 
-        setInterval(function () {
-            $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
-        }, 100);
+        //setInterval(function () {
+        //    $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
+        //}, 250);
     }
 
     var stateMachinePieChart = function (chartID, options) {

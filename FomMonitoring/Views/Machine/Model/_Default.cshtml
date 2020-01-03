@@ -1,0 +1,139 @@
+﻿@model FomMonitoringBLL.ViewModel.MachineViewModel
+@using FomMonitoringResources
+
+<div class="col-lg-4 col-md-6 col-sm-12 card-wrap-2">
+    @Html.Partial("Panels/_Efficiency", Model.Efficiency)
+</div>
+<div class="col-lg-8 col-md-6 col-sm-12 card-wrap-2">
+    @Html.Partial("Panels/_Messages", Model.Messages)
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 card-wrap-2">
+    <div class="row">
+        <div class="col-sm-12">
+            @Html.Partial("Panels/_Productivity", Model.Productivity)
+        </div>
+    </div>
+    @if (Model.MachinePanels.Contains((int)enPanel.BlitzMotorAxes))
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.Partial("Panels/MotorAxes/_Blitz", Model.PanelParameter)
+            </div>
+        </div>
+    }
+    else
+    {
+        if (Model.MachinePanels.Contains((int)enPanel.KeopeMotors))
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    @Html.Partial("./Panels/Motor/_Keope", Model.PanelParameter)
+                </div>
+            </div>
+        }
+        else if (Model.MachinePanels.Contains((int)enPanel.Multispindle))
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    @Html.Partial("./Panels/MultiSpindles/_Multispindle", Model.PanelParameter)
+                </div>
+            </div>
+        }
+        else
+        {
+            if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)
+            {
+                <div class="row">
+                    <div class="col-sm-12">
+                        @Html.Partial("Panels/_Spindles", Model.PanelParameter)
+                    </div>
+                </div>
+            }
+        }
+
+    }
+    @*@if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    @Html.Partial("_XSpindles", Model.XSpindles)
+                </div>
+            </div>
+        }*@
+    @if (Model.MachinePanels.Contains((int)enPanel.XSpindles))
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.Partial("./Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter)
+            </div>
+        </div>
+    }
+    @if (Model.MachinePanels.Contains((int)enPanel.KeopeAxes))
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.Partial("./Panels/Axes/_Keope", Model.PanelParameter)
+            </div>
+        </div>
+    }
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 card-wrap-2">
+    <div class="row">
+        <div class="col-sm-12">
+
+            @Html.Partial("Panels/_Jobs", Model.Jobs)
+        </div>
+    </div>
+    @if (Model.MachinePanels.Contains((int)enPanel.ToolsBlitz))
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.Partial("./Panels/Tools/_Blitz", Model.Tools)
+            </div>
+        </div>
+    }
+    else
+    {
+        if (Model.MachinePanels.Contains((int)enPanel.ToolsFmcLmx))
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    @Html.Partial("./Panels/Tools/_FmcLmx", Model.PanelParameter)
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    @Html.Partial("Panels/_Tools", Model.Tools)
+                </div>
+            </div>
+        }
+    }
+
+    @if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.Partial("Panels/_XTools", Model.XTools)
+            </div>
+        </div>
+    }
+</div>
+<div class="col-lg-4 col-md-12 col-sm-12 card-wrap-2">
+    @Html.Partial("Panels/_Maintenance", Model.Maintenance)
+</div>
+
+@if (Model.MachinePanels.Contains((int)enPanel.Electrospindle))
+{
+    <div class="col-lg-4 col-md-6 col-sm-12 card-wrap-2">
+        @Html.Partial("Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter)
+    </div>
+}
+@if (Model.MachinePanels.Contains((int)enPanel.OtherMachineData))
+{
+    <div class="col-lg-4 col-md-6 col-sm-12 card-wrap-2">
+        @Html.Partial("Panels/ElectroSpindle/_OtherMachineData", Model.PanelParameter)
+    </div>
+}

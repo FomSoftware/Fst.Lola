@@ -766,4 +766,19 @@ em,
 #toast-container > div {
     width: 435px;
 }
+
+.no-borders {
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+[data-highcharts-chart],
+.highcharts-container,
+.highcharts-container svg {
+    width: 100% !important;
+    height: 240px !important;
+}
+
     /*#endregion*/

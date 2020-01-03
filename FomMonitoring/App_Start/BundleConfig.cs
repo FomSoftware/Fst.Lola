@@ -29,7 +29,7 @@ namespace FomMonitoring.App_Start
 
             bundles.Add(new ScriptBundle("~/Scripts/FomMonitoringScriptsLIB").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/bootstrap.bundle.js",
                         "~/Scripts/vue.min.js",
                         "~/Scripts/highcharts/5.0.14/highcharts.js",
                         "~/Scripts/highcharts/5.0.14/highcharts-more.js",
@@ -79,6 +79,7 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/chart-manager.js",
                         //"~/GlobApp/scripts/common-manager.js",
                         "~/GlobApp/scripts/waitme-manager.js",
+                        "~/GlobApp/scripts/machine/image-manager.js",
                         "~/GlobApp/scripts/machine/efficiency.js",
                         "~/GlobApp/scripts/machine/productivity.js",
                         //"~/GlobApp/scripts/machine/alarms.js",
