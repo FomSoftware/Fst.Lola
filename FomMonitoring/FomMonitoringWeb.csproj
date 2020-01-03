@@ -18,7 +18,7 @@
     <AssemblyName>FomMonitoring</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>62186</IISExpressSSLPort>
+    <IISExpressSSLPort>44391</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
@@ -808,13 +808,13 @@
     <Content Include="fonts\Lato-Hairline.ttf" />
     <Content Include="fonts\Lato-Light.ttf" />
     <Content Include="fonts\Lato-Regular.ttf" />
-    <Content Include="Content\bootstrap-select.css.map" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <Content Include="Content\bootstrap-reboot.min.css.map" />
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\bootstrap-select.css.map" />
     <None Include="Properties\PublishProfiles\Alten.pubxml">
       <SubType>Designer</SubType>
     </None>
@@ -893,6 +893,16 @@
     <Content Include="Scripts\i18n\defaults-zh_CN.js" />
     <Content Include="Scripts\i18n\defaults-zh_CN.min.js" />
     <Content Include="Scripts\i18n\defaults-zh_TW.js" />
+    <Content Include="Scripts\i18n\defaults-zh_TW.min.js" />
+    <Content Include="Scripts\index.js.flow" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\i18n\defaults-zh_TW.js.map" />
     <Content Include="Scripts\i18n\defaults-zh_CN.js.map" />
     <Content Include="Scripts\i18n\defaults-vi_VN.js.map" />
@@ -933,17 +943,7 @@
     <Content Include="Scripts\i18n\defaults-am_ET.js.map" />
     <Content Include="Scripts\bootstrap-select.min.js.map" />
     <Content Include="Scripts\bootstrap-select.js.map" />
-    <Content Include="Scripts\index.js.flow" />
-    <Content Include="Scripts\esm\popper.min.js.map" />
-    <Content Include="Scripts\esm\popper.js.map" />
-    <Content Include="Scripts\esm\popper-utils.min.js.map" />
-    <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
-    <Content Include="Scripts\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\i18n\defaults-zh_TW.min.js" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />

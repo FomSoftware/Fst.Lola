@@ -14,10 +14,10 @@
             <div class="status bg-default" v-else></div>
             <div class="box-title">
                 <div class="row">
-                    <div class="col-xs-3 col-icon text-right" v-on:click="locationMachine(machine.info.id)">
+                    <div class="col-xs-3 col-xl-3 col-icon text-right" v-on:click="locationMachine(machine.info.id)">
                         <i class="icofom-size" v-bind:class="iconMachine(machine)"></i>
                     </div>
-                    <div class="col-xs-7 col-info" v-on:click="locationMachine(machine.info.id)">
+                    <div class="col-xs-7 col-xl-7 col-info" v-on:click="locationMachine(machine.info.id)">
                         <div class="machine-header">
                             <div class="machine-info" v-if="machine.info.description != null">
                                 <div class="text-uppercase">
@@ -32,11 +32,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-2 col-button" v-if="!isOffline(machine)">
-                        <div class="btn btn-circle btn-rotate js-toggle-card hidden-xs" v-bind:data-cardid="'card-' + machine.info.id">
+                    <div class="col-xs-2 col-xl-2 col-button" v-if="!isOffline(machine)">
+                        <div class="btn btn-circle btn-rotate js-toggle-card d-none d-sm-block" v-bind:data-cardid="'card-' + machine.info.id">
                             <i class="icon-refresh fa-lg"></i>
                         </div>
-                        <a class="btn btn-circle btn-rotate visible-xs" v-bind:data-cardid="'card-' + machine.info.id"
+                        <a class="btn btn-circle btn-rotate visible-xs d-block d-sm-none" v-bind:data-cardid="'card-' + machine.info.id"
                            data-toggle="collapse" v-bind:href="'#kpi-' + machine.info.id" aria-expanded="false">
                             <i class="fa fa-angle-down fa-lg"></i>
                         </a>
@@ -44,10 +44,10 @@
                 </div>
             </div>
             <div class="box-body">
-                <div class="card-portlet hidden-xs" v-bind:class="'card-' + machine.info.id">
+                <div class="card-portlet d-none d-sm-block" v-bind:class="'card-' + machine.info.id">
                     <div class="front" v-if="!isOffline(machine) && !isExpired(machine)">
                         <div class="row">
-                            <div class="col-xs-3 text-right">
+                            <div class="col-xs-3 col-xl-3 text-right">
                                 <span class="fa-stack fa-lg" v-if="machine.state != null">
                                     <i class="fa fa-square fa-stack-2x" v-bind:class="'cr-' + machine.state.code"></i>
                                     <i class="fa fa-stack-1x fa-inverse" v-bind:class="iconState(machine.state)"></i>
@@ -57,7 +57,7 @@
                                     <i class="fa fa-stack-1x color-aaa fa-remove"></i>
                                 </span>
                             </div>
-                            <div class="col-xs-9 padding-left-5">
+                            <div class="col-xs-9 col-xl-9 padding-left-5">
                                 <div class="item-label clearfix" v-if="machine.state != null">
                                     <div class="pull-left">
                                         <div>{{ machine.state.text}}</div>
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-3 text-right">
+                            <div class="col-xs-3 col-xl-3 text-right">
                                 <span class="fa-stack fa-lg" v-if="machine.job != null">
                                     <i class="fa fa-square fa-stack-2x" v-bind:class="colorJob(machine.job.perc)"></i>
                                     <i class="fa fa-stack-1x font-12x fa-inverse" v-bind:class="iconJob(machine.job.perc)"></i>
@@ -79,7 +79,7 @@
                                     <i class="fa fa-stack-1x font-12x color-aaa icofom-jobs"></i>
                                 </span>
                             </div>
-                            <div class="col-xs-9 padding-left-5">
+                            <div class="col-xs-9 col-xl-9 padding-left-5">
                                 <div class="item-label clearfix" v-if="machine.job != null">
                                     <div class="pull-left">
                                         <div>{{ machine.job.code }}</div>
@@ -91,7 +91,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-3 text-right">
+                            <div class="col-xs-3 col-xl-3 text-right">
                                 <span class="fa-stack fa-lg" v-if="machine.operator != null">
                                     <i class="fa fa-square fa-stack-2x color-operator"></i>
                                     <i class="fa fa-stack-1x fa-inverse icofom-user"></i>
@@ -101,7 +101,7 @@
                                     <i class="fa fa-stack-1x color-aaa icofom-user"></i>
                                 </span>
                             </div>
-                            <div class="col-xs-9 padding-left-5">
+                            <div class="col-xs-9 col-xl-9 padding-left-5">
                                 <div class="item-label">
                                     <div>{{ machine.operator }}</div>
                                 </div>
@@ -116,7 +116,7 @@
                     </div>
                     <div class="back" v-if="!isOffline(machine)">
                         <div class="row">
-                            <div class="col-xs-3 text-right">
+                            <div class="col-xs-3 col-xl-3 text-right">
                                 <span class="fa-stack fa-lg" v-if="machine.efficiency != null">
                                     <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI(machine.efficiency.kpi)"></i>
                                     <i class="fa icofom-efficiency font-12x fa-stack-1x fa-inverse"></i>
@@ -126,7 +126,7 @@
                                     <i class="fa icofom-efficiency font-12x fa-stack-1x color-aaa"></i>
                                 </span>
                             </div>
-                            <div class="col-xs-9 padding-left-5">
+                            <div class="col-xs-9 col-xl-9 padding-left-5">
                                 <div class="item-label clearfix" v-if="machine.efficiency != null">
                                     <div class="pull-left">
                                         <div>{{ machine.efficiency.kpi.value | round }}<em>%</em></div>
@@ -141,7 +141,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-3 text-right">
+                            <div class="col-xs-3 col-xl-3 text-right">
                                 <span class="fa-stack fa-lg" v-if="machine.productivity != null">
                                     <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI(machine.productivity.kpi)"></i>
                                     <i class="fa icofom-productivity fa-stack-1x fa-inverse"></i>
@@ -151,7 +151,7 @@
                                     <i class="fa icofom-productivity fa-stack-1x fa-inverse color-aaa"></i>
                                 </span>
                             </div>
-                            <div class="col-xs-9 padding-left-5">
+                            <div class="col-xs-9 col-xl-9 padding-left-5">
                                 <div class="item-label clearfix" v-if="machine.productivity != null">
                                     <div class="pull-left">
                                         <div>{{ machine.productivity.kpi.value }}<em>pz/h</em></div>
@@ -166,7 +166,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-3 text-right">
+                            <div class="col-xs-3 col-xl-3 text-right">
                                 <span class="fa-stack fa-lg" v-if="machine.errors != null">
                                     <i class="fa fa-circle fa-stack-2x" v-bind:class="colorAlarms(machine.errors.quantity)"></i>
                                     <i class="fa fa-exclamation-triangle fa-stack-1x fa-inverse"></i>
@@ -176,7 +176,7 @@
                                     <i class="fa icofom-alarms fa-stack-1x fa-inverse color-aaa"></i>
                                 </span>
                             </div>
-                            <div class="col-xs-9 padding-left-5">
+                            <div class="col-xs-9 col-xl-9 padding-left-5">
                                 <div class="item-label clearfix" v-if="machine.errors != null">
                                     <div class="pull-left">
                                         @Resource.AlarmsNumber
@@ -192,9 +192,9 @@
                         <offline-machine></offline-machine>
                     </div>
                 </div>
-                <div class="slide-portlet visible-xs">
+                <div class="slide-portlet visible-xs d-block d-sm-none">
                     <div class="row">
-                        <div class="col-xs-3 text-right">
+                        <div class="col-xs-3 col-xl-3 text-right">
                             <span class="fa-stack fa-lg" v-if="machine.job != null">
                                 <i class="fa fa-square fa-stack-2x" v-bind:class="colorJob(machine.job.perc)"></i>
                                 <i class="fa fa-stack-1x font-12x fa-inverse" v-bind:class="iconJob(machine.job.perc)"></i>
@@ -204,7 +204,7 @@
                                 <i class="fa fa-stack-1x font-12x color-aaa icofom-jobs"></i>
                             </span>
                         </div>
-                        <div class="col-xs-9 padding-left-5">
+                        <div class="col-xs-9 col-xl-9 padding-left-5">
                             <div class="item-label clearfix" v-if="machine.job != null">
                                 <div class="pull-left">
                                     <div>{{ machine.job.code }}</div>
@@ -217,7 +217,7 @@
                     </div>
                     <div v-bind:id="'kpi-' + machine.info.id" class="collapse">
                         <div class="row">
-                            <div class="col-xs-3 text-right">
+                            <div class="col-xs-3 col-xl-3 text-right">
                                 <span class="fa-stack fa-lg" v-if="machine.state != null">
                                     <i class="fa fa-square fa-stack-2x" v-bind:class="'cr-' + machine.state.code"></i>
                                     <i class="fa fa-stack-1x fa-inverse" v-bind:class="iconState(machine.state)"></i>
@@ -227,7 +227,7 @@
                                     <i class="fa fa-stack-1x color-aaa fa-remove"></i>
                                 </span>
                             </div>
-                            <div class="col-xs-9 padding-left-5">
+                            <div class="col-xs-9 col-xl-9 padding-left-5">
                                 <div class="item-label clearfix" v-if="machine.state != null">
                                     <div class="pull-left">
                                         <div>{{ machine.state.text}}</div>
@@ -239,7 +239,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-3 text-right">
+                            <div class="col-xs-3 col-xl-3 text-right">
                                 <span class="fa-stack fa-lg" v-if="machine.operator != null">
                                     <i class="fa fa-square fa-stack-2x color-operator"></i>
                                     <i class="fa fa-stack-1x fa-inverse icofom-user"></i>
@@ -249,14 +249,14 @@
                                     <i class="fa fa-stack-1x color-aaa icofom-user"></i>
                                 </span>
                             </div>
-                            <div class="col-xs-9 padding-left-5">
+                            <div class="col-xs-9 col-xl-9 padding-left-5">
                                 <div class="item-label">
                                     <div>{{ machine.operator }}</div>
                                 </div>
                             </div>
                         </div>
                         <div class="row border-top">
-                            <div class="col-xs-3 text-right">
+                            <div class="col-xs-3 col-xl-3 text-right">
                                 <span class="fa-stack fa-lg" v-if="machine.efficiency != null">
                                     <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI(machine.efficiency.kpi)"></i>
                                     <i class="fa icofom-efficiency font-12x fa-stack-1x fa-inverse"></i>
@@ -266,7 +266,7 @@
                                     <i class="fa icofom-efficiency font-12x fa-stack-1x color-aaa"></i>
                                 </span>
                             </div>
-                            <div class="col-xs-9 padding-left-5">
+                            <div class="col-xs-9 col-xl-9 padding-left-5">
                                 <div class="item-label clearfix" v-if="machine.efficiency != null">
                                     <div class="pull-left">
                                         <div>{{ machine.efficiency.kpi.value | round }}<em>%</em></div>
@@ -281,7 +281,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-3 text-right">
+                            <div class="col-xs-3 col-xl-3 text-right">
                                 <span class="fa-stack fa-lg" v-if="machine.productivity != null">
                                     <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI(machine.productivity.kpi)"></i>
                                     <i class="fa icofom-productivity fa-stack-1x fa-inverse"></i>
@@ -291,7 +291,7 @@
                                     <i class="fa icofom-productivity fa-stack-1x fa-inverse color-aaa"></i>
                                 </span>
                             </div>
-                            <div class="col-xs-9 padding-left-5">
+                            <div class="col-xs-9 col-xl-9 padding-left-5">
                                 <div class="item-label clearfix" v-if="machine.productivity != null">
                                     <div class="pull-left">
                                         <div>{{ machine.productivity.kpi.value }}<em>pz/h</em></div>
@@ -306,7 +306,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-3 text-right">
+                            <div class="col-xs-3 col-xl-3 text-right">
                                 <span class="fa-stack fa-lg" v-if="machine.errors != null">
                                     <i class="fa fa-circle fa-stack-2x" v-bind:class="colorAlarms(machine.errors.quantity)"></i>
                                     <i class="fa icofom-alarms fa-stack-1x fa-inverse"></i>
@@ -316,7 +316,7 @@
                                     <i class="fa icofom-alarms fa-stack-1x fa-inverse color-aaa"></i>
                                 </span>
                             </div>
-                            <div class="col-xs-9 padding-left-5">
+                            <div class="col-xs-9 col-xl-9 padding-left-5">
                                 <div class="item-label clearfix" v-if="machine.errors != null">
                                     <div class="pull-left">
                                         <div>{{ machine.errors.quantity }}</div>

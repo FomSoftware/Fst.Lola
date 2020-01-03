@@ -738,12 +738,21 @@
         .table.table-alerts > thead > tr > th {
             padding: 5px 0;
             vertical-align: middle;
-            border-bottom: 1px solid #ddd;
+            border: none;
+            border-bottom: 2px solid #ddd;
         }
 
-        .table.table-alerts thead tr th.th-number {
-            /*width: 77px;*/
+        .table td {
+            border-bottom: 1px solid #ddd;
+            border-top: none;
         }
+        .table.table-alerts > tbody > tr > td {
+            border-top: none;
+        }
+
+.table.table-alerts thead tr th.th-number {
+    /*width: 77px;*/
+}
 
         .table.table-alerts thead tr th.th-title {
             text-align: left;
@@ -791,7 +800,6 @@
 
         .table.table-alerts > tbody > tr > td {
             vertical-align: top;
-            border-top: 1px solid #ddd;
             padding: 5px 8px;
         }
 
@@ -927,22 +935,22 @@
             bottom: 5px;
             right: 8px;
             display: block;
-            font-family: 'Glyphicons Halflings';
+            font-family: 'FontAwesome';
             opacity: 0.5;
         }
 
 
         .table.table-alerts thead .sorting:after {
             opacity: 0.2;
-            content: "\e150";
+            content: "\f0dc";
         }
 
         .table.table-alerts thead .sorting.asc:after {
-            content: "\e155";
+            content: "\f160";
         }
 
         .table.table-alerts thead .sorting.desc:after {
-            content: "\e156";
+            content: "\f161";
         }
 
 

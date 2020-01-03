@@ -6,185 +6,182 @@
 }
 
 <div class="row">
-    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
         <div class="button-adduser" onclick="UserManager.addClickEvent()">
             <i class="icon-plus"></i>@Resource.AddUser
         </div>
     </div>
 </div>
-
-<div class="col-lg-12 col-xs-12 container-user-manager">
-   <table class="table data-table users-table" id="users-table"></table>
+<div>
+    <div class="col-xl-12 col-lg-12 col-lg-12 col-xs-12 container-user-manager">
+        <table class="table data-table users-table" id="users-table"></table>
+    </div>
 </div>
-
-<div class="modal fade user-modal" id="user-modal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
-          <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" onClick="UserManager.clearActualUser()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title pull-left margin-top-5"></h4>
-                    </div>
-                    <div class="modal-body">
-                        <!--todo-->
-                    </div>
-
+    <div class="modal fade user-modal" id="user-modal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left margin-top-5"></h4>
+                    <button type="button" class="close" onClick="UserManager.clearActualUser()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
                     <form class="form-horizontal" id="user-modal-form">
-                        <fieldset>
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="username-input">@Resource.Username:</label>
-                                <div class="col-md-6">
-                                    <input v-model="actual.Username" name="username-input" class="form-control input-md modal-input" id="username-input" type="text" placeholder="@Resource.Username" maxlength="50" required>
-                                    <div v-show="missing.Username" class="validation">@Resource.FieldRequired.</div>
-                                </div>
+                    <fieldset>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 col-xl-4 control-label" for="username-input">@Resource.Username:</label>
+                            <div class="col-md-6 col-xl-6">
+                                <input v-model="actual.Username" name="username-input" class="form-control input-md modal-input" id="username-input" type="text" placeholder="@Resource.Username" maxlength="50" required>
+                                <div v-show="missing.Username" class="validation">@Resource.FieldRequired.</div>
                             </div>
+                        </div>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="name-input">@Resource.FirstName:</label>
-                                <div class="col-md-6">
-                                    <input v-model="actual.FirstName" name="name-input" class="form-control input-md modal-input" id="name-input" type="text" placeholder="@Resource.FirstName" maxlength="50" required>
-                                    <div v-show="missing.FirstName" class="validation">@Resource.FieldRequired.</div>
-                                </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="name-input">@Resource.FirstName:</label>
+                            <div class="col-md-6">
+                                <input v-model="actual.FirstName" name="name-input" class="form-control input-md modal-input" id="name-input" type="text" placeholder="@Resource.FirstName" maxlength="50" required>
+                                <div v-show="missing.FirstName" class="validation">@Resource.FieldRequired.</div>
                             </div>
+                        </div>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="lastname-input">@Resource.LastName:</label>
-                                <div class="col-md-6">
-                                    <input v-model="actual.LastName" name="lastname-input" class="form-control input-md modal-input" id="lastname-input" type="text" placeholder="@Resource.LastName" maxlength="50" required>
-                                    <div v-show="missing.LastName" class="validation">@Resource.FieldRequired.</div>
-                                </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="lastname-input">@Resource.LastName:</label>
+                            <div class="col-md-6">
+                                <input v-model="actual.LastName" name="lastname-input" class="form-control input-md modal-input" id="lastname-input" type="text" placeholder="@Resource.LastName" maxlength="50" required>
+                                <div v-show="missing.LastName" class="validation">@Resource.FieldRequired.</div>
                             </div>
+                        </div>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="email-input">Email:</label>
-                                <div class="col-md-6">
-                                    <input v-model="actual.Email" name="email-input" class="form-control input-md modal-input" id="email-input" type="text" placeholder="Email" maxlength="50">
-                                </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="email-input">Email:</label>
+                            <div class="col-md-6">
+                                <input v-model="actual.Email" name="email-input" class="form-control input-md modal-input" id="email-input" type="text" placeholder="Email" maxlength="50">
                             </div>
+                        </div>
 
+                        <!-- Select Basic -->
+                        <div class="form-group" id="form-role-input">
+                            <label class="col-md-4 control-label" for="role-input">@Resource.Role:</label>
+                            <div class="col-md-6">
+                                <select v-model="roles.active" class="form-control input-md modal-input" id="role-input" type="text" title="@Resource.NothingSelected" required>
+                                    <option v-for="(role, index) in roles.all" v-if="role.Code == enRoles.Operator || role.Code == enRoles.HeadWorkshop" v-bind:value="role.Code" v-bind:disabled="selectOptionClass(role)">{{role.Name}}</option>
+                                </select>
+                                <div v-show="missing.Role" class="validation">@Resource.FieldRequired.</div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group" id="form-role-input-disabled">
+                            <label class="col-md-4 control-label" for="email-input">@Resource.Role:</label>
+                            <div class="col-md-6">
+                                <input v-model="roles.activeName" name="role-input" class="form-control input-md modal-input input-read-only" id="role-input-disabled" type="text" disabled>
+                            </div>
+                        </div>
+
+                        @if (Model.User.Role == enRole.Administrator)
+                        {
                             <!-- Select Basic -->
-                            <div class="form-group" id="form-role-input">
-                                <label class="col-md-4 control-label" for="role-input">@Resource.Role:</label>
+                            <div class="form-group" id="form-customer-input">
+                                <label class="col-md-4 control-label" for="role-input">@Resource.Customer:</label>
                                 <div class="col-md-6">
-                                    <select v-model="roles.active" class="form-control input-md modal-input" id="role-input" type="text" title="@Resource.NothingSelected" required>
-                                        <option v-for="(role, index) in roles.all" v-if="role.Code == enRoles.Operator || role.Code == enRoles.HeadWorkshop" v-bind:value="role.Code" v-bind:disabled="selectOptionClass(role)">{{role.Name}}</option>
+                                    <select v-model="customers.active" class="form-control input-md modal-input" id="customer-input" title="@Resource.NothingSelected" type="text">
+                                        <option v-for="customer in customers.all" v-bind:value="customer">{{customer}}</option>
                                     </select>
-                                    <div v-show="missing.Role" class="validation">@Resource.FieldRequired.</div>
+                                    <div v-show="missing.Customer" class="validation">@Resource.FieldRequired.</div>
                                 </div>
                             </div>
 
                             <!-- Text input-->
-                            <div class="form-group" id="form-role-input-disabled">
-                                <label class="col-md-4 control-label" for="email-input">@Resource.Role:</label>
+                            <div class="form-group" id="form-customer-input-disabled">
+                                <label class="col-md-4 control-label" for="email-input">@Resource.Customer:</label>
                                 <div class="col-md-6">
-                                    <input v-model="roles.activeName" name="role-input" class="form-control input-md modal-input input-read-only" id="role-input-disabled" type="text" disabled>
+                                    <input v-model="customers.active" name="customer-input" class="form-control input-md modal-input input-read-only" id="customer-input-disabled" type="text" disabled>
                                 </div>
                             </div>
 
-                            @if (Model.User.Role == enRole.Administrator)
-                            {
-                                <!-- Select Basic -->
-                                <div class="form-group" id="form-customer-input">
-                                    <label class="col-md-4 control-label" for="role-input">@Resource.Customer:</label>
-                                    <div class="col-md-6">
-                                        <select v-model="customers.active" class="form-control input-md modal-input" id="customer-input" title="@Resource.NothingSelected" type="text">
-                                            <option v-for="customer in customers.all" v-bind:value="customer">{{customer}}</option>
-                                        </select>
-                                        <div v-show="missing.Customer" class="validation">@Resource.FieldRequired.</div>
-                                    </div>
-                                </div>
+                        }
 
-                                <!-- Text input-->
-                                <div class="form-group" id="form-customer-input-disabled">
-                                    <label class="col-md-4 control-label" for="email-input">@Resource.Customer:</label>
-                                    <div class="col-md-6">
-                                        <input v-model="customers.active" name="customer-input" class="form-control input-md modal-input input-read-only" id="customer-input-disabled" type="text" disabled>
-                                    </div>
-                                </div>
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="role-input">@Resource.Machines:</label>
+                            <div class="col-md-6">
+                                <select v-model="machines.active" class="form-control input-md modal-input" id="machines-input" title="@Resource.NothingSelected" type="text" multiple required>
+                                    <option v-for="machine in machines.all" v-bind:value="machine.Id">{{machine.Serial}}</option>
+                                </select>
+                                <div v-show="missing.Machines" class="validation">@Resource.FieldRequired.</div>
+                            </div>
+                        </div>
 
-                            }
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="role-input">@Resource.Language:</label>
+                            <div class="col-md-6">
+                                <select v-model="languages.active" class="form-control input-md modal-input" id="languages-input" title="@Resource.NothingSelected" type="text" required>
+                                    <option v-for="language in languages.all" v-bind:value="language.Id">{{language.Name}}</option>
+                                </select>
+                                <div v-show="missing.Languages" class="validation">@Resource.FieldRequired.</div>
+                            </div>
+                        </div>
 
-                            <!-- Select Basic -->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="role-input">@Resource.Machines:</label>
+                        @if (Model.User.Role == enRole.Customer)
+                        {
+                            <div class="form-group" id="form-group-password">
+                                <label class="col-md-4 control-label" for="lastname-input">Password:</label>
                                 <div class="col-md-6">
-                                    <select v-model="machines.active" class="form-control input-md modal-input" id="machines-input" title="@Resource.NothingSelected" type="text" multiple required>
-                                        <option v-for="machine in machines.all" v-bind:value="machine.Id">{{machine.Serial}}</option>
-                                    </select>
-                                    <div v-show="missing.Machines" class="validation">@Resource.FieldRequired.</div>
+                                    <div class="input-group">
+                                        <input v-model="actual.Password" name="password-input" class="form-control input-md modal-input" id="password-input" type="text" placeholder="Password" maxlength="50" required>
+                                        <span class="input-group-btn" style="padding-top:8px;">
+                                            <button type="button" role="button" class="btn btn-annulla" style="height: 35px" data-container="body" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="@Resource.PasswordPolicy">
+                                                <span class="fontawesome-question-sign" aria-hidden="true"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <div v-show="missing.Password" class="validation">@Resource.FieldRequired.</div>
                                 </div>
                             </div>
-
-                            <!-- Select Basic -->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="role-input">@Resource.Language:</label>
+                            <!-- Text input-->
+                            <div class="form-group" id="form-group-confirm-password">
+                                <label class="col-md-4 control-label" for="lastname-input">@Resource.RepeatPassword:</label>
                                 <div class="col-md-6">
-                                    <select v-model="languages.active" class="form-control input-md modal-input" id="languages-input" title="@Resource.NothingSelected" type="text" required>
-                                        <option v-for="language in languages.all" v-bind:value="language.Id">{{language.Name}}</option>
-                                    </select>
-                                    <div v-show="missing.Languages" class="validation">@Resource.FieldRequired.</div>
+                                    <div class="input-group">
+                                        <input v-model="actual.ConfirmPassword" name="confirm-password-input" class="form-control input-md modal-input" id="confirm-password-input" type="text" placeholder="Confirm Password" maxlength="50" required>
+                                        <span class="input-group-btn" style="padding-top:8px;">
+                                            <button type="button" role="button" class="btn btn-annulla" style="height: 35px" data-container="body" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="@Resource.PasswordPolicy">
+                                                <span class="fontawesome-question-sign" aria-hidden="true"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+
+                                    <div v-show="missing.ConfirmPassword" class="validation">@Resource.FieldRequired.</div>
                                 </div>
                             </div>
-
-                            @if (Model.User.Role == enRole.Customer)
-                            {
-                                <div class="form-group" id="form-group-password">
-                                    <label class="col-md-4 control-label" for="lastname-input">Password:</label>
-                                    <div class="col-md-6">
-                                        <div class="input-group">
-                                            <input v-model="actual.Password" name="password-input" class="form-control input-md modal-input" id="password-input" type="text" placeholder="Password" maxlength="50" required>
-                                            <span class="input-group-btn" style="padding-top:8px;">
-                                                <button type="button" role="button" class="btn btn-annulla" data-container="body" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="@Resource.PasswordPolicy">
-                                                    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-                                                </button>
-                                            </span>
-                                        </div>
-                                        <div v-show="missing.Password" class="validation">@Resource.FieldRequired.</div>
-                                    </div>
-                                </div>
-                                <!-- Text input-->
-                                <div class="form-group" id="form-group-confirm-password">
-                                    <label class="col-md-4 control-label" for="lastname-input">@Resource.RepeatPassword:</label>
-                                    <div class="col-md-6">
-                                        <div class="input-group">
-                                            <input v-model="actual.ConfirmPassword" name="confirm-password-input" class="form-control input-md modal-input" id="confirm-password-input" type="text" placeholder="Confirm Password" maxlength="50" required>
-                                            <span class="input-group-btn" style="padding-top:8px;">
-                                                <button type="button" role="button" class="btn btn-annulla" data-container="body" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="@Resource.PasswordPolicy">
-                                                    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-                                                </button>
-                                            </span>
-                                        </div>
-
-                                        <div v-show="missing.ConfirmPassword" class="validation">@Resource.FieldRequired.</div>
-                                    </div>
-                                </div>
-                            }
-                            <!-- Enable/disable check -->
-                            <div class="form-group form-check">
-                                <label class="col-md-4 control-label" for="enabled-input">@Resource.Enable:</label>
-                                <div class="form-check col-md-6">
-                                    <label class="container-checkbox">
-                                        <input v-model="actual.Enabled" type="checkbox" id="enable-input">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
+                        }
+                        <!-- Enable/disable check -->
+                        <div class="form-group form-check">
+                            <label class="col-md-4 control-label" for="enabled-input">@Resource.Enable:</label>
+                            <div class="form-check col-md-6">
+                                <label class="container-checkbox">
+                                    <input v-model="actual.Enabled" type="checkbox" id="enable-input">
+                                    <span class="checkmark"></span>
+                                </label>
                             </div>
-                        </fieldset>
-                    </form>
-                </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
 
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-annulla" onclick="UserManager.clearActualUser()">@Resource.Cancel</button>
-                    <button type="button" onClick="UserManager.addUser()" class="btn btn-confirm js-add display-none">@Resource.Save</button>
-                    <button type="button" onClick="UserManager.modifyUser()" class="btn btn-confirm js-modify display-none">@Resource.Save</button>
-                </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-annulla" onclick="UserManager.clearActualUser()">@Resource.Cancel</button>
+                <button type="button" onClick="UserManager.addUser();" class="btn btn-confirm js-add display-none">@Resource.Save</button>
+                <button type="button" onClick="UserManager.modifyUser()" class="btn btn-confirm js-modify display-none">@Resource.Save</button>
             </div>
         </div>
-
-<script type="text/javascript">
+    </div>
+</div>
+    <script type="text/javascript">
     $(document).ready(function ()
     {
 
@@ -229,4 +226,4 @@
         var data = @Html.Raw(Json.Encode(Model.User));
         UserManager.init(data, "@ViewBag.BaseUrl", resource);
     });
-</script>
+    </script>

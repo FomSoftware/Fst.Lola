@@ -30,10 +30,10 @@
                     <!-- #region info machine -->
                     <div class="dropdown dropdown-toolbar" onclick="SharedManager.handlerDropdown($(this))">
                         <div class="btn btn-toolbar only-icon">
-                            <div class="icon-btn visible-sm visible-xs">
+                            <div class="icon-btn visible-sm visible-xs d-block d-md-none">
                                 <i class="icon-info color-corporate"></i>
                             </div>
-                            <div class="info-macchina hidden-sm hidden-xs">
+                            <div class="info-macchina d-none d-md-block">
                                 <div>
                                     <span class="title-small">@Resource.Type</span>
                                     <span>{{selected.machine.mtype}}</span>
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <div>
-                                <span class="icon-arrow-down hidden-sm hidden-xs"></span>
+                                <span class="icon-arrow-down d-none d-md-block"></span>
                             </div>
                         </div>
                         <div class="dropdown-content">
@@ -91,11 +91,11 @@
         }
         else if (Model.page == enPage.Mes)
         {
-            <div class="col-xs-12" style="display:flex">
+            <div class="col-xs-12 col-xl-12" style="display:flex">
                 <div id="plants-filter" class="toolbar-filter" v-cloak>
                     <i class="icofom-productivity" v-cloak></i>
                     <span class="title-small">@Resource.Plant</span>
-                    <select id="plant_select" class="bs-select show-menu-arrow show-tick display-none plant-select">
+                    <select id="plant_select" class="selectpicker bs-select show-menu-arrow show-tick display-none plant-select">
                         <option v-for="plant in plants"
                                 v-bind:value="plant.id"
                                 v-bind:selected="plant.id == selected.plant.id">
@@ -111,7 +111,7 @@
                 </div>
                 <div>
                     <div class="btn btn-toolbar">
-                        <i class="fa fa-server color-corporate fa-lg" style="position:inherit" onclick="SharedManager.viewPlantMessagesBtn()"></i>
+                        <i class="fa fa-server color-corporate fa-lg" style="position: inherit; margin: 2px 5px 0 0;" onclick="SharedManager.viewPlantMessagesBtn()"></i>
                         <a href="@Url.Action("PlantMessages", "Mes")">
                             <span id="plantMessagesLabel">@Resource.PlantMessages</span>
                         </a>
@@ -125,13 +125,13 @@
                 {
                 if (Model.role != enRole.Operator)
                 {
-                <div class="col-md-8 col-sm-7 col-xs-11">
+                <div class="col-md-8 col-sm-7 col-xs-11 col-xl-8">
                     <div id="plants-filter" class="toolbar-filter" v-cloak>
-                        <div>
+                        <div style="display: inline-flex">
                             <a class="btn btn-toolbar" href="@Url.Action("Index", "Mes")" style="padding: 2px 10px 10px 10px;">
                                 <i class="fa icofom-productivity fa-stack-1x fa-inverse" style="position:inherit"></i>
                             </a>
-                            <span class="title"  v-cloak>
+                            <span class="title" v-cloak>
                                 @Resource.Plant {{selected.plant.name}}
                             </span>
                         </div>
@@ -152,13 +152,13 @@
                             <div class="icon-btn">
                                 <i class="icon-calendar color-corporate"></i>
                             </div>
-                            <div class="title-btn hidden-xs">
+                            <div class="title-btn d-none d-sm-block">
                                 <div class="text-period"></div>
                                 <small class="title-small">
                                     @Resource.Period
                                 </small>
                             </div>
-                            <div class="hidden-xs">
+                            <div class=" d-none d-sm-block">
                                 <i class="icon-arrow-down"></i>
                             </div>
 

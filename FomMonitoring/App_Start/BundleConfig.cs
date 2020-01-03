@@ -29,14 +29,14 @@ namespace FomMonitoring.App_Start
 
             bundles.Add(new ScriptBundle("~/Scripts/FomMonitoringScriptsLIB").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/bootstrap.bundle.js",
                         "~/Scripts/vue.min.js",
                         "~/Scripts/highcharts/5.0.14/highcharts.js",
                         "~/Scripts/highcharts/5.0.14/highcharts-more.js",
                         "~/Scripts/highcharts/5.0.14/modules/solid-gauge.js",
                         //"~/Scripts/highcharts/5.0.14/themes/dark-unica.js",
                         "~/Scripts/DataTables/jquery.dataTables.js",
-                        "~/Scripts/DataTables/dataTables.bootstrap.js",
+                        "~/Scripts/DataTables/dataTables.bootstrap4.js",
                         "~/Scripts/moment.js",
                         "~/Scripts/moment-with-locales.js",
                         "~/Scripts/daterangepicker.js",
