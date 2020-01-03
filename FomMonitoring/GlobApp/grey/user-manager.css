@@ -294,15 +294,18 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+#user-modal-form .form-group, #plant-modal-form .form-group, .form-horizontal .form-group {
+    display: flex;
+}
+
+.fontawesome-question-sign:before {
+    content: "\f059";
+    font-family: 'FontAwesome';
+}
 
 /*#endregion*/
-
 /*#region responsive */
-
-
-
 @media (max-width: 768px) {
-
     .dataTables_wrapper {
         overflow-x: auto;
     }

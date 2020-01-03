@@ -36,7 +36,7 @@ namespace FomMonitoring.App_Start
                         "~/Scripts/highcharts/5.0.14/modules/solid-gauge.js",
                         //"~/Scripts/highcharts/5.0.14/themes/dark-unica.js",
                         "~/Scripts/DataTables/jquery.dataTables.js",
-                        "~/Scripts/DataTables/dataTables.bootstrap.js",
+                        "~/Scripts/DataTables/dataTables.bootstrap4.js",
                         "~/Scripts/moment.js",
                         "~/Scripts/moment-with-locales.js",
                         "~/Scripts/daterangepicker.js",

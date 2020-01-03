@@ -218,7 +218,7 @@
 
     var addClickEvent = function () {
         action = enAction.add;
-
+        clearActualUser();
         $('#user-modal .modal-title').text(resource.AddUser);
         $('#user-modal .form-check').hide();
         $('#form-customer-input').show();
@@ -717,7 +717,6 @@
         modifyUser: modifyUser,
         modifyClickEvent: modifyClickEvent,
         deleteClickEvent: deleteClickEvent,
-        clearActualUser: clearActualUser,
         resetPasswordClickEvent: resetPasswordClickEvent,
         clearActualUser: clearActualUser,
         changePasswordClick: changePasswordClick,
