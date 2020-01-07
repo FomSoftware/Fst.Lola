@@ -30,6 +30,7 @@ namespace FomMonitoring.App_Start
             bundles.Add(new ScriptBundle("~/Scripts/FomMonitoringScriptsLIB").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/bootstrap.bundle.js",
+                        "~/Scripts/bootstrap-select.js",
                         "~/Scripts/vue.min.js",
                         "~/Scripts/highcharts/5.0.14/highcharts.js",
                         "~/Scripts/highcharts/5.0.14/highcharts-more.js",
@@ -41,7 +42,6 @@ namespace FomMonitoring.App_Start
                         "~/Scripts/moment-with-locales.js",
                         "~/Scripts/daterangepicker.js",
                         "~/Scripts/underscore.js",
-                        "~/Scripts/bootstrap-select.js",
                         "~/Scripts/toastr.js"
                       ));
 
@@ -120,7 +120,7 @@ namespace FomMonitoring.App_Start
 
             bundles.Add(new ScriptBundle("~/Scripts/FomMonitoringScriptsLOGIN").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/bootstrap.js"
+                        "~/Scripts/bootstrap.bundle.js"
                       ));
 
             #endregion
