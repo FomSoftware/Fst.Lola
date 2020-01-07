@@ -6,11 +6,11 @@
         @if (Model.page == enPage.Machine)
         {
 
-            <div class="col-md-8 col-sm-7 col-xs-11 col-padding">
+            <div class="col-md-8 col-sm-7 col-sm-11 col-padding">
                 <div id="machines-filter" v-cloak>
                     @if (Model.role != enRole.Operator)
                     {
-                        <a class="btn btn-toolbar" href="@Url.Action("Index", "Mes")">
+                        <a class="btn btn-toolbar" id="button-back-machine" href="@Url.Action("Index", "Mes")">
                             <i class="fa fa-arrow-circle-left color-corporate fa-lg"></i>
                         </a>
                     }
@@ -91,7 +91,7 @@
         }
         else if (Model.page == enPage.Mes)
         {
-            <div class="col-xs-12 col-xl-12" style="display:flex">
+            <div class="col-sm-12 col-xl-12" style="display:flex">
                 <div id="plants-filter" class="toolbar-filter" v-cloak>
                     <i class="icofom-productivity" v-cloak></i>
                     <span class="title-small">@Resource.Plant</span>

@@ -1,91 +1,93 @@
 ﻿@model FomMonitoringBLL.ViewModel.MachineViewModel
 @using FomMonitoringResources
 
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <div class="btn-group col"  style="background-color: transparent;">
-            <button type="button" data-panel="efficiency" class="no-borders" style="width: 25%; height: 120px; background-color: transparent;">
-                <span class="fa-stack fa-lg">
-                    <i class="fa icofom-efficiency fa-stack-1x fa-inverse color-green" style="font-size: 100px"></i>
-                </span>
-            </button>
-            <button type="button" data-panel="production" class="no-borders" style="width: 25%; height: 120px; background-color: transparent;">
-                <span class="fa-stack fa-lg">
-                    <i class="fa icofom-productivity fa-stack-1x fa-inverse color-red" style="font-size: 100px"></i>
-                </span>
-            </button>
-            <button type="button" data-panel="maintenance" class="no-borders" style="width: 25%; height: 120px; background-color: transparent;">
-                <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-1x" style="color: cornflowerblue; font-size: 100px; left: -25px;"></i>
-                    <i class="fa fa-info fa-stack-1x fa-inverse" style="font-size: 60px"></i>
-                </span>
-            </button>
-            <button type="button" data-panel="ordersStandard" class="no-borders" style="width: 25%; height: 120px; background-color: transparent;">
-                <span class="fa-stack fa-lg">
-                    <i class="fa icofom-jobs fa-stack-1x fa-inverse color-orange" style="font-size: 100px"></i>
-                </span>
-            </button>
-        </div>
-    </div>
-<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="background-color: #cbcaca">
-    <div style="height: 65%; padding-left: 12px; padding-right: 12px; background-color: #cbcaca">
-        @Html.Action("GetHtmlPage", "Shared", new { path = "/images/panels/FMC-immagine_macchina_LUNGA.svg" })
-    </div>
-</div>
-
-<div id="panels-box" class="col col-sm-12">
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="background-color: #cbcaca; padding-left: 0; padding-right: 0;" v-show="machineGroupSelected == null && machinePanelSelected == null">
-        <div style="width: 100%; height: 32%; background-color: #cbcaca">
-            <div class="btn-group machine-group-selection" style="width: 100%; background-color: #cbcaca">
-                <button type="button" data-group="FMC3-4_axes" class="no-borders" style="width: 33%;background-color: #cbcaca">
-                    <img src="/Images/panels/CARD-AXES_220X220px.svg" width="220" height="220" />
+<div class="col">
+    <div class="row justify-content-center">
+        <div id="buttons-bar" class="col-sm-12 col-md-12 col-lg-12 col-xl-12" v-show="isMobile()">
+            <div class="btn-group col" style="background-color: transparent;">
+                <button type="button" data-panel="efficiency" class="no-borders" style="width: 25%; background-color: transparent;">
+                    <span>
+                        <i class="fa icofom-efficiency fa-inverse color-green"></i>
+                    </span>
                 </button>
-                <button type="button" data-group="FMC3-4_tools" class="no-borders" style="width: 33%;background-color: #cbcaca">
-                    <img src="/Images/panels/CARD-TOOLS_220X220px.svg" width="220" height="220" />
+                <button type="button" data-panel="production" class="no-borders" style="width: 25%; background-color: transparent;">
+                    <span>
+                        <i class="fa icofom-productivity fa-inverse color-red"></i>
+                    </span>
                 </button>
-                <button type="button" data-group="FMC3-4_spindles" class="no-borders" style="width: 33%;background-color: #cbcaca">
-                    <img src="/Images/panels/CARD_SPINDLE_220X220px.svg" width="220" height="220" />
+                <button type="button" data-panel="maintenance" class="no-borders" style="width: 25%; background-color: transparent;">
+                    <span class="fa fa-stack">
+                        <i class="fa fa-circle fa-stack-2x" style="color: cornflowerblue;"></i>
+                        <i class="fa fa-info fa-inverse fa-stack-1x"></i>
+                    </span>
+                </button>
+                <button type="button" data-panel="ordersStandard" class="no-borders" style="width: 25%; background-color: transparent;">
+                    <span>
+                        <i class="fa icofom-jobs fa-inverse color-orange"></i>
+                    </span>
                 </button>
             </div>
         </div>
     </div>
-    <div class="col-sm-12">
-        <div class="col col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machinePanelSelected == 'efficiency'">
-            @Html.Partial("Panels/_Efficiency", Model.Efficiency)
-        </div>
-
-        <div class="col col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machinePanelSelected == 'production'">
-            @Html.Partial("Panels/_Productivity", Model.Productivity)
-        </div>
-
-        <div class="col col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machineGroupSelected == 'FMC3-4_spindles'">
-            @Html.Partial("Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter)
-        </div>
-
-
-        <div class="col col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machineGroupSelected == 'FMC3-4_axes'">
-            @Html.Partial("Panels/ElectroSpindle/_OtherMachineData", Model.PanelParameter)
-        </div>
-
-
-
-        <div class="col col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machinePanelSelected == 'ordersStandard'">
-            @Html.Partial("Panels/_Jobs", Model.Jobs)
-        </div>
-
-
-        <div class="col col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machineGroupSelected == 'FMC3-4_tools'">
-            @Html.Partial("Panels/Tools/_FmcLmx", Model.PanelParameter)
-        </div>
-
-        <div class="col col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machinePanelSelected == 'maintenance'">
-            @Html.Partial("Panels/_Maintenance", Model.Maintenance)
-        </div>
-
-        <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 card-wrap-2">
-            @Html.Partial("Panels/_Messages", Model.Messages)
+    <div class="row justify-content-center machine-image-wrapper">
+        <div class="col-sm-12 col-md-12 col-lg-10 col-xl-9">
+            <div style="height: 65%; padding-left: 12px;">
+                @Html.Action("GetHtmlPage", "Shared", new { path = "/images/panels/FMC-immagine_macchina_LUNGA.svg" })
+            </div>
         </div>
     </div>
 
+    <div id="panels-box" class="row justify-content-center">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="background-color: #cbcaca; padding-top: 30px; padding-bottom: 30px; width: 100%; height: 32%;" v-show="machineGroupSelected == null && machinePanelSelected == null && isMobile()">
+            <div class="btn-group machine-group-selection" style="width: 100%; background-color: #cbcaca">
+                    <button type="button" data-group="FMC3-4_axes" class="no-borders" style="width: 33%;background-color: #cbcaca">
+                        <img class="img-button-group" src="/Images/panels/CARD-AXES_220X220px.svg" />
+                    </button>
+                    <button type="button" data-group="FMC3-4_tools" class="no-borders" style="width: 33%;background-color: #cbcaca">
+                        <img class="img-button-group" src="/Images/panels/CARD-TOOLS_220X220px.svg" />
+                    </button>
+                    <button type="button" data-group="FMC3-4_spindles" class="no-borders" style="width: 33%;background-color: #cbcaca">
+                        <img class="img-button-group" src="/Images/panels/CARD_SPINDLE_220X220px.svg" />
+                    </button>
+                </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 panels-area" v-show="machineGroupSelected != null || machinePanelSelected != null || !isMobile()">
+            <div class="row">
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machinePanelSelected == 'efficiency' || (!isMobile() && (machineGroupSelected == null && machinePanelSelected == null))">
+                    @Html.Partial("Panels/_Efficiency", Model.Efficiency)
+                </div>
+
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machinePanelSelected == 'production' || (!isMobile() && (machineGroupSelected == null && machinePanelSelected == null))">
+                    @Html.Partial("Panels/_Productivity", Model.Productivity)
+                </div>
+
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machineGroupSelected == 'FMC3-4_spindles'">
+                    @Html.Partial("Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter)
+                </div>
+
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machineGroupSelected == 'FMC3-4_axes'">
+                    @Html.Partial("Panels/ElectroSpindle/_OtherMachineData", Model.PanelParameter)
+                </div>
+
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machinePanelSelected == 'ordersStandard' || (!isMobile() && (machineGroupSelected == null && machinePanelSelected == null))">
+                    @Html.Partial("Panels/_Jobs", Model.Jobs)
+                </div>
+
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machineGroupSelected == 'FMC3-4_tools'">
+                    @Html.Partial("Panels/Tools/_FmcLmx", Model.PanelParameter)
+                </div>
+
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machinePanelSelected == 'maintenance' || (!isMobile() && (machineGroupSelected == null && machinePanelSelected == null))">
+                    @Html.Partial("Panels/_Maintenance", Model.Maintenance)
+                </div>
+
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 card-wrap-2">
+                    @Html.Partial("Panels/_Messages", Model.Messages)
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 <script>
     $(document).ready(function ()
