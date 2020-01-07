@@ -2,11 +2,11 @@
 @using FomMonitoringResources
 
 <div class="toolbar">
-    <div class="row row-toolbar">
+    <div class="row-toolbar">
         @if (Model.page == enPage.Machine)
         {
 
-            <div class="col-md-8 col-sm-7 col-xs-11 col-padding">
+            <div class="col-md-8 col-sm-7 col-xs-11 col-xl-8 col-padding">
                 <div id="machines-filter" v-cloak>
                     @if (Model.role != enRole.Operator)
                     {
@@ -17,30 +17,30 @@
                     <!-- #region filter machine -->
                     <div class="toolbar-filter">
                         <span class="title-small">@Resource.Machine</span>
-                        <select id="machine_select" class="bs-select show-menu-arrow show-tick display-none machine-select">
-                            <option v-for="m in machines"
+                        <select  id="machine_select" class="selectpicker bs-select show-menu-arrow show-tick display-none machine-select">
+                            <option v-clock v-for="m in machines"
                                     v-bind:value="m.id"
                                     v-bind:selected="m.serial == selected.machine.serial"
                                     v-bind:data-icon="'icofom-' + m.icon">
-                                {{  m.machineName || m.description || m.model }}
+                                {{ m.machineName || m.description || m.model}}
                             </option>
                         </select>
                     </div>
                     <!-- #endregion -->
                     <!-- #region info machine -->
-                    <div class="dropdown dropdown-toolbar" onclick="SharedManager.handlerDropdown($(this))">
-                        <div class="btn btn-toolbar only-icon">
+                    <div v-cloak class="dropdown dropdown-toolbar" onclick="SharedManager.handlerDropdown($(this))">
+                        <div  class="btn btn-toolbar only-icon">
                             <div class="icon-btn visible-sm visible-xs d-block d-md-none">
                                 <i class="icon-info color-corporate"></i>
                             </div>
                             <div class="info-macchina d-none d-md-block">
                                 <div>
                                     <span class="title-small">@Resource.Type</span>
-                                    <span>{{selected.machine.mtype}}</span>
+                                    <span v-cloak>{{selected.machine.mtype}}</span>
                                 </div>
                                 <div>
                                     <span class="title-small">@Resource.Model</span>
-                                    <span>{{selected.machine.machineName || selected.machine.model}}</span>
+                                    <span v-cloak>{{selected.machine.machineName || selected.machine.model}}</span>
                                 </div>
                             </div>
                             <div>
@@ -96,7 +96,7 @@
                     <i class="icofom-productivity" v-cloak></i>
                     <span class="title-small">@Resource.Plant</span>
                     <select id="plant_select" class="selectpicker bs-select show-menu-arrow show-tick display-none plant-select">
-                        <option v-for="plant in plants"
+                        <option v-cloak v-for="plant in plants"
                                 v-bind:value="plant.id"
                                 v-bind:selected="plant.id == selected.plant.id">
                             {{ plant.name }}
@@ -147,7 +147,7 @@
                 }
                 @if (Model.page == enPage.Machine || Model.page == enPage.PlantMessages)
                 {
-                    <div class="col-md-4 col-sm-5 col-xs-1 col-padding">
+                    <div class="col-md-4 col-sm-5 col-xs-1 col-xl-4 col-padding">
                         <div id="calendar" class="btn-toolbar pull-right">
                             <div class="icon-btn">
                                 <i class="icon-calendar color-corporate"></i>

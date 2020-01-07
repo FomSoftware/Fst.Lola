@@ -1,4 +1,8 @@
-﻿.row-toolbar .col-padding {
+﻿.row-toolbar {
+    display: flex;
+}
+
+.row-toolbar .col-padding {
     padding-left: 0px;
     padding-right: 0px;
 }

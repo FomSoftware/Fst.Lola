@@ -245,7 +245,7 @@
     font-size: 15px;
     letter-spacing: 1px;
     line-height: 1.4;
-	color:white;
+	color:#ffffff;
 }
 
     .box-machine .box-title .row {
@@ -351,9 +351,10 @@
     background-color: #ddd;*/
     border-left: solid 2px #eee;
     border-radius: 0px;
+    color: white;
 }
 
-    .btn-circle .icon-refresh {
+.btn-circle .icon-refresh {
         margin-left: 3px;
     }
 
@@ -367,13 +368,13 @@
     border-top: solid 2px #ddd;
 }
 
+#machines-filter {
+    display: flex;
+}
 
 /*#region responsive */
-
-
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-
     .box-machine {
         margin-bottom: 25px;
     }
