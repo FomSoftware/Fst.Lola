@@ -6,7 +6,6 @@
     }
 
     var initVueModel = function (data) {
-        console.log(JSON.stringify(data));
         vmOther = new Vue({
             el: '#CardOtherDataMachine',
             data: {

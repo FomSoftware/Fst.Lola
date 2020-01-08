@@ -36,7 +36,7 @@
             $(".slimscroll").slimScroll({ destroy: true });
             MultiSpindles.update(data);
             Vue.nextTick(function () {
-                initScrollBar();
+                MachineManager.initScrollBar();
             });
 
         });

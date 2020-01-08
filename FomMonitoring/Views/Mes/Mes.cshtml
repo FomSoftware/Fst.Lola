@@ -14,10 +14,10 @@
             <div class="status bg-default" v-else></div>
             <div class="box-title">
                 <div class="row">
-                    <div class="col-3 col-xl-2 col-icon text-right" v-on:click="locationMachine(machine.info.id)">
+                    <div class="col-3 col-sm-2 col-xl-3 col-icon text-right" v-on:click="locationMachine(machine.info.id)">
                         <i class="icofom-size" v-bind:class="iconMachine(machine)"></i>
                     </div>
-                    <div class="col-7 col-xl-8 col-info" v-on:click="locationMachine(machine.info.id)">
+                    <div class="col-7 col-sm-8 col-xl-7 col-info" v-on:click="locationMachine(machine.info.id)">
                         <div class="machine-header">
                             <div class="machine-info" v-if="machine.info.description != null">
                                 <div class="text-uppercase">
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-2 col-xl-2 col-button" v-if="!isOffline(machine)">
+                    <div class="col-2 col-sm-2 col-xl-2 col-button" v-if="!isOffline(machine)">
                         <div class="btn btn-circle btn-rotate js-toggle-card d-none d-sm-block" v-bind:data-cardid="'card-' + machine.info.id">
                             <i class="icon-refresh fa-lg"></i>
                         </div>

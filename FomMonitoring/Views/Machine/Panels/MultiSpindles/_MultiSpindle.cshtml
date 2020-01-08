@@ -97,13 +97,13 @@
                                     </tr>
                                     <tr>
                                         <td class="td-electrospindle-data">
-                                            <label class="label-electrospindle-data-value" v-html="values.RpmRange14500.ConvertedValue"></label>
+                                            <label v-if="values.RpmRange14500 != null && values.RpmRange14500.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange14500.ConvertedValue"></label>
                                         </td>
                                         <td class="td-electrospindle-data tool-border-left">
-                                            <label class="label-electrospindle-data-value" v-html="values.RpmRange20000.ConvertedValue"></label>
+                                            <label v-if="values.RpmRange20000 != null && values.RpmRange20000.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange20000.ConvertedValue"></label>
                                         </td>
                                         <td class="td-electrospindle-data">
-                                            <label class="label-electrospindle-data-value" v-html="values.OreLavoroTotali.ConvertedValue"></label>
+                                            <label v-if="values.OreLavoroTotali != null && values.OreLavoroTotali.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.OreLavoroTotali.ConvertedValue"></label>
                                         </td>
                                     </tr>
                                 </table>
