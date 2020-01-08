@@ -17,7 +17,7 @@
     </div>
     <div class="portlet-body text-center" style="height:244px">
         <div class="card-portlet">
-            <div v-if="noData() == false" style="height:242px" class="slimscroll">
+            <div style="height:242px" class="slimscroll">
                 <hr style="background-color:#0c3817;height:2px;border:none" />
                 <div style="cursor:auto;height:100%">
                     <table class="table-electro-spindle">
@@ -27,15 +27,15 @@
                                     <tr>
                                         <td class="td-electrospindle-data">
                                             <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
-                                            <label v-if="values.RpmRange1500 != null" class="label-electrospindle-title">@Resource.TabSoglieRpmMandriniMM 0-1500 </label>
+                                            <label class="label-electrospindle-title">@Resource.TabSoglieRpmMandriniMM 0-1500 </label>
                                             <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                            <label v-if="values.RpmRange1500 != null" class="label-electrospindle-title">@Resource.ElapsedTime</label>
+                                            <label class="label-electrospindle-title">@Resource.ElapsedTime</label>
                                         </td>
                                         <td class="td-electrospindle-data  tool-border-left">
                                             <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
-                                            <label v-if="values.RpmRange3999 != null" class="label-electrospindle-title">@Resource.TabSoglieRpmMandriniMM 1501-3999</label>
+                                            <label class="label-electrospindle-title">@Resource.TabSoglieRpmMandriniMM 1501-3999</label>
                                             <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                            <label v-if="values.RpmRange3999 != null" class="label-electrospindle-title">@Resource.ElapsedTime</label>
+                                            <label class="label-electrospindle-title">@Resource.ElapsedTime</label>
                                         </td>
                                         <td class="td-electrospindle-data" rowspan="4">
                                             <div id="imgPosizioni">
@@ -47,63 +47,63 @@
                                     </tr>
                                     <tr>
                                         <td class="td-electrospindle-data">
-                                            <label v-if="values.RpmRange1500 && values.RpmRange1500.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange1500.ConvertedValue"></label>
+                                            <label v-if="values.RpmRange1500 != null && values.RpmRange1500.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange1500.ConvertedValue"></label>
                                         </td>
                                         <td class="td-electrospindle-data tool-border-left">
-                                            <label v-if="values.RpmRange3999 != null && values.RpmRange3999.ConvertedValue" class="label-electrospindle-data-value" v-html="values.RpmRange3999.ConvertedValue"></label>
+                                            <label v-if="values.RpmRange3999 != null && values.RpmRange3999.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange3999.ConvertedValue"></label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="td-electrospindle-data">
                                             <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
-                                            <label v-if="values.RpmRange7999 != null" class="label-electrospindle-title">@Resource.TabSoglieRpmMandriniMM 4000-7999</label>
+                                            <label class="label-electrospindle-title">@Resource.TabSoglieRpmMandriniMM 4000-7999</label>
                                             <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                            <label v-if="values.RpmRange7999 != null" class="label-electrospindle-title">@Resource.ElapsedTime</label>
+                                            <label class="label-electrospindle-title">@Resource.ElapsedTime</label>
                                         </td>
                                         <td class="td-electrospindle-data  tool-border-left">
                                             <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
-                                            <label v-if="values.RpmRange11500 != null" class="label-electrospindle-title">@Resource.TabSoglieRpmMandriniMM 8000-11500</label>
+                                            <label class="label-electrospindle-title">@Resource.TabSoglieRpmMandriniMM 8000-11500</label>
                                             <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                            <label v-if="values.RpmRange11500 != null" class="label-electrospindle-title">@Resource.ElapsedTime</label>
+                                            <label class="label-electrospindle-title">@Resource.ElapsedTime</label>
                                         </td>
 
                                     </tr>
                                     <tr>
                                         <td class="td-electrospindle-data">
-                                            <label v-if="values.RpmRange7999 != null && values.RpmRange7999.ConvertedValue" class="label-electrospindle-data-value" v-html="values.RpmRange7999.ConvertedValue"></label>
+                                            <label v-if="values.RpmRange7999 != null && values.RpmRange7999.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange7999.ConvertedValue"></label>
                                         </td>
                                         <td class="td-electrospindle-data tool-border-left">
-                                            <label v-if="values.RpmRange11500 && values.RpmRange11500.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange11500.ConvertedValue"></label>
+                                            <label v-if="values.RpmRange11500 != null && values.RpmRange11500.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange11500.ConvertedValue"></label>
                                         </td>
 
                                     </tr>
                                     <tr>
                                         <td class="td-electrospindle-data">
                                             <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
-                                            <label v-if="values.RpmRange14500 != null" class="label-electrospindle-title">@Resource.TabSoglieRpmMandriniMM 11501-14500</label>
+                                            <label class="label-electrospindle-title">@Resource.TabSoglieRpmMandriniMM 11501-14500</label>
                                             <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                            <label v-if="values.RpmRange14500 != null" class="label-electrospindle-title">@Resource.ElapsedTime</label>
+                                            <label class="label-electrospindle-title">@Resource.ElapsedTime</label>
                                         </td>
                                         <td class="td-electrospindle-data  tool-border-left">
                                             <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
-                                            <label v-if="values.RpmRange20000 != null" class="label-electrospindle-title">@Resource.TabSoglieRpmMandriniMM 14500-18000</label>
+                                            <label class="label-electrospindle-title">@Resource.TabSoglieRpmMandriniMM 14500-18000</label>
                                             <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                            <label v-if="values.RpmRange20000 != null" class="label-electrospindle-title">@Resource.ElapsedTime</label>
+                                            <label class="label-electrospindle-title">@Resource.ElapsedTime</label>
                                         </td>
                                         <td class="td-electrospindle-data">
                                             <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                            <label v-if="values.OreLavoroTotali != null" class="label-electrospindle-title-bottom">@Resource.TabRpmTotMandriniMM</label>
+                                            <label class="label-electrospindle-title-bottom">@Resource.TabRpmTotMandriniMM</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="td-electrospindle-data">
-                                            <label v-if="values.RpmRange14500 != null && values.RpmRange14500.ConvertedValue" class="label-electrospindle-data-value" v-html="values.RpmRange14500.ConvertedValue"></label>
+                                            <label class="label-electrospindle-data-value" v-html="values.RpmRange14500.ConvertedValue"></label>
                                         </td>
                                         <td class="td-electrospindle-data tool-border-left">
-                                            <label v-if="values.RpmRange20000 && values.RpmRange20000.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange20000.ConvertedValue"></label>
+                                            <label class="label-electrospindle-data-value" v-html="values.RpmRange20000.ConvertedValue"></label>
                                         </td>
                                         <td class="td-electrospindle-data">
-                                            <label v-if="values.OreLavoroTotali != null && values.OreLavoroTotali.ConvertedValue" class="label-electrospindle-data-value" v-html="values.OreLavoroTotali.ConvertedValue"></label>
+                                            <label class="label-electrospindle-data-value" v-html="values.OreLavoroTotali.ConvertedValue"></label>
                                         </td>
                                     </tr>
                                 </table>
@@ -113,7 +113,6 @@
                 </div>
 
             </div>
-            <no-data v-else></no-data>
         </div>
     </div>
 

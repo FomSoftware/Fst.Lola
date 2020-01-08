@@ -82,6 +82,10 @@
                     plant: data.selected_plant
                 },
                 plants: data.plants
+            },
+            mounted: function () {
+                $('#plant_select').selectpicker(); 
+                $('#machine_select').selectpicker();
             }
         });
 

@@ -11,8 +11,7 @@
 
                     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(a))
                         check = true;
-
-                    console.log(a);
+                    
                 })(navigator.userAgent || navigator.vendor || window.opera);
                 return check;
             }

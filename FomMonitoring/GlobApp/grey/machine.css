@@ -1505,5 +1505,10 @@ td.td-electrospindle-data {
         }
     }
 
+.swiper-container {
+    height: 100%;
+}
 
-
+#CardMultiSpindles label{
+    margin-bottom: 0;
+}
