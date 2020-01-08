@@ -6,7 +6,7 @@
         @if (Model.page == enPage.Machine)
         {
 
-            <div class="col-md-8 col-sm-7 col-xs-11 col-xl-8 col-padding">
+            <div class="col-md-8 col-sm-7 col-sm-11 col-xl-8 col-padding">
                 <div id="machines-filter" v-cloak>
                     @if (Model.role != enRole.Operator)
                     {
@@ -17,8 +17,8 @@
                     <!-- #region filter machine -->
                     <div class="toolbar-filter">
                         <span class="title-small">@Resource.Machine</span>
-                        <select  id="machine_select" class="selectpicker bs-select show-menu-arrow show-tick display-none machine-select">
-                            <option v-clock v-for="m in machines"
+                        <select  id="machine_select" class="bs-select show-menu-arrow show-tick display-none machine-select">
+                            <option v-cloak v-for="m in machines"
                                     v-bind:value="m.id"
                                     v-bind:selected="m.serial == selected.machine.serial"
                                     v-bind:data-icon="'icofom-' + m.icon">
@@ -95,7 +95,7 @@
                 <div id="plants-filter" class="toolbar-filter" v-cloak>
                     <i class="icofom-productivity" v-cloak></i>
                     <span class="title-small">@Resource.Plant</span>
-                    <select id="plant_select" class="selectpicker bs-select show-menu-arrow show-tick display-none plant-select">
+                    <select id="plant_select" class="bs-select show-menu-arrow show-tick display-none plant-select">
                         <option v-cloak v-for="plant in plants"
                                 v-bind:value="plant.id"
                                 v-bind:selected="plant.id == selected.plant.id">
@@ -125,7 +125,7 @@
                 {
                 if (Model.role != enRole.Operator)
                 {
-                <div class="col-md-8 col-sm-7 col-xs-11 col-xl-8">
+                <div class="col-md-8 col-sm-7 col-lg-8 col-xl-8">
                     <div id="plants-filter" class="toolbar-filter" v-cloak>
                         <div style="display: inline-flex">
                             <a class="btn btn-toolbar" href="@Url.Action("Index", "Mes")" style="padding: 2px 10px 10px 10px;">

@@ -746,17 +746,9 @@ em,
 }
 
 @media screen and (max-width: 640px) {
-    .modal {
-        /*background-color: #eee;*/
-    }
-
-    .form-horizontal {
-        margin-right: 35px;
-        margin-left: 35px;
-    }
 
     .modal-header {
-        padding-left: 35px;
+        padding-left: 25px;
     }
 }
 
@@ -776,7 +768,7 @@ em,
 .highcharts-container,
 .highcharts-container svg {
     width: 100% !important;
-    height: 240px !important;
+    height: 100% !important;
 }
 
     /*#endregion*/

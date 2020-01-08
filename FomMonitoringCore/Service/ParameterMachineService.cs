@@ -39,8 +39,17 @@ namespace FomMonitoringCore.Service
             if(varNums.Any())
             {
                 var parametri = _parameterMachineRepository.Get(pp => pp.MachineModelId == machine.MachineModelId
-                                                    && pp.PanelId != null && pp.PanelId == idPanel, tracked: false).OrderBy(pp => pp.VarNumber).ToList();
-                    
+                                                    && pp.PanelId != null && pp.PanelId == idPanel, tracked: false).ToList();
+
+                if (idCluster != null)
+                {
+                    parametri = parametri.Where(pp => pp.Cluster == idCluster.ToString()).OrderBy(pp => pp.VarNumber).ToList();
+                }
+                else
+                {
+                    parametri = parametri.OrderBy(pp => pp.VarNumber).ToList();
+                }
+
                 foreach(var pm in parametri)
                 {
                     if (varNums.ContainsKey(pm.VarNumber))
@@ -49,13 +58,16 @@ namespace FomMonitoringCore.Service
                     }
                     else
                     {
-                        var valoreVuoto = new ParameterMachineValueModel()
+                        var valoreVuoto = new ParameterMachineValueModel
                         {
                             VarNumber = int.Parse(pm.VarNumber),
                             Description = new System.Resources.ResourceManager(typeof(Resource)).GetString(pm.Keyword),
                             Value = pm.DefaultValue,
                             Cluster = pm.Cluster,
-                            Keyword = pm.Keyword
+                            Keyword = pm.Keyword,
+                            CnUm = pm.CnUm,
+                            HmiUm = pm.HmiUm
+                            
                         };
                         result.Add(valoreVuoto);
                     }

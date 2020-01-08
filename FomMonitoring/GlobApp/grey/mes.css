@@ -400,10 +400,22 @@
     margin-bottom: 2px;
 }
 
+.bootstrap-select.modal-input .filter-option {
+    margin-left: 0;
+}
+
 .dropdown-item {
     font-size: 14px;
 }
 
 .title {
     margin: 10px 0 0 5px;
+}
+
+.form-group.row .control-label {
+    -webkit-align-self: flex-end;
+    -o-align-self: flex-end;
+    align-self: flex-end;
+    text-align: left;
+    padding-left: 28px;
 }

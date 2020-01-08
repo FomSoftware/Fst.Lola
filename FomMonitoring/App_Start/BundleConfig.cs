@@ -31,7 +31,7 @@ namespace FomMonitoring.App_Start
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/bootstrap.bundle.js",
                         "~/Scripts/bootstrap-select.js",
-                        "~/Scripts/vue.min.js",
+                        "~/Scripts/vue.js",
                         "~/Scripts/highcharts/5.0.14/highcharts.js",
                         "~/Scripts/highcharts/5.0.14/highcharts-more.js",
                         "~/Scripts/highcharts/5.0.14/modules/solid-gauge.js",

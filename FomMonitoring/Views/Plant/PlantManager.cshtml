@@ -6,14 +6,14 @@
 }
 
 <div class="row">
-    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
         <div class="button-addplant" onclick="PlantManager.addClickEvent()">
             <i class="icon-plus"></i>@Resource.AddPlant
         </div>
     </div>
 </div>
 
-<div class="col-lg-12 col-xs-12 container-plant-manager">
+<div class="col-12 container-plant-manager">
     <table class="table data-table plants-table" id="plants-table"></table>
 </div>
 
@@ -30,8 +30,8 @@
                         <fieldset>
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="name-input">Name:</label>
-                                <div class="col-md-6">
+                                <label class="col-4 control-label" for="name-input">Name:</label>
+                                <div class="col-7">
                                     <input v-model="actual.Name" name="name-input" class="form-control input-md modal-input" id="name-input" type="text" placeholder="Name" maxlength="100" required>
                                     <div v-show="missing.Name" class="validation">@Resource.FieldRequired.</div>
                                 </div>
@@ -39,8 +39,8 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="address-input">@Resource.PlantAddress:</label>
-                                <div class="col-md-6">
+                                <label class="col-4 control-label" for="address-input">@Resource.PlantAddress:</label>
+                                <div class="col-7">
                                     <input v-model="actual.Address" name="address-input" class="form-control input-md modal-input" id="address-input" type="text" placeholder="@Resource.PlantAddress" maxlength="250">
                                 </div>
                             </div>
@@ -48,8 +48,8 @@
                             {
                                 <!-- Select Basic -->
                                 <div class="form-group" id="form-customer-input">
-                                    <label class="col-md-4 control-label" for="role-input">@Resource.PlantCustomers:</label>
-                                    <div class="col-md-6">
+                                    <label class="col-4 control-label" for="role-input">@Resource.PlantCustomers:</label>
+                                    <div class="col-7">
                                         <select v-model="customers.active" class="form-control input-md modal-input" id="customer-input" v-on:change="changeCustomer()" title="@Resource.NothingSelected" type="text" required>
                                             <option v-for="customer in customers.all" v-bind:value="customer">{{customer}}</option>
                                         </select>
@@ -61,8 +61,8 @@
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="role-input">@Resource.PlantMachines:</label>
-                                <div class="col-md-6">
+                                <label class="col-4 control-label" for="role-input">@Resource.PlantMachines:</label>
+                                <div class="col-7">
                                     <select v-model="machines.active" class="form-control input-md modal-input" id="machines-input" title="@Resource.NothingSelected" type="text" multiple required>
                                         <option v-for="machine in machines.all" v-bind:value="machine.Id">({{machine.Serial}}) - {{machine.MachineName}}</option>
                                     </select>
