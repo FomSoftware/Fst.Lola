@@ -76,7 +76,7 @@
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12" v-show="machineGroupSelected == 'FMC3-4_tools'">
                     @Html.Partial("Panels/Tools/_FmcLmx", Model.PanelParameter)
                 </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12" v-show="machinePanelSelected == 'maintenance' || (!isMobile() && (machineGroupSelected == null && machinePanelSelected == null))">
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 order-xl-last" v-show="machinePanelSelected == 'maintenance' || (!isMobile() && (machineGroupSelected == null && machinePanelSelected == null))">
                     @Html.Partial("Panels/_Maintenance", Model.Maintenance)
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="(machineGroupSelected != null || machinePanelSelected != null) && isMobile()">
@@ -84,7 +84,7 @@
                 </div>
                 <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 card-wrap-2">
                     @Html.Partial("Panels/_Messages", Model.Messages)
-                    <div class="empty-area" v-show="machineGroupSelected == null && isMobile() == false"></div>
+                    <div class="empty-area" style="background-size: 49%;" v-show="machineGroupSelected == null && isMobile() == false"></div>
                 </div>
             </div>
         </div>
