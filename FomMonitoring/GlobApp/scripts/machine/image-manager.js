@@ -9,7 +9,9 @@
                 var check = false;
                 (function (a) {
 
-                    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(a))
+                    /*if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(a) ||
+                        (/iPad/i.test(a) && $(window).width() < 1200))*/
+                    if ($(window).width() < 1200)
                         check = true;
                     
                 })(navigator.userAgent || navigator.vendor || window.opera);
