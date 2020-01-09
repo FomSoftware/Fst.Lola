@@ -4,7 +4,7 @@
 <div class="col">
     <div class="row justify-content-center">
         <div id="buttons-bar" class="col-sm-12 col-md-12 col-lg-12 col-xl-12" v-show="isMobile()">
-            <div class="btn-group col" style="background-color: transparent;margin-top: 5px">
+            <div class="btn-group col" style="background-color: transparent;">
                 <button type="button" id="btn-efficiency" data-panel="efficiency" class="no-borders" style="width: 25%; background-color: transparent;">
                     <span >
                         <i class="fa icofom-efficiency color-green"></i>
@@ -53,29 +53,34 @@
         </div>
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 panels-area" v-show="machineGroupSelected != null || machinePanelSelected != null || !isMobile()">
             <div class="row">
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machinePanelSelected == 'efficiency' || (!isMobile() && (machineGroupSelected == null && machinePanelSelected == null))">
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12" v-show="machinePanelSelected == 'efficiency' || (!isMobile() && (machineGroupSelected == null && machinePanelSelected == null))">
                     @Html.Partial("Panels/_Efficiency", Model.Efficiency)
                 </div>
-
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machinePanelSelected == 'production' || (!isMobile() && (machineGroupSelected == null && machinePanelSelected == null))">
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12" v-show="machinePanelSelected == 'production' || (!isMobile() && (machineGroupSelected == null && machinePanelSelected == null))">
                     @Html.Partial("Panels/_Productivity", Model.Productivity)
                 </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machinePanelSelected == 'ordersStandard' || (!isMobile() && (machineGroupSelected == null && machinePanelSelected == null))">
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12" v-show="machinePanelSelected == 'ordersStandard' || (!isMobile() && (machineGroupSelected == null && machinePanelSelected == null))">
                     @Html.Partial("Panels/_Jobs", Model.Jobs)
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machinePanelSelected != null && machinePanelSelected != 'maintenance' && isMobile()">
+                    <div class="empty-area" style="height: 100%"></div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machineGroupSelected == 'FMC3-4_axes'">
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12" v-show="machineGroupSelected == 'FMC3-4_axes'">
                     @Html.Partial("Panels/ElectroSpindle/_OtherMachineData", Model.PanelParameter)
                 </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machineGroupSelected == 'FMC3-4_spindles'">
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12" v-show="machineGroupSelected == 'FMC3-4_spindles'">
                     @Html.Partial("Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter)
                 </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machineGroupSelected == 'FMC3-4_tools'">
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12" v-show="machineGroupSelected == 'FMC3-4_tools'">
                     @Html.Partial("Panels/Tools/_FmcLmx", Model.PanelParameter)
                 </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machinePanelSelected == 'maintenance' || (!isMobile() && (machineGroupSelected == null && machinePanelSelected == null))">
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12" v-show="machinePanelSelected == 'maintenance' || (!isMobile() && (machineGroupSelected == null && machinePanelSelected == null))">
                     @Html.Partial("Panels/_Maintenance", Model.Maintenance)
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="(machineGroupSelected != null || machinePanelSelected != null) && isMobile()">
+                    <div class="empty-area" style="height: 100%"></div>
                 </div>
                 <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 card-wrap-2">
                     @Html.Partial("Panels/_Messages", Model.Messages)
