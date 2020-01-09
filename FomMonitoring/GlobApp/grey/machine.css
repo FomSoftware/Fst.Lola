@@ -1512,3 +1512,10 @@ td.td-electrospindle-data {
 #CardMultiSpindles label{
     margin-bottom: 0;
 }
+
+
+#efc_kpi_chart[data-highcharts-chart], #efc_kpi_chart .highcharts-container, #efc_kpi_chart .highcharts-container svg,
+#efc_pie_chart[data-highcharts-chart], #efc_pie_chart .highcharts-container, #efc_pie_chart .highcharts-container svg {
+    width: unset !important;
+    height: unset !important;
+}
