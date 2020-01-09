@@ -23,5 +23,7 @@ namespace FomMonitoringCore.Framework.Model
         public MachineInfoModel ActualMachine { get; set; }
 
         public PeriodModel ActualPeriod { get; set; }
+
+        public string ActualMachineGroup { get; set; }
     }
 }

@@ -28,13 +28,13 @@ namespace FomMonitoringBLL.ViewServices
         {
             var result = new MessageViewModel();
 
-            result.vm_messages = GetVueModel(context.ActualMachine, context.ActualPeriod);
-            result.opt_historical = GetHistoricalOptions(context.ActualMachine, context.ActualPeriod);
-            result.vm_details = GetMessageDetails(context.ActualMachine, context.ActualPeriod);
+            result.vm_messages = GetVueModel(context.ActualMachine, context.ActualPeriod, context.ActualMachineGroup);
+            result.opt_historical = GetHistoricalOptions(context.ActualMachine, context.ActualPeriod, context.ActualMachineGroup);
+            result.vm_details = GetMessageDetails(context.ActualMachine, context.ActualPeriod, context.ActualMachineGroup);
             return result;
         }
 
-        private MessageDetailsVueModel GetMessageDetails(MachineInfoModel actualMachine, PeriodModel actualPeriod)
+        private MessageDetailsVueModel GetMessageDetails(MachineInfoModel actualMachine, PeriodModel actualPeriod, string actualMachineGroup = null)
         {
             var result = new MessageDetailsVueModel();
 
@@ -70,7 +70,7 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        private MessageVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
+        private MessageVueModel GetVueModel(MachineInfoModel machine, PeriodModel period, string actualMachineGroup = null)
         {
             var result = new MessageVueModel();
 
@@ -106,7 +106,7 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        private ChartViewModel GetHistoricalOptions(MachineInfoModel machine, PeriodModel period)
+        private ChartViewModel GetHistoricalOptions(MachineInfoModel machine, PeriodModel period, string actualMachineGroup = null)
         {
             var options = new ChartViewModel();
 

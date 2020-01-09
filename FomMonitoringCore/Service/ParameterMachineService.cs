@@ -58,7 +58,7 @@ namespace FomMonitoringCore.Service
                     }
                     else
                     {
-                        var valoreVuoto = new ParameterMachineValueModel
+                        var ve = new ParameterMachineValueModel
                         {
                             VarNumber = int.Parse(pm.VarNumber),
                             Description = new System.Resources.ResourceManager(typeof(Resource)).GetString(pm.Keyword),
@@ -69,7 +69,7 @@ namespace FomMonitoringCore.Service
                             HmiUm = pm.HmiUm
                             
                         };
-                        result.Add(valoreVuoto);
+                        result.Add(ve);
                     }
                 }
                     

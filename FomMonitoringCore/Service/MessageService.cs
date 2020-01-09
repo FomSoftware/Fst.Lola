@@ -132,7 +132,7 @@ namespace FomMonitoringCore.Service
                                         Period = g.Day.HasValue ? (int?)g.Day.Value.Year * 100 + g.Day.Value.Month : null,
 
                                     }).ToList().Select(s => new AggregationMessageModel
-                                    {                                        
+                                    {
                                         Type = s.Key.Type,
                                         Count = s.Sum(x => x.Count),
                                         Day = s.Max(i => i.Day),
@@ -157,7 +157,7 @@ namespace FomMonitoringCore.Service
                                         Period = g.Day.HasValue ? (int?)g.Day.Value.Year * 100 + GetQuarter(g.Day ?? DateTime.UtcNow) : null,
 
                                     }).ToList().Select(s => new AggregationMessageModel
-                                    {                                                                   
+                                    {
                                         Count = s.Sum(x => x.Count),
                                         Day = s.Max(i => i.Day),
                                         //ElapsedTime = s.Sum(i => i.ElapsedTime),
@@ -183,7 +183,7 @@ namespace FomMonitoringCore.Service
                                         Period = g.Day.HasValue ? (int?)g.Day.Value.Year : null,
 
                                     }).ToList().Select(s => new AggregationMessageModel
-                                    {                                        
+                                    {
                                         Count = s.Sum(x => x.Count),
                                         Day = s.Max(i => i.Day),
                                         //ElapsedTime = s.Sum(i => i.ElapsedTime),

@@ -19,8 +19,10 @@ namespace FomMonitoring.Controllers
         private readonly IMesViewService _mesViewService;
         private readonly INotificationViewService _notificationManagerViewService;
         private readonly IPanelParametersViewService _panelParametersViewService;
+        private readonly IMessagesViewService _messagesViewService;
 
         public AppApiController(
+            IMessagesViewService messagesViewService,
             IPlantMessagesViewService plantMessagesViewService, 
             IMachineViewService machineViewService,
             IContextService contextService,
@@ -34,6 +36,7 @@ namespace FomMonitoring.Controllers
             _mesViewService = mesViewService;
             _notificationManagerViewService = notificationManagerViewService;
             _panelParametersViewService = panelParametersViewService;
+            _messagesViewService = messagesViewService;
         }
 
         [HttpPost]
@@ -121,6 +124,24 @@ namespace FomMonitoring.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, mes, MediaTypeHeaderValue.Parse("application/json"));
         }
 
+
+        [HttpPost]
+        [Authorize(Roles = Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Route("ajax/AppApi/GetMachineMessagesViewModel")]
+        public HttpResponseMessage GetMachineMessagesViewModel(FilterViewModel filters)
+        {
+            if (filters.period != null)
+            {
+                _contextService.SetActualPeriod(filters.period.start, filters.period.end);
+                _contextService.SetActualMachineGroup(filters.machineGroup);
+            }
+               
+
+            var context = _contextService.GetContext();
+            var messages = _messagesViewService.GetMessages(context);
+
+            return Request.CreateResponse(HttpStatusCode.OK, messages, MediaTypeHeaderValue.Parse("application/json"));
+        }
 
         [HttpPost]
         [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]

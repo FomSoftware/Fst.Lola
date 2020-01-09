@@ -21,5 +21,6 @@ namespace FomMonitoringCore.Service
         void SetActualPeriod(DateTime start, DateTime end);
         void SetActualPlant(int id);
         void SetContext(ContextModel context);
+        void SetActualMachineGroup(string group);
     }
 }

@@ -282,6 +282,15 @@ namespace FomMonitoringCore.Service
             SetContext(context);
         }
 
+        public void SetActualMachineGroup(string group)
+        {
+            var context = GetContext();
+
+            context.ActualMachineGroup = group;
+
+            SetContext(context);
+        }
+
         public void CheckLastUpdate()
         {
             var context = GetContext();
