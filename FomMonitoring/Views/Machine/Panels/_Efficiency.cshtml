@@ -1,42 +1,43 @@
 ﻿@model FomMonitoringBLL.ViewModel.EfficiencyViewModel
 @using FomMonitoringResources
 
-<div id="CardEfficiency" class="portlet">
-    <div class="portlet-title">
-        <div class="portlet-kpi" v-cloak>
-            <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
-                <i class="fa icofom-efficiency fa-stack-1x fa-inverse"></i>
-            </span>
-        </div>
-        <div class="title-kpi" v-cloak>
-            <span>@Resource.Efficiency</span>
-            <div class="sub-period js-period"></div>
-            <div class="sub-period js-historical-period" style="display: none;"></div>
-        </div>
-        <div class="portlet-details" v-show="showDetails">
-            <div class="dropdown" onclick="SharedManager.handlerDropdown($(this))">
-                <div class="button drop-btn"><i class="icon-options-vertical"></i></div>
-                <div class="dropdown-content right">
-                    <div class="dd-item active slide-dashboard" data-group="efficiency">
-                        <i class="fa fa-dashboard"></i>
-                        <span>Dashboard</span>
-                    </div>
-                    <div class="dd-item slide-history" data-group="efficiency" v-show="show.historical">
-                        <i class="fa fa-history"></i>
-                        <span>@Resource.Historical</span>
-                    </div>
-                    <div class="dd-item slide-operator" data-group="efficiency" v-show="show.operators">
-                        <i class="fa fa-user"></i>
-                        <span>@Resource.Operators</span>
+<div id="CardEfficiency" class="@ViewData["Classes"]"  v-show="showed">
+    <div  class="portlet">
+        <div class="portlet-title">
+            <div class="portlet-kpi" v-cloak>
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
+                    <i class="fa icofom-efficiency fa-stack-1x fa-inverse"></i>
+                </span>
+            </div>
+            <div class="title-kpi" v-cloak>
+                <span>@Resource.Efficiency</span>
+                <div class="sub-period js-period"></div>
+                <div class="sub-period js-historical-period" style="display: none;"></div>
+            </div>
+            <div class="portlet-details" v-show="showDetails">
+                <div class="dropdown" onclick="SharedManager.handlerDropdown($(this))">
+                    <div class="button drop-btn"><i class="icon-options-vertical"></i></div>
+                    <div class="dropdown-content right">
+                        <div class="dd-item active slide-dashboard" data-group="efficiency">
+                            <i class="fa fa-dashboard"></i>
+                            <span>Dashboard</span>
+                        </div>
+                        <div class="dd-item slide-history" data-group="efficiency" v-show="show.historical">
+                            <i class="fa fa-history"></i>
+                            <span>@Resource.Historical</span>
+                        </div>
+                        <div class="dd-item slide-operator" data-group="efficiency" v-show="show.operators">
+                            <i class="fa fa-user"></i>
+                            <span>@Resource.Operators</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="portlet-body border-panel" v-bind:class="colorKPI">
-        <div class="card-portlet card-efficiency" style="padding: 5px 10px;" v-cloak>
-            <div class="swiper-container efficiency">
+        <div class="portlet-body border-panel" v-bind:class="colorKPI">
+            <div class="card-portlet card-efficiency" style="padding: 5px 10px;" v-cloak>
+                <div class="swiper-container efficiency">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="row" v-if="states != null">
@@ -122,12 +123,13 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 </div>
 
 
-<script type="application/javascript">
+<script type="text/javascript">
 
     $(document).ready(function ()
     {

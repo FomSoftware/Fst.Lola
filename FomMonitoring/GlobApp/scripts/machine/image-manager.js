@@ -20,12 +20,67 @@
         }
     }
 
+    var checkVisibility = function() {
+        if (vmImageMachine.machinePanelSelected == 'maintenance' ||
+        (!vmImageMachine.isMobile() &&
+            (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
+            Maintenance.show();
+        } else {
+            Maintenance.hide();
+        }
+
+        if (vmImageMachine.machinePanelSelected == 'efficiency' ||
+        (!vmImageMachine.isMobile() &&
+            (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
+            Efficiency.show();
+        } else {
+            Efficiency.hide();
+        }
+
+        if (vmImageMachine.machinePanelSelected == 'production' ||
+        (!vmImageMachine.isMobile() &&
+            (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
+            Productivity.show();
+        } else {
+            Productivity.hide();
+        }
+
+        if (vmImageMachine.machinePanelSelected == 'ordersStandard' ||
+            (!vmImageMachine.isMobile() && (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
+            Jobs.show();
+        } else {
+            Jobs.hide();
+        }
+
+        if (vmImageMachine.machineGroupSelected == 'FMC3-4_axes') {
+            OtherData.show();
+        } else {
+            OtherData.hide();
+        }
+
+        if (vmImageMachine.machineGroupSelected == 'FMC3-4_spindles') {
+            ElectroSpindle.show();
+        } else {
+            ElectroSpindle.hide();
+        }
+
+        if (vmImageMachine.machineGroupSelected == 'FMC3-4_tools') {
+            ToolsFmcLmx.show();
+        } else {
+            ToolsFmcLmx.hide();
+        }
+
+
+    }
+
+
     var selectMachineGroup = function (element) {
         var group = $(element).data('group');
         vmImageMachine.machineGroupSelected = group;
         vmImageMachine.machinePanelSelected = null;
         $("g[data-highlighted] path").css("fill", "transparent");
         $("g[data-highlighted='" + group + "'] path").css("fill", "pink");
+
     };
 
     var selectPanel = function (element) {
@@ -39,16 +94,22 @@
         $("g[data-group]").click(function (e) {
             e.preventDefault();
             selectMachineGroup(this);
+
+            checkVisibility();
         });
 
         $(".machine-group-selection button").click(function (e) {
             e.preventDefault();
             selectMachineGroup(this);
+
+            checkVisibility();
         });
 
         $("button[data-panel]").click(function (e) {
             e.preventDefault();
             selectPanel(this);
+
+            checkVisibility();
         });
 
         $("#button-back-machine").click(function (e) {
@@ -57,8 +118,12 @@
                 $("g[data-highlighted] path").css("fill", "transparent");
                 vmImageMachine.machineGroupSelected = null;
                 vmImageMachine.machinePanelSelected = null;
+
+                checkVisibility();
             }
         });
+
+        checkVisibility();
     };
 
     var init = function () {

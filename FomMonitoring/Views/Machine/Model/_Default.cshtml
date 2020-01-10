@@ -4,7 +4,10 @@
 <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">    
     <div class="row">
         <div class="col-12">
-            @Html.Partial("Panels/_Efficiency", Model.Efficiency)
+            @Html.Partial("Panels/_Efficiency", Model.Efficiency, new ViewDataDictionary
+            {
+                { "Classes", "col-12" }
+            })
         </div>
     </div>
 </div>
@@ -18,7 +21,10 @@
 <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
     <div class="row">
         <div class="col-12">
-            @Html.Partial("Panels/_Productivity", Model.Productivity)
+            @Html.Partial("Panels/_Productivity", Model.Productivity, new ViewDataDictionary
+            {
+                { "Classes", "col-12" }
+            })
         </div>
     </div>
     @if (Model.MachinePanels.Contains((int)enPanel.BlitzMotorAxes))
@@ -71,9 +77,10 @@
     @if (Model.MachinePanels.Contains((int)enPanel.XSpindles))
     {
         <div class="row">
-            <div class="col-12">
-                @Html.Partial("./Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter)
-            </div>
+                @Html.Partial("./Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter, new ViewDataDictionary
+                {
+                    { "Classes", "col-12" }
+                })
         </div>
     }
     @if (Model.MachinePanels.Contains((int)enPanel.KeopeAxes))
@@ -87,10 +94,11 @@
 </div>
 <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
     <div class="row">
-        <div class="col-12">
 
-            @Html.Partial("Panels/_Jobs", Model.Jobs)
-        </div>
+            @Html.Partial("Panels/_Jobs", Model.Jobs, new ViewDataDictionary
+            {
+                { "Classes", "col-12" }
+            })
     </div>
     @if (Model.MachinePanels.Contains((int)enPanel.ToolsBlitz))
     {
@@ -105,9 +113,10 @@
         if (Model.MachinePanels.Contains((int)enPanel.ToolsFmcLmx))
         {
             <div class="row">
-                <div class="col-12">
-                    @Html.Partial("./Panels/Tools/_FmcLmx", Model.PanelParameter)
-                </div>
+                    @Html.Partial("./Panels/Tools/_FmcLmx", Model.PanelParameter, new ViewDataDictionary
+                    {
+                        { "Classes", "col-12" }
+                    }))
             </div>
         }
         else
@@ -132,7 +141,10 @@
 <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">        
     <div class="row">
         <div class="col-12">
-            @Html.Partial("Panels/_Maintenance", Model.Maintenance)            
+            @Html.Partial("Panels/_Maintenance", Model.Maintenance, new ViewDataDictionary
+            {
+                { "Classes", "col-12" }
+            })            
         </div>
     </div>
 </div>
@@ -141,9 +153,10 @@
 {
     <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
         <div class="row">
-            <div class="col-12">
-                @Html.Partial("Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter)
-            </div>
+                @Html.Partial("Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter, new ViewDataDictionary
+                {
+                    { "Classes", "col-12" }
+                })
         </div>
     </div>
 }
@@ -151,9 +164,10 @@
 {
     <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
         <div class="row">
-            <div class="col-12">
-                @Html.Partial("Panels/ElectroSpindle/_OtherMachineData", Model.PanelParameter)
-            </div>
+                @Html.Partial("Panels/ElectroSpindle/_OtherMachineData", Model.PanelParameter, new ViewDataDictionary
+                {
+                    { "Classes", "col-12" }
+                })
         </div>
     </div>
 }

@@ -7,12 +7,23 @@
         initVueModel(data.vm_tools_fmc_lmx);
     }
 
+
+    var show = function () {
+        vmTools.showed = true;
+    }
+
+    var hide = function () {
+        vmTools.showed = false;
+    }
+
+
     var initVueModel = function (data)
     {
         vmTools = new Vue({
             el: '#CardToolsFmcLmx',
             data: {
-                tools: data.ToolsInfo
+                tools: data.ToolsInfo,
+                showed: false
             },
             computed: {
                 colorKPI: function ()
@@ -41,7 +52,9 @@
 
     return {
         init: init,
-        update: update
+        update: update,
+        show: show,
+        hide: hide
     }
 
 }();

@@ -29,6 +29,13 @@
 
     }
 
+    var show = function () {
+        vmEfficiency.showed = true;
+    }
+
+    var hide = function () {
+        vmEfficiency.showed = false;
+    }
 
     var initVueModel = function (data)
     {
@@ -43,7 +50,8 @@
                 show: {
                     historical: false,
                     operators: false
-                }
+                },
+                showed: false
             },
             filters: {
                 round: function(value)
@@ -170,7 +178,9 @@
 
     return {
         init: init,
-        update: update
+        update: update,
+        show: show,
+        hide: hide
     }
 
 }();

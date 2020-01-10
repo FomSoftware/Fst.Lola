@@ -18,7 +18,8 @@
                 sorting: data.vm_messages.sorting,
                 show: {
                     historical: false
-                }
+                },
+                showed: false
             },
             computed: {                
             },
@@ -50,6 +51,13 @@
         });
     }
 
+    var show = function() {
+        vmMessages.showed = true;
+    }
+
+    var hide = function () {
+        vmMessages.showed = false;
+    }
 
     var callAjaxIgnoreMessage = function (messageId) {
        
@@ -92,7 +100,9 @@
 
     return {
         init: init,
-        update: update        
+        update: update,
+        show: show,
+        hide: hide
     }
 
 }();

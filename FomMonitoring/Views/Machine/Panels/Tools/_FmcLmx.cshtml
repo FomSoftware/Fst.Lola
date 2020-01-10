@@ -1,66 +1,68 @@
 ﻿@model FomMonitoringBLL.ViewModel.PanelParametersViewModel
 @using FomMonitoringResources
 
-<div id="CardToolsFmcLmx" class="portlet">
-    <div class="portlet-title">
-        <div class="portlet-kpi">
-            <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
-                <i class="fa icofom-fresa fa-stack-1x fa-inverse" style="font-size:21px" ></i>
-            </span>
-        </div>
-        <div class="title-kpi" style="max-width: 180px;">
-            <span>@Resource.Tools</span>
-            <div class="sub-period">@Resource.UntilNow</div>
-        </div>      
-    </div>
-    <div class="portlet-body text-center" style="height:244px">
-        <div class="card-portlet">
-            <div v-if="tools != null && tools.length > 0" class="slimscroll">
-                <hr style="background-color:#0c3817;height:2px;border:none" />
-                <table class="table-tools-fmc">
-                    <tr>
-                        <td>
-                            <table style="width: 100%; height:100%">
-                                <template v-for="tool in tools" v-cloak>
-                                    <tr style="width: 100%;" class="row-tools-fmc">
-                                        <td class="td-tools-dark">
-                                            <label style="vertical-align: top; width:20px"><i class="fa fa-suitcase fa-lg" aria-hidden="true"></i></label>
-                                            <label class="label-tools">@Resource.Code</label>
-                                            <label class="label-tools-value fmc center font-11-pt" v-html="tool.Code"></label>
-                                        </td>
-                                        <td class="td-tools-light">
-                                            <label style="vertical-align: top; width:20px"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></label>
-                                            <label class="label-tools">@Resource.Description</label>
-                                            <label class="label-tools-value fmc font-11-pt" v-html="tool.Description"></label>
-                                        </td>
-                                        <td class="td-tools-dark td-tools-dark-life">
-                                            <label style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                            <label class="label-tools">@Resource.vitaUtensile_x</label>
-                                            <label class="label-tools-value fmc center font-11-pt" v-html="tool.ElapsedLife"></label>
-                                        </td>
-                                    </tr>
-                                    <tr style="height:3px;">
-                                        <td style="padding-left:0;background-color: #b4b4b4;"><hr width="80%" style="margin-right:0;" class="tools" /></td>
-                                        <td style="padding-left:0;"><hr width="100%" style="padding-left:0;" class="tools" /></td>
-                                        <td style="padding-left:0;background-color: #b4b4b4;"><hr width="80%" style="margin-left:0;" class="tools" /></td>
-                                    </tr>
-
-                                </template>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
+<div id="CardToolsFmcLmx" class="@ViewData["Classes"]" v-show="showed">
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="portlet-kpi">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
+                    <i class="fa icofom-fresa fa-stack-1x fa-inverse" style="font-size:21px"></i>
+                </span>
             </div>
-            <no-data v-else></no-data>
+            <div class="title-kpi" style="max-width: 180px;">
+                <span>@Resource.Tools</span>
+                <div class="sub-period">@Resource.UntilNow</div>
+            </div>
         </div>
+        <div class="portlet-body text-center" style="height:244px">
+            <div class="card-portlet">
+                <div v-if="tools != null && tools.length > 0" class="slimscroll">
+                    <hr style="background-color:#0c3817;height:2px;border:none" />
+                    <table class="table-tools-fmc">
+                        <tr>
+                            <td>
+                                <table style="width: 100%; height:100%">
+                                    <template v-for="tool in tools" v-cloak>
+                                        <tr style="width: 100%;" class="row-tools-fmc">
+                                            <td class="td-tools-dark">
+                                                <label style="vertical-align: top; width:20px"><i class="fa fa-suitcase fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-tools">@Resource.Code</label>
+                                                <label class="label-tools-value fmc center font-11-pt" v-html="tool.Code"></label>
+                                            </td>
+                                            <td class="td-tools-light">
+                                                <label style="vertical-align: top; width:20px"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-tools">@Resource.Description</label>
+                                                <label class="label-tools-value fmc font-11-pt" v-html="tool.Description"></label>
+                                            </td>
+                                            <td class="td-tools-dark td-tools-dark-life">
+                                                <label style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-tools">@Resource.vitaUtensile_x</label>
+                                                <label class="label-tools-value fmc center font-11-pt" v-html="tool.ElapsedLife"></label>
+                                            </td>
+                                        </tr>
+                                        <tr style="height:3px;">
+                                            <td style="padding-left:0;background-color: #b4b4b4;"><hr width="80%" style="margin-right:0;" class="tools" /></td>
+                                            <td style="padding-left:0;"><hr width="100%" style="padding-left:0;" class="tools" /></td>
+                                            <td style="padding-left:0;background-color: #b4b4b4;"><hr width="80%" style="margin-left:0;" class="tools" /></td>
+                                        </tr>
+
+                                    </template>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <no-data v-else></no-data>
+            </div>
+        </div>
+
+
     </div>
-
-    
-    </div>
+</div>
 
 
-<script type="application/javascript">
+<script type="text/javascript">
 
     $(document).ready(function ()
     {

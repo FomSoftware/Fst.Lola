@@ -70,14 +70,14 @@
 
     @Html.Partial("Modals/_ChangePassword")
     @Html.Partial("Modals/_Disclaimer")
-    <script type="application/javascript">
+    <script type="text/javascript">
         @{
             var c = CultureInfo.CurrentUICulture.Name.Split('-')[0];
         }
         moment.locale("@c");
         VueManager.initTimeSpanComponent();
     </script>
-    <script type="application/javascript">
+    <script type="text/javascript">
         VueManager.initTimeSpanComponent();
     </script>
 

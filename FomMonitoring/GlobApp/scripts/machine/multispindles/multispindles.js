@@ -108,7 +108,7 @@
         // update vue model
 
         var vm_multi_spindle = data;
-        if (vm_multi_spindle != null) {
+        if (vmMultiSpindles != null) {
             vmMultiSpindles.values = vm_multi_spindle;
         }
 

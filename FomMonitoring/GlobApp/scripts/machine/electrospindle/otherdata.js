@@ -5,11 +5,20 @@
         initVueModel(data.vm_other_data);
     }
 
+    var show = function () {
+        vmOther.showed = true;
+    }
+
+    var hide = function () {
+        vmOther.showed = false;
+    }
+
     var initVueModel = function (data) {
         vmOther = new Vue({
             el: '#CardOtherDataMachine',
             data: {
-                values: data
+                values: data,
+                showed: false
             },
             computed: {
                 colorKPI: function () {
@@ -51,7 +60,9 @@
 
     return {
         init: init,
-        update: update
+        update: update,
+        show: show,
+        hide: hide
     }
 
 }();

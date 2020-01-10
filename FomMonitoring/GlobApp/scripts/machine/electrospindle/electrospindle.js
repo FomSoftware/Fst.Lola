@@ -5,11 +5,21 @@
         initVueModel(data.vm_electro_spindle);
     }
 
+
+    var show = function () {
+        vmElectroSpindle.showed = true;
+    }
+
+    var hide = function () {
+        vmElectroSpindle.showed = false;
+    }
+
     var initVueModel = function (data) {
         vmElectroSpindle = new Vue({
             el: '#CardElectroSpindle',
             data: {
-                values: data
+                values: data,
+                showed: false
             },
             computed: {
                 colorKPI: function () {
@@ -49,7 +59,9 @@
 
     return {
         init: init,
-        update: update
+        update: update,
+        show: show,
+        hide: hide
     }
 
 }();

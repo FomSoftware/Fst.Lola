@@ -20,6 +20,14 @@
 
     }
 
+    var show = function () {
+        vmProductivity.showed = true;
+    }
+
+    var hide = function () {
+        vmProductivity.showed = false;
+    }
+
     var initVueModel = function (data, infoMachine)
     {
         vmProductivity = new Vue({
@@ -36,7 +44,8 @@
                 show: {
                     historical: false,
                     operators: false
-                }
+                },
+                showed: false
             },
             filters: {
                 round: function (value)
@@ -143,7 +152,9 @@
 
     return {
         init: init,
-        update: update
+        update: update,
+        show: show,
+        hide: hide
     }
 
 }();

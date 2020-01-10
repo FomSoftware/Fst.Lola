@@ -7,6 +7,13 @@
         dataBindVueModel(data.vm_jobs);
     }
 
+    var show = function () {
+        vmJobs.showed = true;
+    }
+
+    var hide = function () {
+        vmJobs.showed = false;
+    }
 
     var dataBindVueModel = function (data)
     {
@@ -14,7 +21,8 @@
             el: '#CardJobs',
             data: {
                 jobs: data.jobs,
-                sorting: data.sorting
+                sorting: data.sorting,
+                showed: false
             },
             computed: {
                 colorOrders: function ()
@@ -249,7 +257,9 @@
 
     return {
         init: init,
-        update: update
+        update: update,
+        show: show,
+        hide: hide
     }
 
 }();
