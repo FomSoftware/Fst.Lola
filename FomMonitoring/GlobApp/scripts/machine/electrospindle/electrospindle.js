@@ -19,7 +19,7 @@
             el: '#CardElectroSpindle',
             data: {
                 values: data,
-                showed: false
+                showed: true
             },
             computed: {
                 colorKPI: function () {

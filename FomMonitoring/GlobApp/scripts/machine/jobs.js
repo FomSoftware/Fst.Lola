@@ -22,7 +22,7 @@
             data: {
                 jobs: data.jobs,
                 sorting: data.sorting,
-                showed: false
+                showed: true
             },
             computed: {
                 colorOrders: function ()

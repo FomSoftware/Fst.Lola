@@ -19,7 +19,7 @@
                 show: {
                     historical: false
                 },
-                showed: false
+                showed: true
             },
             computed: {                
             },

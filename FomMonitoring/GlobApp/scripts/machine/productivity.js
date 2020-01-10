@@ -45,7 +45,7 @@
                     historical: false,
                     operators: false
                 },
-                showed: false
+                showed: true
             },
             filters: {
                 round: function (value)

@@ -18,7 +18,7 @@
             el: '#CardOtherDataMachine',
             data: {
                 values: data,
-                showed: false
+                showed: true
             },
             computed: {
                 colorKPI: function () {

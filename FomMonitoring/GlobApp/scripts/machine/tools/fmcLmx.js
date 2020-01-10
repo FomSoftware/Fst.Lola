@@ -23,7 +23,7 @@
             el: '#CardToolsFmcLmx',
             data: {
                 tools: data.ToolsInfo,
-                showed: false
+                showed: true
             },
             computed: {
                 colorKPI: function ()

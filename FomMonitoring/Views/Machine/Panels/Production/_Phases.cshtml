@@ -2,12 +2,18 @@
 @using FomMonitoringResources
 
 <div v-if="phases != null">
+    <div class="item clearfix">
+        <div class="item-title" style="margin: 0 0 5px;">
+            @Resource.Phases
+        </div>
+    </div>
     <div class="progress prod">
         <div v-for="(phase, i) in phases" class="progress-bar" v-bind:class="bgPhase(i)" v-bind:aria-valuenow="phase.perc"></div>
     </div>
     <table class="table-legend">
         <tr v-for="(phase, i) in phases">
-            <td><div class="square" v-bind:class="bgPhase(i)"></div>{{ phase.text }}</td>
+            <td>
+                <div class="square" v-bind:class="bgPhase(i)"></div>{{ phase.text }}</td>
             <td>{{ phase.perc | round }}<em>%</em></td>
         </tr>
     </table>

@@ -3,12 +3,10 @@
 
 <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">    
     <div class="row">
-        <div class="col-12">
             @Html.Partial("Panels/_Efficiency", Model.Efficiency, new ViewDataDictionary
             {
                 { "Classes", "col-12" }
             })
-        </div>
     </div>
 </div>
 <div class="col-xl-8 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -20,12 +18,10 @@
 </div>
 <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
     <div class="row">
-        <div class="col-12">
             @Html.Partial("Panels/_Productivity", Model.Productivity, new ViewDataDictionary
             {
                 { "Classes", "col-12" }
             })
-        </div>
     </div>
     @if (Model.MachinePanels.Contains((int)enPanel.BlitzMotorAxes))
     {
@@ -140,12 +136,10 @@
 </div>
 <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">        
     <div class="row">
-        <div class="col-12">
             @Html.Partial("Panels/_Maintenance", Model.Maintenance, new ViewDataDictionary
             {
                 { "Classes", "col-12" }
-            })            
-        </div>
+            })      
     </div>
 </div>
 
