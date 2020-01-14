@@ -1,7 +1,7 @@
 ﻿@model FomMonitoringBLL.ViewModel.MachineViewModel
 @using FomMonitoringResources
 
-<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">    
+<div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">    
     <div class="row">
             @Html.Partial("Panels/_Efficiency", Model.Efficiency, new ViewDataDictionary
             {
@@ -9,14 +9,14 @@
             })
     </div>
 </div>
-<div class="col-xl-8 col-lg-6 col-md-12 col-sm-12 col-12">
+<div class="col-xxl-8 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
     <div class="row">
         <div class="col-12">
             @Html.Partial("Panels/_Messages", Model.Messages)
         </div>
     </div>
 </div>
-<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+<div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
     <div class="row">
             @Html.Partial("Panels/_Productivity", Model.Productivity, new ViewDataDictionary
             {
@@ -88,7 +88,7 @@
         </div>
     }
 </div>
-<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+<div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
     <div class="row">
 
             @Html.Partial("Panels/_Jobs", Model.Jobs, new ViewDataDictionary
@@ -134,7 +134,7 @@
         </div>
     }
 </div>
-<div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">        
+<div class="col-xxl-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">        
     <div class="row">
             @Html.Partial("Panels/_Maintenance", Model.Maintenance, new ViewDataDictionary
             {
@@ -145,7 +145,7 @@
 
 @if (Model.MachinePanels.Contains((int)enPanel.Electrospindle))
 {
-    <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
         <div class="row">
                 @Html.Partial("Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter, new ViewDataDictionary
                 {
@@ -156,7 +156,7 @@
 }
 @if (Model.MachinePanels.Contains((int)enPanel.OtherMachineData))
 {
-    <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
         <div class="row">
                 @Html.Partial("Panels/ElectroSpindle/_OtherMachineData", Model.PanelParameter, new ViewDataDictionary
                 {

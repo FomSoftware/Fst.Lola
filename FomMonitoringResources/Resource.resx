@@ -779,4 +779,7 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="TabRpmTotMandriniMM" xml:space="preserve">
     <value>Ore di Lavoro Totali</value>
   </data>
+  <data name="LMX650_Multispindles" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

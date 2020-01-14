@@ -773,4 +773,34 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="TabRpmTotMandriniMM" xml:space="preserve">
     <value>Ore di Lavoro Totali</value>
   </data>
+  <data name="LMX650_LinearAxes" xml:space="preserve">
+    <value>ASSI LINEARI</value>
+  </data>
+  <data name="LMX650_MMTools" xml:space="preserve">
+    <value>UTENSILI MULTIMANDRINO</value>
+  </data>
+  <data name="LMX650_Motor_Blade" xml:space="preserve">
+    <value>MOTORE/LAMA 650 (X-MODULE)</value>
+  </data>
+  <data name="LMX650_Multispindles" xml:space="preserve">
+    <value>MULTIMANDRINO</value>
+  </data>
+  <data name="LMX650_XMUTools" xml:space="preserve">
+    <value>UTENSILI XMU (X-MODULE)</value>
+  </data>
+  <data name="LMX650_TiltingMSAxes" xml:space="preserve">
+    <value>ASSI TILTANTI MULTIMANDRINO</value>
+  </data>
+  <data name="LMX650_RotaryAxes" xml:space="preserve">
+    <value>ASSI ROTATIVI XMU/MAG.UTENSILI (X-MODULE)</value>
+  </data>
+  <data name="LMX650_XMUSp_Sensors" xml:space="preserve">
+    <value>SENSORISTICA ELETTROMANDRINO XMU</value>
+  </data>
+  <data name="LMX650_XMUSpindle" xml:space="preserve">
+    <value>ELETTROMANDRINO XMU (X-MODULE)</value>
+  </data>
+  <data name="LMXMachineData" xml:space="preserve">
+    <value>ALTRI DATI MACCHINA</value>
+  </data>
 </root>

@@ -9,21 +9,21 @@
         localizations = loc;
         initVueModel(data);
         if (data.opt_states != null && data.opt_states.series.length > 0) {
-                ChartManager.stateMachinePieChart("efc_pie_chart", data.opt_states);
-            }
+            ChartManager.stateMachinePieChart("efc_pie_chart", data.opt_states);
+        }
 
         if (data.opt_kpis != null && data.opt_states.series.length > 0) {
-                ChartManager.productivityMachineSolidGaugeChart("efc_kpi_chart", data.opt_kpis, localizations);
+            ChartManager.productivityMachineSolidGaugeChart("efc_kpi_chart", data.opt_kpis, localizations);
         }
 
         if (data.opt_historical != null && data.opt_historical.series.length > 0) {
-                vmEfficiency.show.historical = true;
-                ChartManager.lineChart('efc_historical_chart', data.opt_historical);
+            vmEfficiency.show.historical = true;
+            ChartManager.lineChart('efc_historical_chart', data.opt_historical);
         }
 
         if (data.opt_operators != null && data.opt_operators.series.length > 0) {
-                vmEfficiency.show.operators = true;
-                ChartManager.stackedBarChart('efc_operators_chart', data.opt_operators);
+            vmEfficiency.show.operators = true;
+            ChartManager.stackedBarChart('efc_operators_chart', data.opt_operators);
         }
 
 
@@ -100,9 +100,9 @@
                 },
                 getCol: function () {
                     if (this.type != 'Troncatrice')
-                        return "col-11 col-sm-8 col-md-7 col-lg-7";
+                        return "col-11 col-sm-11 col-md-6 col-lg-7";
                     else
-                        return "col-12 col-sm-9 col-md-8 col-lg-8";
+                        return "col-12 col-sm-12 col-md-7 col-lg-8";
                 }
             },
             methods: {

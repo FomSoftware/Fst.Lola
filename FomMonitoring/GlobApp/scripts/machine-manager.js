@@ -339,7 +339,8 @@
         callAjaxMachineViewModelData: callAjaxMachineViewModelData,
         initVueComponents: initVueComponents,
         getColorKPI: getColorKPI,
-        initScrollBar: initScrollBar
+        initScrollBar: initScrollBar,
+        initFlipAndSwipMenu: initFlipAndSwipMenu
     };
 
 }();

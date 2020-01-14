@@ -693,6 +693,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string LMX650_Multispindles {
+            get {
+                return ResourceManager.GetString("LMX650_Multispindles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There was a problem with access.
         /// </summary>
         public static string LoginProblem {

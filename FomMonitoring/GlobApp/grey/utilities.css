@@ -140,8 +140,6 @@ em,
 
 /*#region color */
 .color-green {
-    color: #5C7829;
-    color: #779933;
     color: #8EBF36;
 }
 
@@ -150,25 +148,18 @@ em,
 }
 
 .bg-green {
-    background-color: #5C7829;
-    background-color: #779933;
     background-color: #8EBF36;
 }
 
 .border-green {
-    border-color: #779933;
     border-color: #8EBF36;
 }
 
 .color-yellow {
-    color: #B7B327;
-    color: #DCD427;
     color: #F9ED4B;
 }
 
 .bg-yellow {
-    background-color: #B7B327;
-    background-color: #DCD427;
     background-color: #ea0;
 }
 
@@ -786,4 +777,32 @@ em,
 .bootstrap-select .btn.btn-light:hover {
     color: #333;
     background-color: #ddd;
+}
+
+button[data-panel] {
+    background-color: transparent;
+}
+
+button.selected[data-panel='efficiency'] {
+    background-color: #8EBF36;
+}
+
+button.selected[data-panel='production'] {
+    background-color: #D32337;
+}
+
+button.selected[data-panel='maintenance'] {
+    background-color: cornflowerblue;
+}
+
+button.selected[data-panel='ordersStandard'] {
+    background-color: #FF7F00;
+}
+
+button.selected .fa {
+    color: white !important;
+}
+
+button.selected .fa-info {
+    color: cornflowerblue !important;
 }
