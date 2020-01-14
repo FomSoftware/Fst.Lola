@@ -1,13 +1,14 @@
 ﻿var MachineManager = function ()
 {
     var urlMachineAPI;
+    var urls;
 
     var init = function (url)
     {
         initFlipAndSwipMenu();
 
-        urlMachineAPI = url;
-
+        urlMachineAPI = url.urlMachine;
+        urls = url;
         // DOM updated
         Vue.nextTick(function ()
         {
@@ -20,63 +21,117 @@
         
     };
 
-    var callAjaxMachineViewModelData = function (filters)
-    {
-        var request = $.ajax({
+    var buildRequest = function (url, filters, panelId) {
+        return $.ajax({
             type: "POST",
-            url: urlMachineAPI,
+            url: url,
             contentType: 'application/json',
             data: JSON.stringify(filters),
-            beforeSend: function ()
-            {
-                WaitmeManager.start('body');
+            beforeSend: function () {
+                if(panelId != null)
+                    WaitmeManager.start(panelId);
             },
-            complete: function ()
-            {
-                WaitmeManager.end('body');
+            completed: function() {
+                if (panelId != null)
+                    WaitmeManager.end(panelId);
             }
         });
+    };
 
-        request.done(function (data)
-        {
-            $(".slimscroll").slimScroll({ destroy: true });
+    var callAjaxMachineViewModelData = function (filters) {
 
-           
-            SharedManager.updateLastUpdate(data.LastUpdate);
+        WaitmeManager.start("body");
+        $.when(buildRequest(urls.urlEfficiency, filters),
+            buildRequest(urls.urlProductivity, filters),
+            buildRequest(urls.urlJob, filters),
+            buildRequest(urls.urlMaintenance, filters),
+            buildRequest(urls.urlMessages, filters),
+            buildRequest(urls.urlParameters, filters))
+            .done(function(efficiency, productivity, job, maintenance, messages, parameters) {
+                $(".slimscroll").slimScroll({ destroy: true });
 
-            Efficiency.update(data.Efficiency);
-            Productivity.update(data.Productivity);
-            //Alarms.update(data.Alarms);
-            Spindles.update(data.PanelParameter);
-            XSpindles.update(data.XSpindles);
-            ToolsBlitz.update(data.Tools);
-            Tools.update(data.Tools);
-            XTools.update(data.XTools);
-            Jobs.update(data.Jobs);
-            Messages.update(data.Messages);
-            Maintenance.update(data.Maintenance);
-            MotorAxesBlitz.update(data.PanelParameter);
-            MotorKeope.update(data.PanelParameter);
-            AxesKeope.update(data.PanelParameter);
-            ElectroSpindle.update(data.PanelParameter);
-            OtherData.update(data.PanelParameter);
-            MultiSpindles.update(data.PanelParameter);
+                Efficiency.update(efficiency[0]);
+                Productivity.update(productivity[0]);
+                Spindles.update(parameters[0]);
+                //XSpindles.update(data.XSpindles);
+                //ToolsBlitz.update(data.Tools);
+                //Tools.update(data.Tools);
+                //XTools.update(data.XTools);
+                Jobs.update(job[0]);
+                Messages.update(messages[0]);
+                Maintenance.update(maintenance[0]);
+                MotorAxesBlitz.update(parameters[0]);
+                MotorKeope.update(parameters[0]);
+                AxesKeope.update(parameters[0]);
+                ElectroSpindle.update(parameters[0]);
+                OtherData.update(parameters[0]);
+                MultiSpindles.update(parameters[0]);
 
-            Vue.nextTick(function ()
-            {
-                initProgressBar();
-                initFlipCard();
-                initScrollBar();                          
+                Vue.nextTick(function () {
+                    initProgressBar();
+                    initFlipCard();
+                    initScrollBar();
+                });
+
+
+            }).always(function() {
+                WaitmeManager.end("body");
             });
-           
-        });
+        //var request = $.ajax({
+        //    type: "POST",
+        //    url: urlMachineAPI,
+        //    contentType: 'application/json',
+        //    data: JSON.stringify(filters),
+        //    beforeSend: function ()
+        //    {
+        //        WaitmeManager.start('body');
+        //    },
+        //    complete: function ()
+        //    {
+        //        WaitmeManager.end('body');
+        //    }
+        //});
 
-        request.fail(function (jqXHR, textStatus, errorThrown)
-        {
-            console.error(jqXHR);
-            console.error(textStatus);
-            console.error(errorThrown);
-        });
+        //request.done(function (data)
+        //{
+        //    $(".slimscroll").slimScroll({ destroy: true });
+
+           
+        //    SharedManager.updateLastUpdate(data.LastUpdate);
+
+        //    Efficiency.update(data.Efficiency);
+        //    Productivity.update(data.Productivity);
+        //    //Alarms.update(data.Alarms);
+        //    Spindles.update(data.PanelParameter);
+        //    XSpindles.update(data.XSpindles);
+        //    ToolsBlitz.update(data.Tools);
+        //    Tools.update(data.Tools);
+        //    XTools.update(data.XTools);
+        //    Jobs.update(data.Jobs);
+        //    Messages.update(data.Messages);
+        //    Maintenance.update(data.Maintenance);
+        //    MotorAxesBlitz.update(data.PanelParameter);
+        //    MotorKeope.update(data.PanelParameter);
+        //    AxesKeope.update(data.PanelParameter);
+        //    ElectroSpindle.update(data.PanelParameter);
+        //    OtherData.update(data.PanelParameter);
+        //    MultiSpindles.update(data.PanelParameter);
+
+        //    Vue.nextTick(function ()
+        //    {
+        //        initProgressBar();
+        //        initFlipCard();
+        //        initScrollBar();                          
+        //    });
+           
+        //});
+
+        //request.fail(function (jqXHR, textStatus, errorThrown)
+        //{
+        //    console.error(jqXHR);
+        //    console.error(textStatus);
+        //    console.error(errorThrown);
+        //});
     };
 
     var initProgressBar = function ()

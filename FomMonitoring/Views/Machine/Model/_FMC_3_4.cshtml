@@ -33,8 +33,8 @@
     </div>
     <div class="row justify-content-center machine-image-wrapper">
         <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-9">
-            <div style="height: 65%;padding-bottom: 13px">
-                @Html.Action("GetHtmlPage", "Shared", new { path = "/images/panels/FMC-immagine_macchina_LUNGA.svg" })
+            <div style="height: 65%; padding-bottom: 13px;">
+                @Html.Action("GetHtmlPage", "Shared", new { path = "~/images/panels/FMC-immagine_macchina_LUNGA.svg" })
             </div>
         </div>
     </div>
@@ -45,13 +45,13 @@
                 <div id="panels-box" class="col-10 col-sm-10 col-md-8" style="background-color: #cbcaca; padding-top: 30px; padding-bottom: 30px; width: 100%; height: calc(70vh);" v-show="machineGroupSelected == null && machinePanelSelected == null && isMobile()">
                     <div class="btn-group machine-group-selection" style="width: 100%; background-color: #cbcaca">
                         <button type="button" data-group="FMC3-4_axes" class="no-borders" style="width: 220px; background-color: #cbcaca">
-                            <img class="img-button-group" src="/Images/panels/CARD-AXES_220X220px.svg"/>
+                            <img class="img-button-group" src="~/Images/panels/CARD-AXES_220X220px.svg"/>
                         </button>
                         <button type="button" data-group="FMC3-4_tools" class="no-borders" style="width: 220px; background-color: #cbcaca">
-                            <img class="img-button-group" src="/Images/panels/CARD-TOOLS_220X220px.svg"/>
+                            <img class="img-button-group" src="~/Images/panels/CARD-TOOLS_220X220px.svg"/>
                         </button>
                         <button type="button" data-group="FMC3-4_spindles" class="no-borders" style="width: 220px; background-color: #cbcaca">
-                            <img class="img-button-group" src="/Images/panels/CARD_SPINDLE_220X220px.svg"/>
+                            <img class="img-button-group" src="~/Images/panels/CARD_SPINDLE_220X220px.svg"/>
                         </button>
                     </div>
                 </div>
@@ -116,8 +116,7 @@
     </div>
 </div>
 <script>
-    $(document).ready(function ()
-    {
+    $(document).ready(function() {
         ImageManager.init();      
     });
 </script>

@@ -1548,7 +1548,7 @@ hr.axes {
     }
 
     .empty-area {
-        background: url(/images/logo/TEXTURE-FOM-WEB-2-01.png) space 0 0;
+        background: url(../../images/logo/TEXTURE-FOM-WEB-2-01.png) space 0 0;
         width: 100%;
         height: 288px;
         background-size: contain;

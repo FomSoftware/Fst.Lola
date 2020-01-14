@@ -196,8 +196,16 @@
 
     $(document).ready(function ()
     {
-        var urlMachineAPI = '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineViewModel" })';
-        MachineManager.init(urlMachineAPI);      
+        var urls = {
+            urlMachine: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineViewModel" })',
+            urlEfficiency: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineEfficiencyViewModel" })',
+            urlProductivity: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineProductivityViewModel" })',
+            urlJob: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineJobViewModel" })',
+            urlMaintenance: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineMaintenanceViewModel" })',
+            urlMessages: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineMessagesViewModel" })',
+            urlParameters: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineParametersViewModel" })'
+        };
+        MachineManager.init(urls);      
     });
 
     </script>

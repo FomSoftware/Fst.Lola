@@ -20,6 +20,10 @@ namespace FomMonitoring.Controllers
         private readonly INotificationViewService _notificationManagerViewService;
         private readonly IPanelParametersViewService _panelParametersViewService;
         private readonly IMessagesViewService _messagesViewService;
+        private readonly IEfficiencyViewService _efficiencyViewService;
+        private readonly IProductivityViewService _productivityViewService;
+        private readonly IJobsViewService _jobsViewService;
+        private readonly IMaintenanceViewService _maintenanceViewService;
 
         public AppApiController(
             IMessagesViewService messagesViewService,
@@ -28,7 +32,11 @@ namespace FomMonitoring.Controllers
             IContextService contextService,
             IMesViewService mesViewService,
             INotificationViewService notificationManagerViewService,
-            IPanelParametersViewService panelParametersViewService)
+            IPanelParametersViewService panelParametersViewService,
+            IEfficiencyViewService efficiencyViewService,
+            IProductivityViewService productivityViewService,
+            IJobsViewService jobsViewService,
+            IMaintenanceViewService maintenanceViewService)
         {
             _contextService = contextService;
             _plantMessagesViewService = plantMessagesViewService;
@@ -37,6 +45,10 @@ namespace FomMonitoring.Controllers
             _notificationManagerViewService = notificationManagerViewService;
             _panelParametersViewService = panelParametersViewService;
             _messagesViewService = messagesViewService;
+            _efficiencyViewService = efficiencyViewService;
+            _productivityViewService = productivityViewService;
+            _jobsViewService = jobsViewService;
+            _maintenanceViewService = maintenanceViewService;
         }
 
         [HttpPost]
@@ -124,6 +136,90 @@ namespace FomMonitoring.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, mes, MediaTypeHeaderValue.Parse("application/json"));
         }
 
+        [HttpPost]
+        [Authorize(Roles = Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Route("ajax/AppApi/GetMachineEfficiencyViewModel")]
+        public HttpResponseMessage GetMachineEfficiencyViewModel(FilterViewModel filters)
+        {
+            if (filters.period != null)
+            {
+                _contextService.SetActualPeriod(filters.period.start, filters.period.end);
+                _contextService.SetActualMachineGroup(filters.machineGroup);
+            }
+            
+            var context = _contextService.GetContext();
+            var efficiency = _efficiencyViewService.GetEfficiency(context);
+
+            return Request.CreateResponse(HttpStatusCode.OK, efficiency, MediaTypeHeaderValue.Parse("application/json"));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Route("ajax/AppApi/GetMachineProductivityViewModel")]
+        public HttpResponseMessage GetMachineProductivityViewModel(FilterViewModel filters)
+        {
+            if (filters.period != null)
+            {
+                _contextService.SetActualPeriod(filters.period.start, filters.period.end);
+                _contextService.SetActualMachineGroup(filters.machineGroup);
+            }
+
+            var context = _contextService.GetContext();
+            var productivity = _productivityViewService.GetProductivity(context);
+
+            return Request.CreateResponse(HttpStatusCode.OK, productivity, MediaTypeHeaderValue.Parse("application/json"));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Route("ajax/AppApi/GetMachineJobViewModel")]
+        public HttpResponseMessage GetMachineJobViewModel(FilterViewModel filters)
+        {
+            if (filters.period != null)
+            {
+                _contextService.SetActualPeriod(filters.period.start, filters.period.end);
+                _contextService.SetActualMachineGroup(filters.machineGroup);
+            }
+
+            var context = _contextService.GetContext();
+            var jobs = _jobsViewService.GetJobs(context);
+
+            return Request.CreateResponse(HttpStatusCode.OK, jobs, MediaTypeHeaderValue.Parse("application/json"));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Route("ajax/AppApi/GetMachineMaintenanceViewModel")]
+        public HttpResponseMessage GetMachineMaintenanceViewModel(FilterViewModel filters)
+        {
+            if (filters.period != null)
+            {
+                _contextService.SetActualPeriod(filters.period.start, filters.period.end);
+                _contextService.SetActualMachineGroup(filters.machineGroup);
+            }
+
+            var context = _contextService.GetContext();
+            var maintenance = _maintenanceViewService.GetMessages(context);
+
+            return Request.CreateResponse(HttpStatusCode.OK, maintenance, MediaTypeHeaderValue.Parse("application/json"));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Route("ajax/AppApi/GetMachineParametersViewModel")]
+        public HttpResponseMessage GetMachineParametersViewModel(FilterViewModel filters)
+        {
+            if (filters.period != null)
+            {
+                _contextService.SetActualPeriod(filters.period.start, filters.period.end);
+                _contextService.SetActualMachineGroup(filters.machineGroup);
+            }
+
+            var context = _contextService.GetContext();
+            var parameters = _panelParametersViewService.GetParameters(context);
+
+            return Request.CreateResponse(HttpStatusCode.OK, parameters, MediaTypeHeaderValue.Parse("application/json"));
+        }
 
         [HttpPost]
         [Authorize(Roles = Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]

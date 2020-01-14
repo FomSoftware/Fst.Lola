@@ -17,7 +17,7 @@
     <RootNamespace>FomMonitoring</RootNamespace>
     <AssemblyName>FomMonitoring</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort>62186</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
@@ -1168,7 +1168,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62186</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:62186/</IISUrl>
+          <IISUrl>http://localhost/FomMonitoringWeb</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

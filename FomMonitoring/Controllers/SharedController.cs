@@ -42,6 +42,7 @@ namespace FomMonitoring.Controllers
         [ChildActionOnly]
         public ActionResult GetHtmlPage(string path)
         {
+            path = Server.MapPath(path);
             return new FilePathResult(path, "text/html");
         }
     }
