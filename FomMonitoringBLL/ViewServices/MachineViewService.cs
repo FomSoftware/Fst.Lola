@@ -14,16 +14,16 @@ namespace FomMonitoringBLL.ViewServices
 {
     public class MachineViewService : IMachineViewService
     {
-        private IMessagesViewService _messagesViewService;
-        private IMaintenanceViewService _maintenanceViewService;
-        private IEfficiencyViewService _efficiencyViewService;
-        private IProductivityViewService _productivityViewService;
-        private IMachineService _messagesService;
-        private IToolsViewService _toolsViewService;
-        private IPanelParametersViewService _panelParametersViewService;
-        private IXToolsViewService _xToolsViewService;
-        private ISpindleViewService _spindleViewService;
-        private IJobsViewService _jobsViewService;
+        private readonly IMessagesViewService _messagesViewService;
+        private readonly IMaintenanceViewService _maintenanceViewService;
+        private readonly IEfficiencyViewService _efficiencyViewService;
+        private readonly IProductivityViewService _productivityViewService;
+        private readonly IMachineService _messagesService;
+        private readonly IToolsViewService _toolsViewService;
+        private readonly IPanelParametersViewService _panelParametersViewService;
+        private readonly IXToolsViewService _xToolsViewService;
+        private readonly ISpindleViewService _spindleViewService;
+        private readonly IJobsViewService _jobsViewService;
 
         public MachineViewService(
             IMessagesViewService messagesViewService,

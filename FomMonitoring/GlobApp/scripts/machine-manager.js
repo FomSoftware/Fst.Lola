@@ -77,61 +77,7 @@
             }).always(function() {
                 WaitmeManager.end("body");
             });
-        //var request = $.ajax({
-        //    type: "POST",
-        //    url: urlMachineAPI,
-        //    contentType: 'application/json',
-        //    data: JSON.stringify(filters),
-        //    beforeSend: function ()
-        //    {
-        //        WaitmeManager.start('body');
-        //    },
-        //    complete: function ()
-        //    {
-        //        WaitmeManager.end('body');
-        //    }
-        //});
 
-        //request.done(function (data)
-        //{
-        //    $(".slimscroll").slimScroll({ destroy: true });
-
-           
-        //    SharedManager.updateLastUpdate(data.LastUpdate);
-
-        //    Efficiency.update(data.Efficiency);
-        //    Productivity.update(data.Productivity);
-        //    //Alarms.update(data.Alarms);
-        //    Spindles.update(data.PanelParameter);
-        //    XSpindles.update(data.XSpindles);
-        //    ToolsBlitz.update(data.Tools);
-        //    Tools.update(data.Tools);
-        //    XTools.update(data.XTools);
-        //    Jobs.update(data.Jobs);
-        //    Messages.update(data.Messages);
-        //    Maintenance.update(data.Maintenance);
-        //    MotorAxesBlitz.update(data.PanelParameter);
-        //    MotorKeope.update(data.PanelParameter);
-        //    AxesKeope.update(data.PanelParameter);
-        //    ElectroSpindle.update(data.PanelParameter);
-        //    OtherData.update(data.PanelParameter);
-        //    MultiSpindles.update(data.PanelParameter);
-
-        //    Vue.nextTick(function ()
-        //    {
-        //        initProgressBar();
-        //        initFlipCard();
-        //        initScrollBar();                          
-        //    });
-           
-        //});
-
-        //request.fail(function (jqXHR, textStatus, errorThrown)
-        //{
-        //    console.error(jqXHR);
-        //    console.error(textStatus);
-        //    console.error(errorThrown);
-        //});
     };
 
     var initProgressBar = function ()

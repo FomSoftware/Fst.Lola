@@ -11,7 +11,7 @@
 
                     /*if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(a) ||
                         (/iPad/i.test(a) && $(window).width() < 1200))*/
-                    if ($(window).width() < 1400)
+                    if ($(window).width() <= 992)
                         check = true;
                     
                 })(navigator.userAgent || navigator.vendor || window.opera);
@@ -23,7 +23,19 @@
 
                     /*if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(a) ||
                         (/iPad/i.test(a) && $(window).width() < 1200))*/
-                    if ($(window).width() > 992 && $(window).width() < 1400)
+                    if ($(window).width() > 992 && $(window).width() <= 1200)
+                        check = true;
+
+                })(navigator.userAgent || navigator.vendor || window.opera);
+                return check;
+            },
+            isLargeTablet: function () {
+                var check = false;
+                (function (a) {
+
+                    /*if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(a) ||
+                        (/iPad/i.test(a) && $(window).width() < 1200))*/
+                    if ($(window).width() > 1200 && $(window).width() <= 1400)
                         check = true;
 
                 })(navigator.userAgent || navigator.vendor || window.opera);
@@ -34,31 +46,32 @@
 
     var checkVisibility = function() {
         if (vmImageMachine.machinePanelSelected == 'maintenance' ||
-        (!vmImageMachine.isMobile() &&
-            (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
+            (!(vmImageMachine.isLargeTablet() || vmImageMachine.isTablet() || vmImageMachine.isMobile()) &&
+                (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
             Maintenance.show();
         } else {
             Maintenance.hide();
         }
 
         if (vmImageMachine.machinePanelSelected == 'efficiency' ||
-        (!vmImageMachine.isMobile() &&
-            (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
+            (!(vmImageMachine.isLargeTablet() || vmImageMachine.isTablet() || vmImageMachine.isMobile()) &&
+                (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
             Efficiency.show();
         } else {
             Efficiency.hide();
         }
 
         if (vmImageMachine.machinePanelSelected == 'production' ||
-        (!vmImageMachine.isMobile() &&
-            (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
+            (!(vmImageMachine.isLargeTablet() || vmImageMachine.isTablet() || vmImageMachine.isMobile()) &&
+                (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
             Productivity.show();
         } else {
             Productivity.hide();
         }
 
         if (vmImageMachine.machinePanelSelected == 'ordersStandard' ||
-            (!vmImageMachine.isMobile() && (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
+            (!(vmImageMachine.isLargeTablet() || vmImageMachine.isTablet() || vmImageMachine.isMobile()) &&
+                (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
             Jobs.show();
         } else {
             Jobs.hide();
@@ -82,7 +95,7 @@
             ToolsFmcLmx.hide();
         }
 
-        if ((!vmImageMachine.isMobile() &&
+        if ((!(vmImageMachine.isLargeTablet() || vmImageMachine.isTablet()) &&
             (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
 
             $(".placeholder-panel-full").show();
@@ -90,7 +103,7 @@
             $(".placeholder-panel-full").hide();
         }
 
-        if ((vmImageMachine.isTablet() &&
+        if (((vmImageMachine.isLargeTablet() || vmImageMachine.isTablet()) &&
             (vmImageMachine.machineGroupSelected != null || vmImageMachine.machinePanelSelected != null))) {
 
             $(".placeholder-panel-mobile").show();
@@ -159,6 +172,18 @@
         checkVisibility();
     };
 
+    var checkVisibilityImageMachine = function() {
+        if (vmImageMachine.isLargeTablet()) {
+            $("#image-machine-sm").show();
+            $("#image-machine-lg").hide();
+        } else {
+            $("#image-machine-sm").hide();
+            $("#image-machine-lg").show();
+        }
+
+        initMachineImage();
+    }
+
     var init = function () {
 
         vmImageMachine = new Vue({
@@ -174,7 +199,12 @@
             el: "#buttons-bar",
             mixins: [mixinDetictingMobile]
         });
-        
+
+        checkVisibilityImageMachine();
+        $(window).resize(function() {
+            checkVisibilityImageMachine();
+        });
+
         initMachineImage();
     };
     
