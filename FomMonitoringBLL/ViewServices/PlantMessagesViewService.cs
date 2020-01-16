@@ -11,9 +11,9 @@ namespace FomMonitoringBLL.ViewServices
 {
     public class PlantMessagesViewService : IPlantMessagesViewService
     {
-        private IMessageService _messageService;
-        private IReadMessages _readMessages;
-        private IMesService _mesService;
+        private readonly IMessageService _messageService;
+        private readonly IReadMessages _readMessages;
+        private readonly IMesService _mesService;
 
         public PlantMessagesViewService(IMessageService messageService, IReadMessages readMessages, IMesService mesService)
         {
@@ -51,7 +51,6 @@ namespace FomMonitoringBLL.ViewServices
 
             foreach (MesUserMachinesModel dataMachine in dataAllMachines)
             {
-                MachineMessagesDataViewModel machineMsgs = new MachineMessagesDataViewModel();
 
                 MachineInfoModel machine = allMachines.FirstOrDefault(w => w.Id == dataMachine.MachineId);
 
@@ -82,9 +81,9 @@ namespace FomMonitoringBLL.ViewServices
                     parameters = a.Params,
                     timestamp = DateTime.SpecifyKind(a.Day ?? DateTime.MinValue, DateTimeKind.Utc),
                     utc = machine.UTC ?? 0,
-                    type = ((enTypeAlarm)_readMessages.GetMessageType(a.Code, machine.Id)).GetDescription(),
+                    type = ((enTypeAlarm)a.Type).GetDescription(),
                     //((enTypeAlarm)a.StateId).GetDescription(),
-                    group = _readMessages.GetMessageGroup(a.Code, machine.Id, a.Group),
+                    group = a.GroupName,
                     time = CommonViewService.getTimeViewModel(a.ElapsedTime),
                     description = _readMessages.GetMessageDescription(a.Code, machine.Id, a.Params, CultureInfo.CurrentCulture.Name)
 

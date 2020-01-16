@@ -8,6 +8,6 @@ namespace FomMonitoringCore.Repository
 {
     public interface IMessageMachineRepository : IGenericRepository<MessageMachine>
     {
-        IEnumerable<MessageMachine> GetMachineMessages(int idMachine, DateTime start, DateTime end, bool includePeriodicMsg = false);
+        IEnumerable<MessageMachine> GetMachineMessages(int idMachine, DateTime start, DateTime end, bool includePeriodicMsg = false, bool onlyVisible = false);
     }
 }

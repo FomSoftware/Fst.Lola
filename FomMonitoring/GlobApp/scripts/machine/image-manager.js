@@ -105,7 +105,6 @@
 
         if (((vmImageMachine.isLargeTablet() || vmImageMachine.isTablet()) &&
             (vmImageMachine.machineGroupSelected != null || vmImageMachine.machinePanelSelected != null))) {
-
             $(".placeholder-panel-mobile").show();
         } else {
             $(".placeholder-panel-mobile").hide();

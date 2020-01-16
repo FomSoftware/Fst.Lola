@@ -168,8 +168,8 @@ namespace FomMonitoringCore.Service.DataMapping
             if (value.VariableValue < min || value.VariableValue > max)
             {
                 var mes = _context.Set<MessageMachine>().FirstOrDefault(mm =>
-                    mm.MachineId == machine.Id && mm.IsPeriodicMsg == true &&
-                    mm.Code == par.ThresholdLabel);
+                    mm.MachineId == machine.Id && mm.MessagesIndex.IsPeriodicM &&
+                    mm.MessagesIndex.MessageCode == par.ThresholdLabel);
                 if (mes == null)
                     _messageService.InsertMessageMachine(machine, par.ThresholdLabel, utcDatetime);
                 else if (oldValue != null)

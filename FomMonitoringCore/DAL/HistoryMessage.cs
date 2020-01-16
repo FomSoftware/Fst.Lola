@@ -15,7 +15,6 @@ namespace FomMonitoringCore.DAL
     public partial class HistoryMessage
     {
         public int Id { get; set; }
-        public string Code { get; set; }
         public Nullable<int> Count { get; set; }
         public Nullable<System.DateTime> Day { get; set; }
         public Nullable<long> ElapsedTime { get; set; }
@@ -24,10 +23,10 @@ namespace FomMonitoringCore.DAL
         public Nullable<int> StateId { get; set; }
         public string TypeHistory { get; set; }
         public string Params { get; set; }
-        public Nullable<int> Group { get; set; }
-        public Nullable<int> Type { get; set; }
+        public Nullable<int> MessagesIndexId { get; set; }
     
         public virtual Machine Machine { get; set; }
         public virtual State State { get; set; }
+        public virtual MessagesIndex MessagesIndex { get; set; }
     }
 }

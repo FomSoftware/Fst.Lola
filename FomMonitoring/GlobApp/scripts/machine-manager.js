@@ -46,17 +46,21 @@
             buildRequest(urls.urlJob, filters),
             buildRequest(urls.urlMaintenance, filters),
             buildRequest(urls.urlMessages, filters),
-            buildRequest(urls.urlParameters, filters))
-            .done(function(efficiency, productivity, job, maintenance, messages, parameters) {
+            buildRequest(urls.urlParameters, filters),
+            buildRequest(urls.urlXTools, filters),
+            buildRequest(urls.urlTools, filters),
+            buildRequest(urls.urlToolsBlitz, filters),
+            buildRequest(urls.urlXSpindles, filters))
+            .done(function(efficiency, productivity, job, maintenance, messages, parameters, xTools, tools, toolsBlitz, xSpindles ) {
                 $(".slimscroll").slimScroll({ destroy: true });
 
                 Efficiency.update(efficiency[0]);
                 Productivity.update(productivity[0]);
                 Spindles.update(parameters[0]);
-                //XSpindles.update(data.XSpindles);
-                //ToolsBlitz.update(data.Tools);
-                //Tools.update(data.Tools);
-                //XTools.update(data.XTools);
+                XSpindles.update(xSpindles[0]);
+                ToolsBlitz.update(toolsBlitz[0]);
+                Tools.update(tools[0]);
+                XTools.update(xTools[0]);
                 Jobs.update(job[0]);
                 Messages.update(messages[0]);
                 Maintenance.update(maintenance[0]);

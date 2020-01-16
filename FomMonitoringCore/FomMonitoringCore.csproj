@@ -243,8 +243,6 @@
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\Partials\IFomMonitoringEntities.cs" />
-    <Compile Include="DAL_SQLite\Partials\IFST_FomMonitoringSQLiteEntities.cs" />
-    <Compile Include="DAL\Partials\MessageMachine.cs" />
     <Compile Include="DAL\Piece.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
@@ -287,6 +285,8 @@
     <Compile Include="DAL\usp_AggregationState_Result.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL_SQLite\Partials\IFST_FomMonitoringSQLiteEntities.cs" />
+    <Compile Include="DAL\Partials\MessageMachine.cs" />
     <Compile Include="DAL_SQLite\bar.cs">
       <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
     </Compile>

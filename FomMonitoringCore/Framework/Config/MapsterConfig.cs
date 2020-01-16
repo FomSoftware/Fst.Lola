@@ -21,10 +21,17 @@ namespace FomMonitoringCore.Framework.Config
             TypeAdapterConfig.GlobalSettings.Default.AddDestinationTransform((string x) => x.Trim());
 
             // DAL to Model
-            config.NewConfig<MessageMachine, MessageMachineModel>();
+            config.NewConfig<MessageMachine, MessageMachineModel>()
+                .Map(dest => dest.Code, src => src.MessagesIndex.MessageCode)
+                .Map(dest => dest.Group, src => src.MessagesIndex.MachineGroupId)
+                .Map(dest => dest.GroupName, src => src.MessagesIndex.MachineGroup.MachineGroupName)
+                .Map(dest => dest.Type, src => src.MessagesIndex.MessageTypeId)
+                .Map(dest => dest.IsPeriodicMsg, src => src.MessagesIndex.IsPeriodicM);
+
             config.NewConfig<Bar, BarModel>();
             config.NewConfig<HistoryMessage, HistoryMessageModel>()
-                .Map(dest => dest.Type, src => (enTypeAlarm)src.Type);
+                .Map(dest => dest.Code, src => src.MessagesIndex != null ? src.MessagesIndex.MessageCode : null)
+                .Map(dest => dest.Type, src => src.MessagesIndex != null ? (int?)src.MessagesIndex.MessageTypeId : null);
             config.NewConfig<HistoryPiece, HistoryPieceModel>();
             config.NewConfig<HistoryState, HistoryStateModel>()
                 .Map(dest => dest.State, src => src.State)

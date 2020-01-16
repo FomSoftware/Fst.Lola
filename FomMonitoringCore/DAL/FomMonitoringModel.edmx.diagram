@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="13d8bd6ff76b464c804b04dfa7328890" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="FST_FomMonitoringModel.MachineModel" Width="1.5" PointX="1" PointY="29.75" />
-        <EntityTypeShape EntityType="FST_FomMonitoringModel.State" Width="1.5" PointX="3" PointY="25.875" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.State" Width="2.25" PointX="3" PointY="25.875" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryBar" Width="1.5" PointX="0.625" PointY="20.375" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryState" Width="1.5" PointX="8.25" PointY="32.5" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.StateMachine" Width="1.5" PointX="5.25" PointY="37.25" />
@@ -46,7 +46,6 @@
         <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryMessage_Machine" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryMessage_State" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageMachine_Machine" />
-        <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageMachine_State" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.FomMonitoring" Width="1.5" PointX="2.75" PointY="6.875" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.FomMonitoringApi" Width="1.5" PointX="4.75" PointY="6.875" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.FomMonitoringDatabaseMapping" Width="1.5" PointX="6.75" PointY="3.875" />
@@ -72,6 +71,9 @@
         <AssociationConnector Association="FST_FomMonitoringModel.FK_ParameterMachine_Panel" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.MessageMachineNotification" Width="1.5" PointX="13" PointY="26" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageMachineNotification_MessageMachine" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageMachine_MessagesIndex" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryMessage_MessagesIndex" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageMachine_State1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

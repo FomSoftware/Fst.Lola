@@ -8,10 +8,7 @@ namespace FomMonitoringCore.Framework.Model
         public int Id { get; set; }
         public string Code { get; set; }
         public DateTime? Day {
-            get
-            {
-                return _day;
-            }
+            get => _day;
             set
             {
                 if(value.HasValue)
@@ -24,11 +21,13 @@ namespace FomMonitoringCore.Framework.Model
         public long? ElapsedTime { get; set; }
         public int? MachineId { get; set; }
         public string Operator { get; set; }
-        public string Type { get; set; }
+        public int Type { get; set; }
         public int? Group { get; set; }
+        public string GroupName { get; set; }
         public DateTime? StartTime { get; set; }
         public int? StateId { get; set; }       
         public DateTime? IgnoreDate { get; set; }
         public bool? IsPeriodicMsg { get; set; }
+        public object TypeName { get; internal set; }
     }
 }

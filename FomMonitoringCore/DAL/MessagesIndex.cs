@@ -18,6 +18,8 @@ namespace FomMonitoringCore.DAL
         public MessagesIndex()
         {
             this.MessageTranslation = new HashSet<MessageTranslation>();
+            this.MessageMachine = new HashSet<MessageMachine>();
+            this.HistoryMessages = new HashSet<HistoryMessage>();
         }
     
         public int Id { get; set; }
@@ -35,5 +37,9 @@ namespace FomMonitoringCore.DAL
         public virtual MessageType MessageType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MessageTranslation> MessageTranslation { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MessageMachine> MessageMachine { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HistoryMessage> HistoryMessages { get; set; }
     }
 }

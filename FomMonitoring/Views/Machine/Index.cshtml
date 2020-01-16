@@ -203,7 +203,10 @@
             urlJob: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineJobViewModel" })',
             urlMaintenance: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineMaintenanceViewModel" })',
             urlMessages: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineMessagesViewModel" })',
-            urlParameters: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineParametersViewModel" })'
+            urlXSpindles: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineXSpindlesViewModel" })',
+            urlToolsBlitz: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineToolsBlitzViewModel" })',
+            urlTools: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineToolsViewModel" })',
+            urlXTools: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineXToolsViewModel" })'
         };
         MachineManager.init(urls);      
     });

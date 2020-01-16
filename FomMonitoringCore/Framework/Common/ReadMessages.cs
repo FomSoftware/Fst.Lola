@@ -17,11 +17,11 @@ namespace FomMonitoringCore.Framework.Common
 {
     public class ReadMessages : IReadMessages
     {
-        private IMessageLanguagesRepository _messageLanguagesRepository;
-        private IMessageTranslationRepository _messageTranslationRepository;
-        private IMachineGroupRepository _machineGroupRepository;
-        private IMachineRepository _machineRepository;
-        private IMessagesIndexRepository _messagesIndexRepository;
+        private readonly IMessageLanguagesRepository _messageLanguagesRepository;
+        private readonly IMessageTranslationRepository _messageTranslationRepository;
+        private readonly IMachineGroupRepository _machineGroupRepository;
+        private readonly IMachineRepository _machineRepository;
+        private readonly IMessagesIndexRepository _messagesIndexRepository;
 
         public ReadMessages(
             IMessageLanguagesRepository messageLanguagesRepository,
@@ -36,20 +36,20 @@ namespace FomMonitoringCore.Framework.Common
             _machineRepository = machineRepository;
             _messagesIndexRepository = messagesIndexRepository;
         }
-        public static void ReadMessageVisibilityGroup(MessageMachine mm, MessagesIndex msg)
-        {
-            bool result = false;            
-            result = msg == null ? false : msg.IsVisibleLOLA;
-            mm.IsVisible = result;
+        //public static void ReadMessageVisibilityGroup(MessageMachine mm, MessagesIndex msg)
+        //{
+        //    var result = msg?.IsVisibleLOLA ?? false;
+        //    mm.IsVisible = result;
 
-            if(mm.Group == null)
-            {
-                mm.Group = msg.MachineGroupId;
-            }
-            if(msg != null)
-                mm.Type = msg.MessageTypeId.ToString();
+        //    if(mm.Group == null)
+        //    {
+        //        if (msg != null)
+        //            mm.Group = msg.MachineGroupId;
+        //    }
+        //    if(msg != null)
+        //        mm.Type = msg.MessageTypeId.ToString();
 
-        }       
+        //}       
 
 
         public string GetMessageDescription(string code, int machineId, string parameters, string language)

@@ -24,6 +24,9 @@ namespace FomMonitoring.Controllers
         private readonly IProductivityViewService _productivityViewService;
         private readonly IJobsViewService _jobsViewService;
         private readonly IMaintenanceViewService _maintenanceViewService;
+        private readonly IXToolsViewService _xToolsViewService;
+        private readonly ISpindleViewService _spindleViewService;
+        private readonly IToolsViewService _toolsViewService;
 
         public AppApiController(
             IMessagesViewService messagesViewService,
@@ -36,7 +39,10 @@ namespace FomMonitoring.Controllers
             IEfficiencyViewService efficiencyViewService,
             IProductivityViewService productivityViewService,
             IJobsViewService jobsViewService,
-            IMaintenanceViewService maintenanceViewService)
+            IMaintenanceViewService maintenanceViewService,
+            IXToolsViewService xToolsViewService,
+            IToolsViewService toolsViewService,
+            ISpindleViewService spindleViewService)
         {
             _contextService = contextService;
             _plantMessagesViewService = plantMessagesViewService;
@@ -49,6 +55,9 @@ namespace FomMonitoring.Controllers
             _productivityViewService = productivityViewService;
             _jobsViewService = jobsViewService;
             _maintenanceViewService = maintenanceViewService;
+            _xToolsViewService = xToolsViewService;
+            _spindleViewService = spindleViewService;
+            _toolsViewService = toolsViewService;
         }
 
         [HttpPost]
@@ -253,6 +262,81 @@ namespace FomMonitoring.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
             }
             return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+        }
+
+        [HttpPost]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Route("ajax/AppApi/GetMachineXToolsViewModel")]
+        public HttpResponseMessage GetMachineXToolsViewModel(FilterViewModel filters)
+        {
+
+            if (filters.period != null)
+            {
+                _contextService.SetActualPeriod(filters.period.start, filters.period.end);
+                _contextService.SetActualMachineGroup(filters.machineGroup);
+            }
+
+            var context = _contextService.GetContext();
+            var xTools = _xToolsViewService.GetXTools(context);
+
+            return Request.CreateResponse(HttpStatusCode.OK, xTools, MediaTypeHeaderValue.Parse("application/json"));
+
+        }
+
+
+        [HttpPost]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Route("ajax/AppApi/GetMachineXSpindlesViewModel")]
+        public HttpResponseMessage GetMachineXSpindlesViewModel(FilterViewModel filters)
+        {
+
+            if (filters.period != null)
+            {
+                _contextService.SetActualPeriod(filters.period.start, filters.period.end);
+                _contextService.SetActualMachineGroup(filters.machineGroup);
+            }
+
+            var context = _contextService.GetContext();
+            var xSpindles = _spindleViewService.GetXSpindles(context);
+
+            return Request.CreateResponse(HttpStatusCode.OK, xSpindles, MediaTypeHeaderValue.Parse("application/json"));
+
+        }
+
+        [HttpPost]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Route("ajax/AppApi/GetMachineToolsViewModel")]
+        public HttpResponseMessage GetMachineToolsViewModel(FilterViewModel filters)
+        {
+            if (filters.period != null)
+            {
+                _contextService.SetActualPeriod(filters.period.start, filters.period.end);
+                _contextService.SetActualMachineGroup(filters.machineGroup);
+            }
+
+            var context = _contextService.GetContext();
+            var tools = _toolsViewService.GetTools(context);
+
+            return Request.CreateResponse(HttpStatusCode.OK, tools, MediaTypeHeaderValue.Parse("application/json"));
+
+        }
+
+        [HttpPost]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Route("ajax/AppApi/GetMachineToolsBlitzViewModel")]
+        public HttpResponseMessage GetMachineToolsBlitzViewModel(FilterViewModel filters)
+        {
+            if (filters.period != null)
+            {
+                _contextService.SetActualPeriod(filters.period.start, filters.period.end);
+                _contextService.SetActualMachineGroup(filters.machineGroup);
+            }
+
+            var context = _contextService.GetContext();
+            var xTools = _xToolsViewService.GetXTools(context);
+
+            return Request.CreateResponse(HttpStatusCode.OK, xTools, MediaTypeHeaderValue.Parse("application/json"));
 
         }
     }

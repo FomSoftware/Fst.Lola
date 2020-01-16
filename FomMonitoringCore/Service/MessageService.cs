@@ -11,10 +11,10 @@ namespace FomMonitoringCore.Service
 {
     public class MessageService : IMessageService
     {
-        private IMessageMachineRepository _messageMachineRepository;
-        private IMachineRepository _machineRepository;
-        private IMessagesIndexRepository _messagesIndexRepository;
-        private IFomMonitoringEntities _context;
+        private readonly IMessageMachineRepository _messageMachineRepository;
+        private readonly IMachineRepository _machineRepository;
+        private readonly IMessagesIndexRepository _messagesIndexRepository;
+        private readonly IFomMonitoringEntities _context;
 
         public MessageService(IMessageMachineRepository messageMachineRepository, IMachineRepository machineRepository, IMessagesIndexRepository messagesIndexRepository, IFomMonitoringEntities context)
         {
@@ -78,7 +78,7 @@ namespace FomMonitoringCore.Service
                                     {
                                         g.Day,                                      
                                         g.MachineId,                                       
-                                        g.Type,
+                                        TypeId = g.MessagesIndex?.MessageType.Id,
                                         g.Period
                                     }).ToList()
                                     .Select(s => new AggregationMessageModel
@@ -88,7 +88,7 @@ namespace FomMonitoringCore.Service
                                         MachineId = s.Key.MachineId,
                                         Period = s.Key.Period,
                                         TypeHistory = "d",
-                                        Type = s.Key.Type
+                                        Type = s.Key.TypeId
                                     }).ToList();
 
                                 return historyMessages.Adapt<List<HistoryMessageModel>>();
@@ -97,20 +97,20 @@ namespace FomMonitoringCore.Service
                             {
                                 var historyMessagesWeek = _context.Set <HistoryMessage>()
                                     .Where(hm => hm.MachineId == machine.Id && hm.Day >= period.StartDate
-                                        && hm.Day <= period.EndDate && hm.Code != null).ToList()
+                                        && hm.Day <= period.EndDate && hm.MessagesIndex.MessageCode != null).ToList()
                                     .GroupBy(g => new
                                     {
                                         Year = g.Day.HasValue ? (int?)g.Day.Value.Year : null,
                                         Week = g.Day.Value.GetWeekNumber(),
-                                        g.MachineId,                                       
-                                        g.Type,
+                                        g.MachineId,
+                                        g.MessagesIndex?.MessageTypeId,
                                         Period = g.Day.HasValue ? (int?)g.Day.Value.Year * 100 + g.Day.Value.GetWeekNumber() : null,
 
                                     }).ToList().Select(s => new AggregationMessageModel
                                     {                                                                              
                                         Count = s.Sum(x => x.Count),
                                         Day = s.Max(i => i.Day),
-                                        Type = s.Key.Type,
+                                        Type = s.Key.MessageTypeId,
                                         MachineId = s.Key.MachineId,                                   
                                         Period = s.Key.Period,
                                         TypeHistory = "w"
@@ -122,13 +122,13 @@ namespace FomMonitoringCore.Service
                             {
                                 var historyMessagesMonth = _context.Set<HistoryMessage>()
                                     .Where(hm => hm.MachineId == machine.Id
-                                        && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.Code != null).ToList()
+                                        && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.MessagesIndex.MessageCode != null).ToList()
                                     .GroupBy(g => new
                                     {
                                         Year = g.Day.HasValue ? (int?)g.Day.Value.Year : null,
                                         Week = g.Day.Value.Month,
-                                        g.MachineId,                                                                 
-                                        g.Type,
+                                        g.MachineId,
+                                        Type = g.MessagesIndex?.MessageTypeId,
                                         Period = g.Day.HasValue ? (int?)g.Day.Value.Year * 100 + g.Day.Value.Month : null,
 
                                     }).ToList().Select(s => new AggregationMessageModel
@@ -147,13 +147,13 @@ namespace FomMonitoringCore.Service
                             {
                                 var historyMessagesQuarter = _context.Set<HistoryMessage>()
                                     .Where(hm => hm.MachineId == machine.Id
-                                        && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.Code != null).ToList()
+                                        && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.MessagesIndex.MessageCode != null).ToList()
                                     .GroupBy(g => new
                                     {
                                         Year = g.Day.HasValue ? (int?)g.Day.Value.Year : null,
                                         Week = g.Day.Value.Month,
                                         g.MachineId,
-                                        g.Type,
+                                        g.MessagesIndex?.MessageTypeId,
                                         Period = g.Day.HasValue ? (int?)g.Day.Value.Year * 100 + GetQuarter(g.Day ?? DateTime.UtcNow) : null,
 
                                     }).ToList().Select(s => new AggregationMessageModel
@@ -164,7 +164,7 @@ namespace FomMonitoringCore.Service
                                         MachineId = s.Key.MachineId,
                                         Period = s.Key.Period,
                                         TypeHistory = "q",
-                                        Type = s.Key.Type
+                                        Type = s.Key.MessageTypeId
                                     }).ToList();
 
                                 return historyMessagesQuarter.Adapt<List<HistoryMessageModel>>();
@@ -173,13 +173,13 @@ namespace FomMonitoringCore.Service
                             {
                                 var historyMessagesYear = _context.Set<HistoryMessage>()
                                     .Where(hm => hm.MachineId == machine.Id
-                                        && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.Code != null).ToList()
+                                        && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.MessagesIndex.MessageCode != null).ToList()
                                     .GroupBy(g => new
                                     {
                                         Year = g.Day.HasValue ? (int?)g.Day.Value.Year : null,
                                         Week = g.Day.Value.Month,
                                         g.MachineId,
-                                        g.Type,
+                                        g.MessagesIndex.MessageTypeId,
                                         Period = g.Day.HasValue ? (int?)g.Day.Value.Year : null,
 
                                     }).ToList().Select(s => new AggregationMessageModel
@@ -190,7 +190,7 @@ namespace FomMonitoringCore.Service
                                         MachineId = s.Key.MachineId,
                                         Period = s.Key.Period,
                                         TypeHistory = "y",
-                                        Type = s.Key.Type
+                                        Type = s.Key.MessageTypeId
                                     }).ToList();
 
                                 return historyMessagesYear.Adapt<List<HistoryMessageModel>>();
@@ -198,19 +198,19 @@ namespace FomMonitoringCore.Service
                             break;
                         case enDataType.Summary:
                             var historyMessagesSummary = _context.Set<HistoryMessage>()
-                                .Where(hm => hm.MachineId == machine.Id && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.Code != null).ToList()
+                                .Where(hm => hm.MachineId == machine.Id && hm.Day >= period.StartDate && hm.Day <= period.EndDate && hm.MessagesIndex.MessageCode != null).ToList()
                                 .GroupBy(g => new
                                 {
                                     g.MachineId,
                                     //g.Params,
                                     //g.Group,
                                     //g.StateId,
-                                    g.Code
+                                    g.MessagesIndex.MessageCode
 
                                 }).ToList().Select(s => new AggregationMessageModel
                                 {
                                     Id = s.Max(m => m.Id),
-                                    Code = s.Key.Code,
+                                    Code = s.Key.MessageCode,
                                     //StateId = s.Key.StateId,
                                     Count = s.Sum(i => i.Count),
                                     Day = s.Max(i => i.Day),
@@ -285,20 +285,7 @@ namespace FomMonitoringCore.Service
             try
             {
 
-                    var query = _messageMachineRepository.GetMachineMessages(machine.Id, period.StartDate, period.EndDate).ToList();
-
-                var cat = _machineRepository.GetByID(machine.Id).MachineModel.MessageCategoryId;
-                var msgs = _messagesIndexRepository.Get(m => m.MessageCategoryId == cat, tracked: false);
-
-                query = query.Where(m =>
-                    {
-                        var msg = msgs.FirstOrDefault(i => i.MessageCode.Trim().Equals(m.Code.Trim(), StringComparison.InvariantCultureIgnoreCase));
-                        if (msg == null) return false;
-                        
-                        return msg.IsVisibleLOLA;
-                    }).ToList();
-
-                    
+                    var query = _messageMachineRepository.GetMachineMessages(machine.Id, period.StartDate, period.EndDate, false, true).ToList();
 
                     result = query.Adapt<List<MessageMachine>, List<MessageMachineModel>>();
                 
@@ -318,7 +305,7 @@ namespace FomMonitoringCore.Service
         {            
             if(mm.IsPeriodicMsg == true)
             {
-                var cat = _context.Set<Machine>().Find(mm.MachineId).MachineModel.MessageCategoryId;
+                var cat = _context.Set<Machine>().Find(mm.MachineId)?.MachineModel.MessageCategoryId;
                 var msg = _context.Set<MessagesIndex>().FirstOrDefault(f => f.MessageCode == mm.Code && f.MessageCategoryId == cat && f.PeriodicSpan != null);
                 if (msg == null) return null;
                 var span = msg.PeriodicSpan ?? 0;
@@ -345,13 +332,12 @@ namespace FomMonitoringCore.Service
             try
             {                
                     var query = _context.Set<MessageMachine>().Where(m => m.MachineId == machine.Id &&                                        
-                                        m.Machine.ActivationDate != null &&
-                                        m.IsPeriodicMsg != null && m.IsPeriodicMsg == true).OrderByDescending(o => o.Day).ToList();
+                                        m.Machine.ActivationDate != null && m.MessagesIndex.IsPeriodicM == true).OrderByDescending(o => o.Day).ToList();
       
                     query = query.Where(m =>
                     {
                         var cat = _context.Set<Machine>().Find(m.MachineId)?.MachineModel.MessageCategoryId;
-                        var msg = _context.Set<MessagesIndex>().FirstOrDefault(f => f.MessageCode == m.Code && f.MessageCategoryId == cat);
+                        var msg = _context.Set<MessagesIndex>().FirstOrDefault(f => f.MessageCode == m.MessagesIndex.MessageCode && f.MessageCategoryId == cat);
                         if (msg == null) return false;
                         var span = msg.PeriodicSpan ?? 0;
                                      
@@ -457,8 +443,8 @@ namespace FomMonitoringCore.Service
                         foreach (var messaggio in messaggi)
                         {
                             //messaggi periodici in base alla data di attivazione e allo span specificato nel messageIndex
-                            var mess = _messageMachineRepository.GetFirstOrDefault(mm => mm.MachineId == machine.Id && mm.IsPeriodicMsg == true &&
-                                                         mm.Code == messaggio.MessageCode);
+                            var mess = _messageMachineRepository.GetFirstOrDefault(mm => mm.MachineId == machine.Id && mm.MessagesIndex.IsPeriodicM == true &&
+                                                         mm.MessagesIndex.MessageCode == messaggio.MessageCode);
 
                             // i messaggi delle macchine al cui modello è associato un messaggio di default 
                             // hanno come data la data di attivazione della macchina
@@ -490,13 +476,15 @@ namespace FomMonitoringCore.Service
 
         public void InsertMessageMachine(Machine machine, string code, DateTime day)
         {
+
+            var msgIndex = _context.Set<MessagesIndex>().FirstOrDefault(mi =>
+                mi.MessageCode == code && mi.MessageCategory.Id == machine.MachineModel.MessageCategoryId);
             var msg = new MessageMachine()
             {
-                Code = code,
                 MachineId = machine.Id,
-                IsPeriodicMsg = true,
                 Day = day,
-                IsVisible = true
+                MessagesIndexId = msgIndex?.Id,
+                MessagesIndex = msgIndex
             };
             _context.Set<MessageMachine>().Add(msg);
         }
