@@ -111,6 +111,14 @@
         }
 
 
+        if (vmImageMachine.isLargeTablet()  && vmImageMachine.machineGroupSelected != null ) {
+            $('#MsgPanel').removeClass("col-xl-6 col-lg-6");
+            $('#MsgPanel').addClass("col-xl-12 col-lg-12");
+        } else {
+            $('#MsgPanel').removeClass("col-xl-12 col-lg-12");
+            $('#MsgPanel').addClass("col-xl-6 col-lg-6");
+        }
+
         MachineManager.initFlipAndSwipMenu();
 
 
