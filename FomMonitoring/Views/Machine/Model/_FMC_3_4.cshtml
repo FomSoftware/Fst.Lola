@@ -99,12 +99,12 @@
 
                 @Html.Partial("Panels/_Maintenance", Model.Maintenance, new ViewDataDictionary
                 {
-                    {"Classes", "col-xxl-4 col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12 order-lg-last order-xl-last"}
+                    {"Classes", "col-xxl-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 order-lg-last order-xl-last"}
                 })
                 <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 placeholder-panel-mobile" style="min-height: 298px;">
                     <div class="empty-area" style="height: 100%"></div>
                 </div>
-                <div class="col-xxl-8 col-xl-6 col-lg-12 col-md-12 col-sm-12 order-lg-11 order-xl-11">
+                <div id="MsgPanel" class="col-xxl-8 col-xl-6 col-lg-6 col-md-12 col-sm-12 order-lg-11 order-xl-11">
                     <div class="row">
                         <div class="col-12">
                             @Html.Partial("Panels/_Messages", Model.Messages)
