@@ -14,13 +14,11 @@ namespace FomMonitoringBLL.ViewServices
     public class MessagesViewService : IMessagesViewService
     {
         private readonly IMessageService _messageService;
-        private readonly IReadMessages _readMessages;
         private readonly IContextService _contextService;
 
-        public MessagesViewService(IMessageService messageService, IReadMessages readMessages, IContextService contextService)
+        public MessagesViewService(IMessageService messageService, IContextService contextService)
         {
             _messageService = messageService;
-            _readMessages = readMessages;
             _contextService = contextService;
         }
 
@@ -82,7 +80,7 @@ namespace FomMonitoringBLL.ViewServices
             var messages = data.Select(a => new MessageDataModel()
             {
                 code = a.Code,
-                type = _readMessages.GetMessageType(a.Code, machine.Id) != null ? ((enTypeAlarm)_readMessages.GetMessageType(a.Code, machine.Id)).GetDescription() : String.Empty,
+                type = ((enTypeAlarm)a.Type).GetDescription(),
                 //((enTypeAlarm)a.StateId).GetDescription(),
                 parameters = a.Params,
                 time = CommonViewService.getTimeViewModel(a.ElapsedTime),

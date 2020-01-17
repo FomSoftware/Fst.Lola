@@ -10,7 +10,7 @@ namespace FomMonitoringBLL.ViewServices
 {
     public class SpindleViewService : ISpindleViewService
     {
-        private ISpindleService _spindleService;
+        private readonly ISpindleService _spindleService;
 
         public SpindleViewService(ISpindleService spindleService)
         {

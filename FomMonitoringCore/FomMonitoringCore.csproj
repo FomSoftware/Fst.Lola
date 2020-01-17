@@ -349,8 +349,6 @@
     <Compile Include="Framework\Common\EmailSender.cs" />
     <Compile Include="Framework\Common\Enumerators.cs" />
     <Compile Include="Framework\Common\ExtensionMethods.cs" />
-    <Compile Include="Framework\Common\IReadMessages.cs" />
-    <Compile Include="Framework\Common\ReadMessages.cs" />
     <Compile Include="Framework\Config\MapsterConfig.cs" />
     <Compile Include="Framework\Model\AggregationBarModel.cs" />
     <Compile Include="Framework\Model\AggregationMessageModel.cs" />

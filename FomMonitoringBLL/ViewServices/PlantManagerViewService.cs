@@ -10,7 +10,7 @@ namespace FomMonitoringBLL.ViewServices
 {
     public class PlantManagerViewService : IPlantManagerViewService
     {
-        IPlantManagerService _plantManagerService;
+        readonly IPlantManagerService _plantManagerService;
 
         public PlantManagerViewService(IPlantManagerService plantManagerService)
         {

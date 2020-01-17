@@ -13,12 +13,10 @@ namespace FomMonitoringBLL.ViewServices
 {
     public class MaintenanceViewService : IMaintenanceViewService
     {
-        private IReadMessages _readMessages;
-        private IMessageService _messageService;
+        private readonly IMessageService _messageService;
 
-        public MaintenanceViewService(IReadMessages readMessages, IMessageService messageService)
+        public MaintenanceViewService( IMessageService messageService)
         {
-            _readMessages = readMessages;
             _messageService = messageService;
         }
 
@@ -45,7 +43,7 @@ namespace FomMonitoringBLL.ViewServices
             {
                 id = a.Id,
                 code = a.Code,
-                type = ((enTypeAlarm)_readMessages.GetMessageType(a.Code, machine.Id)).GetDescription(),
+                type = ((enTypeAlarm)a.Type).GetDescription(),
                 time = CommonViewService.getTimeViewModel(a.ElapsedTime),
                 timestamp = DateTime.SpecifyKind(a.Day.HasValue ? a.Day.Value : DateTime.MinValue, DateTimeKind.Utc),
                 utc = machine.UTC,

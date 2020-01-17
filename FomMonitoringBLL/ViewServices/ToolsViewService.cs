@@ -13,10 +13,10 @@ namespace FomMonitoringBLL.ViewServices
 
         public class ToolsViewService : IToolsViewService
     {
-        private IMachineService _machineService;
-        private IContextService _contextService;
-        private IParameterMachineService _parameterMachineService;
-        private IToolService _toolService;
+        private readonly IMachineService _machineService;
+        private readonly IContextService _contextService;
+        private readonly IParameterMachineService _parameterMachineService;
+        private readonly IToolService _toolService;
 
         public ToolsViewService(IMachineService machineService, IContextService contextService,
              IToolService toolService, IParameterMachineService parameterMachineService)

@@ -21,12 +21,10 @@ namespace FomMonitoringBLL.ViewServices
 
     public class NotificationViewService: INotificationViewService
     {
-        private readonly IReadMessages _readMessages;
         private readonly IMessageService _messageService;
 
-        public NotificationViewService(IReadMessages readMessages, IMessageService messageService)
+        public NotificationViewService(IMessageService messageService)
         {
-            _readMessages = readMessages;
             _messageService = messageService;
 
         }

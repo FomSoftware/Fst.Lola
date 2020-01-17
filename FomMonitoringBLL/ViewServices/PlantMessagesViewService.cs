@@ -12,13 +12,11 @@ namespace FomMonitoringBLL.ViewServices
     public class PlantMessagesViewService : IPlantMessagesViewService
     {
         private readonly IMessageService _messageService;
-        private readonly IReadMessages _readMessages;
         private readonly IMesService _mesService;
 
-        public PlantMessagesViewService(IMessageService messageService, IReadMessages readMessages, IMesService mesService)
+        public PlantMessagesViewService(IMessageService messageService, IMesService mesService)
         {
             _messageService = messageService;
-            _readMessages = readMessages;
             _mesService = mesService;
         }
 

@@ -12,7 +12,7 @@ namespace FomMonitoringBLL.ViewServices
 {
     public class JobsViewService : IJobsViewService
     {
-        private IJobService _jobService;
+        private readonly IJobService _jobService;
 
         public JobsViewService(IJobService jobService)
         {

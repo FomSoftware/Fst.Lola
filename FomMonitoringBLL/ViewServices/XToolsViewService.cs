@@ -13,8 +13,8 @@ namespace FomMonitoringBLL.ViewServices
 {
     public class XToolsViewService : IXToolsViewService
     {
-        private IContextService _contextService;
-        private IToolService _toolService;
+        private readonly IContextService _contextService;
+        private readonly IToolService _toolService;
 
         public XToolsViewService(IContextService contextService, IToolService toolService)
         {
