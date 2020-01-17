@@ -38,6 +38,27 @@
         });
     };
 
+    var callAjaxMachineMessageViewModelData = function(filters) {
+        WaitmeManager.start("#CardMessages");
+        $.when(
+                buildRequest(urls.urlMessages, filters))
+            .done(function (messages) {
+                $(".slimscroll").slimScroll({ destroy: true });
+
+                Messages.update(messages);
+
+                Vue.nextTick(function () {
+                    initProgressBar();
+                    initFlipCard();
+                    initScrollBar();
+                });
+
+
+            }).always(function () {
+                WaitmeManager.end("#CardMessages");
+            });
+    }
+
     var callAjaxMachineViewModelData = function (filters) {
 
         WaitmeManager.start("body");
@@ -140,6 +161,8 @@
         $("[data-group='" + group + "']").removeClass("active");
         $(itemActive + "[data-group='" + group + "']").addClass("active");
     }
+
+
 
 
     var initFlipAndSwipMenu = function ()
@@ -342,6 +365,7 @@
     return {
         init: init,
         callAjaxMachineViewModelData: callAjaxMachineViewModelData,
+        callAjaxMachineMessageViewModelData: callAjaxMachineMessageViewModelData,
         initVueComponents: initVueComponents,
         getColorKPI: getColorKPI,
         initScrollBar: initScrollBar,

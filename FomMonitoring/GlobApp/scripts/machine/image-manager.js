@@ -23,7 +23,7 @@
 
                     /*if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(a) ||
                         (/iPad/i.test(a) && $(window).width() < 1200))*/
-                    if ($(window).width() > 992 && $(window).width() <= 1200)
+                    if ($(window).width() > 992 && $(window).width() <= 1000)
                         check = true;
 
                 })(navigator.userAgent || navigator.vendor || window.opera);
@@ -35,7 +35,7 @@
 
                     /*if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(a) ||
                         (/iPad/i.test(a) && $(window).width() < 1200))*/
-                    if ($(window).width() > 1200 && $(window).width() <= 1400)
+                    if ($(window).width() > 1000 && $(window).width() <= 1400)
                         check = true;
 
                 })(navigator.userAgent || navigator.vendor || window.opera);
@@ -46,7 +46,7 @@
 
     var checkVisibility = function() {
         if (vmImageMachine.machinePanelSelected == 'maintenance' ||
-            (!(vmImageMachine.isLargeTablet() || vmImageMachine.isTablet() || vmImageMachine.isMobile()) &&
+            (!(vmImageMachine.isTablet() || vmImageMachine.isMobile()) &&
                 (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
             Maintenance.show();
         } else {
@@ -54,7 +54,7 @@
         }
 
         if (vmImageMachine.machinePanelSelected == 'efficiency' ||
-            (!(vmImageMachine.isLargeTablet() || vmImageMachine.isTablet() || vmImageMachine.isMobile()) &&
+            (!(vmImageMachine.isTablet() || vmImageMachine.isMobile()) &&
                 (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
             Efficiency.show();
         } else {
@@ -62,7 +62,7 @@
         }
 
         if (vmImageMachine.machinePanelSelected == 'production' ||
-            (!(vmImageMachine.isLargeTablet() || vmImageMachine.isTablet() || vmImageMachine.isMobile()) &&
+            (!(vmImageMachine.isTablet() || vmImageMachine.isMobile()) &&
                 (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
             Productivity.show();
         } else {
@@ -70,7 +70,7 @@
         }
 
         if (vmImageMachine.machinePanelSelected == 'ordersStandard' ||
-            (!(vmImageMachine.isLargeTablet() || vmImageMachine.isTablet() || vmImageMachine.isMobile()) &&
+            (!(vmImageMachine.isTablet() || vmImageMachine.isMobile()) &&
                 (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
             Jobs.show();
         } else {
@@ -112,6 +112,8 @@
 
 
         MachineManager.initFlipAndSwipMenu();
+
+
     }
 
 
@@ -122,6 +124,17 @@
         $("g[data-highlighted] path").css("fill", "transparent");
         $("g[data-highlighted='" + group + "'] path").css("fill", "pink");
 
+
+        var per = $('#calendar').data('daterangepicker');
+        var filters = {
+            period: {
+                start: per.startDate.toDate(),
+                end: per.endDate.toDate()
+            },
+            machineGroup: vmImageMachine.machineGroupSelected
+        };
+
+        MachineManager.callAjaxMachineMessageViewModelData(filters);
     };
 
     var selectPanel = function (element) {
@@ -136,6 +149,12 @@
     };
 
     var initMachineImage = function () {
+        $("g[data-group]").off("click");
+        $(".machine-group-selection button").off("click");
+        $("button[data-panel]").off("click");
+        $("#button-back-machine").off("click");
+
+
         $("g[data-group]").click(function (e) {
             e.preventDefault();
             selectMachineGroup(this);
