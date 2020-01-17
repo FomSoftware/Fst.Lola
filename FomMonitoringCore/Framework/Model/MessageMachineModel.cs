@@ -29,5 +29,6 @@ namespace FomMonitoringCore.Framework.Model
         public DateTime? IgnoreDate { get; set; }
         public bool? IsPeriodicMsg { get; set; }
         public object TypeName { get; internal set; }
+        public string Description { get; set; }
     }
 }

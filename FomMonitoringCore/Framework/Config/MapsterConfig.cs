@@ -26,7 +26,8 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.Group, src => src.MessagesIndex.MachineGroupId)
                 .Map(dest => dest.GroupName, src => src.MessagesIndex.MachineGroup.MachineGroupName)
                 .Map(dest => dest.Type, src => src.MessagesIndex.MessageTypeId)
-                .Map(dest => dest.IsPeriodicMsg, src => src.MessagesIndex.IsPeriodicM);
+                .Map(dest => dest.IsPeriodicMsg, src => src.MessagesIndex.IsPeriodicM)
+                .Map(dest => dest.Description, src => src.GetDescription((int)MapContext.Current.Parameters["idLanguage"]));
 
             config.NewConfig<Bar, BarModel>();
             config.NewConfig<HistoryMessage, HistoryMessageModel>()

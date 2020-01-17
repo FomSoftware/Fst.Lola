@@ -38,6 +38,7 @@ namespace FomMonitoringCore.Ioc
             instancesFoRequest.Add(builder.RegisterType<MachineRepository>().As<IMachineRepository>());
             instancesFoRequest.Add(builder.RegisterType<PanelRepository>().As<IPanelRepository>());
             instancesFoRequest.Add(builder.RegisterType<SpindleRepository>().As<ISpindleRepository>());
+            instancesFoRequest.Add(builder.RegisterType<HistoryMessageRepository>().As<IHistoryMessageRepository>());
             instancesFoRequest.Add(builder.RegisterType<HistoryJobRepository>().As<IHistoryJobRepository>());
             instancesFoRequest.Add(builder.RegisterType<ParameterMachineRepository>().As<IParameterMachineRepository>());
             instancesFoRequest.Add(builder.RegisterType<ParameterMachineValueRepository>().As<IParameterMachineValueRepository>());
@@ -52,6 +53,7 @@ namespace FomMonitoringCore.Ioc
             instancesFoRequest.Add(builder.RegisterType<SqLiteToSqlServerService>().As<ISQLiteToSQLServerService>());
             instancesFoRequest.Add(builder.RegisterType<ReadMessages>().As<IReadMessages>());
             instancesFoRequest.Add(builder.RegisterType<PieceService>().As<IPieceService>());
+            instancesFoRequest.Add(builder.RegisterType<LanguageService>().As<ILanguageService>());
             instancesFoRequest.Add(builder.RegisterType<StateService>().As<IStateService>());
             instancesFoRequest.Add(builder.RegisterType<MessageService>().As<IMessageService>());
             instancesFoRequest.Add(builder.RegisterType<UnitOfWork>().As<IUnitOfWork>());

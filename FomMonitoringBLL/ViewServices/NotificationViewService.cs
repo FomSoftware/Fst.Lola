@@ -57,15 +57,12 @@ namespace FomMonitoringBLL.ViewServices
                     {
                         id = a.Id,
                         code = a.Code,
-                        type = ((enTypeAlarm)_readMessages.GetMessageType(a.Code, machine.Id)).GetDescription(),
+                        type = ((enTypeAlarm)a.Type).GetDescription(),
                         time = CommonViewService.getTimeViewModel(a.ElapsedTime),
                         timestamp = DateTime.SpecifyKind(a.Day ?? DateTime.MinValue, DateTimeKind.Utc),
                         utc = machine.UTC,
                         expiredSpan = CommonViewService.getTimeViewModel(_messageService.GetExpiredSpan(a)),
-                        description = (a.Code != null)
-                            ? _readMessages.GetMessageDescription(a.Code, machine.Id, null,
-                                CultureInfo.CurrentCulture.Name)
-                            : "",
+                        description = a.Description,
                             machineName = machine.MachineName,
                             machineModel = machine.Model.Name
                     }).ToList();

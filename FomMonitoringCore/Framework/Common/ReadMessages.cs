@@ -51,56 +51,36 @@ namespace FomMonitoringCore.Framework.Common
 
         //}       
 
+        //public string GetMessageDescription(MessageMachine msg, string language)
+        //{
 
-        public string GetMessageDescription(string code, int machineId, string parameters, string language)
-        {
-            try
-            {
-                var result = "";
+        //        var result = "";
+                
 
-                var cat = _machineRepository.GetByID(machineId)?.MachineModel?.MessageCategoryId;
+        //        var la = _messageLanguagesRepository.GetFirstOrDefault(lan => lan.DotNetCulture.StartsWith(language));
+        //        if (la == null)
+        //            return string.Empty;
 
-                if (!(cat > 0))
-                    return string.Empty;
-
-                var la = _messageLanguagesRepository.GetFirstOrDefault(lan => lan.DotNetCulture.StartsWith(language));
-                if (la == null)
-                    return string.Empty;
-
-                var languageId = la.Id;
+        //        var languageId = la.Id;
 
 
-                result = _messageTranslationRepository.GetFirstOrDefault(t =>
-                    t.MessageLanguageId == languageId && t.MessagesIndex.MessageCode == code &&
-                    t.MessagesIndex.MessageCategoryId == cat)?.Translation;
+        //        result = msg.MessagesIndex.MessageTranslation.FirstOrDefault(t => t.MessageLanguageId == languageId)?.Translation;
 
 
-                if (result == null)
-                    return string.Empty;
+        //        if (result == null)
+        //            return string.Empty;
 
 
-                if (string.IsNullOrEmpty(parameters))
-                    return result;
+        //        if (string.IsNullOrEmpty(msg.Params))
+        //            return result;
 
-                Dictionary<string, string> parDict =
-                    JsonConvert.DeserializeObject<Dictionary<string, string>>(parameters);
-
-                foreach (string key in parDict.Keys)
-                {
-                    result = result.Replace(key, parDict[key]);
-                }
+        //        var parDict =
+        //            JsonConvert.DeserializeObject<Dictionary<string, string>>(msg.Params);
 
 
+        //        return parDict.Keys.Aggregate(result, (current, key) => current.Replace(key, parDict[key]));
 
-                return result;
-            }
-            catch (Exception e)
-            {
-                Debugger.Break();
-            }
-
-            return null;
-        }
+        //}
 
         public string GetMessageGroup(string code, int machineId, int? jsonGroupId)
         {
@@ -160,8 +140,8 @@ namespace FomMonitoringCore.Framework.Common
 
         public string ReplaceFirstOccurrence(string source, string find, string replace)
         {
-            int place = source.IndexOf(find);
-            string result = source.Remove(place, find.Length).Insert(place, replace);
+            var place = source.IndexOf(find);
+            var result = source.Remove(place, find.Length).Insert(place, replace);
 
             return result;
         }

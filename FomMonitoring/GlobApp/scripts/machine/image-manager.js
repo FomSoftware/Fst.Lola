@@ -77,19 +77,19 @@
             Jobs.hide();
         }
 
-        if (vmImageMachine.machineGroupSelected == 'FMC3-4_axes') {
+        if (vmImageMachine.machineGroupSelected == 'FMC_3_4_Axes_Carri') {
             OtherData.show();
         } else {
             OtherData.hide();
         }
 
-        if (vmImageMachine.machineGroupSelected == 'FMC3-4_spindles') {
+        if (vmImageMachine.machineGroupSelected == 'FMC_3_4_Spindle') {
             ElectroSpindle.show();
         } else {
             ElectroSpindle.hide();
         }
 
-        if (vmImageMachine.machineGroupSelected == 'FMC3-4_tools') {
+        if (vmImageMachine.machineGroupSelected == 'FMC_3_4_Tools') {
             ToolsFmcLmx.show();
         } else {
             ToolsFmcLmx.hide();
@@ -182,7 +182,16 @@
                 $("g[data-highlighted] path").css("fill", "transparent");
                 vmImageMachine.machineGroupSelected = null;
                 vmImageMachine.machinePanelSelected = null;
+                var per = $('#calendar').data('daterangepicker');
+                var filters = {
+                    period: {
+                        start: per.startDate.toDate(),
+                        end: per.endDate.toDate()
+                    },
+                    machineGroup: null
+                };
 
+                MachineManager.callAjaxMachineMessageViewModelData(filters);
                 checkVisibility();
             }
         });

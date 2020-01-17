@@ -12,7 +12,7 @@ namespace FomMonitoringCore.Repository
 
         }
 
-        public IEnumerable<MessageMachine> GetMachineMessages(int idMachine, DateTime start, DateTime end, bool includePeriodicMsg = false, bool onlyVisible = false)
+        public IEnumerable<MessageMachine> GetMachineMessages(int idMachine, DateTime start, DateTime end, int? machineGroup = null, bool includePeriodicMsg = false, bool onlyVisible = false)
         {
             var query = 
                     context.Set<MessageMachine>()
@@ -30,6 +30,11 @@ namespace FomMonitoringCore.Repository
             if (onlyVisible)
             {
                 query = query.Where(m => m.MessagesIndex != null && m.MessagesIndex.IsVisibleLOLA);
+            }
+
+            if (machineGroup.HasValue)
+            {
+                query = query.Where(m => m.MessagesIndex != null && m.MessagesIndex.MachineGroupId == machineGroup);
             }
 
             return query.ToList();

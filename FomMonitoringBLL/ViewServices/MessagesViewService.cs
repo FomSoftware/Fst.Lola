@@ -38,7 +38,7 @@ namespace FomMonitoringBLL.ViewServices
         {
             var result = new MessageDetailsVueModel();
 
-            var data = _messageService.GetMessageDetails(actualMachine, actualPeriod);
+            var data = _messageService.GetMessageDetails(actualMachine, actualPeriod, actualMachineGroup);
 
             if (data.Count == 0)
                 return result;
@@ -49,10 +49,10 @@ namespace FomMonitoringBLL.ViewServices
                 parameters = a.Params,
                 timestamp = DateTime.SpecifyKind(a.Day ?? DateTime.MinValue, DateTimeKind.Utc),
                 utc = actualMachine.UTC ?? 0,
-                type = ((enTypeAlarm)_readMessages.GetMessageType(a.Code, actualMachine.Id)).GetDescription(),
-                //((enTypeAlarm)a.StateId).GetDescription(),
-                group = _readMessages.GetMessageGroup(a.Code, actualMachine.Id, a.Group),
-                description = _readMessages.GetMessageDescription(a.Code, actualMachine.Id, a.Params, CultureInfo.CurrentCulture.Name)
+                type = ((enTypeAlarm)a.Type).GetDescription(),
+                group = a.GroupName,
+                time = CommonViewService.getTimeViewModel(a.ElapsedTime),
+                description = a.Description
             }).ToList();
 
             messages = messages.OrderByDescending(o => o.timestamp).ToList();
@@ -74,7 +74,7 @@ namespace FomMonitoringBLL.ViewServices
         {
             var result = new MessageVueModel();
 
-            var data = _messageService.GetAggregationMessages(machine, period, enDataType.Summary);
+            var data = _messageService.GetAggregationMessages(machine, period, enDataType.Summary, actualMachineGroup);
 
             if (data.Count == 0)
                 return result;
@@ -88,7 +88,7 @@ namespace FomMonitoringBLL.ViewServices
                 time = CommonViewService.getTimeViewModel(a.ElapsedTime),
                 quantity = a.Count ?? 0,
                 day = a.Day == null ? "-" : a.Day.Value.ToString("t"),
-                description = (a.Code != null) ? _readMessages.GetMessageDescription(a.Code, machine.Id, a.Params, CultureInfo.CurrentCulture.Name) : ""
+                description = a.Description
             }).ToList();
 
             messages = messages.OrderByDescending(o => o.quantity).ToList();

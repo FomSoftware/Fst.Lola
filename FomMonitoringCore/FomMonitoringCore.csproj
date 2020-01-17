@@ -399,6 +399,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\HistoryJobRepository.cs" />
+    <Compile Include="Repository\HistoryMessageRepository.cs" />
     <Compile Include="Repository\HistoryPieceRepository.cs" />
     <Compile Include="Repository\HistoryStateRepository.cs" />
     <Compile Include="Repository\IGenericRepository.cs" />
@@ -453,6 +454,7 @@
     <Compile Include="Service\IBarService.cs" />
     <Compile Include="Service\IContextService.cs" />
     <Compile Include="Service\IJobService.cs" />
+    <Compile Include="Service\ILanguageService.cs" />
     <Compile Include="Service\IMachineService.cs" />
     <Compile Include="Service\IMessageService.cs" />
     <Compile Include="Service\IMesService.cs" />
@@ -463,6 +465,7 @@
     <Compile Include="Service\IStateService.cs" />
     <Compile Include="Service\IToolService.cs" />
     <Compile Include="Service\JobService.cs" />
+    <Compile Include="Service\LanguageService.cs" />
     <Compile Include="Service\LogService.cs" />
     <Compile Include="Service\MachineService.cs" />
     <Compile Include="Service\MessageService.cs" />

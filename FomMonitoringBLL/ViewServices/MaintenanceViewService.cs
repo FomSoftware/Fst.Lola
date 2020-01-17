@@ -50,7 +50,7 @@ namespace FomMonitoringBLL.ViewServices
                 timestamp = DateTime.SpecifyKind(a.Day.HasValue ? a.Day.Value : DateTime.MinValue, DateTimeKind.Utc),
                 utc = machine.UTC,
                 expiredSpan = CommonViewService.getTimeViewModel(_messageService.GetExpiredSpan(a)),
-                description = (a.Code != null) ? _readMessages.GetMessageDescription(a.Code, machine.Id, null, CultureInfo.CurrentCulture.Name) : ""
+                description = a.Description
             }).ToList();
 
             messages = messages.OrderByDescending(o => o.time.elapsed).ToList();
