@@ -188,7 +188,7 @@
         columns.push({ title: resource.Machines, data: "Machines", width: 40 });
         columns.push({ title: "", data: 'Language', orderable: false, width: 15 });
         columns.push({ title: "", data: "Modify", orderable: false });
-        columns.push({ title: "", data: "ChangePassword", orderable: false })
+        columns.push({ title: "", data: "ChangePassword", orderable: false });
         columns.push({ title: "", data: "Delete", orderable: false });
 
         var config = {
@@ -577,24 +577,25 @@
         return regex.test(email);
 
     }
-
+    var getUrl = window.location;
+    var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
     var setLanguageFlag = function (val) {
         var result;
         switch (val) {
             case 'English':
-                result = '/Images/flags/en.png';
+                result = baseUrl + '/Images/flags/en.png';
                 break;
             case 'Italian':
-                result = '/Images/flags/it.png';
+                result = baseUrl + '/Images/flags/it.png';
                 break;
             case 'Spanish':
-                result = '/Images/flags/es.png';
+                result = baseUrl + '/Images/flags/es.png';
                 break;
             case 'French':
-                result = '/Images/flags/fr.png';
+                result = baseUrl + '/Images/flags/fr.png';
                 break;
             case 'German':
-                result = '/Images/flags/de.png';
+                result = baseUrl + '/Images/flags/de.png';
                 break;
         }
         return result;
