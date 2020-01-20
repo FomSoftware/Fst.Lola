@@ -2362,7 +2362,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <NavigationProperty Name="ParameterMachineValue" Relationship="FST_FomMonitoringModel.FK_ParameterMachineValue_ParameterMachineId" FromRole="ParameterMachine" ToRole="ParameterMachineValue" />
           <Property Name="Historicized" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PanelId" Type="Int32" />
-          <NavigationProperty Name="Panel1" Relationship="FST_FomMonitoringModel.FK_ParameterMachine_Panel" FromRole="ParameterMachine" ToRole="Panel" />
+          <NavigationProperty Name="Panel" Relationship="FST_FomMonitoringModel.FK_ParameterMachine_Panel" FromRole="ParameterMachine" ToRole="Panel" />
         </EntityType>
         <Association Name="FK_ParameterMachine_MachineModel">
           <End Type="FST_FomMonitoringModel.MachineModel" Role="MachineModel" Multiplicity="1" />
