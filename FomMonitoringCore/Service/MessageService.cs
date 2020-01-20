@@ -225,7 +225,8 @@ namespace FomMonitoringCore.Service
                                     Description = g.GetDescription(cl),
                                     //g.Group,
                                     //g.StateId,
-                                    g.MessagesIndex.MessageCode
+                                    g.MessagesIndex.MessageCode,
+                                    g.MessagesIndex?.MessageTypeId
 
                                 }).ToList().Select(s => new AggregationMessageModel
                                 {
@@ -238,7 +239,8 @@ namespace FomMonitoringCore.Service
                                     //Group = s.Key.Group,
                                     MachineId = s.Key.MachineId,
                                     TypeHistory = "y",
-                                    Description = s.Key.Description
+                                    Description = s.Key.Description,
+                                    Type = s.Key.MessageTypeId
                                 }).ToList();
 
                             return historyMessagesSummary.BuildAdapter().AdaptToType<List<HistoryMessageModel>>();
