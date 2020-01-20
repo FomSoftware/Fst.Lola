@@ -132,6 +132,7 @@
 
     var selectMachineGroup = function (element) {
         var group = $(element).data('group');
+        $("[data-panel]").removeClass("selected");
         vmImageMachine.machineGroupSelected = group;
         vmImageMachine.machinePanelSelected = null;
         $("g[data-highlighted] path").css("fill", "transparent");
