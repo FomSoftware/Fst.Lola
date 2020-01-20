@@ -123,8 +123,11 @@
 
 
     }
-    var selectedGroup = function() {
-        return vmImageMachine.machineGroupSelected;
+    var selectedGroup = function () {
+        if (vmImageMachine)
+            return vmImageMachine.machineGroupSelected;
+        else
+            return null;
     }
 
     var selectMachineGroup = function (element) {

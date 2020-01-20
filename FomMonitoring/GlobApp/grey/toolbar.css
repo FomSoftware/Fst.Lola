@@ -248,3 +248,10 @@
     height: 21px;
     width: auto;
 }
+
+@media (max-width: 1096px) {
+    .btn-toolbar .title-btn { font-size: 12px; }
+    .btn-toolbar {
+        padding: 7px 7px 5px 7px;
+    }
+}
