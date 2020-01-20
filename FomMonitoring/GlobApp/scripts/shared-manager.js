@@ -171,10 +171,14 @@
         }, function (start, end, label)
         {
             // callback change period
-            filters.period = {
-                start: start.toDate(),
-                end: end.toDate()
-            };
+            var filters = {
+                period: {
+                    start: start.toDate(),
+                    end: end.toDate()
+                },
+                machineGroup: ImageManager.selectedGroup()
+        };
+            
 
             if (this.locale.customRangeLabel == label)
                 label = getLabelCalendar(this.startDate, this.endDate, formatLabel);

@@ -123,7 +123,9 @@
 
 
     }
-
+    var selectedGroup = function() {
+        return vmImageMachine.machineGroupSelected;
+    }
 
     var selectMachineGroup = function (element) {
         var group = $(element).data('group');
@@ -242,9 +244,10 @@
 
         initMachineImage();
     };
-    
+
     return {
-        init: init
+        init: init,
+        selectedGroup: selectedGroup
     };
 
 }();
