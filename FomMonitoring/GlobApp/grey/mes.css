@@ -417,6 +417,6 @@
 
 .form-group.row .control-label {
     align-self: flex-end;
-    text-align: left;
+    text-align: right;
     padding-left: 28px;
 }

@@ -640,7 +640,9 @@ em,
     background-color: #ddd;
     text-align: right;
 }
-
+.modal-disclaimer {
+    text-align: left;
+}
 .modal-content {
     position: relative;
     background-color: #eee;

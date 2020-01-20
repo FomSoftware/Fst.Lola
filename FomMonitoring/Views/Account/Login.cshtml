@@ -73,7 +73,7 @@
                         <img class="logo2" src="~/Images/logo/Log_On_Live_Automation-600x100px.png">
                     </div>
                     <div class="content col-12">
-                        @using (Html.BeginForm("/Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form" }))
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form" }))
                         {
                             @Html.AntiForgeryToken()
                             <div class="form-group">
