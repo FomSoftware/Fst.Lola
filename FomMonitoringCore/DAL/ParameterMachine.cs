@@ -45,6 +45,6 @@ namespace FomMonitoringCore.DAL
         public virtual MachineModel MachineModel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ParameterMachineValue> ParameterMachineValue { get; set; }
-        public virtual Panel Panel1 { get; set; }
+        public virtual Panel Panel { get; set; }
     }
 }
