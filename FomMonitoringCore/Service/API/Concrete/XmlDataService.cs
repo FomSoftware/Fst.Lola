@@ -14,23 +14,20 @@ namespace FomMonitoringCore.Service.API.Concrete
 {
     public class XmlDataService : IXmlDataService
     {
+        private readonly IFomMonitoringEntities _context;
 
         public XmlDataService(IFomMonitoringEntities context)
         {
             _context = context;
         }
-
-        private IFomMonitoringEntities _context { get; }
-
+        
         public async Task AddOrUpdateMachineParameterAsync(ParametersMachineModelXml m)
         {
-
-            var panelsXml = m.Parameters.Parameter.Where(p => p.PANEL_ID > 0).Select(p => p.PANEL_ID).Distinct().ToList();
-            
             var machineModel = _context.Set<MachineModel>().FirstOrDefault(mac => mac.ModelCodev997 == m.ModelCodeV997);
-            var list = m.Parameters.Parameter.BuildAdapter().AddParameters("idMachineModel", machineModel.Id).AddParameters("modelCode", m.ModelCodeV997).AdaptToType<List<ParameterMachine>>();
             if (machineModel != null)
             {
+                var list = m.Parameters.Parameter.BuildAdapter().AddParameters("idMachineModel", machineModel.Id).AddParameters("modelCode", m.ModelCodeV997).AdaptToType<List<ParameterMachine>>();
+
                 foreach (var i in list)
                 {
                     var old = _context.Set<ParameterMachine>().FirstOrDefault(pm => pm.ModelCode == i.ModelCode && pm.VarNumber == i.VarNumber);

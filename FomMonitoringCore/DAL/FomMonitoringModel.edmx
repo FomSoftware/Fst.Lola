@@ -299,14 +299,13 @@
           <Property Name="WLevel" Type="nvarchar" MaxLength="50" />
           <Property Name="RLevel" Type="nvarchar" MaxLength="50" />
           <Property Name="HmiSection" Type="nvarchar" MaxLength="50" />
-          <Property Name="LolaLabel" Type="nvarchar" MaxLength="50" />
+          <Property Name="LolaLabel" Type="nvarchar" MaxLength="250" />
           <Property Name="ThresholdMin" Type="nvarchar" MaxLength="50" />
           <Property Name="ThresholdMax" Type="nvarchar" MaxLength="50" />
           <Property Name="ThresholdLabel" Type="nvarchar" MaxLength="50" />
           <Property Name="PanelId" Type="int" />
           <Property Name="Cluster" Type="nvarchar" MaxLength="50" />
           <Property Name="Historicized" Type="nvarchar" MaxLength="50" />
-          <Property Name="Panel" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ParameterMachineValue">
           <Key>
@@ -2352,7 +2351,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="WLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="RLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HmiSection" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LolaLabel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LolaLabel" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ThresholdMin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ThresholdMax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ThresholdLabel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
