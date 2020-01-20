@@ -558,7 +558,7 @@
 
             if (!vmUsers.actual.ID && roleUser == enRoles.Customer) {
                 if (vmUsers.actual.Password == undefined || vmUsers.actual.Password == null || vmUsers.actual.Password.trim() == "" || vmUsers.actual.Password.length < 6) {
-                    errorSwal(resource.PasswordShort);
+                    errorSwal(resource.PasswordPolicy);
                     return false;
                 }
             }
@@ -651,7 +651,7 @@
             if (newPassword != repeatPassword)
                 errorSwal(resourceChangePassword.PasswordNotSame);
             else if (newPassword.length < 6)
-                errorSwal(resourceChangePassword.PasswordShort);
+                errorSwal(resourceChangePassword.PasswordPolicy);
             else
                 changePassword(data);     
                 
