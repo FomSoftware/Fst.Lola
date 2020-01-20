@@ -577,25 +577,24 @@
         return regex.test(email);
 
     }
-    var getUrl = window.location;
-    var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+
     var setLanguageFlag = function (val) {
         var result;
         switch (val) {
             case 'English':
-                result = baseUrl + '/Images/flags/en.png';
+                result = '/Images/flags/en.png';
                 break;
             case 'Italian':
-                result = baseUrl + '/Images/flags/it.png';
+                result = '/Images/flags/it.png';
                 break;
             case 'Spanish':
-                result = baseUrl + '/Images/flags/es.png';
+                result = '/Images/flags/es.png';
                 break;
             case 'French':
-                result = baseUrl + '/Images/flags/fr.png';
+                result = '/Images/flags/fr.png';
                 break;
             case 'German':
-                result = baseUrl + '/Images/flags/de.png';
+                result = '/Images/flags/de.png';
                 break;
         }
         return result;
