@@ -56,7 +56,7 @@
         //inizializzo con la posizione minima selezionata es. 11
         $("g[data-mmspindle-index = '" + selectedPosition + "'] circle").css({ 'fill': 'black' });
         $("g[data-mmspindle-index = '" + selectedPosition + "'] text").css({ 'fill': 'white' });
-        $('[data-mmspindle-label="POSIZIONE"]').text(posLabel);
+        $('[data-mmspindle-label="POSIZIONE"]').html(posLabel);
         $("g[data-mmspindle-index = '" + selectedPosition + "'] circle").attr("r", "11");
 
         $("g[data-mmspindle-index]").click(function (e) {

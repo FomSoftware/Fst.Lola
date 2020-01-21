@@ -441,6 +441,501 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to KM axis 1A1.
+        /// </summary>
+        public static string DistAsse1A1_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse1A1_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N° Half-Turns Axis 1A1.
+        /// </summary>
+        public static string DistAsse1A1_SemiRotazioni {
+            get {
+                return ResourceManager.GetString("DistAsse1A1_SemiRotazioni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 1Y1.
+        /// </summary>
+        public static string DistAsse1X1_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse1X1_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 1X2.
+        /// </summary>
+        public static string DistAsse1X2_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse1X2_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 1Y1.
+        /// </summary>
+        public static string DistAsse1Y1_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse1Y1_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 1Y2.
+        /// </summary>
+        public static string DistAsse1Y2_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse1Y2_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 1Y3.
+        /// </summary>
+        public static string DistAsse1Y3_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse1Y3_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 1Y4.
+        /// </summary>
+        public static string DistAsse1Y4_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse1Y4_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 1Z1.
+        /// </summary>
+        public static string DistAsse1Z1_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse1Z1_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 1Z2.
+        /// </summary>
+        public static string DistAsse1Z2_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse1Z2_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 1Z4.
+        /// </summary>
+        public static string DistAsse1Z4_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse1Z4_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2A1.
+        /// </summary>
+        public static string DistAsse2A1_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2A1_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N° Half-Turns Axis 2A1.
+        /// </summary>
+        public static string DistAsse2A1_SemiRotazioni {
+            get {
+                return ResourceManager.GetString("DistAsse2A1_SemiRotazioni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2A2.
+        /// </summary>
+        public static string DistAsse2A2_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2A2_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N° Half-Turns Axis 2A2.
+        /// </summary>
+        public static string DistAsse2A2_SemiRotazioni {
+            get {
+                return ResourceManager.GetString("DistAsse2A2_SemiRotazioni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2A3.
+        /// </summary>
+        public static string DistAsse2A3_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2A3_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N° Half-Turns Axis 2A3.
+        /// </summary>
+        public static string DistAsse2A3_SemiRotazioni {
+            get {
+                return ResourceManager.GetString("DistAsse2A3_SemiRotazioni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2A4.
+        /// </summary>
+        public static string DistAsse2A4_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2A4_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N° Half-Turns Axis 2A4.
+        /// </summary>
+        public static string DistAsse2A4_SemiRotazioni {
+            get {
+                return ResourceManager.GetString("DistAsse2A4_SemiRotazioni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2A5.
+        /// </summary>
+        public static string DistAsse2A5_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2A5_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N° Half-Turns Axis 2A5.
+        /// </summary>
+        public static string DistAsse2A5_SemiRotazioni {
+            get {
+                return ResourceManager.GetString("DistAsse2A5_SemiRotazioni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2A6.
+        /// </summary>
+        public static string DistAsse2A6_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2A6_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N° Half-Turns Axis 2A6.
+        /// </summary>
+        public static string DistAsse2A6_SemiRotazioni {
+            get {
+                return ResourceManager.GetString("DistAsse2A6_SemiRotazioni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2W1.
+        /// </summary>
+        public static string DistAsse2W1_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2W1_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2W2.
+        /// </summary>
+        public static string DistAsse2W2_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2W2_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2W3.
+        /// </summary>
+        public static string DistAsse2W3_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2W3_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2W4.
+        /// </summary>
+        public static string DistAsse2W4_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2W4_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2X1.
+        /// </summary>
+        public static string DistAsse2X1_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2X1_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2X2.
+        /// </summary>
+        public static string DistAsse2X2_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2X2_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2Y1.
+        /// </summary>
+        public static string DistAsse2Y1_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2Y1_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2Y4.
+        /// </summary>
+        public static string DistAsse2Y4_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2Y4_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2Y5.
+        /// </summary>
+        public static string DistAsse2Y5_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2Y5_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2Z1.
+        /// </summary>
+        public static string DistAsse2Z1_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2Z1_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2Z2.
+        /// </summary>
+        public static string DistAsse2Z2_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2Z2_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2Z3.
+        /// </summary>
+        public static string DistAsse2Z3_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2Z3_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2Z4.
+        /// </summary>
+        public static string DistAsse2Z4_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2Z4_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 2Z5.
+        /// </summary>
+        public static string DistAsse2Z5_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse2Z5_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 3C1.
+        /// </summary>
+        public static string DistAsse3C1_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse3C1_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N° Half-Turns Axis 3C1.
+        /// </summary>
+        public static string DistAsse3C1_SemiRotazioni {
+            get {
+                return ResourceManager.GetString("DistAsse3C1_SemiRotazioni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 3C2.
+        /// </summary>
+        public static string DistAsse3C2_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse3C2_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N° Half-Turns Axis 3C2.
+        /// </summary>
+        public static string DistAsse3C2_SemiRotazioni {
+            get {
+                return ResourceManager.GetString("DistAsse3C2_SemiRotazioni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 3X1.
+        /// </summary>
+        public static string DistAsse3X1_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse3X1_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 3X2.
+        /// </summary>
+        public static string DistAsse3X2_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse3X2_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 3X3.
+        /// </summary>
+        public static string DistAsse3X3_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse3X3_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 3X4.
+        /// </summary>
+        public static string DistAsse3X4_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse3X4_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 3Y1.
+        /// </summary>
+        public static string DistAsse3Y1_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse3Y1_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 3Y2.
+        /// </summary>
+        public static string DistAsse3Y2_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse3Y2_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 3Y5.
+        /// </summary>
+        public static string DistAsse3Y5_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse3Y5_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 3Y6.
+        /// </summary>
+        public static string DistAsse3Y6_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse3Y6_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 3Z1.
+        /// </summary>
+        public static string DistAsse3Z1_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse3Z1_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 3Z2.
+        /// </summary>
+        public static string DistAsse3Z2_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse3Z2_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 3Z3.
+        /// </summary>
+        public static string DistAsse3Z3_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse3Z3_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 3Z4.
+        /// </summary>
+        public static string DistAsse3Z4_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse3Z4_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 3Z5.
+        /// </summary>
+        public static string DistAsse3Z5_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse3Z5_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KM axis 3Z6.
+        /// </summary>
+        public static string DistAsse3Z6_Metri {
+            get {
+                return ResourceManager.GetString("DistAsse3Z6_Metri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Done.
         /// </summary>
         public static string Done {
@@ -693,11 +1188,92 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to LINEAR AXES.
+        /// </summary>
+        public static string LMX650_LinearAxes {
+            get {
+                return ResourceManager.GetString("LMX650_LinearAxes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MULTISPINDLE TOOLS.
+        /// </summary>
+        public static string LMX650_MMTools {
+            get {
+                return ResourceManager.GetString("LMX650_MMTools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 650 MOTOR/BLADE (X-MODULE).
+        /// </summary>
+        public static string LMX650_Motor_Blade {
+            get {
+                return ResourceManager.GetString("LMX650_Motor_Blade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MULTISPINDLE.
         /// </summary>
         public static string LMX650_Multispindles {
             get {
                 return ResourceManager.GetString("LMX650_Multispindles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XMU ROTARY AXES/TOOL MAG. (X-MODULE).
+        /// </summary>
+        public static string LMX650_RotaryAxes {
+            get {
+                return ResourceManager.GetString("LMX650_RotaryAxes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TILTING MULTISPINDLE AXES.
+        /// </summary>
+        public static string LMX650_TiltingMSAxes {
+            get {
+                return ResourceManager.GetString("LMX650_TiltingMSAxes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XMU ELECTROSPINDLE SENSORS.
+        /// </summary>
+        public static string LMX650_XMUSp_Sensors {
+            get {
+                return ResourceManager.GetString("LMX650_XMUSp_Sensors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XMU ELECTROSPINDLE (X-MODULE).
+        /// </summary>
+        public static string LMX650_XMUSpindle {
+            get {
+                return ResourceManager.GetString("LMX650_XMUSpindle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XMU TOOLS (X-MODULE).
+        /// </summary>
+        public static string LMX650_XMUTools {
+            get {
+                return ResourceManager.GetString("LMX650_XMUTools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OTHER MACHINE DATA.
+        /// </summary>
+        public static string LMXMachineData {
+            get {
+                return ResourceManager.GetString("LMXMachineData", resourceCulture);
             }
         }
         
@@ -990,6 +1566,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Step-In bars loaded.
+        /// </summary>
+        public static string n_barrecaricate_Stat {
+            get {
+                return ResourceManager.GetString("n_barrecaricate_Stat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
@@ -1220,6 +1805,15 @@ namespace FomMonitoringResources {
         public static string Ore_vita_lama_ef {
             get {
                 return ResourceManager.GetString("Ore_vita_lama_ef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Machine Working Hours.
+        /// </summary>
+        public static string ore1_Stat {
+            get {
+                return ResourceManager.GetString("ore1_Stat", resourceCulture);
             }
         }
         
@@ -1674,6 +2268,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hours since last greasing.
+        /// </summary>
+        public static string secIngrassaturaAUTOMATICA {
+            get {
+                return ResourceManager.GetString("secIngrassaturaAUTOMATICA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Serial.
         /// </summary>
         public static string Serial {
@@ -1746,6 +2349,105 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Imbalance q.ty.
+        /// </summary>
+        public static string TabAccelContatoreINT_2 {
+            get {
+                return ResourceManager.GetString("TabAccelContatoreINT_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vibrations q.ty.
+        /// </summary>
+        public static string TabAccelContatoreINT_3 {
+            get {
+                return ResourceManager.GetString("TabAccelContatoreINT_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Low threshold Vibration Time.
+        /// </summary>
+        public static string TabAccelerometroINT_1 {
+            get {
+                return ResourceManager.GetString("TabAccelerometroINT_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medium threshold Vibration Time.
+        /// </summary>
+        public static string TabAccelerometroINT_2 {
+            get {
+                return ResourceManager.GetString("TabAccelerometroINT_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to High threshold Vibration Time.
+        /// </summary>
+        public static string TabAccelerometroINT_3 {
+            get {
+                return ResourceManager.GetString("TabAccelerometroINT_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No. Tool changes fork 1.
+        /// </summary>
+        public static string TabCambioUtForcella1INT {
+            get {
+                return ResourceManager.GetString("TabCambioUtForcella1INT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No. Tool changes fork 2.
+        /// </summary>
+        public static string TabCambioUtForcella2INT {
+            get {
+                return ResourceManager.GetString("TabCambioUtForcella2INT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No. Tool changes fork 3.
+        /// </summary>
+        public static string TabCambioUtForcella3INT {
+            get {
+                return ResourceManager.GetString("TabCambioUtForcella3INT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No. Gripper releases.
+        /// </summary>
+        public static string TabCambioUtMandrinoINT {
+            get {
+                return ResourceManager.GetString("TabCambioUtMandrinoINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No. Labels lost.
+        /// </summary>
+        public static string TabEtichettePerse {
+            get {
+                return ResourceManager.GetString("TabEtichettePerse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ore Totali Mandrino Intestatrice.
+        /// </summary>
+        public static string TabRpmTotMandriniINT {
+            get {
+                return ResourceManager.GetString("TabRpmTotMandriniINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ore di Lavoro Totali.
         /// </summary>
         public static string TabRpmTotMandriniMM {
@@ -1755,11 +2457,182 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Excessive absorption q.ty.
+        /// </summary>
+        public static string TabSoglieAmpereContatoreINT {
+            get {
+                return ResourceManager.GetString("TabSoglieAmpereContatoreINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exc. absorption time med. threshold.
+        /// </summary>
+        public static string TabSoglieAmpereMandriniCUT_1 {
+            get {
+                return ResourceManager.GetString("TabSoglieAmpereMandriniCUT_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exc. absorption time high threshold.
+        /// </summary>
+        public static string TabSoglieAmpereMandriniINT_1 {
+            get {
+                return ResourceManager.GetString("TabSoglieAmpereMandriniINT_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range 0-1500 rpm &lt;br&gt; time passed.
+        /// </summary>
+        public static string TabSoglieRpmMandriniCUT_1 {
+            get {
+                return ResourceManager.GetString("TabSoglieRpmMandriniCUT_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range 1501-2500 rpm &lt;br&gt; time passed.
+        /// </summary>
+        public static string TabSoglieRpmMandriniCUT_2 {
+            get {
+                return ResourceManager.GetString("TabSoglieRpmMandriniCUT_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range 0-1500 rpm &lt;br&gt; time passed.
+        /// </summary>
+        public static string TabSoglieRpmMandriniINT_1 {
+            get {
+                return ResourceManager.GetString("TabSoglieRpmMandriniINT_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range 1501-5000 rpm &lt;br&gt; time passed.
+        /// </summary>
+        public static string TabSoglieRpmMandriniINT_2 {
+            get {
+                return ResourceManager.GetString("TabSoglieRpmMandriniINT_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range 5001-8000 rpm &lt;br&gt; time passed.
+        /// </summary>
+        public static string TabSoglieRpmMandriniINT_3 {
+            get {
+                return ResourceManager.GetString("TabSoglieRpmMandriniINT_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range 8001-11500 rpm &lt;br&gt; time passed.
+        /// </summary>
+        public static string TabSoglieRpmMandriniINT_4 {
+            get {
+                return ResourceManager.GetString("TabSoglieRpmMandriniINT_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range 11500-14500 rpm &lt;br&gt; time passed.
+        /// </summary>
+        public static string TabSoglieRpmMandriniINT_5 {
+            get {
+                return ResourceManager.GetString("TabSoglieRpmMandriniINT_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range 14501-20000 rpm &lt;br&gt; time passed.
+        /// </summary>
+        public static string TabSoglieRpmMandriniINT_6 {
+            get {
+                return ResourceManager.GetString("TabSoglieRpmMandriniINT_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Range Rpm.
         /// </summary>
         public static string TabSoglieRpmMandriniMM {
             get {
                 return ResourceManager.GetString("TabSoglieRpmMandriniMM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Partial blade cuts (from replace).
+        /// </summary>
+        public static string TabTagliContatoreParzCUT {
+            get {
+                return ResourceManager.GetString("TabTagliContatoreParzCUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bearings Over-Temperature q.ty.
+        /// </summary>
+        public static string TabTemperCuscinettiContatoreINT {
+            get {
+                return ResourceManager.GetString("TabTemperCuscinettiContatoreINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bearings Over-Temperature time.
+        /// </summary>
+        public static string TabTemperCuscinettiMinutiINT {
+            get {
+                return ResourceManager.GetString("TabTemperCuscinettiMinutiINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Board Over-Temperature q.ty.
+        /// </summary>
+        public static string TabTemperSchedaContatoreINT {
+            get {
+                return ResourceManager.GetString("TabTemperSchedaContatoreINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Board Over-Temperature time.
+        /// </summary>
+        public static string TabTemperSchedaMinutiINT {
+            get {
+                return ResourceManager.GetString("TabTemperSchedaMinutiINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stator Over-Temperature q.ty.
+        /// </summary>
+        public static string TabTemperStatoreContatoreINT {
+            get {
+                return ResourceManager.GetString("TabTemperStatoreContatoreINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stator Over-Temperature time.
+        /// </summary>
+        public static string TabTemperStatoreMinutiINT {
+            get {
+                return ResourceManager.GetString("TabTemperStatoreMinutiINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cod1 tool working hours.
+        /// </summary>
+        public static string TabVitaUtensileMM_Cod1 {
+            get {
+                return ResourceManager.GetString("TabVitaUtensileMM_Cod1", resourceCulture);
             }
         }
         
@@ -1805,6 +2678,15 @@ namespace FomMonitoringResources {
         public static string TimeOn {
             get {
                 return ResourceManager.GetString("TimeOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to time passed.
+        /// </summary>
+        public static string TimePassed {
+            get {
+                return ResourceManager.GetString("TimePassed", resourceCulture);
             }
         }
         
@@ -1994,6 +2876,15 @@ namespace FomMonitoringResources {
         public static string Usury {
             get {
                 return ResourceManager.GetString("Usury", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shock q.ty.
+        /// </summary>
+        public static string v_HSD_NumCollRilevate {
+            get {
+                return ResourceManager.GetString("v_HSD_NumCollRilevate", resourceCulture);
             }
         }
         

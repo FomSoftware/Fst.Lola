@@ -1,0 +1,96 @@
+﻿@model FomMonitoringBLL.ViewModel.MachineViewModel
+@using FomMonitoringResources
+
+<div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">    
+    <div class="row">
+            @Html.Partial("Panels/_Efficiency", Model.Efficiency, new ViewDataDictionary
+            {
+                { "Classes", "col-12" }
+            })
+    </div>
+</div>
+<div class="col-xxl-8 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+    <div class="row">
+        <div class="col-12">
+            @Html.Partial("Panels/_Messages", Model.Messages)
+        </div>
+    </div>
+</div>
+<div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+    <div class="row">
+            @Html.Partial("Panels/_Productivity", Model.Productivity, new ViewDataDictionary
+            {
+                { "Classes", "col-12" }
+            })
+    </div>
+    <div class="row">
+        <div class="col-12">
+            @Html.Partial("./Panels/MultiSpindles/_Multispindle", Model.PanelParameter)
+        </div>
+    </div>
+   
+    @if (Model.MachinePanels.Contains((int)enPanel.XSpindles))
+    {
+        <div class="row">
+                @Html.Partial("./Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter, new ViewDataDictionary
+                {
+                    { "Classes", "col-12" }
+                })
+        </div>
+    }
+</div>
+<div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+    <div class="row">
+
+            @Html.Partial("Panels/_Jobs", Model.Jobs, new ViewDataDictionary
+            {
+                { "Classes", "col-12" }
+            })
+    </div>
+    <div class="row">
+                @Html.Partial("./Panels/Tools/_FmcLmx", Model.PanelParameter, new ViewDataDictionary
+                {
+                    { "Classes", "col-12" }
+                }))
+        </div>
+
+    @if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)
+    {
+        <div class="row">
+            <div class="col-12">
+                @Html.Partial("Panels/_XTools", Model.XTools)
+            </div>
+        </div>
+    }
+</div>
+<div class="col-xxl-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">        
+    <div class="row">
+            @Html.Partial("Panels/_Maintenance", Model.Maintenance, new ViewDataDictionary
+            {
+                { "Classes", "col-12" }
+            })      
+    </div>
+</div>
+
+@if (Model.MachinePanels.Contains((int)enPanel.Electrospindle))
+{
+    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div class="row">
+                @Html.Partial("Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter, new ViewDataDictionary
+                {
+                    { "Classes", "col-12" }
+                })
+        </div>
+    </div>
+}
+@if (Model.MachinePanels.Contains((int)enPanel.OtherMachineData))
+{
+    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div class="row">
+                @Html.Partial("Panels/ElectroSpindle/_OtherMachineData", Model.PanelParameter, new ViewDataDictionary
+                {
+                    { "Classes", "col-12" }
+                })
+        </div>
+    </div>
+}

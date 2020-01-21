@@ -776,4 +776,304 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="TabRpmTotMandriniMM" xml:space="preserve">
     <value>Ore Lavoro totali</value>
   </data>
+  <data name="LMX650_LinearAxes" xml:space="preserve">
+    <value>LINEAR AXES</value>
+  </data>
+  <data name="LMX650_MMTools" xml:space="preserve">
+    <value>MULTISPINDLE TOOLS</value>
+  </data>
+  <data name="LMX650_Motor_Blade" xml:space="preserve">
+    <value>650 MOTOR/BLADE (X-MODULE)</value>
+  </data>
+  <data name="LMX650_Multispindles" xml:space="preserve">
+    <value>MULTISPINDLE</value>
+  </data>
+  <data name="LMX650_RotaryAxes" xml:space="preserve">
+    <value>XMU ROTARY AXES/TOOL MAG. (X-MODULE)</value>
+  </data>
+  <data name="LMX650_TiltingMSAxes" xml:space="preserve">
+    <value>TILTING MULTISPINDLE AXES</value>
+  </data>
+  <data name="LMX650_XMUSp_Sensors" xml:space="preserve">
+    <value>XMU ELECTROSPINDLE SENSORS</value>
+  </data>
+  <data name="LMX650_XMUSpindle" xml:space="preserve">
+    <value>XMU ELECTROSPINDLE (X-MODULE)</value>
+  </data>
+  <data name="LMX650_XMUTools" xml:space="preserve">
+    <value>XMU TOOLS (X-MODULE)</value>
+  </data>
+  <data name="LMXMachineData" xml:space="preserve">
+    <value>OTHER MACHINE DATA</value>
+  </data>
+  <data name="ore1_Stat" xml:space="preserve">
+    <value>Machine Working Hours</value>
+  </data>
+  <data name="n_barrecaricate_Stat" xml:space="preserve">
+    <value>Step-In bars loaded</value>
+  </data>
+  <data name="secIngrassaturaAUTOMATICA" xml:space="preserve">
+    <value>Hours since last greasing</value>
+  </data>
+  <data name="DistAsse1X1_Metri" xml:space="preserve">
+    <value>KM axis 1Y1</value>
+  </data>
+  <data name="DistAsse1Y1_Metri" xml:space="preserve">
+    <value>KM axis 1Y1</value>
+  </data>
+  <data name="DistAsse1Z1_Metri" xml:space="preserve">
+    <value>KM axis 1Z1</value>
+  </data>
+  <data name="DistAsse1A1_Metri" xml:space="preserve">
+    <value>KM axis 1A1</value>
+  </data>
+  <data name="DistAsse1X2_Metri" xml:space="preserve">
+    <value>KM axis 1X2</value>
+  </data>
+  <data name="DistAsse1Y2_Metri" xml:space="preserve">
+    <value>KM axis 1Y2</value>
+  </data>
+  <data name="DistAsse1Z2_Metri" xml:space="preserve">
+    <value>KM axis 1Z2</value>
+  </data>
+  <data name="DistAsse1Y3_Metri" xml:space="preserve">
+    <value>KM axis 1Y3</value>
+  </data>
+  <data name="DistAsse1Y4_Metri" xml:space="preserve">
+    <value>KM axis 1Y4</value>
+  </data>
+  <data name="DistAsse1Z4_Metri" xml:space="preserve">
+    <value>KM axis 1Z4</value>
+  </data>
+  <data name="DistAsse2X1_Metri" xml:space="preserve">
+    <value>KM axis 2X1</value>
+  </data>
+  <data name="DistAsse2X2_Metri" xml:space="preserve">
+    <value>KM axis 2X2</value>
+  </data>
+  <data name="DistAsse2Y1_Metri" xml:space="preserve">
+    <value>KM axis 2Y1</value>
+  </data>
+  <data name="DistAsse2Z1_Metri" xml:space="preserve">
+    <value>KM axis 2Z1</value>
+  </data>
+  <data name="DistAsse2Z2_Metri" xml:space="preserve">
+    <value>KM axis 2Z2</value>
+  </data>
+  <data name="DistAsse2Z3_Metri" xml:space="preserve">
+    <value>KM axis 2Z3</value>
+  </data>
+  <data name="DistAsse2Y4_Metri" xml:space="preserve">
+    <value>KM axis 2Y4</value>
+  </data>
+  <data name="DistAsse2Z4_Metri" xml:space="preserve">
+    <value>KM axis 2Z4</value>
+  </data>
+  <data name="DistAsse2Y5_Metri" xml:space="preserve">
+    <value>KM axis 2Y5</value>
+  </data>
+  <data name="DistAsse2Z5_Metri" xml:space="preserve">
+    <value>KM axis 2Z5</value>
+  </data>
+  <data name="DistAsse2W1_Metri" xml:space="preserve">
+    <value>KM axis 2W1</value>
+  </data>
+  <data name="DistAsse2W2_Metri" xml:space="preserve">
+    <value>KM axis 2W2</value>
+  </data>
+  <data name="DistAsse2W3_Metri" xml:space="preserve">
+    <value>KM axis 2W3</value>
+  </data>
+  <data name="DistAsse2W4_Metri" xml:space="preserve">
+    <value>KM axis 2W4</value>
+  </data>
+  <data name="DistAsse2A1_Metri" xml:space="preserve">
+    <value>KM axis 2A1</value>
+  </data>
+  <data name="DistAsse2A2_Metri" xml:space="preserve">
+    <value>KM axis 2A2</value>
+  </data>
+  <data name="DistAsse2A3_Metri" xml:space="preserve">
+    <value>KM axis 2A3</value>
+  </data>
+  <data name="DistAsse2A4_Metri" xml:space="preserve">
+    <value>KM axis 2A4</value>
+  </data>
+  <data name="DistAsse2A5_Metri" xml:space="preserve">
+    <value>KM axis 2A5</value>
+  </data>
+  <data name="DistAsse2A6_Metri" xml:space="preserve">
+    <value>KM axis 2A6</value>
+  </data>
+  <data name="DistAsse3X1_Metri" xml:space="preserve">
+    <value>KM axis 3X1</value>
+  </data>
+  <data name="DistAsse3X2_Metri" xml:space="preserve">
+    <value>KM axis 3X2</value>
+  </data>
+  <data name="DistAsse3Y1_Metri" xml:space="preserve">
+    <value>KM axis 3Y1</value>
+  </data>
+  <data name="DistAsse3Z1_Metri" xml:space="preserve">
+    <value>KM axis 3Z1</value>
+  </data>
+  <data name="DistAsse3C1_Metri" xml:space="preserve">
+    <value>KM axis 3C1</value>
+  </data>
+  <data name="DistAsse3X3_Metri" xml:space="preserve">
+    <value>KM axis 3X3</value>
+  </data>
+  <data name="DistAsse3X4_Metri" xml:space="preserve">
+    <value>KM axis 3X4</value>
+  </data>
+  <data name="DistAsse3Y2_Metri" xml:space="preserve">
+    <value>KM axis 3Y2</value>
+  </data>
+  <data name="DistAsse3Z2_Metri" xml:space="preserve">
+    <value>KM axis 3Z2</value>
+  </data>
+  <data name="DistAsse3Z3_Metri" xml:space="preserve">
+    <value>KM axis 3Z3</value>
+  </data>
+  <data name="DistAsse3Z4_Metri" xml:space="preserve">
+    <value>KM axis 3Z4</value>
+  </data>
+  <data name="DistAsse3Y5_Metri" xml:space="preserve">
+    <value>KM axis 3Y5</value>
+  </data>
+  <data name="DistAsse3Z5_Metri" xml:space="preserve">
+    <value>KM axis 3Z5</value>
+  </data>
+  <data name="DistAsse3Y6_Metri" xml:space="preserve">
+    <value>KM axis 3Y6</value>
+  </data>
+  <data name="DistAsse3Z6_Metri" xml:space="preserve">
+    <value>KM axis 3Z6</value>
+  </data>
+  <data name="DistAsse3C2_Metri" xml:space="preserve">
+    <value>KM axis 3C2</value>
+  </data>
+  <data name="DistAsse1A1_SemiRotazioni" xml:space="preserve">
+    <value>N° Half-Turns Axis 1A1</value>
+  </data>
+  <data name="DistAsse2A1_SemiRotazioni" xml:space="preserve">
+    <value>N° Half-Turns Axis 2A1</value>
+  </data>
+  <data name="DistAsse2A2_SemiRotazioni" xml:space="preserve">
+    <value>N° Half-Turns Axis 2A2</value>
+  </data>
+  <data name="DistAsse2A3_SemiRotazioni" xml:space="preserve">
+    <value>N° Half-Turns Axis 2A3</value>
+  </data>
+  <data name="DistAsse2A4_SemiRotazioni" xml:space="preserve">
+    <value>N° Half-Turns Axis 2A4</value>
+  </data>
+  <data name="DistAsse2A5_SemiRotazioni" xml:space="preserve">
+    <value>N° Half-Turns Axis 2A5</value>
+  </data>
+  <data name="DistAsse2A6_SemiRotazioni" xml:space="preserve">
+    <value>N° Half-Turns Axis 2A6</value>
+  </data>
+  <data name="DistAsse3C1_SemiRotazioni" xml:space="preserve">
+    <value>N° Half-Turns Axis 3C1</value>
+  </data>
+  <data name="DistAsse3C2_SemiRotazioni" xml:space="preserve">
+    <value>N° Half-Turns Axis 3C2</value>
+  </data>
+  <data name="TabVitaUtensileMM_Cod1" xml:space="preserve">
+    <value>Cod1 tool working hours</value>
+  </data>
+  <data name="TabSoglieRpmMandriniCUT_1" xml:space="preserve">
+    <value>Range 0-1500 rpm &lt;br&gt; time passed</value>
+  </data>
+  <data name="TabSoglieRpmMandriniCUT_2" xml:space="preserve">
+    <value>Range 1501-2500 rpm &lt;br&gt; time passed</value>
+  </data>
+  <data name="TabSoglieRpmMandriniCUT_3&#x9;" xml:space="preserve">
+    <value>Range 2501-3000 rpm &lt;br&gt; time passed</value>
+  </data>
+  <data name="TabSoglieRpmMandriniINT_1" xml:space="preserve">
+    <value>Range 0-1500 rpm &lt;br&gt; time passed</value>
+  </data>
+  <data name="TabSoglieRpmMandriniINT_2" xml:space="preserve">
+    <value>Range 1501-5000 rpm &lt;br&gt; time passed</value>
+  </data>
+  <data name="TabSoglieRpmMandriniINT_3" xml:space="preserve">
+    <value>Range 5001-8000 rpm &lt;br&gt; time passed</value>
+  </data>
+  <data name="TabSoglieRpmMandriniINT_4" xml:space="preserve">
+    <value>Range 8001-11500 rpm &lt;br&gt; time passed</value>
+  </data>
+  <data name="TabSoglieRpmMandriniINT_5" xml:space="preserve">
+    <value>Range 11500-14500 rpm &lt;br&gt; time passed</value>
+  </data>
+  <data name="TabSoglieRpmMandriniINT_6" xml:space="preserve">
+    <value>Range 14501-20000 rpm &lt;br&gt; time passed</value>
+  </data>
+  <data name="TabCambioUtMandrinoINT" xml:space="preserve">
+    <value>No. Gripper releases</value>
+  </data>
+  <data name="TabCambioUtForcella1INT" xml:space="preserve">
+    <value>No. Tool changes fork 1</value>
+  </data>
+  <data name="TabCambioUtForcella2INT" xml:space="preserve">
+    <value>No. Tool changes fork 2</value>
+  </data>
+  <data name="TabCambioUtForcella3INT" xml:space="preserve">
+    <value>No. Tool changes fork 3</value>
+  </data>
+  <data name="v_HSD_NumCollRilevate" xml:space="preserve">
+    <value>Shock q.ty</value>
+  </data>
+  <data name="TabSoglieAmpereMandriniINT_1" xml:space="preserve">
+    <value>Exc. absorption time high threshold</value>
+  </data>
+  <data name="TabSoglieAmpereMandriniCUT_1" xml:space="preserve">
+    <value>Exc. absorption time med. threshold</value>
+  </data>
+  <data name="TabEtichettePerse" xml:space="preserve">
+    <value>No. Labels lost</value>
+  </data>
+  <data name="TabTagliContatoreParzCUT" xml:space="preserve">
+    <value>Partial blade cuts (from replace)</value>
+  </data>
+  <data name="TabAccelContatoreINT_2" xml:space="preserve">
+    <value>Imbalance q.ty</value>
+  </data>
+  <data name="TabAccelContatoreINT_3" xml:space="preserve">
+    <value>Vibrations q.ty</value>
+  </data>
+  <data name="TabTemperStatoreContatoreINT" xml:space="preserve">
+    <value>Stator Over-Temperature q.ty</value>
+  </data>
+  <data name="TabTemperCuscinettiContatoreINT" xml:space="preserve">
+    <value>Bearings Over-Temperature q.ty</value>
+  </data>
+  <data name="TabTemperSchedaContatoreINT" xml:space="preserve">
+    <value>Board Over-Temperature q.ty</value>
+  </data>
+  <data name="TabSoglieAmpereContatoreINT" xml:space="preserve">
+    <value>Excessive absorption q.ty</value>
+  </data>
+  <data name="TabTemperStatoreMinutiINT" xml:space="preserve">
+    <value>Stator Over-Temperature time</value>
+  </data>
+  <data name="TabTemperCuscinettiMinutiINT" xml:space="preserve">
+    <value>Bearings Over-Temperature time</value>
+  </data>
+  <data name="TabTemperSchedaMinutiINT" xml:space="preserve">
+    <value>Board Over-Temperature time</value>
+  </data>
+  <data name="TabAccelerometroINT_1" xml:space="preserve">
+    <value>Low threshold Vibration Time</value>
+  </data>
+  <data name="TabAccelerometroINT_2" xml:space="preserve">
+    <value>Medium threshold Vibration Time</value>
+  </data>
+  <data name="TabAccelerometroINT_3" xml:space="preserve">
+    <value>High threshold Vibration Time</value>
+  </data>
+  <data name="TimePassed" xml:space="preserve">
+    <value>time passed</value>
+  </data>
 </root>

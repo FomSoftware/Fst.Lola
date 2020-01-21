@@ -34,7 +34,7 @@ namespace FomMonitoringCore.Service
             }
 
             //se ci sono dati cerco tutti i parametri di quel modello per avere almeno le descrizioni
-            if(varNums.Any())
+            //if(varNums.Any())
             {
                 var parametri = _parameterMachineRepository.GetByParameters(machine.MachineModelId ?? 0, idPanel, idCluster, tracked: false).OrderBy(pp => pp.VarNumber).ToList();
 

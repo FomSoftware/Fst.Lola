@@ -172,7 +172,7 @@
     <value>Fertigstellung</value>
   </data>
   <data name="Spindles" xml:space="preserve">
-    <value>Mehrspindel</value>
+    <value>Multispindel</value>
   </data>
   <data name="Tools" xml:space="preserve">
     <value>Werkzeuge</value>
@@ -774,5 +774,305 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   </data>
   <data name="TabRpmTotMandriniMM" xml:space="preserve">
     <value />
+  </data>
+  <data name="LMX650_LinearAxes" xml:space="preserve">
+    <value>LINEARACHSEN</value>
+  </data>
+  <data name="LMX650_MMTools" xml:space="preserve">
+    <value>WERKZEUGE MULTISPINDEL</value>
+  </data>
+  <data name="LMX650_Motor_Blade" xml:space="preserve">
+    <value>MOTOR/SÄGEBL. 650 (X-MODUL)</value>
+  </data>
+  <data name="LMX650_Multispindles" xml:space="preserve">
+    <value>MULTISPINDEL</value>
+  </data>
+  <data name="LMX650_RotaryAxes" xml:space="preserve">
+    <value>DREHACHSEN XMU/WERKZEUGLAGER (X-MODULE)</value>
+  </data>
+  <data name="LMX650_TiltingMSAxes" xml:space="preserve">
+    <value>NEIGB. ACHSEN MULTISPINDEL</value>
+  </data>
+  <data name="LMX650_XMUSp_Sensors" xml:space="preserve">
+    <value>SENSOREN ELEKTROSPINDEL XMU</value>
+  </data>
+  <data name="LMX650_XMUSpindle" xml:space="preserve">
+    <value>ELEKTROSPINDEL XMU (X-MODULE)</value>
+  </data>
+  <data name="LMX650_XMUTools" xml:space="preserve">
+    <value>WERKZEUGE XMU (X-MODUL)</value>
+  </data>
+  <data name="LMXMachineData" xml:space="preserve">
+    <value>ANDERE MASCHINENDATEN</value>
+  </data>
+  <data name="ore1_Stat" xml:space="preserve">
+    <value>Lebensdauer Maschine</value>
+  </data>
+  <data name="n_barrecaricate_Stat" xml:space="preserve">
+    <value>Aufgeladene Stangen Step-In</value>
+  </data>
+  <data name="secIngrassaturaAUTOMATICA" xml:space="preserve">
+    <value>Stunden seit letzter Schmierung</value>
+  </data>
+  <data name="DistAsse1X1_Metri" xml:space="preserve">
+    <value>KM Achse 1X1</value>
+  </data>
+  <data name="DistAsse1Y1_Metri" xml:space="preserve">
+    <value>KM Achs 1Y1</value>
+  </data>
+  <data name="DistAsse1Z1_Metri" xml:space="preserve">
+    <value>KM Achs 1Z1</value>
+  </data>
+  <data name="DistAsse1A1_Metri" xml:space="preserve">
+    <value>KM Achs 1A1</value>
+  </data>
+  <data name="DistAsse1X2_Metri" xml:space="preserve">
+    <value>KM Achs 1X2</value>
+  </data>
+  <data name="DistAsse1Y2_Metri" xml:space="preserve">
+    <value>KM Achs 1Y2</value>
+  </data>
+  <data name="DistAsse1Z2_Metri" xml:space="preserve">
+    <value>KM Achs 1Z2</value>
+  </data>
+  <data name="DistAsse1Y3_Metri" xml:space="preserve">
+    <value>KM Achs 1Y3</value>
+  </data>
+  <data name="DistAsse1Y4_Metri" xml:space="preserve">
+    <value>KM Achs 1Y4</value>
+  </data>
+  <data name="DistAsse1Z4_Metri" xml:space="preserve">
+    <value>KM Achs 1Z4</value>
+  </data>
+  <data name="DistAsse2X1_Metri" xml:space="preserve">
+    <value>KM Achs 2X1</value>
+  </data>
+  <data name="DistAsse2X2_Metri" xml:space="preserve">
+    <value>KM Achs 2X2</value>
+  </data>
+  <data name="DistAsse2Y1_Metri" xml:space="preserve">
+    <value>KM Achs 2Y1</value>
+  </data>
+  <data name="DistAsse2Z1_Metri" xml:space="preserve">
+    <value>KM Achs 2Z1</value>
+  </data>
+  <data name="DistAsse2Z2_Metri" xml:space="preserve">
+    <value>KM Achs 2Z2</value>
+  </data>
+  <data name="DistAsse2Z3_Metri" xml:space="preserve">
+    <value>KM Achs 2Z3</value>
+  </data>
+  <data name="DistAsse2Y4_Metri" xml:space="preserve">
+    <value>KM Achs 2Y4</value>
+  </data>
+  <data name="DistAsse2Z4_Metri" xml:space="preserve">
+    <value>KM Achs 2Z4</value>
+  </data>
+  <data name="DistAsse2Y5_Metri" xml:space="preserve">
+    <value>KM Achs 2Y5</value>
+  </data>
+  <data name="DistAsse2Z5_Metri" xml:space="preserve">
+    <value>KM Achs 2Z5</value>
+  </data>
+  <data name="DistAsse2W1_Metri" xml:space="preserve">
+    <value>KM Achs 2W1</value>
+  </data>
+  <data name="DistAsse2W2_Metri" xml:space="preserve">
+    <value>KM Achs 2W2</value>
+  </data>
+  <data name="DistAsse2W3_Metri" xml:space="preserve">
+    <value>KM Achs 2W3</value>
+  </data>
+  <data name="DistAsse2W4_Metri" xml:space="preserve">
+    <value>KM Achs 2W4</value>
+  </data>
+  <data name="DistAsse2A1_Metri" xml:space="preserve">
+    <value>KM Achs 2A1</value>
+  </data>
+  <data name="DistAsse2A2_Metri" xml:space="preserve">
+    <value>KM Achs 2A2</value>
+  </data>
+  <data name="DistAsse2A3_Metri" xml:space="preserve">
+    <value>KM Achs 2A3</value>
+  </data>
+  <data name="DistAsse2A4_Metri" xml:space="preserve">
+    <value>KM Achs 2A4</value>
+  </data>
+  <data name="DistAsse2A5_Metri" xml:space="preserve">
+    <value>KM Achs 2A5</value>
+  </data>
+  <data name="DistAsse2A6_Metri" xml:space="preserve">
+    <value>KM Achs 2A6</value>
+  </data>
+  <data name="DistAsse3X1_Metri" xml:space="preserve">
+    <value>KM Achs 3X1</value>
+  </data>
+  <data name="DistAsse3X2_Metri" xml:space="preserve">
+    <value>KM Achs 3X2</value>
+  </data>
+  <data name="DistAsse3Y1_Metri" xml:space="preserve">
+    <value>KM Achs 3Y1</value>
+  </data>
+  <data name="DistAsse3Z1_Metri" xml:space="preserve">
+    <value>KM Achs 3Z1</value>
+  </data>
+  <data name="DistAsse3C1_Metri" xml:space="preserve">
+    <value>KM Achs 3C1</value>
+  </data>
+  <data name="DistAsse3X3_Metri" xml:space="preserve">
+    <value>KM Achs 3X3</value>
+  </data>
+  <data name="DistAsse3X4_Metri" xml:space="preserve">
+    <value>KM Achs 3X4</value>
+  </data>
+  <data name="DistAsse3Y2_Metri" xml:space="preserve">
+    <value>KM Achs 3Y2</value>
+  </data>
+  <data name="DistAsse3Z2_Metri" xml:space="preserve">
+    <value>KM Achs 3Z2</value>
+  </data>
+  <data name="DistAsse3Z3_Metri" xml:space="preserve">
+    <value>KM Achs 3Z3</value>
+  </data>
+  <data name="DistAsse3Z4_Metri" xml:space="preserve">
+    <value>KM Achs 3Z4</value>
+  </data>
+  <data name="DistAsse3Y5_Metri" xml:space="preserve">
+    <value>KM Achs 3Y5</value>
+  </data>
+  <data name="DistAsse3Z5_Metri" xml:space="preserve">
+    <value>KM Achs 3Z5</value>
+  </data>
+  <data name="DistAsse3Y6_Metri" xml:space="preserve">
+    <value>KM Achs 3Y6</value>
+  </data>
+  <data name="DistAsse3Z6_Metri" xml:space="preserve">
+    <value>KM Achs 3Z6</value>
+  </data>
+  <data name="DistAsse3C2_Metri" xml:space="preserve">
+    <value>KM Achs 3C2</value>
+  </data>
+  <data name="DistAsse1A1_SemiRotazioni" xml:space="preserve">
+    <value>Anz. Halbdrehungen Achse 1A1</value>
+  </data>
+  <data name="DistAsse2A1_SemiRotazioni" xml:space="preserve">
+    <value>Anz. Halbdrehungen Achses 2A1</value>
+  </data>
+  <data name="DistAsse2A2_SemiRotazioni" xml:space="preserve">
+    <value>Anz. Halbdrehungen Achses 2A2</value>
+  </data>
+  <data name="DistAsse2A3_SemiRotazioni" xml:space="preserve">
+    <value>Anz. Halbdrehungen Achses 2A3</value>
+  </data>
+  <data name="DistAsse2A4_SemiRotazioni" xml:space="preserve">
+    <value>Anz. Halbdrehungen Achses 2A4</value>
+  </data>
+  <data name="DistAsse2A5_SemiRotazioni" xml:space="preserve">
+    <value>Anz. Halbdrehungen Achses 2A5</value>
+  </data>
+  <data name="DistAsse2A6_SemiRotazioni" xml:space="preserve">
+    <value>Anz. Halbdrehungen Achses 2A6</value>
+  </data>
+  <data name="DistAsse3C1_SemiRotazioni" xml:space="preserve">
+    <value>Anz. Halbdrehungen Achses 3C1</value>
+  </data>
+  <data name="DistAsse3C2_SemiRotazioni" xml:space="preserve">
+    <value>Anz. Halbdrehungen Achses 3C2</value>
+  </data>
+  <data name="TabVitaUtensileMM_Cod1" xml:space="preserve">
+    <value>Lebensdauer Werkzeug Cod (n° codice utensile)</value>
+  </data>
+  <data name="TabSoglieRpmMandriniCUT_1" xml:space="preserve">
+    <value>Range RPM 0-1500 &lt;br&gt; verstr. Zeit</value>
+  </data>
+  <data name="TabSoglieRpmMandriniCUT_2" xml:space="preserve">
+    <value>Range RPM 1501-2500 &lt;br&gt; verstr. Zeit</value>
+  </data>
+  <data name="TabSoglieRpmMandriniCUT_3&#x9;" xml:space="preserve">
+    <value>Range RPM 2501-3000 &lt;br&gt; verstr. Zeit</value>
+  </data>
+  <data name="TabSoglieRpmMandriniINT_1" xml:space="preserve">
+    <value>Range RPM 0-1500 &lt;br&gt; verstr. Zeit</value>
+  </data>
+  <data name="TabSoglieRpmMandriniINT_2" xml:space="preserve">
+    <value>Range RPM 1501-5000 &lt;br&gt; verstr. Zeit</value>
+  </data>
+  <data name="TabSoglieRpmMandriniINT_3" xml:space="preserve">
+    <value>Range RPM 5001 -8000 &lt;br&gt; verstr. Zeit</value>
+  </data>
+  <data name="TabSoglieRpmMandriniINT_4" xml:space="preserve">
+    <value>Range RPM 8001-11500 &lt;br&gt; verstr. Zeit</value>
+  </data>
+  <data name="TabSoglieRpmMandriniINT_5" xml:space="preserve">
+    <value>Range RPM 11500-14500 &lt;br&gt; verstr. Zeit</value>
+  </data>
+  <data name="TabSoglieRpmMandriniINT_6" xml:space="preserve">
+    <value>Range RPM 14501-20000 &lt;br&gt; verstr. Zeit</value>
+  </data>
+  <data name="TabCambioUtMandrinoINT" xml:space="preserve">
+    <value>Anz. Entriegelungen Zange</value>
+  </data>
+  <data name="TabCambioUtForcella1INT" xml:space="preserve">
+    <value>Anz. Werkzeugwechsel Gabel 1</value>
+  </data>
+  <data name="TabCambioUtForcella2INT" xml:space="preserve">
+    <value>Anz. Werkzeugwechsel Gabel 2</value>
+  </data>
+  <data name="TabCambioUtForcella3INT" xml:space="preserve">
+    <value>Anz. Werkzeugwechsel Gabel 3</value>
+  </data>
+  <data name="v_HSD_NumCollRilevate" xml:space="preserve">
+    <value>Anz. Stöße</value>
+  </data>
+  <data name="TabSoglieAmpereMandriniINT_1" xml:space="preserve">
+    <value>Zeit überm. Aufnahme hohe Schwelle</value>
+  </data>
+  <data name="TabSoglieAmpereMandriniCUT_1" xml:space="preserve">
+    <value>Zeit überm. Aufnahme mitt. Schwelle</value>
+  </data>
+  <data name="TabEtichettePerse" xml:space="preserve">
+    <value>Anz. verlorene Etiketten</value>
+  </data>
+  <data name="TabTagliContatoreParzCUT" xml:space="preserve">
+    <value>Schnitte Sägeblatt ab Austausch</value>
+  </data>
+  <data name="TabAccelContatoreINT_2" xml:space="preserve">
+    <value>Menge Unwucht</value>
+  </data>
+  <data name="TabAccelContatoreINT_3" xml:space="preserve">
+    <value>Menge Vibrationen</value>
+  </data>
+  <data name="TabTemperStatoreContatoreINT" xml:space="preserve">
+    <value>Menge Übertemperatur Stator</value>
+  </data>
+  <data name="TabTemperCuscinettiContatoreINT" xml:space="preserve">
+    <value>Menge Übertemperatur Lager</value>
+  </data>
+  <data name="TabTemperSchedaContatoreINT" xml:space="preserve">
+    <value>Menge Übertemperatur Platine</value>
+  </data>
+  <data name="TabSoglieAmpereContatoreINT" xml:space="preserve">
+    <value>Menge überm. Stromaufnahme</value>
+  </data>
+  <data name="TabTemperStatoreMinutiINT" xml:space="preserve">
+    <value>Dauer Übertemperatur Stator</value>
+  </data>
+  <data name="TabTemperCuscinettiMinutiINT" xml:space="preserve">
+    <value>Dauer Übertemperatur Lager</value>
+  </data>
+  <data name="TabTemperSchedaMinutiINT" xml:space="preserve">
+    <value>Dauer Übertemperatur Platine</value>
+  </data>
+  <data name="TabAccelerometroINT_1" xml:space="preserve">
+    <value>Zeit Vibrationen tiefe Schwelle</value>
+  </data>
+  <data name="TabAccelerometroINT_2" xml:space="preserve">
+    <value>Zeit Vibrationen mittlere Schwelle</value>
+  </data>
+  <data name="TabAccelerometroINT_3" xml:space="preserve">
+    <value>Zeit Vibrationen hohe Schwelle</value>
+  </data>
+  <data name="TimePassed" xml:space="preserve">
+    <value>verstr. Zeit</value>
   </data>
 </root>

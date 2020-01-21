@@ -75,18 +75,34 @@ namespace FomMonitoringCore.Framework.Common
         KeopeAxes = 26,
         [Description("keopeMotors")]
         KeopeMotors = 27,
+        [Description("otherMachineDataLmx")]
+        OtherMachineDataLmx = 28,
         [Description("otherMachineData")]
         OtherMachineData = 29,
         [Description("electrospindle")]
         Electrospindle = 31,
         [Description("toolsFmcLmx")]
         ToolsFmcLmx = 32,
+        [Description("xmuToolsLmx")]
+        XmuToolsLmx = 34,
+        [Description("mmToolsLmx")]
+        MmToolsLmx = 35,
         [Description("productionFmc34")]
         ProductionFmc34 = 36,
         [Description("ordersFmc34")]
         OrdersFmc34 = 37,
        [Description("productionLMX")]
-        ProductionLMX = 38
+        ProductionLMX = 38,
+        [Description("rotaryAxesLMX")]
+        RotaryAxesLMX = 39,
+        [Description("xmuSp_SensorsLMX")]
+        XMUSp_SensorsLMX = 40,
+        [Description("motorBladeLMX")]
+        MotorBladeLMX = 41,
+        [Description("linearAxesLMX")]
+        LinearAxesLMX = 42,
+        [Description("tiltingMSAxesLMX")]
+        TiltingMSAxesLMX = 43
     }
 
     public enum enDataType
