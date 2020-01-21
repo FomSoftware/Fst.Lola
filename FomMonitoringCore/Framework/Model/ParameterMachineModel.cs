@@ -52,7 +52,7 @@ namespace FomMonitoringCore.Framework.Model
                 enUnitaMisuraTime hmi = enUnitaMisuraTime.S;
                 if (Enum.TryParse(CnUm, true, out cn) && Enum.TryParse(HmiUm, true, out hmi))
                 {
-                    d = temp.RoundToInt() * ((int)hmi / (int)cn);
+                    d = (temp * ((int)hmi / (int)cn)).RoundToInt();
                 }
                 TimeSpan timeSpan;
                 switch (hmi)

@@ -22,6 +22,7 @@
     };
 
     var buildRequest = function (url, filters, panelId) {
+        console.log(url);
         return $.ajax({
             type: "POST",
             url: url,
@@ -60,7 +61,7 @@
     }
 
     var callAjaxMachineViewModelData = function (filters) {
-
+        console.log(JSON.stringify(urls));
         WaitmeManager.start("body");
         $.when(buildRequest(urls.urlEfficiency, filters),
             buildRequest(urls.urlProductivity, filters),

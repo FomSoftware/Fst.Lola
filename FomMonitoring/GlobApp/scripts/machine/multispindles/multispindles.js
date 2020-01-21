@@ -5,15 +5,15 @@
     var selectedPosition = 11;
 
     var cp = function changePosition(oldPos, pos) {
-        $("g[data-MMspindle-index = '" + oldPos + "'] circle").css({ 'fill': 'white' });
-        $("g[data-MMspindle-index = '" + oldPos + "'] circle").attr("r", "9");
-        $("g[data-MMspindle-index = '" + oldPos + "'] text").css({ 'fill': 'black' });
-        $("g[data-MMspindle-index = '" + oldPos + "']").css({ 'transform': 'scale(1)' });
-        $("g[data-MMspindle-index = '" + pos + "'] circle").css({ 'fill': 'black' });
-        $("g[data-MMspindle-index = '" + pos + "'] text").css({ 'fill': 'white' });
-        $("g[data-MMspindle-index = '" + pos + "'] circle").attr("r", "11");
+        $("g[data-mmspindle-index = '" + oldPos + "'] circle").css({ 'fill': 'white' });
+        $("g[data-mmspindle-index = '" + oldPos + "'] circle").attr("r", "9");
+        $("g[data-mmspindle-index = '" + oldPos + "'] text").css({ 'fill': 'black' });
+        $("g[data-mmspindle-index = '" + oldPos + "']").css({ 'transform': 'scale(1)' });
+        $("g[data-mmspindle-index = '" + pos + "'] circle").css({ 'fill': 'black' });
+        $("g[data-mmspindle-index = '" + pos + "'] text").css({ 'fill': 'white' });
+        $("g[data-mmspindle-index = '" + pos + "'] circle").attr("r", "11");
         $("text[data-mmspindle-selected = '11']").text(pos);
-        $("g[data-MMspindle-index]").css({ "cursor": "pointer" });
+        $("g[data-mmspindle-index]").css({ "cursor": "pointer" });
         selectedPosition = pos;
 
         var request = $.ajax({
@@ -54,12 +54,12 @@
         initVueModel(data.vm_multi_spindle);
 
         //inizializzo con la posizione minima selezionata es. 11
-        $("g[data-MMspindle-index = '" + selectedPosition + "'] circle").css({ 'fill': 'black' });
-        $("g[data-MMspindle-index = '" + selectedPosition + "'] text").css({ 'fill': 'white' });
-        $('[data-MMspindle-label="POSIZIONE"]').text(posLabel);
-        $("g[data-MMspindle-index = '" + selectedPosition + "'] circle").attr("r", "11");
+        $("g[data-mmspindle-index = '" + selectedPosition + "'] circle").css({ 'fill': 'black' });
+        $("g[data-mmspindle-index = '" + selectedPosition + "'] text").css({ 'fill': 'white' });
+        $('[data-mmspindle-label="POSIZIONE"]').text(posLabel);
+        $("g[data-mmspindle-index = '" + selectedPosition + "'] circle").attr("r", "11");
 
-        $("g[data-MMspindle-index]").click(function (e) {
+        $("g[data-mmspindle-index]").click(function (e) {
             console.log(e.target.textContent);
             //chiamata ajax per caricare le variabili della posizione selezionata
             if (selectedPosition !== parseInt(e.target.textContent))

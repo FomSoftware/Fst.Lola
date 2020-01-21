@@ -65,7 +65,7 @@ namespace FomMonitoringCore.Service
                 return context;
 
             const string defaultLanguage = "en";
-            var lang = context.ActualLanguage.InitialsLanguage ?? defaultLanguage;
+            var lang = context.ActualLanguage?.InitialsLanguage ?? defaultLanguage;
             try
             {
                 Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);

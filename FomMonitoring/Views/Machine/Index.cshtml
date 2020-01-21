@@ -206,7 +206,9 @@
             urlXSpindles: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineXSpindlesViewModel" })',
             urlToolsBlitz: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineToolsBlitzViewModel" })',
             urlTools: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineToolsViewModel" })',
-            urlXTools: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineXToolsViewModel" })'
+            urlXTools: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineXToolsViewModel" })',
+            urlParameters: '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetMachineParametersViewModel" })'
+
         };
         MachineManager.init(urls);      
     });
