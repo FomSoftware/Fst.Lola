@@ -9,6 +9,7 @@ using FomMonitoringBLL.ViewModel;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
+using FomMonitoringResources;
 
 namespace FomMonitoringBLL.ViewServices
 {
@@ -61,8 +62,10 @@ namespace FomMonitoringBLL.ViewServices
                         utc = machine.UTC,
                         expiredSpan = CommonViewService.getTimeViewModel(_messageService.GetExpiredSpan(a)),
                         description = a.Description,
-                            machineName = machine.MachineName,
-                            machineModel = machine.Model.Name
+                        machineName = machine.MachineName,
+                        machineModel = machine.Model.Name,
+                        machineSerial = machine.Serial,
+                        panelName = Resource.PeriodicMaintenance
                     }).ToList();
 
                 messages.AddRange(mes);

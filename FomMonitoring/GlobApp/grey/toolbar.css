@@ -249,6 +249,8 @@
     width: auto;
 }
 
+
+
 @media (max-width: 1096px) {
     .btn-toolbar .title-btn { font-size: 12px; }
     .btn-toolbar {

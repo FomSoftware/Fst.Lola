@@ -44,7 +44,7 @@
     }
 
     context.buildToast = function (notification) {
-        return toastr.info(`<div><h6>${notification.machineName}</h6><hr /><br /><p>${notification.description}</p> <hr /> <br />${context.buildDuration(notification.expiredSpan)}</div>`);
+        return toastr.info(`<div><h4>${notification.panelName}</h4><h6>(${notification.machineSerial}) - ${notification.machineName}</h6><hr /><br /><p>${notification.description}</p> <hr /> <br />${context.buildDuration(notification.expiredSpan)}</div>`);
     }
 
     context.setNotificationRead = function () {

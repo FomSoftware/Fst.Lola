@@ -746,9 +746,29 @@ em,
     }
 }
 
-
 #toast-container > div {
-    width: 435px;
+    width: 550px;
+    box-shadow: unset;
+}
+
+.toast {
+    max-width: 100%;
+}
+
+.toast-info {
+    background-color: cornflowerblue;
+}
+
+#toast-container h4 {
+    font-size: 18px;
+}
+
+#toast-container h6 {
+    font-size: 15px;
+}
+
+#toast-container p {
+    font-size: 12px;
 }
 
 .no-borders {
