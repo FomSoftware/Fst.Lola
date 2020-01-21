@@ -435,7 +435,7 @@
 
         alert.then(function (result) {
             if (result)
-                deleteUser(vmUsers.actual.ID)
+                deleteUser(vmUsers.actual.ID);
         });
     }
 

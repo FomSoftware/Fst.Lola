@@ -111,7 +111,7 @@
                             <label class="col-4 control-label" for="role-input">@Resource.Machines:</label>
                             <div class="col-7">
                                 <select v-model="machines.active" class="form-control input-md modal-input" id="machines-input" title="@Resource.NothingSelected" type="text" multiple required>
-                                    <option v-for="machine in machines.all" v-bind:value="machine.Id">{{machine.Serial}}</option>
+                                    <option v-for="machine in machines.all" v-bind:value="machine.Id">({{machine.Serial}}) - {{machine.MachineName}}</option>
                                 </select>
                                 <div v-show="missing.Machines" class="validation">@Resource.FieldRequired.</div>
                             </div>
