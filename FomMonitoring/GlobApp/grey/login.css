@@ -197,7 +197,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     .container-login {
         width: 90%;
         max-width: 100%;
-        height: calc(80%);
+        height: 80%;
         margin-top: 30px;
         padding: 50px;
         margin-left: 35px;
@@ -283,7 +283,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     }
 
     .row {
-        height: 98%;
+        height: 94%;
         margin-top: 5px;
         padding: 5px;
     }
@@ -296,5 +296,6 @@ input:-webkit-autofill:focus input:-webkit-autofill {
         width: 150px;
     }
 }
+
 
 /*#endregion */

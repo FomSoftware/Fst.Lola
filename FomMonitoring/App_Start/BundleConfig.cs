@@ -14,7 +14,7 @@ namespace FomMonitoring.App_Start
 
             // non cambiare ordine css
             bundles.Add(new StyleBundle("~/Content/FomMonitoringStylesLIB").Include(
-                        "~/Content/bootstrap.min.css",
+                        "~/Content/bootstrap.css",
                         "~/Content/google-font-lato.css",
                         "~/Content/google-font-roboto-mono.css",
                         "~/Content/icofom.css",
@@ -108,7 +108,7 @@ namespace FomMonitoring.App_Start
             #region Login 
 
             bundles.Add(new StyleBundle("~/Content/FomMonitoringStylesLOGIN").Include(
-                      "~/Content/bootstrap.min.css",
+                      "~/Content/bootstrap.css",
                       "~/Content/google-font-lato.css",
                       "~/Content/google-font-roboto-mono.css",
                       "~/Content/icomoon-icons.css",
@@ -116,6 +116,7 @@ namespace FomMonitoring.App_Start
                       "~/Content/simple-line-icons.css",
                       "~/GlobApp/grey/login.css"
                     ));
+
 
 
             bundles.Add(new ScriptBundle("~/Scripts/FomMonitoringScriptsLOGIN").Include(
