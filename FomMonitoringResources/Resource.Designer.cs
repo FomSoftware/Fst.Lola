@@ -2502,6 +2502,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Range 2501-3000 rpm &lt;br&gt; time passed.
+        /// </summary>
+        public static string TabSoglieRpmMandriniCUT_3 {
+            get {
+                return ResourceManager.GetString("TabSoglieRpmMandriniCUT_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Range 0-1500 rpm &lt;br&gt; time passed.
         /// </summary>
         public static string TabSoglieRpmMandriniINT_1 {
