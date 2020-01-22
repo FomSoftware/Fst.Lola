@@ -50,7 +50,7 @@ namespace FomMonitoringCore.Service
                         var ve = new ParameterMachineValueModel
                         {
                             VarNumber = int.Parse(pm.VarNumber),
-                            Description = new System.Resources.ResourceManager(typeof(Resource)).GetString(pm.Keyword),
+                            Description = new System.Resources.ResourceManager(typeof(Resource)).GetString(pm.Keyword) != null ? new System.Resources.ResourceManager(typeof(Resource)).GetString(pm.Keyword) : "[" +pm.Keyword + "]",
                             Value = pm.DefaultValue,
                             Cluster = pm.Cluster,
                             Keyword = pm.Keyword,

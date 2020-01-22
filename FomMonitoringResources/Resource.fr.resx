@@ -759,8 +759,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Électrobroche</value>
   </data>
   <data name="OtherMachineData" xml:space="preserve">
-    <value>
-Autres données de la machine</value>
+    <value>Autres données de la machine</value>
   </data>
   <data name="NPiecesNetTime" xml:space="preserve">
     <value>N. de pièces / temps net</value>
@@ -1073,5 +1072,8 @@ Autres données de la machine</value>
   </data>
   <data name="TimePassed" xml:space="preserve">
     <value>tps écoulé</value>
+  </data>
+  <data name="TabTempoResiduoBarra" xml:space="preserve">
+    <value>Temps résiduel bar individuelle</value>
   </data>
 </root>

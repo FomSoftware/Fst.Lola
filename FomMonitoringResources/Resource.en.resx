@@ -773,9 +773,6 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
     <value>Range Rpm</value>
   </data>
-  <data name="TabRpmTotMandriniMM" xml:space="preserve">
-    <value>Ore Lavoro totali</value>
-  </data>
   <data name="LMX650_LinearAxes" xml:space="preserve">
     <value>LINEAR AXES</value>
   </data>
@@ -1075,5 +1072,8 @@ Customers are informed that the reliability of the statistics obtained from the 
   </data>
   <data name="TimePassed" xml:space="preserve">
     <value>time passed</value>
+  </data>
+  <data name="TabTempoResiduoBarra" xml:space="preserve">
+    <value>Single bar time remaining</value>
   </data>
 </root>

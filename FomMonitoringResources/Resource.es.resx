@@ -1073,4 +1073,7 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   <data name="TimePassed" xml:space="preserve">
     <value>tiempo transc.</value>
   </data>
+  <data name="TabTempoResiduoBarra" xml:space="preserve">
+    <value>Tiempo restante bar simple</value>
+  </data>
 </root>

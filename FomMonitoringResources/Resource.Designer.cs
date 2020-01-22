@@ -2439,7 +2439,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ore Totali Mandrino Intestatrice.
+        ///   Looks up a localized string similar to [TabRpmTotMandriniINT].
         /// </summary>
         public static string TabRpmTotMandriniINT {
             get {
@@ -2448,7 +2448,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ore di Lavoro Totali.
+        ///   Looks up a localized string similar to [TabRpmTotMandriniMM].
         /// </summary>
         public static string TabRpmTotMandriniMM {
             get {
@@ -2498,15 +2498,6 @@ namespace FomMonitoringResources {
         public static string TabSoglieRpmMandriniCUT_2 {
             get {
                 return ResourceManager.GetString("TabSoglieRpmMandriniCUT_2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Range 2501-3000 rpm &lt;br&gt; time passed.
-        /// </summary>
-        public static string TabSoglieRpmMandriniCUT_3 {
-            get {
-                return ResourceManager.GetString("TabSoglieRpmMandriniCUT_3", resourceCulture);
             }
         }
         
@@ -2633,6 +2624,15 @@ namespace FomMonitoringResources {
         public static string TabTemperStatoreMinutiINT {
             get {
                 return ResourceManager.GetString("TabTemperStatoreMinutiINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TabTempoResiduoBarra.
+        /// </summary>
+        public static string TabTempoResiduoBarra {
+            get {
+                return ResourceManager.GetString("TabTempoResiduoBarra", resourceCulture);
             }
         }
         

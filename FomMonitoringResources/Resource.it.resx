@@ -1076,4 +1076,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="TimePassed" xml:space="preserve">
     <value>tempo trascorso</value>
   </data>
+  <data name="TabTempoResiduoBarra" xml:space="preserve">
+    <value>Tempo residuo singola barra</value>
+  </data>
 </root>

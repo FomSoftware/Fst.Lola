@@ -777,7 +777,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Range Rpm</value>
   </data>
   <data name="TabRpmTotMandriniMM" xml:space="preserve">
-    <value>Ore di Lavoro Totali</value>
+    <value>[TabRpmTotMandriniMM]</value>
   </data>
   <data name="LMX650_Multispindles" xml:space="preserve">
     <value>MULTISPINDLE</value>
@@ -992,9 +992,6 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="TabSoglieRpmMandriniCUT_2" xml:space="preserve">
     <value>Range 1501-2500 rpm &lt;br&gt; time passed</value>
   </data>
-  <data name="TabSoglieRpmMandriniCUT_3" xml:space="preserve">
-    <value>Range 2501-3000 rpm &lt;br&gt; time passed</value>
-  </data>
   <data name="TabSoglieRpmMandriniINT_1" xml:space="preserve">
     <value>Range 0-1500 rpm &lt;br&gt; time passed</value>
   </data>
@@ -1077,9 +1074,15 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>High threshold Vibration Time</value>
   </data>
   <data name="TabRpmTotMandriniINT" xml:space="preserve">
-    <value>Ore Totali Mandrino Intestatrice</value>
+    <value>[TabRpmTotMandriniINT]</value>
   </data>
   <data name="TimePassed" xml:space="preserve">
     <value>time passed</value>
+  </data>
+  <data name="TabTempoResiduoBarra" xml:space="preserve">
+    <value>TabTempoResiduoBarra</value>
+  </data>
+  <data name="TabSoglieRpmMandriniCUT_3&#x9;" xml:space="preserve">
+    <value>Range 2501-3000 rpm &lt;br&gt; time passed</value>
   </data>
 </root>
