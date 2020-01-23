@@ -35,3 +35,37 @@
         </tr>
     </table>
 </div>
+<div v-else>
+    <div class="item clearfix">
+        <div class="item-title">
+            @Resource.Material
+        </div>
+        <div class="item-label">
+            <div class="icon fa fa-eraser"></div>
+            <div>
+                <span class="value-title">
+                    @Resource.Used
+                </span>
+                <span class="value">
+                   0<em>m</em>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="progress prod">
+        <div class="progress-bar bg-line" v-bind:aria-valuenow="0"></div>
+        <div class="progress-bar bg-broken-line" v-bind:aria-valuenow="0"></div>
+    </div>
+    <table class="table-legend">
+        <tr>
+            <td><div class="square bg-line"></div>@Resource.Bars</td>
+            <td>0<em>%</em></td>
+            <td>0<em>m</em></td>
+        </tr>
+        <tr>
+            <td><div class="square bg-broken-line"></div>@Resource.Cutoff</td>
+            <td>0<em>%</em></td>
+            <td>0<em>m</em></td>
+        </tr>
+    </table>
+</div>

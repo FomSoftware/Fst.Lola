@@ -31,15 +31,15 @@ namespace FomMonitoringCore.Service
                     Regex regex = new Regex(@"^[1-2]\d{2}$");
                     if (xmodule)
                     {
-                        query = _context.Set<ToolMachine>().Where(w => w.MachineId == machine.Id).ToList().Where(w => regex.IsMatch(w.Code)).ToList();
+                        query = _context.Set<ToolMachine>().Where(w => w.MachineId == machine.Id).ToList().Where(w => regex.IsMatch(w.Code)).OrderBy(w => w.CodeAsInt).ThenByDescending(w => w.CurrentLife).ToList();
                     }
                     else
                     {
-                        query = _context.Set<ToolMachine>().Where(w => w.MachineId == machine.Id).ToList().Where(w => !regex.IsMatch(w.Code)).ToList();
+                        query = _context.Set<ToolMachine>().Where(w => w.MachineId == machine.Id).ToList().Where(w => !regex.IsMatch(w.Code)).OrderBy(w => w.CodeAsInt).ThenByDescending(w => w.CurrentLife).ToList();
                     }
                 }
                 else
-                    query = _context.Set<ToolMachine>().Where(w => w.MachineId == machine.Id).ToList();
+                    query = _context.Set<ToolMachine>().Where(w => w.MachineId == machine.Id).ToList().OrderBy(w => w.CodeAsInt).ThenByDescending(w => w.CurrentLife).ToList();
 
                 result = query.Adapt<List<ToolMachineModel>>();
                 

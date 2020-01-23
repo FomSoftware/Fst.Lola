@@ -1332,6 +1332,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tot. electrosp. working hours.
+        /// </summary>
+        public static string lw_minutiMandrinoAttivo {
+            get {
+                return ResourceManager.GetString("lw_minutiMandrinoAttivo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to X axis KM.
         /// </summary>
         public static string lw_mPercorsiAsseX {
@@ -1814,15 +1823,6 @@ namespace FomMonitoringResources {
         public static string ore1_Stat {
             get {
                 return ResourceManager.GetString("ore1_Stat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tot. electrosp. working hours.
-        /// </summary>
-        public static string oreMandrinoAttivo {
-            get {
-                return ResourceManager.GetString("oreMandrinoAttivo", resourceCulture);
             }
         }
         

@@ -689,7 +689,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="PasswordPolicy" xml:space="preserve">
     <value>Le mot de passe doit comporter au moins 6 caractères.</value>
   </data>
-  <data name="oreMandrinoAttivo" xml:space="preserve">
+  <data name="lw_minutiMandrinoAttivo" xml:space="preserve">
     <value>Heures tot. travail électrobroche</value>
   </data>
   <data name="d_NumeroSblocchiUtensile" xml:space="preserve">

@@ -691,7 +691,7 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="PasswordPolicy" xml:space="preserve">
     <value>Das Kennwort muss aus mindestens 6 Zeichen bestehen</value>
   </data>
-  <data name="oreMandrinoAttivo" xml:space="preserve">
+  <data name="lw_minutiMandrinoAttivo" xml:space="preserve">
     <value>Gesamtarbeitsst. Spindel</value>
   </data>
   <data name="d_NumeroSblocchiUtensile" xml:space="preserve">

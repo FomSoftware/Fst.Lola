@@ -692,7 +692,7 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="PasswordPolicy" xml:space="preserve">
     <value>The password must be at least 6 characters</value>
   </data>
-  <data name="oreMandrinoAttivo" xml:space="preserve">
+  <data name="lw_minutiMandrinoAttivo" xml:space="preserve">
     <value>Tot. electrosp. working hours</value>
   </data>
   <data name="d_NumeroSblocchiUtensile" xml:space="preserve">

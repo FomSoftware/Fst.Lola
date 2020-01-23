@@ -689,7 +689,7 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   <data name="PasswordPolicy" xml:space="preserve">
     <value>La contraseña debe tener al menos 6 caracteres.</value>
   </data>
-  <data name="oreMandrinoAttivo" xml:space="preserve">
+  <data name="lw_minutiMandrinoAttivo" xml:space="preserve">
     <value>Tot. horas uso electromandril</value>
   </data>
   <data name="d_NumeroSblocchiUtensile" xml:space="preserve">

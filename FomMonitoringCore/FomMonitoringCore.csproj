@@ -244,6 +244,7 @@
     </Compile>
     <Compile Include="DAL\Partials\HistoryMessage.cs" />
     <Compile Include="DAL\Partials\IFomMonitoringEntities.cs" />
+    <Compile Include="DAL\Partials\ToolMachine.cs" />
     <Compile Include="DAL\Piece.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
