@@ -16,7 +16,7 @@
         <EntityTypeShape EntityType="FST_FomMonitoringModel.Bar" Width="1.5" PointX="5.25" PointY="55" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_Piece_Bar" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryPiece" Width="1.5" PointX="5.25" PointY="73.125" />
-        <EntityTypeShape EntityType="FST_FomMonitoringModel.CurrentState" Width="1.5" PointX="5.25" PointY="32.25" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.CurrentState" Width="2.25" PointX="5.25" PointY="32.25" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_CurrentState_State" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.ToolMachine" Width="1.5" PointX="5.25" PointY="68.625" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.MachineType" Width="1.5" PointX="0.75" PointY="36.375" />

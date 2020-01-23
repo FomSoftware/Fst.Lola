@@ -43,12 +43,9 @@
           <Property Name="JobTotalPieces" Type="int" />
           <Property Name="LastUpdated" Type="datetime" />
           <Property Name="MachineId" Type="int" />
-          <Property Name="NextMaintenanceService" Type="datetime" />
           <Property Name="Operator" Type="varchar" MaxLength="100" />
-          <Property Name="Plant" Type="varchar" MaxLength="100" />
           <Property Name="StateId" Type="int" />
           <Property Name="StateTransitionCode" Type="varchar" MaxLength="100" />
-          <Property Name="StateTransitionDescription" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="HistoryBar">
           <Key>
@@ -1679,12 +1676,9 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="JobTotalPieces" Type="Int32" />
           <Property Name="LastUpdated" Type="DateTime" Precision="3" />
           <Property Name="MachineId" Type="Int32" />
-          <Property Name="NextMaintenanceService" Type="DateTime" Precision="3" />
           <Property Name="Operator" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Plant" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="StateId" Type="Int32" />
           <Property Name="StateTransitionCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="StateTransitionDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_CurrentState_State" FromRole="CurrentState" ToRole="State" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_CurrentState_Machine" FromRole="CurrentState" ToRole="Machine" />
         </EntityType>
@@ -2701,12 +2695,9 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="CurrentState">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.CurrentState">
               <MappingFragment StoreEntitySet="CurrentState">
-                <ScalarProperty Name="StateTransitionDescription" ColumnName="StateTransitionDescription" />
                 <ScalarProperty Name="StateTransitionCode" ColumnName="StateTransitionCode" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
-                <ScalarProperty Name="Plant" ColumnName="Plant" />
                 <ScalarProperty Name="Operator" ColumnName="Operator" />
-                <ScalarProperty Name="NextMaintenanceService" ColumnName="NextMaintenanceService" />
                 <ScalarProperty Name="MachineId" ColumnName="MachineId" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="JobTotalPieces" ColumnName="JobTotalPieces" />

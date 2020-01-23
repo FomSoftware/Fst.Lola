@@ -66,12 +66,9 @@ namespace FomMonitoringCore.Service.API.Concrete
                             currentState.JobTotalPieces = (int?)currentStateDynamic.JobTotalPieces;
                             currentState.LastUpdated = (currentStateDynamic.LastUpdated.Value is string || currentStateDynamic.LastUpdated.Value == null || ((DateTime)currentStateDynamic.LastUpdated).Year < 1900 ? (DateTime?)null : (DateTime)currentStateDynamic.LastUpdated);
                             currentState.MachineId = machine.Id;
-                            currentState.NextMaintenanceService = (currentStateDynamic.NextMaintenanceService.Value is string || currentStateDynamic.NextMaintenanceService.Value == null || ((DateTime)currentStateDynamic.NextMaintenanceService).Year < 1900 ? (DateTime?)null : (DateTime)currentStateDynamic.NextMaintenanceService);
                             currentState.Operator = currentStateDynamic.Operator;
-                            currentState.Plant = currentStateDynamic.Plant;
                             currentState.StateId = (int?)currentStateDynamic.State;
                             currentState.StateTransitionCode = currentStateDynamic.StateTransitionCode;
-                            currentState.StateTransitionDescription = currentStateDynamic.StateTransitionDescription;
                             if (!currentStateExists)
                             {
                                 _context.Set<CurrentState>().Add(currentState);

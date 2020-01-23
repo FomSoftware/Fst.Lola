@@ -20,12 +20,9 @@ namespace FomMonitoringCore.DAL
         public Nullable<int> JobTotalPieces { get; set; }
         public Nullable<System.DateTime> LastUpdated { get; set; }
         public Nullable<int> MachineId { get; set; }
-        public Nullable<System.DateTime> NextMaintenanceService { get; set; }
         public string Operator { get; set; }
-        public string Plant { get; set; }
         public Nullable<int> StateId { get; set; }
         public string StateTransitionCode { get; set; }
-        public string StateTransitionDescription { get; set; }
     
         public virtual State State { get; set; }
         public virtual Machine Machine { get; set; }
