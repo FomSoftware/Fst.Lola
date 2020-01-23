@@ -126,7 +126,7 @@ namespace FomMonitoringBLL.ViewServices
             var overfeed = stateProd?.OverfeedAvg;
 
             decimal percKpi;
-            if (machine.MachineTypeId == 4)
+            if (machine.MachineTypeId == (int)enMachineType.Troncatrice || machine.MachineTypeId == (int)enMachineType.CentroLavoro)
             {
                 percKpi = (percProd ?? 0) + (manual.perc ?? 0);
             }
@@ -211,7 +211,7 @@ namespace FomMonitoringBLL.ViewServices
             }
 
 
-            if (machine.MachineTypeId == (int)enMachineType.Troncatrice)
+            if (machine.MachineTypeId == (int)enMachineType.Troncatrice || machine.MachineTypeId == (int)enMachineType.CentroLavoro)
             {
                 efficiency = states
                     .Where(w => (w.enState == enState.Manual || w.enState == enState.Production) &&
@@ -258,7 +258,8 @@ namespace FomMonitoringBLL.ViewServices
             var stateManual = data.FirstOrDefault(w => w.enState == enState.Manual);
             
 
-            var totalValue = machine.MachineTypeId == 4 ? stateProd?.ElapsedTime + stateManual?.ElapsedTime : stateProd?.ElapsedTime;
+            var totalValue = (machine.MachineTypeId == (int)enMachineType.Troncatrice || machine.MachineTypeId == (int)enMachineType.CentroLavoro) ?
+                stateProd?.ElapsedTime + stateManual?.ElapsedTime : stateProd?.ElapsedTime;
             var totalOn = data.Where(w => w.enState != enState.Offline).Select(s => s.ElapsedTime).Sum();
 
             decimal? percProd = Common.GetPercentage(totalValue, totalOn);

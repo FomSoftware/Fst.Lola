@@ -1085,4 +1085,10 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="TabSoglieRpmMandriniCUT_3&#x9;" xml:space="preserve">
     <value>Range 2501-3000 rpm &lt;br&gt; time passed</value>
   </data>
+  <data name="TimeTot" xml:space="preserve">
+    <value>[TimeTot]</value>
+  </data>
+  <data name="TimeResStim" xml:space="preserve">
+    <value>[TimeResStim]</value>
+  </data>
 </root>

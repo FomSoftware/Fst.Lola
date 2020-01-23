@@ -280,7 +280,7 @@
     <value>Spezzoni</value>
   </data>
   <data name="Code" xml:space="preserve">
-    <value>Code</value>
+    <value>Codice</value>
   </data>
   <data name="Position" xml:space="preserve">
     <value>Posizione</value>
@@ -1078,5 +1078,11 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   </data>
   <data name="TabTempoResiduoBarra" xml:space="preserve">
     <value>Tempo residuo singola barra</value>
+  </data>
+  <data name="TimeTot" xml:space="preserve">
+    <value>T.Tot.</value>
+  </data>
+  <data name="TimeResStim" xml:space="preserve">
+    <value>T.Res Stim.</value>
   </data>
 </root>

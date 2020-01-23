@@ -1076,4 +1076,10 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="TabTempoResiduoBarra" xml:space="preserve">
     <value>Single bar time remaining</value>
   </data>
+  <data name="TimeTot" xml:space="preserve">
+    <value>T.Tot.</value>
+  </data>
+  <data name="TimeResStim" xml:space="preserve">
+    <value>T.Res Stim.</value>
+  </data>
 </root>

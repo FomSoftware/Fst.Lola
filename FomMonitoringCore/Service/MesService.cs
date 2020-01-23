@@ -224,7 +224,7 @@ namespace FomMonitoringCore.Service
             if (historyEfficiency.Any())
             {
                 
-                if (machine.MachineTypeId == 4)
+                if (machine.MachineTypeId == (int)enMachineType.Troncatrice || machine.MachineTypeId == (int)enMachineType.CentroLavoro)
                 {
                     efficiencyValue = historyEfficiency.Where(he => he.StateId == 1 || he.StateId == 4)
                         .Sum(he => he.ElapsedTime);

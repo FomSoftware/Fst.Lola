@@ -25,7 +25,7 @@ namespace FomMonitoringCore.Framework.Model
             {
                 if (StatesTime == null || StatesTime.Count == 0) return null;
                 long? prod = StatesTime.ContainsKey((int?)enState.Production) ? StatesTime[(int?)enState.Production] : 0;
-                if (machineType == null || machineType != (int) enMachineType.Troncatrice) return prod;
+                if (machineType == null || (machineType != (int) enMachineType.Troncatrice && machineType != (int)enMachineType.CentroLavoro)) return prod;
                 long? manual = StatesTime.ContainsKey((int)enState.Manual) ? StatesTime[(int?)enState.Manual] : 0;
                 if (manual != null)
                     return prod != null ? prod + manual : manual;

@@ -2700,6 +2700,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [TimeResStim].
+        /// </summary>
+        public static string TimeResStim {
+            get {
+                return ResourceManager.GetString("TimeResStim", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date/Time.
         /// </summary>
         public static string Timestamp {
@@ -2714,6 +2723,15 @@ namespace FomMonitoringResources {
         public static string TimeToLive {
             get {
                 return ResourceManager.GetString("TimeToLive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TimeTot].
+        /// </summary>
+        public static string TimeTot {
+            get {
+                return ResourceManager.GetString("TimeTot", resourceCulture);
             }
         }
         
