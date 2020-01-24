@@ -1629,3 +1629,7 @@ td.td-electrospindle-data {
         pointer-events: none; /* disable user interaction */
         user-select: none; /* disable user selection */
     }
+
+td.td-axes {
+    width: 33%;
+}

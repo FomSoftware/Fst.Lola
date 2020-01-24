@@ -62,6 +62,14 @@
         }
 
     }
+    @*@if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    @Html.Partial("_XSpindles", Model.XSpindles)
+                </div>
+            </div>
+        }*@
     @if (Model.MachinePanels.Contains((int)enPanel.XSpindles))
     {
         <div class="row">
@@ -155,5 +163,15 @@
                     { "Classes", "col-12" }
                 })
         </div>
+    </div>
+}
+
+@if (Model.MachinePanels.Contains((int)enPanel.LinearAxesLMX))
+{
+    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+            @Html.Partial("Panels/Axes/_LMX_650", Model.PanelParameter, new ViewDataDictionary
+            {
+                { "Classes", "col-12" }
+            })
     </div>
 }

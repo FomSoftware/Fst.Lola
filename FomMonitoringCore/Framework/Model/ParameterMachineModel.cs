@@ -1,6 +1,7 @@
 ﻿using FomMonitoringCore.Framework.Common;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,22 +20,21 @@ namespace FomMonitoringCore.Framework.Model
         public string Keyword { get; set; }
         public string HmiUm { get; set; }
 
+        //public string ConvertedDistanceValue(string format = "{0:0,0.00}")
         public string ConvertedDistanceValue(string format = "0.000")
         {
-            string res = Value;
-            double temp;
-            if(double.TryParse(Value, out temp) && !string.IsNullOrEmpty(CnUm) && !string.IsNullOrEmpty(HmiUm)
+            var res = Value;
+            if(double.TryParse(Value, out var temp) && !string.IsNullOrEmpty(CnUm) && !string.IsNullOrEmpty(HmiUm)
                 && Enum.IsDefined(typeof(enUnitaMisuraLength), CnUm)
                 && Enum.IsDefined(typeof(enUnitaMisuraLength), HmiUm))
             {
-                enUnitaMisuraLength cn;
-                enUnitaMisuraLength hmi;
-                if (Enum.TryParse(CnUm, true, out cn) && Enum.TryParse(HmiUm, true, out hmi))
-                {                    
+                if (Enum.TryParse(CnUm, true, out enUnitaMisuraLength cn) && Enum.TryParse(HmiUm, true, out enUnitaMisuraLength hmi))
+                {
+                    var numRes = temp * ((double) hmi / (double) cn);
                     if (format != null)
-                        res = (double.Parse(Value) * ((double)hmi / (double)cn)).ToString(format);
+                        res = numRes.ToString(format);
                     else
-                        res = (double.Parse(Value) * ((double)hmi / (double)cn)).ToString();                    
+                        res = numRes.ToString(CultureInfo.InvariantCulture);                    
                 }
             }
             return res;
@@ -42,17 +42,16 @@ namespace FomMonitoringCore.Framework.Model
 
         public string ConvertedTimeValue()
         {
-            string res = Value;
+            var res = Value;
             if (double.TryParse(Value, out var temp) && !string.IsNullOrEmpty(CnUm) && !string.IsNullOrEmpty(HmiUm)
                 && Enum.IsDefined(typeof(enUnitaMisuraTime), CnUm)
                 && Enum.IsDefined(typeof(enUnitaMisuraTime), HmiUm))
             {
                 var d = temp.RoundToInt();
-                enUnitaMisuraTime cn;
-                enUnitaMisuraTime hmi = enUnitaMisuraTime.S;
-                if (Enum.TryParse(CnUm, true, out cn) && Enum.TryParse(HmiUm, true, out hmi))
+                var hmi = enUnitaMisuraTime.S;
+                if (Enum.TryParse(CnUm, true, out enUnitaMisuraTime cn) && Enum.TryParse(HmiUm, true, out hmi))
                 {
-                    d = (temp * ((int)hmi / (double)cn)).RoundToInt();
+                    d = (temp * ((int)hmi / (int)cn)).RoundToInt();
                 }
                 TimeSpan timeSpan;
                 switch (hmi)
@@ -78,7 +77,7 @@ namespace FomMonitoringCore.Framework.Model
 
         public string ConvertedNumberValue()
         {
-            string res = Value;
+            var res = Value;
             if (double.TryParse(Value, out var temp))
             {
                 res = temp.ToString("N0");

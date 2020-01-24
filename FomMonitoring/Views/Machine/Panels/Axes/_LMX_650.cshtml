@@ -1,0 +1,143 @@
+﻿
+@model FomMonitoringBLL.ViewModel.PanelParametersViewModel
+@using FomMonitoringResources
+
+<div id="CardAxesLmx" class="portlet">
+    <div class="portlet-title">
+        <div class="portlet-kpi">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
+                <i class="fa icofom-assi fa-stack-1x fa-inverse" style="font-size:21px"></i>
+            </span>
+        </div>
+        <div class="title-kpi" style="max-width: 130px;">
+            <span>@Resource.Axes</span>
+            <div class="sub-period">@Resource.UntilNow</div>
+        </div>
+    </div>
+    <div class="portlet-body text-center" style="height:244px">
+        <div class="card-portlet">
+            <div v-if="axes != null && axes.length > 0" style="height:242px" class="slimscroll">
+                <hr style="background-color:#0c3817;height:2px;border:none" />
+                <div style="cursor:auto;height:100%">
+                    <table class="table-tools-fmc" style="height: 100%">
+                        <tr>
+                            <td class="td-axes" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index) in firstRow">
+                                <label> <img src="~/Images/icon/ico_contachilometri.png" style="width: 23px" /></label>
+                                <label v-if="axes != null && axes.Description != null" class="label-electrospindle-title" v-html="axes.Description"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-axes no-padding" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index) in firstRow">
+                                <label v-if="axes != null && axes.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.ConvertedValue"></label>
+                            </td>
+                        </tr>
+                        <tr style="height: 3px;">
+                            <td style="padding-left: 0; background-color: #bebebe">
+                                <hr width="80%" class="tools" style="margin-right: 0;">
+                            </td>
+                            <td style="padding-left: 0; background-color: #bebebe">
+                                <hr width="100%" class="tools" style="padding-left: 0;">
+                            </td>
+                            <td style="padding-left: 0; background-color: #bebebe">
+                                <hr width="80%" class="tools" style="margin-left: 0;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-axes" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index) in secondRow">
+                                <label> <img src="~/Images/icon/ico_contachilometri.png" style="width: 23px" /></label>
+                                <label v-if="axes != null && axes.Description != null" class="label-electrospindle-title" v-html="axes.Description"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-axes no-padding" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index) in secondRow">
+                                <label v-if="axes != null && axes.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.ConvertedValue"></label>
+                            </td>
+                        </tr>
+                        <tr style="height: 3px;">
+                            <td style="padding-left: 0; background-color: #bebebe">
+                                <hr width="80%" class="tools" style="margin-right: 0;">
+                            </td>
+                            <td style="padding-left: 0; background-color: #bebebe">
+                                <hr width="100%" class="tools" style="padding-left: 0;">
+                            </td>
+                            <td style="padding-left: 0; background-color: #bebebe">
+                                <hr width="80%" class="tools" style="margin-left: 0;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-axes" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index) in thirtRow">
+                                <label> <img src="~/Images/icon/ico_contachilometri.png" style="width: 23px" /></label>
+                                <label v-if="axes != null && axes.Description != null" class="label-electrospindle-title" v-html="axes.Description"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-axes no-padding" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index) in thirtRow">
+                                <label v-if="axes != null && axes.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.ConvertedValue"></label>
+                            </td>
+                        </tr>
+                        <tr style="height: 3px;">
+                            <td style="padding-left: 0; background-color: #bebebe">
+                                <hr width="80%" class="tools" style="margin-right: 0;">
+                            </td>
+                            <td style="padding-left: 0; background-color: #bebebe">
+                                <hr width="100%" class="tools" style="padding-left: 0;">
+                            </td>
+                            <td style="padding-left: 0; background-color: #bebebe">
+                                <hr width="80%" class="tools" style="margin-left: 0;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-axes" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index) in fourthRow">
+                                <label> <img src="~/Images/icon/ico_contachilometri.png" style="width: 23px" /></label>
+                                <label v-if="axes != null && axes.Description != null" class="label-electrospindle-title" v-html="axes.Description"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-axes no-padding" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index)  in fourthRow">
+                                <label v-if="axes != null && axes.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.ConvertedValue"></label>
+                            </td>
+                        </tr>
+                        <tr style="height: 3px;">
+                            <td style="padding-left: 0; background-color: #bebebe">
+                                <hr width="80%" class="tools" style="margin-right: 0;">
+                            </td>
+                            <td style="padding-left: 0; background-color: #bebebe">
+                                <hr width="100%" class="tools" style="padding-left: 0;">
+                            </td>
+                            <td style="padding-left: 0; background-color: #bebebe">
+                                <hr width="80%" class="tools" style="margin-left: 0;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-axes" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index) in fifthRow">
+                                <label> <img src="~/Images/icon/ico_contachilometri.png" style="width: 23px" /></label>
+                                <label v-if="axes != null && axes.Description != null" class="label-electrospindle-title" v-html="axes.Description"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-axes no-padding" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index)  in fifthRow">
+                                <label v-if="axes != null && axes.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.ConvertedValue"></label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <no-data v-else></no-data>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        var data = @Html.Raw(Json.Encode(Model));
+        AxesLmx650.init(data);
+    });
+
+</script>

@@ -13,6 +13,7 @@ namespace FomMonitoringBLL.ViewModel
         public MachineInfoViewModel vm_machine_info { get; set; }
         public MotorKeopeParameterVueModel vm_motor_keope { get; set; }
         public AxesKeopeParameterVueModel vm_axes_keope { get; set; }
+        public AxesLmxParameterVueModel vm_axes_lmx { get; set; }
         public OtherDataParameterVueModel vm_other_data { get; set; }
         public ElectroSpindleParameterVueModel vm_electro_spindle { get; set; }
         public ToolsFmcLmxParameterVueModel vm_tools_fmc_lmx { get; set; }
@@ -67,5 +68,10 @@ namespace FomMonitoringBLL.ViewModel
         public string Code { get; set; }
         public string Description { get; set; }
         public string ElapsedLife { get; set; }
+    }
+
+    public class AxesLmxParameterVueModel
+    {
+        public IEnumerable<ParameterMachineValueModel> AxesLmx { get; set; } = new List<ParameterMachineValueModel>();
     }
 }
