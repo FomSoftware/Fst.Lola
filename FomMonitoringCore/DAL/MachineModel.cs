@@ -26,6 +26,7 @@ namespace FomMonitoringCore.DAL
         public int ModelCodev997 { get; set; }
         public int MessageCategoryId { get; set; }
         public string Parameter { get; set; }
+        public Nullable<int> MachineTypeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Machine> Machine { get; set; }

@@ -19,9 +19,8 @@ namespace FomMonitoringCore.DAL_SQLite
         public Nullable<long> TimeSpanDuration { get; set; }
         public Nullable<System.DateTime> EndTime { get; set; }
         public Nullable<double> Overfeed { get; set; }
-        public Nullable<int> State1 { get; set; }
+        public Nullable<int> State { get; set; }
         public string Reason { get; set; }
         public string Operator { get; set; }
-        public Nullable<int> OperatorLevel { get; set; }
     }
 }

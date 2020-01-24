@@ -21,7 +21,6 @@ namespace FomMonitoringCore.DAL
         public Nullable<int> MachineId { get; set; }
         public Nullable<int> Period { get; set; }
         public Nullable<int> PiecesProduced { get; set; }
-        public Nullable<int> PiecesProducedDay { get; set; }
         public Nullable<int> TotalPieces { get; set; }
         public string TypeHistory { get; set; }
     

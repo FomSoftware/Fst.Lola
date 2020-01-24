@@ -43,7 +43,6 @@ namespace FomMonitoringBLL.ViewServices
                 code = j.Code,
                 perc = Common.GetPercentage(j.PiecesProduced ?? 0, j.TotalPieces ?? 0).RoundToInt() > 100 ? 100 : Common.GetPercentage(j.PiecesProduced ?? 0, j.TotalPieces ?? 0).RoundToInt(),
                 time = CommonViewService.getTimeViewModel(j.ElapsedTime),
-                quantity_day = j.PiecesProducedDay ?? 0,
                 quantity = j.PiecesProduced ?? 0,
                 pieces = j.TotalPieces ?? 0,
                 day = j.Day.GetValueOrDefault()

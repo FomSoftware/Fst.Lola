@@ -15,7 +15,6 @@ namespace FomMonitoringCore.DAL
     public partial class ToolMachine
     {
         public int Id { get; set; }
-        public Nullable<int> BrokenEventsCount { get; set; }
         public string Code { get; set; }
         public Nullable<long> CurrentLife { get; set; }
         public Nullable<System.DateTime> DateLoaded { get; set; }
@@ -24,7 +23,6 @@ namespace FomMonitoringCore.DAL
         public Nullable<long> ExpectedLife { get; set; }
         public bool IsActive { get; set; }
         public Nullable<int> MachineId { get; set; }
-        public Nullable<int> RevisedEventsCount { get; set; }
         public bool IsBroken { get; set; }
         public bool IsRevised { get; set; }
     

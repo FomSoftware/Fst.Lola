@@ -3,7 +3,7 @@ namespace FomMonitoringCore.Framework.Model
     public class BarModel
     {
         public int Id { get; set; }
-        public string BadAreas { get; set; }
+        public double? BadAreas { get; set; }
         public string Color { get; set; }
         public int? IdOld { get; set; }
         public int? Index { get; set; }

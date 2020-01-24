@@ -59,8 +59,8 @@ namespace FomMonitoringBLL.ViewServices
                     changes = new ChangeModel()
                     {
                         //total = (t.BrokenEventsCount ?? 0) + (t.RevisedEventsCount ?? 0),
-                        breaking = t.BrokenEventsCount ?? 0,
-                        replacement = t.RevisedEventsCount ?? 0,
+                        breaking = 0,
+                        replacement = 0,
                         historical = dataHistorical.Where(w => w.Code == t.Code).Select(h => new HistoricalModel()
                         {
                             date = h.DateReplaced.ToString(),

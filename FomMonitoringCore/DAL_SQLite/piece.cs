@@ -15,38 +15,19 @@ namespace FomMonitoringCore.DAL_SQLite
     public partial class piece
     {
         public int Id { get; set; }
-        public Nullable<int> Index { get; set; }
         public Nullable<int> BarId { get; set; }
-        public Nullable<double> BarLength { get; set; }
         public Nullable<double> Length { get; set; }
-        public Nullable<bool> IsOffcut { get; set; }
         public string JobCode { get; set; }
-        public Nullable<int> TotalPiecesInJob { get; set; }
-        public string TipologyCode { get; set; }
-        public string FrameId { get; set; }
-        public string BarCode { get; set; }
-        public string ProfileCode { get; set; }
-        public string System { get; set; }
-        public string Color { get; set; }
         public Nullable<System.DateTime> EndTime { get; set; }
+        public Nullable<System.DateTime> StartTime { get; set; }
         public Nullable<long> TimeSpan { get; set; }
         public Nullable<long> TimeSpanProducing { get; set; }
-        public Nullable<double> Overfeed { get; set; }
         public string Operator { get; set; }
-        public Nullable<bool> Completed { get; set; }
         public Nullable<bool> Redone { get; set; }
         public string RedoneReason { get; set; }
-        public Nullable<System.DateTime> StartTimeCut { get; set; }
-        public Nullable<System.DateTime> EndTimeCut { get; set; }
         public Nullable<long> TimeSpanCutting { get; set; }
-        public Nullable<System.DateTime> StartTimeWorking { get; set; }
-        public Nullable<System.DateTime> EndTimeWorking { get; set; }
         public Nullable<long> TimeSpanWorking { get; set; }
-        public Nullable<System.DateTime> StartTimeTrim { get; set; }
-        public Nullable<System.DateTime> EndTimeTrim { get; set; }
         public Nullable<long> TimeSpanTrim { get; set; }
-        public Nullable<System.DateTime> StartTimeAnuba { get; set; }
-        public Nullable<System.DateTime> EndTimeAnuba { get; set; }
         public Nullable<long> TimeSpanAnuba { get; set; }
     }
 }

@@ -135,17 +135,19 @@ namespace FomMonitoringCore.Service.DataMapping
                 var cat = _fomMonitoringEntities.Set<MachineModel>().Find(machineActual.MachineModelId)?.MessageCategoryId;
                 foreach (var mm in messageMachine.ToList())
                 {
-                    var msg = _fomMonitoringEntities.Set<MessagesIndex>().FirstOrDefault(f => f.MessageCode == mm.MessagesIndex.MessageCode && f.MessageCategoryId == cat);
-                    if (msg != null && msg.IsPeriodicM)
-                        mm.MessagesIndex.IsPeriodicM = true;
+                    if (mm.MessagesIndex != null)
+                    {
+                        var msg = _fomMonitoringEntities.Set<MessagesIndex>().FirstOrDefault(f => f.MessageCode == mm.MessagesIndex.MessageCode && f.MessageCategoryId == cat);
+                        if (msg != null && msg.IsPeriodicM)
+                            mm.MessagesIndex.IsPeriodicM = true;
 
-                    mm.MessagesIndexId = msg.Id;
-                    mm.MessagesIndex = msg;
-                    //sReadMessages.ReadMessageVisibilityGroup(mm, msg);
+                        mm.MessagesIndexId = msg.Id;
+                        mm.MessagesIndex = msg;
+                    }
                 }
 
                 //IS-754 escludere tutti quelli che hanno isLolaVisible = false && type error o warning 
-                messageMachine = messageMachine.Where(f => f.MessagesIndex.IsVisibleLOLA && f.MessagesIndex.MessageType != null && (f.MessagesIndex.MessageType.Id == 11 || f.MessagesIndex.MessageType.Id == 12)).ToList();
+                messageMachine = messageMachine.Where(f => f.MessagesIndex!= null && f.MessagesIndex.IsVisibleLOLA && f.MessagesIndex.MessageType != null && (f.MessagesIndex.MessageType.Id == 11 || f.MessagesIndex.MessageType.Id == 12)).ToList();
 
                 _fomMonitoringEntities.Set<MessageMachine>().AddRange(messageMachine);
                 _fomMonitoringEntities.SaveChanges();

@@ -18,7 +18,6 @@ namespace FomMonitoringCore.DAL_SQLite
         public string JobCode { get; set; }
         public Nullable<int> TotalPiecesInJob { get; set; }
         public Nullable<int> CurrentlyProducedPieces { get; set; }
-        public Nullable<int> CurrentPeriodPieces { get; set; }
         public Nullable<System.DateTime> Day { get; set; }
         public Nullable<long> ElapsedTime { get; set; }
     }

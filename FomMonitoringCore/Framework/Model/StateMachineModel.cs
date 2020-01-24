@@ -9,7 +9,6 @@ namespace FomMonitoringCore.Framework.Model
         public long? ElapsedTime { get; set; }
         public DateTime? EndTime { get; set; }
         public int? MachineId { get; set; }
-        public int? OperatorLevel { get; set; }
         public string Operator { get; set; }
         public double? Overfeed { get; set; }
         public string Reason { get; set; }

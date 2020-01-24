@@ -44,7 +44,7 @@ namespace FomMonitoringCore.Service
         }
         #region API
 
-        public int? GetMachineModelIdByModelCodeOrName(int? modelCode, string modelName)
+        public int? GetMachineModelIdByModelCode(int? modelCode)
         {
             int? result = null;
 
@@ -54,25 +54,41 @@ namespace FomMonitoringCore.Service
                     if (modelCode != null)
                     {
                         MachineModel machineModel = _machineModelRepository.Get(f => f.ModelCodev997 == modelCode).FirstOrDefault();
-                        if (machineModel == null && AddMachineModel(modelName, (int)modelCode))
-                        {
-                            machineModel = _machineModelRepository.Get(f => f.Name == modelName).FirstOrDefault();
-                        }
                         result = machineModel != null ? machineModel.Id : (int?)null;
                     }
-                    else if (!string.IsNullOrEmpty(modelName))
-                    {
-                        MachineModel machineModel = _machineModelRepository.Get(f => f.Name == modelName).FirstOrDefault();                       
-                        result = machineModel != null ? machineModel.Id : (int?)null;
-                    }                
+                              
                 }
                 catch (Exception ex)
                 {
-                    string errMessage = string.Format(ex.GetStringLog(), modelName.ToString());
+                    string errMessage = string.Format(ex.GetStringLog());
                     LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);                
                 }
 
             
+            return result;
+        }
+
+        public int? GetMachineTypeIdByModelCode(int? modelCode)
+        {
+            int? result = null;
+
+
+            try
+            {
+                if (modelCode != null)
+                {
+                    MachineModel machineModel = _machineModelRepository.Get(f => f.ModelCodev997 == modelCode).FirstOrDefault();
+                    result = machineModel != null ? machineModel.MachineTypeId : (int?)null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                string errMessage = string.Format(ex.GetStringLog());
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+
+
             return result;
         }
 

@@ -178,6 +178,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DAL\FomMonitoringModel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="DAL\FomMonitoringUpdateUsers.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
@@ -490,7 +495,7 @@
     </None>
     <EntityDeploy Include="DAL\FomMonitoringModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FomMonitoringModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>FomMonitoringModel1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="DAL\FomMonitoringModel.edmx.diagram">
       <DependentUpon>FomMonitoringModel.edmx</DependentUpon>

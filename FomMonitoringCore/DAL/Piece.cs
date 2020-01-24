@@ -20,9 +20,6 @@ namespace FomMonitoringCore.DAL
         public Nullable<long> ElapsedTime { get; set; }
         public Nullable<long> ElapsedTimeProducing { get; set; }
         public Nullable<System.DateTime> EndTime { get; set; }
-        public string FrameId { get; set; }
-        public Nullable<int> Index { get; set; }
-        public Nullable<bool> IsCompleted { get; set; }
         public Nullable<bool> IsRedone { get; set; }
         public Nullable<int> JobId { get; set; }
         public Nullable<double> Length { get; set; }
@@ -30,20 +27,11 @@ namespace FomMonitoringCore.DAL
         public string Operator { get; set; }
         public string RedoneReason { get; set; }
         public Nullable<int> Shift { get; set; }
-        public string System { get; set; }
-        public string TipologyCode { get; set; }
-        public Nullable<System.DateTime> StartTimeCut { get; set; }
-        public Nullable<System.DateTime> EndTimeCut { get; set; }
         public Nullable<long> ElapsedTimeCut { get; set; }
-        public Nullable<System.DateTime> StartTimeWorking { get; set; }
-        public Nullable<System.DateTime> EndTimeWorking { get; set; }
         public Nullable<long> ElapsedTimeWorking { get; set; }
-        public Nullable<System.DateTime> StartTimeTrim { get; set; }
-        public Nullable<System.DateTime> EndTimeTrim { get; set; }
         public Nullable<long> ElapsedTimeTrim { get; set; }
-        public Nullable<System.DateTime> StartTimeAnuba { get; set; }
-        public Nullable<System.DateTime> EndTimeAnuba { get; set; }
         public Nullable<long> ElapsedTimeAnuba { get; set; }
+        public Nullable<System.DateTime> StartTime { get; set; }
     
         public virtual Bar Bar { get; set; }
         public virtual Machine Machine { get; set; }

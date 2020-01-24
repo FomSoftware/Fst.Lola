@@ -23,7 +23,6 @@ namespace FomMonitoringBLL.ViewModel
         public int perc { get; set; }
         public TimeViewModel time { get; set; }
         public int quantity { get; set; }
-        public int quantity_day { get; set; }
         public int pieces { get; set; }
         public DateTime? day { get; set; }
 

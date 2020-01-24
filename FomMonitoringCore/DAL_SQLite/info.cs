@@ -17,8 +17,6 @@ namespace FomMonitoringCore.DAL_SQLite
         public int Id { get; set; }
         public string KeyId { get; set; }
         public string MachineSerial { get; set; }
-        public string MachineType { get; set; }
-        public string MachineModel { get; set; }
         public string MachineDescription { get; set; }
         public string Product { get; set; }
         public string ProductVersion { get; set; }

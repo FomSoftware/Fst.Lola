@@ -18,8 +18,6 @@ namespace FomMonitoringCore.DAL_SQLite
         public string Code { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTime> DateLoaded { get; set; }
-        public Nullable<int> BrokenEvents { get; set; }
-        public Nullable<int> RevisedEvents { get; set; }
         public Nullable<System.DateTime> DateReplaced { get; set; }
         public Nullable<long> CurrentLife { get; set; }
         public Nullable<long> ExpectedLife { get; set; }

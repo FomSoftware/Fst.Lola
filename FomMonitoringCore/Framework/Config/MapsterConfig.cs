@@ -159,7 +159,6 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.Code, src => src.JobCode)
                 .Map(dest => dest.TotalPieces, src => src.TotalPiecesInJob)
                 .Map(dest => dest.PiecesProduced, src => src.CurrentlyProducedPieces)
-                .Map(dest => dest.PiecesProducedDay, src => src.CurrentPeriodPieces)
                 .Map(dest => dest.Period, src => src.Day != null ? ((src.Day.Value.Year * 10000) + (src.Day.Value.Month * 100) + (src.Day.Value.Day)) : (int?)null)
                 .Map(dest => dest.TypeHistory, src => "d")
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
@@ -182,15 +181,15 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.Shift1, src => src.Shift1StartHour.HasValue && src.Shift1StartMinute.HasValue ? new TimeSpan(src.Shift1StartHour.Value, src.Shift1StartMinute.Value, 0) : (TimeSpan?)null)
                 .Map(dest => dest.Shift2, src => src.Shift2StartHour.HasValue && src.Shift2StartMinute.HasValue ? new TimeSpan(src.Shift2StartHour.Value, src.Shift2StartMinute.Value, 0) : (TimeSpan?)null)
                 .Map(dest => dest.Shift3, src => src.Shift3StartHour.HasValue && src.Shift3StartMinute.HasValue ? new TimeSpan(src.Shift3StartHour.Value, src.Shift3StartMinute.Value, 0) : (TimeSpan?)null)
-                .Map(dest => dest.MachineModelId, src => ((IMachineService)MapContext.Current.Parameters["machineService"]).GetMachineModelIdByModelCodeOrName(src.MachineCode, src.MachineModel))
-                .Map(dest => dest.MachineTypeId, src => ((IMachineService)MapContext.Current.Parameters["machineService"]).GetMachineTypeIdByTypeName(src.MachineType));
+                .Map(dest => dest.MachineModelId, src => ((IMachineService)MapContext.Current.Parameters["machineService"]).GetMachineModelIdByModelCode(src.MachineCode))
+                //.Map(dest => dest.MachineTypeId, src => ((IMachineService)MapContext.Current.Parameters["machineService"]).GetMachineTypeIdByTypeName(src.MachineType));
+                .Map(dest => dest.MachineTypeId, src => ((IMachineService)MapContext.Current.Parameters["machineService"]).GetMachineTypeIdByModelCode(src.MachineCode));
             config.NewConfig<DAL_SQLite.piece, Piece>()
                 .Ignore(dest => dest.Id)
                 .IgnoreAllVirtual()
                 .Map(dest => dest.BarId, src => ((IBarService)MapContext.Current.Parameters["barService"]).GetBarIdByBarIdOldAndMachineId(src.BarId, (int)MapContext.Current.Parameters["machineId"]))
                 .Map(dest => dest.ElapsedTime, src => src.TimeSpan)
                 .Map(dest => dest.ElapsedTimeProducing, src => src.TimeSpanProducing)
-                .Map(dest => dest.IsCompleted, src => src.Completed)
                 .Map(dest => dest.IsRedone, src => src.Redone)
                 .Map(dest => dest.Day, src => src.EndTime.HasValue && src.TimeSpan.HasValue ? src.EndTime.Value.AddTicks(-src.TimeSpan.Value).ToNullIfTooEarlyForDb() : (DateTime?)null)
                 .Map(dest => dest.JobId, src => ((IJobService)MapContext.Current.Parameters["jobService"]).GetJobIdByJobCode(src.JobCode, (int)MapContext.Current.Parameters["machineId"]))
@@ -223,13 +222,11 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.ElapsedTime, src => src.TimeSpanDuration)
                 .Map(dest => dest.Operator, src => string.IsNullOrEmpty(src.Operator) || string.IsNullOrWhiteSpace(src.Operator) ? "Other" : src.Operator)
                 .Map(dest => dest.Shift, src => ((IMachineService)MapContext.Current.Parameters["machineService"]).GetShiftByStartTime((int)MapContext.Current.Parameters["machineId"], src.StartTime))
-                .Map(dest => dest.StateId, src => src.State1)
+                .Map(dest => dest.StateId, src => src.State)
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
             config.NewConfig<DAL_SQLite.tool, ToolMachine>()
                 .Ignore(dest => dest.Id)
                 .IgnoreAllVirtual()
-                .Map(dest => dest.BrokenEventsCount, src => src.BrokenEvents)
-                .Map(dest => dest.RevisedEventsCount, src => src.RevisedEvents)
                 .Map(dest => dest.IsActive, src => true)
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
 

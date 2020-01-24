@@ -5,7 +5,6 @@ namespace FomMonitoringCore.Framework.Model
     public class ToolMachineModel
     {
         public int Id { get; set; }
-        public int? BrokenEventsCount { get; set; }
         public string Code { get; set; }
         public long? CurrentLife { get; set; }
         public DateTime? DateLoaded { get; set; }
@@ -16,6 +15,5 @@ namespace FomMonitoringCore.Framework.Model
         public bool IsBroken { get; set; }
         public bool IsRevised { get; set; }
         public int? MachineId { get; set; }
-        public int? RevisedEventsCount { get; set; }
     }
 }

@@ -22,6 +22,5 @@ namespace FomMonitoringCore.DAL_SQLite
         public string Operator { get; set; }
         public Nullable<int> State { get; set; }
         public string Type { get; set; }
-        public Nullable<int> Group { get; set; }
     }
 }

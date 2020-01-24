@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="FST_FomMonitoringModel.StateMachine" Width="1.5" PointX="5.25" PointY="37.25" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryState_State" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_StateMachine_State" />
-        <EntityTypeShape EntityType="FST_FomMonitoringModel.Piece" Width="1.5" PointX="7.5" PointY="40.5" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.Piece" Width="3.5" PointX="7.5" PointY="40.5" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.Bar" Width="1.5" PointX="5.25" PointY="55" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_Piece_Bar" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryPiece" Width="1.5" PointX="5.25" PointY="73.125" />
@@ -32,7 +32,7 @@
         <AssociationConnector Association="FST_FomMonitoringModel.FK_Piece_Machine" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_StateMachine_Machine" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_ToolMachine_Machine" />
-        <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryJob" Width="1.5" PointX="5.25" PointY="64.75" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryJob" Width="2" PointX="5.25" PointY="64.75" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.UserCustomerMapping" Width="1.5" PointX="0.75" PointY="3.875" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryJob_Machine" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_Bar_Machine" />

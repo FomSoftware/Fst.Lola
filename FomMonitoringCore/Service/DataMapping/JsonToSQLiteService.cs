@@ -150,15 +150,8 @@ namespace FomMonitoringCore.Service.DataMapping
                                 foreach (piece piece in pieceSQLite)
                                 {
                                     piece.EndTime = piece.EndTime.HasValue && piece.EndTime.Value.Year < 1900 ? null : piece.EndTime;
-                                    piece.StartTimeCut = piece.StartTimeCut.HasValue && piece.StartTimeCut.Value.Year < 1900 ? null : piece.StartTimeCut;
-                                    piece.EndTimeCut = piece.EndTimeCut.HasValue && piece.EndTimeCut.Value.Year < 1900 ? null : piece.EndTimeCut;
-                                    piece.StartTimeWorking = piece.StartTimeWorking.HasValue && piece.StartTimeWorking.Value.Year < 1900 ? null : piece.StartTimeWorking;
-                                    piece.EndTimeWorking = piece.EndTimeWorking.HasValue && piece.EndTimeWorking.Value.Year < 1900 ? null : piece.EndTimeWorking;
-                                    piece.StartTimeTrim = piece.StartTimeTrim.HasValue && piece.StartTimeTrim.Value.Year < 1900 ? null : piece.StartTimeTrim;
-                                    piece.EndTimeTrim = piece.EndTimeTrim.HasValue && piece.EndTimeTrim.Value.Year < 1900 ? null : piece.EndTimeTrim;
-                                    piece.StartTimeAnuba = piece.StartTimeAnuba.HasValue && piece.StartTimeAnuba.Value.Year < 1900 ? null : piece.StartTimeAnuba;
-                                    piece.EndTimeAnuba = piece.EndTimeAnuba.HasValue && piece.EndTimeAnuba.Value.Year < 1900 ? null : piece.EndTimeAnuba;
-                                }
+                                    piece.StartTime = piece.StartTime.HasValue && piece.StartTime.Value.Year < 1900 ? null : piece.StartTime;
+                            }
                                 break;
                             case "spindle":
                                 spindleSQLite = JsonConvert.DeserializeObject<List<spindle>>(JsonConvert.SerializeObject(token.First));
@@ -196,7 +189,6 @@ namespace FomMonitoringCore.Service.DataMapping
                                     Id = m.Id,
                                     Time = m.Time.HasValue && m.Time.Value.Year < 1900 ? null : m.Time,
                                     Code = m.Code,
-                                    Group = m.Group,
                                     Operator = m.Operator,
                                     Params = m.Parameters == null ? "" : JsonConvert.SerializeObject(m.Parameters),
                                     State = m.State,

@@ -20,7 +20,7 @@
           <Property Name="TimeSpanProducing" Type="bigint" />
           <Property Name="Length" Type="float" />
           <Property Name="IsOffcut" Type="bit" />
-          <Property Name="BadAreas" Type="varchar(max)" />
+          <Property Name="BadAreas" Type="float" />
           <Property Name="JobCode" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="error">
@@ -180,6 +180,7 @@
           <Property Name="ProfileCode" Type="varchar(max)" />
           <Property Name="System" Type="varchar(max)" />
           <Property Name="Color" Type="varchar(max)" />
+          <Property Name="StartTime" Type="datetime" />
           <Property Name="EndTime" Type="datetime" />
           <Property Name="TimeSpan" Type="bigint" />
           <Property Name="TimeSpanProducing" Type="bigint" />
@@ -319,7 +320,6 @@
           <Property Name="JobCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TotalPiecesInJob" Type="Int32" />
           <Property Name="CurrentlyProducedPieces" Type="Int32" />
-          <Property Name="CurrentPeriodPieces" Type="Int32" />
           <Property Name="Day" Type="DateTime" Precision="3" />
           <Property Name="ElapsedTime" Type="Int64" />
         </EntityType>
@@ -356,18 +356,16 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="KeyId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="MachineSerial" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="MachineType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="MachineModel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="MachineDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Product" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ProductVersion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="FirmwareVersion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="PlcVersion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="LoginDate" Type="DateTime" Precision="3" />
-          <Property Name="PlantName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="PlantAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="InstallationDate" Type="DateTime" Precision="3" />
-          <Property Name="NextMaintenanceService" Type="DateTime" Precision="3" />
+          <Property Name="PlantName" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="PlantAddress" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="InstallationDate" Precision="3" Type="DateTime" />
+          <Property Name="NextMaintenanceService" Precision="3" Type="DateTime" />
           <Property Name="StateProductivityGreenThreshold" Type="Double" />
           <Property Name="StateProductivityYellowThreshold" Type="Double" />
           <Property Name="PiecesProductivityGreenThreshold" Type="Double" />
@@ -390,38 +388,19 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Index" Type="Int32" />
           <Property Name="BarId" Type="Int32" />
-          <Property Name="BarLength" Type="Double" />
           <Property Name="Length" Type="Double" />
-          <Property Name="IsOffcut" Type="Boolean" />
           <Property Name="JobCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="TotalPiecesInJob" Type="Int32" />
-          <Property Name="TipologyCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FrameId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="BarCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ProfileCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="System" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Color" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
           <Property Name="TimeSpan" Type="Int64" />
           <Property Name="TimeSpanProducing" Type="Int64" />
-          <Property Name="Overfeed" Type="Double" />
           <Property Name="Operator" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Completed" Type="Boolean" />
           <Property Name="Redone" Type="Boolean" />
           <Property Name="RedoneReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="StartTimeCut" Type="DateTime" Precision="3" />
-          <Property Name="EndTimeCut" Type="DateTime" Precision="3" />
           <Property Name="TimeSpanCutting" Type="Int64" />
-          <Property Name="StartTimeWorking" Type="DateTime" Precision="3" />
-          <Property Name="EndTimeWorking" Type="DateTime" Precision="3" />
           <Property Name="TimeSpanWorking" Type="Int64" />
-          <Property Name="StartTimeTrim" Type="DateTime" Precision="3" />
-          <Property Name="EndTimeTrim" Type="DateTime" Precision="3" />
           <Property Name="TimeSpanTrim" Type="Int64" />
-          <Property Name="StartTimeAnuba" Type="DateTime" Precision="3" />
-          <Property Name="EndTimeAnuba" Type="DateTime" Precision="3" />
           <Property Name="TimeSpanAnuba" Type="Int64" />
         </EntityType>
         <EntityType Name="state">
@@ -433,10 +412,9 @@
           <Property Name="TimeSpanDuration" Type="Int64" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
           <Property Name="Overfeed" Type="Double" />
-          <Property Name="State1" Type="Int32" />
+          <Property Name="State" Type="Int32" />
           <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Operator" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="OperatorLevel" Type="Int32" />
         </EntityType>
         <EntityType Name="tool">
           <Key>
@@ -446,8 +424,6 @@
           <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="DateLoaded" Type="DateTime" Precision="3" />
-          <Property Name="BrokenEvents" Type="Int32" />
-          <Property Name="RevisedEvents" Type="Int32" />
           <Property Name="DateReplaced" Type="DateTime" Precision="3" />
           <Property Name="CurrentLife" Type="Int64" />
           <Property Name="ExpectedLife" Type="Int64" />
@@ -499,11 +475,9 @@
           <Property Name="Color" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="StartTime" Type="DateTime" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
-          <Property Name="TimeSpanTotal" Type="Int64" />
-          <Property Name="TimeSpanProducing" Type="Int64" />
           <Property Name="Length" Type="Double" />
           <Property Name="IsOffcut" Type="Boolean" />
-          <Property Name="BadAreas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BadAreas" Type="Double" />
           <Property Name="JobCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="true" />
         </EntityType>
         <EntityType Name="message">
@@ -518,7 +492,6 @@
           <Property Name="Operator" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="State" Type="Int32" />
           <Property Name="Type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Group" Type="Int32" />
         </EntityType>
         <EntityType Name="historyMessage">
           <Key>
@@ -570,7 +543,6 @@
               <MappingFragment StoreEntitySet="historyJob">
                 <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
                 <ScalarProperty Name="Day" ColumnName="Day" />
-                <ScalarProperty Name="CurrentPeriodPieces" ColumnName="CurrentPeriodPieces" />
                 <ScalarProperty Name="CurrentlyProducedPieces" ColumnName="CurrentlyProducedPieces" />
                 <ScalarProperty Name="TotalPiecesInJob" ColumnName="TotalPiecesInJob" />
                 <ScalarProperty Name="JobCode" ColumnName="JobCode" />
@@ -635,8 +607,6 @@
                 <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
                 <ScalarProperty Name="Product" ColumnName="Product" />
                 <ScalarProperty Name="MachineDescription" ColumnName="MachineDescription" />
-                <ScalarProperty Name="MachineModel" ColumnName="MachineModel" />
-                <ScalarProperty Name="MachineType" ColumnName="MachineType" />
                 <ScalarProperty Name="MachineSerial" ColumnName="MachineSerial" />
                 <ScalarProperty Name="KeyId" ColumnName="KeyId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -647,38 +617,19 @@
             <EntityTypeMapping TypeName="FomMonitoringSQLiteModel.piece">
               <MappingFragment StoreEntitySet="piece">
                 <ScalarProperty Name="TimeSpanAnuba" ColumnName="TimeSpanAnuba" />
-                <ScalarProperty Name="EndTimeAnuba" ColumnName="EndTimeAnuba" />
-                <ScalarProperty Name="StartTimeAnuba" ColumnName="StartTimeAnuba" />
                 <ScalarProperty Name="TimeSpanTrim" ColumnName="TimeSpanTrim" />
-                <ScalarProperty Name="EndTimeTrim" ColumnName="EndTimeTrim" />
-                <ScalarProperty Name="StartTimeTrim" ColumnName="StartTimeTrim" />
                 <ScalarProperty Name="TimeSpanWorking" ColumnName="TimeSpanWorking" />
-                <ScalarProperty Name="EndTimeWorking" ColumnName="EndTimeWorking" />
-                <ScalarProperty Name="StartTimeWorking" ColumnName="StartTimeWorking" />
                 <ScalarProperty Name="TimeSpanCutting" ColumnName="TimeSpanCutting" />
-                <ScalarProperty Name="EndTimeCut" ColumnName="EndTimeCut" />
-                <ScalarProperty Name="StartTimeCut" ColumnName="StartTimeCut" />
                 <ScalarProperty Name="RedoneReason" ColumnName="RedoneReason" />
                 <ScalarProperty Name="Redone" ColumnName="Redone" />
-                <ScalarProperty Name="Completed" ColumnName="Completed" />
                 <ScalarProperty Name="Operator" ColumnName="Operator" />
-                <ScalarProperty Name="Overfeed" ColumnName="Overfeed" />
                 <ScalarProperty Name="TimeSpanProducing" ColumnName="TimeSpanProducing" />
                 <ScalarProperty Name="TimeSpan" ColumnName="TimeSpan" />
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="System" ColumnName="System" />
-                <ScalarProperty Name="ProfileCode" ColumnName="ProfileCode" />
-                <ScalarProperty Name="BarCode" ColumnName="BarCode" />
-                <ScalarProperty Name="FrameId" ColumnName="FrameId" />
-                <ScalarProperty Name="TipologyCode" ColumnName="TipologyCode" />
-                <ScalarProperty Name="TotalPiecesInJob" ColumnName="TotalPiecesInJob" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="JobCode" ColumnName="JobCode" />
-                <ScalarProperty Name="IsOffcut" ColumnName="IsOffcut" />
                 <ScalarProperty Name="Length" ColumnName="Length" />
-                <ScalarProperty Name="BarLength" ColumnName="BarLength" />
                 <ScalarProperty Name="BarId" ColumnName="BarId" />
-                <ScalarProperty Name="Index" ColumnName="Index" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -686,10 +637,9 @@
           <EntitySetMapping Name="state">
             <EntityTypeMapping TypeName="FomMonitoringSQLiteModel.state">
               <MappingFragment StoreEntitySet="state">
-                <ScalarProperty Name="OperatorLevel" ColumnName="OperatorLevel" />
                 <ScalarProperty Name="Operator" ColumnName="Operator" />
                 <ScalarProperty Name="Reason" ColumnName="Reason" />
-                <ScalarProperty Name="State1" ColumnName="State" />
+                <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="Overfeed" ColumnName="Overfeed" />
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="TimeSpanDuration" ColumnName="TimeSpanDuration" />
@@ -704,8 +654,6 @@
                 <ScalarProperty Name="ExpectedLife" ColumnName="ExpectedLife" />
                 <ScalarProperty Name="CurrentLife" ColumnName="CurrentLife" />
                 <ScalarProperty Name="DateReplaced" ColumnName="DateReplaced" />
-                <ScalarProperty Name="RevisedEvents" ColumnName="RevisedEvents" />
-                <ScalarProperty Name="BrokenEvents" ColumnName="BrokenEvents" />
                 <ScalarProperty Name="DateLoaded" ColumnName="DateLoaded" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
@@ -758,8 +706,6 @@
                 <ScalarProperty Name="BadAreas" ColumnName="BadAreas" />
                 <ScalarProperty Name="IsOffcut" ColumnName="IsOffcut" />
                 <ScalarProperty Name="Length" ColumnName="Length" />
-                <ScalarProperty Name="TimeSpanProducing" ColumnName="TimeSpanProducing" />
-                <ScalarProperty Name="TimeSpanTotal" ColumnName="TimeSpanTotal" />
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
@@ -773,7 +719,6 @@
           <EntitySetMapping Name="message">
             <EntityTypeMapping TypeName="FomMonitoringSQLiteModel.message">
               <MappingFragment StoreEntitySet="message">
-                <ScalarProperty Name="Group" ColumnName="Group" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="Operator" ColumnName="Operator" />

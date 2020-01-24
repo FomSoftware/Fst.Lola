@@ -21,7 +21,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BadAreas" Type="varchar(max)" />
+          <Property Name="BadAreas" Type="float" />
           <Property Name="Color" Type="varchar" MaxLength="100" />
           <Property Name="IdOld" Type="int" />
           <Property Name="Index" Type="int" />
@@ -43,9 +43,12 @@
           <Property Name="JobTotalPieces" Type="int" />
           <Property Name="LastUpdated" Type="datetime" />
           <Property Name="MachineId" Type="int" />
+          <Property Name="NextMaintenanceService" Type="datetime" />
           <Property Name="Operator" Type="varchar" MaxLength="100" />
+          <Property Name="Plant" Type="varchar" MaxLength="100" />
           <Property Name="StateId" Type="int" />
           <Property Name="StateTransitionCode" Type="varchar" MaxLength="100" />
+          <Property Name="StateTransitionDescription" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="HistoryBar">
           <Key>
@@ -184,6 +187,7 @@
           <Property Name="ModelCodev997" Type="int" Nullable="false" />
           <Property Name="MessageCategoryId" Type="int" Nullable="false" />
           <Property Name="Parameter" Type="nchar" MaxLength="20" />
+          <Property Name="MachineTypeId" Type="int" />
         </EntityType>
         <EntityType Name="MachineType">
           <Key>
@@ -324,6 +328,7 @@
           <Property Name="Day" Type="datetime" />
           <Property Name="ElapsedTime" Type="bigint" />
           <Property Name="ElapsedTimeProducing" Type="bigint" />
+          <Property Name="StartTime" Type="datetime" />
           <Property Name="EndTime" Type="datetime" />
           <Property Name="FrameId" Type="varchar" MaxLength="100" />
           <Property Name="Index" Type="int" />
@@ -412,7 +417,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BrokenEventsCount" Type="int" />
           <Property Name="Code" Type="varchar" MaxLength="100" />
           <Property Name="CurrentLife" Type="bigint" />
           <Property Name="DateLoaded" Type="datetime" />
@@ -423,7 +427,6 @@
           <Property Name="IsBroken" Type="bit" Nullable="false" />
           <Property Name="IsRevised" Type="bit" Nullable="false" />
           <Property Name="MachineId" Type="int" />
-          <Property Name="RevisedEventsCount" Type="int" />
         </EntityType>
         <EntityType Name="UserCustomerMapping">
           <Key>
@@ -1430,6 +1433,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="Parameter" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="MessageCategory" Relationship="FST_FomMonitoringModel.FK_MachineModel_MessageCategory" FromRole="MachineModel" ToRole="MessageCategory" />
           <NavigationProperty Name="ParameterMachine" Relationship="FST_FomMonitoringModel.FK_ParameterMachine_MachineModel" FromRole="MachineModel" ToRole="ParameterMachine" />
+          <Property Name="MachineTypeId" Type="Int32" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -1486,7 +1490,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="ElapsedTime" Type="Int64" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
           <Property Name="MachineId" Type="Int32" />
-          <Property Name="OperatorLevel" Type="Int32" />
           <Property Name="Operator" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Overfeed" Type="Double" />
           <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -1495,6 +1498,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="StateId" Type="Int32" />
           <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_StateMachine_State" FromRole="StateMachine" ToRole="State" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_StateMachine_Machine" FromRole="StateMachine" ToRole="Machine" />
+          <Property Name="OperatorLevel" Type="Int32" />
         </EntityType>
         <Association Name="FK_HistoryState_State">
           <End Type="FST_FomMonitoringModel.State" Role="State" Multiplicity="0..1" />
@@ -1542,9 +1546,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="ElapsedTime" Type="Int64" />
           <Property Name="ElapsedTimeProducing" Type="Int64" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
-          <Property Name="FrameId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Index" Type="Int32" />
-          <Property Name="IsCompleted" Type="Boolean" />
           <Property Name="IsRedone" Type="Boolean" />
           <Property Name="JobId" Type="Int32" />
           <Property Name="Length" Type="Double" />
@@ -1552,29 +1553,20 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="Operator" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="RedoneReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Shift" Type="Int32" />
-          <Property Name="System" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TipologyCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="StartTimeCut" Type="DateTime" Precision="3" />
-          <Property Name="EndTimeCut" Type="DateTime" Precision="3" />
           <Property Name="ElapsedTimeCut" Type="Int64" />
-          <Property Name="StartTimeWorking" Type="DateTime" Precision="3" />
-          <Property Name="EndTimeWorking" Type="DateTime" Precision="3" />
           <Property Name="ElapsedTimeWorking" Type="Int64" />
-          <Property Name="StartTimeTrim" Type="DateTime" Precision="3" />
-          <Property Name="EndTimeTrim" Type="DateTime" Precision="3" />
           <Property Name="ElapsedTimeTrim" Type="Int64" />
-          <Property Name="StartTimeAnuba" Type="DateTime" Precision="3" />
-          <Property Name="EndTimeAnuba" Type="DateTime" Precision="3" />
           <Property Name="ElapsedTimeAnuba" Type="Int64" />
           <NavigationProperty Name="Bar" Relationship="FST_FomMonitoringModel.FK_Piece_Bar" FromRole="Piece" ToRole="Bar" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_Piece_Machine" FromRole="Piece" ToRole="Machine" />
-        </EntityType>
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          </EntityType>
         <EntityType Name="Bar">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BadAreas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BadAreas" Type="Double" />
           <Property Name="Color" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IdOld" Type="Int32" />
           <Property Name="Index" Type="Int32" />
@@ -1699,7 +1691,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BrokenEventsCount" Type="Int32" />
           <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CurrentLife" Type="Int64" />
           <Property Name="DateLoaded" Type="DateTime" Precision="3" />
@@ -1708,7 +1699,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="ExpectedLife" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="MachineId" Type="Int32" />
-          <Property Name="RevisedEventsCount" Type="Int32" />
           <Property Name="IsBroken" Type="Boolean" Nullable="false" />
           <Property Name="IsRevised" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_ToolMachine_Machine" FromRole="ToolMachine" ToRole="Machine" />
@@ -1915,7 +1905,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="MachineId" Type="Int32" />
           <Property Name="Period" Type="Int32" />
           <Property Name="PiecesProduced" Type="Int32" />
-          <Property Name="PiecesProducedDay" Type="Int32" />
           <Property Name="TotalPieces" Type="Int32" />
           <Property Name="TypeHistory" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_HistoryJob_Machine" FromRole="HistoryJob" ToRole="Machine" />
@@ -1948,7 +1937,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Type="Int32" Name="MachineId" Nullable="true" />
           <Property Type="Int32" Name="Period" Nullable="true" />
           <Property Type="Int32" Name="PiecesProduced" Nullable="true" />
-          <Property Type="Int32" Name="PiecesProducedDay" Nullable="true" />
           <Property Type="Int32" Name="TotalPieces" Nullable="true" />
           <Property Type="String" Name="TypeHistory" Nullable="true" MaxLength="1" />
         </ComplexType>
@@ -2493,6 +2481,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="MachineModel">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.MachineModel">
               <MappingFragment StoreEntitySet="MachineModel">
+                <ScalarProperty Name="MachineTypeId" ColumnName="MachineTypeId" />
                 <ScalarProperty Name="Parameter" ColumnName="Parameter" />
                 <ScalarProperty Name="MessageCategoryId" ColumnName="MessageCategoryId" />
                 <ScalarProperty Name="ModelCodev997" ColumnName="ModelCodev997" />
@@ -2545,13 +2534,13 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="StateMachine">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.StateMachine">
               <MappingFragment StoreEntitySet="StateMachine">
+                <ScalarProperty Name="OperatorLevel" ColumnName="OperatorLevel" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="Shift" ColumnName="Shift" />
                 <ScalarProperty Name="Reason" ColumnName="Reason" />
                 <ScalarProperty Name="Overfeed" ColumnName="Overfeed" />
                 <ScalarProperty Name="Operator" ColumnName="Operator" />
-                <ScalarProperty Name="OperatorLevel" ColumnName="OperatorLevel" />
                 <ScalarProperty Name="MachineId" ColumnName="MachineId" />
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
@@ -2579,20 +2568,11 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="Piece">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.Piece">
               <MappingFragment StoreEntitySet="Piece">
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="ElapsedTimeAnuba" ColumnName="ElapsedTimeAnuba" />
-                <ScalarProperty Name="EndTimeAnuba" ColumnName="EndTimeAnuba" />
-                <ScalarProperty Name="StartTimeAnuba" ColumnName="StartTimeAnuba" />
                 <ScalarProperty Name="ElapsedTimeTrim" ColumnName="ElapsedTimeTrim" />
-                <ScalarProperty Name="EndTimeTrim" ColumnName="EndTimeTrim" />
-                <ScalarProperty Name="StartTimeTrim" ColumnName="StartTimeTrim" />
                 <ScalarProperty Name="ElapsedTimeWorking" ColumnName="ElapsedTimeWorking" />
-                <ScalarProperty Name="EndTimeWorking" ColumnName="EndTimeWorking" />
-                <ScalarProperty Name="StartTimeWorking" ColumnName="StartTimeWorking" />
                 <ScalarProperty Name="ElapsedTimeCut" ColumnName="ElapsedTimeCut" />
-                <ScalarProperty Name="EndTimeCut" ColumnName="EndTimeCut" />
-                <ScalarProperty Name="StartTimeCut" ColumnName="StartTimeCut" />
-                <ScalarProperty Name="TipologyCode" ColumnName="TipologyCode" />
-                <ScalarProperty Name="System" ColumnName="System" />
                 <ScalarProperty Name="Shift" ColumnName="Shift" />
                 <ScalarProperty Name="RedoneReason" ColumnName="RedoneReason" />
                 <ScalarProperty Name="Operator" ColumnName="Operator" />
@@ -2600,9 +2580,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
                 <ScalarProperty Name="Length" ColumnName="Length" />
                 <ScalarProperty Name="JobId" ColumnName="JobId" />
                 <ScalarProperty Name="IsRedone" ColumnName="IsRedone" />
-                <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
-                <ScalarProperty Name="Index" ColumnName="Index" />
-                <ScalarProperty Name="FrameId" ColumnName="FrameId" />
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="ElapsedTimeProducing" ColumnName="ElapsedTimeProducing" />
                 <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
@@ -2712,7 +2689,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
               <MappingFragment StoreEntitySet="ToolMachine">
                 <ScalarProperty Name="IsRevised" ColumnName="IsRevised" />
                 <ScalarProperty Name="IsBroken" ColumnName="IsBroken" />
-                <ScalarProperty Name="RevisedEventsCount" ColumnName="RevisedEventsCount" />
                 <ScalarProperty Name="MachineId" ColumnName="MachineId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="ExpectedLife" ColumnName="ExpectedLife" />
@@ -2721,7 +2697,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
                 <ScalarProperty Name="DateLoaded" ColumnName="DateLoaded" />
                 <ScalarProperty Name="CurrentLife" ColumnName="CurrentLife" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="BrokenEventsCount" ColumnName="BrokenEventsCount" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2786,7 +2761,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
               <MappingFragment StoreEntitySet="HistoryJob">
                 <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
                 <ScalarProperty Name="TotalPieces" ColumnName="TotalPieces" />
-                <ScalarProperty Name="PiecesProducedDay" ColumnName="PiecesProducedDay" />
                 <ScalarProperty Name="PiecesProduced" ColumnName="PiecesProduced" />
                 <ScalarProperty Name="Period" ColumnName="Period" />
                 <ScalarProperty Name="MachineId" ColumnName="MachineId" />
@@ -2816,7 +2790,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
                 <ScalarProperty Name="MachineId" ColumnName="MachineId" />
                 <ScalarProperty Name="Period" ColumnName="Period" />
                 <ScalarProperty Name="PiecesProduced" ColumnName="PiecesProduced" />
-                <ScalarProperty Name="PiecesProducedDay" ColumnName="PiecesProducedDay" />
                 <ScalarProperty Name="TotalPieces" ColumnName="TotalPieces" />
                 <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
               </ComplexTypeMapping>

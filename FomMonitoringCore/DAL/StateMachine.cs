@@ -19,13 +19,13 @@ namespace FomMonitoringCore.DAL
         public Nullable<long> ElapsedTime { get; set; }
         public Nullable<System.DateTime> EndTime { get; set; }
         public Nullable<int> MachineId { get; set; }
-        public Nullable<int> OperatorLevel { get; set; }
         public string Operator { get; set; }
         public Nullable<double> Overfeed { get; set; }
         public string Reason { get; set; }
         public Nullable<int> Shift { get; set; }
         public Nullable<System.DateTime> StartTime { get; set; }
         public Nullable<int> StateId { get; set; }
+        public Nullable<int> OperatorLevel { get; set; }
     
         public virtual State State { get; set; }
         public virtual Machine Machine { get; set; }

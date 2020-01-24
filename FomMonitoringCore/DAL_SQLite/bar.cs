@@ -21,11 +21,9 @@ namespace FomMonitoringCore.DAL_SQLite
         public string Color { get; set; }
         public Nullable<System.DateTime> StartTime { get; set; }
         public Nullable<System.DateTime> EndTime { get; set; }
-        public Nullable<long> TimeSpanTotal { get; set; }
-        public Nullable<long> TimeSpanProducing { get; set; }
         public Nullable<double> Length { get; set; }
         public Nullable<bool> IsOffcut { get; set; }
-        public string BadAreas { get; set; }
+        public Nullable<double> BadAreas { get; set; }
         public string JobCode { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace FomMonitoringCore.DAL
         }
     
         public int Id { get; set; }
-        public string BadAreas { get; set; }
+        public Nullable<double> BadAreas { get; set; }
         public string Color { get; set; }
         public Nullable<int> IdOld { get; set; }
         public Nullable<int> Index { get; set; }
