@@ -2484,7 +2484,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Range 0-1500 rpm &lt;br&gt; time passed.
+        ///   Looks up a localized string similar to Range 0-1500 rpm.
         /// </summary>
         public static string TabSoglieRpmMandriniCUT_1 {
             get {
@@ -2493,7 +2493,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Range 1501-2500 rpm &lt;br&gt; time passed.
+        ///   Looks up a localized string similar to Range 1501-2500 rpm.
         /// </summary>
         public static string TabSoglieRpmMandriniCUT_2 {
             get {
@@ -2502,7 +2502,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Range 0-1500 rpm &lt;br&gt; time passed.
+        ///   Looks up a localized string similar to Range 0-1500 rpm.
         /// </summary>
         public static string TabSoglieRpmMandriniINT_1 {
             get {
@@ -2511,7 +2511,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Range 1501-5000 rpm &lt;br&gt; time passed.
+        ///   Looks up a localized string similar to Range 1501-5000 rpm.
         /// </summary>
         public static string TabSoglieRpmMandriniINT_2 {
             get {
@@ -2520,7 +2520,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Range 5001-8000 rpm &lt;br&gt; time passed.
+        ///   Looks up a localized string similar to Range 5001-8000 rpm.
         /// </summary>
         public static string TabSoglieRpmMandriniINT_3 {
             get {
@@ -2529,7 +2529,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Range 8001-11500 rpm &lt;br&gt; time passed.
+        ///   Looks up a localized string similar to Range 8001-11500 rpm.
         /// </summary>
         public static string TabSoglieRpmMandriniINT_4 {
             get {
@@ -2538,7 +2538,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Range 11500-14500 rpm &lt;br&gt; time passed.
+        ///   Looks up a localized string similar to Range 11500-14500 rpm.
         /// </summary>
         public static string TabSoglieRpmMandriniINT_5 {
             get {
@@ -2547,7 +2547,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Range 14501-20000 rpm &lt;br&gt; time passed.
+        ///   Looks up a localized string similar to Range 14501-20000 rpm.
         /// </summary>
         public static string TabSoglieRpmMandriniINT_6 {
             get {

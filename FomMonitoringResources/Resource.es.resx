@@ -981,31 +981,31 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
     <value>Horas vida herramienta Cod (n° codice utensile)</value>
   </data>
   <data name="TabSoglieRpmMandriniCUT_1" xml:space="preserve">
-    <value>Rango rpm 0-1500 &lt;br&gt; tiempo transc.</value>
+    <value>Rango rpm 0-1500</value>
   </data>
   <data name="TabSoglieRpmMandriniCUT_2" xml:space="preserve">
-    <value>Rango rpm 1501-2500 &lt;br&gt; tiempo transc.</value>
+    <value>Rango rpm 1501-2500</value>
   </data>
   <data name="TabSoglieRpmMandriniCUT_3&#x9;" xml:space="preserve">
-    <value>Rango rpm 2501-3000 &lt;br&gt; tiempo transc.</value>
+    <value>Rango rpm 2501-3000</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_1" xml:space="preserve">
-    <value>Rango rpm 0-1500 &lt;br&gt; tiempo transc.</value>
+    <value>Rango rpm 0-1500</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_2" xml:space="preserve">
-    <value>Rango rpm 1501-5000 &lt;br&gt; tiempo transc.</value>
+    <value>Rango rpm 1501-5000</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_3" xml:space="preserve">
-    <value>Rango rpm 5001-8000 &lt;br&gt; tiempo transc.</value>
+    <value>Rango rpm 5001-8000</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_4" xml:space="preserve">
-    <value>Rango rpm 8001-11500 &lt;br&gt; tiempo transc.</value>
+    <value>Rango rpm 8001-11500</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_5" xml:space="preserve">
-    <value>Rango rpm 11500-14500 &lt;br&gt; tiempo transc.</value>
+    <value>Rango rpm 11500-14500</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_6" xml:space="preserve">
-    <value>Rango rpm 14501-20000 &lt;br&gt; tiempo transc.</value>
+    <value>Rango rpm 14501-20000</value>
   </data>
   <data name="TabCambioUtMandrinoINT" xml:space="preserve">
     <value>Nº  Desbloqueos pinza</value>

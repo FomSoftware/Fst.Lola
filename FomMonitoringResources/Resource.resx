@@ -987,28 +987,28 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Cod1 tool working hours</value>
   </data>
   <data name="TabSoglieRpmMandriniCUT_1" xml:space="preserve">
-    <value>Range 0-1500 rpm &lt;br&gt; time passed</value>
+    <value>Range 0-1500 rpm</value>
   </data>
   <data name="TabSoglieRpmMandriniCUT_2" xml:space="preserve">
-    <value>Range 1501-2500 rpm &lt;br&gt; time passed</value>
+    <value>Range 1501-2500 rpm</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_1" xml:space="preserve">
-    <value>Range 0-1500 rpm &lt;br&gt; time passed</value>
+    <value>Range 0-1500 rpm</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_2" xml:space="preserve">
-    <value>Range 1501-5000 rpm &lt;br&gt; time passed</value>
+    <value>Range 1501-5000 rpm</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_3" xml:space="preserve">
-    <value>Range 5001-8000 rpm &lt;br&gt; time passed</value>
+    <value>Range 5001-8000 rpm</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_4" xml:space="preserve">
-    <value>Range 8001-11500 rpm &lt;br&gt; time passed</value>
+    <value>Range 8001-11500 rpm</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_5" xml:space="preserve">
-    <value>Range 11500-14500 rpm &lt;br&gt; time passed</value>
+    <value>Range 11500-14500 rpm</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_6" xml:space="preserve">
-    <value>Range 14501-20000 rpm &lt;br&gt; time passed</value>
+    <value>Range 14501-20000 rpm</value>
   </data>
   <data name="TabCambioUtMandrinoINT" xml:space="preserve">
     <value>No. Gripper releases</value>
@@ -1083,7 +1083,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>TabTempoResiduoBarra</value>
   </data>
   <data name="TabSoglieRpmMandriniCUT_3&#x9;" xml:space="preserve">
-    <value>Range 2501-3000 rpm &lt;br&gt; time passed</value>
+    <value>Range 2501-3000 rpm</value>
   </data>
   <data name="TimeTot" xml:space="preserve">
     <value>[TimeTot]</value>

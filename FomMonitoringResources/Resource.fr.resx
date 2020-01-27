@@ -981,31 +981,31 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Heures de vie outil Code (n° codice utensile)</value>
   </data>
   <data name="TabSoglieRpmMandriniCUT_1" xml:space="preserve">
-    <value>Plage 0-1500 rpm &lt;br&gt; tps écoulé</value>
+    <value>Plage 0-1500 rpm</value>
   </data>
   <data name="TabSoglieRpmMandriniCUT_2" xml:space="preserve">
-    <value>Plage 1501-2500 rpm &lt;br&gt; tps écoulé</value>
+    <value>Plage 1501-2500 rpm</value>
   </data>
   <data name="TabSoglieRpmMandriniCUT_3&#x9;" xml:space="preserve">
-    <value>Plage 2501-3000 rpm &lt;br&gt; tps écoulé</value>
+    <value>Plage 2501-3000 rpm</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_1" xml:space="preserve">
-    <value>Plage 0-1500 rpm &lt;br&gt; tps écoulé</value>
+    <value>Plage 0-1500 rpm</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_2" xml:space="preserve">
-    <value>Plage 1501-5000 rpm &lt;br&gt; tps écoulé</value>
+    <value>Plage 1501-5000 rpm</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_3" xml:space="preserve">
-    <value>Plage 5001 -8000 rpm &lt;br&gt; tps écoulé</value>
+    <value>Plage 5001 -8000 rpm</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_4" xml:space="preserve">
-    <value>Plage 8001-11500 rpm &lt;br&gt; tps écoulé</value>
+    <value>Plage 8001-11500 rpm</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_5" xml:space="preserve">
-    <value>Plage 11500-14500 rpm &lt;br&gt; tps écoulé</value>
+    <value>Plage 11500-14500 rpm</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_6" xml:space="preserve">
-    <value>Plage 14501-20000 rpm &lt;br&gt; tps écoulé</value>
+    <value>Plage 14501-20000 rpm</value>
   </data>
   <data name="TabCambioUtMandrinoINT" xml:space="preserve">
     <value>Nb déblocages pince</value>

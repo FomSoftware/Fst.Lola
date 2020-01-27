@@ -1579,18 +1579,12 @@ td.td-electrospindle-data {
     border: solid #FF7F00 3px;
 }
 
-[data-panel = 'efficiency']:focus span i {
+[data-panel='efficiency']:focus span i {
     color: white !important;
     background-color: #403D3D !important;
     border: solid #403D3D 3px;
 }
 
-
-#efc_kpi_chart[data-highcharts-chart], #efc_kpi_chart .highcharts-container, #efc_kpi_chart .highcharts-container svg,
-#efc_pie_chart[data-highcharts-chart], #efc_pie_chart .highcharts-container, #efc_pie_chart .highcharts-container svg {
-    width: unset !important;
-    height: unset !important;
-}
 
 
 @media (min-width: 1400px) {
