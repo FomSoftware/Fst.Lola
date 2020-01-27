@@ -2646,7 +2646,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Single piece time remaining.
+        ///   Looks up a localized string similar to Piece time remaining.
         /// </summary>
         public static string tempoAttualeProgramma {
             get {

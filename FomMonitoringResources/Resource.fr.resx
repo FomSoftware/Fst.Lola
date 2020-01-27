@@ -723,7 +723,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Nb rotations (180°) axe A</value>
   </data>
   <data name="tempoAttualeProgramma" xml:space="preserve">
-    <value>Temps résiduel pièce individuelle</value>
+    <value>Temps résiduel pièce</value>
   </data>
   <data name="lw_clickMicroIsolaSX" xml:space="preserve">
     <value>Nb clics capteur chariot îlot D</value>

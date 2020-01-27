@@ -726,7 +726,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>A axis No. turns (180°)</value>
   </data>
   <data name="tempoAttualeProgramma" xml:space="preserve">
-    <value>Single piece time remaining</value>
+    <value>Piece time remaining</value>
   </data>
   <data name="lw_clickMicroIsolaSX" xml:space="preserve">
     <value>RH w.area carr. sensor Click No.</value>

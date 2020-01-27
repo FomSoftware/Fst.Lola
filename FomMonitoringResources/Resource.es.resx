@@ -723,7 +723,7 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
     <value>Nº rotaciones (180°) eje A</value>
   </data>
   <data name="tempoAttualeProgramma" xml:space="preserve">
-    <value>Tiempo restante pieza simple</value>
+    <value>Tiempo restante pieza</value>
   </data>
   <data name="lw_clickMicroIsolaSX" xml:space="preserve">
     <value>Nº clicks sensor carro isla DCH</value>

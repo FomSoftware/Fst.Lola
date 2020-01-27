@@ -723,7 +723,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
     <value>N. rotazioni (180°) asse A</value>
   </data>
   <data name="tempoAttualeProgramma" xml:space="preserve">
-    <value>Tempo residuo singolo pezzo</value>
+    <value>Tempo residuo pezzo</value>
   </data>
   <data name="lw_clickMicroIsolaSX" xml:space="preserve">
     <value>Nr. Click sensore carro isola DX</value>
