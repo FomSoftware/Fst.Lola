@@ -162,7 +162,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                 }
                                 break;
                             case "state":
-                                string jsonSerialized = JsonConvert.SerializeObject(token.First).Replace("\"State\":", "\"State1\":");
+                                string jsonSerialized = JsonConvert.SerializeObject(token.First);
                                 stateSQLite = JsonConvert.DeserializeObject<List<state>>(jsonSerialized);
                                 foreach (state state in stateSQLite)
                                 {
