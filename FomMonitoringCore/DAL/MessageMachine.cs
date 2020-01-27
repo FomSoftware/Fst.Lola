@@ -22,7 +22,6 @@ namespace FomMonitoringCore.DAL
     
         public int Id { get; set; }
         public Nullable<System.DateTime> Day { get; set; }
-        public Nullable<long> ElapsedTime { get; set; }
         public Nullable<int> MachineId { get; set; }
         public string Operator { get; set; }
         public Nullable<System.DateTime> StartTime { get; set; }
