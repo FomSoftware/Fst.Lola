@@ -542,12 +542,13 @@
             chart.update(config);
 
         $(window).on("orientationchange", function (event) {
+            var chart = $('#' + chartID).highcharts();
             chart.update(config);
         });
 
         setInterval(function () {
             var chart = $('#' + chartID).highcharts();
-            chart.highcharts().setSize($("#charts-efficiency").width() + 10, $("#charts-efficiency").height() / 2 - 15);
+            chart.setSize($("#charts-efficiency").width() + 10, $("#charts-efficiency").height() / 2 - 15);
         }, 250);
     }
 
@@ -643,6 +644,7 @@
 
         setInterval(function () {
             var chart = $('#' + chartID).highcharts();
+            console.log(chart);
             chart.setSize($("#charts-efficiency").width() + 10, $("#charts-efficiency").height() / 2 - 15);
         }, 250);
     }

@@ -23,7 +23,7 @@
 
                     /*if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(a) ||
                         (/iPad/i.test(a) && $(window).width() < 1200))*/
-                    if ($(window).width() > 992 && $(window).width() <= 1000)
+                    if ($(window).width() > 992 && $(window).width() <= 1200)
                         check = true;
 
                 })(navigator.userAgent || navigator.vendor || window.opera);
@@ -35,7 +35,7 @@
 
                     /*if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(a) ||
                         (/iPad/i.test(a) && $(window).width() < 1200))*/
-                    if ($(window).width() > 1000 && $(window).width() <= 1400)
+                    if ($(window).width() > 1200 && $(window).width() <= 1400)
                         check = true;
 
                 })(navigator.userAgent || navigator.vendor || window.opera);
@@ -95,15 +95,14 @@
             ToolsFmcLmx.hide();
         }
 
-        if ((!(vmImageMachine.isLargeTablet() || vmImageMachine.isTablet()) &&
-            (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
+        if (vmImageMachine.isMobile() || vmImageMachine.isTablet()) {
 
             $(".placeholder-panel-full").show();
         } else {
             $(".placeholder-panel-full").hide();
         }
 
-        if (((vmImageMachine.isLargeTablet() || vmImageMachine.isTablet()) &&
+        if (((vmImageMachine.isMobile() || vmImageMachine.isTablet()) &&
             (vmImageMachine.machineGroupSelected != null || vmImageMachine.machinePanelSelected != null))) {
             $(".placeholder-panel-mobile").show();
         } else {
@@ -111,7 +110,7 @@
         }
 
 
-        if (vmImageMachine.isLargeTablet()  && vmImageMachine.machineGroupSelected != null ) {
+        if ((vmImageMachine.isTablet() || vmImageMachine.isLargeTablet())  && vmImageMachine.machineGroupSelected != null ) {
             $('#MsgPanel').removeClass("col-xl-6 col-lg-6");
             $('#MsgPanel').addClass("col-xl-12 col-lg-12");
         } else {
