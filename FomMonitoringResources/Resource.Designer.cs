@@ -459,7 +459,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to KM axis 1Y1.
+        ///   Looks up a localized string similar to KM axis 1X1.
         /// </summary>
         public static string DistAsse1X1_Metri {
             get {

@@ -813,7 +813,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Hours since last greasing</value>
   </data>
   <data name="DistAsse1X1_Metri" xml:space="preserve">
-    <value>KM axis 1Y1</value>
+    <value>KM axis 1X1</value>
   </data>
   <data name="DistAsse1Y1_Metri" xml:space="preserve">
     <value>KM axis 1Y1</value>
