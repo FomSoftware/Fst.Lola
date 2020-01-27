@@ -57,7 +57,9 @@
             },
             methods: {
                 convert_timestamp: function (timestamp, utc) {
-                    return moment.utc(timestamp).add(utc, 'hour').format('L LTS');
+                    var m = moment.utc(timestamp).add(utc, 'hour');
+                    var str = m.format('L') + " " + m.format('hh:mm:ss') + " " + m.format('A');
+                    return str;
                 },
                 colorClass: function (type)
                 {
