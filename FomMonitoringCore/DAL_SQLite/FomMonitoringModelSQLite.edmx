@@ -486,12 +486,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Time" Type="DateTime" Precision="3" />
-          <Property Name="TimeSpanDuration" Type="Int64" Nullable="true" />
           <Property Name="Code" Type="Int32" />
           <Property Name="Params" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Operator" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="State" Type="Int32" />
-          <Property Name="Type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="historyMessage">
           <Key>
@@ -719,12 +716,9 @@
           <EntitySetMapping Name="message">
             <EntityTypeMapping TypeName="FomMonitoringSQLiteModel.message">
               <MappingFragment StoreEntitySet="message">
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="Operator" ColumnName="Operator" />
                 <ScalarProperty Name="Params" ColumnName="Params" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="TimeSpanDuration" ColumnName="TimeSpanDuration" />
                 <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

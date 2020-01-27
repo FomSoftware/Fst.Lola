@@ -2044,7 +2044,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Day" Type="DateTime" Precision="3" />
-          <Property Name="ElapsedTime" Type="Int64" Nullable="true" />
           <Property Name="MachineId" Type="Int32" />
           <Property Name="Operator" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="StartTime" Type="DateTime" Precision="3" />
@@ -2868,7 +2867,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="Operator" ColumnName="Operator" />
                 <ScalarProperty Name="MachineId" ColumnName="MachineId" />
-                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
                 <ScalarProperty Name="Day" ColumnName="Day" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

@@ -190,9 +190,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                     Time = m.Time.HasValue && m.Time.Value.Year < 1900 ? null : m.Time,
                                     Code = m.Code,
                                     Operator = m.Operator,
-                                    Params = m.Parameters == null ? "" : JsonConvert.SerializeObject(m.Parameters),
-                                    State = m.State,
-                                    Type = m.Type
+                                    Params = m.Parameters == null ? "" : JsonConvert.SerializeObject(m.Parameters)
                                 }).ToList();
 
                                     
