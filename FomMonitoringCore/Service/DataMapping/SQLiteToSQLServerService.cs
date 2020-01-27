@@ -148,9 +148,12 @@ namespace FomMonitoringCore.Service.DataMapping
 
                 //IS-754 escludere tutti quelli che hanno isLolaVisible = false && type error o warning 
                 messageMachine = messageMachine.Where(f => f.MessagesIndex!= null && f.MessagesIndex.IsVisibleLOLA && f.MessagesIndex.MessageType != null && (f.MessagesIndex.MessageType.Id == 11 || f.MessagesIndex.MessageType.Id == 12)).ToList();
-
-                _fomMonitoringEntities.Set<MessageMachine>().AddRange(messageMachine);
-                _fomMonitoringEntities.SaveChanges();
+                if (messageMachine.Count() > 0)
+                {
+                    _fomMonitoringEntities.Set<MessageMachine>().AddRange(messageMachine);
+                    _fomMonitoringEntities.SaveChanges();
+                }
+               
                         
                 var historyJob = historyJobSqLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<HistoryJob>>();
                /* DateTime minDateHistoryJob = historyJob.Any(a => a.Day.HasValue) ? historyJob.Where(w => w.Day.HasValue && w.MachineId == machineActual.Id).Select(s => s.Day).Min().Value : DateTime.UtcNow;
