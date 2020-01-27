@@ -485,9 +485,9 @@
         else
             chart.update(config);
 
-        //setInterval(function () {
-        //    $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
-        //}, 250);
+        setInterval(function () {
+            $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
+        }, 250);
     }
 
     var stateMachinePieChart = function (chartID, options) {
@@ -541,6 +541,14 @@
         else
             chart.update(config);
 
+        $(window).on("orientationchange", function (event) {
+            chart.update(config);
+        });
+
+        setInterval(function () {
+            var chart = $('#' + chartID).highcharts();
+            chart.highcharts().setSize($("#charts-efficiency").width() + 10, $("#charts-efficiency").height() / 2 - 15);
+        }, 250);
     }
 
     var productivityMachineSolidGaugeChart = function (chartID, options, localizations) {
@@ -576,7 +584,7 @@
                 }
             },
             chart: {
-                height: 100,
+                height: 140,
                 type: 'solidgauge'
             },
             //tooltip: {
@@ -612,8 +620,8 @@
             plotOptions: {
                 solidgauge: {
                     dataLabels: {
-                        y: 10,
-                        x: 0,
+                        y: 0,
+                        x: -10,
                         borderWidth: 0,
                         useHTML: true
                     }
@@ -627,6 +635,16 @@
             Highcharts.chart(chartID, config);
         else
             chart.update(config);
+
+        $(window).on("orientationchange", function (event) {
+            var chart = $('#' + chartID).highcharts();
+            chart.update(config);
+        });
+
+        setInterval(function () {
+            var chart = $('#' + chartID).highcharts();
+            chart.setSize($("#charts-efficiency").width() + 10, $("#charts-efficiency").height() / 2 - 15);
+        }, 250);
     }
     
     var getProductivitySeries = function (series, type)

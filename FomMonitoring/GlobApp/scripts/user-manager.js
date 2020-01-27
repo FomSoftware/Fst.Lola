@@ -17,7 +17,7 @@
         Assistance: 3,
         Customer: 4,
         UserApi: 5
-    }
+    };
 
     var enAction = {
         add: 0,
@@ -32,8 +32,9 @@
 
         initVueModelUser();
         getData();
-    }
+    };
 
+    var setLanguageFlag;
     var initVueModelUser = function () {
         vmUsers = new Vue({
             el: '#user-modal-form',
@@ -70,32 +71,46 @@
                 enRoles: enRoles
             },
             methods: {
-                formValidation: function () {
-                    this.actual.Username == undefined || this.actual.Username == null || this.actual.Username.trim() == "" ? this.missing.Username = true : this.missing.Username = false
-                    this.actual.FirstName == undefined || this.actual.FirstName == null || this.actual.FirstName.trim() == "" ? this.missing.FirstName = true : this.missing.FirstName = false
-                    this.actual.LastName == undefined || this.actual.LastName == null || this.actual.LastName.trim() == "" ? this.missing.LastName = true : this.missing.LastName = false
-                    this.roles.active.length == 0 ? this.missing.Role = true : this.missing.Role = false
-                    this.customers.active == "" && roleUser != enRoles.Customer ? this.missing.Customer = true : this.missing.Customer = false
-                    this.machines.active.length == 0 ? this.missing.Machines = true : this.missing.Machines = false
-                    this.languages.active == "" ? this.missing.Languages = true : this.missing.Languages = false                    
+                formValidation: function() {
+                    this.actual.Username == undefined ||
+                        this.actual.Username == null ||
+                        this.actual.Username.trim() === ""
+                        ? this.missing.Username = true
+                        : this.missing.Username = false;
+                    this.actual.FirstName == undefined ||
+                        this.actual.FirstName == null ||
+                        this.actual.FirstName.trim() === ""
+                        ? this.missing.FirstName = true
+                        : this.missing.FirstName = false;
+                    this.actual.LastName == undefined ||
+                        this.actual.LastName == null ||
+                        this.actual.LastName.trim() === ""
+                        ? this.missing.LastName = true
+                        : this.missing.LastName = false;
+                    this.roles.active.length === 0 ? this.missing.Role = true : this.missing.Role = false;
+                    this.customers.active === "" && roleUser !== enRoles.Customer
+                        ? this.missing.Customer = true
+                        : this.missing.Customer = false;
+                    this.machines.active.length === 0 ? this.missing.Machines = true : this.missing.Machines = false;
+                    this.languages.active === "" ? this.missing.Languages = true : this.missing.Languages = false;
                 },
-                selectOptionClass: function (val) {
+                selectOptionClass: function(val) {
                     if (!val.status || !val.enabled)
                         return true;
                 },
-                setLanguageFlag: function (val) {
-                    return setLanguageFlag(val)
-                },
+                setLanguageFlag: function(val) {
+                    return setLanguageFlag(val);
+                }
             },
-            mounted: function () {
+            mounted: function() {
                 $('#role-input').selectpicker();
                 $('#customer-input').selectpicker();
                 $('#machines-input').selectpicker();
                 $('#plants-input').selectpicker();
                 $('#languages-input').selectpicker();
             },
-            updated: function () {
-                vmUsers.$nextTick(function () {
+            updated: function() {
+                vmUsers.$nextTick(function() {
                     $('#role-input').selectpicker('refresh');
                     $('#customer-input').selectpicker('refresh');
                     $('#machines-input').selectpicker('refresh');
@@ -103,8 +118,8 @@
                 });
 
             },
-        })
-    }
+        });
+    };
 
     var getData = function () {
         $.get({
@@ -124,7 +139,7 @@
             error: function (xhr, status, error) {
                 errorSwal(resource.ErrorOccurred);
             }
-        })
+        });
     };
 
     var getMachinesByCustomer = function () {
@@ -150,7 +165,7 @@
                 });
 
         });
-    }
+    };
 
     var initDataTable = function (renderID, data) {
         data.forEach(function (elem, index) {
@@ -160,7 +175,7 @@
                 elem.Enabled = '<span class="btn-active btn-enabled" data-toggle="tooltip" title="' + resource.EnabledUser + '"><i class="fa fa-check" aria-hidden="true"></i></span>';
             else
                 elem.Enabled = '<span class="btn-disactive btn-enabled" data-toggle="tooltip"  title="' + resource.DisabledUser + '"><i class="fa fa-times" aria-hidden="true"></i></span>';
-            elem.Language = '<img class="flag" src=' + setLanguageFlag(elem.LanguageName) + ' data-toggle="tooltip"  title="' + resource.Language + ": " + elem.LanguageName + '">'
+            elem.Language = '<img class="flag" src=' + setLanguageFlag(elem.LanguageName) + ' data-toggle="tooltip"  title="' + resource.Language + ": " + elem.LanguageName + '">';
             elem.ChangePassword = '<div class="button btn-modify" data-toggle="tooltip"  title="' + resource.ResetPassword + '" onclick="UserManager.resetPasswordClickEvent(\'' + elem.ID + '\')" data-id="' + elem.ID + '"><i class="fa fa-lock"></i></div>';
             if (elem.RoleCode != enRoles.Administrator && elem.RoleCode != enRoles.Customer)
                 elem.Delete = '<div class="button btn-modify" data-toggle="tooltip"  title="' + resource.Delete + '" onclick="UserManager.deleteClickEvent(\'' + elem.ID + '\')" data-id="' + elem.ID + '"><i class="fa fa-trash"></i></div>';
@@ -214,7 +229,7 @@
 
         //init popover
         $('[data-toggle="popover"]').popover();
-    }
+    };
 
     var addClickEvent = function () {
         action = enAction.add;
@@ -248,14 +263,14 @@
         $('#user-modal').modal('show');
         $('#user-modal .js-modify').hide();
         $('#user-modal .js-add').show();
-    }
+    };
 
     var addUser = function () {
         vmUsers.formValidation();
         if (controlValidation()) {
             var machines = [];
             vmUsers.machines.active.forEach(function (val, index) {
-                machines.push({ Id: val })
+                machines.push({ Id: val });
             });
 
             var data = {
@@ -296,7 +311,7 @@
             });
 
         }
-    }
+    };
 
     var modifyClickEvent = function (userID) {
         $.get({
@@ -345,7 +360,7 @@
                 errorSwal(resource.ErrorOccurred);
             }
         });
-    }
+    };
 
     var modifyUser = function () {
         action = enAction.modify;
@@ -353,7 +368,7 @@
         if (controlValidation()) {
             var machines = [];
             vmUsers.machines.active.forEach(function (val, index) {
-                machines.push({ Id: val })
+                machines.push({ Id: val });
             });
 
             var data = {
@@ -392,7 +407,7 @@
                 }
             });
         }
-    }
+    };
 
     var resetPasswordClickEvent = function (userID) {
         vmUsers.actual.ID = userID;
@@ -401,9 +416,9 @@
 
         alert.then(function (result) {
             if (result)
-                resetPassword(vmUsers.actual.ID)
+                resetPassword(vmUsers.actual.ID);
         });
-    }
+    };
 
     var resetPassword = function (id) {
         var userId = id;
@@ -426,7 +441,7 @@
                 errorSwal(resource.ErrorOccurred);
             }
         });
-    }
+    };
 
     var deleteClickEvent = function (userID) {
         vmUsers.actual.ID = userID;
@@ -437,7 +452,7 @@
             if (result)
                 deleteUser(vmUsers.actual.ID);
         });
-    }
+    };
 
     var deleteUser = function (id) {
         var userId = id;
@@ -459,12 +474,12 @@
                 errorSwal(resource.ErrorOccurred);
             }
         });
-    }
+    };
 
     var refreshTable = function () {
         table.destroy();
         getData();
-    }
+    };
 
     var successSwal = function (text) {
         swal({
@@ -474,7 +489,7 @@
             allowOutsideClick: true,
             closeModal: true
         });
-    }
+    };
 
     var alertSwal = function (text) {
         var alert = swal({
@@ -498,7 +513,7 @@
             }
         });
         return alert;
-    }
+    };
 
     var clearActualUser = function () {
         vmUsers.actual = {};
@@ -535,20 +550,20 @@
         $("[data-id='machines-input']").removeClass('background-disabled');
 
         $('#user-modal .form-password').css('display', 'block');
-    }
+    };
 
     var controlValidation = function () {
-        if (vmUsers.missing.Username == false &&
-            vmUsers.missing.Firstname == false &&
-            vmUsers.missing.LastName == false &&
-            vmUsers.missing.Role == false &&
-            vmUsers.missing.Customer == false &&
-            vmUsers.missing.Machines == false &&
-            vmUsers.missing.Languages == false &&
-            vmUsers.missing.Password == false &&
-            vmUsers.missing.ConfirmPassword == false) {
+        if (vmUsers.missing.Username === false &&
+            vmUsers.missing.Firstname === false &&
+            vmUsers.missing.LastName === false &&
+            vmUsers.missing.Role === false &&
+            vmUsers.missing.Customer === false &&
+            vmUsers.missing.Machines === false &&
+            vmUsers.missing.Languages === false &&
+            vmUsers.missing.Password === false &&
+            vmUsers.missing.ConfirmPassword === false) {
 
-            if (vmUsers.actual.Email == "") {
+            if (vmUsers.actual.Email === "") {
                 vmUsers.actual.Email = null;
             }
             else if (vmUsers.actual.Email != null && !controlValidationEmail(vmUsers.actual.Email)) {
@@ -556,7 +571,7 @@
                 return false;
             }
 
-            if (!vmUsers.actual.ID && roleUser == enRoles.Customer) {
+            if (roleUser == enRoles.Customer) {
                 if (vmUsers.actual.Password == undefined || vmUsers.actual.Password == null || vmUsers.actual.Password.trim() == "" || vmUsers.actual.Password.length < 6) {
                     errorSwal(resource.PasswordPolicy);
                     return false;
@@ -570,35 +585,35 @@
             return true;
         } else
             return false;
-    }
+    };
 
     var controlValidationEmail = function (email) {
         var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
         return regex.test(email);
 
-    }
+    };
 
-    var setLanguageFlag = function (val) {
+    setLanguageFlag = function (val) {
         var result;
         switch (val) {
-            case 'English':
-                result = '/Images/flags/en.png';
-                break;
-            case 'Italian':
-                result = '/Images/flags/it.png';
-                break;
-            case 'Spanish':
-                result = '/Images/flags/es.png';
-                break;
-            case 'French':
-                result = '/Images/flags/fr.png';
-                break;
-            case 'German':
-                result = '/Images/flags/de.png';
-                break;
+        case 'English':
+            result = '/Images/flags/en.png';
+            break;
+        case 'Italian':
+            result = '/Images/flags/it.png';
+            break;
+        case 'Spanish':
+            result = '/Images/flags/es.png';
+            break;
+        case 'French':
+            result = '/Images/flags/fr.png';
+            break;
+        case 'German':
+            result = '/Images/flags/de.png';
+            break;
         }
         return result;
-    }
+    };
 
     var errorSwal = function (text) {
         swal({
@@ -608,7 +623,7 @@
             allowOutsideClick: true,
             closeModal: true
         });
-    }
+    };
 
 
     /*#region CHANGE PASSWORD */
@@ -617,7 +632,7 @@
         dataPassword = data;
         baseApiUrl = baseUrl + "/ajax/UserManagerApi";
         resourceChangePassword = resourceText;
-    }
+    };
 
     var openChangePasswordModal = function (mustChange) {
         if (mustChange) {
@@ -633,9 +648,9 @@
         $('#repeat-new-password').val(null);        
         $('#change-password-modal').modal('show');
       
-    }
+    };
 
-    
+
     var changePasswordClick = function () {
         var oldPassword = $('#last-password').val();
         var newPassword = $('#new-password').val();
@@ -658,7 +673,7 @@
         }
         else
             errorSwal(resourceChangePassword.EnterPassword);
-    }
+    };
 
     var changePassword = function (data) {
         var request = $.ajax({
@@ -681,7 +696,7 @@
         request.fail(function (jqXHR, textStatus, errorThrown) {
             errorSwal(resourceChangePassword.ErrorOccurred);
         });
-    }
+    };
 
     var checkFirstLogin = function (user) {
         if (user.Role == enRoles.HeadWorkshop || user.Role == enRoles.Operator) {
@@ -699,12 +714,12 @@
                 }
             });
         }
-    }
+    };
 
 
     var openDisclamerModal = function () {       
         $('#disclamer-modal').modal('show');
-    }
+    };
 
     /*#endregion*/
 
@@ -723,5 +738,5 @@
         openChangePasswordModal: openChangePasswordModal,
         openDisclamerModal: openDisclamerModal,
         checkFirstLogin: checkFirstLogin
-    }
+    };
 }()

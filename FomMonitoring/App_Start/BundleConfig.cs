@@ -29,6 +29,7 @@ namespace FomMonitoring.App_Start
 
             bundles.Add(new ScriptBundle("~/Scripts/FomMonitoringScriptsLIB").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery.mobile-{version}.js",
                         "~/Scripts/bootstrap.bundle.js",
                         "~/Scripts/bootstrap-select.js",
                         "~/Scripts/vue.js",
