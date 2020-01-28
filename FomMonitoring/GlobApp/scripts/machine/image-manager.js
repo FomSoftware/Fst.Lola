@@ -77,19 +77,19 @@
             Jobs.hide();
         }
 
-        if (vmImageMachine.machineGroupSelected == 'FMC_3_4_Axes_Carri') {
+        if (vmImageMachine.machineGroupSelected == 'FMC3-4_axes') {
             OtherData.show();
         } else {
             OtherData.hide();
         }
 
-        if (vmImageMachine.machineGroupSelected == 'FMC_3_4_Spindle') {
+        if (vmImageMachine.machineGroupSelected == 'FMC3-4_spindles') {
             ElectroSpindle.show();
         } else {
             ElectroSpindle.hide();
         }
 
-        if (vmImageMachine.machineGroupSelected == 'FMC_3_4_Tools') {
+        if (vmImageMachine.machineGroupSelected == 'FMC3-4_tools') {
             ToolsFmcLmx.show();
         } else {
             ToolsFmcLmx.hide();
