@@ -1,5 +1,5 @@
 ﻿@model FomMonitoringBLL.ViewModel.PanelParametersViewModel
-@using FomMonitoringResources
+@using FomMonitoringCore.Service
 
 <div id="CardToolsFmcLmx" class="@ViewData["Classes"]" v-show="showed">
     <div class="portlet">
@@ -11,8 +11,11 @@
                 </span>
             </div>
             <div class="title-kpi" style="max-width: 180px;">
-                <span>@Resource.Tools</span>
-                <div class="sub-period">@Resource.UntilNow</div>
+                <span>
+                    @LocalizationService.GetResource("Tools")</span>
+                <div class="sub-period">
+                    @LocalizationService.GetResource("UntilNow")</div>
+                
             </div>
         </div>
         <div class="portlet-body text-center" style="height:244px">
@@ -27,17 +30,17 @@
                                         <tr style="width: 100%;" class="row-tools-fmc">
                                             <td class="td-tools-dark">
                                                 <label style="vertical-align: top; width:20px"><i class="fa fa-suitcase fa-lg" aria-hidden="true"></i></label>
-                                                <label class="label-tools">@Resource.Code</label>
+                                                <label class="label-tools">@LocalizationService.GetResource("Code")</label>
                                                 <label class="label-tools-value fmc center font-11-pt" v-html="tool.Code"></label>
                                             </td>
                                             <td class="td-tools-light">
                                                 <label style="vertical-align: top; width:20px"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></label>
-                                                <label class="label-tools">@Resource.Description</label>
+                                                <label class="label-tools">@LocalizationService.GetResource("Description")</label>
                                                 <label class="label-tools-value fmc font-11-pt" v-html="tool.Description"></label>
                                             </td>
                                             <td class="td-tools-dark td-tools-dark-life">
                                                 <label style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                                <label class="label-tools">@Resource.vitaUtensile_x</label>
+                                                <label class="label-tools">@LocalizationService.GetResource("vitaUtensile_x")</label>
                                                 <label class="label-tools-value fmc center font-11-pt" v-html="tool.ElapsedLife"></label>
                                             </td>
                                         </tr>

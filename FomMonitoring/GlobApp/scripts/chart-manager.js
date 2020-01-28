@@ -663,7 +663,7 @@
             var containerWidth = $('#' + chartID).parent().width();
             var containerHeight = $('#' + chartID).parent().height();
             if (containerHeight > 0 && containerWidth > 0) {
-                chart.setSize(containerWidth + 10, Math.max(containerHeight - 15, 120));
+                chart.setSize(containerWidth + 30, Math.max(containerHeight - 15, 120));
             }
         }, 250);
     }

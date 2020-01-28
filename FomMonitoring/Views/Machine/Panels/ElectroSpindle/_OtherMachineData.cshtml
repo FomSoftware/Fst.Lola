@@ -1,6 +1,6 @@
 ﻿
 @model FomMonitoringBLL.ViewModel.PanelParametersViewModel
-@using FomMonitoringResources
+@using FomMonitoringCore.Service
 
 <div id="CardOtherDataMachine" class="@ViewData["Classes"]"  v-show="showed">
     <div class="portlet">
@@ -12,8 +12,8 @@
                 </span>
             </div>
             <div class="title-kpi" style="max-width: 360px;">
-                <span>@Resource.OtherMachineData</span>
-                <div class="sub-period">@Resource.UntilNow</div>
+                <span>@LocalizationService.GetResource("OtherMachineData")</span>
+                <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
             </div>
         </div>
         <div class="portlet-body text-center" style="height:244px">

@@ -1,16 +1,17 @@
 ﻿@model FomMonitoringBLL.ViewModel.ProductivityViewModel
+@using FomMonitoringCore.Service
 @using FomMonitoringResources
 
 <div v-if="material != null">
     <div class="item clearfix">
         <div class="item-title">
-            @Resource.Material
+            @LocalizationService.GetResource("Material")
         </div>
         <div class="item-label">
             <div class="icon fa fa-eraser"></div>
             <div>
                 <span class="value-title">
-                    @Resource.Used
+                    @LocalizationService.GetResource("Used")
                 </span>
                 <span class="value">
                     {{ material.total }}<em>m</em>
@@ -24,12 +25,14 @@
     </div>
     <table class="table-legend">
         <tr>
-            <td><div class="square bg-line"></div>@Resource.Bars</td>
+            <td><div class="square bg-line"></div>
+                    @LocalizationService.GetResource("Bars")</td>
             <td>{{ material.bar.perc | round }}<em>%</em></td>
             <td>{{ material.bar.number }}<em>m</em></td>
         </tr>
         <tr>
-            <td><div class="square bg-broken-line"></div>@Resource.Cutoff</td>
+            <td><div class="square bg-broken-line"></div>
+                @LocalizationService.GetResource("Cutoff")</td>
             <td>{{ material.cutoff.perc | round }}<em>%</em></td>
             <td>{{ material.cutoff.number }}<em>m</em></td>
         </tr>
@@ -38,13 +41,13 @@
 <div v-else>
     <div class="item clearfix">
         <div class="item-title">
-            @Resource.Material
+            @LocalizationService.GetResource("Material")
         </div>
         <div class="item-label">
             <div class="icon fa fa-eraser"></div>
             <div>
                 <span class="value-title">
-                    @Resource.Used
+                    @LocalizationService.GetResource("Used")
                 </span>
                 <span class="value">
                    0<em>m</em>
@@ -58,12 +61,16 @@
     </div>
     <table class="table-legend">
         <tr>
-            <td><div class="square bg-line"></div>@Resource.Bars</td>
+            <td><div class="square bg-line"></div>
+                @LocalizationService.GetResource("Bars")</td>
             <td>0<em>%</em></td>
             <td>0<em>m</em></td>
         </tr>
         <tr>
-            <td><div class="square bg-broken-line"></div>@Resource.Cutoff</td>
+            <td>
+                <div class="square bg-broken-line"></div>
+                @LocalizationService.GetResource("Cutoff")
+            </td>
             <td>0<em>%</em></td>
             <td>0<em>m</em></td>
         </tr>

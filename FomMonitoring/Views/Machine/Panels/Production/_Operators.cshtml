@@ -1,10 +1,10 @@
 ﻿@model FomMonitoringBLL.ViewModel.ProductivityViewModel
-@using FomMonitoringResources
+@using FomMonitoringCore.Service
 
 <div v-if="operators != null">
     <div class="item clearfix">
         <div class="item-title" style="margin: 0 0 5px;">
-            @Resource.Operators
+            @LocalizationService.GetResource("Operators")
         </div>
     </div>
     <div class="progress prod">

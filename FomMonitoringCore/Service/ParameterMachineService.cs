@@ -50,7 +50,7 @@ namespace FomMonitoringCore.Service
                         var ve = new ParameterMachineValueModel
                         {
                             VarNumber = int.Parse(pm.VarNumber),
-                            Description = new System.Resources.ResourceManager(typeof(Resource)).GetString(pm.Keyword) != null ? new System.Resources.ResourceManager(typeof(Resource)).GetString(pm.Keyword) : "[" +pm.Keyword + "]",
+                            Description = LocalizationService.GetResource(pm.Keyword),
                             Value = pm.DefaultValue,
                             Cluster = pm.Cluster,
                             Keyword = pm.Keyword,

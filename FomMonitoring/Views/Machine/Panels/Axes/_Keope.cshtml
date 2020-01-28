@@ -1,5 +1,5 @@
-﻿@model FomMonitoringBLL.ViewModel.PanelParametersViewModel
-@using FomMonitoringResources
+﻿@using FomMonitoringCore.Service
+@model FomMonitoringBLL.ViewModel.PanelParametersViewModel
 
 <div id="CardAxesKeope" class="portlet">
     <div class="portlet-title">
@@ -10,8 +10,8 @@
             </span>
         </div>
         <div class="title-kpi" style="max-width: 130px;">
-            <span>@Resource.Axes</span>
-            <div class="sub-period">@Resource.UntilNow</div>
+            <span>@LocalizationService.GetResource("Axes")</span>
+            <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
         </div>
     </div>
     <div class="portlet-body text-center" style="height:244px">

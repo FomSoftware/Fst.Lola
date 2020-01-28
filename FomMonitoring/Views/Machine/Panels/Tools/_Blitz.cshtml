@@ -1,5 +1,5 @@
 ﻿@model FomMonitoringBLL.ViewModel.ToolViewModel
-@using FomMonitoringResources
+@using FomMonitoringCore.Service
 
 <div id="CardTools" class="portlet">
     <div class="portlet-title">
@@ -10,8 +10,10 @@
             </span>
         </div>
         <div class="title-kpi" style="max-width: 130px;">
-            <span>@Resource.Tools</span>
-            <div class="sub-period">@Resource.UntilNow</div>
+            <span>
+                @LocalizationService.GetResource("Tools")</span>
+            <div class="sub-period">
+                @LocalizationService.GetResource("UntilNow")</div>
         </div>      
     </div>
     <div class="portlet-body text-center" style="height:244px">
@@ -22,7 +24,7 @@
                     <table class="table-spindle" style="height:100%">
                         <tr>
                             <td class="portlet-subtitle" style="font-size: 11px">
-                                @Html.Raw(Resource.FixedHead)
+                                @Html.Raw(LocalizationService.GetResource("FixedHead"))
                             </td>
                         </tr>
                         <tr>
@@ -40,7 +42,7 @@
                                         <td class="td-tool">
                                             <div style="display:inline-flex">
                                                 <!--<i class="fa fa-clock-o" aria-hidden="true"></i>
-                                <label class="label-tools">@Html.Raw(Resource.Ore_vita_lama_ef)</label>-->
+                                <label class="label-tools">@Html.Raw(LocalizationService.GetResource("Ore_vita_lama_ef"))</label>-->
                                             </div>
                                         </td>
                                     </tr>
@@ -65,7 +67,7 @@
                     <table class="table-spindle .table-spindle-tools">
                         <tr>
                             <td class="portlet-subtitle" style="font-size: 11px">
-                                @Html.Raw(Resource.MobileHead)
+                                @Html.Raw(LocalizationService.GetResource("MobileHead"))
                             </td>
                         </tr>
                         <tr>
@@ -84,7 +86,7 @@
                                         <td class="td-tool">
                                             <div style="display:inline-flex">
                                                 <!--<i class="fa fa-clock-o" aria-hidden="true"></i>
-                                <label class="label-tools">@Html.Raw(Resource.Ore_vita_lama_ef)</label>-->
+                                                <label class="label-tools">@Html.Raw(LocalizationService.GetResource("Ore_vita_lama_ef"))</label>-->
                                             </div>
                                         </td>
                                     </tr>

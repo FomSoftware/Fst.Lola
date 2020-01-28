@@ -1,16 +1,17 @@
 ﻿@model FomMonitoringBLL.ViewModel.ProductivityViewModel
+@using FomMonitoringCore.Service
 @using FomMonitoringResources
 
 <div v-if="piece != null">
     <div class="item clearfix">
         <div class="item-title">
-            @Resource.Pieces
+            @LocalizationService.GetResource("Pieces")
         </div>
         <div class="item-label">
             <div class="icon fa fa-puzzle-piece"></div>
             <div>
                 <span class="value-title">
-                    @Resource.Made
+                    @LocalizationService.GetResource("Made")
                 </span>
                 <span class="value">
                     {{ piece.total }}<em>pz</em>
@@ -24,12 +25,16 @@
     </div>
     <table class="table-legend">
         <tr>
-            <td><div class="square bg-max-piece"></div>@Resource.Done</td>
+            <td><div class="square bg-max-piece"></div>
+                @LocalizationService.GetResource("Done")</td>
             <td>{{ piece.done.perc | round }}<em>%</em></td>
             <td>{{ piece.done.number }}<em>pz</em></td>
         </tr>
         <tr v-if="type != '@enMachineType.Troncatrice.GetDescription()'">
-            <td><div class="square bg-min-piece"></div>@Resource.Redone</td>
+            <td>
+                <div class="square bg-min-piece"></div>
+                @LocalizationService.GetResource("Redone")
+            </td>
             <td>{{ piece.redone.perc | round }}<em>%</em></td>
             <td>{{ piece.redone.number }}<em>pz</em></td>
         </tr>

@@ -1,5 +1,6 @@
 ﻿
 @model FomMonitoringBLL.ViewModel.PanelParametersViewModel
+@using FomMonitoringCore.Service
 @using FomMonitoringResources
 
 <div id="CardMotorKeope" class="portlet">
@@ -11,8 +12,9 @@
             </span>
         </div>
         <div class="title-kpi" style="max-width: 130px;">
-            <span>@Resource.Motors</span>
-            <div class="sub-period">@Resource.UntilNow</div>
+            <span>@LocalizationService.GetResource("Motors")</span>
+            <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
+
         </div>
     </div>
     <div class="portlet-body text-center" style="height:244px">
@@ -23,7 +25,7 @@
                     <table class="table-spindle">
                         <tr>
                             <td class="portlet-subtitle" style="font-size: 11px">
-                                @Html.Raw(Resource.FixedHead)
+                                @Html.Raw(LocalizationService.GetResource("FixedHead"))
                             </td>
                         </tr>
                         <tr>
@@ -61,7 +63,7 @@
                     <table class="table-spindle">
                         <tr>
                             <td class="portlet-subtitle" style="font-size: 11px">
-                                @Html.Raw(Resource.MobileHead)
+                                @Html.Raw(LocalizationService.GetResource("MobileHead"))
                             </td>
                         </tr>
                         <tr>
