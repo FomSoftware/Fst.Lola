@@ -95,22 +95,24 @@
             ToolsFmcLmx.hide();
         }
 
-        if (vmImageMachine.isMobile() || vmImageMachine.isTablet()) {
+
+        if ((!(vmImageMachine.isLargeTablet() || vmImageMachine.isTablet()) &&
+            (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
 
             $(".placeholder-panel-full").show();
         } else {
             $(".placeholder-panel-full").hide();
         }
 
-        if (((vmImageMachine.isMobile() || vmImageMachine.isTablet()) &&
-            (vmImageMachine.machineGroupSelected != null || vmImageMachine.machinePanelSelected != null))) {
+        if ((vmImageMachine.isMobile() || vmImageMachine.isTablet()) &&
+            (vmImageMachine.machineGroupSelected != null || vmImageMachine.machinePanelSelected != null) && vmImageMachine.machinePanelSelected != 'maintenance') {
             $(".placeholder-panel-mobile").show();
         } else {
             $(".placeholder-panel-mobile").hide();
         }
 
 
-        if ((vmImageMachine.isTablet() || vmImageMachine.isLargeTablet())  && vmImageMachine.machineGroupSelected != null ) {
+        if ((vmImageMachine.isTablet() || vmImageMachine.isMobile() || vmImageMachine.isLargeTablet())) {
             $('#MsgPanel').removeClass("col-xl-6 col-lg-6");
             $('#MsgPanel').addClass("col-xl-12 col-lg-12");
         } else {
@@ -135,7 +137,7 @@
         vmImageMachine.machineGroupSelected = group;
         vmImageMachine.machinePanelSelected = null;
         $("g[data-highlighted] path").css("fill", "transparent");
-        $("g[data-highlighted='" + group + "'] path").css("fill", "pink");
+        $("g[data-highlighted='" + group + "'] path").css("fill", "#D1839A");
 
 
         var per = $('#calendar').data('daterangepicker');

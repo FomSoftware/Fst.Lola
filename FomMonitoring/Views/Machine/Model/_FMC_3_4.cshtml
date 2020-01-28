@@ -3,7 +3,7 @@
 
 <div class="col">
     <div class="row align-items-center">
-        <div id="buttons-bar" class="col col-sm-12 col-md-12 col-lg-12 col-xl-12" v-show="isMobile()">
+        <div id="buttons-bar" class="col col-sm-12 col-md-12 col-lg-12 col-xl-12" v-show="isMobile() || isTablet()">
             <div class="row">
                 <div class="btn-group col" style="background-color: transparent; padding-left: 0; padding-right: 0;">
                     <button type="button" id="btn-efficiency" data-panel="efficiency" class="no-borders col-3">
@@ -48,7 +48,7 @@
     <div class="row justify-content-center">
         <div class="col-12" style="background-color: rgb(203, 202, 202);">
             <div class="row justify-content-center">        
-                <div id="panels-box" class="col-10 col-sm-10 col-md-8" style="background-color: #cbcaca; padding-top: 30px; padding-bottom: 30px; width: 100%; height: calc(70vh);" v-show="machineGroupSelected == null && machinePanelSelected == null && isMobile()">
+                <div id="panels-box" class="col-10 col-sm-10 col-md-8" style="background-color: #cbcaca; padding-top: 30px; padding-bottom: 30px; width: 100%; height: calc(70vh);" v-show="machineGroupSelected == null && machinePanelSelected == null && (isMobile() || isTablet())">
                     <div class="btn-group machine-group-selection" style="width: 100%; background-color: #cbcaca">
                         <button type="button" data-group="FMC_3_4_Axes_Carri" class="no-borders" style="width: 220px; background-color: #cbcaca">
                             <img class="img-button-group" src="~/Images/panels/CARD-AXES_220X220px.svg"/>
@@ -99,7 +99,7 @@
 
                 @Html.Partial("Panels/_Maintenance", Model.Maintenance, new ViewDataDictionary
                 {
-                    {"Classes", "col-xxl-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 order-lg-last order-xl-last"}
+                    {"Classes", "col-xxl-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 order-xl-last"}
                 })
                 <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 placeholder-panel-mobile" style="min-height: 298px;">
                     <div class="empty-area" style="height: 100%"></div>

@@ -485,9 +485,9 @@
         else
             chart.update(config);
 
-        setInterval(function () {
-            $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
-        }, 250);
+        //setInterval(function () {
+        //    $('#' + chartID).highcharts().setSize($($('#' + chartID).closest(".card-portlet")[0]).width() - 30, $($('#' + chartID).closest(".card-portlet")[0]).height() - 30);
+        //}, 250);
     }
 
     var stateMachinePieChart = function (chartID, options) {
@@ -548,7 +548,11 @@
 
         setInterval(function () {
             var chart = $('#' + chartID).highcharts();
-            chart.setSize($("#charts-efficiency").width() + 10, $("#charts-efficiency").height() / 2 - 15);
+            var containerWidth = $(".card-efficiency").parent().width();
+            var containerHeight = $(".card-efficiency").parent().height();
+            if (containerHeight > 0 && containerWidth > 0) {
+                chart.setSize(containerWidth + 10, containerHeight / 2 - 15);
+            }
         }, 250);
     }
 
@@ -622,7 +626,7 @@
                 solidgauge: {
                     dataLabels: {
                         y: 0,
-                        x: -10,
+                        x: -15,
                         borderWidth: 0,
                         useHTML: true
                     }
@@ -644,8 +648,11 @@
 
         setInterval(function () {
             var chart = $('#' + chartID).highcharts();
-            console.log(chart);
-            chart.setSize($("#charts-efficiency").width() + 10, $("#charts-efficiency").height() / 2 - 15);
+            var containerWidth = $(".card-efficiency").parent().width();
+            var containerHeight = $(".card-efficiency").parent().height();
+            if (containerHeight > 0 && containerWidth > 0) {
+                chart.setSize(containerWidth + 10, containerHeight / 2 - 15);
+            }
         }, 250);
     }
     
