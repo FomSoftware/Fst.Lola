@@ -548,10 +548,10 @@
 
         setInterval(function () {
             var chart = $('#' + chartID).highcharts();
-            var containerWidth = $(".card-efficiency").parent().width();
-            var containerHeight = $(".card-efficiency").parent().height();
+            var containerWidth = $('#' + chartID).parent().width();
+            var containerHeight = $('#' + chartID).parent().height();
             if (containerHeight > 0 && containerWidth > 0) {
-                chart.setSize(containerWidth + 10, containerHeight / 2 - 15);
+                chart.setSize(containerWidth + 10, Math.max(containerHeight - 15, 120));
             }
         }, 250);
     }
@@ -626,7 +626,7 @@
                 solidgauge: {
                     dataLabels: {
                         y: 0,
-                        x: -15,
+                        x: -10,
                         borderWidth: 0,
                         useHTML: true
                     }
@@ -648,10 +648,10 @@
 
         setInterval(function () {
             var chart = $('#' + chartID).highcharts();
-            var containerWidth = $(".card-efficiency").parent().width();
-            var containerHeight = $(".card-efficiency").parent().height();
+            var containerWidth = $('#' + chartID).parent().width();
+            var containerHeight = $('#' + chartID).parent().height();
             if (containerHeight > 0 && containerWidth > 0) {
-                chart.setSize(containerWidth + 10, containerHeight / 2 - 15);
+                chart.setSize(containerWidth + 10, Math.max(containerHeight - 15, 120));
             }
         }, 250);
     }

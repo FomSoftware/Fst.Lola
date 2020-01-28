@@ -104,7 +104,7 @@
             $(".placeholder-panel-full").hide();
         }
 
-        if ((vmImageMachine.isMobile() || vmImageMachine.isTablet()) &&
+        if ((vmImageMachine.isTablet()) &&
             (vmImageMachine.machineGroupSelected != null || vmImageMachine.machinePanelSelected != null) && vmImageMachine.machinePanelSelected != 'maintenance') {
             $(".placeholder-panel-mobile").show();
         } else {
