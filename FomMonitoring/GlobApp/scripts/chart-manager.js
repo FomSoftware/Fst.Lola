@@ -541,7 +541,15 @@
         else
             chart.update(config);
 
-        $(window).on("orientationchange", function (event) {
+
+        var myElement = document;
+        var mc = new Hammer.Manager(myElement);
+        // create a pinch and rotate recognizer
+        // these require 2 pointers
+        var rotate = new Hammer.Rotate();
+        // add to the Manager
+        mc.add([rotate]);
+        mc.on("rotate", function (ev) {
             var chart = $('#' + chartID).highcharts();
             chart.update(config);
         });
@@ -641,7 +649,11 @@
         else
             chart.update(config);
 
-        $(window).on("orientationchange", function (event) {
+        var myElement = document.getElementById(chartID);
+        var mc = new Hammer.Manager(myElement);
+        var rotate = new Hammer.Rotate();
+        mc.add([rotate]);
+        mc.on("rotate", function (ev) {
             var chart = $('#' + chartID).highcharts();
             chart.update(config);
         });

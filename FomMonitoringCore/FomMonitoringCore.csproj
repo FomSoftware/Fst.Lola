@@ -460,6 +460,7 @@
     <Compile Include="Service\IContextService.cs" />
     <Compile Include="Service\IJobService.cs" />
     <Compile Include="Service\ILanguageService.cs" />
+    <Compile Include="Service\ILocalizationService.cs" />
     <Compile Include="Service\IMachineService.cs" />
     <Compile Include="Service\IMessageService.cs" />
     <Compile Include="Service\IMesService.cs" />
