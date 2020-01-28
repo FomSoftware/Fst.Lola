@@ -16,8 +16,6 @@
           <Property Name="Color" Type="varchar(max)" />
           <Property Name="StartTime" Type="datetime" />
           <Property Name="EndTime" Type="datetime" />
-          <Property Name="TimeSpanTotal" Type="bigint" />
-          <Property Name="TimeSpanProducing" Type="bigint" />
           <Property Name="Length" Type="float" />
           <Property Name="IsOffcut" Type="bit" />
           <Property Name="BadAreas" Type="float" />
@@ -69,7 +67,6 @@
           <Property Name="JobCode" Type="varchar(max)" />
           <Property Name="TotalPiecesInJob" Type="int" />
           <Property Name="CurrentlyProducedPieces" Type="int" />
-          <Property Name="CurrentPeriodPieces" Type="int" />
           <Property Name="Day" Type="datetime" />
           <Property Name="ElapsedTime" Type="bigint" />
         </EntityType>
@@ -160,46 +157,25 @@
           <Property Name="Operator" Type="nvarchar" MaxLength="150" />
           <Property Name="State" Type="int" />
           <Property Name="Type" Type="nvarchar" MaxLength="150" />
-          <Property Name="Group" Type="int" />
         </EntityType>
         <EntityType Name="piece">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Index" Type="int" />
           <Property Name="BarId" Type="int" />
-          <Property Name="BarLength" Type="float" />
           <Property Name="Length" Type="float" />
-          <Property Name="IsOffcut" Type="bit" />
           <Property Name="JobCode" Type="varchar(max)" />
-          <Property Name="TotalPiecesInJob" Type="int" />
-          <Property Name="TipologyCode" Type="varchar(max)" />
-          <Property Name="FrameId" Type="varchar(max)" />
-          <Property Name="BarCode" Type="varchar(max)" />
-          <Property Name="ProfileCode" Type="varchar(max)" />
-          <Property Name="System" Type="varchar(max)" />
-          <Property Name="Color" Type="varchar(max)" />
           <Property Name="StartTime" Type="datetime" />
           <Property Name="EndTime" Type="datetime" />
           <Property Name="TimeSpan" Type="bigint" />
           <Property Name="TimeSpanProducing" Type="bigint" />
-          <Property Name="Overfeed" Type="float" />
           <Property Name="Operator" Type="varchar(max)" />
-          <Property Name="Completed" Type="bit" />
           <Property Name="Redone" Type="bit" />
           <Property Name="RedoneReason" Type="varchar(max)" />
-          <Property Name="StartTimeCut" Type="datetime" />
-          <Property Name="EndTimeCut" Type="datetime" />
           <Property Name="TimeSpanCutting" Type="bigint" />
-          <Property Name="StartTimeWorking" Type="datetime" />
-          <Property Name="EndTimeWorking" Type="datetime" />
           <Property Name="TimeSpanWorking" Type="bigint" />
-          <Property Name="StartTimeTrim" Type="datetime" />
-          <Property Name="EndTimeTrim" Type="datetime" />
           <Property Name="TimeSpanTrim" Type="bigint" />
-          <Property Name="StartTimeAnuba" Type="datetime" />
-          <Property Name="EndTimeAnuba" Type="datetime" />
           <Property Name="TimeSpanAnuba" Type="bigint" />
         </EntityType>
         <EntityType Name="spindle">
@@ -236,7 +212,6 @@
           <Property Name="State" Type="int" />
           <Property Name="Reason" Type="varchar(max)" />
           <Property Name="Operator" Type="varchar(max)" />
-          <Property Name="OperatorLevel" Type="int" />
         </EntityType>
         <EntityType Name="tool">
           <Key>
@@ -246,8 +221,6 @@
           <Property Name="Code" Type="varchar(max)" />
           <Property Name="Description" Type="varchar(max)" />
           <Property Name="DateLoaded" Type="datetime" />
-          <Property Name="BrokenEvents" Type="int" />
-          <Property Name="RevisedEvents" Type="int" />
           <Property Name="DateReplaced" Type="datetime" />
           <Property Name="CurrentLife" Type="bigint" />
           <Property Name="ExpectedLife" Type="bigint" />
