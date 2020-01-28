@@ -404,7 +404,6 @@
           <Property Name="ElapsedTime" Type="bigint" />
           <Property Name="EndTime" Type="datetime" />
           <Property Name="MachineId" Type="int" />
-          <Property Name="OperatorLevel" Type="int" />
           <Property Name="Operator" Type="varchar" MaxLength="100" />
           <Property Name="Overfeed" Type="float" />
           <Property Name="Reason" Type="varchar(max)" />
@@ -1498,7 +1497,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="StateId" Type="Int32" />
           <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_StateMachine_State" FromRole="StateMachine" ToRole="State" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_StateMachine_Machine" FromRole="StateMachine" ToRole="Machine" />
-          <Property Name="OperatorLevel" Type="Int32" />
         </EntityType>
         <Association Name="FK_HistoryState_State">
           <End Type="FST_FomMonitoringModel.State" Role="State" Multiplicity="0..1" />
@@ -2533,7 +2531,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="StateMachine">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.StateMachine">
               <MappingFragment StoreEntitySet="StateMachine">
-                <ScalarProperty Name="OperatorLevel" ColumnName="OperatorLevel" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="Shift" ColumnName="Shift" />

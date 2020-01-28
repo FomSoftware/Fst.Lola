@@ -25,7 +25,6 @@ namespace FomMonitoringCore.DAL
         public Nullable<int> Shift { get; set; }
         public Nullable<System.DateTime> StartTime { get; set; }
         public Nullable<int> StateId { get; set; }
-        public Nullable<int> OperatorLevel { get; set; }
     
         public virtual State State { get; set; }
         public virtual Machine Machine { get; set; }
