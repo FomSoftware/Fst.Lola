@@ -116,8 +116,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="KeyId" Type="varchar(max)" />
           <Property Name="MachineSerial" Type="varchar(max)" />
-          <Property Name="MachineType" Type="varchar(max)" />
-          <Property Name="MachineModel" Type="varchar(max)" />
           <Property Name="MachineDescription" Type="varchar(max)" />
           <Property Name="Product" Type="varchar(max)" />
           <Property Name="ProductVersion" Type="varchar(max)" />
