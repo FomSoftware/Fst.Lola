@@ -1225,13 +1225,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
             <Parameter Name="aggregation" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="usp_AggregationAlarm" ReturnType="Collection(FST_FomMonitoringModel.usp_AggregationAlarm_Result)">
-            <Parameter Name="machineId" Mode="In" Type="Int32" />
-            <Parameter Name="startDate" Mode="In" Type="DateTime" />
-            <Parameter Name="endDate" Mode="In" Type="DateTime" />
-            <Parameter Name="aggregation" Mode="In" Type="Int32" />
-            <Parameter Name="dataType" Mode="In" Type="Int32" />
-          </FunctionImport>
           <EntitySet Name="CurrentState" EntityType="FST_FomMonitoringModel.CurrentState" />
           <AssociationSet Name="FK_CurrentState_State" Association="FST_FomMonitoringModel.FK_CurrentState_State">
             <End Role="State" EntitySet="State" />
@@ -1628,18 +1621,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Type="Int32" Name="OffcutLength" Nullable="true" />
           <Property Type="Int32" Name="Period" Nullable="true" />
           <Property Type="String" Name="System" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="TypeHistory" Nullable="true" MaxLength="1" />
-        </ComplexType>
-        <ComplexType Name="usp_AggregationAlarm_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Code" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="Count" Nullable="true" />
-          <Property Type="DateTime" Name="Day" Nullable="true" Precision="23" />
-          <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
-          <Property Type="Int64" Name="ElapsedTime" Nullable="true" />
-          <Property Type="Int32" Name="MachineId" Nullable="true" />
-          <Property Type="Int32" Name="Period" Nullable="true" />
-          <Property Type="Int32" Name="StateId" Nullable="true" />
           <Property Type="String" Name="TypeHistory" Nullable="true" MaxLength="1" />
         </ComplexType>
         <EntityType Name="CurrentState">

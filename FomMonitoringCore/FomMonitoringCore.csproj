@@ -274,9 +274,6 @@
     <Compile Include="DAL\UserMachineMapping.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL\usp_AggregationAlarm_Result.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DAL\usp_AggregationBar_Result.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>

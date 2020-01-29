@@ -132,32 +132,7 @@ namespace FomMonitoringCore.DAL
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AggregationBar_Result>("usp_AggregationBar", machineIdParameter, startDateParameter, endDateParameter, aggregationParameter);
         }
-    
-        public virtual ObjectResult<usp_AggregationAlarm_Result> usp_AggregationAlarm(Nullable<int> machineId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<int> aggregation, Nullable<int> dataType)
-        {
-            var machineIdParameter = machineId.HasValue ?
-                new ObjectParameter("machineId", machineId) :
-                new ObjectParameter("machineId", typeof(int));
-    
-            var startDateParameter = startDate.HasValue ?
-                new ObjectParameter("startDate", startDate) :
-                new ObjectParameter("startDate", typeof(System.DateTime));
-    
-            var endDateParameter = endDate.HasValue ?
-                new ObjectParameter("endDate", endDate) :
-                new ObjectParameter("endDate", typeof(System.DateTime));
-    
-            var aggregationParameter = aggregation.HasValue ?
-                new ObjectParameter("aggregation", aggregation) :
-                new ObjectParameter("aggregation", typeof(int));
-    
-            var dataTypeParameter = dataType.HasValue ?
-                new ObjectParameter("dataType", dataType) :
-                new ObjectParameter("dataType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AggregationAlarm_Result>("usp_AggregationAlarm", machineIdParameter, startDateParameter, endDateParameter, aggregationParameter, dataTypeParameter);
-        }
-    
+
         public virtual ObjectResult<usp_AggregationJob_Result> usp_AggregationJob(Nullable<int> machineId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<int> aggregation)
         {
             var machineIdParameter = machineId.HasValue ?
