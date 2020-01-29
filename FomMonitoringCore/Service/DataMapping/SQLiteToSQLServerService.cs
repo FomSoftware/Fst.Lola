@@ -128,22 +128,20 @@ namespace FomMonitoringCore.Service.DataMapping
                 }
 
                 //_FomMonitoringEntities.Set<Bar>().AddRange(bar);
-                var messageMachine = messageSqLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<MessageMachine>>();
-                messageMachine = messageMachine.Where(w => w.StartTime > (machineActual.LastUpdate ?? new DateTime())).ToList();
+                var cat = _fomMonitoringEntities.Set<MachineModel>().Find(machineActual.MachineModelId)?.MessageCategoryId;
+                messageSqLite = messageSqLite.Where(w => w.Time > (machineActual.LastUpdate ?? new DateTime())).ToList();
 
                 //devo eliminare quei messaggi che hanno isLolaVisible = 0 da mdb
-                var cat = _fomMonitoringEntities.Set<MachineModel>().Find(machineActual.MachineModelId)?.MessageCategoryId;
-                foreach (var mm in messageMachine.ToList())
-                {
-                    if (mm.MessagesIndex != null)
-                    {
-                        var msg = _fomMonitoringEntities.Set<MessagesIndex>().FirstOrDefault(f => f.MessageCode == mm.MessagesIndex.MessageCode && f.MessageCategoryId == cat);
-                        if (msg != null && msg.IsPeriodicM)
-                            mm.MessagesIndex.IsPeriodicM = true;
+                List<MessageMachine> messageMachine = new List<MessageMachine>();
 
-                        mm.MessagesIndexId = msg.Id;
-                        mm.MessagesIndex = msg;
-                    }
+                foreach (var mm in messageSqLite)
+                {
+                    MessageMachine message = mm.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<MessageMachine>();
+                    var msg = _fomMonitoringEntities.Set<MessagesIndex>().FirstOrDefault(f => f.MessageCode == mm.Code && f.MessageCategoryId == cat);
+                    
+                    message.MessagesIndexId = msg.Id;
+                    message.MessagesIndex = msg;
+                    messageMachine.Add(message);
                 }
 
                 //IS-754 escludere tutti quelli che hanno isLolaVisible = false && type error o warning 
