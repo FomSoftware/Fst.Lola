@@ -5,8 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e1f655eff4d041b79c1672b5ec76a950" Name="Diagram1">
-        <EntityTypeShape EntityType="FomMonitoringSQLiteModel.error" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="FomMonitoringSQLiteModel.historyAlarm" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="FomMonitoringSQLiteModel.historyJob" Width="1.5" PointX="4.75" PointY="4.75" />
         <EntityTypeShape EntityType="FomMonitoringSQLiteModel.historyPiece" Width="1.5" PointX="6.75" PointY="0.75" />
         <EntityTypeShape EntityType="FomMonitoringSQLiteModel.historyState" Width="1.5" PointX="6.75" PointY="4.75" />

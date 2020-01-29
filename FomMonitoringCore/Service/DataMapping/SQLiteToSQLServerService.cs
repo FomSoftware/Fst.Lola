@@ -228,8 +228,6 @@ namespace FomMonitoringCore.Service.DataMapping
             var result = false;
             try
             {
-
-                var historyAlarmSqLite = _fomMonitoringSqLiteEntities.Set<historyAlarm>().ToList();
                 var historyBarSqLite = _fomMonitoringSqLiteEntities.Set<historyBar>().ToList();
                 var historyJobSqLite = _fomMonitoringSqLiteEntities.Set<historyJob>().ToList();
                 var historyPieceSqLite = _fomMonitoringSqLiteEntities.Set<historyPiece>().ToList();

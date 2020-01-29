@@ -297,9 +297,6 @@
     <Compile Include="DAL_SQLite\bar.cs">
       <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL_SQLite\error.cs">
-      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
-    </Compile>
     <Compile Include="DAL_SQLite\FomMonitoringModelSQLite.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -314,9 +311,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FomMonitoringModelSQLite.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DAL_SQLite\historyAlarm.cs">
-      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL_SQLite\historyBar.cs">
       <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>

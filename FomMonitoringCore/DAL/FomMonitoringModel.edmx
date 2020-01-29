@@ -76,7 +76,6 @@
           <Property Name="MachineId" Type="int" />
           <Property Name="Period" Type="int" />
           <Property Name="PiecesProduced" Type="int" />
-          <Property Name="PiecesProducedDay" Type="int" />
           <Property Name="TotalPieces" Type="int" />
           <Property Name="TypeHistory" Type="char" MaxLength="1" />
         </EntityType>
@@ -330,9 +329,6 @@
           <Property Name="ElapsedTimeProducing" Type="bigint" />
           <Property Name="StartTime" Type="datetime" />
           <Property Name="EndTime" Type="datetime" />
-          <Property Name="FrameId" Type="varchar" MaxLength="100" />
-          <Property Name="Index" Type="int" />
-          <Property Name="IsCompleted" Type="bit" />
           <Property Name="IsRedone" Type="bit" />
           <Property Name="JobId" Type="int" />
           <Property Name="Length" Type="float" />
@@ -340,19 +336,9 @@
           <Property Name="Operator" Type="varchar" MaxLength="100" />
           <Property Name="RedoneReason" Type="varchar(max)" />
           <Property Name="Shift" Type="int" />
-          <Property Name="System" Type="varchar" MaxLength="100" />
-          <Property Name="TipologyCode" Type="varchar" MaxLength="100" />
-          <Property Name="StartTimeCut" Type="datetime" />
-          <Property Name="EndTimeCut" Type="datetime" />
           <Property Name="ElapsedTimeCut" Type="bigint" />
-          <Property Name="StartTimeWorking" Type="datetime" />
-          <Property Name="EndTimeWorking" Type="datetime" />
           <Property Name="ElapsedTimeWorking" Type="bigint" />
-          <Property Name="StartTimeTrim" Type="datetime" />
-          <Property Name="EndTimeTrim" Type="datetime" />
           <Property Name="ElapsedTimeTrim" Type="bigint" />
-          <Property Name="StartTimeAnuba" Type="datetime" />
-          <Property Name="EndTimeAnuba" Type="datetime" />
           <Property Name="ElapsedTimeAnuba" Type="bigint" />
         </EntityType>
         <EntityType Name="Plant">

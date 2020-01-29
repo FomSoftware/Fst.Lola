@@ -49,7 +49,6 @@ namespace FomMonitoringCore.Service.DataMapping
             {
                 JObject json = JsonConvert.DeserializeObject<JObject>(jsonDataModel.Json);
                 List<bar> barSQLite = new List<bar>();
-                List<error> errorSQLite = new List<error>();
                 List<historyJob> historyJobSQLite = new List<historyJob>();
                 List<info> infoSQLite = new List<info>();
                 List<piece> pieceSQLite = new List<piece>();
@@ -69,9 +68,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE message");*/
                 if(_FomMonitoringSQLiteEntities.Set<bar>() != null)
                     _FomMonitoringSQLiteEntities.Set<bar>().RemoveRange(_FomMonitoringSQLiteEntities.Set<bar>());
-
-                if(_FomMonitoringSQLiteEntities.Set<error>() != null)
-                    _FomMonitoringSQLiteEntities.Set<error>().RemoveRange(_FomMonitoringSQLiteEntities.Set<error>());
 
                 if (_FomMonitoringSQLiteEntities.Set<historyJob>() != null)
                     _FomMonitoringSQLiteEntities.Set<historyJob>().RemoveRange(_FomMonitoringSQLiteEntities.Set<historyJob>());
@@ -105,13 +101,6 @@ namespace FomMonitoringCore.Service.DataMapping
                                 {
                                     bar.StartTime = bar.StartTime.HasValue && bar.StartTime.Value.Year < 1900 ? null : bar.StartTime;
                                     bar.EndTime = bar.EndTime.HasValue && bar.EndTime.Value.Year < 1900 ? null : bar.EndTime;
-                                }
-                                break;
-                            case "error":
-                                errorSQLite = JsonConvert.DeserializeObject<List<error>>(JsonConvert.SerializeObject(token.First));
-                                foreach (error error in errorSQLite)
-                                {
-                                    error.Time = error.Time.HasValue && error.Time.Value.Year < 1900 ? null : error.Time;
                                 }
                                 break;
                             case "historyjob":
@@ -200,33 +189,48 @@ namespace FomMonitoringCore.Service.DataMapping
                         }
                     }
 
-                _FomMonitoringSQLiteEntities.Set<bar>().AddRange(barSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
+                if (barSQLite.Any())
+                {
+                    _FomMonitoringSQLiteEntities.Set<bar>().AddRange(barSQLite);
+                    _FomMonitoringSQLiteEntities.SaveChanges();
+                }
+                if (historyJobSQLite.Any())
+                {
+                    _FomMonitoringSQLiteEntities.Set<historyJob>().AddRange(historyJobSQLite);
+                    _FomMonitoringSQLiteEntities.SaveChanges();
+                }
+                if (infoSQLite.Any())
+                {
+                    _FomMonitoringSQLiteEntities.Set<info>().AddRange(infoSQLite);
+                    _FomMonitoringSQLiteEntities.SaveChanges();
+                }
+                if (pieceSQLite.Any())
+                {
+                    _FomMonitoringSQLiteEntities.Set<piece>().AddRange(pieceSQLite);
+                    _FomMonitoringSQLiteEntities.SaveChanges();
+                }
+                if (spindleSQLite.Any())
+                {
+                    _FomMonitoringSQLiteEntities.Set<spindle>().AddRange(spindleSQLite);
+                    _FomMonitoringSQLiteEntities.SaveChanges();
+                }
+                if (stateSQLite.Any())
+                {
+                    _FomMonitoringSQLiteEntities.Set<state>().AddRange(stateSQLite);
+                    _FomMonitoringSQLiteEntities.SaveChanges();
+                }
+                if (toolSQLite.Any())
+                {
+                    _FomMonitoringSQLiteEntities.Set<tool>().AddRange(toolSQLite);
+                    _FomMonitoringSQLiteEntities.SaveChanges();
+                }
 
-                _FomMonitoringSQLiteEntities.Set<error>().AddRange(errorSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
+                if (messageSQLite.Any())
+                {
+                    _FomMonitoringSQLiteEntities.Set<message>().AddRange(messageSQLite);
+                    _FomMonitoringSQLiteEntities.SaveChanges();
+                }
 
-                _FomMonitoringSQLiteEntities.Set<historyJob>().AddRange(historyJobSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
-
-                _FomMonitoringSQLiteEntities.Set<info>().AddRange(infoSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
-
-                _FomMonitoringSQLiteEntities.Set<piece>().AddRange(pieceSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
-
-                _FomMonitoringSQLiteEntities.Set<spindle>().AddRange(spindleSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
-
-                _FomMonitoringSQLiteEntities.Set<state>().AddRange(stateSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
-
-                _FomMonitoringSQLiteEntities.Set<tool>().AddRange(toolSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
-
-                _FomMonitoringSQLiteEntities.Set<message>().AddRange(messageSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
-                
                 result = true;                
             }
             catch (Exception ex)
@@ -247,7 +251,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 List<historyPiece> historyPieceSQLite = new List<historyPiece>();
                 List<historyJob> historyJobSQLite = new List<historyJob>();
                 List<info> infoSQLite = new List<info>();
-                List<historyAlarm> historyAlarmSQLite = new List<historyAlarm>();
                 List<historyMessage> historyMessageSQLite = new List<historyMessage>();
                 List<historyState> historyStateSQLite = new List<historyState>();
                 List<spindle> spindleSQLite = new List<spindle>();
@@ -259,7 +262,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyPiece");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyJob");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE info");
-                _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyAlarm");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyState");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyMessage");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE spindle");
@@ -301,13 +303,6 @@ namespace FomMonitoringCore.Service.DataMapping
                                 info.LoginDate = info.LoginDate.HasValue && info.LoginDate.Value.Year < 1900 ? null : info.LoginDate;
                                 info.InstallationDate = info.InstallationDate.HasValue && info.InstallationDate.Value.Year < 1900 ? null : info.InstallationDate;
                                 info.NextMaintenanceService = info.NextMaintenanceService.HasValue && info.NextMaintenanceService.Value.Year < 1900 ? null : info.NextMaintenanceService;
-                            }
-                            break;
-                        case "historyalarm":
-                            historyAlarmSQLite = JsonConvert.DeserializeObject<List<historyAlarm>>(JsonConvert.SerializeObject(token.First));
-                            foreach (var historyAlarm in historyAlarmSQLite)
-                            {
-                                historyAlarm.Day = historyAlarm.Day.HasValue && historyAlarm.Day.Value.Year < 1900 ? null : historyAlarm.Day;
                             }
                             break;
                         case "historymessage":
@@ -365,9 +360,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 _FomMonitoringSQLiteEntities.SaveChanges();
 
                 _FomMonitoringSQLiteEntities.Set<info>().AddRange(infoSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
-
-                _FomMonitoringSQLiteEntities.Set<historyAlarm>().AddRange(historyAlarmSQLite);
                 _FomMonitoringSQLiteEntities.SaveChanges();
 
                 _FomMonitoringSQLiteEntities.Set<historyState>().AddRange(historyStateSQLite);
