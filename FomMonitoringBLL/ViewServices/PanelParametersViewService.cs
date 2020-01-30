@@ -56,6 +56,8 @@ namespace FomMonitoringBLL.ViewServices
                 result.vm_multi_spindle = GetMultiSpindleVueModel(context.ActualMachine, 11);
             if (panels.Contains((int)enPanel.TiltingMSAxesLMX))
                 result.vm_tilting_axes = GetTiltingAxesVueModel(context.ActualMachine);
+            if (panels.Contains((int)enPanel.RotaryAxesLMX))
+                result.vm_rotary_axes = GetRotaryAxesVueModel(context.ActualMachine);
 
 
             result.vm_machine_info = new MachineInfoViewModel
@@ -107,6 +109,26 @@ namespace FomMonitoringBLL.ViewServices
             {
                 ToolsInfo = dtos
             };
+            return result;
+        }
+
+        private RotaryAxesParameterVueModel GetRotaryAxesVueModel(MachineInfoModel machine)
+        {
+            var panels = _machineService.GetMachinePanels(machine.Model.Id);
+            RotaryAxesParameterVueModel result = null;
+            if (panels.Contains((int)enPanel.RotaryAxesLMX))
+            {
+                var par = _parameterMachineService.GetParameters(machine, (int)enPanel.RotaryAxesLMX);
+                result = new RotaryAxesParameterVueModel
+                {
+                    NrotazioniAsse3C1 = par.FirstOrDefault(p => p.VarNumber == 308),
+                    NrotazioniAsse3C2 = par.FirstOrDefault(p => p.VarNumber == 309),
+                    NsblocchiForc1 = par.FirstOrDefault(p => p.VarNumber == 40301),
+                    NsblocchiForc2 = par.FirstOrDefault(p => p.VarNumber == 40302),
+                    NsblocchiForc3 = par.FirstOrDefault(p => p.VarNumber == 40303)
+                };
+            }
+
             return result;
         }
 

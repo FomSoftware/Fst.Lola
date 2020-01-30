@@ -439,6 +439,7 @@
     <Content Include="GlobApp\scripts\machine\motoraxes\blitz.js" />
     <Content Include="GlobApp\scripts\machine\motor\keope.js" />
     <Content Include="GlobApp\scripts\machine\multispindles\multispindles.js" />
+    <Content Include="GlobApp\scripts\machine\rotaryaxes\rotaryaxes.js" />
     <Content Include="GlobApp\scripts\machine\tiltingaxes\tiltingaxes.js" />
     <Content Include="GlobApp\scripts\machine\tools\fmcLmx.js" />
     <Content Include="GlobApp\scripts\machine\tools\blitz.js" />
@@ -1126,6 +1127,7 @@
     <Content Include="Views\Machine\Model\_LMX_650.cshtml" />
     <Content Include="Views\Machine\Panels\Axes\_LMX_650.cshtml" />
     <Content Include="Views\Machine\Panels\TiltingAxes\_LMX650.cshtml" />
+    <Content Include="Views\Machine\Panels\RotaryAxes\_LMX650.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
