@@ -175,3 +175,12 @@
             })
     </div>
 }
+@if (Model.MachinePanels.Contains((int)enPanel.TiltingMSAxesLMX))
+{
+    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        @Html.Partial("Panels/TiltingAxes/_LMX650", Model.PanelParameter, new ViewDataDictionary
+        {
+            { "Classes", "col-12" }
+        })
+    </div>
+}

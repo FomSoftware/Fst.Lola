@@ -18,9 +18,18 @@ namespace FomMonitoringBLL.ViewModel
         public ElectroSpindleParameterVueModel vm_electro_spindle { get; set; }
         public ToolsFmcLmxParameterVueModel vm_tools_fmc_lmx { get; set; }
         public MultiSpindleParameterVueModel vm_multi_spindle { get; set; }
+        public TiltingAxesParameterVueModel vm_tilting_axes { get; set; }
     }
 
-
+    public class TiltingAxesParameterVueModel
+    {
+        public ParameterMachineValueModel NrotazioniAsse2A1 { get; set; }
+        public ParameterMachineValueModel NrotazioniAsse2A2 { get; set; }
+        public ParameterMachineValueModel NrotazioniAsse2A3 { get; set; }
+        public ParameterMachineValueModel NrotazioniAsse2A4 { get; set; }
+        public ParameterMachineValueModel NrotazioniAsse2A5 { get; set; }
+        public ParameterMachineValueModel NrotazioniAsse2A6 { get; set; }
+    }
     public class OtherDataParameterVueModel
     {
         public ParameterMachineValueModel CycleCountXFlow { get; set; }

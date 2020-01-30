@@ -54,6 +54,8 @@ namespace FomMonitoringBLL.ViewServices
                 result.vm_tools_fmc_lmx = GetToolsFmcLmxVueModel(context.ActualMachine);
             if (panels.Contains((int) enPanel.Multispindle))
                 result.vm_multi_spindle = GetMultiSpindleVueModel(context.ActualMachine, 11);
+            if (panels.Contains((int)enPanel.TiltingMSAxesLMX))
+                result.vm_tilting_axes = GetTiltingAxesVueModel(context.ActualMachine);
 
 
             result.vm_machine_info = new MachineInfoViewModel
@@ -108,6 +110,26 @@ namespace FomMonitoringBLL.ViewServices
             return result;
         }
 
+        private TiltingAxesParameterVueModel GetTiltingAxesVueModel(MachineInfoModel machine)
+        {
+            var panels = _machineService.GetMachinePanels(machine.Model.Id);
+            TiltingAxesParameterVueModel result = null;
+            if (panels.Contains((int) enPanel.TiltingMSAxesLMX))
+            {
+                var par = _parameterMachineService.GetParameters(machine, (int)enPanel.TiltingMSAxesLMX);
+                result = new TiltingAxesParameterVueModel
+                {
+                    NrotazioniAsse2A1 = par.FirstOrDefault(p => p.VarNumber == 302),
+                    NrotazioniAsse2A2 = par.FirstOrDefault(p => p.VarNumber == 303),
+                    NrotazioniAsse2A3 = par.FirstOrDefault(p => p.VarNumber == 304),
+                    NrotazioniAsse2A4 = par.FirstOrDefault(p => p.VarNumber == 305),
+                    NrotazioniAsse2A5 = par.FirstOrDefault(p => p.VarNumber == 306),
+                    NrotazioniAsse2A6 = par.FirstOrDefault(p => p.VarNumber == 307)
+                };
+            }
+
+            return result;
+        }
 
         private ElectroSpindleParameterVueModel GetElectroSpindleVueModel(MachineInfoModel machine)
         {
