@@ -1,6 +1,7 @@
 ﻿
 @model FomMonitoringBLL.ViewModel.PanelParametersViewModel
 @using FomMonitoringCore.Service
+@using FomMonitoringResources
 
 <div id="CardAxesLmx" class="portlet">
     <div class="portlet-title">
@@ -10,8 +11,8 @@
                 <i class="fa icofom-assi fa-stack-1x fa-inverse" style="font-size:21px"></i>
             </span>
         </div>
-        <div class="title-kpi" style="max-width: 130px;">
-            <span>@LocalizationService.GetResource("Axes")</span>
+        <div class="title-kpi" style="max-width: 170px;">
+            <span>@LocalizationService.GetResource("LMX650_LinearAxes")</span>
             <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
         </div>
     </div>
@@ -20,7 +21,7 @@
             <div v-if="axes != null && axes.length > 0" style="height:242px" class="slimscroll">
                 <hr style="background-color:#0c3817;height:2px;border:none" />
                 <div style="cursor:auto;height:100%">
-                    <table class="table-tools-fmc" style="height: 100%">
+                    <table class="table-tools-fmc" style="height: 100%;background-color: #bebebe;">
                         <tr>
                             <td class="td-axes" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index) in firstRow">
                                 <label> <img src="~/Images/icon/ico_contachilometri.png" style="width: 23px" /></label>
@@ -32,15 +33,9 @@
                                 <label v-if="axes != null && axes.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.ConvertedValue"></label>
                             </td>
                         </tr>
-                        <tr style="height: 3px;">
-                            <td style="padding-left: 0; background-color: #bebebe">
-                                <hr width="80%" class="tools" style="margin-right: 0;">
-                            </td>
-                            <td style="padding-left: 0;">
-                                <hr width="100%" class="tools" style="padding-left: 0;">
-                            </td>
-                            <td style="padding-left: 0; background-color: #bebebe">
-                                <hr width="80%" class="tools" style="margin-left: 0;">
+                        <tr>
+                            <td style="padding-left: 0; background-color: #bebebe" colspan="3">
+                                <hr width="88%" align="center" class="tools" style="color: #bebebe">
                             </td>
                         </tr>
                         <tr>
@@ -54,15 +49,9 @@
                                 <label v-if="axes != null && axes.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.ConvertedValue"></label>
                             </td>
                         </tr>
-                        <tr style="height: 3px;">
-                            <td style="padding-left: 0; background-color: #bebebe">
-                                <hr width="80%" class="tools" style="margin-right: 0;">
-                            </td>
-                            <td style="padding-left: 0; background-color: #bebebe">
-                                <hr width="100%" class="tools" style="padding-left: 0;">
-                            </td>
-                            <td style="padding-left: 0; background-color: #bebebe">
-                                <hr width="80%" class="tools" style="margin-left: 0;">
+                        <tr>
+                            <td style="padding-left: 0; background-color: #bebebe" colspan="3">
+                                <hr width="88%" align="center" class="tools" style="color: #bebebe">
                             </td>
                         </tr>
                         <tr>
@@ -76,15 +65,9 @@
                                 <label v-if="axes != null && axes.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.ConvertedValue"></label>
                             </td>
                         </tr>
-                        <tr style="height: 3px;">
-                            <td style="padding-left: 0; background-color: #bebebe">
-                                <hr width="80%" class="tools" style="margin-right: 0;">
-                            </td>
-                            <td style="padding-left: 0; background-color: #bebebe">
-                                <hr width="100%" class="tools" style="padding-left: 0;">
-                            </td>
-                            <td style="padding-left: 0; background-color: #bebebe">
-                                <hr width="80%" class="tools" style="margin-left: 0;">
+                        <tr>
+                            <td style="padding-left: 0; background-color: #bebebe" colspan="3">
+                                <hr width="88%" align="center" class="tools" style="color: #bebebe">
                             </td>
                         </tr>
                         <tr>
@@ -98,15 +81,9 @@
                                 <label v-if="axes != null && axes.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.ConvertedValue"></label>
                             </td>
                         </tr>
-                        <tr style="height: 3px;">
-                            <td style="padding-left: 0; background-color: #bebebe">
-                                <hr width="80%" class="tools" style="margin-right: 0;">
-                            </td>
-                            <td style="padding-left: 0; background-color: #bebebe">
-                                <hr width="100%" class="tools" style="padding-left: 0;">
-                            </td>
-                            <td style="padding-left: 0; background-color: #bebebe">
-                                <hr width="80%" class="tools" style="margin-left: 0;">
+                        <tr>
+                            <td style="padding-left: 0; background-color: #bebebe" colspan="3">
+                                <hr width="88%" align="center" class="tools" style="color: #bebebe">
                             </td>
                         </tr>
                         <tr>
