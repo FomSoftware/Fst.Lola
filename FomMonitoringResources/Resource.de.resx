@@ -1076,6 +1076,6 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>verstr. Zeit</value>
   </data>
   <data name="TabTempoResiduoBarra" xml:space="preserve">
-    <value>Restzeit einzelnes stange</value>
+    <value>Restzeit stange</value>
   </data>
 </root>

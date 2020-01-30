@@ -1074,6 +1074,6 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
     <value>tiempo transc.</value>
   </data>
   <data name="TabTempoResiduoBarra" xml:space="preserve">
-    <value>Tiempo restante bar simple</value>
+    <value>Tiempo restante bar</value>
   </data>
 </root>

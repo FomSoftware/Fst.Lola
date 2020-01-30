@@ -1074,7 +1074,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>time passed</value>
   </data>
   <data name="TabTempoResiduoBarra" xml:space="preserve">
-    <value>Single bar time remaining</value>
+    <value>Bar time remaining</value>
   </data>
   <data name="TimeTot" xml:space="preserve">
     <value>T.Tot.</value>
