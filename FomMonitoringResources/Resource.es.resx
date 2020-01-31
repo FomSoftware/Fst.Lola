@@ -770,9 +770,6 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
     <value>Rango Rpm</value>
   </data>
-  <data name="TabRpmTotMandriniMM" xml:space="preserve">
-    <value />
-  </data>
   <data name="LMX650_LinearAxes" xml:space="preserve">
     <value>EJES LINEALES</value>
   </data>
@@ -977,8 +974,8 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   <data name="DistAsse3C2_SemiRotazioni" xml:space="preserve">
     <value>N° Semirrotaciones Eje 3C2</value>
   </data>
-  <data name="TabVitaUtensileMM_Cod1" xml:space="preserve">
-    <value>Horas vida herramienta Cod (n° codice utensile)</value>
+  <data name="TabVitaUtensile" xml:space="preserve">
+    <value>Horas vida herramienta {0}</value>
   </data>
   <data name="TabSoglieRpmMandriniCUT_1" xml:space="preserve">
     <value>Rango rpm 0-1500</value>
@@ -1075,5 +1072,20 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   </data>
   <data name="TabTempoResiduoBarra" xml:space="preserve">
     <value>Tiempo restante bar</value>
+  </data>
+  <data name="RotaryAxesXMU" xml:space="preserve">
+    <value>EJES ROTATIVOS XMU</value>
+  </data>
+  <data name="ToolsStore" xml:space="preserve">
+    <value>ALM.HERRAM. (X-MODULE)</value>
+  </data>
+  <data name="oreMandrinoAttivo" xml:space="preserve">
+    <value>Tot. horas uso electromandril</value>
+  </data>
+  <data name="UserNotEnabled" xml:space="preserve">
+    <value>Usuario no habilitado</value>
+  </data>
+  <data name="MachineAssociatedToPlant" xml:space="preserve">
+    <value>Máquina ya asociada al plant {0}. ¿Proseguir?</value>
   </data>
 </root>

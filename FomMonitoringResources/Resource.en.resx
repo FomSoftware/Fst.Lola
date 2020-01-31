@@ -977,8 +977,8 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="DistAsse3C2_SemiRotazioni" xml:space="preserve">
     <value>N° Half-Turns Axis 3C2</value>
   </data>
-  <data name="TabVitaUtensileMM_Cod1" xml:space="preserve">
-    <value>Cod1 tool working hours</value>
+  <data name="TabVitaUtensile" xml:space="preserve">
+    <value>{0} tool working hours</value>
   </data>
   <data name="TabSoglieRpmMandriniCUT_1" xml:space="preserve">
     <value>Range 0-1500 rpm</value>
@@ -1081,5 +1081,20 @@ Customers are informed that the reliability of the statistics obtained from the 
   </data>
   <data name="TimeResStim" xml:space="preserve">
     <value>T.Res Stim.</value>
+  </data>
+  <data name="RotaryAxesXMU" xml:space="preserve">
+    <value>XMU ROTARY AXES</value>
+  </data>
+  <data name="ToolsStore" xml:space="preserve">
+    <value>TOOL MAG. (X-MODULE)</value>
+  </data>
+  <data name="oreMandrinoAttivo" xml:space="preserve">
+    <value>Tot. electrosp. working hours</value>
+  </data>
+  <data name="UserNotEnabled" xml:space="preserve">
+    <value>User not enabled</value>
+  </data>
+  <data name="MachineAssociatedToPlant" xml:space="preserve">
+    <value>Machine already associated with the {0} plant. Are you sure you wish to continue?</value>
   </data>
 </root>

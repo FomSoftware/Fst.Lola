@@ -772,9 +772,6 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
     <value>Range Rpm</value>
   </data>
-  <data name="TabRpmTotMandriniMM" xml:space="preserve">
-    <value />
-  </data>
   <data name="LMX650_LinearAxes" xml:space="preserve">
     <value>LINEARACHSEN</value>
   </data>
@@ -979,8 +976,8 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="DistAsse3C2_SemiRotazioni" xml:space="preserve">
     <value>Anz. Halbdrehungen Achses 3C2</value>
   </data>
-  <data name="TabVitaUtensileMM_Cod1" xml:space="preserve">
-    <value>Lebensdauer Werkzeug Cod (n° codice utensile)</value>
+  <data name="TabVitaUtensile" xml:space="preserve">
+    <value>Lebensdauer Werkzeug {0}</value>
   </data>
   <data name="TabSoglieRpmMandriniCUT_1" xml:space="preserve">
     <value>Range RPM 0-1500</value>
@@ -1077,5 +1074,20 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   </data>
   <data name="TabTempoResiduoBarra" xml:space="preserve">
     <value>Restzeit stange</value>
+  </data>
+  <data name="RotaryAxesXMU" xml:space="preserve">
+    <value>DREHACHSEN XMU</value>
+  </data>
+  <data name="ToolsStore" xml:space="preserve">
+    <value>WERKZEUGLAGER (X-MODULE)</value>
+  </data>
+  <data name="oreMandrinoAttivo" xml:space="preserve">
+    <value>Gesamtarbeitsst. Spindel</value>
+  </data>
+  <data name="UserNotEnabled" xml:space="preserve">
+    <value>Benutzer nicht aktiviert</value>
+  </data>
+  <data name="MachineAssociatedToPlant" xml:space="preserve">
+    <value>Maschine bereits der Anlage {0} zugeordnet, dennoch fortfahren?</value>
   </data>
 </root>
