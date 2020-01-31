@@ -786,7 +786,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>MULTISPINDLE</value>
   </data>
   <data name="LMX650_RotaryAxes" xml:space="preserve">
-    <value>XMU ROTARY AXES/TOOL MAG. (X-MODULE)</value>
+    <value>XMU ROTARY AXES/TOOL MAG.(X-MODULE)</value>
   </data>
   <data name="LMX650_TiltingMSAxes" xml:space="preserve">
     <value>TILTING MULTISPINDLE AXES</value>
