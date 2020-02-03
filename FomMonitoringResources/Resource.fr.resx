@@ -1091,4 +1091,19 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="PlantCreated" xml:space="preserve">
     <value>Usine créé avec succés</value>
   </data>
+  <data name="Assorbimento" xml:space="preserve">
+    <value>ABSORPTION</value>
+  </data>
+  <data name="Vibrazioni" xml:space="preserve">
+    <value>VIBRATIONS</value>
+  </data>
+  <data name="TemperaturaSchedaEl" xml:space="preserve">
+    <value>TEMPÉRATURE DE LA CARTE ÉLECTRIQUE</value>
+  </data>
+  <data name="TemperaturaCuscinetti" xml:space="preserve">
+    <value>TEMPERATURE ROULEMENTS</value>
+  </data>
+  <data name="TemperaturaStatore" xml:space="preserve">
+    <value>STATOR TEMPERATURE</value>
+  </data>
 </root>

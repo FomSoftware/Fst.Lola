@@ -1097,4 +1097,19 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="MachineAssociatedToPlant" xml:space="preserve">
     <value>Machine already associated with the {0} plant. Are you sure you wish to continue?</value>
   </data>
+  <data name="Assorbimento" xml:space="preserve">
+    <value>ABSORPTION</value>
+  </data>
+  <data name="Vibrazioni" xml:space="preserve">
+    <value>VIBRATIONS</value>
+  </data>
+  <data name="TemperaturaSchedaEl" xml:space="preserve">
+    <value>ELECTRICAL BOARD TEMPERATURE</value>
+  </data>
+  <data name="TemperaturaStatore" xml:space="preserve">
+    <value>STATOR TEMPERATURE</value>
+  </data>
+  <data name="TemperaturaCuscinetti" xml:space="preserve">
+    <value>BEARINGS TEMPERATURE</value>
+  </data>
 </root>

@@ -1090,4 +1090,19 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="MachineAssociatedToPlant" xml:space="preserve">
     <value>Maschine bereits der Anlage {0} zugeordnet, dennoch fortfahren?</value>
   </data>
+  <data name="Vibrazioni" xml:space="preserve">
+    <value>VIBRATIONEN</value>
+  </data>
+  <data name="TemperaturaStatore" xml:space="preserve">
+    <value>STATOR TEMPERATUR</value>
+  </data>
+  <data name="TemperaturaSchedaEl" xml:space="preserve">
+    <value>ELEKTRISCHE BORDTEMPERATUR</value>
+  </data>
+  <data name="TemperaturaCuscinetti" xml:space="preserve">
+    <value>TEMPERATUR LAGER</value>
+  </data>
+  <data name="Assorbimento" xml:space="preserve">
+    <value>AUFNAHME</value>
+  </data>
 </root>

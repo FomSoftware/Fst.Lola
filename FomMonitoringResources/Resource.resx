@@ -1098,18 +1098,18 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>MachineAssociatedToPlant</value>
   </data>
   <data name="Assorbimento" xml:space="preserve">
-    <value></value>
+    <value>Absorption</value>
   </data>
   <data name="Vibrazioni" xml:space="preserve">
-    <value></value>
+    <value>Vibrations</value>
   </data>
   <data name="TemperaturaSchedaEl" xml:space="preserve">
-    <value></value>
+    <value>Board Temperature</value>
   </data>
   <data name="TemperaturaStatore" xml:space="preserve">
-    <value></value>
+    <value>Stator Temperature</value>
   </data>
   <data name="TemperaturaCuscinetti" xml:space="preserve">
-    <value></value>
+    <value>Bearings Temperature</value>
   </data>
 </root>

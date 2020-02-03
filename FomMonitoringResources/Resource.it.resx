@@ -1097,4 +1097,19 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="PlantCreated" xml:space="preserve">
     <value>Plant creato con successo</value>
   </data>
+  <data name="Assorbimento" xml:space="preserve">
+    <value>ASSORBIMENTO</value>
+  </data>
+  <data name="Vibrazioni" xml:space="preserve">
+    <value>VIBRAZIONI</value>
+  </data>
+  <data name="TemperaturaCuscinetti" xml:space="preserve">
+    <value>TEMPERATURA CUSCINETTI</value>
+  </data>
+  <data name="TemperaturaSchedaEl" xml:space="preserve">
+    <value>TEMPERATURA SCHEDA ELETTRICA</value>
+  </data>
+  <data name="TemperaturaStatore" xml:space="preserve">
+    <value>TEMPERATURA STATORE</value>
+  </data>
 </root>

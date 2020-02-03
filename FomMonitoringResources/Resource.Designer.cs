@@ -106,7 +106,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Absorption.
         /// </summary>
         public static string Assorbimento {
             get {
@@ -2664,7 +2664,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Bearings Temperature.
         /// </summary>
         public static string TemperaturaCuscinetti {
             get {
@@ -2673,7 +2673,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Board Temperature.
         /// </summary>
         public static string TemperaturaSchedaEl {
             get {
@@ -2682,7 +2682,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Stator Temperature.
         /// </summary>
         public static string TemperaturaStatore {
             get {
@@ -2970,7 +2970,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Vibrations.
         /// </summary>
         public static string Vibrazioni {
             get {
