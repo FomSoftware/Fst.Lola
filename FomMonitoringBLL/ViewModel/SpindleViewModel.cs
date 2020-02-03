@@ -20,6 +20,26 @@ namespace FomMonitoringBLL.ViewModel
         public MultiSpindleParameterVueModel vm_multi_spindle { get; set; }
         public TiltingAxesParameterVueModel vm_tilting_axes { get; set; }
         public RotaryAxesParameterVueModel vm_rotary_axes { get; set; }
+        public SensorSpindlesParameterVueModel vm_sensor_spindles { get; set; }
+    }
+
+    public class SensorSpindlesParameterVueModel
+    {
+        public ParameterMachineValueModel SoglieAmpereMandrini { get; set; }
+        public ParameterMachineValueModel SoglieAmpereContatore { get; set; }
+        public ParameterMachineValueModel AccelerometroINT_1 { get; set; }
+        public ParameterMachineValueModel AccelerometroINT_2 { get; set; }
+        public ParameterMachineValueModel AccelerometroINT_3 { get; set; }
+        public ParameterMachineValueModel HSD_NumCollRilevate { get; set; }
+        public ParameterMachineValueModel AccelContatoreINT_2 { get; set; }
+        public ParameterMachineValueModel AccelContatoreINT_3 { get; set; }
+        public ParameterMachineValueModel TemperSchedaMinutiINT { get; set; }
+        public ParameterMachineValueModel TemperSchedaContatoreINT { get; set; }
+        public ParameterMachineValueModel TemperStatoreMinutiINT { get; set; }
+        public ParameterMachineValueModel TemperStatoreContatoreINT { get; set; }
+        public ParameterMachineValueModel TemperCuscinettiMinutiINT { get; set; }
+        public ParameterMachineValueModel TemperCuscinettiContatoreINT { get; set; }
+
     }
 
     public class RotaryAxesParameterVueModel

@@ -106,6 +106,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Assorbimento {
+            get {
+                return ResourceManager.GetString("Assorbimento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Average Speed.
         /// </summary>
         public static string AverageSpeed {
@@ -2655,6 +2664,33 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TemperaturaCuscinetti {
+            get {
+                return ResourceManager.GetString("TemperaturaCuscinetti", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TemperaturaSchedaEl {
+            get {
+                return ResourceManager.GetString("TemperaturaSchedaEl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TemperaturaStatore {
+            get {
+                return ResourceManager.GetString("TemperaturaStatore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Piece time remaining.
         /// </summary>
         public static string tempoAttualeProgramma {
@@ -2930,6 +2966,15 @@ namespace FomMonitoringResources {
         public static string v_HSD_NumCollRilevate {
             get {
                 return ResourceManager.GetString("v_HSD_NumCollRilevate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Vibrazioni {
+            get {
+                return ResourceManager.GetString("Vibrazioni", resourceCulture);
             }
         }
         

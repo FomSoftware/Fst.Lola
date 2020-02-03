@@ -1159,6 +1159,13 @@ td.td-other-data {
     vertical-align: top;
     width: 25%;
     padding-top: 5px;
+    background-color: #bebebe;
+    text-align: left;
+}
+
+.label-second-row {
+    font-size: 16px;
+    padding-left: 6px;
 }
 
 td.tool-border-left {
@@ -1308,6 +1315,17 @@ hr.axes {
     word-wrap: break-word;
     margin-bottom: 0;
     width: calc(100% - 23px);
+    float: right;
+    padding-left: 8px;
+}
+
+.label-sensors-title {
+    font-size: 13px;
+    font-weight: 400;
+    color: #403D3D;
+    word-wrap: break-word;
+    margin-bottom: 0;
+    width: calc(100% - 30px);
     float: right;
     padding-left: 8px;
 }

@@ -103,7 +103,8 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/multispindles/multispindles.js",
                         "~/GlobApp/scripts/notification-manager.js",
                         "~/GlobApp/scripts/machine/tiltingaxes/tiltingaxes.js",
-                        "~/GlobApp/scripts/machine/rotaryaxes/rotaryaxes.js"
+                        "~/GlobApp/scripts/machine/rotaryaxes/rotaryaxes.js",
+                        "~/GlobApp/scripts/machine/sensorspindles/sensorspindles.js"
 
 
                       ));

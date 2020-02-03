@@ -58,6 +58,8 @@ namespace FomMonitoringBLL.ViewServices
                 result.vm_tilting_axes = GetTiltingAxesVueModel(context.ActualMachine);
             if (panels.Contains((int)enPanel.RotaryAxesLMX))
                 result.vm_rotary_axes = GetRotaryAxesVueModel(context.ActualMachine);
+            if (panels.Contains((int)enPanel.XMUSp_SensorsLMX))
+                result.vm_sensor_spindles = GetSensorSpindlesVueModel(context.ActualMachine);
 
 
             result.vm_machine_info = new MachineInfoViewModel
@@ -109,6 +111,35 @@ namespace FomMonitoringBLL.ViewServices
             {
                 ToolsInfo = dtos
             };
+            return result;
+        }
+
+        private SensorSpindlesParameterVueModel GetSensorSpindlesVueModel(MachineInfoModel machine)
+        {
+            var panels = _machineService.GetMachinePanels(machine.Model.Id);
+            SensorSpindlesParameterVueModel result = null;
+            if (panels.Contains((int)enPanel.XMUSp_SensorsLMX))
+            {
+                var par = _parameterMachineService.GetParameters(machine, (int)enPanel.XMUSp_SensorsLMX);
+                result = new SensorSpindlesParameterVueModel
+                {
+                    SoglieAmpereMandrini = par.FirstOrDefault(p => p.VarNumber == 40131),
+                    SoglieAmpereContatore = par.FirstOrDefault(p => p.VarNumber == 40135),
+                    AccelerometroINT_1 = par.FirstOrDefault(p => p.VarNumber == 39601),
+                    AccelerometroINT_2 = par.FirstOrDefault(p => p.VarNumber == 39602),
+                    AccelerometroINT_3 = par.FirstOrDefault(p => p.VarNumber == 39603),
+                    HSD_NumCollRilevate = par.FirstOrDefault(p => p.VarNumber == 32234),
+                    AccelContatoreINT_2 = par.FirstOrDefault(p => p.VarNumber == 39612),
+                    AccelContatoreINT_3 = par.FirstOrDefault(p => p.VarNumber == 39613),
+                    TemperSchedaMinutiINT = par.FirstOrDefault(p => p.VarNumber == 39733),
+                    TemperSchedaContatoreINT = par.FirstOrDefault(p => p.VarNumber == 39723),
+                    TemperStatoreMinutiINT = par.FirstOrDefault(p => p.VarNumber == 39731),
+                    TemperStatoreContatoreINT = par.FirstOrDefault(p => p.VarNumber == 39721),
+                    TemperCuscinettiMinutiINT = par.FirstOrDefault(p => p.VarNumber == 39732),
+                    TemperCuscinettiContatoreINT = par.FirstOrDefault(p => p.VarNumber == 39722)
+                };
+            }
+
             return result;
         }
 
