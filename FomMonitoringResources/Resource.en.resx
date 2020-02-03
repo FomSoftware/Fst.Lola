@@ -660,7 +660,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Address</value>
   </data>
   <data name="PlantCreated" xml:space="preserve">
-    <value>Are you sure to delete this plant?</value>
+    <value>Plant created successfully</value>
   </data>
   <data name="PlantCustomers" xml:space="preserve">
     <value>Customer</value>

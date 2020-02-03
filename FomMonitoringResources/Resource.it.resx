@@ -1094,4 +1094,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="MachineAssociatedToPlant" xml:space="preserve">
     <value>Macchina già associata al plant {0}  si è sicuri di voler continuare?</value>
   </data>
+  <data name="PlantCreated" xml:space="preserve">
+    <value>Plant creato con successo</value>
+  </data>
 </root>

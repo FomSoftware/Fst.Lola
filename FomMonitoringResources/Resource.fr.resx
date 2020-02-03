@@ -1088,4 +1088,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="MachineAssociatedToPlant" xml:space="preserve">
     <value>Machine déjà associée à l’installation {0}, voulez-vous vraiment continuer ? </value>
   </data>
+  <data name="PlantCreated" xml:space="preserve">
+    <value>Usine créé avec succés</value>
+  </data>
 </root>

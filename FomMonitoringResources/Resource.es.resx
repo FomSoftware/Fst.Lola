@@ -1088,4 +1088,7 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   <data name="MachineAssociatedToPlant" xml:space="preserve">
     <value>Máquina ya asociada al plant {0}. ¿Proseguir?</value>
   </data>
+  <data name="PlantCreated" xml:space="preserve">
+    <value>Planta creada con éxito</value>
+  </data>
 </root>
