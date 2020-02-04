@@ -1079,7 +1079,7 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="TabTempoResiduoBarra" xml:space="preserve">
     <value>TabTempoResiduoBarra</value>
   </data>
-  <data name="TabSoglieRpmMandriniCUT_3&#x9;" xml:space="preserve">
+  <data name="TabSoglieRpmMandriniCUT_3" xml:space="preserve">
     <value>Range 2501-3000 rpm</value>
   </data>
   <data name="TimeTot" xml:space="preserve">
@@ -1111,5 +1111,14 @@ Customers are informed that the reliability of the statistics obtained from the 
   </data>
   <data name="TemperaturaCuscinetti" xml:space="preserve">
     <value>Bearings Temperature</value>
+  </data>
+  <data name="TabTagliContatoreTotCUT" xml:space="preserve">
+    <value>Total blade cuts</value>
+  </data>
+  <data name="Blade" xml:space="preserve">
+    <value>Blade</value>
+  </data>
+  <data name="MotorBlade" xml:space="preserve">
+    <value>MOTOR BLADE</value>
   </data>
 </root>

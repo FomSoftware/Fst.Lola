@@ -983,7 +983,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="TabSoglieRpmMandriniCUT_2" xml:space="preserve">
     <value>Plage 1501-2500 rpm</value>
   </data>
-  <data name="TabSoglieRpmMandriniCUT_3&#x9;" xml:space="preserve">
+  <data name="TabSoglieRpmMandriniCUT_3" xml:space="preserve">
     <value>Plage 2501-3000 rpm</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_1" xml:space="preserve">
@@ -1105,5 +1105,14 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   </data>
   <data name="TemperaturaStatore" xml:space="preserve">
     <value>STATOR TEMPERATURE</value>
+  </data>
+  <data name="TabTagliContatoreTotCUT" xml:space="preserve">
+    <value>Coupes lame totales</value>
+  </data>
+  <data name="Blade" xml:space="preserve">
+    <value>Lame</value>
+  </data>
+  <data name="MotorBlade" xml:space="preserve">
+    <value>MOTEUR LAME</value>
   </data>
 </root>

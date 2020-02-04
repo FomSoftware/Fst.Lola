@@ -985,7 +985,7 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="TabSoglieRpmMandriniCUT_2" xml:space="preserve">
     <value>Range RPM 1501-2500</value>
   </data>
-  <data name="TabSoglieRpmMandriniCUT_3&#x9;" xml:space="preserve">
+  <data name="TabSoglieRpmMandriniCUT_3" xml:space="preserve">
     <value>Range RPM 2501-3000</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_1" xml:space="preserve">
@@ -1104,5 +1104,14 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   </data>
   <data name="Assorbimento" xml:space="preserve">
     <value>AUFNAHME</value>
+  </data>
+  <data name="TabTagliContatoreTotCUT" xml:space="preserve">
+    <value>Schnitte Sägeblatt insgesamt</value>
+  </data>
+  <data name="Blade" xml:space="preserve">
+    <value>Sägeblatt</value>
+  </data>
+  <data name="MotorBlade" xml:space="preserve">
+    <value>MOTOR SÄGEBLATT</value>
   </data>
 </root>

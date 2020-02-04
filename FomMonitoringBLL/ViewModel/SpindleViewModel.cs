@@ -21,6 +21,19 @@ namespace FomMonitoringBLL.ViewModel
         public TiltingAxesParameterVueModel vm_tilting_axes { get; set; }
         public RotaryAxesParameterVueModel vm_rotary_axes { get; set; }
         public SensorSpindlesParameterVueModel vm_sensor_spindles { get; set; }
+        public MotorBladeLmxParameterVueModel vm_motor_blade { get; set; }
+    }
+
+    public class MotorBladeLmxParameterVueModel
+    {
+        public ParameterMachineValueModel RpmRange1500 { get; set; }
+        public ParameterMachineValueModel RpmRange2500 { get; set; }
+        public ParameterMachineValueModel RpmRange3000 { get; set; }
+        public ParameterMachineValueModel TempoSovraAss { get; set; }
+        public ParameterMachineValueModel QtaSovraAss { get; set; }
+        public ParameterMachineValueModel TempoTot { get; set; }
+        public ParameterMachineValueModel TagliLamaTot { get; set; }
+        public ParameterMachineValueModel TagliLamaPar { get; set; }
     }
 
     public class SensorSpindlesParameterVueModel

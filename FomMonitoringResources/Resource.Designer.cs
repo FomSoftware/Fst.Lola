@@ -160,6 +160,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blade.
+        /// </summary>
+        public static string Blade {
+            get {
+                return ResourceManager.GetString("Blade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Breaking.
         /// </summary>
         public static string Breaking {
@@ -1557,6 +1566,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MOTOR BLADE.
+        /// </summary>
+        public static string MotorBlade {
+            get {
+                return ResourceManager.GetString("MotorBlade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fixed head blade motor.
         /// </summary>
         public static string motore_lama_TF {
@@ -2520,6 +2538,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Range 2501-3000 rpm.
+        /// </summary>
+        public static string TabSoglieRpmMandriniCUT_3 {
+            get {
+                return ResourceManager.GetString("TabSoglieRpmMandriniCUT_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Range 0-1500 rpm.
         /// </summary>
         public static string TabSoglieRpmMandriniINT_1 {
@@ -2588,6 +2615,15 @@ namespace FomMonitoringResources {
         public static string TabTagliContatoreParzCUT {
             get {
                 return ResourceManager.GetString("TabTagliContatoreParzCUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total blade cuts.
+        /// </summary>
+        public static string TabTagliContatoreTotCUT {
+            get {
+                return ResourceManager.GetString("TabTagliContatoreTotCUT", resourceCulture);
             }
         }
         

@@ -60,6 +60,8 @@ namespace FomMonitoringBLL.ViewServices
                 result.vm_rotary_axes = GetRotaryAxesVueModel(context.ActualMachine);
             if (panels.Contains((int)enPanel.XMUSp_SensorsLMX))
                 result.vm_sensor_spindles = GetSensorSpindlesVueModel(context.ActualMachine);
+            if (panels.Contains((int)enPanel.MotorBladeLMX))
+                result.vm_motor_blade = GetMotorBladeLmxVueModel(context.ActualMachine);
 
 
             result.vm_machine_info = new MachineInfoViewModel
@@ -70,6 +72,23 @@ namespace FomMonitoringBLL.ViewServices
                 machineName = context.ActualMachine.MachineName
             };
 
+            return result;
+        }
+
+        private MotorBladeLmxParameterVueModel GetMotorBladeLmxVueModel(MachineInfoModel machine)
+        {
+            var par = _parameterMachineService.GetParameters(machine, (int)enPanel.MotorBladeLMX);
+            var result = new MotorBladeLmxParameterVueModel
+            {
+                RpmRange1500 = par.FirstOrDefault(p => p.VarNumber == 40111),
+                RpmRange2500 = par.FirstOrDefault(p => p.VarNumber == 40112),
+                RpmRange3000 = par.FirstOrDefault(p => p.VarNumber == 40113),
+                TempoSovraAss = par.FirstOrDefault(p => p.VarNumber == 40115),
+                QtaSovraAss = par.FirstOrDefault(p => p.VarNumber == 40118),
+                TempoTot = par.FirstOrDefault(p => p.VarNumber == 40161),
+                TagliLamaTot = par.FirstOrDefault(p => p.VarNumber == 543),
+                TagliLamaPar = par.FirstOrDefault(p => p.VarNumber == 551)
+            };
             return result;
         }
 

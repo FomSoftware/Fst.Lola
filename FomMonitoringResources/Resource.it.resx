@@ -983,7 +983,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="TabSoglieRpmMandriniCUT_2" xml:space="preserve">
     <value>Range rpm 1501-2500</value>
   </data>
-  <data name="TabSoglieRpmMandriniCUT_3&#x9;" xml:space="preserve">
+  <data name="TabSoglieRpmMandriniCUT_3" xml:space="preserve">
     <value>Range rpm 2501-3000</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_1" xml:space="preserve">
@@ -1111,5 +1111,14 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   </data>
   <data name="TemperaturaStatore" xml:space="preserve">
     <value>TEMPERATURA STATORE</value>
+  </data>
+  <data name="TabTagliContatoreTotCUT" xml:space="preserve">
+    <value>Tagli lama totali</value>
+  </data>
+  <data name="Blade" xml:space="preserve">
+    <value>Lama</value>
+  </data>
+  <data name="MotorBlade" xml:space="preserve">
+    <value>MOTORE LAMA</value>
   </data>
 </root>
