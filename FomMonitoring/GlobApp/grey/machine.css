@@ -1498,11 +1498,11 @@ td.td-electrospindle-data {
 [data-panel] {
     height: 100px;
     width: 25%;
-    font-size: 60px;
+    font-size: 90px;
 }
 
 [data-panel='maintenance'] {
-    font-size: 40px;
+    font-size: 50px;
 }
 
 #buttons-bar {
@@ -1515,24 +1515,24 @@ td.td-electrospindle-data {
 }
 
 #btn-maintenance .fa-circle {
-    font-size: 70px;
-    line-height: 80px;
+    font-size: 110px;
+    line-height: 99px;
 }
 
 
 @media (min-width: 992px) {
     [data-panel] {
-        height: 160px;
+        height: 120px;
         width: 25%;
-        font-size: 130px;
+        font-size: 90px;
     }
 
     [data-panel='maintenance'] {
-        font-size: 65px;
+        font-size: 60px;
     }
 
     #buttons-bar {
-        height: 160px;
+        height: 120px;
     }
 
     .machine-image-wrapper {
@@ -1541,7 +1541,7 @@ td.td-electrospindle-data {
     }
 
     #btn-maintenance .fa-circle {
-        font-size: 150px;
+        font-size: 100px;
         line-height: 120px;
     }
 }
@@ -1578,7 +1578,7 @@ td.td-electrospindle-data {
 #btn-maintenance:focus span i:first-of-type {
     color: white !important;
     background-color: cornflowerblue !important;
-    border: solid cornflowerblue 3px;
+    border: none;
 }
 
 #btn-maintenance:focus span i:nth-of-type(2) {

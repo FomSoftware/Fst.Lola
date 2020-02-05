@@ -1108,7 +1108,7 @@
     <Content Include="Views\Machine\Panels\Motor\_Keope.cshtml" />
     <Content Include="Views\Plant\PlantManager.cshtml" />
     <Content Include="Scripts\underscore.min.map" />
-    <Content Include="Views\Machine\Panels\ElectroSpindle\_OtherMachineData.cshtml" />
+    <Content Include="Views\Machine\Panels\OtherMachineData\_FMC34.cshtml" />
     <Content Include="Views\Machine\Panels\ElectroSpindle\_ElectroSpindle.cshtml" />
     <Content Include="Views\Machine\Panels\Tools\_FmcLmx.cshtml" />
     <Content Include="Views\Machine\Panels\Production\_Pieces.cshtml" />
@@ -1132,6 +1132,7 @@
     <Content Include="Views\Machine\Panels\RotaryAxes\_LMX650.cshtml" />
     <Content Include="Views\Machine\Panels\SensorSpindles\_LMX650.cshtml" />
     <Content Include="Views\Machine\Panels\Motor\_LMX_650.cshtml" />
+    <Content Include="Views\Machine\Panels\OtherMachineData\_LMX650.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

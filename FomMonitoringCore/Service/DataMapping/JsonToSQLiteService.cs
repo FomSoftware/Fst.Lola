@@ -155,6 +155,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                 stateSQLite = JsonConvert.DeserializeObject<List<state>>(jsonSerialized);
                                 foreach (state state in stateSQLite)
                                 {
+                                    state.Id = 0;
                                     state.StartTime = state.StartTime.HasValue && state.StartTime.Value.Year < 1900 ? null : state.StartTime;
                                     state.EndTime = state.EndTime.HasValue && state.EndTime.Value.Year < 1900 ? null : state.EndTime;
                                     if (state.StartTime != null && state.EndTime != null)
@@ -175,7 +176,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                 List<MessageModel>messageModels = JsonConvert.DeserializeObject<List<MessageModel>>(JsonConvert.SerializeObject(token.First));
                                 messageSQLite = messageModels.Select(m => new message()
                                 {
-                                    Id = m.Id,
+                                    Id = 0,
                                     Time = m.Time.HasValue && m.Time.Value.Year < 1900 ? null : m.Time,
                                     Code = m.Code,
                                     Operator = m.Operator,

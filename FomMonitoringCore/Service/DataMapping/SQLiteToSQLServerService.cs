@@ -138,7 +138,7 @@ namespace FomMonitoringCore.Service.DataMapping
                 {
                     MessageMachine message = mm.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<MessageMachine>();
                     var msg = _fomMonitoringEntities.Set<MessagesIndex>().FirstOrDefault(f => f.MessageCode == mm.Code && f.MessageCategoryId == cat);
-                    
+                    message.Id = 0;
                     message.MessagesIndexId = msg.Id;
                     message.MessagesIndex = msg;
                     messageMachine.Add(message);
@@ -181,6 +181,7 @@ namespace FomMonitoringCore.Service.DataMapping
 
                 var state = stateSqLite.BuildAdapter().AddParameters("machineService", _machineService).AddParameters("machineId", machineActual.Id).AdaptToType<List<StateMachine>>();
                 state = state.Where(w => w.EndTime > (machineActual.LastUpdate ?? new DateTime())).ToList();
+
                 _fomMonitoringEntities.Set<StateMachine>().AddRange(state);
                 _fomMonitoringEntities.SaveChanges();
                
