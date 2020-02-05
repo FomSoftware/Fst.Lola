@@ -154,12 +154,14 @@
 }
 
 #CardEfficiency .portlet {
-    height: 480px;
+    height: 400px;
 }
 
 #CardEfficiency .card-portlet {
-    height: 434px;
+    height: 360px;
 }
+
+
 
 @media(min-width: 768px) {
     #CardEfficiency .portlet {
@@ -168,6 +170,9 @@
 
     #CardEfficiency .card-portlet {
         height: 244px;
+    }
+    #charts-efficiency {
+        min-height: calc(40vh);
     }
 }
 
@@ -1537,7 +1542,7 @@ td.td-electrospindle-data {
 
     .machine-image-wrapper {
         background-color: #cbcaca;
-        padding-top: 30px;
+        padding-top: 18px;
     }
 
     #btn-maintenance .fa-circle {
