@@ -38,5 +38,12 @@
             <td>{{ piece.redone.perc | round }}<em>%</em></td>
             <td>{{ piece.redone.number }}<em>pz</em></td>
         </tr>
+        <tr v-if="productionVariables != null && machineModel.toLocaleUpperCase().includes('FMC')">
+            <td colspan="3">
+                <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
+                {{productionVariables.Description}}:
+                <span> {{productionVariables.ConvertedValue}}</span>
+            </td>
+        </tr>
     </table>
 </div>

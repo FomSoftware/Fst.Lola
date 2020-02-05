@@ -57,23 +57,7 @@
                                         @Html.Partial("~/Views/Machine/Panels/Production/_Materials.cshtml", Model)
                                     </div>
                                 </div>
-
-                                <div class="row" v-if="productionVariables != null">
-                                    @if (Model.vm_machine_info.model.ToUpper().Contains("LMX"))
-                                    {
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                                        </div>
-                                    }
-                                    
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                                            <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
-                                            {{productionVariables.Description}}:
-                                            <span> {{productionVariables.ConvertedValue}}</span>
-                                        </div>
-                                </div>
-
-
-                                    <div class="row">
+                                <div class="row">
                                         <!-- PHASE -->
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                                             @Html.Partial("~/Views/Machine/Panels/Production/_Phases.cshtml", Model)
