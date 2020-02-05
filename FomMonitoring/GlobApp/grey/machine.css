@@ -1546,118 +1546,143 @@ td.td-electrospindle-data {
     }
 }
 
-.swiper-container {
-    height: 100%;
-}
-
-#CardMultiSpindles label {
-    margin-bottom: 0;
-}
-
-.panels-area {
-    padding-top: 20px;
-}
-
-.empty-area {
-    background: url(../../images/logo/TEXTURE-FOM-WEB-2-01.png) space 0 0;
-    width: 100%;
-    height: 288px;
-    background-size: contain;
-}
-
-#btn-production:focus span i {
-    color: white !important;
-    background-color: #D32337 !important;
-    border: solid #D32337 3px;
-}
-
-[data-panel], [data-panel]:focus {
-    outline: none;
-}
-
-#btn-maintenance:focus span i:first-of-type {
-    color: white !important;
-    background-color: cornflowerblue !important;
-    border: none;
-}
-
-#btn-maintenance:focus span i:nth-of-type(2) {
-    color: cornflowerblue !important;
-}
-
-#btn-efficiency:focus span i {
-    color: white !important;
-    background-color: #8EBF36 !important;
-    border: solid #8EBF36 3px;
-}
-
-#btn-ordersStandard:focus span i {
-    color: white !important;
-    background-color: #FF7F00 !important;
-    border: solid #FF7F00 3px;
-}
-
-[data-panel='efficiency']:focus span i {
-    color: white !important;
-    background-color: #403D3D !important;
-    border: solid #403D3D 3px;
-}
-
-
-
-@media (min-width: 1400px) {
-    .col-xxl-4 {
-        -ms-flex: 0 0 33.333333%;
-        flex: 0 0 33.333333%;
-        max-width: 33.333333%;
+@media (max-width: 812px) {
+    #buttons-bar { height: 60px; }
+    [data-panel] {
+        height: 60px;
+        width: 50px;
+        font-size: 50px;
+        text-align: center;
+    }
+    #btn-maintenance .fa-circle {
+        font-size: 50px;
+        line-height: 60px;
+    }
+    #btn-maintenance .fa-info {
+        font-size: 30px;
+        line-height: 60px;
+    }
+    .machine-image-wrapper {
+        padding-top: 18px;
     }
 
-    .col-xxl-6 {
-        -ms-flex: 0 0 50%;
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
-
-    .col-xxl-8 {
-        -ms-flex: 0 0 66.666666%;
-        flex: 0 0 66.666666%;
-        max-width: 66.666666%;
-    }
-
-    .col-xxl-12 {
-        -ms-flex: 0 0 100%;
-        flex: 0 0 100%;
-        max-width: 100%;
+    .machine-image-wrapper svg {
+        width: 85%;
     }
 }
 
-.v-fade {
-    display: inherit !important; /* override v-show display: none */
-    transition: opacity 0.5s;
-}
-
-    .v-fade[style*="display: none;"] {
-        opacity: 0;
-        pointer-events: none; /* disable user interaction */
-        user-select: none; /* disable user selection */
+    .swiper-container {
+        height: 100%;
     }
 
-td.td-axes {
-    width: 33%;
-}
+    #CardMultiSpindles label {
+        margin-bottom: 0;
+    }
 
-/*#efc_kpi_chart[data-highcharts-chart], #efc_kpi_chart .highcharts-container, #efc_kpi_chart .highcharts-container svg,
+    .panels-area {
+        padding-top: 20px;
+    }
+
+    .empty-area {
+        background: url(../../images/logo/TEXTURE-FOM-WEB-2-01.png) space 0 0;
+        width: 100%;
+        height: 288px;
+        background-size: contain;
+    }
+
+    #btn-production:focus span i {
+        color: white !important;
+        background-color: #D32337 !important;
+        border: solid #D32337 3px;
+    }
+
+    [data-panel], [data-panel]:focus {
+        outline: none;
+    }
+
+    #btn-maintenance:focus span i:first-of-type {
+        color: white !important;
+        background-color: cornflowerblue !important;
+        border: none;
+    }
+
+    #btn-maintenance:focus span i:nth-of-type(2) {
+        color: cornflowerblue !important;
+    }
+
+    #btn-efficiency:focus span i {
+        color: white !important;
+        background-color: #8EBF36 !important;
+        border: solid #8EBF36 3px;
+    }
+
+    #btn-ordersStandard:focus span i {
+        color: white !important;
+        background-color: #FF7F00 !important;
+        border: solid #FF7F00 3px;
+    }
+
+    [data-panel='efficiency']:focus span i {
+        color: white !important;
+        background-color: #403D3D !important;
+        border: solid #403D3D 3px;
+    }
+
+
+
+    @media (min-width: 1400px) {
+        .col-xxl-4 {
+            -ms-flex: 0 0 33.333333%;
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+        }
+
+        .col-xxl-6 {
+            -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+
+        .col-xxl-8 {
+            -ms-flex: 0 0 66.666666%;
+            flex: 0 0 66.666666%;
+            max-width: 66.666666%;
+        }
+
+        .col-xxl-12 {
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+
+    .v-fade {
+        display: inherit !important; /* override v-show display: none */
+        transition: opacity 0.5s;
+    }
+
+        .v-fade[style*="display: none;"] {
+            opacity: 0;
+            pointer-events: none; /* disable user interaction */
+            user-select: none; /* disable user selection */
+        }
+
+    td.td-axes {
+        width: 33%;
+    }
+
+    /*#efc_kpi_chart[data-highcharts-chart], #efc_kpi_chart .highcharts-container, #efc_kpi_chart .highcharts-container svg,
 #efc_pie_chart[data-highcharts-chart], #efc_pie_chart .highcharts-container, #efc_pie_chart .highcharts-container svg {
     width: unset !important;
     height: unset !important;
 }*/
 
-.rotaryAxesHeader {
-    font-size: 16px;
-}
-
-@media (max-width: 400px) {
     .rotaryAxesHeader {
-        font-size: 10px;
+        font-size: 16px;
     }
-}
+
+    @media (max-width: 400px) {
+        .rotaryAxesHeader {
+            font-size: 10px;
+        }
+    }

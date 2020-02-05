@@ -105,7 +105,7 @@
         }
 
         if ((vmImageMachine.isTablet()) &&
-            (vmImageMachine.machineGroupSelected != null || vmImageMachine.machinePanelSelected != null) && vmImageMachine.machinePanelSelected != 'maintenance') {
+            (vmImageMachine.machineGroupSelected != null || vmImageMachine.machinePanelSelected != null)) {
             $(".placeholder-panel-mobile").show();
         } else {
             $(".placeholder-panel-mobile").hide();
@@ -215,7 +215,7 @@
     };
 
     var checkVisibilityImageMachine = function() {
-        if (vmImageMachine.isLargeTablet()) {
+        if (vmImageMachine.isLargeTablet() || vmImageMachine.isTablet() || vmImageMachine.isMobile()) {
             $("#image-machine-sm").show();
             $("#image-machine-lg").hide();
         } else {
