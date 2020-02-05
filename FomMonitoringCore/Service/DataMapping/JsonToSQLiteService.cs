@@ -107,6 +107,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                 historyJobSQLite = JsonConvert.DeserializeObject<List<historyJob>>(JsonConvert.SerializeObject(token.First));
                                 foreach (historyJob historyJob in historyJobSQLite)
                                 {
+                                    historyJob.Id = 0;
                                     historyJob.Day = historyJob.Day.HasValue && historyJob.Day.Value.Year < 1900 ? null : historyJob.Day;
                                 }
                                 break;
@@ -114,6 +115,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                 infoSQLite = JsonConvert.DeserializeObject<List<info>>(JsonConvert.SerializeObject(token.First));
                                 foreach (info info in infoSQLite)
                                 {
+                                    info.Id = 0;
                                     info.LoginDate = info.LoginDate.HasValue && info.LoginDate.Value.Year < 1900 ? null : info.LoginDate;
                                     //info.InstallationDate = info.InstallationDate.HasValue && info.InstallationDate.Value.Year < 1900 ? null : info.InstallationDate;
                                     //info.NextMaintenanceService = info.NextMaintenanceService.HasValue && info.NextMaintenanceService.Value.Year < 1900 ? null : info.NextMaintenanceService;
@@ -138,6 +140,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                 pieceSQLite = JsonConvert.DeserializeObject<List<piece>>(JsonConvert.SerializeObject(token.First));
                                 foreach (piece piece in pieceSQLite)
                                 {
+                                    piece.Id = 0;
                                     piece.EndTime = piece.EndTime.HasValue && piece.EndTime.Value.Year < 1900 ? null : piece.EndTime;
                                     piece.StartTime = piece.StartTime.HasValue && piece.StartTime.Value.Year < 1900 ? null : piece.StartTime;
                             }
@@ -146,6 +149,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                 spindleSQLite = JsonConvert.DeserializeObject<List<spindle>>(JsonConvert.SerializeObject(token.First));
                                 foreach (spindle spindle in spindleSQLite)
                                 {
+                                    spindle.Id = 0;
                                     spindle.InstallDate = spindle.InstallDate.HasValue && spindle.InstallDate.Value.Year < 1900 ? null : spindle.InstallDate;
                                     spindle.Replaced = spindle.Replaced.HasValue && spindle.Replaced.Value.Year < 1900 ? null : spindle.Replaced;
                                 }
@@ -168,6 +172,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                 toolSQLite = JsonConvert.DeserializeObject<List<tool>>(JsonConvert.SerializeObject(token.First));
                                 foreach (tool tool in toolSQLite)
                                 {
+                                    tool.Id = 0;
                                     tool.DateLoaded = tool.DateLoaded.HasValue && tool.DateLoaded.Value.Year < 1900 ? null : tool.DateLoaded;
                                     tool.DateReplaced = tool.DateReplaced.HasValue && tool.DateReplaced.Value.Year < 1900 ? null : tool.DateReplaced;
                                 }
@@ -301,6 +306,7 @@ namespace FomMonitoringCore.Service.DataMapping
                             infoSQLite = JsonConvert.DeserializeObject<List<info>>(JsonConvert.SerializeObject(token.First));
                             foreach (var info in infoSQLite)
                             {
+                                info.Id = 0;
                                 info.LoginDate = info.LoginDate.HasValue && info.LoginDate.Value.Year < 1900 ? null : info.LoginDate;
                                 info.InstallationDate = info.InstallationDate.HasValue && info.InstallationDate.Value.Year < 1900 ? null : info.InstallationDate;
                                 info.NextMaintenanceService = info.NextMaintenanceService.HasValue && info.NextMaintenanceService.Value.Year < 1900 ? null : info.NextMaintenanceService;

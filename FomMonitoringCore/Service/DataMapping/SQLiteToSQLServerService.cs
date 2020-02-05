@@ -139,9 +139,12 @@ namespace FomMonitoringCore.Service.DataMapping
                     MessageMachine message = mm.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<MessageMachine>();
                     var msg = _fomMonitoringEntities.Set<MessagesIndex>().FirstOrDefault(f => f.MessageCode == mm.Code && f.MessageCategoryId == cat);
                     message.Id = 0;
-                    message.MessagesIndexId = msg.Id;
-                    message.MessagesIndex = msg;
-                    messageMachine.Add(message);
+                    if (msg != null)
+                    {
+                        message.MessagesIndexId = msg.Id;
+                        message.MessagesIndex = msg;
+                        messageMachine.Add(message);
+                    }
                 }
 
                 //IS-754 escludere tutti quelli che hanno isLolaVisible = false && type error o warning 
