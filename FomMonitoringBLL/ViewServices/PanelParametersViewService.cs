@@ -62,6 +62,8 @@ namespace FomMonitoringBLL.ViewServices
                 result.vm_sensor_spindles = GetSensorSpindlesVueModel(context.ActualMachine);
             if (panels.Contains((int)enPanel.MotorBladeLMX))
                 result.vm_motor_blade = GetMotorBladeLmxVueModel(context.ActualMachine);
+            if (panels.Contains((int)enPanel.OtherMachineDataLmx))
+                result.vm_other_data_lmx = GetOtherDataLmxVueModel(context.ActualMachine);
 
 
             result.vm_machine_info = new MachineInfoViewModel
@@ -72,6 +74,21 @@ namespace FomMonitoringBLL.ViewServices
                 machineName = context.ActualMachine.MachineName
             };
 
+            return result;
+        }
+
+        private OtherDataLmxParameterVueModel GetOtherDataLmxVueModel(MachineInfoModel machine)
+        {
+            var par = _parameterMachineService.GetParameters(machine, (int)enPanel.OtherMachineDataLmx);
+            var result = new OtherDataLmxParameterVueModel
+            {
+                OreVitaMacchina = par.FirstOrDefault(p => p.VarNumber == 542),
+                OreUltimoIngr = par.FirstOrDefault(p => p.VarNumber == 20095),
+                NumBarreCaricate = par.FirstOrDefault(p => p.VarNumber == 544),
+                EtiMancanti = par.FirstOrDefault(p => p.VarNumber == 40402),
+                EtiPerse = par.FirstOrDefault(p => p.VarNumber == 40400),
+                EtiStampate = par.FirstOrDefault(p => p.VarNumber == 40401)
+            };
             return result;
         }
 

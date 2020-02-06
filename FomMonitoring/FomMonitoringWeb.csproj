@@ -432,7 +432,8 @@
     <Content Include="GlobApp\scripts\machine\axes\keope.js" />
     <Content Include="GlobApp\scripts\machine\axes\lmx.js" />
     <Content Include="GlobApp\scripts\machine\electrospindle\electrospindle.js" />
-    <Content Include="GlobApp\scripts\machine\electrospindle\otherdata.js" />
+    <Content Include="GlobApp\scripts\machine\otherdata\otherdataLMX.js" />
+    <Content Include="GlobApp\scripts\machine\otherdata\otherdataFMC.js" />
     <Content Include="GlobApp\scripts\machine\image-manager.js" />
     <Content Include="GlobApp\scripts\machine\maintenance.js" />
     <Content Include="GlobApp\scripts\machine\messages.js" />

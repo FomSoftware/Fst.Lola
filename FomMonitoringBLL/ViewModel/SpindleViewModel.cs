@@ -22,6 +22,18 @@ namespace FomMonitoringBLL.ViewModel
         public RotaryAxesParameterVueModel vm_rotary_axes { get; set; }
         public SensorSpindlesParameterVueModel vm_sensor_spindles { get; set; }
         public MotorBladeLmxParameterVueModel vm_motor_blade { get; set; }
+
+        public OtherDataLmxParameterVueModel vm_other_data_lmx { get; set; }
+    }
+
+    public class OtherDataLmxParameterVueModel
+    {
+        public ParameterMachineValueModel OreVitaMacchina { get; set; }
+        public ParameterMachineValueModel OreUltimoIngr { get; set; }
+        public ParameterMachineValueModel NumBarreCaricate { get; set; }
+        public ParameterMachineValueModel EtiMancanti { get; set; }
+        public ParameterMachineValueModel EtiPerse { get; set; }
+        public ParameterMachineValueModel EtiStampate { get; set; }
     }
 
     public class MotorBladeLmxParameterVueModel
