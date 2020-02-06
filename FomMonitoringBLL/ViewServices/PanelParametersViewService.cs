@@ -345,8 +345,9 @@ namespace FomMonitoringBLL.ViewServices
                     .OrderBy(n => n.VarNumber).ToList()
             };
 
+            //per questi parametri che sono interi elimino o decimali
             foreach (var mot in result.motors)
-                mot.Value = double.IsNaN(double.Parse(mot.Value)) ? "" : double.Parse(mot.Value).ToString("0.000");
+                mot.Value = double.IsNaN(double.Parse(mot.Value)) ? "" : double.Parse(mot.Value).ToString("0");
 
             foreach (var ax in result.axes)
                 ax.Value = double.IsNaN(double.Parse(ax.Value)) ? "" : ax.ConvertedDistanceValue();

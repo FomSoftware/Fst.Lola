@@ -97,12 +97,12 @@ namespace FomMonitoringBLL.ViewServices
 
                 foreach (var t1 in result.toolsTf)
                 {
-                    t1.Value = double.IsNaN(double.Parse(t1.Value)) ? "" : double.Parse(t1.Value).ToString("0.000");
+                    t1.Value = double.IsNaN(double.Parse(t1.Value)) ? "" : double.Parse(t1.Value).ToString("0");
                 }
 
                 foreach (var t2 in result.toolsTm)
                 {
-                    t2.Value = double.IsNaN(double.Parse(t2.Value)) ? "" : double.Parse(t2.Value).ToString("0.000");
+                    t2.Value = double.IsNaN(double.Parse(t2.Value)) ? "" : double.Parse(t2.Value).ToString("0");
                 }
 
                 return result;
