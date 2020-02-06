@@ -693,13 +693,13 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>The password must be at least 6 characters</value>
   </data>
   <data name="lw_minutiMandrinoAttivo" xml:space="preserve">
-    <value>Tot. electrosp. working hours</value>
+    <value>Tot. working hours</value>
   </data>
   <data name="d_NumeroSblocchiUtensile" xml:space="preserve">
     <value>No. electrosp. gripper releases</value>
   </data>
   <data name="lw_contatoreSovracorrente" xml:space="preserve">
-    <value>Excessive absorption q.ty</value>
+    <value>Over absorption q.ty</value>
   </data>
   <data name="vitaUtensile_x" xml:space="preserve">
     <value>Tool actual working hours</value>
@@ -1050,7 +1050,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Board Over-Temperature q.ty</value>
   </data>
   <data name="TabSoglieAmpereContatoreINT" xml:space="preserve">
-    <value>Excessive absorption q.ty</value>
+    <value>Over absorption q.ty</value>
   </data>
   <data name="TabTemperStatoreMinutiINT" xml:space="preserve">
     <value>Stator Over-Temperature time</value>
@@ -1089,7 +1089,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>TOOL MAG. (X-MODULE)</value>
   </data>
   <data name="oreMandrinoAttivo" xml:space="preserve">
-    <value>Tot. electrosp. working hours</value>
+    <value>Tot. working hours</value>
   </data>
   <data name="UserNotEnabled" xml:space="preserve">
     <value>User not enabled</value>
