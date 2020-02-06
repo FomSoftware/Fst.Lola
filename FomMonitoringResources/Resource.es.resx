@@ -1115,4 +1115,13 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   <data name="MotorBlade" xml:space="preserve">
     <value>MOTOR DISCO</value>
   </data>
+  <data name="TabNEtichetteAlCambioRotolo" xml:space="preserve">
+    <value>Etiquetas faltantes (errores)</value>
+  </data>
+  <data name="TabNEtichetteStampate" xml:space="preserve">
+    <value>Etiquetas impresas</value>
+  </data>
+  <data name="XLABETICHETTATRICE" xml:space="preserve">
+    <value>XLAB - MÁQUINA DE ETIQUETADO (OPCIONAL)</value>
+  </data>
 </root>

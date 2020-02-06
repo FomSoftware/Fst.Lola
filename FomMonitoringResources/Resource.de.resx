@@ -1114,4 +1114,13 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="MotorBlade" xml:space="preserve">
     <value>MOTOR SÄGEBLATT</value>
   </data>
+  <data name="TabNEtichetteAlCambioRotolo" xml:space="preserve">
+    <value>Fehlende Etiketten (Fehler)</value>
+  </data>
+  <data name="TabNEtichetteStampate" xml:space="preserve">
+    <value>Bedruckte Etiketten</value>
+  </data>
+  <data name="XLABETICHETTATRICE" xml:space="preserve">
+    <value>XLAB - MÁQUINA DE ETIQUETADO (OPCIONAL)</value>
+  </data>
 </root>

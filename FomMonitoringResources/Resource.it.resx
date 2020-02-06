@@ -1121,4 +1121,13 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="MotorBlade" xml:space="preserve">
     <value>MOTORE LAMA</value>
   </data>
+  <data name="TabNEtichetteStampate" xml:space="preserve">
+    <value>Etichette stampate</value>
+  </data>
+  <data name="TabNEtichetteAlCambioRotolo" xml:space="preserve">
+    <value>Etichette mancanti (errori)</value>
+  </data>
+  <data name="XLABETICHETTATRICE" xml:space="preserve">
+    <value>XLAB - ETICHETTATRICE (OPTIONAL)</value>
+  </data>
 </root>

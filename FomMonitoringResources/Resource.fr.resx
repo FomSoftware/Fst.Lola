@@ -1115,4 +1115,13 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="MotorBlade" xml:space="preserve">
     <value>MOTEUR LAME</value>
   </data>
+  <data name="TabNEtichetteAlCambioRotolo" xml:space="preserve">
+    <value>Étiquettes manquantes (erreurs)</value>
+  </data>
+  <data name="TabNEtichetteStampate" xml:space="preserve">
+    <value>Étiquettes imprimées</value>
+  </data>
+  <data name="XLABETICHETTATRICE" xml:space="preserve">
+    <value>XLAB - MACHINE D'ÉTIQUETAGE (EN OPTION)</value>
+  </data>
 </root>

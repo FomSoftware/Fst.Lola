@@ -2493,6 +2493,24 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Missing labels (errors).
+        /// </summary>
+        public static string TabNEtichetteAlCambioRotolo {
+            get {
+                return ResourceManager.GetString("TabNEtichetteAlCambioRotolo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Printed labels.
+        /// </summary>
+        public static string TabNEtichetteStampate {
+            get {
+                return ResourceManager.GetString("TabNEtichetteStampate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Excessive absorption q.ty.
         /// </summary>
         public static string TabSoglieAmpereContatoreINT {
@@ -3038,6 +3056,15 @@ namespace FomMonitoringResources {
         public static string Working {
             get {
                 return ResourceManager.GetString("Working", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XLAB - LABELING MACHINE (OPTIONAL).
+        /// </summary>
+        public static string XLABETICHETTATRICE {
+            get {
+                return ResourceManager.GetString("XLABETICHETTATRICE", resourceCulture);
             }
         }
         

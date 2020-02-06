@@ -1121,4 +1121,13 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="MotorBlade" xml:space="preserve">
     <value>MOTOR BLADE</value>
   </data>
+  <data name="TabNEtichetteAlCambioRotolo" xml:space="preserve">
+    <value>Missing labels (errors)</value>
+  </data>
+  <data name="TabNEtichetteStampate" xml:space="preserve">
+    <value>Printed labels</value>
+  </data>
+  <data name="XLABETICHETTATRICE" xml:space="preserve">
+    <value>XLAB - LABELING MACHINE (OPTIONAL)</value>
+  </data>
 </root>
