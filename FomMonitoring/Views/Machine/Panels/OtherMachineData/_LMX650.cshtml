@@ -18,8 +18,9 @@
         </div>
         <div class="portlet-body text-center" style="height:244px">
             <div class="card-portlet">
-                <hr style="background-color:#0c3817;height:2px;border:none" />
-                    <div style="cursor:auto;height:50%">
+                <div v-if="values != null" style="height:242px">
+                    <hr style="background-color: #0c3817; height: 2px; border: none" />
+                    <div style="cursor: auto; height: 50%">
                         <table class="table-other-data">
                             <tr>
                                 <td style="padding-left: 0">
@@ -31,7 +32,7 @@
                                             </td>
                                             <td class="td-other-data  tool-border-left">
                                                 <label style="vertical-align: top; width: 20px;"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                                <label class="label-other-title" >@LocalizationService.GetResource("n_barrecaricate_Stat")</label>
+                                                <label class="label-other-title">@LocalizationService.GetResource("n_barrecaricate_Stat")</label>
                                             </td>
                                             <td class="td-other-data">
                                                 <label style="vertical-align: top; width: 20px;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></label>
@@ -54,7 +55,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div style="cursor:auto;height:50%">
+                    <div style="cursor: auto; height: 50%">
                         <table class="table-other-data">
                             <tr>
                                 <td class="portlet-subtitle" style="font-size: 11px">
@@ -64,19 +65,19 @@
                             <tr>
                                 <td>
                                     <table style="width: 100%; height: 100%">
-                                       
+
                                         <tr>
                                             <td class="td-other-data">
                                                 <label><i class="fa fa-tag fa-lg" aria-hidden="true"></i></label>
-                                                <label class="label-other-title" >@LocalizationService.GetResource("TabNEtichetteAlCambioRotolo")</label>
+                                                <label class="label-other-title">@LocalizationService.GetResource("TabNEtichetteAlCambioRotolo")</label>
                                             </td>
                                             <td class="td-other-data tool-border-left">
                                                 <label><i class="fa fa-tag fa-lg" aria-hidden="true"></i></label>
-                                                <label class="label-other-title" >@LocalizationService.GetResource("TabEtichettePerse")</label>
+                                                <label class="label-other-title">@LocalizationService.GetResource("TabEtichettePerse")</label>
                                             </td>
                                             <td class="td-other-data">
                                                 <label><i class="fa fa-tag fa-lg" aria-hidden="true"></i></label>
-                                                <label class="label-other-title" >@LocalizationService.GetResource("TabNEtichetteStampate")</label>
+                                                <label class="label-other-title">@LocalizationService.GetResource("TabNEtichetteStampate")</label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -95,10 +96,10 @@
                             </tr>
                         </table>
                     </div>
-
+                </div>
                 <no-data v-else></no-data>
+                </div>
             </div>
-        </div>
 
 
     </div>

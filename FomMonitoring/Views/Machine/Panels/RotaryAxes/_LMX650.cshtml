@@ -18,8 +18,9 @@
         </div>
         <div class="portlet-body text-center" style="height:244px">
             <div class="card-portlet">
-                <hr style="background-color:#0c3817;height:2px;border:none" />
-                    <div style="cursor:auto;height:50%">
+                <div v-if="values != null" style="height:242px">
+                    <hr style="background-color: #0c3817; height: 2px; border: none" />
+                    <div style="cursor: auto; height: 50%">
                         <table class="table-spindle">
                             <tr>
                                 <td class="portlet-subtitle" style="font-size: 11px">
@@ -27,30 +28,30 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                <table style="width: 100%; height: 100%">
-                                    <tr>
-                                        <td class="td-other-data">
-                                            <label style="vertical-align: top; width: 20px"><i class="fa fa-openid fa-lg" aria-hidden="true"></i></label>
-                                            <label v-if="values.NrotazioniAsse3C1 != null" class="label-other-title" v-html="values.NrotazioniAsse3C1.Description"></label>
-                                        </td>
-                                        <td class="td-other-data  tool-border-left">
-                                            <label style="vertical-align: top; width: 20px;"><i class="fa fa-openid fa-lg" aria-hidden="true"></i></label>
-                                            <label v-if="values.NrotazioniAsse3C2 != null" class="label-other-title" v-html="values.NrotazioniAsse3C2.Description"></label>
-                                        </td>
-                                        <td class="td-other-data"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="td-other-data ">
-                                            <label v-if="values.NrotazioniAsse3C1 != null && values.NrotazioniAsse3C1.ConvertedValue" class="label-other-data-value" v-html="values.NrotazioniAsse3C1.ConvertedValue"></label>
-                                        </td>
-                                        <td class="td-other-data tool-border-left">
-                                            <label v-if="values.NrotazioniAsse3C2 != null && values.NrotazioniAsse3C2.ConvertedValue" class="label-other-data-value" v-html="values.NrotazioniAsse3C2.ConvertedValue"></label>
-                                        </td>
-                                        <td class="td-other-data"></td>
-                                    </tr>
-                                </table>
-                        </table>   
+                            <td>
+                            <table style="width: 100%; height: 100%">
+                                <tr>
+                                    <td class="td-other-data">
+                                        <label style="vertical-align: top; width: 20px"><i class="fa fa-openid fa-lg" aria-hidden="true"></i></label>
+                                        <label v-if="values.NrotazioniAsse3C1 != null" class="label-other-title" v-html="values.NrotazioniAsse3C1.Description"></label>
+                                    </td>
+                                    <td class="td-other-data  tool-border-left">
+                                        <label style="vertical-align: top; width: 20px;"><i class="fa fa-openid fa-lg" aria-hidden="true"></i></label>
+                                        <label v-if="values.NrotazioniAsse3C2 != null" class="label-other-title" v-html="values.NrotazioniAsse3C2.Description"></label>
+                                    </td>
+                                    <td class="td-other-data"></td>
+                                </tr>
+                                <tr>
+                                    <td class="td-other-data ">
+                                        <label v-if="values.NrotazioniAsse3C1 != null && values.NrotazioniAsse3C1.ConvertedValue" class="label-other-data-value" v-html="values.NrotazioniAsse3C1.ConvertedValue"></label>
+                                    </td>
+                                    <td class="td-other-data tool-border-left">
+                                        <label v-if="values.NrotazioniAsse3C2 != null && values.NrotazioniAsse3C2.ConvertedValue" class="label-other-data-value" v-html="values.NrotazioniAsse3C2.ConvertedValue"></label>
+                                    </td>
+                                    <td class="td-other-data"></td>
+                                </tr>
+                            </table>
+                        </table>
                         <table class="table-spindle .table-spindle-tools">
                             <tr>
                                 <td class="portlet-subtitle" style="font-size: 11px">
@@ -90,6 +91,7 @@
                             </tr>
                         </table>
                     </div>
+                </div>
                 <no-data v-else></no-data>
             </div>
         </div>
