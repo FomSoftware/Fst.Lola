@@ -27,14 +27,14 @@
                             <th width="5%" class="th-duration sorting" v-bind:class="sortingProgress" v-on:click="sortProgress()">
                                 <span class="value-title" style="font-size: 14px;font-weight: bold">%</span>
                             </th>
-                            <th style="width:20%;padding-left:10px" class="th-duration sorting" v-bind:class="sorting.day" v-on:click="sortDay()">
+                            <th style="width:18%;padding-left:10px" class="th-duration sorting" v-bind:class="sorting.day" v-on:click="sortDay()">
                                 <span class="value-title">@Resource.Date</span>
                             </th>
                             <th style="width: 20%;padding:0" class="th-duration sorting" v-bind:class="sorting.duration" v-on:click="sortDuration()">
                                 <i class="fa fa-clock-o color-aaa"></i>
                                 <span class="value-title" style="font-size: 8px;padding-right: 0">@Resource.TimeResStim</span>
                             </th>
-                            <th style="width: 15%;padding:0" class="th-duration sorting" v-bind:class="sorting.duration" v-on:click="sortDuration()">
+                            <th style="width: 17%;padding:0" class="th-duration sorting" v-bind:class="sorting.duration" v-on:click="sortDuration()">
                                 <i class="fa fa-clock-o color-aaa"></i>
                                 <span class="value-title" style="font-size: 8px;">@Resource.TimeTot</span>
                             </th>
@@ -66,19 +66,20 @@
                                         <span class="pull-left" style="font-size: 16px;">{{ job.perc }}<em>%</em></span>
                                     </div>
                                 </td>
-                                <td style="width:22%">
+                                <td style="width:18%">
                                     <span>{{job.formatted_day}}</span>
                                 </td>
-                                <td style="width:18%">
+                                <td style="width:17%">
                                     <span>
+                                        0 min 0 s
                                     </span>
                                 </td>
-                                <td style="width:12%">
+                                <td style="width:16%">
                                     <span>
                                         <time-span v-bind:duration="job.time"></time-span>
                                     </span>
                                 </td>
-                                <td style="width:10%">
+                                <td style="width:14%">
                                     <span>{{ job.quantity }}/{{ job.pieces }}</span>
                                 </td>
                             </tr>
