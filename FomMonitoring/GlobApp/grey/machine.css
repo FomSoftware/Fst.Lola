@@ -761,6 +761,11 @@ a[title="JavaScript charts"] {
     .jobs-firstcol-width {
         width: 23%
     }
+    .label-tools {
+        display: inline;
+    }
+    .label-tools-value { font-size: 19px !important; }
+
 }
 
 .table.table-alerts thead tr th .table-btn {
