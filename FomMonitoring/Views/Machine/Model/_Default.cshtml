@@ -91,10 +91,21 @@
 <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
     <div class="row">
 
-        @Html.Partial("Panels/_Jobs", Model.Jobs, new ViewDataDictionary
+        @if (Model.MachineInfo.id_mtype == (int)enMachineType.Troncatrice)
         {
-            { "Classes", "col-12" }
-        })
+            @Html.Partial("Panels/Jobs/_OtherMachines", Model.Jobs, new ViewDataDictionary
+            {
+                { "Classes", "col-12" }
+            })
+        }
+        else
+        {
+            @Html.Partial("Panels/Jobs/_FMC_LMX", Model.Jobs, new ViewDataDictionary
+            {
+                { "Classes", "col-12" }
+            })
+        }
+
     </div>
     @if (Model.MachinePanels.Contains((int)enPanel.ToolsBlitz))
     {

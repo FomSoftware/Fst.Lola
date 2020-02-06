@@ -89,7 +89,7 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/xspindles.js",
                         "~/GlobApp/scripts/machine/tools.js",
                         "~/GlobApp/scripts/machine/xtools.js",
-                        "~/GlobApp/scripts/machine/jobs.js",
+                        "~/GlobApp/scripts/machine/jobs/fmc-lmx.js",
                         "~/GlobApp/scripts/machine/maintenance.js",
                         "~/GlobApp/scripts/plantmessages.js",
                         "~/GlobApp/scripts/machine/tools/blitz.js",
@@ -106,7 +106,8 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/rotaryaxes/rotaryaxes.js",
                         "~/GlobApp/scripts/machine/sensorspindles/sensorspindles.js",
                         "~/GlobApp/scripts/machine/motor/motorbladelmx.js",
-                        "~/GlobApp/scripts/machine/otherdata/otherdataLMX.js"
+                        "~/GlobApp/scripts/machine/otherdata/otherdataLMX.js",
+                        "~/GlobApp/scripts/machine/jobs/other-machines.js"
 
                       ));
 

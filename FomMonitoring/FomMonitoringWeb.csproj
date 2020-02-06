@@ -432,6 +432,7 @@
     <Content Include="GlobApp\scripts\machine\axes\keope.js" />
     <Content Include="GlobApp\scripts\machine\axes\lmx.js" />
     <Content Include="GlobApp\scripts\machine\electrospindle\electrospindle.js" />
+    <Content Include="GlobApp\scripts\machine\jobs\other-machines.js" />
     <Content Include="GlobApp\scripts\machine\otherdata\otherdataLMX.js" />
     <Content Include="GlobApp\scripts\machine\otherdata\otherdataFMC.js" />
     <Content Include="GlobApp\scripts\machine\image-manager.js" />
@@ -454,7 +455,7 @@
     <Content Include="GlobApp\scripts\plantmessages.js" />
     <Content Include="GlobApp\scripts\shared-manager.js" />
     <Content Include="GlobApp\scripts\machine-manager.js" />
-    <Content Include="GlobApp\scripts\machine\jobs.js" />
+    <Content Include="GlobApp\scripts\machine\jobs\fmc-lmx.js" />
     <Content Include="GlobApp\scripts\machine\tools.js" />
     <Content Include="GlobApp\scripts\machine\spindles.js" />
     <Content Include="GlobApp\scripts\machine\productivity.js" />
@@ -1089,7 +1090,7 @@
     <Content Include="Views\Machine\Panels\_Productivity.cshtml" />
     <Content Include="Views\Machine\Panels\_Spindles.cshtml" />
     <Content Include="Views\Machine\Panels\_Tools.cshtml" />
-    <Content Include="Views\Machine\Panels\_Jobs.cshtml" />
+    <Content Include="Views\Machine\Panels\Jobs\_FMC_LMX.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Mes\Mes.cshtml" />
     <Content Include="Views\Shared\_Toolbar.cshtml" />
@@ -1134,6 +1135,7 @@
     <Content Include="Views\Machine\Panels\SensorSpindles\_LMX650.cshtml" />
     <Content Include="Views\Machine\Panels\Motor\_LMX_650.cshtml" />
     <Content Include="Views\Machine\Panels\OtherMachineData\_LMX650.cshtml" />
+    <Content Include="Views\Machine\Panels\Jobs\_OtherMachines.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
