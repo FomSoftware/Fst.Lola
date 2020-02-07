@@ -229,7 +229,7 @@ namespace FomMonitoringBLL.ViewServices
                 var par = _parameterMachineService.GetParameters(machine, (int) enPanel.Electrospindle);
                 result = new ElectroSpindleParameterVueModel
                 {
-                    OreLavoroTotali = par.FirstOrDefault(p => p.VarNumber == 368),
+                    OreLavoroTotali = par.FirstOrDefault(p => p.VarNumber == 3012),
                     SblocchiPinza = par.FirstOrDefault(p => p.VarNumber == 103),
                     QtaSovrassorbimento = par.FirstOrDefault(p => p.VarNumber == 3024),
                     RpmRange1500 = par.FirstOrDefault(p => p.VarNumber == 3030),
