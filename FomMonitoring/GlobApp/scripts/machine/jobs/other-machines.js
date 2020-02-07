@@ -250,8 +250,10 @@
     {
         // update vue model
         var vm_jobs = data.vm_jobs;
-        vmJobs.jobs = vm_jobs.jobs;
-        vmJobs.sorting = vm_jobs.sorting;
+        if (vmJobs) {
+            vmJobs.jobs = vm_jobs.jobs;
+            vmJobs.sorting = vm_jobs.sorting;
+        }
     }
 
 
