@@ -761,11 +761,21 @@ a[title="JavaScript charts"] {
     .jobs-firstcol-width {
         width: 23%
     }
+
     .label-tools {
         display: inline;
     }
-    .label-tools-value { font-size: 19px !important; }
 
+    .label-tools-value {
+        font-size: 19px !important;
+    }
+
+    .label-electrospindle-title, .label-electrospindle-title-bottom {
+        font-size: 10px !important;
+    }
+    .label-electrospindle-data-value {
+        font-size: 15px !important;
+    }
 }
 
 .table.table-alerts thead tr th .table-btn {
