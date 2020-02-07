@@ -43,12 +43,9 @@
           <Property Name="JobTotalPieces" Type="int" />
           <Property Name="LastUpdated" Type="datetime" />
           <Property Name="MachineId" Type="int" />
-          <Property Name="NextMaintenanceService" Type="datetime" />
           <Property Name="Operator" Type="varchar" MaxLength="100" />
-          <Property Name="Plant" Type="varchar" MaxLength="100" />
           <Property Name="StateId" Type="int" />
           <Property Name="StateTransitionCode" Type="varchar" MaxLength="100" />
-          <Property Name="StateTransitionDescription" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="HistoryBar">
           <Key>
