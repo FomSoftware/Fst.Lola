@@ -51,22 +51,22 @@ namespace FomMonitoringCore.Framework.Model
                 var hmi = enUnitaMisuraTime.S;
                 if (Enum.TryParse(CnUm, true, out enUnitaMisuraTime cn) && Enum.TryParse(HmiUm, true, out hmi))
                 {
-                    d = (temp * ((int)hmi / (int)cn)).RoundToInt();
+                    d = (temp * ((double)hmi / (double)cn)).RoundToInt();
                 }
                 TimeSpan timeSpan;
                 switch (hmi)
                 {
                     case enUnitaMisuraTime.S:
                         timeSpan = new TimeSpan(0, 0, d);
-                        res = $"{timeSpan.TotalHours.RoundToInt()}h {timeSpan.Minutes}min {timeSpan.Seconds}s";
+                        res = $"{Math.Floor(timeSpan.TotalHours)}h {timeSpan.Minutes}min {timeSpan.Seconds}s";
                         return res;
                     case enUnitaMisuraTime.M:
                         timeSpan = new TimeSpan(0, d, 0);
-                        res = $"{timeSpan.TotalHours.RoundToInt()}h {timeSpan.Minutes}min";
+                        res = $"{Math.Floor(timeSpan.TotalHours)}h {timeSpan.Minutes}min";
                         return res;
                     case enUnitaMisuraTime.H:
                         timeSpan = new TimeSpan(d, 0, 0);
-                        res = $"{timeSpan.TotalHours.RoundToInt()}h {timeSpan.Minutes}min";
+                        res = $"{Math.Floor(timeSpan.TotalHours)}h {timeSpan.Minutes}min";
                         return res;
                 }
                 

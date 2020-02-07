@@ -18,7 +18,8 @@ namespace FomMonitoringCore.Repository
                 .AsNoTracking()
                 .Include("MessagesIndex")
                 .AsNoTracking()
-                .Where(m => m.MachineId == idMachine && m.Day >= start && m.Day <= end && m.MessagesIndex.MessageCode != null);
+                .Where(m => m.MachineId == idMachine && m.Day >= start && m.Day <= end && m.MessagesIndex.IsVisibleLOLA == true
+                            && m.MessagesIndex.IsPeriodicM == false && m.MessagesIndex.IsDisabled == false  && m.MessagesIndex.MessageCode != null);
 
 
             if (machineGroup.HasValue)
