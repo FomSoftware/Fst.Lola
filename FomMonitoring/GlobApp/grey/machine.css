@@ -1248,7 +1248,7 @@ hr.axes {
 @media (max-width: 1096px) {
 
     .icon-message-header {
-        width: 13%;
+        width: 3%;
     }
 }
 
@@ -1266,7 +1266,7 @@ hr.axes {
 @media (max-width: 755px) {
 
     .icon-message-header {
-        width: 7%;
+        width: 3%;
     }
 
     th.sorting {
@@ -1279,6 +1279,10 @@ hr.axes {
     .code-header {
         padding-left: 10% !important;
         padding-right: 10% !important;
+    }
+
+    .icon-message-header {
+        width: 1%;
     }
 }
 
@@ -1387,6 +1391,13 @@ hr.axes {
     float: right;
     padding-left: 8px;
     padding-top: 0;
+}
+
+@media (max-width: 1096px) {
+
+    .label-electrospindle-title-bottom, .label-electrospindle-title {
+        font-size: 12px;
+    }
 }
 
 
