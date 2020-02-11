@@ -77,22 +77,46 @@
             Jobs.hide();
         }
 
-        if (vmImageMachine.machineGroupSelected == 'FMC3-4_axes') {
-            OtherData.show();
-        } else {
-            OtherData.hide();
-        }
+        if (vmImageMachine.modello == 'FMC') {
+            if (vmImageMachine.machineGroupSelected == 'FMC3-4_axes') {
+                OtherData.show();
+            } else  {
+                OtherData.hide();
+            }
 
-        if (vmImageMachine.machineGroupSelected == 'FMC3-4_spindles') {
-            ElectroSpindle.show();
-        } else {
-            ElectroSpindle.hide();
-        }
+            if (vmImageMachine.machineGroupSelected == 'FMC3-4_spindles') {
+                ElectroSpindle.show();
+            } else {
+                ElectroSpindle.hide();
+            }
 
-        if (vmImageMachine.machineGroupSelected == 'FMC3-4_tools') {
-            ToolsFmcLmx.show();
-        } else {
-            ToolsFmcLmx.hide();
+            if (vmImageMachine.machineGroupSelected == 'FMC3-4_tools') {
+                ToolsFmcLmx.show();
+            } else {
+                ToolsFmcLmx.hide();
+            }
+        }
+        else if (vmImageMachine.modello == 'LMX') {
+            if (vmImageMachine.machineGroupSelected == 'LMX650_Motor/Blade') {
+               
+            } else {
+               
+            }
+            if (vmImageMachine.machineGroupSelected == 'LMX650_XMU') {
+               
+            } else {
+              
+            }
+            if (vmImageMachine.machineGroupSelected == 'LMX650_StepIn/Out') {
+              
+            } else {
+               
+            }
+            if (vmImageMachine.machineGroupSelected == 'LMX650_MM') {
+               
+            } else {
+               
+            }
         }
 
 
@@ -152,6 +176,18 @@
         MachineManager.callAjaxMachineMessageViewModelData(filters);
     };
 
+
+    var overMachineGroup = function (element) {
+        var group = $(element).data('group');
+        if (vmImageMachine.machineGroupSelected == group) return;
+        $("g[data-highlighted='" + group + "'] path").css("fill", "transparent");
+    };
+    var outMachineGroup = function (element) {
+        var group = $(element).data('group');
+        if (vmImageMachine.machineGroupSelected == group) return;
+        $("g[data-highlighted='" + group + "'] path").css("fill", "transparent");
+    };
+
     var selectPanel = function (element) {
         var panel = $(element).data('panel');
 
@@ -175,6 +211,18 @@
             selectMachineGroup(this);
 
             checkVisibility();
+        });
+
+        $("g[data-group]").mouseover(function (e) {
+            e.preventDefault();
+            overMachineGroup(this);
+
+        });
+
+        $("g[data-group]").mouseout(function (e) {
+            e.preventDefault();
+            outMachineGroup(this);
+
         });
 
         $(".machine-group-selection button").click(function (e) {
@@ -214,25 +262,30 @@
         checkVisibility();
     };
 
-    var checkVisibilityImageMachine = function() {
-        if (vmImageMachine.isLargeTablet() || vmImageMachine.isTablet() || vmImageMachine.isMobile()) {
-            $("#image-machine-sm").show();
-            $("#image-machine-lg").hide();
-        } else {
-            $("#image-machine-sm").hide();
-            $("#image-machine-lg").show();
+    var checkVisibilityImageMachine = function () {
+        if (vmImageMachine.modello == 'FMC') {
+            if (vmImageMachine.isLargeTablet() || vmImageMachine.isTablet() || vmImageMachine.isMobile()) {
+                $("#image-machine-sm").show();
+                $("#image-machine-lg").hide();
+            } else {
+                $("#image-machine-sm").hide();
+                $("#image-machine-lg").show();
+            }
+            initMachineImage();
         }
+       
 
-        initMachineImage();
+       
     }
 
-    var init = function () {
+    var init = function (model) {
 
         vmImageMachine = new Vue({
             el: '#panels-box',
             data: {
                 machineGroupSelected: null,
-                machinePanelSelected: null
+                machinePanelSelected: null,
+                modello: model
             },
             mixins: [mixinDetictingMobile]
         });

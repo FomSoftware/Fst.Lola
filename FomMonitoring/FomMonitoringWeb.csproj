@@ -482,6 +482,11 @@
     <Content Include="Images\panels\CARD_SPINDLE_220X220px.svg" />
     <Content Include="Images\panels\FMC-immagine_macchina_CORTA_2.svg" />
     <Content Include="Images\panels\FMC-immagine_macchina_LUNGA.svg" />
+    <Content Include="Images\panels\LMX-immagine_macchina.svg" />
+    <Content Include="Images\panels\LMX_650-MM-CARD_MOBILE.svg" />
+    <Content Include="Images\panels\LMX_650-MOTOR_BLADE-CARD_MOBILE.svg" />
+    <Content Include="Images\panels\LMX_650-STEPIN-OUT-CARD_MOBILE.svg" />
+    <Content Include="Images\panels\LMX_650-XMU-CARD_MOBILE.svg" />
     <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
