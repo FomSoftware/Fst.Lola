@@ -15,6 +15,9 @@ namespace FomMonitoringCore.Framework.Model
         public string Value { get; set; }
         public string Cluster { get; set; }
         public string ConvertedValue => Convert();
+        public string ConvertedHourValue => ConvertHour();
+        public string ConvertedMinValue => ConvertMin();
+        public string ConvertedSecValue => ConvertSec();
         public DateTime? UtcDateTime { get; set; }
         public string CnUm { get; set; }
         public string Keyword { get; set; }
@@ -75,6 +78,49 @@ namespace FomMonitoringCore.Framework.Model
             return res;
         }
 
+
+        public string[] ConvertedTimeValueArray()
+        {
+            var res = new string[3];
+            res[0] = Value;
+            if (double.TryParse(Value, out var temp) && !string.IsNullOrEmpty(CnUm) && !string.IsNullOrEmpty(HmiUm)
+                && Enum.IsDefined(typeof(enUnitaMisuraTime), CnUm)
+                && Enum.IsDefined(typeof(enUnitaMisuraTime), HmiUm))
+            {
+                var d = temp.RoundToInt();
+                var hmi = enUnitaMisuraTime.S;
+                if (Enum.TryParse(CnUm, true, out enUnitaMisuraTime cn) && Enum.TryParse(HmiUm, true, out hmi))
+                {
+                    d = (temp * ((double)hmi / (double)cn)).RoundToInt();
+                }
+                TimeSpan timeSpan;
+                switch (hmi)
+                {
+                    case enUnitaMisuraTime.S:
+                        timeSpan = new TimeSpan(0, 0, d);
+                        res[0] = $"{Math.Floor(timeSpan.TotalHours)}";
+                        res[1] = $"{timeSpan.Minutes}";
+                        res[2] = $"{timeSpan.Seconds}";
+                        return res;
+                    case enUnitaMisuraTime.M:
+                        timeSpan = new TimeSpan(0, d, 0);
+                        res[0] = $"{Math.Floor(timeSpan.TotalHours)}";
+                        res[1] = $"{timeSpan.Minutes}";
+                        res[2] = $"{timeSpan.Seconds}";
+                        return res;
+                    case enUnitaMisuraTime.H:
+                        timeSpan = new TimeSpan(d, 0, 0);
+                        res[0] = $"{Math.Floor(timeSpan.TotalHours)}";
+                        res[1] = $"{timeSpan.Minutes}";
+                        res[2] = $"{timeSpan.Seconds}";
+                        return res;
+                }
+
+            }
+
+            return res;
+        }
+
         public string ConvertedNumberValue()
         {
             var res = Value;
@@ -83,6 +129,42 @@ namespace FomMonitoringCore.Framework.Model
                 res = temp.ToString("N0");
             }
             return res;
+        }
+
+        public string ConvertHour()
+        {
+            if (!string.IsNullOrEmpty(CnUm) && !string.IsNullOrEmpty(HmiUm)
+                                            && Enum.IsDefined(typeof(enUnitaMisuraTime), CnUm)
+                                            && Enum.IsDefined(typeof(enUnitaMisuraTime), HmiUm))
+            {
+                return ConvertedTimeValueArray()[0];
+            }
+
+            return Value;
+        }
+
+        public string ConvertMin()
+        {
+            if (!string.IsNullOrEmpty(CnUm) && !string.IsNullOrEmpty(HmiUm)
+                                            && Enum.IsDefined(typeof(enUnitaMisuraTime), CnUm)
+                                            && Enum.IsDefined(typeof(enUnitaMisuraTime), HmiUm))
+            {
+                return ConvertedTimeValueArray()[1];
+            }
+            
+            return Value;
+        }
+
+        public string ConvertSec()
+        {
+            if (!string.IsNullOrEmpty(CnUm) && !string.IsNullOrEmpty(HmiUm)
+                                            && Enum.IsDefined(typeof(enUnitaMisuraTime), CnUm)
+                                            && Enum.IsDefined(typeof(enUnitaMisuraTime), HmiUm))
+            {
+                return ConvertedTimeValueArray()[2];
+            }
+
+            return Value;
         }
 
         public string Convert()

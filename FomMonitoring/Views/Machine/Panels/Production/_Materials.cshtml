@@ -41,10 +41,15 @@
             <td>{{ material.cutoff.number }}<em>m</em></td>
         </tr>
         <tr v-if="productionVariables != null && machineModel.toLocaleUpperCase().includes('LMX')">
-            <td colspan="3">
+            <td style="padding:0">
                 <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
                 {{productionVariables.Description}}:
-                <span> {{productionVariables.ConvertedValue}}</span>
+            </td>
+            <td>
+                <span> {{productionVariables.ConvertedMinValue}}m</span>
+            </td>
+            <td>
+                <span> {{productionVariables.ConvertedSecValue}}s</span>
             </td>
         </tr>
     </table>
@@ -88,10 +93,15 @@
             <td>0<em>m</em></td>
         </tr>
         <tr v-if="productionVariables != null && machineModel.toLocaleUpperCase().includes('LMX')">
-            <td colspan="3">
+            <td style="padding:0">
                 <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
                 {{productionVariables.Description}}:
-                <span> {{productionVariables.ConvertedValue}}</span>
+            </td>
+            <td>
+                <span> {{productionVariables.ConvertedMinValue}}m</span>
+            </td>
+            <td>
+                <span> {{productionVariables.ConvertedSecValue}}s</span>
             </td>
         </tr>
     </table>
