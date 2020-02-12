@@ -1,7 +1,7 @@
 ﻿@model FomMonitoringBLL.ViewModel.PanelParametersViewModel
 @using FomMonitoringCore.Service
 
-<div id="CardToolsFmcLmx" class="@ViewData["Classes"]" v-show="showed">
+<div id="CardXToolsLmx" class="@ViewData["Classes"]" v-show="showed">
     <div class="portlet">
         <div class="portlet-title">
             <div class="portlet-kpi">
@@ -11,11 +11,8 @@
                 </span>
             </div>
             <div class="title-kpi" style="max-width: 300px;">
-                <span v-if="panel == 35">
-                    @LocalizationService.GetResource("LMX650_MMTools")</span>
-                <span v-else>
-                    @LocalizationService.GetResource("Tools")
-                </span>
+                <span>
+                    @LocalizationService.GetResource("LMX650_XMUTools")</span>
                 <div class="sub-period">
                     @LocalizationService.GetResource("UntilNow")</div>
                 
@@ -74,7 +71,7 @@
     {
         var data = @Html.Raw(Json.Encode(Model));
         console.log(data);
-        ToolsFmcLmx.init(data);
+        XToolsLmx.init(data);
     });
 
 </script>

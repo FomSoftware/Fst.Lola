@@ -107,7 +107,8 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/sensorspindles/sensorspindles.js",
                         "~/GlobApp/scripts/machine/motor/motorbladelmx.js",
                         "~/GlobApp/scripts/machine/otherdata/otherdataLMX.js",
-                        "~/GlobApp/scripts/machine/jobs/other-machines.js"
+                        "~/GlobApp/scripts/machine/jobs/other-machines.js",
+                        "~/GlobApp/scripts/machine/xtools/lmx.js"
 
                       ));
 

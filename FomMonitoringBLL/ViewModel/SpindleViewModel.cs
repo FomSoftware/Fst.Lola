@@ -22,6 +22,7 @@ namespace FomMonitoringBLL.ViewModel
         public RotaryAxesParameterVueModel vm_rotary_axes { get; set; }
         public SensorSpindlesParameterVueModel vm_sensor_spindles { get; set; }
         public MotorBladeLmxParameterVueModel vm_motor_blade { get; set; }
+        public ToolsFmcLmxParameterVueModel vm_xtools_lmx { get; set; }
 
         public OtherDataLmxParameterVueModel vm_other_data_lmx { get; set; }
     }
@@ -125,6 +126,7 @@ namespace FomMonitoringBLL.ViewModel
     public class ToolsFmcLmxParameterVueModel
     {
         public IEnumerable<ToolParameterMachineValueModel> ToolsInfo { get; set; } = new List<ToolParameterMachineValueModel>();
+        public int PanelId { get; set; }
     }
 
     public class ToolParameterMachineValueModel

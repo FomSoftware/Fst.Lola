@@ -449,6 +449,7 @@
     <Content Include="GlobApp\scripts\machine\tools\blitz.js" />
     <Content Include="GlobApp\scripts\machine\xtools.js" />
     <Content Include="GlobApp\scripts\machine\xspindles.js" />
+    <Content Include="GlobApp\scripts\machine\xtools\lmx.js" />
     <Content Include="GlobApp\scripts\mes-manager.js" />
     <Content Include="GlobApp\scripts\notification-manager.js" />
     <Content Include="GlobApp\scripts\plant-manager.js" />
@@ -1141,6 +1142,7 @@
     <Content Include="Views\Machine\Panels\Motor\_LMX_650.cshtml" />
     <Content Include="Views\Machine\Panels\OtherMachineData\_LMX650.cshtml" />
     <Content Include="Views\Machine\Panels\Jobs\_OtherMachines.cshtml" />
+    <Content Include="Views\Machine\Panels\XTools\_Lmx.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,10 +1,10 @@
-﻿var ToolsFmcLmx = function ()
+﻿var XToolsLmx = function ()
 {
     var vmTools;
 
     var init = function (data)
     {
-        initVueModel(data.vm_tools_fmc_lmx);
+        initVueModel(data.vm_xtools_lmx);
     }
 
 
@@ -20,10 +20,9 @@
     var initVueModel = function (data)
     {
         vmTools = new Vue({
-            el: '#CardToolsFmcLmx',
+            el: '#CardXToolsLmx',
             data: {
                 tools: data.ToolsInfo,
-                panel: data.PanelId,
                 showed: true
             },
             computed: {
@@ -44,10 +43,9 @@
     {
         // update vue model
        
-        var vm_tools = data.vm_tools_fmc_lmx;
+        var vm_tools = data.vm_xtools_lmx;
         if (vm_tools != null) {
             vmTools.tools = vm_tools.ToolsInfo;
-            vmTools.panel = vm_tools.PanelId;
         }
         
     }

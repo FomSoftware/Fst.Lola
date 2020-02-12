@@ -51,7 +51,11 @@ namespace FomMonitoringBLL.ViewServices
             if (panels.Contains((int) enPanel.OtherMachineData))
                 result.vm_other_data = GetOtherDataVueModel(context.ActualMachine);
             if (panels.Contains((int) enPanel.ToolsFmcLmx))
-                result.vm_tools_fmc_lmx = GetToolsFmcLmxVueModel(context.ActualMachine);
+                result.vm_tools_fmc_lmx = GetToolsFmcLmxVueModel(context.ActualMachine, (int)enPanel.ToolsFmcLmx);
+            if (panels.Contains((int)enPanel.MmToolsLmx))
+                result.vm_tools_fmc_lmx = GetToolsFmcLmxVueModel(context.ActualMachine, (int)enPanel.MmToolsLmx);
+            if (panels.Contains((int)enPanel.XmuToolsLmx))
+                result.vm_xtools_lmx = GetToolsFmcLmxVueModel(context.ActualMachine, (int)enPanel.XmuToolsLmx);
             if (panels.Contains((int) enPanel.Multispindle))
                 result.vm_multi_spindle = GetMultiSpindleVueModel(context.ActualMachine, 11);
             if (panels.Contains((int)enPanel.TiltingMSAxesLMX))
@@ -132,20 +136,24 @@ namespace FomMonitoringBLL.ViewServices
             return result;
         }
 
-        private ToolsFmcLmxParameterVueModel GetToolsFmcLmxVueModel(MachineInfoModel context)
+        private ToolsFmcLmxParameterVueModel GetToolsFmcLmxVueModel(MachineInfoModel context, int panel)
         {
-            var par = _parameterMachineService.GetParameters(context, (int) enPanel.ToolsFmcLmx);
-            var tools = _toolsService.GetTools(context).Where(n => n.IsActive);
+            var par = _parameterMachineService.GetParameters(context, panel);
+            bool xmodule = false;
+            if(panel == (int)enPanel.XmuToolsLmx)
+                xmodule = true;
+            var tools = _toolsService.GetTools(context, xmodule).Where(n => n.IsActive);
             var dtos = tools.Select(n => new ToolParameterMachineValueModel
             {
-                Code = par.FirstOrDefault(p => p.Cluster == n.Code)?.Cluster,
+                Code = par.FirstOrDefault(p => p.Cluster == n.Code)?.Cluster??n.Code,
                 Description = n.Description,
                 ElapsedLife = par.FirstOrDefault(p => p.Cluster == n.Code)?.ConvertedValue
             }).ToList();
 
             var result = new ToolsFmcLmxParameterVueModel
             {
-                ToolsInfo = dtos
+                ToolsInfo = dtos,
+                PanelId = panel
             };
             return result;
         }
