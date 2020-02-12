@@ -1209,7 +1209,7 @@ td.tool-border-left {
     }
 
     .portlet-title {
-        font-size: 12px !important;
+        font-size: 10px !important;
     }
 }
 
@@ -1717,3 +1717,15 @@ td.td-electrospindle-data {
             font-size: 10px;
         }
     }
+
+@media (max-width: 1024px) {
+    #maintenanceSlimscroll {
+        height: 94% !important;
+    }
+
+    #CardMaintenance .portlet-body {
+        height: 530px !important;
+    }
+}
+
+
