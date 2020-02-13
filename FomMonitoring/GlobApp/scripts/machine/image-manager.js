@@ -2,6 +2,7 @@
 
     var vmImageMachine;
     var vmButtonsMenu;
+    var vmPanelsMachine;
 
     var mixinDetictingMobile = {
         methods: {
@@ -240,6 +241,7 @@
         });
 
         $("#button-back-machine").click(function (e) {
+            $("[data-panel]").removeClass("selected");
             if (vmImageMachine.machineGroupSelected != null || vmImageMachine.machinePanelSelected != null) {
                 e.preventDefault();
                 $("g[data-highlighted] path").css("fill", "transparent");
@@ -287,8 +289,30 @@
                 machinePanelSelected: null,
                 modello: model
             },
-            mixins: [mixinDetictingMobile]
+            mixins: [mixinDetictingMobile],
+            watch: {
+
+                machineGroupSelected: function (val, oldVal) {
+                    if (val != null && (this.isMobile() || this.isTablet())) {
+                        $("#panels-area").show();
+                    }
+                    if (val == null && (this.isMobile() || this.isTablet())) {
+                        $("#panels-area").hide();
+                    }
+                },
+
+                machinePanelSelected: function (val, oldVal) {
+                    if (val != null && (this.isMobile() || this.isTablet())) {
+                        $("#panels-area").show();
+                    }
+                    if (val == null && (this.isMobile() || this.isTablet())) {
+                        $("#panels-area").hide();
+                    }
+                }
+
+            }
         });
+
 
         vmButtonsMenu = new Vue({
             el: "#buttons-bar",
