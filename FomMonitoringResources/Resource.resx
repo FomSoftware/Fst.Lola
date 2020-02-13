@@ -675,7 +675,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Plant deleted successfully</value>
   </data>
   <data name="PlantImpossibileDeleted" xml:space="preserve">
-    <value>The plant cannot be deleted.</value>
+    <value>The plant cannot be deleted. There are associated machines</value>
   </data>
   <data name="PlantMachines" xml:space="preserve">
     <value>Machines</value>

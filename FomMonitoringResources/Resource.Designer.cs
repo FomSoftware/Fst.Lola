@@ -2115,7 +2115,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The plant cannot be deleted..
+        ///   Looks up a localized string similar to The plant cannot be deleted. There are associated machines.
         /// </summary>
         public static string PlantImpossibileDeleted {
             get {
