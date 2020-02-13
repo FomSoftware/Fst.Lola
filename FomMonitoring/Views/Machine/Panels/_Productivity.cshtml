@@ -1,4 +1,5 @@
 ﻿@model FomMonitoringBLL.ViewModel.ProductivityViewModel
+@using FomMonitoringCore.Service
 @using FomMonitoringResources
 
 <div id="CardProductivity" class="@ViewData["Classes"]" v-show="showed">
@@ -11,7 +12,7 @@
                 </span>
             </div>
             <div class="title-kpi">
-                <span>@Resource.Production</span>
+                <span>@LocalizationService.GetResource("Production")</span>
                 <span v-if="kpi != null" class="value-kpi" v-bind:class="colorKPI" v-cloak>
                     {{ kpi.value }}<small>pz/h</small>
                 </span>
@@ -30,11 +31,11 @@
                         </div>
                         <div class="dd-item slide-history" data-group="productivity" v-show="show.historical">
                             <i class="fa fa-history"></i>
-                            <span>@Resource.Historical</span>
+                            <span>@LocalizationService.GetResource("Historical")</span>
                         </div>
                         <div class="dd-item slide-operator" data-group="productivity" v-show="show.operators">
                             <i class="fa fa-user"></i>
-                            <span>@Resource.Operators</span>
+                            <span>@LocalizationService.GetResource("Operators")</span>
                         </div>
                     </div>
                 </div>

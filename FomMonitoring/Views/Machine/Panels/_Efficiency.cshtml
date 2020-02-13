@@ -1,5 +1,5 @@
 ﻿@model FomMonitoringBLL.ViewModel.EfficiencyViewModel
-@using FomMonitoringResources
+@using FomMonitoringCore.Service
 
 <div id="CardEfficiency" class="@ViewData["Classes"]" v-show="showed">
     <div  class="portlet">
@@ -11,7 +11,8 @@
                 </span>
             </div>
             <div class="title-kpi" v-cloak>
-                <span>@Resource.Efficiency</span>
+                <span>
+                    @LocalizationService.GetResource("Efficiency")</span>
                 <div class="sub-period js-period"></div>
                 <div class="sub-period js-historical-period" style="display: none;"></div>
             </div>
@@ -25,11 +26,11 @@
                         </div>
                         <div class="dd-item slide-history" data-group="efficiency" v-show="show.historical">
                             <i class="fa fa-history"></i>
-                            <span>@Resource.Historical</span>
+                            <span>@LocalizationService.GetResource("Historical")</span>
                         </div>
                         <div class="dd-item slide-operator" data-group="efficiency" v-show="show.operators">
                             <i class="fa fa-user"></i>
-                            <span>@Resource.Operators</span>
+                            <span>@LocalizationService.GetResource("Operators")</span>
                         </div>
                     </div>
                 </div>
@@ -59,12 +60,13 @@
                                     <div class="use-states">
                                         <div class="progress-label clearfix">
                                             <div class="progress-title">
-                                                @Resource.MachineStates
+                                                @LocalizationService.GetResource("MachineStates")
                                             </div>
                                             <div class="progress-time">
                                                 <div class="icon fa fa-clock-o"></div>
                                                 <div>
-                                                    <div class="title-time">@Resource.TimeOn</div>
+                                                    <div class="title-time">
+                                                        @LocalizationService.GetResource("TimeOn")</div>
                                                     <div class="value-time">
                                                         <time-span v-bind:duration="total.on"></time-span>
                                                     </div>
@@ -134,7 +136,7 @@
     $(document).ready(function ()
     {
         var loc = {
-            efficiency : '@Resource.Efficiency'
+            efficiency : ' @LocalizationService.GetResource("Efficiency")'
         };
         var data = @Html.Raw(Json.Encode(Model));
         Efficiency.init(data, loc);

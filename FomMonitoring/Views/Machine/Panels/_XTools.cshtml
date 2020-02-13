@@ -1,4 +1,5 @@
 ﻿@model FomMonitoringBLL.ViewModel.XToolViewModel
+@using FomMonitoringCore.Service
 @using FomMonitoringResources
 
 <div id="CardXTools" class="portlet">
@@ -9,18 +10,18 @@
                 <i class="fa icofom-fresa fa-stack-1x fa-inverse"></i>
             </span>
         </div>
-        <div class="title-kpi" >
-            <span>@Resource.XTools</span>
-            <div class="sub-period">@Resource.UntilNow</div>
+        <div class="title-kpi">
+            <span>@LocalizationService.GetResource("XTools")</span>
+            <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
         </div>
         <div class="portlet-details" v-if="tools != null" v-cloak>
             <div class="btn-group">
                 <div class="btn btn-outline sorting" v-bind:class="sortingCode" v-on:click="sortCode()">
-                    <span>@Resource.Code</span>
+                    <span>@LocalizationService.GetResource("Code")</span>
                 </div>
                 <div class="btn btn-outline sorting" v-bind:class="sortingTTL" v-on:click="sortTTL()">
                     <span>
-                        <i class="fa fa-clock-o color-aaa"></i>@Resource.Time
+                        <i class="fa fa-clock-o color-aaa"></i>@LocalizationService.GetResource("Time")
                     </span>
                 </div>
             </div>

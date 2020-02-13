@@ -1,4 +1,5 @@
 ﻿@model FomMonitoringBLL.ViewModel.PanelParametersViewModel
+@using FomMonitoringCore.Service
 @using FomMonitoringResources
 
 <div id="CardSpindles" class="portlet">
@@ -10,18 +11,25 @@
             </span>
         </div>
         <div class="title-kpi">
-            <span v-if="type != '@enMachineType.Troncatrice.GetDescription()'">@Resource.Spindles</span>
-            <span v-else>@Resource.AxisMotors</span>
-            <div class="sub-period">@Resource.UntilNow</div>
+            <span v-if="type != '@enMachineType.Troncatrice.GetDescription()'">
+                @LocalizationService.GetResource("Spindles")
+            </span>
+            <span v-else>
+                @LocalizationService.GetResource("AxisMotors")
+            </span>
+            <div class="sub-period">
+                @LocalizationService.GetResource("UntilNow")
+            </div>
         </div>
         <div class="portlet-details" v-if="spindles != null">
             <div class="btn-group">
                 <div class="btn btn-outline sorting" v-bind:class="sortingCode" v-on:click="sortCode()">
-                    <span>@Resource.Position</span>
+                    <span>
+                        @LocalizationService.GetResource("Position")</span>
                 </div>
                 <div class="btn btn-outline sorting" v-bind:class="sortingTTL" v-on:click="sortTTL()">
                     <span>
-                        <i class="fa fa-clock-o color-aaa"></i>@Resource.Time
+                        <i class="fa fa-clock-o color-aaa"></i>@LocalizationService.GetResource("Time")
                     </span>
                 </div>
             </div>
@@ -37,27 +45,27 @@
                                 <td>
                                     <div class="el-state el-code">
                                         <div>{{ spindle.code }}</div>
-                                        <small>@Resource.Position</small>
+                                        <small>@LocalizationService.GetResource("Position")</small>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="el-state el-margin text-right">
                                         <!-- <div>
-                                        <i class="fa fa-bolt"></i>
-                                        <span>{{ spindle.velocity }}</span>
-                                        <span class="sty-unit">rpm</span>
-                                    </div>
-                                    <small>@Resource.AverageSpeed</small>-->
+        <i class="fa fa-bolt"></i>
+        <span>{{ spindle.velocity }}</span>
+        <span class="sty-unit">rpm</span>
+    </div>
+    <small>@LocalizationService.GetResource("AverageSpeed")</small>-->
                                     </div>
                                 </td>
                                 <td>
                                     <div class="el-state el-margin text-right">
                                         <!-- nascondere solo per pannello cliente? -->
                                         <!--<div>
-                                            <i class="fa fa-clock-o"></i>
-                                            <time-span v-bind:duration="spindle.time.residual"></time-span>
-                                        </div>
-                                        <small>@Resource.TimeToLive</small>-->
+        <i class="fa fa-clock-o"></i>
+        <time-span v-bind:duration="spindle.time.residual"></time-span>
+    </div>
+    <small>@LocalizationService.GetResource("TimeToLive")</small>-->
                                     </div>
                                 </td>
                             </tr>
@@ -107,13 +115,13 @@
                                 <td>
                                     <div class="el-state">
                                         <div>{{ spindle.code }}</div>
-                                        <small>@Resource.Code</small>
+                                        <small>@LocalizationService.GetResource("Code")</small>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="el-state">
                                         <div>{{ spindle.info.install }}</div>
-                                        <small>@Resource.Install</small>
+                                        <small>@LocalizationService.GetResource("Install")</small>
                                     </div>
                                 </td>
                                 <td></td>
@@ -128,7 +136,7 @@
                                 <td>
                                     <div class="el-state">
                                         <div>{{ spindle.info.maintenance }}</div>
-                                        <small>@Resource.Maintenance</small>
+                                        <small>@LocalizationService.GetResource("Maintenance")</small>
                                     </div>
                                 </td>
                                 <td>
@@ -136,7 +144,7 @@
                                         <div>
                                             <time-span v-bind:duration="spindle.time.work"></time-span>
                                         </div>
-                                        <small>@Resource.UsageTime</small>
+                                        <small>@LocalizationService.GetResource("UsageTime")</small>
                                     </div>
                                 </td>
                             </tr>
