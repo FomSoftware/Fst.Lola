@@ -21,7 +21,7 @@
     height: 100%;
     margin-top: 0;
     padding: 50px;
-    background: #cbc9c9;
+    background: #bebebe;
     /*background: #D1839A;
     background: -webkit-linear-gradient(to top, #D1839A, #862541);
     background: linear-gradient(to top, #D1839A, #B33157);*/
@@ -63,7 +63,7 @@
 
 .header {
     text-align: center;
-    font-size: 37px;
+    font-size: 42px;
     /*line-height: 2em;*/
     margin-bottom: 60px;
     margin-top: 35px;
@@ -84,7 +84,7 @@ img.logo3 {
 
 @media(max-width:767px) {
     .header img.logo {
-        height: 50px;
+        height: 80px;
     }
 
     .header img.logo2 {
@@ -158,6 +158,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
 .form-actions {
     text-align: right;
     margin-top: 40px;
+    color: #403d3d;
 }
 
     .form-actions button {
@@ -222,12 +223,13 @@ input:-webkit-autofill:focus input:-webkit-autofill {
 
     .container-login {
         padding: 30px 20px;
-        border-radius: 5px;
+        border-radius: 10px;
         margin: auto;
         margin-top: 70px;
         box-shadow: #000000 0 2px 7px;
         box-shadow: rgba(0, 0, 0, 0.25) 0 2px 7px;
         max-width: 450px;
+        color: #403d3d;
     }
 
     .container-login .content {
@@ -284,10 +286,6 @@ input:-webkit-autofill:focus input:-webkit-autofill {
         padding: 5px;
     }
 
-    .header img.logo {
-        height: 50px;
-    }
-
     img.logo3 {
         width: 150px;
     }
@@ -301,7 +299,25 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     .container-login {
         margin-top: 10px;
     }
+
+    #disclamerTextLink {
+        font-size: 10px !important;
+    }
+
+    .header .col-12 {
+        font-size: 25px;
+    }
+    .header {
+        margin-bottom: 20px;
+        margin-top: 5px;
+    }
+
+    .container-login {
+        padding-top: 5px;
+    }
 }
+
+
 
 
 @media (max-width: 740px) {
