@@ -201,6 +201,12 @@
     };
 
     var initMachineImage = function () {
+        if (vmImageMachine.isMobile() || vmImageMachine.isTablet()) {
+            $("#panels-area").hide();
+        }
+        else {
+            $("#panels-area").show();
+        }
         $("g[data-group]").off("click");
         $(".machine-group-selection button").off("click");
         $("button[data-panel]").off("click");
