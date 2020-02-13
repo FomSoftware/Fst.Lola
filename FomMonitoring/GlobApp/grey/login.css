@@ -317,12 +317,22 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     }
 }
 
-
-
-
 @media (max-width: 740px) {
     .img-fluid {
         height: 80px;
     }
 }
+
+@media (max-height: 400px) {
+    .header img.logo { height: 70px; }
+
+    .header img.logo2 {
+        width: 300px;
+    }
+    .img-fluid {
+        max-width: 85%;
+    }
+    .container-login { max-width: 350px;}
+
+    }
 /*#endregion */
