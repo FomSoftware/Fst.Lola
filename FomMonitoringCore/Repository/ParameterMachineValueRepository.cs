@@ -24,7 +24,7 @@ namespace FomMonitoringCore.Repository
                 query = query.Where(p => p.ParameterMachine.Cluster == idCluster.ToString());
             }
 
-            query = query.OrderByDescending(i => i.UtcDateTime).GroupBy(p => p.VarNumber).Select(t => t.FirstOrDefault());
+            query = query.GroupBy(p => p.VarNumber).Select(t => t.OrderByDescending(i => i.UtcDateTime).FirstOrDefault());
 
             return query.ToList();
         }

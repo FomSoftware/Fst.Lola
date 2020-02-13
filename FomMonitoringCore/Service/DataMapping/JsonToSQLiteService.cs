@@ -49,7 +49,6 @@ namespace FomMonitoringCore.Service.DataMapping
             {
                 JObject json = JsonConvert.DeserializeObject<JObject>(jsonDataModel.Json);
                 List<bar> barSQLite = new List<bar>();
-                List<error> errorSQLite = new List<error>();
                 List<historyJob> historyJobSQLite = new List<historyJob>();
                 List<info> infoSQLite = new List<info>();
                 List<piece> pieceSQLite = new List<piece>();
@@ -69,9 +68,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE message");*/
                 if(_FomMonitoringSQLiteEntities.Set<bar>() != null)
                     _FomMonitoringSQLiteEntities.Set<bar>().RemoveRange(_FomMonitoringSQLiteEntities.Set<bar>());
-
-                if(_FomMonitoringSQLiteEntities.Set<error>() != null)
-                    _FomMonitoringSQLiteEntities.Set<error>().RemoveRange(_FomMonitoringSQLiteEntities.Set<error>());
 
                 if (_FomMonitoringSQLiteEntities.Set<historyJob>() != null)
                     _FomMonitoringSQLiteEntities.Set<historyJob>().RemoveRange(_FomMonitoringSQLiteEntities.Set<historyJob>());
@@ -107,17 +103,11 @@ namespace FomMonitoringCore.Service.DataMapping
                                     bar.EndTime = bar.EndTime.HasValue && bar.EndTime.Value.Year < 1900 ? null : bar.EndTime;
                                 }
                                 break;
-                            case "error":
-                                errorSQLite = JsonConvert.DeserializeObject<List<error>>(JsonConvert.SerializeObject(token.First));
-                                foreach (error error in errorSQLite)
-                                {
-                                    error.Time = error.Time.HasValue && error.Time.Value.Year < 1900 ? null : error.Time;
-                                }
-                                break;
                             case "historyjob":
                                 historyJobSQLite = JsonConvert.DeserializeObject<List<historyJob>>(JsonConvert.SerializeObject(token.First));
                                 foreach (historyJob historyJob in historyJobSQLite)
                                 {
+                                    historyJob.Id = 0;
                                     historyJob.Day = historyJob.Day.HasValue && historyJob.Day.Value.Year < 1900 ? null : historyJob.Day;
                                 }
                                 break;
@@ -125,6 +115,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                 infoSQLite = JsonConvert.DeserializeObject<List<info>>(JsonConvert.SerializeObject(token.First));
                                 foreach (info info in infoSQLite)
                                 {
+                                    info.Id = 0;
                                     info.LoginDate = info.LoginDate.HasValue && info.LoginDate.Value.Year < 1900 ? null : info.LoginDate;
                                     //info.InstallationDate = info.InstallationDate.HasValue && info.InstallationDate.Value.Year < 1900 ? null : info.InstallationDate;
                                     //info.NextMaintenanceService = info.NextMaintenanceService.HasValue && info.NextMaintenanceService.Value.Year < 1900 ? null : info.NextMaintenanceService;
@@ -149,6 +140,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                 pieceSQLite = JsonConvert.DeserializeObject<List<piece>>(JsonConvert.SerializeObject(token.First));
                                 foreach (piece piece in pieceSQLite)
                                 {
+                                    piece.Id = 0;
                                     piece.EndTime = piece.EndTime.HasValue && piece.EndTime.Value.Year < 1900 ? null : piece.EndTime;
                                     piece.StartTime = piece.StartTime.HasValue && piece.StartTime.Value.Year < 1900 ? null : piece.StartTime;
                             }
@@ -157,6 +149,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                 spindleSQLite = JsonConvert.DeserializeObject<List<spindle>>(JsonConvert.SerializeObject(token.First));
                                 foreach (spindle spindle in spindleSQLite)
                                 {
+                                    spindle.Id = 0;
                                     spindle.InstallDate = spindle.InstallDate.HasValue && spindle.InstallDate.Value.Year < 1900 ? null : spindle.InstallDate;
                                     spindle.Replaced = spindle.Replaced.HasValue && spindle.Replaced.Value.Year < 1900 ? null : spindle.Replaced;
                                 }
@@ -166,6 +159,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                 stateSQLite = JsonConvert.DeserializeObject<List<state>>(jsonSerialized);
                                 foreach (state state in stateSQLite)
                                 {
+                                    state.Id = 0;
                                     state.StartTime = state.StartTime.HasValue && state.StartTime.Value.Year < 1900 ? null : state.StartTime;
                                     state.EndTime = state.EndTime.HasValue && state.EndTime.Value.Year < 1900 ? null : state.EndTime;
                                     if (state.StartTime != null && state.EndTime != null)
@@ -178,6 +172,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                 toolSQLite = JsonConvert.DeserializeObject<List<tool>>(JsonConvert.SerializeObject(token.First));
                                 foreach (tool tool in toolSQLite)
                                 {
+                                    tool.Id = 0;
                                     tool.DateLoaded = tool.DateLoaded.HasValue && tool.DateLoaded.Value.Year < 1900 ? null : tool.DateLoaded;
                                     tool.DateReplaced = tool.DateReplaced.HasValue && tool.DateReplaced.Value.Year < 1900 ? null : tool.DateReplaced;
                                 }
@@ -186,7 +181,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                 List<MessageModel>messageModels = JsonConvert.DeserializeObject<List<MessageModel>>(JsonConvert.SerializeObject(token.First));
                                 messageSQLite = messageModels.Select(m => new message()
                                 {
-                                    Id = m.Id,
+                                    Id = 0,
                                     Time = m.Time.HasValue && m.Time.Value.Year < 1900 ? null : m.Time,
                                     Code = m.Code,
                                     Operator = m.Operator,
@@ -200,33 +195,48 @@ namespace FomMonitoringCore.Service.DataMapping
                         }
                     }
 
-                _FomMonitoringSQLiteEntities.Set<bar>().AddRange(barSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
+                if (barSQLite.Any())
+                {
+                    _FomMonitoringSQLiteEntities.Set<bar>().AddRange(barSQLite);
+                    _FomMonitoringSQLiteEntities.SaveChanges();
+                }
+                if (historyJobSQLite.Any())
+                {
+                    _FomMonitoringSQLiteEntities.Set<historyJob>().AddRange(historyJobSQLite);
+                    _FomMonitoringSQLiteEntities.SaveChanges();
+                }
+                if (infoSQLite.Any())
+                {
+                    _FomMonitoringSQLiteEntities.Set<info>().AddRange(infoSQLite);
+                    _FomMonitoringSQLiteEntities.SaveChanges();
+                }
+                if (pieceSQLite.Any())
+                {
+                    _FomMonitoringSQLiteEntities.Set<piece>().AddRange(pieceSQLite);
+                    _FomMonitoringSQLiteEntities.SaveChanges();
+                }
+                if (spindleSQLite.Any())
+                {
+                    _FomMonitoringSQLiteEntities.Set<spindle>().AddRange(spindleSQLite);
+                    _FomMonitoringSQLiteEntities.SaveChanges();
+                }
+                if (stateSQLite.Any())
+                {
+                    _FomMonitoringSQLiteEntities.Set<state>().AddRange(stateSQLite);
+                    _FomMonitoringSQLiteEntities.SaveChanges();
+                }
+                if (toolSQLite.Any())
+                {
+                    _FomMonitoringSQLiteEntities.Set<tool>().AddRange(toolSQLite);
+                    _FomMonitoringSQLiteEntities.SaveChanges();
+                }
 
-                _FomMonitoringSQLiteEntities.Set<error>().AddRange(errorSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
+                if (messageSQLite.Any())
+                {
+                    _FomMonitoringSQLiteEntities.Set<message>().AddRange(messageSQLite);
+                    _FomMonitoringSQLiteEntities.SaveChanges();
+                }
 
-                _FomMonitoringSQLiteEntities.Set<historyJob>().AddRange(historyJobSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
-
-                _FomMonitoringSQLiteEntities.Set<info>().AddRange(infoSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
-
-                _FomMonitoringSQLiteEntities.Set<piece>().AddRange(pieceSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
-
-                _FomMonitoringSQLiteEntities.Set<spindle>().AddRange(spindleSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
-
-                _FomMonitoringSQLiteEntities.Set<state>().AddRange(stateSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
-
-                _FomMonitoringSQLiteEntities.Set<tool>().AddRange(toolSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
-
-                _FomMonitoringSQLiteEntities.Set<message>().AddRange(messageSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
-                
                 result = true;                
             }
             catch (Exception ex)
@@ -247,7 +257,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 List<historyPiece> historyPieceSQLite = new List<historyPiece>();
                 List<historyJob> historyJobSQLite = new List<historyJob>();
                 List<info> infoSQLite = new List<info>();
-                List<historyAlarm> historyAlarmSQLite = new List<historyAlarm>();
                 List<historyMessage> historyMessageSQLite = new List<historyMessage>();
                 List<historyState> historyStateSQLite = new List<historyState>();
                 List<spindle> spindleSQLite = new List<spindle>();
@@ -259,7 +268,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyPiece");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyJob");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE info");
-                _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyAlarm");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyState");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyMessage");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE spindle");
@@ -298,16 +306,10 @@ namespace FomMonitoringCore.Service.DataMapping
                             infoSQLite = JsonConvert.DeserializeObject<List<info>>(JsonConvert.SerializeObject(token.First));
                             foreach (var info in infoSQLite)
                             {
+                                info.Id = 0;
                                 info.LoginDate = info.LoginDate.HasValue && info.LoginDate.Value.Year < 1900 ? null : info.LoginDate;
                                 info.InstallationDate = info.InstallationDate.HasValue && info.InstallationDate.Value.Year < 1900 ? null : info.InstallationDate;
                                 info.NextMaintenanceService = info.NextMaintenanceService.HasValue && info.NextMaintenanceService.Value.Year < 1900 ? null : info.NextMaintenanceService;
-                            }
-                            break;
-                        case "historyalarm":
-                            historyAlarmSQLite = JsonConvert.DeserializeObject<List<historyAlarm>>(JsonConvert.SerializeObject(token.First));
-                            foreach (var historyAlarm in historyAlarmSQLite)
-                            {
-                                historyAlarm.Day = historyAlarm.Day.HasValue && historyAlarm.Day.Value.Year < 1900 ? null : historyAlarm.Day;
                             }
                             break;
                         case "historymessage":
@@ -365,9 +367,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 _FomMonitoringSQLiteEntities.SaveChanges();
 
                 _FomMonitoringSQLiteEntities.Set<info>().AddRange(infoSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
-
-                _FomMonitoringSQLiteEntities.Set<historyAlarm>().AddRange(historyAlarmSQLite);
                 _FomMonitoringSQLiteEntities.SaveChanges();
 
                 _FomMonitoringSQLiteEntities.Set<historyState>().AddRange(historyStateSQLite);

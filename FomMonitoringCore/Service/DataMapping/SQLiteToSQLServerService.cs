@@ -128,21 +128,22 @@ namespace FomMonitoringCore.Service.DataMapping
                 }
 
                 //_FomMonitoringEntities.Set<Bar>().AddRange(bar);
-                var messageMachine = messageSqLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<MessageMachine>>();
-                messageMachine = messageMachine.Where(w => w.StartTime > (machineActual.LastUpdate ?? new DateTime())).ToList();
+                var cat = _fomMonitoringEntities.Set<MachineModel>().Find(machineActual.MachineModelId)?.MessageCategoryId;
+                messageSqLite = messageSqLite.Where(w => w.Time > (machineActual.LastUpdate ?? new DateTime())).ToList();
 
                 //devo eliminare quei messaggi che hanno isLolaVisible = 0 da mdb
-                var cat = _fomMonitoringEntities.Set<MachineModel>().Find(machineActual.MachineModelId)?.MessageCategoryId;
-                foreach (var mm in messageMachine.ToList())
-                {
-                    if (mm.MessagesIndex != null)
-                    {
-                        var msg = _fomMonitoringEntities.Set<MessagesIndex>().FirstOrDefault(f => f.MessageCode == mm.MessagesIndex.MessageCode && f.MessageCategoryId == cat);
-                        if (msg != null && msg.IsPeriodicM)
-                            mm.MessagesIndex.IsPeriodicM = true;
+                List<MessageMachine> messageMachine = new List<MessageMachine>();
 
-                        mm.MessagesIndexId = msg.Id;
-                        mm.MessagesIndex = msg;
+                foreach (var mm in messageSqLite)
+                {
+                    MessageMachine message = mm.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<MessageMachine>();
+                    var msg = _fomMonitoringEntities.Set<MessagesIndex>().FirstOrDefault(f => f.MessageCode == mm.Code && f.MessageCategoryId == cat);
+                    message.Id = 0;
+                    if (msg != null)
+                    {
+                        message.MessagesIndexId = msg.Id;
+                        message.MessagesIndex = msg;
+                        messageMachine.Add(message);
                     }
                 }
 
@@ -183,6 +184,7 @@ namespace FomMonitoringCore.Service.DataMapping
 
                 var state = stateSqLite.BuildAdapter().AddParameters("machineService", _machineService).AddParameters("machineId", machineActual.Id).AdaptToType<List<StateMachine>>();
                 state = state.Where(w => w.EndTime > (machineActual.LastUpdate ?? new DateTime())).ToList();
+
                 _fomMonitoringEntities.Set<StateMachine>().AddRange(state);
                 _fomMonitoringEntities.SaveChanges();
                
@@ -228,8 +230,6 @@ namespace FomMonitoringCore.Service.DataMapping
             var result = false;
             try
             {
-
-                var historyAlarmSqLite = _fomMonitoringSqLiteEntities.Set<historyAlarm>().ToList();
                 var historyBarSqLite = _fomMonitoringSqLiteEntities.Set<historyBar>().ToList();
                 var historyJobSqLite = _fomMonitoringSqLiteEntities.Set<historyJob>().ToList();
                 var historyPieceSqLite = _fomMonitoringSqLiteEntities.Set<historyPiece>().ToList();

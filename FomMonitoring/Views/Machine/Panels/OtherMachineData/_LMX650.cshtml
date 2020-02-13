@@ -1,0 +1,119 @@
+﻿
+@model FomMonitoringBLL.ViewModel.PanelParametersViewModel
+@using FomMonitoringCore.Service
+
+<div id="CardOtherDataLMXMachine" class="@ViewData["Classes"]">
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="portlet-kpi">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
+                    <i class="fa fa-database fa-stack-1x fa-inverse" style="font-size:21px"></i>
+                </span>
+            </div>
+            <div class="title-kpi" style="max-width: 360px;">
+                <span>@LocalizationService.GetResource("OtherMachineData")</span>
+                <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
+            </div>
+        </div>
+        <div class="portlet-body text-center" style="height:244px">
+            <div class="card-portlet">
+                <div v-if="values != null" style="height:242px">
+                    <hr style="background-color: #0c3817; height: 2px; border: none" />
+                    <div style="cursor: auto; height: 50%">
+                        <table class="table-other-data">
+                            <tr>
+                                <td style="padding-left: 0">
+                                    <table style="width: 100%; height: 100%">
+                                        <tr>
+                                            <td class="td-other-data">
+                                                <label style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-other-title">@LocalizationService.GetResource("ore1_Stat")</label>
+                                            </td>
+                                            <td class="td-other-data  tool-border-left">
+                                                <label style="vertical-align: top; width: 20px;"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-other-title">@LocalizationService.GetResource("n_barrecaricate_Stat")</label>
+                                            </td>
+                                            <td class="td-other-data">
+                                                <label style="vertical-align: top; width: 20px;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-other-title" v-html="values.NumBarreCaricate.Description">@LocalizationService.GetResource("Nr_BarreCaricate_StepIn")</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-other-data">
+                                                <label v-if="values.OreVitaMacchina && values.OreVitaMacchina.ConvertedValue != null" class="label-other-data-value" v-html="values.OreVitaMacchina.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-other-data tool-border-left">
+                                                <label v-if="values.OreUltimoIngr != null && values.OreUltimoIngr.ConvertedValue" class="label-other-data-value" v-html="values.OreUltimoIngr.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-other-data">
+                                                <label v-if="values.NumBarreCaricate != null && values.NumBarreCaricate.ConvertedValue" class="label-other-data-value" v-html="values.NumBarreCaricate.ConvertedValue"></label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="cursor: auto; height: 50%">
+                        <table class="table-other-data">
+                            <tr>
+                                <td class="portlet-subtitle" style="font-size: 11px">
+                                    @Html.Raw(LocalizationService.GetResource("XLABETICHETTATRICE"))
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table style="width: 100%; height: 100%">
+
+                                        <tr>
+                                            <td class="td-other-data">
+                                                <label><i class="fa fa-tag fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-other-title">@LocalizationService.GetResource("TabNEtichetteAlCambioRotolo")</label>
+                                            </td>
+                                            <td class="td-other-data tool-border-left">
+                                                <label><i class="fa fa-tag fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-other-title">@LocalizationService.GetResource("TabEtichettePerse")</label>
+                                            </td>
+                                            <td class="td-other-data">
+                                                <label><i class="fa fa-tag fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-other-title">@LocalizationService.GetResource("TabNEtichetteStampate")</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-other-data">
+                                                <label v-if="values.EtiMancanti != null && values.EtiMancanti.ConvertedValue" class="label-other-data-value" v-html="values.EtiMancanti.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-other-data tool-border-left">
+                                                <label v-if="values.EtiPerse != null && values.EtiPerse.ConvertedValue" class="label-other-data-value" v-html="values.EtiPerse.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-other-data">
+                                                <label v-if="values.EtiStampate != null && values.EtiStampate.ConvertedValue" class="label-other-data-value" v-html="values.EtiStampate.ConvertedValue"></label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <no-data v-else></no-data>
+                </div>
+            </div>
+
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        var data = @Html.Raw(Json.Encode(Model));
+        OtherDataLMX.init(data);
+    });
+
+</script>
+
+

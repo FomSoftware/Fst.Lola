@@ -12,6 +12,10 @@
     {
         @Html.Partial("Model/_FMC_3_4", Model);
     }
+    else if (Model.MachineInfo.model.ToUpper().Contains("LMX"))
+    {
+        @Html.Partial("Model/_LMX_650", Model);
+    }
     else
     {
         @Html.Partial("Model/_Default", Model);

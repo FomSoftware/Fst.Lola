@@ -1,4 +1,4 @@
-﻿var Jobs = function ()
+﻿var OtherMachinesJobs = function ()
 {
     var vmJobs;
 
@@ -18,7 +18,7 @@
     var dataBindVueModel = function (data)
     {
         vmJobs = new Vue({
-            el: '#CardJobs',
+            el: '#CardOtherMachinesJobs',
             data: {
                 jobs: data.jobs,
                 sorting: data.sorting,
@@ -250,8 +250,10 @@
     {
         // update vue model
         var vm_jobs = data.vm_jobs;
-        vmJobs.jobs = vm_jobs.jobs;
-        vmJobs.sorting = vm_jobs.sorting;
+        if (vmJobs) {
+            vmJobs.jobs = vm_jobs.jobs;
+            vmJobs.sorting = vm_jobs.sorting;
+        }
     }
 
 

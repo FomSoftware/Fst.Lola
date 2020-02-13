@@ -23,6 +23,7 @@
             el: '#CardToolsFmcLmx',
             data: {
                 tools: data.ToolsInfo,
+                panel: data.PanelId,
                 showed: true
             },
             computed: {
@@ -46,6 +47,7 @@
         var vm_tools = data.vm_tools_fmc_lmx;
         if (vm_tools != null) {
             vmTools.tools = vm_tools.ToolsInfo;
+            vmTools.panel = vm_tools.PanelId;
         }
         
     }

@@ -15,8 +15,8 @@
                         </a>
                     }
                     <!-- #region filter machine -->
-                    <div class="toolbar-filter">
-                        <span class="title-small">@Resource.Machine</span>
+                    <div class="toolbar-filter" v-cloak>
+                        <span class="title-small" v-cloak>@Resource.Machine</span>
                         <select  id="machine_select" class="bs-select show-menu-arrow show-tick display-none machine-select">
                             <option v-cloak v-for="m in machines"
                                     v-bind:value="m.id"
@@ -29,17 +29,17 @@
                     <!-- #endregion -->
                     <!-- #region info machine -->
                     <div v-cloak class="dropdown dropdown-toolbar" onclick="SharedManager.handlerDropdown($(this))">
-                        <div  class="btn btn-toolbar only-icon">
+                        <div  class="btn btn-toolbar only-icon" v-cloak>
                             <div class="icon-btn visible-sm visible-xs d-block d-md-none">
                                 <i class="icon-info color-corporate"></i>
                             </div>
-                            <div class="info-macchina d-none d-md-block">
-                                <div>
-                                    <span class="title-small">@Resource.Type</span>
+                            <div class="info-macchina d-none d-md-block" v-cloak>
+                                <div v-cloak>
+                                    <span v-cloak class="title-small">@Resource.Type</span>
                                     <span v-cloak>{{selected.machine.mtype}}</span>
                                 </div>
                                 <div>
-                                    <span class="title-small">@Resource.Model</span>
+                                    <span v-cloak class="title-small">@Resource.Model</span>
                                     <span v-cloak>{{selected.machine.machineName || selected.machine.model}}</span>
                                 </div>
                             </div>
@@ -147,7 +147,7 @@
                 }
                 @if (Model.page == enPage.Machine || Model.page == enPage.PlantMessages)
                 {
-                    <div class="col-5 col-md-4 col-sm-5 col-lg-4 col-xl-4 col-padding">
+                    <div class="col-3 col-md-4 col-sm-4 col-lg-4 col-xl-4 col-padding">
                         <div id="calendar" class="btn-toolbar pull-right">
                             <div class="icon-btn">
                                 <i class="icon-calendar color-corporate"></i>

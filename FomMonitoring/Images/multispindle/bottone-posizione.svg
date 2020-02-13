@@ -1,84 +1,84 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="50 70 190 140"
 	  xml:space="preserve">
-<switch>
+  <switch>
 	<g>
 		<g id="MM">
 			<g data-MMspindle-index="45">
-				<circle class="st0" cx="97.2" cy="196.2" r="9"></circle>
-				<text transform="matrix(1 0 0 1 89.9298 200.7184)" class="st1 st2 st3">45</text>
+				<circle class="mmst0" cx="97.2" cy="196.2" r="9"></circle>
+				<text transform="matrix(1 0 0 1 89.9298 200.7184)" class="mmst1 mmst2 mmst3">45</text>
 			</g>
 			<g data-MMspindle-index="44">
-				<circle class="st0" cx="120.2" cy="196.2" r="9"></circle>
-				<text transform="matrix(1 0 0 1 112.9298 200.7184)" class="st1 st2 st3">44</text>
+				<circle class="mmst0" cx="120.2" cy="196.2" r="9"></circle>
+				<text transform="matrix(1 0 0 1 112.9298 200.7184)" class="mmst1 mmst2 mmst3">44</text>
 			</g>
 			<g data-MMspindle-index="43">
-				<circle class="st0" cx="143.2" cy="196.2" r="9"></circle>
-				<text transform="matrix(1 0 0 1 135.9298 200.7184)" class="st1 st2 st3">43</text>
+				<circle class="mmst0" cx="143.2" cy="196.2" r="9"></circle>
+				<text transform="matrix(1 0 0 1 135.9298 200.7184)" class="mmst1 mmst2 mmst3">43</text>
 			</g>
 			<g data-MMspindle-index="42">
-				<circle class="st0" cx="166.2" cy="196.2" r="9"></circle>
-				<text transform="matrix(1 0 0 1 158.6281 200.7175)" class="st1 st2 st3">42</text>
+				<circle class="mmst0" cx="166.2" cy="196.2" r="9"></circle>
+				<text transform="matrix(1 0 0 1 158.6281 200.7175)" class="mmst1 mmst2 mmst3">42</text>
 			</g>
 			<g data-MMspindle-index="41">
-				<circle class="st0" cx="189.2" cy="196.2" r="9"></circle>
-				<text transform="matrix(1 0 0 1 181.9299 200.7184)" class="st1 st2 st3">41</text>
+				<circle class="mmst0" cx="189.2" cy="196.2" r="9"></circle>
+				<text transform="matrix(1 0 0 1 181.9299 200.7184)" class="mmst1 mmst2 mmst3">41</text>
 			</g>
 			<g data-MMspindle-index="34">
-				<circle class="st0" cx="213.2" cy="178.7" r="9"></circle>
-				<text transform="matrix(1 0 0 1 205.9299 183.2184)" class="st1 st2 st3">34</text>
+				<circle class="mmst0" cx="213.2" cy="178.7" r="9"></circle>
+				<text transform="matrix(1 0 0 1 205.9299 183.2184)" class="mmst1 mmst2 mmst3">34</text>
 			</g>
 			<g data-MMspindle-index="32">
-				<circle class="st0" cx="213.2" cy="132.7" r="9"></circle>
-				<text transform="matrix(1 0 0 1 205.9302 137.218)" class="st1 st2 st3">32</text>
+				<circle class="mmst0" cx="213.2" cy="132.7" r="9"></circle>
+				<text transform="matrix(1 0 0 1 205.9302 137.218)" class="mmst1 mmst2 mmst3">32</text>
 			</g>
 			<g data-MMspindle-index="33">
-				<circle class="st0" cx="213.2" cy="155.7" r="9"></circle>
-				<text transform="matrix(1 0 0 1 205.9299 160.2184)" class="st1 st2 st3">33</text>
+				<circle class="mmst0" cx="213.2" cy="155.7" r="9"></circle>
+				<text transform="matrix(1 0 0 1 205.9299 160.2184)" class="mmst1 mmst2 mmst3">33</text>
 			</g>
 			<g data-MMspindle-index="31">
-				<circle class="st0" cx="213.2" cy="109.7" r="9"></circle>
-				<text transform="matrix(1 0 0 1 205.93 114.2181)" class="st1 st2 st3">31</text>
+				<circle class="mmst0" cx="213.2" cy="109.7" r="9"></circle>
+				<text transform="matrix(1 0 0 1 205.93 114.2181)" class="mmst1 mmst2 mmst3">31</text>
 			</g>
 			<g data-MMspindle-index="24">
-				<circle class="st0" cx="73.2" cy="178.7" r="9"></circle>
-				<text transform="matrix(1 0 0 1 65.9294 183.2184)" class="st1 st2 st3">24</text>
+				<circle class="mmst0" cx="73.2" cy="178.7" r="9"></circle>
+				<text transform="matrix(1 0 0 1 65.9294 183.2184)" class="mmst1 mmst2 mmst3">24</text>
 			</g>
 			<g data-MMspindle-index="23">
-				<circle class="st0" cx="73.2" cy="155.7" r="9"></circle>
-				<text transform="matrix(1 0 0 1 65.9294 160.2184)" class="st1 st2 st3">23</text>
+				<circle class="mmst0" cx="73.2" cy="155.7" r="9"></circle>
+				<text transform="matrix(1 0 0 1 65.9294 160.2184)" class="mmst1 mmst2 mmst3">23</text>
 			</g>
 			<g data-MMspindle-index="22">
-				<circle class="st0" cx="73.2" cy="132.7" r="9"></circle>
-				<text transform="matrix(1 0 0 1 65.9294 137.218)" class="st1 st2 st3">22</text>
+				<circle class="mmst0" cx="73.2" cy="132.7" r="9"></circle>
+				<text transform="matrix(1 0 0 1 65.9294 137.218)" class="mmst1 mmst2 mmst3">22</text>
 			</g>
 			<g data-MMspindle-index="21">
-				<circle class="st0" cx="73.2" cy="109.7" r="9"></circle>
-				<text transform="matrix(1 0 0 1 65.9294 114.218)" class="st1 st2 st3">21</text>
+				<circle class="mmst0" cx="73.2" cy="109.7" r="9"></circle>
+				<text transform="matrix(1 0 0 1 65.9294 114.218)" class="mmst1 mmst2 mmst3">21</text>
 			</g>
 			<g data-MMspindle-index="15">
-				<circle class="st0" cx="97.2" cy="87.7" r="9"></circle>
-				<text transform="matrix(1 0 0 1 89.9298 92.218)" class="st1 st2 st3">15</text>
+				<circle class="mmst0" cx="97.2" cy="87.7" r="9"></circle>
+				<text transform="matrix(1 0 0 1 89.9298 92.218)" class="mmst1 mmst2 mmst3">15</text>
 			</g>
 			<g data-MMspindle-index="14">
-				<circle class="st0" cx="120.2" cy="87.7" r="9"></circle>
-				<text transform="matrix(1 0 0 1 112.9298 92.218)" class="st1 st2 st3">14</text>
+				<circle class="mmst0" cx="120.2" cy="87.7" r="9"></circle>
+				<text transform="matrix(1 0 0 1 112.9298 92.218)" class="mmst1 mmst2 mmst3">14</text>
 			</g>
 			<g data-MMspindle-index="13">
-				<circle class="st0" cx="143.2" cy="87.7" r="9"></circle>
-				<text transform="matrix(1 0 0 1 135.9298 92.218)" class="st1 st2 st3">13</text>
+				<circle class="mmst0" cx="143.2" cy="87.7" r="9"></circle>
+				<text transform="matrix(1 0 0 1 135.9298 92.218)" class="mmst1 mmst2 mmst3">13</text>
 			</g>
 			<g data-MMspindle-index="12">
-				<circle class="st0" cx="166.2" cy="87.7" r="9"></circle>
-				<text transform="matrix(1 0 0 1 158.6281 92.217)" class="st1 st2 st3">12</text>
+				<circle class="mmst0" cx="166.2" cy="87.7" r="9"></circle>
+				<text transform="matrix(1 0 0 1 158.6281 92.217)" class="mmst1 mmst2 mmst3">12</text>
 			</g>
 			<g data-MMspindle-index="11">
-				<circle class="st0" cx="189.2" cy="87.7" r="9"></circle>
-				<text transform="matrix(1 0 0 1 181.9299 92.218)" class="st1 st2 st3">11</text>
+				<circle class="mmst0" cx="189.2" cy="87.7" r="9"></circle>
+				<text transform="matrix(1 0 0 1 181.9299 92.218)" class="mmst1 mmst2 mmst3">11</text>
 			</g>
 		</g>
 		<g data-MMspindle="POSIZIONE">
-			<text transform="matrix(1 0 0 1 100.0224 114.762)" class="st1 st4 st5" data-MMspindle-label="POSIZIONE">POSIZIONE</text>
-			<text transform="matrix(1 0 0 1 105.6074 172.7616)" class="st1 st2 st6" data-MMspindle-selected="11">11</text>
+			<text transform="matrix(1 0 0 1 100.0224 114.762)" class="mmst1 mmst4 mmst5" data-MMspindle-label="POSIZIONE">POSIZIONE</text>
+			<text transform="matrix(1 0 0 1 105.6074 172.7616)" class="mmst1 mmst2 mmst6" data-MMspindle-selected="11">11</text>
 		</g>
 	</g>
 </switch>

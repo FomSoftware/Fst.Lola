@@ -17,7 +17,7 @@
                         </span>
                     </button>
                     <button type="button" id="btn-maintenance" data-panel="maintenance" class="no-borders col-3">
-                        <span class="fa fa-stack">
+                        <span class="fa fa-stack" style="position: initial">
                             <i class="fa fa-circle fa-stack-2x" style="color: cornflowerblue;"></i>
                             <i class="fa fa-info fa-inverse fa-stack-1x"></i>
                         </span>
@@ -33,14 +33,14 @@
     </div>
     <div class="row justify-content-center machine-image-wrapper" id="image-machine-sm">
         <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-9">
-            <div style="height: 65%; padding-bottom: 13px;">
+            <div style="height: 65%; padding-bottom: 13px;text-align: center">
                 @Html.Action("GetHtmlPage", "Shared", new { path = "~/images/panels/FMC-immagine_macchina_CORTA_2.svg" })
             </div>
         </div>
     </div>
     <div class="row justify-content-center machine-image-wrapper" id="image-machine-lg">
         <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-9">
-            <div style="height: 65%; padding-bottom: 13px;">
+            <div style="height: 65%; padding-bottom: 13px;text-align: center">
                 @Html.Action("GetHtmlPage", "Shared", new { path = "~/images/panels/FMC-immagine_macchina_LUNGA.svg" })
             </div>
         </div>
@@ -74,14 +74,14 @@
                 {
                     {"Classes", "col-xxl-4 col-xl-6  col-lg-6 col-md-12 col-sm-12 col-12"}
                 })
-                @Html.Partial("Panels/_Jobs", Model.Jobs, new ViewDataDictionary
+                @Html.Partial("Panels/Jobs/_FMC_LMX", Model.Jobs, new ViewDataDictionary
                 {
                     {"Classes", "col-xxl-4 col-xl-6  col-lg-6 col-md-12 col-sm-12 col-12"}
                 })
                 @*<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machinePanelSelected != null && machinePanelSelected != 'maintenance' && isMobile()">
             <div class="empty-area" style="height: 100%"></div>
         </div>*@
-                @Html.Partial("Panels/ElectroSpindle/_OtherMachineData", Model.PanelParameter, new ViewDataDictionary
+                @Html.Partial("Panels/OtherMachineData/_FMC34", Model.PanelParameter, new ViewDataDictionary
                 {
                     {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
                 })
@@ -99,7 +99,7 @@
 
                 @Html.Partial("Panels/_Maintenance", Model.Maintenance, new ViewDataDictionary
                 {
-                    {"Classes", "col-xxl-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 order-xl-last"}
+                    {"Classes", "col-xxl-4 col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12 order-xl-last"}
                 })
                 <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 placeholder-panel-mobile" style="min-height: 298px;">
                     <div class="empty-area" style="height: 100%"></div>
@@ -122,6 +122,6 @@
 </div>
 <script>
     $(document).ready(function() {
-        ImageManager.init();      
+        ImageManager.init('FMC');      
     });
 </script>

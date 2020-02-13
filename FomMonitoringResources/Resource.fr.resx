@@ -770,9 +770,6 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
     <value>Plage Rpm</value>
   </data>
-  <data name="TabRpmTotMandriniMM" xml:space="preserve">
-    <value />
-  </data>
   <data name="LMX650_LinearAxes" xml:space="preserve">
     <value>AXES LINÉAIRES</value>
   </data>
@@ -977,8 +974,8 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="DistAsse3C2_SemiRotazioni" xml:space="preserve">
     <value>Nb demi-rotations axe 3C2</value>
   </data>
-  <data name="TabVitaUtensileMM_Cod1" xml:space="preserve">
-    <value>Heures de vie outil Code (n° codice utensile)</value>
+  <data name="TabVitaUtensile" xml:space="preserve">
+    <value>Heures de vie outil {0}</value>
   </data>
   <data name="TabSoglieRpmMandriniCUT_1" xml:space="preserve">
     <value>Plage 0-1500 rpm</value>
@@ -986,7 +983,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="TabSoglieRpmMandriniCUT_2" xml:space="preserve">
     <value>Plage 1501-2500 rpm</value>
   </data>
-  <data name="TabSoglieRpmMandriniCUT_3&#x9;" xml:space="preserve">
+  <data name="TabSoglieRpmMandriniCUT_3" xml:space="preserve">
     <value>Plage 2501-3000 rpm</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_1" xml:space="preserve">
@@ -1074,6 +1071,57 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>tps écoulé</value>
   </data>
   <data name="TabTempoResiduoBarra" xml:space="preserve">
-    <value>Temps résiduel bar individuelle</value>
+    <value>Temps résiduel bar</value>
+  </data>
+  <data name="RotaryAxesXMU" xml:space="preserve">
+    <value>AXES ROTATIFS XMU</value>
+  </data>
+  <data name="ToolsStore" xml:space="preserve">
+    <value>MAG.OUTILS (X-MODULE)</value>
+  </data>
+  <data name="oreMandrinoAttivo" xml:space="preserve">
+    <value>Heures tot. travail électrobroche</value>
+  </data>
+  <data name="UserNotEnabled" xml:space="preserve">
+    <value>Utilisateur non activé</value>
+  </data>
+  <data name="MachineAssociatedToPlant" xml:space="preserve">
+    <value>Machine déjà associée à l’installation {0}, voulez-vous vraiment continuer ? </value>
+  </data>
+  <data name="PlantCreated" xml:space="preserve">
+    <value>Usine créé avec succés</value>
+  </data>
+  <data name="Assorbimento" xml:space="preserve">
+    <value>ABSORPTION</value>
+  </data>
+  <data name="Vibrazioni" xml:space="preserve">
+    <value>VIBRATIONS</value>
+  </data>
+  <data name="TemperaturaSchedaEl" xml:space="preserve">
+    <value>TEMPÉRATURE DE LA CARTE ÉLECTRIQUE</value>
+  </data>
+  <data name="TemperaturaCuscinetti" xml:space="preserve">
+    <value>TEMPERATURE ROULEMENTS</value>
+  </data>
+  <data name="TemperaturaStatore" xml:space="preserve">
+    <value>STATOR TEMPERATURE</value>
+  </data>
+  <data name="TabTagliContatoreTotCUT" xml:space="preserve">
+    <value>Coupes lame totales</value>
+  </data>
+  <data name="Blade" xml:space="preserve">
+    <value>Lame</value>
+  </data>
+  <data name="MotorBlade" xml:space="preserve">
+    <value>MOTEUR LAME</value>
+  </data>
+  <data name="TabNEtichetteAlCambioRotolo" xml:space="preserve">
+    <value>Étiquettes manquantes (erreurs)</value>
+  </data>
+  <data name="TabNEtichetteStampate" xml:space="preserve">
+    <value>Étiquettes imprimées</value>
+  </data>
+  <data name="XLABETICHETTATRICE" xml:space="preserve">
+    <value>XLAB - MACHINE D'ÉTIQUETAGE (EN OPTION)</value>
   </data>
 </root>

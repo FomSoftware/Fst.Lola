@@ -1,12 +1,13 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?r80p6h');
-  src:  url('../fonts/icomoon.eot?r80p6h#iefix') format('embedded-opentype'),
-    url('../fonts/icomoon.ttf?r80p6h') format('truetype'),
-    url('../fonts/icomoon.woff?r80p6h') format('woff'),
-    url('../fonts/icomoon.svg?r80p6h#icomoon') format('svg');
+  src:  url('../fonts/icomoon.eot?1re51');
+  src:  url('../fonts/icomoon.eot?1re51#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?1re51') format('truetype'),
+    url('../fonts/icomoon.woff?1re51') format('woff'),
+    url('../fonts/icomoon.svg?1re51#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
+  font-display: block;
 }
 
 [class^="icofom-"], [class*=" icofom-"] {
@@ -23,86 +24,73 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .icofom-assekm:before {
-    content: "\e900";
+  content: "\e901";
 }
-
 .icofom-elettromandrino:before {
-    content: "\e901";
+  content: "\e902";
 }
-
 .icofom-motoriassi:before {
-    content: "\e902";
+  content: "\e903";
 }
-
 .icofom-assi:before {
-    content: "\e903";
+  content: "\e904";
 }
-
 .icofom-motori:before {
-    content: "\e904";
+  content: "\e905";
 }
-
 .icofom-centrolavoro:before {
-    content: "\e94b";
+  content: "\e94b";
 }
-
 .icofom-lineataglio:before {
-    content: "\e94c";
+  content: "\e94c";
 }
-
 .icofom-lineatagliolavoro:before {
-    content: "\e94d";
+  content: "\e94d";
 }
-
 .icofom-troncatrice:before {
-    content: "\e94e";
+  content: "\e94e";
 }
-
 .icofom-alarms:before {
-    content: "\e94f";
+  content: "\e94f";
 }
-
 .icofom-efficiency:before {
-    content: "\e950";
+  content: "\e950";
 }
-
 .icofom-fresa:before {
-    content: "\e951";
+  content: "\e951";
 }
-
 .icofom-jobs:before {
-    content: "\e952";
+  content: "\e952";
 }
-
 .icofom-lama:before {
-    content: "\e953";
+  content: "\e953";
 }
-
 .icofom-manual:before {
-    content: "\e954";
+  content: "\e954";
 }
-
 .icofom-overfeed:before {
-    content: "\e955";
+  content: "\e955";
 }
-
 .icofom-pause:before {
-    content: "\e956";
+  content: "\e956";
 }
-
 .icofom-productivity:before {
-    content: "\e957";
+  content: "\e957";
 }
-
 .icofom-punta:before {
-    content: "\e958";
+  content: "\e958";
 }
-
 .icofom-spindles:before {
-    content: "\e959";
+  content: "\e959";
 }
-
 .icofom-user:before {
-    content: "\e95a";
+  content: "\e95a";
+}
+.icofom-sensoristica:before {
+  content: "\e900";
+}
+.icofom-sort-amount-desc:before {
+  content: "\ea4d";
 }

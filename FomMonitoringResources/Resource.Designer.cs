@@ -106,6 +106,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Absorption.
+        /// </summary>
+        public static string Assorbimento {
+            get {
+                return ResourceManager.GetString("Assorbimento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Average Speed.
         /// </summary>
         public static string AverageSpeed {
@@ -147,6 +156,15 @@ namespace FomMonitoringResources {
         public static string Bars {
             get {
                 return ResourceManager.GetString("Bars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blade.
+        /// </summary>
+        public static string Blade {
+            get {
+                return ResourceManager.GetString("Blade", resourceCulture);
             }
         }
         
@@ -1440,6 +1458,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MachineAssociatedToPlant.
+        /// </summary>
+        public static string MachineAssociatedToPlant {
+            get {
+                return ResourceManager.GetString("MachineAssociatedToPlant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Machines.
         /// </summary>
         public static string Machines {
@@ -1535,6 +1562,15 @@ namespace FomMonitoringResources {
         public static string ModifyUser {
             get {
                 return ResourceManager.GetString("ModifyUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MOTOR BLADE.
+        /// </summary>
+        public static string MotorBlade {
+            get {
+                return ResourceManager.GetString("MotorBlade", resourceCulture);
             }
         }
         
@@ -1823,6 +1859,15 @@ namespace FomMonitoringResources {
         public static string ore1_Stat {
             get {
                 return ResourceManager.GetString("ore1_Stat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to oreMandrinoAttivo.
+        /// </summary>
+        public static string oreMandrinoAttivo {
+            get {
+                return ResourceManager.GetString("oreMandrinoAttivo", resourceCulture);
             }
         }
         
@@ -2250,6 +2295,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RotaryAxesXMU.
+        /// </summary>
+        public static string RotaryAxesXMU {
+            get {
+                return ResourceManager.GetString("RotaryAxesXMU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
@@ -2439,20 +2493,20 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [TabRpmTotMandriniINT].
+        ///   Looks up a localized string similar to Missing labels (errors).
         /// </summary>
-        public static string TabRpmTotMandriniINT {
+        public static string TabNEtichetteAlCambioRotolo {
             get {
-                return ResourceManager.GetString("TabRpmTotMandriniINT", resourceCulture);
+                return ResourceManager.GetString("TabNEtichetteAlCambioRotolo", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [TabRpmTotMandriniMM].
+        ///   Looks up a localized string similar to Printed labels.
         /// </summary>
-        public static string TabRpmTotMandriniMM {
+        public static string TabNEtichetteStampate {
             get {
-                return ResourceManager.GetString("TabRpmTotMandriniMM", resourceCulture);
+                return ResourceManager.GetString("TabNEtichetteStampate", resourceCulture);
             }
         }
         
@@ -2498,6 +2552,15 @@ namespace FomMonitoringResources {
         public static string TabSoglieRpmMandriniCUT_2 {
             get {
                 return ResourceManager.GetString("TabSoglieRpmMandriniCUT_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range 2501-3000 rpm.
+        /// </summary>
+        public static string TabSoglieRpmMandriniCUT_3 {
+            get {
+                return ResourceManager.GetString("TabSoglieRpmMandriniCUT_3", resourceCulture);
             }
         }
         
@@ -2574,6 +2637,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total blade cuts.
+        /// </summary>
+        public static string TabTagliContatoreTotCUT {
+            get {
+                return ResourceManager.GetString("TabTagliContatoreTotCUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bearings Over-Temperature q.ty.
         /// </summary>
         public static string TabTemperCuscinettiContatoreINT {
@@ -2639,9 +2711,36 @@ namespace FomMonitoringResources {
         /// <summary>
         ///   Looks up a localized string similar to Cod1 tool working hours.
         /// </summary>
-        public static string TabVitaUtensileMM_Cod1 {
+        public static string TabVitaUtensile {
             get {
-                return ResourceManager.GetString("TabVitaUtensileMM_Cod1", resourceCulture);
+                return ResourceManager.GetString("TabVitaUtensile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bearings Temperature.
+        /// </summary>
+        public static string TemperaturaCuscinetti {
+            get {
+                return ResourceManager.GetString("TemperaturaCuscinetti", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Board Temperature.
+        /// </summary>
+        public static string TemperaturaSchedaEl {
+            get {
+                return ResourceManager.GetString("TemperaturaSchedaEl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stator Temperature.
+        /// </summary>
+        public static string TemperaturaStatore {
+            get {
+                return ResourceManager.GetString("TemperaturaStatore", resourceCulture);
             }
         }
         
@@ -2750,6 +2849,15 @@ namespace FomMonitoringResources {
         public static string Tools {
             get {
                 return ResourceManager.GetString("Tools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ToolsStore.
+        /// </summary>
+        public static string ToolsStore {
+            get {
+                return ResourceManager.GetString("ToolsStore", resourceCulture);
             }
         }
         
@@ -2916,6 +3024,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vibrations.
+        /// </summary>
+        public static string Vibrazioni {
+            get {
+                return ResourceManager.GetString("Vibrazioni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tool actual working hours.
         /// </summary>
         public static string vitaUtensile_x {
@@ -2939,6 +3056,15 @@ namespace FomMonitoringResources {
         public static string Working {
             get {
                 return ResourceManager.GetString("Working", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XLAB - LABELING MACHINE (OPTIONAL).
+        /// </summary>
+        public static string XLABETICHETTATRICE {
+            get {
+                return ResourceManager.GetString("XLABETICHETTATRICE", resourceCulture);
             }
         }
         

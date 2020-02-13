@@ -17,7 +17,7 @@
     </div>
     <div class="portlet-body text-center" style="height:244px">
         <div class="card-portlet">
-            <div v-if="motors != null && motors.length > 0 && axes != null && axes.length > 0" style="height:242px" class="slimscroll">
+            <div v-if="motors != null && motors.length > 0 && axes != null && axes.length > 0" style="height:242px">
                 <hr style="background-color:#0c3817;height:2px;border:none" />
                 <div style="cursor:auto;height:100%">
                     <table class="table-spindle" style="height:60%">
@@ -30,20 +30,21 @@
                             <td>
                                 <table style="width: 100%;height:100%">
                                     <tr>
-                                        <td class="td-tool" style="width:25%">
-                                            <label style="vertical-align: top;width:20px"><i class="fa fa-toggle-on fa-lg" aria-hidden="true"></i></label>
+                                        
+                                        <td class="td-tool" style="width: 25%">
+                                            <i class="fa fa-toggle-on fa-lg" aria-hidden="true" style="vertical-align: top;"></i>
                                             <label v-if="motors[0] != null" class="label-tools" v-html="motors[0].Description"></label>
                                         </td>
-                                        <td class="td-tool tool-border-left" style="width:25%">
-                                            <label style="vertical-align: top;width:20px"><i class="fa fa-toggle-on fa-lg" aria-hidden="true"></i></label>
+                                        <td class="td-tool tool-border-left" style="width: 25%">
+                                            <i class="fa fa-toggle-on fa-lg" aria-hidden="true"  style="vertical-align: top;"></i>
                                             <label v-if="motors[1] != null" class="label-tools" v-html="motors[1].Description"></label>
                                         </td>
-                                        <td class="td-tool" style="width:25%">
-                                            <label style="vertical-align: top;color:red"><i class="fa fa-exclamation-triangle fa-lg" aria-hidden="true"></i></label>
+                                        <td class="td-tool" style="width: 25%">
+                                            <i class="fa fa-exclamation-triangle fa-lg" aria-hidden="true" style="vertical-align: top; color: red"></i>
                                             <label v-if="motors[2] != null" class="label-tools" v-html="motors[2].Description"></label>
                                         </td>
-                                        <td class="td-tool tool-border-left" style="width:25%">
-                                            <label style="vertical-align: top;color:red"><i class="fa fa-exclamation-triangle fa-lg" aria-hidden="true"></i></label>
+                                        <td class="td-tool tool-border-left" style="width: 25%">
+                                            <i class="fa fa-exclamation-triangle fa-lg" aria-hidden="true" style="vertical-align: top; color: red"></i>
                                             <label v-if="motors[3] != null" class="label-tools" v-html="motors[3].Description"></label>
                                         </td>
                                     </tr>
@@ -106,15 +107,11 @@
                         </tr>
                     </table>
                 </div>
-
             </div>
-                <no-data v-else></no-data>
-            </div>
+            <no-data v-else></no-data>
+        </div>
     </div>
-
-    
-    </div>
-
+</div>
 
 <script type="text/javascript">
 

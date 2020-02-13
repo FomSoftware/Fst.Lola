@@ -770,9 +770,6 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
     <value>Range rpm</value>
   </data>
-  <data name="TabRpmTotMandriniMM" xml:space="preserve">
-    <value>Ore di Lavoro Totali</value>
-  </data>
   <data name="LMX650_LinearAxes" xml:space="preserve">
     <value>ASSI LINEARI</value>
   </data>
@@ -977,8 +974,8 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="DistAsse3C2_SemiRotazioni" xml:space="preserve">
     <value>N° Semi-Rotazioni Asse 3C2</value>
   </data>
-  <data name="TabVitaUtensileMM_Cod1" xml:space="preserve">
-    <value>Ore vita utensile Cod1</value>
+  <data name="TabVitaUtensile" xml:space="preserve">
+    <value>Ore vita utensile {0}</value>
   </data>
   <data name="TabSoglieRpmMandriniCUT_1" xml:space="preserve">
     <value>Range rpm 0-1500</value>
@@ -986,7 +983,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="TabSoglieRpmMandriniCUT_2" xml:space="preserve">
     <value>Range rpm 1501-2500</value>
   </data>
-  <data name="TabSoglieRpmMandriniCUT_3&#x9;" xml:space="preserve">
+  <data name="TabSoglieRpmMandriniCUT_3" xml:space="preserve">
     <value>Range rpm 2501-3000</value>
   </data>
   <data name="TabSoglieRpmMandriniINT_1" xml:space="preserve">
@@ -1070,19 +1067,67 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="TabAccelerometroINT_3" xml:space="preserve">
     <value>Tempo Vibrazioni soglia alta</value>
   </data>
-  <data name="TabRpmTotMandriniINT" xml:space="preserve">
-    <value>Ore Totali Mandrino Intestatrice</value>
+  <data name="oreMandrinoAttivo" xml:space="preserve">
+    <value>Ore lavoro tot. elettromandrino</value>
   </data>
   <data name="TimePassed" xml:space="preserve">
     <value>tempo trascorso</value>
   </data>
   <data name="TabTempoResiduoBarra" xml:space="preserve">
-    <value>Tempo residuo singola barra</value>
+    <value>Tempo residuo barra</value>
   </data>
   <data name="TimeTot" xml:space="preserve">
     <value>T.Tot.</value>
   </data>
   <data name="TimeResStim" xml:space="preserve">
     <value>T.Res Stim.</value>
+  </data>
+  <data name="RotaryAxesXMU" xml:space="preserve">
+    <value>ASSI ROTATIVI XMU</value>
+  </data>
+  <data name="ToolsStore" xml:space="preserve">
+    <value>MAG. UTENSILI (X-MODULE)</value>
+  </data>
+  <data name="UserNotEnabled" xml:space="preserve">
+    <value>Utente non abilitato</value>
+  </data>
+  <data name="MachineAssociatedToPlant" xml:space="preserve">
+    <value>Macchina già associata al plant {0}  si è sicuri di voler continuare?</value>
+  </data>
+  <data name="PlantCreated" xml:space="preserve">
+    <value>Plant creato con successo</value>
+  </data>
+  <data name="Assorbimento" xml:space="preserve">
+    <value>ASSORBIMENTO</value>
+  </data>
+  <data name="Vibrazioni" xml:space="preserve">
+    <value>VIBRAZIONI</value>
+  </data>
+  <data name="TemperaturaCuscinetti" xml:space="preserve">
+    <value>TEMPERATURA CUSCINETTI</value>
+  </data>
+  <data name="TemperaturaSchedaEl" xml:space="preserve">
+    <value>TEMPERATURA SCHEDA ELETTRICA</value>
+  </data>
+  <data name="TemperaturaStatore" xml:space="preserve">
+    <value>TEMPERATURA STATORE</value>
+  </data>
+  <data name="TabTagliContatoreTotCUT" xml:space="preserve">
+    <value>Tagli lama totali</value>
+  </data>
+  <data name="Blade" xml:space="preserve">
+    <value>Lama</value>
+  </data>
+  <data name="MotorBlade" xml:space="preserve">
+    <value>MOTORE LAMA</value>
+  </data>
+  <data name="TabNEtichetteStampate" xml:space="preserve">
+    <value>Etichette stampate</value>
+  </data>
+  <data name="TabNEtichetteAlCambioRotolo" xml:space="preserve">
+    <value>Etichette mancanti (errori)</value>
+  </data>
+  <data name="XLABETICHETTATRICE" xml:space="preserve">
+    <value>XLAB - ETICHETTATRICE (OPTIONAL)</value>
   </data>
 </root>

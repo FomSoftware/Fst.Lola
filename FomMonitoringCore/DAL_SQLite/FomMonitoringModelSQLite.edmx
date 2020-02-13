@@ -21,30 +21,6 @@
           <Property Name="BadAreas" Type="float" />
           <Property Name="JobCode" Type="varchar(max)" />
         </EntityType>
-        <EntityType Name="error">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Time" Type="datetime" />
-          <Property Name="TimeSpanDuration" Type="bigint" />
-          <Property Name="Code" Type="varchar(max)" />
-          <Property Name="Description" Type="varchar(max)" />
-          <Property Name="Operator" Type="varchar(max)" />
-          <Property Name="State" Type="int" />
-        </EntityType>
-        <EntityType Name="historyAlarm">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Code" Type="varchar(max)" />
-          <Property Name="Count" Type="int" />
-          <Property Name="Day" Type="datetime" />
-          <Property Name="ElapsedTime" Type="bigint" />
-          <Property Name="Period" Type="int" />
-          <Property Name="StateId" Type="int" />
-        </EntityType>
         <EntityType Name="historyBar">
           <Key>
             <PropertyRef Name="Id" />
@@ -116,8 +92,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="KeyId" Type="varchar(max)" />
           <Property Name="MachineSerial" Type="varchar(max)" />
-          <Property Name="MachineType" Type="varchar(max)" />
-          <Property Name="MachineModel" Type="varchar(max)" />
           <Property Name="MachineDescription" Type="varchar(max)" />
           <Property Name="Product" Type="varchar(max)" />
           <Property Name="ProductVersion" Type="varchar(max)" />
@@ -151,12 +125,10 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Time" Type="datetime" />
-          <Property Name="TimeSpanDuration" Type="bigint" />
-          <Property Name="Code" Type="int" />
+          <Property Name="Code" Type="nvarchar" MaxLength="100" />
           <Property Name="Params" Type="nvarchar(max)" />
           <Property Name="Operator" Type="nvarchar" MaxLength="150" />
           <Property Name="State" Type="int" />
-          <Property Name="Type" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="piece">
           <Key>
@@ -227,8 +199,6 @@
         </EntityType>
         <EntityContainer Name="FomMonitoringSQLiteModelStoreContainer">
           <EntitySet Name="bar" EntityType="Self.bar" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="error" EntityType="Self.error" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="historyAlarm" EntityType="Self.historyAlarm" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="historyBar" EntityType="Self.historyBar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="historyJob" EntityType="Self.historyJob" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="historyMessage" EntityType="Self.historyMessage" Schema="dbo" store:Type="Tables" />
@@ -246,8 +216,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="FomMonitoringSQLiteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="FST_FomMonitoringSQLiteEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="error" EntityType="FomMonitoringSQLiteModel.error" />
-          <EntitySet Name="historyAlarm" EntityType="FomMonitoringSQLiteModel.historyAlarm" />
           <EntitySet Name="historyJob" EntityType="FomMonitoringSQLiteModel.historyJob" />
           <EntitySet Name="historyPiece" EntityType="FomMonitoringSQLiteModel.historyPiece" />
           <EntitySet Name="historyState" EntityType="FomMonitoringSQLiteModel.historyState" />
@@ -261,30 +229,6 @@
           <EntitySet Name="message" EntityType="FomMonitoringSQLiteModel.message" />
           <EntitySet Name="historyMessage" EntityType="FomMonitoringSQLiteModel.historyMessage" />
         </EntityContainer>
-        <EntityType Name="error">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Time" Type="DateTime" Precision="3" />
-          <Property Name="TimeSpanDuration" Type="Int64" />
-          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Operator" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="State" Type="Int32" />
-        </EntityType>
-        <EntityType Name="historyAlarm">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Count" Type="Int32" />
-          <Property Name="Day" Type="DateTime" Precision="3" />
-          <Property Name="ElapsedTime" Type="Int64" />
-          <Property Name="Period" Type="Int32" />
-          <Property Name="StateId" Type="Int32" />
-        </EntityType>
         <EntityType Name="historyJob">
           <Key>
             <PropertyRef Name="Id" />
@@ -459,7 +403,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Time" Type="DateTime" Precision="3" />
-          <Property Name="Code" Type="Int32" />
+          <Property Name="Code" Type="String" />
           <Property Name="Params" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Operator" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -482,32 +426,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="FomMonitoringSQLiteModelStoreContainer" CdmEntityContainer="FST_FomMonitoringSQLiteEntities">
-          <EntitySetMapping Name="error">
-            <EntityTypeMapping TypeName="FomMonitoringSQLiteModel.error">
-              <MappingFragment StoreEntitySet="error">
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Operator" ColumnName="Operator" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="TimeSpanDuration" ColumnName="TimeSpanDuration" />
-                <ScalarProperty Name="Time" ColumnName="Time" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="historyAlarm">
-            <EntityTypeMapping TypeName="FomMonitoringSQLiteModel.historyAlarm">
-              <MappingFragment StoreEntitySet="historyAlarm">
-                <ScalarProperty Name="StateId" ColumnName="StateId" />
-                <ScalarProperty Name="Period" ColumnName="Period" />
-                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
-                <ScalarProperty Name="Day" ColumnName="Day" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="historyJob">
             <EntityTypeMapping TypeName="FomMonitoringSQLiteModel.historyJob">
               <MappingFragment StoreEntitySet="historyJob">

@@ -1,0 +1,106 @@
+﻿
+@model FomMonitoringBLL.ViewModel.PanelParametersViewModel
+@using FomMonitoringCore.Service
+
+<div id="CardTiltingAxes" class="@ViewData["Classes"]" >
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="portlet-kpi">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
+                    <i class="fa icofom-elettromandrino fa-stack-1x fa-inverse" style="font-size:21px"></i>
+                </span>
+            </div>
+            <div class="title-kpi" style="max-width: 380px;">
+                <span>@LocalizationService.GetResource("LMX650_TiltingMSAxes")</span>
+                <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
+            </div>
+        </div>
+        <div class="portlet-body text-center" style="height:244px">
+            <div class="card-portlet">
+                <div v-if="values != null" style="height:242px">
+                    <hr style="background-color: #0c3817; height: 2px; border: none" />
+                    <div style="cursor: auto; height: 100%">
+                        <table class="table-other-data">
+                            <tr>
+                                <td style="padding-left: 0px;">
+                                    <table style="width: 100%; height: 100%">
+                                        <tr>
+                                            <td class="td-other-data">
+                                                <label style="vertical-align: top; width: 20px"><i class="fa fa-openid fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="values.NrotazioniAsse2A1 != null" class="label-other-title" v-html="values.NrotazioniAsse2A1.Description"></label>
+                                            </td>
+                                            <td class="td-other-data  tool-border-left">
+                                                <label style="vertical-align: top; width: 20px;"><i class="fa fa-openid fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="values.NrotazioniAsse2A2 != null" class="label-other-title" v-html="values.NrotazioniAsse2A2.Description"></label>
+                                            </td>
+                                            <td class="td-other-data">
+                                                <label style="vertical-align: top; width: 20px;"><i class="fa fa-openid fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="values.NrotazioniAsse2A3 != null" class="label-other-title" v-html="values.NrotazioniAsse2A3.Description"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-other-data ">
+                                                <label v-if="values.NrotazioniAsse2A1 != null && values.NrotazioniAsse2A1.ConvertedValue" class="label-other-data-value" v-html="values.NrotazioniAsse2A1.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-other-data tool-border-left">
+                                                <label v-if="values.NrotazioniAsse2A2 != null && values.NrotazioniAsse2A2.ConvertedValue" class="label-other-data-value" v-html="values.NrotazioniAsse2A2.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-other-data">
+                                                <label v-if="values.NrotazioniAsse2A3 != null && values.NrotazioniAsse2A3.ConvertedValue" class="label-other-data-value" v-html="values.NrotazioniAsse2A3.ConvertedValue"></label>
+                                            </td>
+                                        </tr>
+                                        <tr style="height: 3px; padding: 0; background-color: #bebebe">
+                                            <td colspan="3"><hr width="88%" align="center" class="axes" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-other-data">
+                                                <label style="font-size: 0.7rem;"><i class="fa fa-openid fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="values.NrotazioniAsse2A4 != null" class="label-other-title" v-html="values.NrotazioniAsse2A4.Description"></label>
+                                            </td>
+                                            <td class="td-other-data tool-border-left">
+                                                <label style="font-size: 0.7rem;"><i class="fa fa-openid fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="values.NrotazioniAsse2A4 != null" class="label-other-title" v-html="values.NrotazioniAsse2A4.Description"></label>
+                                            </td>
+                                            <td class="td-other-data">
+                                                <label style="vertical-align: top;"><i class="fa fa-openid fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="values.NrotazioniAsse2A4 != null" class="label-other-title" v-html="values.NrotazioniAsse2A4.Description"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-other-data">
+                                                <label v-if="values.NrotazioniAsse2A4 != null && values.NrotazioniAsse2A4.ConvertedValue" class="label-other-data-value" v-html="values.NrotazioniAsse2A4.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-other-data tool-border-left">
+                                                <label v-if="values.NrotazioniAsse2A5 != null && values.NrotazioniAsse2A5.ConvertedValue" class="label-other-data-value" v-html="values.NrotazioniAsse2A5.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-other-data">
+                                                <label v-if="values.NrotazioniAsse2A6 != null && values.NrotazioniAsse2A6.ConvertedValue" class="label-other-data-value" v-html="values.NrotazioniAsse2A6.ConvertedValue"></label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <no-data v-else></no-data>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        var data = @Html.Raw(Json.Encode(Model));
+        TiltingAxes.init(data);
+    });
+
+</script>
+
+

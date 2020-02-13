@@ -34,7 +34,7 @@
             computed: {
                 colorAlarms: function ()
                 {
-                    if (this.messages == null)
+                    if (this.details == null)
                         return 'color-no-data';
 
                     var color = 'color-red';
@@ -46,7 +46,7 @@
 
                     var n_operator = _.filter(this.messages, function (message)
                     {
-                        return message.type == 'operator'
+                        return message.type == 'warning'
                     });
 
                     if (n_operator > n_error)

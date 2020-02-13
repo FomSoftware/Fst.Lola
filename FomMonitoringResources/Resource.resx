@@ -776,9 +776,6 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
     <value>Range Rpm</value>
   </data>
-  <data name="TabRpmTotMandriniMM" xml:space="preserve">
-    <value>[TabRpmTotMandriniMM]</value>
-  </data>
   <data name="LMX650_Multispindles" xml:space="preserve">
     <value>MULTISPINDLE</value>
   </data>
@@ -983,7 +980,7 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="DistAsse3C2_SemiRotazioni" xml:space="preserve">
     <value>N° Half-Turns Axis 3C2</value>
   </data>
-  <data name="TabVitaUtensileMM_Cod1" xml:space="preserve">
+  <data name="TabVitaUtensile" xml:space="preserve">
     <value>Cod1 tool working hours</value>
   </data>
   <data name="TabSoglieRpmMandriniCUT_1" xml:space="preserve">
@@ -1073,8 +1070,8 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="TabAccelerometroINT_3" xml:space="preserve">
     <value>High threshold Vibration Time</value>
   </data>
-  <data name="TabRpmTotMandriniINT" xml:space="preserve">
-    <value>[TabRpmTotMandriniINT]</value>
+  <data name="oreMandrinoAttivo" xml:space="preserve">
+    <value>oreMandrinoAttivo</value>
   </data>
   <data name="TimePassed" xml:space="preserve">
     <value>time passed</value>
@@ -1082,7 +1079,7 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="TabTempoResiduoBarra" xml:space="preserve">
     <value>TabTempoResiduoBarra</value>
   </data>
-  <data name="TabSoglieRpmMandriniCUT_3&#x9;" xml:space="preserve">
+  <data name="TabSoglieRpmMandriniCUT_3" xml:space="preserve">
     <value>Range 2501-3000 rpm</value>
   </data>
   <data name="TimeTot" xml:space="preserve">
@@ -1090,5 +1087,47 @@ Customers are informed that the reliability of the statistics obtained from the 
   </data>
   <data name="TimeResStim" xml:space="preserve">
     <value>[TimeResStim]</value>
+  </data>
+  <data name="RotaryAxesXMU" xml:space="preserve">
+    <value>RotaryAxesXMU</value>
+  </data>
+  <data name="ToolsStore" xml:space="preserve">
+    <value>ToolsStore</value>
+  </data>
+  <data name="MachineAssociatedToPlant" xml:space="preserve">
+    <value>MachineAssociatedToPlant</value>
+  </data>
+  <data name="Assorbimento" xml:space="preserve">
+    <value>Absorption</value>
+  </data>
+  <data name="Vibrazioni" xml:space="preserve">
+    <value>Vibrations</value>
+  </data>
+  <data name="TemperaturaSchedaEl" xml:space="preserve">
+    <value>Board Temperature</value>
+  </data>
+  <data name="TemperaturaStatore" xml:space="preserve">
+    <value>Stator Temperature</value>
+  </data>
+  <data name="TemperaturaCuscinetti" xml:space="preserve">
+    <value>Bearings Temperature</value>
+  </data>
+  <data name="TabTagliContatoreTotCUT" xml:space="preserve">
+    <value>Total blade cuts</value>
+  </data>
+  <data name="Blade" xml:space="preserve">
+    <value>Blade</value>
+  </data>
+  <data name="MotorBlade" xml:space="preserve">
+    <value>MOTOR BLADE</value>
+  </data>
+  <data name="TabNEtichetteAlCambioRotolo" xml:space="preserve">
+    <value>Missing labels (errors)</value>
+  </data>
+  <data name="TabNEtichetteStampate" xml:space="preserve">
+    <value>Printed labels</value>
+  </data>
+  <data name="XLABETICHETTATRICE" xml:space="preserve">
+    <value>XLAB - LABELING MACHINE (OPTIONAL)</value>
   </data>
 </root>

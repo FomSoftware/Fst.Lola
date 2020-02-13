@@ -43,12 +43,9 @@
           <Property Name="JobTotalPieces" Type="int" />
           <Property Name="LastUpdated" Type="datetime" />
           <Property Name="MachineId" Type="int" />
-          <Property Name="NextMaintenanceService" Type="datetime" />
           <Property Name="Operator" Type="varchar" MaxLength="100" />
-          <Property Name="Plant" Type="varchar" MaxLength="100" />
           <Property Name="StateId" Type="int" />
           <Property Name="StateTransitionCode" Type="varchar" MaxLength="100" />
-          <Property Name="StateTransitionDescription" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="HistoryBar">
           <Key>
@@ -76,7 +73,6 @@
           <Property Name="MachineId" Type="int" />
           <Property Name="Period" Type="int" />
           <Property Name="PiecesProduced" Type="int" />
-          <Property Name="PiecesProducedDay" Type="int" />
           <Property Name="TotalPieces" Type="int" />
           <Property Name="TypeHistory" Type="char" MaxLength="1" />
         </EntityType>
@@ -330,9 +326,6 @@
           <Property Name="ElapsedTimeProducing" Type="bigint" />
           <Property Name="StartTime" Type="datetime" />
           <Property Name="EndTime" Type="datetime" />
-          <Property Name="FrameId" Type="varchar" MaxLength="100" />
-          <Property Name="Index" Type="int" />
-          <Property Name="IsCompleted" Type="bit" />
           <Property Name="IsRedone" Type="bit" />
           <Property Name="JobId" Type="int" />
           <Property Name="Length" Type="float" />
@@ -340,19 +333,9 @@
           <Property Name="Operator" Type="varchar" MaxLength="100" />
           <Property Name="RedoneReason" Type="varchar(max)" />
           <Property Name="Shift" Type="int" />
-          <Property Name="System" Type="varchar" MaxLength="100" />
-          <Property Name="TipologyCode" Type="varchar" MaxLength="100" />
-          <Property Name="StartTimeCut" Type="datetime" />
-          <Property Name="EndTimeCut" Type="datetime" />
           <Property Name="ElapsedTimeCut" Type="bigint" />
-          <Property Name="StartTimeWorking" Type="datetime" />
-          <Property Name="EndTimeWorking" Type="datetime" />
           <Property Name="ElapsedTimeWorking" Type="bigint" />
-          <Property Name="StartTimeTrim" Type="datetime" />
-          <Property Name="EndTimeTrim" Type="datetime" />
           <Property Name="ElapsedTimeTrim" Type="bigint" />
-          <Property Name="StartTimeAnuba" Type="datetime" />
-          <Property Name="EndTimeAnuba" Type="datetime" />
           <Property Name="ElapsedTimeAnuba" Type="bigint" />
         </EntityType>
         <EntityType Name="Plant">
@@ -1239,13 +1222,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
             <Parameter Name="aggregation" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="usp_AggregationAlarm" ReturnType="Collection(FST_FomMonitoringModel.usp_AggregationAlarm_Result)">
-            <Parameter Name="machineId" Mode="In" Type="Int32" />
-            <Parameter Name="startDate" Mode="In" Type="DateTime" />
-            <Parameter Name="endDate" Mode="In" Type="DateTime" />
-            <Parameter Name="aggregation" Mode="In" Type="Int32" />
-            <Parameter Name="dataType" Mode="In" Type="Int32" />
-          </FunctionImport>
           <EntitySet Name="CurrentState" EntityType="FST_FomMonitoringModel.CurrentState" />
           <AssociationSet Name="FK_CurrentState_State" Association="FST_FomMonitoringModel.FK_CurrentState_State">
             <End Role="State" EntitySet="State" />
@@ -1642,18 +1618,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Type="Int32" Name="OffcutLength" Nullable="true" />
           <Property Type="Int32" Name="Period" Nullable="true" />
           <Property Type="String" Name="System" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="TypeHistory" Nullable="true" MaxLength="1" />
-        </ComplexType>
-        <ComplexType Name="usp_AggregationAlarm_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Code" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="Count" Nullable="true" />
-          <Property Type="DateTime" Name="Day" Nullable="true" Precision="23" />
-          <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
-          <Property Type="Int64" Name="ElapsedTime" Nullable="true" />
-          <Property Type="Int32" Name="MachineId" Nullable="true" />
-          <Property Type="Int32" Name="Period" Nullable="true" />
-          <Property Type="Int32" Name="StateId" Nullable="true" />
           <Property Type="String" Name="TypeHistory" Nullable="true" MaxLength="1" />
         </ComplexType>
         <EntityType Name="CurrentState">

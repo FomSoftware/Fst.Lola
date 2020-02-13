@@ -1,0 +1,149 @@
+﻿
+@model FomMonitoringBLL.ViewModel.PanelParametersViewModel
+@using FomMonitoringCore.Service
+
+<div id="CardMotorBladeLMX"  class="@ViewData["Classes"]">
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="portlet-kpi">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
+                    <i class="fa icofom-elettromandrino fa-stack-1x fa-inverse" style="font-size:21px"></i>
+                </span>
+            </div>
+            <div class="title-kpi" style="max-width: 370px;">
+                <span>@LocalizationService.GetResource("LMX650_Motor_Blade")</span>
+                <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
+            </div>
+        </div>
+        <div class="portlet-body text-center" style="height:244px">
+            <div class="card-portlet">
+                <div v-if="noData() == false" style="height:242px" class="slimscroll">
+                    <hr style="background-color:#0c3817;height:2px;border:none" />
+                    <div style="cursor:auto;height:50%">
+                        <table class="table-spindle">
+                            <tr>
+                                <td class="portlet-subtitle" style="font-size: 11px">
+                                    @Html.Raw(LocalizationService.GetResource("MotorBlade")) 650
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table style="width: 100%; height: 100%">
+                                        <tr>
+                                            <td class="td-other-data">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniCUT_1")</label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
+                                            </td>
+                                            <td class="td-other-data tool-border-left">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniCUT_2")</label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
+                                            </td>
+                                            <td class="td-other-data">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniCUT_3")</label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-other-data">
+                                                <label v-if="values.RpmRange1500 && values.RpmRange1500.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange1500.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-other-data tool-border-left">
+                                                <label v-if="values.RpmRange2500 != null && values.RpmRange2500.ConvertedValue" class="label-electrospindle-data-value" v-html="values.RpmRange2500.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-other-data">
+                                                <label v-if="values.RpmRange3000 != null && values.RpmRange3000.ConvertedValue" class="label-electrospindle-data-value" v-html="values.RpmRange3000.ConvertedValue"></label>
+                                            </td>
+                                        </tr>
+                                        <tr style="padding: 0px; background-color: rgb(190, 190, 190);">
+                                            <td colspan="3"><hr style="height: 2px;" width="88%" align="center" class="axes"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-other-data">
+                                                <label class="label-second-row" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title-bottom">@LocalizationService.GetResource("TabSoglieAmpereMandriniCUT_1")</label>
+                                            </td>
+                                            <td class="td-other-data tool-border-left">
+                                                <label class="label-second-row" style="vertical-align: top; width: 20px"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title-bottom">@LocalizationService.GetResource("TabSoglieAmpereContatoreINT")</label>
+                                            </td>
+                                            <td class="td-other-data">
+                                                <label class="label-second-row" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title-bottom">@LocalizationService.GetResource("oreMandrinoAttivo")</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-other-data">
+                                                <label v-if="values.TempoSovraAss != null && values.TempoSovraAss.ConvertedValue" class="label-electrospindle-data-value" v-html="values.TempoSovraAss.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-other-data tool-border-left">
+                                                <label v-if="values.QtaSovraAss != null && values.QtaSovraAss.ConvertedValue" class="label-electrospindle-data-value" v-html="values.QtaSovraAss.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-other-data">
+                                                <label v-if="values.TempoTot != null && values.TempoTot.ConvertedValue" class="label-electrospindle-data-value" v-html="values.TempoTot.ConvertedValue"></label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="portlet-subtitle" style="font-size: 11px;text-align: left;padding-left: 6px;">
+                                    @Html.Raw(LocalizationService.GetResource("Blade")) 650
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table style="width: 100%; height: 100%">
+                                        <tr>
+                                            <td class="td-other-data">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-dot-circle-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title-bottom">@LocalizationService.GetResource("TabTagliContatoreTotCUT")</label>
+                                            </td>
+                                            <td class="td-other-data tool-border-left">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-circle-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title-bottom">@LocalizationService.GetResource("TabTagliContatoreParzCUT")</label>
+                                            </td>
+                                            <td class="td-other-data"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-other-data">
+                                                <label v-if="values.TagliLamaTot != null && values.TagliLamaTot.ConvertedValue" class="label-electrospindle-data-value" v-html="values.TagliLamaTot.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-other-data tool-border-left">
+                                                <label v-if="values.TagliLamaPar != null && values.TagliLamaPar.ConvertedValue" class="label-electrospindle-data-value" v-html="values.TagliLamaPar.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-other-data"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+                <no-data v-else></no-data>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        var data = @Html.Raw(Json.Encode(Model));
+        MotorBladeLMX.init(data);
+    });
+
+</script>
+
+

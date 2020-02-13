@@ -25,8 +25,6 @@ namespace FomMonitoringCore.DAL_SQLite
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<error> error { get; set; }
-        public virtual DbSet<historyAlarm> historyAlarm { get; set; }
         public virtual DbSet<historyJob> historyJob { get; set; }
         public virtual DbSet<historyPiece> historyPiece { get; set; }
         public virtual DbSet<historyState> historyState { get; set; }

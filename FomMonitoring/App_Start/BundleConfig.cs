@@ -89,7 +89,7 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/xspindles.js",
                         "~/GlobApp/scripts/machine/tools.js",
                         "~/GlobApp/scripts/machine/xtools.js",
-                        "~/GlobApp/scripts/machine/jobs.js",
+                        "~/GlobApp/scripts/machine/jobs/fmc-lmx.js",
                         "~/GlobApp/scripts/machine/maintenance.js",
                         "~/GlobApp/scripts/plantmessages.js",
                         "~/GlobApp/scripts/machine/tools/blitz.js",
@@ -98,11 +98,18 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/axes/keope.js",
                         "~/GlobApp/scripts/machine/axes/lmx.js",
                         "~/GlobApp/scripts/machine/electrospindle/electrospindle.js",
-                        "~/GlobApp/scripts/machine/electrospindle/otherdata.js",
+                        "~/GlobApp/scripts/machine/otherdata/otherdataFMC.js",
                         "~/GlobApp/scripts/machine/tools/fmcLmx.js",
                         "~/GlobApp/scripts/machine/multispindles/multispindles.js",
-                        "~/GlobApp/scripts/notification-manager.js"
-                        
+                        "~/GlobApp/scripts/notification-manager.js",
+                        "~/GlobApp/scripts/machine/tiltingaxes/tiltingaxes.js",
+                        "~/GlobApp/scripts/machine/rotaryaxes/rotaryaxes.js",
+                        "~/GlobApp/scripts/machine/sensorspindles/sensorspindles.js",
+                        "~/GlobApp/scripts/machine/motor/motorbladelmx.js",
+                        "~/GlobApp/scripts/machine/otherdata/otherdataLMX.js",
+                        "~/GlobApp/scripts/machine/jobs/other-machines.js",
+                        "~/GlobApp/scripts/machine/xtools/lmx.js"
+
                       ));
 
             #endregion

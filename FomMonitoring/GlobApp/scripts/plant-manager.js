@@ -66,7 +66,8 @@
                         if (intersection != null && intersection[0] != null) {
                             requestAssociatedPlant(intersection[0]).then(r => {
                                 if (r.Plant != null && vmPlants.actual.Id != r.Plant.Id) {
-                                    var text = "Macchina già associata al plant {0}, continuare?";
+                                    var text = resource.MachineWithPlantConfirm;
+                                    //"Macchina già associata al plant {0}, continuare?";
                                     text = text.replace("{0}", r.Plant.Name);
                                     var alert = alertSwal(text);
 

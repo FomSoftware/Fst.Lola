@@ -55,7 +55,10 @@
     }
 
     var viewPlantMessagesBtn = function () {
-        if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+
+        location.href = "PlantMessages";
+
+        /*if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
             if ($('#plantMessagesLabel').css('display') == 'none') {
                 $('#plantMessagesLabel').css('display', 'inline');
                 $('#plants-filter').css('display', 'none');
@@ -70,7 +73,7 @@
         }
         else {
             location.href = "PlantMessages";
-        }
+        }*/
     }
 
     var initPlantsFilter = function (data)

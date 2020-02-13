@@ -9,6 +9,7 @@ namespace FomMonitoringCore.DAL
 {
     public partial class MessageMachine
     {
+       
         public DateTime? GetInitialSpanDate(long PeriodicSpan)
         {
             DateTime? result = Machine.ActivationDate;

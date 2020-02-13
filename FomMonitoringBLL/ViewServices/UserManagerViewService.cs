@@ -53,7 +53,7 @@ namespace FomMonitoringBLL.ViewServices
             if (context.User.Role == enRole.Customer)
             {
                 List<MachineInfoModel> machinesModel = UserManagerService.GetCustomerMachines(usernameCustomer);
-                userManager.machines = machinesModel.Select(s => new UserMachineViewModel { Id = s.Id, Serial = s.Serial }).ToList();
+                userManager.machines = machinesModel.Select(s => new UserMachineViewModel { Id = s.Id, Serial = s.Serial, MachineName = s.MachineName }).ToList();
             }
 
             //languages

@@ -17,8 +17,8 @@
     <RootNamespace>FomMonitoring</RootNamespace>
     <AssemblyName>FomMonitoring</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
-    <IISExpressSSLPort>62186</IISExpressSSLPort>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44391</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
@@ -432,24 +432,31 @@
     <Content Include="GlobApp\scripts\machine\axes\keope.js" />
     <Content Include="GlobApp\scripts\machine\axes\lmx.js" />
     <Content Include="GlobApp\scripts\machine\electrospindle\electrospindle.js" />
-    <Content Include="GlobApp\scripts\machine\electrospindle\otherdata.js" />
+    <Content Include="GlobApp\scripts\machine\jobs\other-machines.js" />
+    <Content Include="GlobApp\scripts\machine\otherdata\otherdataLMX.js" />
+    <Content Include="GlobApp\scripts\machine\otherdata\otherdataFMC.js" />
     <Content Include="GlobApp\scripts\machine\image-manager.js" />
     <Content Include="GlobApp\scripts\machine\maintenance.js" />
     <Content Include="GlobApp\scripts\machine\messages.js" />
     <Content Include="GlobApp\scripts\machine\motoraxes\blitz.js" />
     <Content Include="GlobApp\scripts\machine\motor\keope.js" />
+    <Content Include="GlobApp\scripts\machine\motor\motorbladelmx.js" />
     <Content Include="GlobApp\scripts\machine\multispindles\multispindles.js" />
+    <Content Include="GlobApp\scripts\machine\rotaryaxes\rotaryaxes.js" />
+    <Content Include="GlobApp\scripts\machine\sensorspindles\sensorspindles.js" />
+    <Content Include="GlobApp\scripts\machine\tiltingaxes\tiltingaxes.js" />
     <Content Include="GlobApp\scripts\machine\tools\fmcLmx.js" />
     <Content Include="GlobApp\scripts\machine\tools\blitz.js" />
     <Content Include="GlobApp\scripts\machine\xtools.js" />
     <Content Include="GlobApp\scripts\machine\xspindles.js" />
+    <Content Include="GlobApp\scripts\machine\xtools\lmx.js" />
     <Content Include="GlobApp\scripts\mes-manager.js" />
     <Content Include="GlobApp\scripts\notification-manager.js" />
     <Content Include="GlobApp\scripts\plant-manager.js" />
     <Content Include="GlobApp\scripts\plantmessages.js" />
     <Content Include="GlobApp\scripts\shared-manager.js" />
     <Content Include="GlobApp\scripts\machine-manager.js" />
-    <Content Include="GlobApp\scripts\machine\jobs.js" />
+    <Content Include="GlobApp\scripts\machine\jobs\fmc-lmx.js" />
     <Content Include="GlobApp\scripts\machine\tools.js" />
     <Content Include="GlobApp\scripts\machine\spindles.js" />
     <Content Include="GlobApp\scripts\machine\productivity.js" />
@@ -476,6 +483,11 @@
     <Content Include="Images\panels\CARD_SPINDLE_220X220px.svg" />
     <Content Include="Images\panels\FMC-immagine_macchina_CORTA_2.svg" />
     <Content Include="Images\panels\FMC-immagine_macchina_LUNGA.svg" />
+    <Content Include="Images\panels\LMX-immagine_macchina.svg" />
+    <Content Include="Images\panels\LMX_650-MM-CARD_MOBILE.svg" />
+    <Content Include="Images\panels\LMX_650-MOTOR_BLADE-CARD_MOBILE.svg" />
+    <Content Include="Images\panels\LMX_650-STEPIN-OUT-CARD_MOBILE.svg" />
+    <Content Include="Images\panels\LMX_650-XMU-CARD_MOBILE.svg" />
     <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -1084,7 +1096,7 @@
     <Content Include="Views\Machine\Panels\_Productivity.cshtml" />
     <Content Include="Views\Machine\Panels\_Spindles.cshtml" />
     <Content Include="Views\Machine\Panels\_Tools.cshtml" />
-    <Content Include="Views\Machine\Panels\_Jobs.cshtml" />
+    <Content Include="Views\Machine\Panels\Jobs\_FMC_LMX.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Mes\Mes.cshtml" />
     <Content Include="Views\Shared\_Toolbar.cshtml" />
@@ -1104,7 +1116,7 @@
     <Content Include="Views\Machine\Panels\Motor\_Keope.cshtml" />
     <Content Include="Views\Plant\PlantManager.cshtml" />
     <Content Include="Scripts\underscore.min.map" />
-    <Content Include="Views\Machine\Panels\ElectroSpindle\_OtherMachineData.cshtml" />
+    <Content Include="Views\Machine\Panels\OtherMachineData\_FMC34.cshtml" />
     <Content Include="Views\Machine\Panels\ElectroSpindle\_ElectroSpindle.cshtml" />
     <Content Include="Views\Machine\Panels\Tools\_FmcLmx.cshtml" />
     <Content Include="Views\Machine\Panels\Production\_Pieces.cshtml" />
@@ -1124,6 +1136,13 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\Machine\Model\_LMX_650.cshtml" />
     <Content Include="Views\Machine\Panels\Axes\_LMX_650.cshtml" />
+    <Content Include="Views\Machine\Panels\TiltingAxes\_LMX650.cshtml" />
+    <Content Include="Views\Machine\Panels\RotaryAxes\_LMX650.cshtml" />
+    <Content Include="Views\Machine\Panels\SensorSpindles\_LMX650.cshtml" />
+    <Content Include="Views\Machine\Panels\Motor\_LMX_650.cshtml" />
+    <Content Include="Views\Machine\Panels\OtherMachineData\_LMX650.cshtml" />
+    <Content Include="Views\Machine\Panels\Jobs\_OtherMachines.cshtml" />
+    <Content Include="Views\Machine\Panels\XTools\_Lmx.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

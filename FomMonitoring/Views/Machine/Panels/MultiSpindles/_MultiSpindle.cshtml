@@ -2,119 +2,120 @@
 @model FomMonitoringBLL.ViewModel.PanelParametersViewModel
 @using FomMonitoringCore.Service
 
-<div id="CardMultiSpindles" class="portlet">
-    <div class="portlet-title">
-        <div class="portlet-kpi">
-            <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
-                <i class="fa icofom-spindles fa-stack-1x fa-inverse"></i>
-            </span>
-        </div>
-        <div class="title-kpi" style="max-width: 230px;">
-            <span>@LocalizationService.GetResource("Spindles")</span>
-            <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
-        </div>
-    </div>
-    <div class="portlet-body text-center" style="height:244px">
-        <div class="card-portlet">
-            <div style="height:242px" class="slimscroll">
-                <hr style="background-color:#0c3817;height:2px;border:none" />
-                <div style="cursor:auto;height:100%">
-                    <table class="table-electro-spindle">
-                        <tr>
-                            <td>
-                                <table style="width: 100%; height:100%">
-                                    <tr>
-                                        <td class="td-electrospindle-data">
-                                            <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
-                                            <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniMM") 0-1500 </label>
-                                            <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                            <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
-                                        </td>
-                                        <td class="td-electrospindle-data  tool-border-left">
-                                            <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
-                                            <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniMM") 1501-3999</label>
-                                            <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                            <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
-                                        </td>
-                                        <td class="td-electrospindle-data" rowspan="4">
-                                            <div id="imgPosizioni">
-                                                @Html.Action("GetHtmlPage", "Shared", new {path = "~/images/Multispindle/bottone-posizione.svg"})
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="td-electrospindle-data">
-                                            <label v-if="values.RpmRange1500 != null && values.RpmRange1500.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange1500.ConvertedValue"></label>
-                                        </td>
-                                        <td class="td-electrospindle-data tool-border-left">
-                                            <label v-if="values.RpmRange3999 != null && values.RpmRange3999.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange3999.ConvertedValue"></label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="td-electrospindle-data">
-                                            <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
-                                            <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniMM") 4000-7999</label>
-                                            <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                            <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
-                                        </td>
-                                        <td class="td-electrospindle-data  tool-border-left">
-                                            <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
-                                            <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniMM") 8000-11500</label>
-                                            <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                            <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td class="td-electrospindle-data">
-                                            <label v-if="values.RpmRange7999 != null && values.RpmRange7999.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange7999.ConvertedValue"></label>
-                                        </td>
-                                        <td class="td-electrospindle-data tool-border-left">
-                                            <label v-if="values.RpmRange11500 != null && values.RpmRange11500.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange11500.ConvertedValue"></label>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td class="td-electrospindle-data">
-                                            <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
-                                            <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniMM") 11501-14500</label>
-                                            <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                            <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
-                                        </td>
-                                        <td class="td-electrospindle-data  tool-border-left">
-                                            <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
-                                            <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniMM") 14500-18000</label>
-                                            <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                            <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
-                                        </td>
-                                        <td class="td-electrospindle-data">
-                                            <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                            <label class="label-electrospindle-title-bottom">@LocalizationService.GetResource("TabRpmTotMandriniMM")</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="td-electrospindle-data">
-                                            <label v-if="values.RpmRange14500 != null && values.RpmRange14500.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange14500.ConvertedValue"></label>
-                                        </td>
-                                        <td class="td-electrospindle-data tool-border-left">
-                                            <label v-if="values.RpmRange20000 != null && values.RpmRange20000.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange20000.ConvertedValue"></label>
-                                        </td>
-                                        <td class="td-electrospindle-data">
-                                            <label v-if="values.OreLavoroTotali != null && values.OreLavoroTotali.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.OreLavoroTotali.ConvertedValue"></label>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
+<div id="CardMultiSpindles" class="@ViewData["Classes"]" >
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="portlet-kpi">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
+                    <i class="fa icofom-spindles fa-stack-1x fa-inverse"></i>
+                </span>
+            </div>
+            <div class="title-kpi" style="max-width: 230px;">
+                <span>@LocalizationService.GetResource("Spindles")</span>
+                <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
             </div>
         </div>
+        <div class="portlet-body text-center" style="height: 244px">
+            <div class="card-portlet">
+                <div style="height: 242px" class="slimscroll">
+                    <hr style="background-color: #0c3817; height: 2px; border: none"/>
+                    <div style="cursor: auto; height: 100%">
+                        <table class="table-electro-spindle">
+                            <tr>
+                                <td>
+                                    <table style="width: 100%; height: 100%">
+                                        <tr>
+                                            <td class="td-electrospindle-data">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniMM") 0-1500 </label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
+                                            </td>
+                                            <td class="td-electrospindle-data  tool-border-left">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniMM") 1501-3999</label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
+                                            </td>
+                                            <td class="td-electrospindle-data" rowspan="4">
+                                                <div id="imgPosizioni">
+                                                    @Html.Action("GetHtmlPage", "Shared", new {path = "~/images/Multispindle/bottone-posizione.svg"})
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-electrospindle-data">
+                                                <label v-if="values.RpmRange1500 != null && values.RpmRange1500.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange1500.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-electrospindle-data tool-border-left">
+                                                <label v-if="values.RpmRange3999 != null && values.RpmRange3999.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange3999.ConvertedValue"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-electrospindle-data">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniMM") 4000-7999</label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
+                                            </td>
+                                            <td class="td-electrospindle-data  tool-border-left">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniMM") 8000-11500</label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class="td-electrospindle-data">
+                                                <label v-if="values.RpmRange7999 != null && values.RpmRange7999.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange7999.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-electrospindle-data tool-border-left">
+                                                <label v-if="values.RpmRange11500 != null && values.RpmRange11500.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange11500.ConvertedValue"></label>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class="td-electrospindle-data">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniMM") 11501-14500</label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
+                                            </td>
+                                            <td class="td-electrospindle-data  tool-border-left">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniMM") 14500-18000</label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
+                                            </td>
+                                            <td class="td-electrospindle-data">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title-bottom">@LocalizationService.GetResource("oreMandrinoAttivo")</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-electrospindle-data">
+                                                <label v-if="values.RpmRange14500 != null && values.RpmRange14500.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange14500.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-electrospindle-data tool-border-left">
+                                                <label v-if="values.RpmRange20000 != null && values.RpmRange20000.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange20000.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-electrospindle-data">
+                                                <label v-if="values.OreLavoroTotali != null && values.OreLavoroTotali.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.OreLavoroTotali.ConvertedValue"></label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
-
-
 </div>
 
 

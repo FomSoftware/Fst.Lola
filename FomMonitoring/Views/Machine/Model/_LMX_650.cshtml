@@ -1,96 +1,149 @@
 ﻿@model FomMonitoringBLL.ViewModel.MachineViewModel
 @using FomMonitoringResources
 
-<div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">    
-    <div class="row">
-            @Html.Partial("Panels/_Efficiency", Model.Efficiency, new ViewDataDictionary
-            {
-                { "Classes", "col-12" }
-            })
-    </div>
-</div>
-<div class="col-xxl-8 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-    <div class="row">
-        <div class="col-12">
-            @Html.Partial("Panels/_Messages", Model.Messages)
-        </div>
-    </div>
-</div>
-<div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-    <div class="row">
-            @Html.Partial("Panels/_Productivity", Model.Productivity, new ViewDataDictionary
-            {
-                { "Classes", "col-12" }
-            })
-    </div>
-    <div class="row">
-        <div class="col-12">
-            @Html.Partial("./Panels/MultiSpindles/_Multispindle", Model.PanelParameter)
-        </div>
-    </div>
-   
-    @if (Model.MachinePanels.Contains((int)enPanel.XSpindles))
-    {
-        <div class="row">
-                @Html.Partial("./Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter, new ViewDataDictionary
-                {
-                    { "Classes", "col-12" }
-                })
-        </div>
-    }
-</div>
-<div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-    <div class="row">
-
-            @Html.Partial("Panels/_Jobs", Model.Jobs, new ViewDataDictionary
-            {
-                { "Classes", "col-12" }
-            })
-    </div>
-    <div class="row">
-                @Html.Partial("./Panels/Tools/_FmcLmx", Model.PanelParameter, new ViewDataDictionary
-                {
-                    { "Classes", "col-12" }
-                }))
-        </div>
-
-    @if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)
-    {
-        <div class="row">
-            <div class="col-12">
-                @Html.Partial("Panels/_XTools", Model.XTools)
+<div class="col">
+    <div class="row align-items-center">
+        <div id="buttons-bar" class="col col-sm-12 col-md-12 col-lg-12 col-xl-12" v-show="isMobile() || isTablet()">
+            <div class="row">
+                <div class="btn-group col" style="background-color: transparent; padding-left: 0; padding-right: 0;">
+                    <button type="button" id="btn-efficiency" data-panel="efficiency" class="no-borders col-3">
+                        <span>
+                            <i class="fa icofom-efficiency color-green"></i>
+                        </span>
+                    </button>
+                    <button type="button" id="btn-production" data-panel="production" class="no-borders col-3">
+                        <span>
+                            <i class="fa icofom-productivity color-red"></i>
+                        </span>
+                    </button>
+                    <button type="button" id="btn-maintenance" data-panel="maintenance" class="no-borders col-3">
+                        <span class="fa fa-stack" style="position: initial">
+                            <i class="fa fa-circle fa-stack-2x" style="color: cornflowerblue;"></i>
+                            <i class="fa fa-info fa-inverse fa-stack-1x"></i>
+                        </span>
+                    </button>
+                    <button type="button" id="btn-ordersStandard" data-panel="ordersStandard" class="no-borders col-3">
+                        <span>
+                            <i class="fa icofom-jobs color-orange"></i>
+                        </span>
+                    </button>
+                </div>
             </div>
         </div>
-    }
-</div>
-<div class="col-xxl-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">        
-    <div class="row">
-            @Html.Partial("Panels/_Maintenance", Model.Maintenance, new ViewDataDictionary
-            {
-                { "Classes", "col-12" }
-            })      
     </div>
-</div>
+    <div class="row justify-content-center machine-image-wrapper" id="image-machine-lg">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-9">
+            <div style="height: 65%; padding-bottom: 13px;text-align: center">
+                @Html.Action("GetHtmlPage", "Shared", new { path = "~/images/panels/LMX-immagine_macchina.svg" })
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12" style="background-color: rgb(203, 202, 202);">
+            <div class="row justify-content-center">
+                <div id="panels-box" class="col-10 col-sm-10 col-md-8" style="background-color: #cbcaca; padding-top: 30px; padding-bottom: 30px; width: 100%; height: calc(70vh);" v-show="machineGroupSelected == null && machinePanelSelected == null && (isMobile() || isTablet())">
+                    <div class="btn-group machine-group-selection" style="width: 100%; background-color: #cbcaca">
+                        <button type="button" data-group="LMX650_Motor/Blade" class="no-borders" style="width: 220px; background-color: #cbcaca">
+                            <img class="img-button-group" src="~/Images/panels/LMX_650-MOTOR_BLADE-CARD_MOBILE.svg" />
+                        </button>
+                        <button type="button" data-group="LMX650_MM" class="no-borders" style="width: 220px; background-color: #cbcaca">
+                            <img class="img-button-group" src="~/Images/panels/LMX_650-MM-CARD_MOBILE.svg" />
+                        </button>
+                        <button type="button" data-group="LMX650_StepIn/Out" class="no-borders" style="width: 220px; background-color: #cbcaca">
+                            <img class="img-button-group" src="~/Images/panels/LMX_650-STEPIN-OUT-CARD_MOBILE.svg" />
+                        </button>
+                        <button type="button" data-group="LMX650_XMU" class="no-borders" style="width: 220px; background-color: #cbcaca">
+                            <img class="img-button-group" src="~/Images/panels/LMX_650-XMU-CARD_MOBILE.svg" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-@if (Model.MachinePanels.Contains((int)enPanel.Electrospindle))
-{
-    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-        <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 panels-area">
+            <div class="row">
+                @Html.Partial("Panels/_Efficiency", Model.Efficiency, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                })
+                @Html.Partial("Panels/_Productivity", Model.Productivity, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-6  col-lg-6 col-md-12 col-sm-12 col-12"}
+                })
+                @Html.Partial("Panels/Jobs/_FMC_LMX", Model.Jobs, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-6  col-lg-6 col-md-12 col-sm-12 col-12"}
+                })
+
+
+
+                @Html.Partial("Panels/MultiSpindles/_Multispindle", Model.PanelParameter, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                })
+
                 @Html.Partial("Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter, new ViewDataDictionary
                 {
-                    { "Classes", "col-12" }
+                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
                 })
-        </div>
-    </div>
-}
-@if (Model.MachinePanels.Contains((int)enPanel.OtherMachineData))
-{
-    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-        <div class="row">
-                @Html.Partial("Panels/ElectroSpindle/_OtherMachineData", Model.PanelParameter, new ViewDataDictionary
+
+                @Html.Partial("Panels/Tools/_FmcLmx", Model.PanelParameter, new ViewDataDictionary
                 {
-                    { "Classes", "col-12" }
+                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
                 })
+                
+                @Html.Partial("Panels/XTools/_Lmx", Model.PanelParameter, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                })
+
+                @Html.Partial("Panels/OtherMachineData/_LMX650", Model.PanelParameter, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                })
+
+                @Html.Partial("Panels/Axes/_LMX_650", Model.PanelParameter, new ViewDataDictionary
+                        {
+                            {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                        })
+                 
+               @Html.Partial("Panels/TiltingAxes/_LMX650", Model.PanelParameter, new ViewDataDictionary
+                        {
+                            {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                        })
+             @Html.Partial("Panels/RotaryAxes/_LMX650", Model.PanelParameter, new ViewDataDictionary
+                        {
+                            {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                        })
+              
+              @Html.Partial("Panels/SensorSpindles/_LMX650", Model.PanelParameter, new ViewDataDictionary
+                        {
+                            {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                        })
+               @Html.Partial("Panels/motor/_LMX_650", Model.PanelParameter, new ViewDataDictionary
+                        {
+                            {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                        })
+              
+
+                @Html.Partial("Panels/_Maintenance", Model.Maintenance, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12 order-xl-last"}
+                })
+                <div id="MsgPanel" class="col-xxl-8 col-xl-6 col-lg-6 col-md-12 col-sm-12 order-lg-11 order-xl-11">
+                    <div class="row">
+                        <div class="col-12">
+                            @Html.Partial("Panels/_Messages", Model.Messages)
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
-}
+</div>
+<script>
+    $(document).ready(function() {
+        ImageManager.init('LMX');
+    });
+</script>
