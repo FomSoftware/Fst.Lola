@@ -98,7 +98,7 @@
             }
         }
         else if (vmImageMachine.modello == 'LMX') {
-            if (vmImageMachine.machineGroupSelected == 'LMX650_Motor/Blade') {
+            if (vmImageMachine.machineGroupSelected == 'LMX650_Motor_Blade') {
                
             } else {
                
@@ -108,7 +108,7 @@
             } else {
               
             }
-            if (vmImageMachine.machineGroupSelected == 'LMX650_StepIn/Out') {
+            if (vmImageMachine.machineGroupSelected == 'LMX650_StepIn_Out') {
               
             } else {
                
@@ -271,7 +271,7 @@
     };
 
     var checkVisibilityImageMachine = function () {
-        if (vmImageMachine.modello == 'FMC') {
+       
             if (vmImageMachine.isLargeTablet() || vmImageMachine.isTablet() || vmImageMachine.isMobile()) {
                 $("#image-machine-sm").show();
                 $("#image-machine-lg").hide();
@@ -280,10 +280,7 @@
                 $("#image-machine-lg").show();
             }
             initMachineImage();
-        }
-       
-
-       
+      
     }
 
     var init = function (model) {
