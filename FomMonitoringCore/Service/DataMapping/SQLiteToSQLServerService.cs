@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace FomMonitoringCore.Service.DataMapping
 {
-    public class SqLiteToSqlServerService : ISQLiteToSQLServerService
+    public class SqLiteToSqlServerService : ISqLiteToSqlServerService
     {
         private readonly IMachineService _machineService;
         private readonly IJobService _jobService;
@@ -30,7 +30,7 @@ namespace FomMonitoringCore.Service.DataMapping
             _mesService = mesService;
         }
 
-        public bool MappingSQLiteDetailsToSQLServer()
+        public bool MappingSqLiteDetailsToSqlServer()
         {
             var result = false;
             try
@@ -225,7 +225,7 @@ namespace FomMonitoringCore.Service.DataMapping
             return result;
         }
 
-        public bool MappingSQLiteHistoryToSQLServer()
+        public bool MappingSqLiteHistoryToSqlServer()
         {
             var result = false;
             try

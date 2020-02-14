@@ -25,9 +25,9 @@ namespace FomMonitoringDatabaseMapping
 
             FomMonitoringCore.Ioc.IocContainerBuilder.BuildCore(builder, false);
             var container = builder.Build();
-            var sQLiteToSQLServerService = container.Resolve<ISQLiteToSQLServerService>();
-            var jsonToSQLiteService = container.Resolve<IJsonToSQLiteService>();
-            var jsonVariantsToSQLServerService = container.Resolve<IJsonVariantsToSQLServerService>();
+            var sQLiteToSQLServerService = container.Resolve<ISqLiteToSqlServerService>();
+            var jsonToSQLiteService = container.Resolve<IJsonToSqLiteService>();
+            var jsonVariantsToSQLServerService = container.Resolve<IJsonVariantsToSqlServerService>();
             var context = container.Resolve<IFomMonitoringEntities>();
             var unitOfWork = container.Resolve<IUnitOfWork>();
             try
@@ -45,19 +45,19 @@ namespace FomMonitoringDatabaseMapping
                             unitOfWork.StartTransaction(context);
                             if (!jsonDataModel.IsCumulative)
                             {
-                                if (!jsonToSQLiteService.MappingJsonDetailsToSQLite(jsonDataModel))
+                                if (!jsonToSQLiteService.MappingJsonDetailsToSqLite(jsonDataModel))
                                     throw new Exception("JSON to SQLite Error:");
 
-                                if (!sQLiteToSQLServerService.MappingSQLiteDetailsToSQLServer())
+                                if (!sQLiteToSQLServerService.MappingSqLiteDetailsToSqlServer())
                                     throw new Exception("SQLite to SQLServer Error:");
                             }
 
                             if (jsonDataModel.IsCumulative)
                             {
-                                if (!jsonToSQLiteService.MappingJsonHistoryToSQLite(jsonDataModel))
+                                if (!jsonToSQLiteService.MappingJsonHistoryToSqLite(jsonDataModel))
                                     throw new Exception("JSON to SQLite Error:");
 
-                                if (!sQLiteToSQLServerService.MappingSQLiteHistoryToSQLServer())
+                                if (!sQLiteToSQLServerService.MappingSqLiteHistoryToSqlServer())
                                     throw new Exception("SQLite to SQLServer Error:");
                             }
 

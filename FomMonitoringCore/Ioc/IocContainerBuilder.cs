@@ -50,7 +50,7 @@ namespace FomMonitoringCore.Ioc
             instancesFoRequest.Add(builder.RegisterType<MachineGroupRepository>().As<IMachineGroupRepository>());
             instancesFoRequest.Add(builder.RegisterType<HistoryPieceRepository>().As<IHistoryPieceRepository>());
 
-            instancesFoRequest.Add(builder.RegisterType<SqLiteToSqlServerService>().As<ISQLiteToSQLServerService>());
+            instancesFoRequest.Add(builder.RegisterType<SqLiteToSqlServerService>().As<ISqLiteToSqlServerService>());
             instancesFoRequest.Add(builder.RegisterType<PieceService>().As<IPieceService>());
             instancesFoRequest.Add(builder.RegisterType<LanguageService>().As<ILanguageService>());
             instancesFoRequest.Add(builder.RegisterType<StateService>().As<IStateService>());
@@ -59,9 +59,9 @@ namespace FomMonitoringCore.Ioc
             
             instancesFoRequest.Add(builder.RegisterType<FomMonitoringEntitiesIsolated>().As<IFomMonitoringEntitiesIsolated>());
             instancesFoRequest.Add(builder.RegisterType<FST_FomMonitoringEntities>().As<IFomMonitoringEntities>());
-            instancesFoRequest.Add(builder.RegisterType<JsonToSQLiteService>().As<IJsonToSQLiteService>());
+            instancesFoRequest.Add(builder.RegisterType<JsonToSqLiteService>().As<IJsonToSqLiteService>());
             instancesFoRequest.Add(builder.RegisterType<FST_FomMonitoringSQLiteEntities>().As<IFomMonitoringSQLiteEntities>());
-            instancesFoRequest.Add(builder.RegisterType<JsonVariantsToSqlServerService>().As<IJsonVariantsToSQLServerService>());
+            instancesFoRequest.Add(builder.RegisterType<JsonVariantsToSqlServerService>().As<IJsonVariantsToSqlServerService>());
             instancesFoRequest.Add(builder.RegisterType<BarService>().As<IBarService>());
             instancesFoRequest.Add(builder.RegisterType<MesService>().As<IMesService>());
             instancesFoRequest.Add(builder.RegisterType<PlantManagerService>().As<IPlantManagerService>());

@@ -5,11 +5,11 @@ using System.Data.Entity;
 
 namespace FomMonitoringCore.Service.DataMapping
 {
-    public interface IJsonToSQLiteService
+    public interface IJsonToSqLiteService
     {
         List<JsonDataModel> GetAllJsonDataNotElaborated();
-        bool MappingJsonDetailsToSQLite(JsonDataModel jsonDataModel);
-        bool MappingJsonHistoryToSQLite(JsonDataModel jsonDataModel);
-        bool SaveElaboration(int id, bool IsLoaded);
+        bool MappingJsonDetailsToSqLite(JsonDataModel jsonDataModel);
+        bool MappingJsonHistoryToSqLite(JsonDataModel jsonDataModel);
+        bool SaveElaboration(int id, bool isLoaded);
     }
 }

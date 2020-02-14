@@ -13,15 +13,15 @@ using System.Transactions;
 
 namespace FomMonitoringCore.Service.DataMapping
 {
-    public class JsonToSQLiteService : IJsonToSQLiteService
+    public class JsonToSqLiteService : IJsonToSqLiteService
     {
-        private IFomMonitoringEntities _FomMonitoringEntities;
-        private IFomMonitoringSQLiteEntities _FomMonitoringSQLiteEntities;
+        private IFomMonitoringEntities _fomMonitoringEntities;
+        private IFomMonitoringSQLiteEntities _fomMonitoringSqLiteEntities;
         
-        public JsonToSQLiteService(IFomMonitoringEntities FomMonitoringEntities, IFomMonitoringSQLiteEntities FomMonitoringSQLiteEntities)
+        public JsonToSqLiteService(IFomMonitoringEntities fomMonitoringEntities, IFomMonitoringSQLiteEntities fomMonitoringSqLiteEntities)
         {
-            _FomMonitoringEntities = FomMonitoringEntities;
-            _FomMonitoringSQLiteEntities = FomMonitoringSQLiteEntities;
+            _fomMonitoringEntities = fomMonitoringEntities;
+            _fomMonitoringSqLiteEntities = fomMonitoringSqLiteEntities;
         }
 
         public List<JsonDataModel> GetAllJsonDataNotElaborated()
@@ -30,7 +30,7 @@ namespace FomMonitoringCore.Service.DataMapping
             try
             {
                 List<JsonData> jsonData = new List<JsonData>();                
-                jsonData = _FomMonitoringEntities.Set<JsonData>().Where(w => !w.IsElaborated).OrderBy(o => o.Id).ToList();
+                jsonData = _fomMonitoringEntities.Set<JsonData>().Where(w => !w.IsElaborated).OrderBy(o => o.Id).ToList();
                 result = jsonData.Adapt<List<JsonDataModel>>();
                 
             }
@@ -42,20 +42,20 @@ namespace FomMonitoringCore.Service.DataMapping
             return result;
         }
 
-        public bool MappingJsonDetailsToSQLite(JsonDataModel jsonDataModel)
+        public bool MappingJsonDetailsToSqLite(JsonDataModel jsonDataModel)
         {
             bool result = false;
             try
             {
                 JObject json = JsonConvert.DeserializeObject<JObject>(jsonDataModel.Json);
-                List<bar> barSQLite = new List<bar>();
-                List<historyJob> historyJobSQLite = new List<historyJob>();
-                List<info> infoSQLite = new List<info>();
-                List<piece> pieceSQLite = new List<piece>();
-                List<message> messageSQLite = new List<message>();
-                List<spindle> spindleSQLite = new List<spindle>();
-                List<state> stateSQLite = new List<state>();
-                List<tool> toolSQLite = new List<tool>();
+                List<bar> barSqLite = new List<bar>();
+                List<historyJob> historyJobSqLite = new List<historyJob>();
+                List<info> infoSqLite = new List<info>();
+                List<piece> pieceSqLite = new List<piece>();
+                List<message> messageSqLite = new List<message>();
+                List<spindle> spindleSqLite = new List<spindle>();
+                List<state> stateSqLite = new List<state>();
+                List<tool> toolSqLite = new List<tool>();
                 
                /* _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE bar");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE error");
@@ -66,29 +66,29 @@ namespace FomMonitoringCore.Service.DataMapping
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE state");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE tool");
                 _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE message");*/
-                if(_FomMonitoringSQLiteEntities.Set<bar>() != null)
-                    _FomMonitoringSQLiteEntities.Set<bar>().RemoveRange(_FomMonitoringSQLiteEntities.Set<bar>());
+                if(_fomMonitoringSqLiteEntities.Set<bar>() != null)
+                    _fomMonitoringSqLiteEntities.Set<bar>().RemoveRange(_fomMonitoringSqLiteEntities.Set<bar>());
 
-                if (_FomMonitoringSQLiteEntities.Set<historyJob>() != null)
-                    _FomMonitoringSQLiteEntities.Set<historyJob>().RemoveRange(_FomMonitoringSQLiteEntities.Set<historyJob>());
+                if (_fomMonitoringSqLiteEntities.Set<historyJob>() != null)
+                    _fomMonitoringSqLiteEntities.Set<historyJob>().RemoveRange(_fomMonitoringSqLiteEntities.Set<historyJob>());
 
-                if (_FomMonitoringSQLiteEntities.Set<info>() != null)
-                    _FomMonitoringSQLiteEntities.Set<info>().RemoveRange(_FomMonitoringSQLiteEntities.Set<info>());
+                if (_fomMonitoringSqLiteEntities.Set<info>() != null)
+                    _fomMonitoringSqLiteEntities.Set<info>().RemoveRange(_fomMonitoringSqLiteEntities.Set<info>());
 
-                if (_FomMonitoringSQLiteEntities.Set<piece>() != null)
-                    _FomMonitoringSQLiteEntities.Set<piece>().RemoveRange(_FomMonitoringSQLiteEntities.Set<piece>());
+                if (_fomMonitoringSqLiteEntities.Set<piece>() != null)
+                    _fomMonitoringSqLiteEntities.Set<piece>().RemoveRange(_fomMonitoringSqLiteEntities.Set<piece>());
 
-                if (_FomMonitoringSQLiteEntities.Set<spindle>() != null)
-                    _FomMonitoringSQLiteEntities.Set<spindle>().RemoveRange(_FomMonitoringSQLiteEntities.Set<spindle>());
+                if (_fomMonitoringSqLiteEntities.Set<spindle>() != null)
+                    _fomMonitoringSqLiteEntities.Set<spindle>().RemoveRange(_fomMonitoringSqLiteEntities.Set<spindle>());
 
-                if (_FomMonitoringSQLiteEntities.Set<state>() != null)
-                    _FomMonitoringSQLiteEntities.Set<state>().RemoveRange(_FomMonitoringSQLiteEntities.Set<state>());
+                if (_fomMonitoringSqLiteEntities.Set<state>() != null)
+                    _fomMonitoringSqLiteEntities.Set<state>().RemoveRange(_fomMonitoringSqLiteEntities.Set<state>());
 
-                if (_FomMonitoringSQLiteEntities.Set<tool>() != null)
-                    _FomMonitoringSQLiteEntities.Set<tool>().RemoveRange(_FomMonitoringSQLiteEntities.Set<tool>());
+                if (_fomMonitoringSqLiteEntities.Set<tool>() != null)
+                    _fomMonitoringSqLiteEntities.Set<tool>().RemoveRange(_fomMonitoringSqLiteEntities.Set<tool>());
 
-                if (_FomMonitoringSQLiteEntities.Set<message>() != null)
-                    _FomMonitoringSQLiteEntities.Set<message>().RemoveRange(_FomMonitoringSQLiteEntities.Set<message>());
+                if (_fomMonitoringSqLiteEntities.Set<message>() != null)
+                    _fomMonitoringSqLiteEntities.Set<message>().RemoveRange(_fomMonitoringSqLiteEntities.Set<message>());
               
 
                 foreach (JToken token in json.Root)
@@ -96,24 +96,24 @@ namespace FomMonitoringCore.Service.DataMapping
                         switch (token.Path.ToLower())
                         {
                             case "bar":
-                                barSQLite = JsonConvert.DeserializeObject<List<bar>>(JsonConvert.SerializeObject(token.First));
-                                foreach (bar bar in barSQLite)
+                                barSqLite = JsonConvert.DeserializeObject<List<bar>>(JsonConvert.SerializeObject(token.First));
+                                foreach (bar bar in barSqLite)
                                 {
                                     bar.StartTime = bar.StartTime.HasValue && bar.StartTime.Value.Year < 1900 ? null : bar.StartTime;
                                     bar.EndTime = bar.EndTime.HasValue && bar.EndTime.Value.Year < 1900 ? null : bar.EndTime;
                                 }
                                 break;
                             case "historyjob":
-                                historyJobSQLite = JsonConvert.DeserializeObject<List<historyJob>>(JsonConvert.SerializeObject(token.First));
-                                foreach (historyJob historyJob in historyJobSQLite)
+                                historyJobSqLite = JsonConvert.DeserializeObject<List<historyJob>>(JsonConvert.SerializeObject(token.First));
+                                foreach (historyJob historyJob in historyJobSqLite)
                                 {
                                     historyJob.Id = 0;
                                     historyJob.Day = historyJob.Day.HasValue && historyJob.Day.Value.Year < 1900 ? null : historyJob.Day;
                                 }
                                 break;
                             case "info":
-                                infoSQLite = JsonConvert.DeserializeObject<List<info>>(JsonConvert.SerializeObject(token.First));
-                                foreach (info info in infoSQLite)
+                                infoSqLite = JsonConvert.DeserializeObject<List<info>>(JsonConvert.SerializeObject(token.First));
+                                foreach (info info in infoSqLite)
                                 {
                                     info.Id = 0;
                                     info.LoginDate = info.LoginDate.HasValue && info.LoginDate.Value.Year < 1900 ? null : info.LoginDate;
@@ -137,8 +137,8 @@ namespace FomMonitoringCore.Service.DataMapping
                                 }
                                 break;
                             case "piece":
-                                pieceSQLite = JsonConvert.DeserializeObject<List<piece>>(JsonConvert.SerializeObject(token.First));
-                                foreach (piece piece in pieceSQLite)
+                                pieceSqLite = JsonConvert.DeserializeObject<List<piece>>(JsonConvert.SerializeObject(token.First));
+                                foreach (piece piece in pieceSqLite)
                                 {
                                     piece.Id = 0;
                                     piece.EndTime = piece.EndTime.HasValue && piece.EndTime.Value.Year < 1900 ? null : piece.EndTime;
@@ -146,8 +146,8 @@ namespace FomMonitoringCore.Service.DataMapping
                             }
                                 break;
                             case "spindle":
-                                spindleSQLite = JsonConvert.DeserializeObject<List<spindle>>(JsonConvert.SerializeObject(token.First));
-                                foreach (spindle spindle in spindleSQLite)
+                                spindleSqLite = JsonConvert.DeserializeObject<List<spindle>>(JsonConvert.SerializeObject(token.First));
+                                foreach (spindle spindle in spindleSqLite)
                                 {
                                     spindle.Id = 0;
                                     spindle.InstallDate = spindle.InstallDate.HasValue && spindle.InstallDate.Value.Year < 1900 ? null : spindle.InstallDate;
@@ -156,8 +156,8 @@ namespace FomMonitoringCore.Service.DataMapping
                                 break;
                             case "state":
                                 string jsonSerialized = JsonConvert.SerializeObject(token.First);
-                                stateSQLite = JsonConvert.DeserializeObject<List<state>>(jsonSerialized);
-                                foreach (state state in stateSQLite)
+                                stateSqLite = JsonConvert.DeserializeObject<List<state>>(jsonSerialized);
+                                foreach (state state in stateSqLite)
                                 {
                                     state.Id = 0;
                                     state.StartTime = state.StartTime.HasValue && state.StartTime.Value.Year < 1900 ? null : state.StartTime;
@@ -169,8 +169,8 @@ namespace FomMonitoringCore.Service.DataMapping
                                 }
                                 break;
                             case "tool":
-                                toolSQLite = JsonConvert.DeserializeObject<List<tool>>(JsonConvert.SerializeObject(token.First));
-                                foreach (tool tool in toolSQLite)
+                                toolSqLite = JsonConvert.DeserializeObject<List<tool>>(JsonConvert.SerializeObject(token.First));
+                                foreach (tool tool in toolSqLite)
                                 {
                                     tool.Id = 0;
                                     tool.DateLoaded = tool.DateLoaded.HasValue && tool.DateLoaded.Value.Year < 1900 ? null : tool.DateLoaded;
@@ -179,7 +179,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                 break;
                             case "message":
                                 List<MessageModel>messageModels = JsonConvert.DeserializeObject<List<MessageModel>>(JsonConvert.SerializeObject(token.First));
-                                messageSQLite = messageModels.Select(m => new message()
+                                messageSqLite = messageModels.Select(m => new message()
                                 {
                                     Id = 0,
                                     Time = m.Time.HasValue && m.Time.Value.Year < 1900 ? null : m.Time,
@@ -195,46 +195,46 @@ namespace FomMonitoringCore.Service.DataMapping
                         }
                     }
 
-                if (barSQLite.Any())
+                if (barSqLite.Any())
                 {
-                    _FomMonitoringSQLiteEntities.Set<bar>().AddRange(barSQLite);
-                    _FomMonitoringSQLiteEntities.SaveChanges();
+                    _fomMonitoringSqLiteEntities.Set<bar>().AddRange(barSqLite);
+                    _fomMonitoringSqLiteEntities.SaveChanges();
                 }
-                if (historyJobSQLite.Any())
+                if (historyJobSqLite.Any())
                 {
-                    _FomMonitoringSQLiteEntities.Set<historyJob>().AddRange(historyJobSQLite);
-                    _FomMonitoringSQLiteEntities.SaveChanges();
+                    _fomMonitoringSqLiteEntities.Set<historyJob>().AddRange(historyJobSqLite);
+                    _fomMonitoringSqLiteEntities.SaveChanges();
                 }
-                if (infoSQLite.Any())
+                if (infoSqLite.Any())
                 {
-                    _FomMonitoringSQLiteEntities.Set<info>().AddRange(infoSQLite);
-                    _FomMonitoringSQLiteEntities.SaveChanges();
+                    _fomMonitoringSqLiteEntities.Set<info>().AddRange(infoSqLite);
+                    _fomMonitoringSqLiteEntities.SaveChanges();
                 }
-                if (pieceSQLite.Any())
+                if (pieceSqLite.Any())
                 {
-                    _FomMonitoringSQLiteEntities.Set<piece>().AddRange(pieceSQLite);
-                    _FomMonitoringSQLiteEntities.SaveChanges();
+                    _fomMonitoringSqLiteEntities.Set<piece>().AddRange(pieceSqLite);
+                    _fomMonitoringSqLiteEntities.SaveChanges();
                 }
-                if (spindleSQLite.Any())
+                if (spindleSqLite.Any())
                 {
-                    _FomMonitoringSQLiteEntities.Set<spindle>().AddRange(spindleSQLite);
-                    _FomMonitoringSQLiteEntities.SaveChanges();
+                    _fomMonitoringSqLiteEntities.Set<spindle>().AddRange(spindleSqLite);
+                    _fomMonitoringSqLiteEntities.SaveChanges();
                 }
-                if (stateSQLite.Any())
+                if (stateSqLite.Any())
                 {
-                    _FomMonitoringSQLiteEntities.Set<state>().AddRange(stateSQLite);
-                    _FomMonitoringSQLiteEntities.SaveChanges();
+                    _fomMonitoringSqLiteEntities.Set<state>().AddRange(stateSqLite);
+                    _fomMonitoringSqLiteEntities.SaveChanges();
                 }
-                if (toolSQLite.Any())
+                if (toolSqLite.Any())
                 {
-                    _FomMonitoringSQLiteEntities.Set<tool>().AddRange(toolSQLite);
-                    _FomMonitoringSQLiteEntities.SaveChanges();
+                    _fomMonitoringSqLiteEntities.Set<tool>().AddRange(toolSqLite);
+                    _fomMonitoringSqLiteEntities.SaveChanges();
                 }
 
-                if (messageSQLite.Any())
+                if (messageSqLite.Any())
                 {
-                    _FomMonitoringSQLiteEntities.Set<message>().AddRange(messageSQLite);
-                    _FomMonitoringSQLiteEntities.SaveChanges();
+                    _fomMonitoringSqLiteEntities.Set<message>().AddRange(messageSqLite);
+                    _fomMonitoringSqLiteEntities.SaveChanges();
                 }
 
                 result = true;                
@@ -247,34 +247,34 @@ namespace FomMonitoringCore.Service.DataMapping
             return result;
         }
 
-        public bool MappingJsonHistoryToSQLite(JsonDataModel jsonDataModel)
+        public bool MappingJsonHistoryToSqLite(JsonDataModel jsonDataModel)
         {
             bool result = false;
             try
             {
                 JObject json = JsonConvert.DeserializeObject<JObject>(jsonDataModel.Json);
-                List<historyBar> historyBarSQLite = new List<historyBar>();
-                List<historyPiece> historyPieceSQLite = new List<historyPiece>();
-                List<historyJob> historyJobSQLite = new List<historyJob>();
-                List<info> infoSQLite = new List<info>();
-                List<historyMessage> historyMessageSQLite = new List<historyMessage>();
-                List<historyState> historyStateSQLite = new List<historyState>();
-                List<spindle> spindleSQLite = new List<spindle>();
-                List<tool> toolSQLite = new List<tool>();
-                List<message> messageSQLite = new List<message>();
+                List<historyBar> historyBarSqLite = new List<historyBar>();
+                List<historyPiece> historyPieceSqLite = new List<historyPiece>();
+                List<historyJob> historyJobSqLite = new List<historyJob>();
+                List<info> infoSqLite = new List<info>();
+                List<historyMessage> historyMessageSqLite = new List<historyMessage>();
+                List<historyState> historyStateSqLite = new List<historyState>();
+                List<spindle> spindleSqLite = new List<spindle>();
+                List<tool> toolSqLite = new List<tool>();
+                List<message> messageSqLite = new List<message>();
                 
 
-                _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyBar");
-                _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyPiece");
-                _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyJob");
-                _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE info");
-                _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyState");
-                _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyMessage");
-                _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE spindle");
-                _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE tool");
-                _FomMonitoringSQLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE message");
+                _fomMonitoringSqLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyBar");
+                _fomMonitoringSqLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyPiece");
+                _fomMonitoringSqLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyJob");
+                _fomMonitoringSqLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE info");
+                _fomMonitoringSqLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyState");
+                _fomMonitoringSqLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyMessage");
+                _fomMonitoringSqLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE spindle");
+                _fomMonitoringSqLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE tool");
+                _fomMonitoringSqLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE message");
 
-                _FomMonitoringSQLiteEntities.SaveChanges();
+                _fomMonitoringSqLiteEntities.SaveChanges();
 
                 
                 foreach (JToken token in json.Root)
@@ -282,29 +282,29 @@ namespace FomMonitoringCore.Service.DataMapping
                     switch (token.Path.ToLower())
                     {
                         case "historybar":
-                            historyBarSQLite = JsonConvert.DeserializeObject<List<historyBar>>(JsonConvert.SerializeObject(token.First));
-                            foreach (var historyBar in historyBarSQLite)
+                            historyBarSqLite = JsonConvert.DeserializeObject<List<historyBar>>(JsonConvert.SerializeObject(token.First));
+                            foreach (var historyBar in historyBarSqLite)
                             {
                                 historyBar.Day = historyBar.Day.HasValue && historyBar.Day.Value.Year < 1900 ? null : historyBar.Day;
                             }
                             break;
                         case "historypiece":
-                            historyPieceSQLite = JsonConvert.DeserializeObject<List<historyPiece>>(JsonConvert.SerializeObject(token.First));
-                            foreach (var historyPiece in historyPieceSQLite)
+                            historyPieceSqLite = JsonConvert.DeserializeObject<List<historyPiece>>(JsonConvert.SerializeObject(token.First));
+                            foreach (var historyPiece in historyPieceSqLite)
                             {
                                 historyPiece.Day = historyPiece.Day.HasValue && historyPiece.Day.Value.Year < 1900 ? null : historyPiece.Day;
                             }
                             break;
                         case "historyjob":
-                            historyJobSQLite = JsonConvert.DeserializeObject<List<historyJob>>(JsonConvert.SerializeObject(token.First));
-                            foreach (var historyJob in historyJobSQLite)
+                            historyJobSqLite = JsonConvert.DeserializeObject<List<historyJob>>(JsonConvert.SerializeObject(token.First));
+                            foreach (var historyJob in historyJobSqLite)
                             {
                                 historyJob.Day = historyJob.Day.HasValue && historyJob.Day.Value.Year < 1900 ? null : historyJob.Day;
                             }
                             break;
                         case "info":
-                            infoSQLite = JsonConvert.DeserializeObject<List<info>>(JsonConvert.SerializeObject(token.First));
-                            foreach (var info in infoSQLite)
+                            infoSqLite = JsonConvert.DeserializeObject<List<info>>(JsonConvert.SerializeObject(token.First));
+                            foreach (var info in infoSqLite)
                             {
                                 info.Id = 0;
                                 info.LoginDate = info.LoginDate.HasValue && info.LoginDate.Value.Year < 1900 ? null : info.LoginDate;
@@ -313,38 +313,38 @@ namespace FomMonitoringCore.Service.DataMapping
                             }
                             break;
                         case "historymessage":
-                            historyMessageSQLite = JsonConvert.DeserializeObject<List<historyMessage>>(JsonConvert.SerializeObject(token.First));
-                            foreach (var historyMessage in historyMessageSQLite)
+                            historyMessageSqLite = JsonConvert.DeserializeObject<List<historyMessage>>(JsonConvert.SerializeObject(token.First));
+                            foreach (var historyMessage in historyMessageSqLite)
                             {
                                 historyMessage.Day = historyMessage.Day.HasValue && historyMessage.Day.Value.Year < 1900 ? null : historyMessage.Day;
                             }
                             break;
                         case "historystate":
-                            historyStateSQLite = JsonConvert.DeserializeObject<List<historyState>>(JsonConvert.SerializeObject(token.First));
-                            foreach (var historyState in historyStateSQLite)
+                            historyStateSqLite = JsonConvert.DeserializeObject<List<historyState>>(JsonConvert.SerializeObject(token.First));
+                            foreach (var historyState in historyStateSqLite)
                             {
                                 historyState.Day = historyState.Day.HasValue && historyState.Day.Value.Year < 1900 ? null : historyState.Day;
                             }
                             break;
                         case "spindle":
-                            spindleSQLite = JsonConvert.DeserializeObject<List<spindle>>(JsonConvert.SerializeObject(token.First));
-                            foreach (var spindle in spindleSQLite)
+                            spindleSqLite = JsonConvert.DeserializeObject<List<spindle>>(JsonConvert.SerializeObject(token.First));
+                            foreach (var spindle in spindleSqLite)
                             {
                                 spindle.InstallDate = spindle.InstallDate.HasValue && spindle.InstallDate.Value.Year < 1900 ? null : spindle.InstallDate;
                                 spindle.Replaced = spindle.Replaced.HasValue && spindle.Replaced.Value.Year < 1900 ? null : spindle.Replaced;
                             }
                             break;
                         case "tool":
-                            toolSQLite = JsonConvert.DeserializeObject<List<tool>>(JsonConvert.SerializeObject(token.First));
-                            foreach (var tool in toolSQLite)
+                            toolSqLite = JsonConvert.DeserializeObject<List<tool>>(JsonConvert.SerializeObject(token.First));
+                            foreach (var tool in toolSqLite)
                             {
                                 tool.DateLoaded = tool.DateLoaded.HasValue && tool.DateLoaded.Value.Year < 1900 ? null : tool.DateLoaded;
                                 tool.DateReplaced = tool.DateReplaced.HasValue && tool.DateReplaced.Value.Year < 1900 ? null : tool.DateReplaced;
                             }
                             break;
                         case "message":
-                            messageSQLite = JsonConvert.DeserializeObject<List<message>>(JsonConvert.SerializeObject(token.First));
-                            foreach (var message in messageSQLite)
+                            messageSqLite = JsonConvert.DeserializeObject<List<message>>(JsonConvert.SerializeObject(token.First));
+                            foreach (var message in messageSqLite)
                             {
                                 message.Time = message.Time.HasValue && message.Time.Value.Year < 1900 ? null : message.Time;
                             }
@@ -354,32 +354,32 @@ namespace FomMonitoringCore.Service.DataMapping
                     }
                 }
 
-                _FomMonitoringSQLiteEntities.Set<historyBar>().AddRange(historyBarSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
+                _fomMonitoringSqLiteEntities.Set<historyBar>().AddRange(historyBarSqLite);
+                _fomMonitoringSqLiteEntities.SaveChanges();
 
-                _FomMonitoringSQLiteEntities.Set<historyPiece>().AddRange(historyPieceSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
+                _fomMonitoringSqLiteEntities.Set<historyPiece>().AddRange(historyPieceSqLite);
+                _fomMonitoringSqLiteEntities.SaveChanges();
 
-                _FomMonitoringSQLiteEntities.Set<historyMessage>().AddRange(historyMessageSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
+                _fomMonitoringSqLiteEntities.Set<historyMessage>().AddRange(historyMessageSqLite);
+                _fomMonitoringSqLiteEntities.SaveChanges();
 
-                _FomMonitoringSQLiteEntities.Set<historyJob>().AddRange(historyJobSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
+                _fomMonitoringSqLiteEntities.Set<historyJob>().AddRange(historyJobSqLite);
+                _fomMonitoringSqLiteEntities.SaveChanges();
 
-                _FomMonitoringSQLiteEntities.Set<info>().AddRange(infoSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
+                _fomMonitoringSqLiteEntities.Set<info>().AddRange(infoSqLite);
+                _fomMonitoringSqLiteEntities.SaveChanges();
 
-                _FomMonitoringSQLiteEntities.Set<historyState>().AddRange(historyStateSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
+                _fomMonitoringSqLiteEntities.Set<historyState>().AddRange(historyStateSqLite);
+                _fomMonitoringSqLiteEntities.SaveChanges();
 
-                _FomMonitoringSQLiteEntities.Set<spindle>().AddRange(spindleSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
+                _fomMonitoringSqLiteEntities.Set<spindle>().AddRange(spindleSqLite);
+                _fomMonitoringSqLiteEntities.SaveChanges();
 
-                _FomMonitoringSQLiteEntities.Set<tool>().AddRange(toolSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
+                _fomMonitoringSqLiteEntities.Set<tool>().AddRange(toolSqLite);
+                _fomMonitoringSqLiteEntities.SaveChanges();
 
-                _FomMonitoringSQLiteEntities.Set<message>().AddRange(messageSQLite);
-                _FomMonitoringSQLiteEntities.SaveChanges();
+                _fomMonitoringSqLiteEntities.Set<message>().AddRange(messageSqLite);
+                _fomMonitoringSqLiteEntities.SaveChanges();
                 
                 result = true;                    
                 
@@ -392,22 +392,22 @@ namespace FomMonitoringCore.Service.DataMapping
             return result;
         }
 
-        public bool SaveElaboration(int id, bool IsLoaded)
+        public bool SaveElaboration(int id, bool isLoaded)
         {
             bool result = false;
             try
             {                
-                JsonData jsonData = _FomMonitoringEntities.Set<JsonData>().FirstOrDefault(f => f.Id == id);
+                JsonData jsonData = _fomMonitoringEntities.Set<JsonData>().FirstOrDefault(f => f.Id == id);
                 jsonData.ElaborationDate = DateTime.UtcNow;
                 jsonData.IsElaborated = true;
-                jsonData.IsLoaded = IsLoaded;
-                _FomMonitoringEntities.SaveChanges();
+                jsonData.IsLoaded = isLoaded;
+                _fomMonitoringEntities.SaveChanges();
 
                 result = true;                
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), id.ToString(), IsLoaded.ToString());
+                string errMessage = string.Format(ex.GetStringLog(), id.ToString(), isLoaded.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
