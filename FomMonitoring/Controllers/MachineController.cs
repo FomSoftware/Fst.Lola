@@ -66,6 +66,7 @@ namespace FomMonitoring.Controllers
                 _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
 
                 var context = _contextService.GetContext();
+                context.ActualMachineGroup = null;
                 var machine = _machineViewService.GetMachine(context);
 
                 return View(machine);
