@@ -19,7 +19,12 @@
 
 </head>
 <body>
-
+    <div id="alert-refresh-page" class="alert alert-primary" role="alert" style="z-index: 100; display: none; position: absolute; top: 0;">
+        Per favore ricaricare la pagina
+        <button id="button-refresh-page" type="button" class="btn btn-link" style="border: transparent;">
+            <i class="fa fa-refresh fa-2x"></i>
+        </button>
+    </div>
     <header>
         @Html.Action("_Header", "Shared")
         @Html.Action("_Toolbar", "Shared")
@@ -77,9 +82,28 @@
         moment.locale("@c");
         VueManager.initTimeSpanComponent();
     </script>
-    <script type="text/javascript">
-        VueManager.initTimeSpanComponent();
-    </script>
+<script type="text/javascript">
+
+        $(function() {
+            var $window = $(window);
+            var width = $window.width();
+            var height = $window.height();
+
+            setInterval(function () {
+                if ((width !== $window.width()) || (height !== $window.height())) {
+                    width = $window.width();
+                    height = $window.height();
+
+                    $('#alert-refresh-page').show();
+                }
+            }, 300);
+
+            $("#button-refresh-page").click(function() {
+                location.reload();
+            });
+        });
+
+</script>
 
 </body>
 </html>
