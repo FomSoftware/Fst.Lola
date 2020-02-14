@@ -4,11 +4,11 @@ using System;
 
 namespace FomMonitoringCore.Service.DataMapping
 {
-    public interface IJsonVariantsToSQLServerService
+    public interface IJsonVariantsToSqlServerService
     {
         bool MappingJsonParametersToSqlServer(JsonDataModel jsonDataModel);
 
-        void checkVariableTresholds(Machine machine,
+        void CheckVariableTresholds(Machine machine,
                         ParameterMachine par, JsonVariableValueModel value, decimal? oldValue, DateTime utcDatetime);
 
     }

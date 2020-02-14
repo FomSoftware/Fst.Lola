@@ -1,8 +1,8 @@
 ﻿namespace FomMonitoringCore.Service.DataMapping
 {
-    public interface ISQLiteToSQLServerService
+    public interface ISqLiteToSqlServerService
     {
-        bool MappingSQLiteDetailsToSQLServer();
-        bool MappingSQLiteHistoryToSQLServer();
+        bool MappingSqLiteDetailsToSqlServer();
+        bool MappingSqLiteHistoryToSqlServer();
     }
 }

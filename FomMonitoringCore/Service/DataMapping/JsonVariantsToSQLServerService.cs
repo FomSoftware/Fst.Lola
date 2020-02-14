@@ -12,7 +12,7 @@ using Newtonsoft.Json.Linq;
 
 namespace FomMonitoringCore.Service.DataMapping
 {
-    public class JsonVariantsToSqlServerService : IJsonVariantsToSQLServerService
+    public class JsonVariantsToSqlServerService : IJsonVariantsToSqlServerService
     {
         private readonly IFomMonitoringEntities _context;
         private readonly IMessageService _messageService;
@@ -67,39 +67,38 @@ namespace FomMonitoringCore.Service.DataMapping
 
                                         //ordino per data e poi per id perchè spesso arrivano valori diversi con la stessa data
                                         var previousValue = oldValues.FirstOrDefault(p => p.VarNumber == value.VariableNumber)?.VarValue;
-                                        var exists = oldValues.Any(p => p.VarNumber == value.VariableNumber && p.UtcDateTime == var.UtcDateTime);
+                                        var exists = oldValues.Any(p => p.VarNumber == value.VariableNumber && p.UtcDateTime.Date == var.UtcDateTime.Date);
 
-                                        if ((pm.Historicized == null || pm.Historicized == "1") && !exists)
+                                        if (pm.Historicized == null || pm.Historicized == "1") //storicizzazione attivata
                                         {
-                                            var pmv = new
+                                            if (!exists) //se non esiste un record per la giornata del valore della variabile lo aggiungo
                                             {
-                                                MachineId = mac.Id,
-                                                ParameterMachineId = pm.Id,
-                                                UtcDateTime = var.UtcDateTime,
-                                                VarNumber = value.VariableNumber,
-                                                VarValue = value.VariableValue
-                                            };
-                                            addedEntities.Add(pmv);
+                                                var pmv = new
+                                                {
+                                                    MachineId = mac.Id,
+                                                    ParameterMachineId = pm.Id,
+                                                    UtcDateTime = var.UtcDateTime,
+                                                    VarNumber = value.VariableNumber,
+                                                    VarValue = value.VariableValue
+                                                };
+                                                addedEntities.Add(pmv);
+                                            }
+                                            else //se esiste ne aggiorno il valore
+                                            {
+                                                var pmv = oldValues.First(p => p.VarNumber == value.VariableNumber && p.UtcDateTime.Date == var.UtcDateTime.Date);
+                                                pmv.VarValue = value.VariableValue;
+
+                                            }
+
                                         }
-                                        else if (pm.Historicized == "0" || exists)
+                                        else //storicizzazione non attivata
                                         {
-                                            var pmv = oldValues.FirstOrDefault(p => p.VarNumber == value.VariableNumber);
+                                            var pmv = oldValues.FirstOrDefault(p => p.VarNumber == value.VariableNumber); //prendo il valore più recente 
 
-                                            if (pmv != null)
+                                            if (pmv != null) //se esiste già un record lo aggiorno, altrimento lo aggiungo
                                             {
-                                                if (pm.Historicized == "0" && pmv.UtcDateTime < var.UtcDateTime)
-                                                {
-                                                    pmv.UtcDateTime = var.UtcDateTime;
-
-                                                    pmv.VarValue = value.VariableValue;
-                                                }
-                                                else
-                                                {
-                                                    if (pm.Historicized != "0" && exists)
-                                                    {
-                                                        pmv.VarValue = value.VariableValue;
-                                                    }
-                                                }
+                                                pmv.UtcDateTime = var.UtcDateTime;
+                                                pmv.VarValue = value.VariableValue;
                                             }
                                             else
                                             {
@@ -120,7 +119,7 @@ namespace FomMonitoringCore.Service.DataMapping
 
                                         if (!string.IsNullOrEmpty(pm.ThresholdMax) && pm.ThresholdMax != "0" ||
                                             !string.IsNullOrEmpty(pm.ThresholdMin) && pm.ThresholdMin != "0")
-                                            checkVariableTresholds(mac, pm, value, previousValue, var.UtcDateTime);
+                                            CheckVariableTresholds(mac, pm, value, previousValue, var.UtcDateTime);
                                     });
 
 
@@ -153,7 +152,7 @@ namespace FomMonitoringCore.Service.DataMapping
         }
 
 
-        public void checkVariableTresholds(Machine machine,
+        public void CheckVariableTresholds(Machine machine,
             ParameterMachine par, JsonVariableValueModel value, decimal? oldValue, DateTime utcDatetime)
         {
             if (machine == null || par == null || value == null)
