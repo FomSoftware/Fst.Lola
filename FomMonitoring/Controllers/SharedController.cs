@@ -11,7 +11,7 @@ namespace FomMonitoring.Controllers
     [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Administrator + "," + Common.Customer)]
     public class SharedController : Controller
     {
-        private IContextService _contextService;
+        private readonly IContextService _contextService;
 
         public SharedController(IContextService contextService)
         {
