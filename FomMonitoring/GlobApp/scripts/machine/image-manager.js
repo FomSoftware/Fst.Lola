@@ -177,6 +177,17 @@
         MachineManager.callAjaxMachineMessageViewModelData(filters);
     };
 
+    var selectPanel = function (element) {
+        var panel = $(element).data('panel');
+
+        $("[data-panel]").removeClass("selected");
+        $(element).addClass("selected");
+
+        vmImageMachine.machinePanelSelected = panel;
+        vmImageMachine.machineGroupSelected = null;
+        $("g[data-highlighted] path").css("fill", "transparent");
+    };
+
 
     var overMachineGroup = function (element) {
         var group = $(element).data('group');
@@ -189,16 +200,7 @@
         $("g[data-highlighted='" + group + "'] path").css("fill", "transparent");
     };
 
-    var selectPanel = function (element) {
-        var panel = $(element).data('panel');
 
-        $("[data-panel]").removeClass("selected");
-        $(element).addClass("selected");
-
-        vmImageMachine.machinePanelSelected = panel;
-        vmImageMachine.machineGroupSelected = null;
-        $("g[data-highlighted] path").css("fill", "transparent");
-    };
 
     var initMachineImage = function () {
         if (vmImageMachine.isMobile() || vmImageMachine.isTablet()) {
@@ -263,6 +265,7 @@
                 };
 
                 MachineManager.callAjaxMachineMessageViewModelData(filters);
+                $("#panels-area").hide();
                 checkVisibility();
             }
         });
@@ -296,20 +299,15 @@
             watch: {
 
                 machineGroupSelected: function (val, oldVal) {
+                    console.log("old al " + oldVal + "new Val " + val);
                     if (val != null && (this.isMobile() || this.isTablet())) {
                         $("#panels-area").show();
-                    }
-                    if (val == null && (this.isMobile() || this.isTablet())) {
-                        $("#panels-area").hide();
                     }
                 },
 
                 machinePanelSelected: function (val, oldVal) {
                     if (val != null && (this.isMobile() || this.isTablet())) {
                         $("#panels-area").show();
-                    }
-                    if (val == null && (this.isMobile() || this.isTablet())) {
-                        $("#panels-area").hide();
                     }
                 }
 
