@@ -11,14 +11,14 @@
                     <i class="fa icofom-elettromandrino fa-stack-1x fa-inverse" style="font-size:21px"></i>
                 </span>
             </div>
-            <div class="title-kpi" style="max-width: 510px;">
+            <div class="title-kpi testo-abbreviato" style="max-width: 89%;">
                 <span >@LocalizationService.GetResource("LMX650_RotaryAxes")</span>
                 <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
             </div>
         </div>
         <div class="portlet-body text-center" style="height:244px">
             <div class="card-portlet">
-                <div v-if="values != null" style="height:242px">
+                <div v-if="values != null" style="height:242px" class="slimscroll">
                     <hr style="background-color: #0c3817; height: 2px; border: none" />
                     <div style="cursor: auto; height: 50%">
                         <table class="table-spindle">

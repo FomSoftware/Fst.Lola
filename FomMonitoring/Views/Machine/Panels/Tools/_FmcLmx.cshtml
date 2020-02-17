@@ -10,7 +10,7 @@
                     <i class="fa icofom-fresa fa-stack-1x fa-inverse" style="font-size:21px"></i>
                 </span>
             </div>
-            <div class="title-kpi" style="max-width: 300px;">
+            <div class="title-kpi" style="max-width: 350px;">
                 <span v-if="panel == 35">
                     @LocalizationService.GetResource("LMX650_MMTools")</span>
                 <span v-else>
@@ -34,17 +34,17 @@
                                             <td class="td-tools-dark">
                                                 <label style="vertical-align: top; width:20px"><i class="fa fa-suitcase fa-lg" aria-hidden="true"></i></label>
                                                 <label class="label-tools">@LocalizationService.GetResource("Code")</label>
-                                                <label class="label-tools-value fmc center font-11-pt" v-html="tool.Code"></label>
+                                                <label class="label-tools-value fmc center" v-html="tool.Code"></label>
                                             </td>
                                             <td class="td-tools-light">
                                                 <label style="vertical-align: top; width:20px"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></label>
                                                 <label class="label-tools">@LocalizationService.GetResource("Description")</label>
-                                                <label class="label-tools-value fmc font-11-pt" v-html="tool.Description"></label>
+                                                <label class="label-tools-value fmc" v-html="tool.Description"></label>
                                             </td>
                                             <td class="td-tools-dark td-tools-dark-life">
                                                 <label style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                 <label class="label-tools">@LocalizationService.GetResource("vitaUtensile_x")</label>
-                                                <label class="label-tools-value fmc center font-11-pt" v-html="tool.ElapsedLife"></label>
+                                                <label class="label-tools-value fmc center" v-html="tool.ElapsedLife"></label>
                                             </td>
                                         </tr>
                                         <tr style="height:3px;">
