@@ -215,19 +215,13 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="varchar" MaxLength="100" />
           <Property Name="Day" Type="datetime" />
-          <Property Name="ElapsedTime" Type="bigint" />
           <Property Name="MachineId" Type="int" />
           <Property Name="Operator" Type="varchar" MaxLength="100" />
           <Property Name="StartTime" Type="datetime" />
           <Property Name="StateId" Type="int" />
           <Property Name="Params" Type="nvarchar(max)" />
-          <Property Name="Type" Type="nvarchar" MaxLength="150" />
-          <Property Name="Group" Type="int" />
-          <Property Name="IsVisible" Type="bit" />
           <Property Name="IgnoreDate" Type="datetime" />
-          <Property Name="IsPeriodicMsg" Type="bit" />
           <Property Name="MessagesIndexId" Type="int" />
         </EntityType>
         <EntityType Name="MessageMachineNotification">
