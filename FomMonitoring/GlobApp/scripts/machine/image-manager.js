@@ -121,6 +121,7 @@
         }
 
 
+
         if ((!(vmImageMachine.isLargeTablet() || vmImageMachine.isTablet()) &&
             (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
 
@@ -265,7 +266,12 @@
                 };
 
                 MachineManager.callAjaxMachineMessageViewModelData(filters);
-                $("#panels-area").hide();
+
+                if (vmImageMachine.isLargeTablet() || vmImageMachine.isTablet() || vmImageMachine.isMobile()) {
+                    $("#panels-area").hide();
+                } else {
+                    $("#panels-area").show();
+                }
                 checkVisibility();
             }
         });
