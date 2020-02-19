@@ -12,6 +12,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.SessionState;
+using FomMonitoringCore.Service;
 
 namespace FomMonitoring
 {
@@ -69,6 +70,7 @@ namespace FomMonitoring
             {
                 httpException = HttpException.CreateFromLastError(exception.Message);
             }
+            LogService.WriteLog("Application_Error", LogService.TypeLevel.Error, exception);
             HttpContext.Current.Response.RedirectToRoute(new RouteValueDictionary(new { controller = "Error", error = httpException.GetHttpCode() }));
             // clear error on server
             Server.ClearError();
