@@ -217,7 +217,7 @@
     var overMachineGroup = function (element) {
         var group = $(element).data('group');
         if (vmImageMachine.machineGroupSelected == group) return;
-        $("g[data-highlighted='" + group + "'] path").css("fill", "transparent");
+        $("g[data-highlighted='" + group + "'] path").css("fill", "#A61646");
     };
     var outMachineGroup = function (element) {
         var group = $(element).data('group');
