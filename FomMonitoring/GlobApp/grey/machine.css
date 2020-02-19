@@ -1557,6 +1557,11 @@ hr.axes {
     .lmx-button-container {
         width: 100%;
     }
+
+    #CardSensorSpindles { padding-left: 30px; }
+    #CardRotaryAxes, #CardElectroSpindle {
+        padding-right: 15px;
+    }
 }
 
 @media (max-height: 400px) {
@@ -1566,6 +1571,13 @@ hr.axes {
     }
     .lmx-button-group {
         padding: 0 15px 0 0;
+    }
+    #CardSensorSpindles {
+        padding-left: 30px;
+    }
+
+    #CardRotaryAxes, #CardElectroSpindle {
+        padding-right: 15px;
     }
 }
 

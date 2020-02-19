@@ -2,7 +2,7 @@
 @model FomMonitoringBLL.ViewModel.PanelParametersViewModel
 @using FomMonitoringCore.Service
 
-<div id="CardSensorSpindles"  class="@ViewData["Classes"]" style="height: 581px;" v-show="showed">
+<div id="CardSensorSpindles"  class="@ViewData["Classes"]" style="height: 581px;padding-right: 30px;" v-show="showed">
     <div class="portlet">
         <div class="portlet-title">
             <div class="portlet-kpi">
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="portlet-body text-center" >
-            <div class="card-portlet" style="height:540px">
+            <div class="card-portlet" style="height:530px">
                 <div id="sensorSlimscroll" v-if="noData() == false" style="height:100%" class="slimscroll">
                     <hr style="background-color:#0c3817;height:2px;border:none" />
                     <div style="cursor:auto;height:25%">
