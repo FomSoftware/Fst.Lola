@@ -50,106 +50,110 @@
     <div class="row justify-content-center">
         <div class="col-12" style="background-color: rgb(203, 202, 202);">
             <div class="row justify-content-center">
-                <div id="panels-box" class="col-10 col-sm-10 col-md-8" style="background-color: #cbcaca; padding-top: 30px; padding-bottom: 30px; width: 100%; height: calc(70vh);" v-show="machineGroupSelected == null && machinePanelSelected == null && (isMobile() || isTablet())">
-                    <div class="btn-group machine-group-selection" style="width: 100%; background-color: #cbcaca">
-                        <button type="button" data-group="LMX650_StepIn/Out" class="no-borders" style="width: 220px; background-color: #cbcaca">
-                            <img class="img-button-group" src="~/Images/panels/LMX_650-STEPIN-OUT-CARD_MOBILE.svg" />
+                <div id="panels-box" class="col-10 col-sm-10 col-md-10" style="background-color: #cbcaca; padding-top: 2vh; padding-bottom: 10px; width: 100%; height: calc(67vh);" v-show="machineGroupSelected == null && machinePanelSelected == null && (isMobile() || isTablet())">
+                    <div class="btn-group machine-group-selection lmx-button-container" style="background-color: #cbcaca;text-align: center">
+                        <button type="button" data-group="LMX650_StepIn/Out" class="no-borders lmx-button-group" style="background-color: #cbcaca;">
+                            <img class="img-button-group-lmx" src="~/Images/panels/LMX_650-STEPIN-OUT-CARD_MOBILE.svg" />
                         </button>
-                        <button type="button" data-group="LMX650_MM" class="no-borders" style="width: 220px; background-color: #cbcaca">
-                            <img class="img-button-group" src="~/Images/panels/LMX_650-MM-CARD_MOBILE.svg" />
+                        <button type="button" data-group="LMX650_MM" class="no-borders lmx-button-group" style="background-color: #cbcaca;">
+                            <img class="img-button-group-lmx" src="~/Images/panels/LMX_650-MM-CARD_MOBILE.svg" />
                         </button>
-                        <button type="button" data-group="LMX650_XMU" class="no-borders" style="width: 220px; background-color: #cbcaca">
-                            <img class="img-button-group" src="~/Images/panels/LMX_650-XMU-CARD_MOBILE.svg" />
+                        <button type="button" data-group="LMX650_XMU" class="no-borders lmx-button-group" style="background-color: #cbcaca;">
+                            <img class="img-button-group-lmx" src="~/Images/panels/LMX_650-XMU-CARD_MOBILE.svg" />
                         </button>
-                        <button type="button" data-group="LMX650_Motor/Blade" class="no-borders" style="width: 220px; background-color: #cbcaca">
-                            <img class="img-button-group" src="~/Images/panels/LMX_650-MOTOR_BLADE-CARD_MOBILE.svg" />
+                        <button type="button" data-group="LMX650_Motor/Blade" class="no-borders lmx-button-group" style="background-color: #cbcaca;">
+                            <img class="img-button-group-lmx" src="~/Images/panels/LMX_650-MOTOR_BLADE-CARD_MOBILE.svg" />
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 panels-area">
-            <div class="row">
-                @Html.Partial("Panels/_Efficiency", Model.Efficiency, new ViewDataDictionary
-                {
-                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
-                })
-                @Html.Partial("Panels/_Productivity", Model.Productivity, new ViewDataDictionary
-                {
-                    {"Classes", "col-xxl-4 col-xl-6  col-lg-6 col-md-12 col-sm-12 col-12"}
-                })
-                @Html.Partial("Panels/Jobs/_FMC_LMX", Model.Jobs, new ViewDataDictionary
-                {
-                    {"Classes", "col-xxl-4 col-xl-6  col-lg-6 col-md-12 col-sm-12 col-12"}
-                })
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 panels-area" id="panels-area">
 
-
-
-                @Html.Partial("Panels/MultiSpindles/_Multispindle", Model.PanelParameter, new ViewDataDictionary
-                {
-                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
-                })
-
-                @Html.Partial("Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter, new ViewDataDictionary
-                {
-                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
-                })
-
-                @Html.Partial("Panels/Tools/_FmcLmx", Model.PanelParameter, new ViewDataDictionary
-                {
-                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
-                })
-
-                @Html.Partial("Panels/XTools/_Lmx", Model.PanelParameter, new ViewDataDictionary
-                {
-                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
-                })
-
-                @Html.Partial("Panels/OtherMachineData/_LMX650", Model.PanelParameter, new ViewDataDictionary
-                {
-                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
-                })
-
-                @Html.Partial("Panels/Axes/_LMX_650", Model.PanelParameter, new ViewDataDictionary
+                <div class="row">
+                    @Html.Partial("Panels/_Efficiency", Model.Efficiency, new ViewDataDictionary
                         {
                             {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
                         })
-
-                @Html.Partial("Panels/TiltingAxes/_LMX650", Model.PanelParameter, new ViewDataDictionary
-                         {
-                             {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
-                         })
-                @Html.Partial("Panels/RotaryAxes/_LMX650", Model.PanelParameter, new ViewDataDictionary
-                           {
-                               {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
-                           })
-
-                @Html.Partial("Panels/SensorSpindles/_LMX650", Model.PanelParameter, new ViewDataDictionary
-                          {
-                              {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
-                          })
-                @Html.Partial("Panels/motor/_LMX_650", Model.PanelParameter, new ViewDataDictionary
-                         {
-                             {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
-                         })
+                    @Html.Partial("Panels/_Productivity", Model.Productivity, new ViewDataDictionary
+                    {
+                        {"Classes", "col-xxl-4 col-xl-6  col-lg-6 col-md-12 col-sm-12 col-12"}
+                    })
+                    @Html.Partial("Panels/Jobs/_FMC_LMX", Model.Jobs, new ViewDataDictionary
+                    {
+                        {"Classes", "col-xxl-4 col-xl-6  col-lg-6 col-md-12 col-sm-12 col-12"}
+                    })
+               
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4">
+                        @Html.Partial("Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter, new ViewDataDictionary { })
 
 
-                @Html.Partial("Panels/_Maintenance", Model.Maintenance, new ViewDataDictionary
-                {
-                    {"Classes", "col-xxl-4 col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12 order-xl-last"}
-                })
-                <div id="MsgPanel" class="col-xxl-8 col-xl-6 col-lg-6 col-md-12 col-sm-12 order-lg-11 order-xl-11">
-                    <div class="row">
-                        <div class="col-12">
-                            @Html.Partial("Panels/_Messages", Model.Messages)
+                        @Html.Partial("Panels/RotaryAxes/_LMX650", Model.PanelParameter, new ViewDataDictionary
+                        {
+                        })
+                    </div>
+                    @Html.Partial("Panels/SensorSpindles/_LMX650", Model.PanelParameter, new ViewDataDictionary
+                    {
+                        {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                    })
+                </div>
+                
+                    @Html.Partial("Panels/XTools/_Lmx", Model.PanelParameter, new ViewDataDictionary
+                    {
+                        {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                    })
+
+                    @Html.Partial("Panels/MultiSpindles/_Multispindle", Model.PanelParameter, new ViewDataDictionary
+                    {
+                        {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                    })
+                    @Html.Partial("Panels/TiltingAxes/_LMX650", Model.PanelParameter, new ViewDataDictionary
+                    {
+                        {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                    })
+
+                    @Html.Partial("Panels/Tools/_FmcLmx", Model.PanelParameter, new ViewDataDictionary
+                    {
+                        {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                    })
+
+                    @Html.Partial("Panels/Axes/_LMX_650", Model.PanelParameter, new ViewDataDictionary
+                    {
+                        {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                    })
+                    @Html.Partial("Panels/OtherMachineData/_LMX650", Model.PanelParameter, new ViewDataDictionary
+                    {
+                        {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                    })
+
+                    @Html.Partial("Panels/motor/_LMX_650", Model.PanelParameter, new ViewDataDictionary
+                    {
+                        {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                    })
+
+
+                    @Html.Partial("Panels/_Maintenance", Model.Maintenance, new ViewDataDictionary
+                    {
+                        {"Classes", "col-xxl-4 col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12 order-xl-last"}
+                    })
+                    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 placeholder-panel-mob-lmx" style="min-height: 298px;">
+                        <div class="empty-area" style="height: 100%"></div>
+                    </div>
+                    <div id="MsgPanel" class="col-xxl-8 col-xl-6 col-lg-6 col-md-12 col-sm-12 order-lg-11 order-xl-11">
+                        <div class="row">
+                            <div class="col-12">
+                                @Html.Partial("Panels/_Messages", Model.Messages)
+                            </div>
+                            <div class="col-12 placeholder-panel-full-lmx" style="height: 298px;">
+                                <div class="empty-area" style="background-repeat: round;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-    </div>
 </div>
 <script>
     $(document).ready(function() {

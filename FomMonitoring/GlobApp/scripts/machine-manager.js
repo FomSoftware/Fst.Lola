@@ -130,8 +130,10 @@
                 hh = hh - tableContainer.first().children('.table-header').height();
             }
 
-            if ($(this).attr('id') == "maintenanceSlimscroll")
+            if ($(this).attr('id') == "maintenanceSlimscroll" )
                 hh = '95%';
+            else if ($(this).attr('id') == "sensorSlimscroll")
+                hh = '100%';
             else
                 hh = hh + 'px';
             

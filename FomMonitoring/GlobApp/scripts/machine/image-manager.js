@@ -99,25 +99,49 @@
         }
         else if (vmImageMachine.modello == 'LMX') {
             if (vmImageMachine.machineGroupSelected == 'LMX650_Motor_Blade') {
-               
+                MotorBladeLMX.show();
             } else {
-               
+                MotorBladeLMX.hide();
             }
             if (vmImageMachine.machineGroupSelected == 'LMX650_XMU') {
-               
+                ElectroSpindle.show();
+                SensorSpindles.show();
+                RotaryAxes.show();
+                XToolsLmx.show();
             } else {
-              
+                ElectroSpindle.hide();
+                SensorSpindles.hide();
+                RotaryAxes.hide();
+                XToolsLmx.hide();
             }
             if (vmImageMachine.machineGroupSelected == 'LMX650_StepIn_Out') {
-              
+                AxesLmx650.show();
+                OtherDataLMX.show();
+                $(".placeholder-panel-mob-lmx").hide();
             } else {
-               
+                AxesLmx650.hide();
+                OtherDataLMX.hide();
+                if (vmImageMachine.isTablet() || vmImageMachine.isLargeTablet())
+                    $(".placeholder-panel-mob-lmx").show();
+                else
+                    $(".placeholder-panel-mob-lmx").hide();
             }
             if (vmImageMachine.machineGroupSelected == 'LMX650_MM') {
-               
+                MultiSpindles.show();
+                TiltingAxes.show();
+                ToolsFmcLmx.show();
             } else {
-               
+                MultiSpindles.hide();
+                TiltingAxes.hide();
+                ToolsFmcLmx.hide();
             }
+
+            if (vmImageMachine.isTablet() && vmImageMachine.machineGroupSelected != 'LMX650_XMU') {
+                $(".placeholder-panel-full-lmx").show();
+            } else {
+                $(".placeholder-panel-full-lmx").hide();
+            }
+            
         }
 
 

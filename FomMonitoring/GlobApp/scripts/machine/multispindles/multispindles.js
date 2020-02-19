@@ -71,12 +71,21 @@
         });
     }
 
+    var show = function () {
+        vmMultiSpindles.showed = true;
+    }
+
+    var hide = function () {
+        vmMultiSpindles.showed = false;
+    }
+
     var initVueModel = function (data)
     {
         vmMultiSpindles = new Vue({
             el: '#CardMultiSpindles',
             data: {
-                values: data
+                values: data,
+                showed: true
             },
             computed: {
                 colorKPI: function () {
@@ -116,7 +125,9 @@
 
     return {
         init: init,
-        update: update
+        update: update,
+        show: show,
+        hide: hide
     }
 
 }();

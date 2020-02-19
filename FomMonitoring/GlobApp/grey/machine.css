@@ -1504,11 +1504,76 @@ hr.axes {
         max-height: 100%;
     }
 
-    [data-panel] {
-        height: 50px;
-        width: 50px;
-        font-size: 50px;
+    .img-button-group-lmx {
+        width: 300px;
+        padding-top: 40px;
     }
+
+    .lmx-button-group {
+        padding-right: 34px;
+    }
+
+.lmx-button-container {
+    display: block;
+    width: 100%;
+}
+
+@media (max-height: 768px) {
+    .img-button-group-lmx {
+        width: 220px;
+        padding-top: 0;
+    }
+    .lmx-button-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .lmx-button-group {
+        padding: 0 15px 0 15px;
+    }
+}
+
+@media (max-width: 812px) {
+    .img-button-group-lmx {
+        width: 90px;
+        padding-bottom: 15px;
+        padding-top: 0;
+    }
+    .lmx-button-container {
+        display: block;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 30vh;
+    }
+
+    .lmx-button-group {
+        padding: 0 5px 0 5px;
+    }
+}
+
+@media (max-width: 400px) {
+    .lmx-button-container {
+        width: 100%;
+    }
+}
+
+@media (max-height: 400px) {
+    .lmx-button-container {
+        width: 100%;
+        padding-top: 20px;
+    }
+    .lmx-button-group {
+        padding: 0 15px 0 0;
+    }
+}
+
+[data-panel] {
+    height: 50px;
+    width: 50px;
+    font-size: 50px;
+}
 
     [data-panel='maintenance'] {
         font-size: 25px;
@@ -1610,7 +1675,7 @@ hr.axes {
     }
 
     .panels-area {
-        padding-top: 20px;
+        padding-top: 10px;
     }
 
     .empty-area {

@@ -2,7 +2,7 @@
 @model FomMonitoringBLL.ViewModel.PanelParametersViewModel
 @using FomMonitoringCore.Service
 
-<div id="CardTiltingAxes" class="@ViewData["Classes"]" >
+<div id="CardTiltingAxes" class="@ViewData["Classes"]" v-show="showed">
     <div class="portlet">
         <div class="portlet-title">
             <div class="portlet-kpi">

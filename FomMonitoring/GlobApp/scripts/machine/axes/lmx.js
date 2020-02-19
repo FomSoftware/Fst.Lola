@@ -5,11 +5,20 @@
         initVueModel(data.vm_axes_lmx);
     }
 
+    var show = function () {
+        vmAxes.showed = true;
+    }
+
+    var hide = function () {
+        vmAxes.showed = false;
+    }
+
     var initVueModel = function (data) {
         vmAxes = new Vue({
             el: '#CardAxesLmx',
             data: {
-                axes: data.AxesLmx
+                axes: data.AxesLmx,
+                showed: true
             },
             computed: {
                 colorKPI: function () {
@@ -51,7 +60,9 @@
 
     return {
         init: init,
-        update: update
+        update: update,
+        show: show,
+        hide: hide
     }
 
 }();
