@@ -91,10 +91,18 @@
 
             setInterval(function () {
                 if ((width !== $window.width()) || (height !== $window.height())) {
-                    width = $window.width();
-                    height = $window.height();
 
-                    $('#alert-refresh-page').show();
+                    var diffWidth = Math.abs(width - $window.width());
+                    var diffHeight = Math.abs(height - $window.height());
+
+                    if (diffWidth > 50 || diffHeight > 50) {
+                        
+                        width = $window.width();
+                        height = $window.height();
+
+                        $('#alert-refresh-page').show();
+                    }
+
                 }
             }, 300);
 
