@@ -176,6 +176,16 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     max-width: 100%;
 }
 
+.form-actions button {
+    font-size: 20px;
+}
+
+@media(max-width:1024px) {
+    .form-actions button {
+        font-size: 14px;
+    }
+}
+
 @media(min-width:1024px) {
     
     .header {
@@ -196,6 +206,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
         padding-top: 30px;
         font-size: 14px;
     }
+    
 }
 
 @media(max-height:768px) {
@@ -239,6 +250,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
         padding-top: 10px;
         font-size: 10px;
     }
+   
 }
 
 @media(max-width:768px) {
