@@ -1,28 +1,25 @@
 ﻿using Autofac;
-using Autofac.Core;
 using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
-using FomMonitoringCore.Framework.Model.Xml;
-using FomMonitoringCore.Repository;
 using FomMonitoringCore.Uow;
 using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Linq;
-using System.Transactions;
+using FomMonitoringCore.Repository.SQL;
 
 namespace FomMonitoringCore.Service
 {
     public class MachineService : IMachineService
     {
-        private IMachineTypeRepository _machineTypeRepository;
-        private IMachineModelRepository _machineModelRepository;
-        private IPanelRepository _panelRepository;
-        private IMachineRepository _machineRepository;
-        private IFomMonitoringEntities _context;
-        private IParameterMachineService _parameterMachineService;
+        private readonly IMachineTypeRepository _machineTypeRepository;
+        private readonly IMachineModelRepository _machineModelRepository;
+        private readonly IPanelRepository _panelRepository;
+        private readonly IMachineRepository _machineRepository;
+        private readonly IFomMonitoringEntities _context;
+        private readonly IParameterMachineService _parameterMachineService;
         private IUnitOfWork _unitOfWork;
 
         public MachineService(

@@ -1,18 +1,18 @@
 ﻿using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
-using FomMonitoringCore.Repository;
 using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FomMonitoringCore.Repository.SQL;
 
 namespace FomMonitoringCore.Service
 {
     public class PieceService : IPieceService
     {
-        private IFomMonitoringEntities _context;
-        private IHistoryPieceRepository _historyPieceRepository;
+        private readonly IFomMonitoringEntities _context;
+        private readonly IHistoryPieceRepository _historyPieceRepository;
 
         public PieceService(IFomMonitoringEntities context, IHistoryPieceRepository historyPieceRepository)
         {

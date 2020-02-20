@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-using FomMonitoringCore.Repository;
+using FomMonitoringCore.Repository.SQL;
 
 namespace FomMonitoringCore.Service
 {

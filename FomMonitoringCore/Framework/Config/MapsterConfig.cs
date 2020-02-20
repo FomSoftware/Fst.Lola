@@ -7,6 +7,9 @@ using Mapster;
 using System;
 using System.Linq;
 using UserManager.DAL;
+using HistoryMessage = FomMonitoringCore.DAL.HistoryMessage;
+using MessageMachine = FomMonitoringCore.DAL.MessageMachine;
+using ToolMachine = FomMonitoringCore.DAL.ToolMachine;
 
 namespace FomMonitoringCore.Framework.Config
 {

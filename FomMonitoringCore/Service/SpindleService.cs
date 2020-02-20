@@ -1,18 +1,18 @@
 ﻿using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
-using FomMonitoringCore.Repository;
 using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using FomMonitoringCore.Repository.SQL;
 
 namespace FomMonitoringCore.Service
 {
     public class SpindleService : ISpindleService
     {
-        private ISpindleRepository _spindleRepository;
+        private readonly ISpindleRepository _spindleRepository;
 
         public SpindleService(ISpindleRepository spindleRepository)
         {

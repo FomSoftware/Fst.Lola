@@ -1,9 +1,4 @@
-﻿using FomMonitoringCore.Framework.Model;
-using FomMonitoringCore.Framework.Model.Xml;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using FomMonitoringCore.Framework.Model.Xml;
 using System.Threading.Tasks;
 
 namespace FomMonitoringCore.Service.API

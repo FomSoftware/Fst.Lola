@@ -1,7 +1,6 @@
 ﻿using FomMonitoringCore.Framework.Common;
 using System;
 using System.Collections.Generic;
-using UserManager.DAL;
 
 namespace FomMonitoringCore.Framework.Model
 {

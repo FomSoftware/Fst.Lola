@@ -17,7 +17,7 @@ namespace FomMonitoringCore.Service.API.Concrete
         ///     var key = Convert.ToBase64String(hmac.Key);
         /// </summary>
         private const string Secret = "5WKenA5ZkB4K6pe8OBi0/KqaK9atKPAdBY6FqtZGC3axVibfwNruwj3+hOoIRqj8VHQXpepX9jThSrDwOveFMg==";
-        private IMachineService _machineService;
+        private readonly IMachineService _machineService;
 
         public string GenerateToken(string machineSerial, int expireMinutes = 2)
         {

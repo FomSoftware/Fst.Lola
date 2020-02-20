@@ -23,6 +23,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringCheckMaintenan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringCheckOffline", "FomMonitoringCheckOffline\FomMonitoringCheckOffline.csproj", "{6D3B1C77-C544-4C9D-9704-11B5BBE67505}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoadTest", "LoadTest", "{54296465-9F6F-4BD0-93F9-4B0C859C5F26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VariableListLoadTest", "VariableListLoadTest\VariableListLoadTest.csproj", "{3A5288F8-A9D1-481C-AC20-B44DFC1961F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringQueueConsumerService", "FomMonitoringQueueConsumerService\FomMonitoringQueueConsumerService.csproj", "{25C82F44-20C6-465F-A63A-52649A26E391}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringCoreQueue", "FomMonitoringCoreQueue\FomMonitoringCoreQueue.csproj", "{EA115B09-D703-490D-96F5-6A6C8503294E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,9 +119,36 @@ Global
 		{6D3B1C77-C544-4C9D-9704-11B5BBE67505}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6D3B1C77-C544-4C9D-9704-11B5BBE67505}.Release|x86.ActiveCfg = Release|Any CPU
 		{6D3B1C77-C544-4C9D-9704-11B5BBE67505}.Release|x86.Build.0 = Release|Any CPU
+		{3A5288F8-A9D1-481C-AC20-B44DFC1961F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A5288F8-A9D1-481C-AC20-B44DFC1961F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A5288F8-A9D1-481C-AC20-B44DFC1961F3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3A5288F8-A9D1-481C-AC20-B44DFC1961F3}.Debug|x86.Build.0 = Debug|Any CPU
+		{3A5288F8-A9D1-481C-AC20-B44DFC1961F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A5288F8-A9D1-481C-AC20-B44DFC1961F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A5288F8-A9D1-481C-AC20-B44DFC1961F3}.Release|x86.ActiveCfg = Release|Any CPU
+		{3A5288F8-A9D1-481C-AC20-B44DFC1961F3}.Release|x86.Build.0 = Release|Any CPU
+		{25C82F44-20C6-465F-A63A-52649A26E391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25C82F44-20C6-465F-A63A-52649A26E391}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25C82F44-20C6-465F-A63A-52649A26E391}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{25C82F44-20C6-465F-A63A-52649A26E391}.Debug|x86.Build.0 = Debug|Any CPU
+		{25C82F44-20C6-465F-A63A-52649A26E391}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25C82F44-20C6-465F-A63A-52649A26E391}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25C82F44-20C6-465F-A63A-52649A26E391}.Release|x86.ActiveCfg = Release|Any CPU
+		{25C82F44-20C6-465F-A63A-52649A26E391}.Release|x86.Build.0 = Release|Any CPU
+		{EA115B09-D703-490D-96F5-6A6C8503294E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA115B09-D703-490D-96F5-6A6C8503294E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA115B09-D703-490D-96F5-6A6C8503294E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EA115B09-D703-490D-96F5-6A6C8503294E}.Debug|x86.Build.0 = Debug|Any CPU
+		{EA115B09-D703-490D-96F5-6A6C8503294E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA115B09-D703-490D-96F5-6A6C8503294E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA115B09-D703-490D-96F5-6A6C8503294E}.Release|x86.ActiveCfg = Release|Any CPU
+		{EA115B09-D703-490D-96F5-6A6C8503294E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3A5288F8-A9D1-481C-AC20-B44DFC1961F3} = {54296465-9F6F-4BD0-93F9-4B0C859C5F26}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F19CA50F-7599-43AF-963B-85E10E41DD8A}

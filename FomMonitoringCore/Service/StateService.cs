@@ -1,12 +1,11 @@
 ﻿using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
-using FomMonitoringCore.Repository;
 using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
+using FomMonitoringCore.Repository.SQL;
 
 namespace FomMonitoringCore.Service
 {
@@ -15,8 +14,8 @@ namespace FomMonitoringCore.Service
     /// </summary>
     public class StateService : IStateService
     {
-        private IHistoryStateRepository _historyStateRepository;
-        private IFomMonitoringEntities _context;
+        private readonly IHistoryStateRepository _historyStateRepository;
+        private readonly IFomMonitoringEntities _context;
 
         public StateService(IHistoryStateRepository historyStateRepository, IFomMonitoringEntities context)
         {

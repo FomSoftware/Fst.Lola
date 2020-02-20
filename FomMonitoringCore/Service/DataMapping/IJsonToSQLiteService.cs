@@ -1,7 +1,5 @@
-﻿using FomMonitoringCore.DAL;
-using FomMonitoringCore.Framework.Model;
+﻿using FomMonitoringCore.Framework.Model;
 using System.Collections.Generic;
-using System.Data.Entity;
 
 namespace FomMonitoringCore.Service.DataMapping
 {

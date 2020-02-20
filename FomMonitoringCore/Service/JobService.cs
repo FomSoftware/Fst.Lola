@@ -1,19 +1,18 @@
 ﻿using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
-using FomMonitoringCore.Repository;
 using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Transactions;
+using FomMonitoringCore.Repository.SQL;
 
 namespace FomMonitoringCore.Service
 {
     public class JobService : IJobService
     {
-        private IFomMonitoringEntities _context;
-        private IHistoryJobRepository _historyJobRepository;
+        private readonly IFomMonitoringEntities _context;
+        private readonly IHistoryJobRepository _historyJobRepository;
 
         public JobService(IFomMonitoringEntities context, IHistoryJobRepository historyJobRepository)
         {

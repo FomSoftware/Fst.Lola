@@ -1,13 +1,10 @@
 ﻿using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
-using FomMonitoringCore.Repository;
 using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Transactions;
-using System.Web.UI.WebControls;
 using UserManager.DAL;
 
 namespace FomMonitoringCore.Service
@@ -16,7 +13,7 @@ namespace FomMonitoringCore.Service
     {
         #region API
 
-        private IFomMonitoringEntities _context;
+        private readonly IFomMonitoringEntities _context;
         
         public MesService(IFomMonitoringEntities context)
         {

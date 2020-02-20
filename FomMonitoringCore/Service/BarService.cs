@@ -5,13 +5,12 @@ using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Transactions;
 
 namespace FomMonitoringCore.Service
 {
     public class BarService : IBarService
     {
-        private IFomMonitoringEntities _context;
+        private readonly IFomMonitoringEntities _context;
         public BarService(IFomMonitoringEntities context)
         {
             _context = context;

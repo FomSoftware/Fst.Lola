@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.Mail;
 using UserManager.DAL;
 using UserManager.Service.Concrete;
+using FST_FomMonitoringEntities = FomMonitoringCore.DAL.FST_FomMonitoringEntities;
 
 namespace FomMonitoringCore.Service
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FomMonitoringCore.Framework.Models
+namespace FomMonitoringCore.Framework.Model
 {
     public class CurrentStateModel
     {

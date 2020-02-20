@@ -19,6 +19,8 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -95,6 +97,12 @@
     <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="Crc32C.NET, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Crc32C.NET.1.0.5.0\lib\net20\Crc32C.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="DnsClient, Version=1.2.0.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
+      <HintPath>..\packages\DnsClient.1.2.0\lib\net45\DnsClient.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -123,11 +131,32 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.10.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.10.2\lib\net452\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.10.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.10.2\lib\net452\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.10.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.10.2\lib\net452\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Libmongocrypt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Libmongocrypt.1.0.0\lib\net452\MongoDB.Libmongocrypt.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SharpCompress, Version=0.23.0.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpCompress.0.23.0\lib\net45\SharpCompress.dll</HintPath>
+    </Reference>
+    <Reference Include="Snappy.NET, Version=1.1.1.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Snappy.NET.1.1.1.8\lib\net45\Snappy.NET.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -138,6 +167,9 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -184,6 +216,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DalMongoDb\MongoDbContext.cs" />
     <Compile Include="DAL\Bar.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
@@ -378,6 +411,19 @@
     <Compile Include="DAL_SQLite\tool.cs">
       <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataProcessing\Dto\Bar.cs" />
+    <Compile Include="DataProcessing\Dto\BaseModel.cs" />
+    <Compile Include="DataProcessing\Dto\HistoryJob.cs" />
+    <Compile Include="DataProcessing\Dto\InfoMachine.cs" />
+    <Compile Include="DataProcessing\Dto\Message.cs" />
+    <Compile Include="DataProcessing\Dto\Mongo\BaseModel.cs" />
+    <Compile Include="DataProcessing\Dto\Mongo\MachineDataModel.cs" />
+    <Compile Include="DataProcessing\Dto\Piece.cs" />
+    <Compile Include="DataProcessing\Dto\Spindle.cs" />
+    <Compile Include="DataProcessing\Dto\StateMachine.cs" />
+    <Compile Include="DataProcessing\Dto\Tool.cs" />
+    <Compile Include="DataProcessing\Dto\Value.cs" />
+    <Compile Include="DataProcessing\Dto\VariablesList.cs" />
     <Compile Include="Framework\Common\Attributes.cs" />
     <Compile Include="Framework\Common\Common.cs" />
     <Compile Include="Framework\Common\EmailSender.cs" />
@@ -429,39 +475,41 @@
     <Compile Include="Framework\Model\UserModel.cs" />
     <Compile Include="Ioc\IocContainerBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\GenericRepository.cs" />
-    <Compile Include="Repository\HistoryJobRepository.cs" />
-    <Compile Include="Repository\HistoryMessageRepository.cs" />
-    <Compile Include="Repository\HistoryPieceRepository.cs" />
-    <Compile Include="Repository\HistoryStateRepository.cs" />
-    <Compile Include="Repository\IGenericRepository.cs" />
-    <Compile Include="Repository\IHistoryJobRepository.cs" />
-    <Compile Include="Repository\IHistoryPieceRepository.cs" />
-    <Compile Include="Repository\IHistoryStateRepository.cs" />
-    <Compile Include="Repository\IMachineGroupRepository.cs" />
-    <Compile Include="Repository\IMachineModelRepository.cs" />
-    <Compile Include="Repository\IMachineRepository.cs" />
-    <Compile Include="Repository\IMachineTypeRepository.cs" />
-    <Compile Include="Repository\IMessageLanguagesRepository.cs" />
-    <Compile Include="Repository\IMessageMachineRepository.cs" />
-    <Compile Include="Repository\IMessagesIndexRepository.cs" />
-    <Compile Include="Repository\IMessageTranslationRepository.cs" />
-    <Compile Include="Repository\IPanelRepository.cs" />
-    <Compile Include="Repository\IParameterMachineRepository.cs" />
-    <Compile Include="Repository\IParameterMachineValueRepository.cs" />
-    <Compile Include="Repository\ISpindleRepository.cs" />
-    <Compile Include="Repository\MachineGroupRepository.cs" />
-    <Compile Include="Repository\MachineModelRepository.cs" />
-    <Compile Include="Repository\MachineRepository.cs" />
-    <Compile Include="Repository\MachineTypeRepository.cs" />
-    <Compile Include="Repository\MessageLanguagesRepository.cs" />
-    <Compile Include="Repository\MessageMachineRepository.cs" />
-    <Compile Include="Repository\MessagesIndexRepository.cs" />
-    <Compile Include="Repository\MessageTranslationRepository.cs" />
-    <Compile Include="Repository\PanelRepository.cs" />
-    <Compile Include="Repository\ParameterMachineRepository.cs" />
-    <Compile Include="Repository\ParameterMachineValueRepository.cs" />
-    <Compile Include="Repository\SpindleRepository.cs" />
+    <Compile Include="Repository\MongoDb\GenericRepository.cs" />
+    <Compile Include="Repository\MongoDb\IGenericRepository.cs" />
+    <Compile Include="Repository\SQL\GenericRepository.cs" />
+    <Compile Include="Repository\SQL\HistoryJobRepository.cs" />
+    <Compile Include="Repository\SQL\HistoryMessageRepository.cs" />
+    <Compile Include="Repository\SQL\HistoryPieceRepository.cs" />
+    <Compile Include="Repository\SQL\HistoryStateRepository.cs" />
+    <Compile Include="Repository\SQL\IGenericRepository.cs" />
+    <Compile Include="Repository\SQL\IHistoryJobRepository.cs" />
+    <Compile Include="Repository\SQL\IHistoryPieceRepository.cs" />
+    <Compile Include="Repository\SQL\IHistoryStateRepository.cs" />
+    <Compile Include="Repository\SQL\IMachineGroupRepository.cs" />
+    <Compile Include="Repository\SQL\IMachineModelRepository.cs" />
+    <Compile Include="Repository\SQL\IMachineRepository.cs" />
+    <Compile Include="Repository\SQL\IMachineTypeRepository.cs" />
+    <Compile Include="Repository\SQL\IMessageLanguagesRepository.cs" />
+    <Compile Include="Repository\SQL\IMessageMachineRepository.cs" />
+    <Compile Include="Repository\SQL\IMessagesIndexRepository.cs" />
+    <Compile Include="Repository\SQL\IMessageTranslationRepository.cs" />
+    <Compile Include="Repository\SQL\IPanelRepository.cs" />
+    <Compile Include="Repository\SQL\IParameterMachineRepository.cs" />
+    <Compile Include="Repository\SQL\IParameterMachineValueRepository.cs" />
+    <Compile Include="Repository\SQL\ISpindleRepository.cs" />
+    <Compile Include="Repository\SQL\MachineGroupRepository.cs" />
+    <Compile Include="Repository\SQL\MachineModelRepository.cs" />
+    <Compile Include="Repository\SQL\MachineRepository.cs" />
+    <Compile Include="Repository\SQL\MachineTypeRepository.cs" />
+    <Compile Include="Repository\SQL\MessageLanguagesRepository.cs" />
+    <Compile Include="Repository\SQL\MessageMachineRepository.cs" />
+    <Compile Include="Repository\SQL\MessagesIndexRepository.cs" />
+    <Compile Include="Repository\SQL\MessageTranslationRepository.cs" />
+    <Compile Include="Repository\SQL\PanelRepository.cs" />
+    <Compile Include="Repository\SQL\ParameterMachineRepository.cs" />
+    <Compile Include="Repository\SQL\ParameterMachineValueRepository.cs" />
+    <Compile Include="Repository\SQL\SpindleRepository.cs" />
     <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\API\Concrete\JsonDataService.cs" />
     <Compile Include="Service\API\Concrete\XmlDataService.cs" />
@@ -572,9 +620,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAL\FomMonitoringEntitiesIsolated\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -602,5 +648,12 @@
     </PropertyGroup>
     <!--Publish copies the untransformed App.config to deployment directory so overwrite it-->
     <Copy Condition="Exists('$(DeployedConfig)')" SourceFiles="$(IntermediateOutputPath)$(TargetFileName).config" DestinationFiles="$(DeployedConfig)" />
+  </Target>
+  <Import Project="..\packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets" Condition="Exists('..\packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets'))" />
   </Target>
 </Project>

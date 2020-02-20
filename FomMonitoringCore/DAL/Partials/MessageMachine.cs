@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace FomMonitoringCore.DAL
@@ -12,7 +10,7 @@ namespace FomMonitoringCore.DAL
        
         public DateTime? GetInitialSpanDate(long PeriodicSpan)
         {
-            DateTime? result = Machine.ActivationDate;
+            DateTime? result =  Machine.ActivationDate;
            
             if (IgnoreDate == null || PeriodicSpan == 0)
                 return result;

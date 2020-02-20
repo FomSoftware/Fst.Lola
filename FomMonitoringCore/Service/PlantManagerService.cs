@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
@@ -14,7 +12,7 @@ namespace FomMonitoringCore.Service
 {
     public class PlantManagerService : IPlantManagerService
     {
-        private IFomMonitoringEntities _context;
+        private readonly IFomMonitoringEntities _context;
 
         public PlantManagerService(IFomMonitoringEntities context)
         {

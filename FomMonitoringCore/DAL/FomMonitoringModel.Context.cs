@@ -132,7 +132,7 @@ namespace FomMonitoringCore.DAL
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AggregationBar_Result>("usp_AggregationBar", machineIdParameter, startDateParameter, endDateParameter, aggregationParameter);
         }
-
+    
         public virtual ObjectResult<usp_AggregationJob_Result> usp_AggregationJob(Nullable<int> machineId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<int> aggregation)
         {
             var machineIdParameter = machineId.HasValue ?

@@ -6,12 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using ToolMachine = FomMonitoringCore.DAL.ToolMachine;
 
 namespace FomMonitoringCore.Service
 {
     public class ToolService : IToolService
     {
-        private IFomMonitoringEntities _context;
+        private readonly IFomMonitoringEntities _context;
 
         public ToolService(IFomMonitoringEntities context)
         {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using FomMonitoringCore.DAL;
 using FomMonitoringCore.DAL_SQLite;
@@ -9,6 +8,7 @@ using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Uow;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using MessageMachine = FomMonitoringCore.DAL.MessageMachine;
 
 namespace FomMonitoringCore.Service.DataMapping
 {

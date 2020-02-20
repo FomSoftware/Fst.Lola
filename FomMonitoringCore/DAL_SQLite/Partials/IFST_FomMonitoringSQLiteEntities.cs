@@ -1,10 +1,5 @@
-﻿using FomMonitoringCore.DAL;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
+using FomMonitoringCore.DAL;
 
 namespace FomMonitoringCore.DAL_SQLite
 {
@@ -14,6 +9,9 @@ namespace FomMonitoringCore.DAL_SQLite
 
     public partial class FST_FomMonitoringSQLiteEntities : DbContext, IFomMonitoringSQLiteEntities
     {
-
+        public void Refresh()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

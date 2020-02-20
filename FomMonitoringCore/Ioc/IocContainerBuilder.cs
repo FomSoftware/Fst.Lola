@@ -4,6 +4,7 @@ using FomMonitoringCore.DAL;
 using FomMonitoringCore.DAL_SQLite;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Repository;
+using FomMonitoringCore.Repository.SQL;
 using FomMonitoringCore.Service;
 using FomMonitoringCore.Service.API;
 using FomMonitoringCore.Service.API.Concrete;
@@ -56,8 +57,7 @@ namespace FomMonitoringCore.Ioc
             instancesFoRequest.Add(builder.RegisterType<StateService>().As<IStateService>());
             instancesFoRequest.Add(builder.RegisterType<MessageService>().As<IMessageService>());
             instancesFoRequest.Add(builder.RegisterType<UnitOfWork>().As<IUnitOfWork>());
-            
-            instancesFoRequest.Add(builder.RegisterType<FomMonitoringEntitiesIsolated>().As<IFomMonitoringEntitiesIsolated>());
+
             instancesFoRequest.Add(builder.RegisterType<FST_FomMonitoringEntities>().As<IFomMonitoringEntities>());
             instancesFoRequest.Add(builder.RegisterType<JsonToSqLiteService>().As<IJsonToSqLiteService>());
             instancesFoRequest.Add(builder.RegisterType<FST_FomMonitoringSQLiteEntities>().As<IFomMonitoringSQLiteEntities>());

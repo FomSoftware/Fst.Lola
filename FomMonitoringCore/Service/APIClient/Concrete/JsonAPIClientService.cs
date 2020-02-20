@@ -10,7 +10,6 @@ using System.Linq;
 using System.Net;
 using System.Transactions;
 using System.Xml;
-using UserManager.DAL;
 
 namespace FomMonitoringCore.Service.APIClient.Concrete
 {

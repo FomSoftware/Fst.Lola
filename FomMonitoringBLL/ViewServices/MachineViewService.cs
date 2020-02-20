@@ -1,7 +1,6 @@
 ﻿using FomMonitoringBLL.ViewModel;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
-using FomMonitoringCore.Framework.Models;
 using FomMonitoringCore.Service;
 using FomMonitoringResources;
 using System;

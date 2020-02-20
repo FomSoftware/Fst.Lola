@@ -60,21 +60,6 @@ namespace FomMonitoring
             }
         }
 
-        protected void Application_Error(object sender, EventArgs e)
-        {
-            Exception exception = Server.GetLastError();
-            Response.Clear();
-
-            HttpException httpException = exception as HttpException;
-            if (httpException == null)
-            {
-                httpException = HttpException.CreateFromLastError(exception.Message);
-            }
-            LogService.WriteLog("Application_Error", LogService.TypeLevel.Error, exception);
-            HttpContext.Current.Response.RedirectToRoute(new RouteValueDictionary(new { controller = "Error", error = httpException.GetHttpCode() }));
-            // clear error on server
-            Server.ClearError();
-        }
     }
 
     public class I18nControllerActivator : IControllerActivator

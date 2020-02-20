@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Infrastructure.Interception;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using FomMonitoringCore.DAL.Interceptor;
 
 namespace FomMonitoringCore.DAL
 {
     public interface IDbContext : IDisposable
     {
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
-
+        void Refresh();
         Task<int> SaveChangesAsync();
         int SaveChanges();
         Database Database { get; }
@@ -35,24 +30,13 @@ namespace FomMonitoringCore.DAL
 
     }
 
-    public partial class FST_FomMonitoringEntities : DbContext, IFomMonitoringEntities
+    public partial class FST_FomMonitoringEntities : IFomMonitoringEntities
     {
-
-    }
-
-
-
-    public interface IFomMonitoringEntitiesIsolated : IFomMonitoringEntities
-    {
-
-
-    }
-
-    public partial class FomMonitoringEntitiesIsolated : FST_FomMonitoringEntities, IFomMonitoringEntitiesIsolated
-    {
-        public FomMonitoringEntitiesIsolated()
+        public void Refresh()
         {
-            DbInterception.Add(new IsolationLevelInterceptor(IsolationLevel.RepeatableRead));
+            var refreshableObjects = ChangeTracker.Entries().Select(c => c.Entity).ToList();
+            ((IObjectContextAdapter)this).ObjectContext.Refresh(RefreshMode.StoreWins, refreshableObjects);
         }
     }
+
 }

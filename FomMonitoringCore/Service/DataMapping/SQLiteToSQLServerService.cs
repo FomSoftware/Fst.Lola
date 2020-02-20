@@ -1,11 +1,13 @@
 ﻿using FomMonitoringCore.DAL;
 using FomMonitoringCore.DAL_SQLite;
 using FomMonitoringCore.Framework.Common;
-using FomMonitoringCore.Uow;
 using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HistoryMessage = FomMonitoringCore.DAL.HistoryMessage;
+using MessageMachine = FomMonitoringCore.DAL.MessageMachine;
+using ToolMachine = FomMonitoringCore.DAL.ToolMachine;
 
 namespace FomMonitoringCore.Service.DataMapping
 {

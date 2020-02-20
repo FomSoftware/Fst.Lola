@@ -113,8 +113,8 @@
           <Property Name="PieceLengthSum" Type="int" />
           <Property Name="RedoneCount" Type="int" />
           <Property Name="Shift" Type="int" />
-          <Property Name="System" Type="varchar" MaxLength="100" />
           <Property Name="TypeHistory" Type="char" MaxLength="1" />
+          <Property Name="System" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="HistoryState">
           <Key>
@@ -214,14 +214,20 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
           <Property Name="Day" Type="datetime" />
+          <Property Name="ElapsedTime" Type="bigint" />
           <Property Name="MachineId" Type="int" />
           <Property Name="Operator" Type="varchar" MaxLength="100" />
           <Property Name="StartTime" Type="datetime" />
           <Property Name="StateId" Type="int" />
           <Property Name="Params" Type="nvarchar(max)" />
+          <Property Name="Type" Type="nvarchar" MaxLength="150" />
+          <Property Name="Group" Type="int" />
+          <Property Name="IsVisible" Type="bit" />
           <Property Name="IgnoreDate" Type="datetime" />
+          <Property Name="IsPeriodicMsg" Type="bit" />
           <Property Name="MessagesIndexId" Type="int" />
         </EntityType>
         <EntityType Name="MessageMachineNotification">
@@ -2011,6 +2017,12 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="MessagesIndexId" Type="Int32" />
           <NavigationProperty Name="MessagesIndex" Relationship="FST_FomMonitoringModel.FK_MessageMachine_MessagesIndex" FromRole="MessageMachine" ToRole="MessagesIndex" />
           <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_MessageMachine_State1" FromRole="MessageMachine" ToRole="State" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ElapsedTime" Type="Int64" />
+          <Property Name="Type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Group" Type="Int32" />
+          <Property Name="IsVisible" Type="Boolean" />
+          <Property Name="IsPeriodicMsg" Type="Boolean" />
         </EntityType>
         <Association Name="FK_HistoryMessage_Machine">
           <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
@@ -2815,6 +2827,12 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="MessageMachine">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.MessageMachine">
               <MappingFragment StoreEntitySet="MessageMachine">
+                <ScalarProperty Name="IsPeriodicMsg" ColumnName="IsPeriodicMsg" />
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="MessagesIndexId" ColumnName="MessagesIndexId" />
                 <ScalarProperty Name="IgnoreDate" ColumnName="IgnoreDate" />
                 <ScalarProperty Name="Params" ColumnName="Params" />

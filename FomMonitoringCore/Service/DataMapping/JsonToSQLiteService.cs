@@ -2,21 +2,19 @@
 using FomMonitoringCore.DAL_SQLite;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
-using FomMonitoringCore.Uow;
 using Mapster;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Transactions;
 
 namespace FomMonitoringCore.Service.DataMapping
 {
     public class JsonToSqLiteService : IJsonToSqLiteService
     {
-        private IFomMonitoringEntities _fomMonitoringEntities;
-        private IFomMonitoringSQLiteEntities _fomMonitoringSqLiteEntities;
+        private readonly IFomMonitoringEntities _fomMonitoringEntities;
+        private readonly IFomMonitoringSQLiteEntities _fomMonitoringSqLiteEntities;
         
         public JsonToSqLiteService(IFomMonitoringEntities fomMonitoringEntities, IFomMonitoringSQLiteEntities fomMonitoringSqLiteEntities)
         {
