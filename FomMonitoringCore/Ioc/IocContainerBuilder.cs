@@ -17,54 +17,55 @@ namespace FomMonitoringCore.Ioc
 {
     public static class IocContainerBuilder
     {
-        public static void BuildCore(ContainerBuilder builder, bool instancePerRequest = true)
+        public static void BuildCore(ContainerBuilder builder, bool instancePerRequest = true, bool dbContextInstancePerLifetimeScope = false)
         {
 
-            var instancesFoRequest = new List<IRegistrationBuilder<object, object, object>>();
+            var instancesFoRequest = new List<IRegistrationBuilder<object, object, object>>
+            {
+                builder.RegisterType<JsonAPIClientService>().As<IJsonAPIClientService>(),
+                builder.RegisterType<JsonDataService>().As<IJsonDataService>(),
+                builder.RegisterType<ContextService>().As<IContextService>(),
+                builder.RegisterType<SpindleService>().As<ISpindleService>(),
+                builder.RegisterType<JobService>().As<IJobService>(),
+                builder.RegisterType<ParameterMachineService>().As<IParameterMachineService>(),
+                builder.RegisterType<MachineService>().As<IMachineService>(),
+                builder.RegisterType<XmlDataService>().As<IXmlDataService>(),
+                builder.RegisterType<JwtManager>().As<IJwtManager>(),
+                builder.RegisterType<MessageMachineRepository>().As<IMessageMachineRepository>(),
+                builder.RegisterType<MachineModelRepository>().As<IMachineModelRepository>(),
+                builder.RegisterType<MachineTypeRepository>().As<IMachineTypeRepository>(),
+                builder.RegisterType<MachineRepository>().As<IMachineRepository>(),
+                builder.RegisterType<PanelRepository>().As<IPanelRepository>(),
+                builder.RegisterType<SpindleRepository>().As<ISpindleRepository>(),
+                builder.RegisterType<HistoryMessageRepository>().As<IHistoryMessageRepository>(),
+                builder.RegisterType<HistoryJobRepository>().As<IHistoryJobRepository>(),
+                builder.RegisterType<ParameterMachineRepository>().As<IParameterMachineRepository>(),
+                builder.RegisterType<ParameterMachineValueRepository>().As<IParameterMachineValueRepository>(),
+                builder.RegisterType<MessagesIndexRepository>().As<IMessagesIndexRepository>(),
 
+                builder.RegisterType<MessageLanguagesRepository>().As<IMessageLanguagesRepository>(),
+                builder.RegisterType<HistoryStateRepository>().As<IHistoryStateRepository>(),
+                builder.RegisterType<MessageTranslationRepository>().As<IMessageTranslationRepository>(),
+                builder.RegisterType<MachineGroupRepository>().As<IMachineGroupRepository>(),
+                builder.RegisterType<HistoryPieceRepository>().As<IHistoryPieceRepository>(),
 
-            instancesFoRequest.Add(builder.RegisterType<JsonAPIClientService>().As<IJsonAPIClientService>());
-            instancesFoRequest.Add(builder.RegisterType<JsonDataService>().As<IJsonDataService>());
-            instancesFoRequest.Add(builder.RegisterType<ContextService>().As<IContextService>());
-            instancesFoRequest.Add(builder.RegisterType<SpindleService>().As<ISpindleService>());
-            instancesFoRequest.Add(builder.RegisterType<JobService>().As<IJobService>());
-            instancesFoRequest.Add(builder.RegisterType<ParameterMachineService>().As<IParameterMachineService>());
-            instancesFoRequest.Add(builder.RegisterType<MachineService>().As<IMachineService>());
-            instancesFoRequest.Add(builder.RegisterType<XmlDataService>().As<IXmlDataService>());
-            instancesFoRequest.Add(builder.RegisterType<JwtManager>().As<IJwtManager>());
-            instancesFoRequest.Add(builder.RegisterType<MessageMachineRepository>().As<IMessageMachineRepository>());
-            instancesFoRequest.Add(builder.RegisterType<MachineModelRepository>().As<IMachineModelRepository>());
-            instancesFoRequest.Add(builder.RegisterType<MachineTypeRepository>().As<IMachineTypeRepository>());
-            instancesFoRequest.Add(builder.RegisterType<MachineRepository>().As<IMachineRepository>());
-            instancesFoRequest.Add(builder.RegisterType<PanelRepository>().As<IPanelRepository>());
-            instancesFoRequest.Add(builder.RegisterType<SpindleRepository>().As<ISpindleRepository>());
-            instancesFoRequest.Add(builder.RegisterType<HistoryMessageRepository>().As<IHistoryMessageRepository>());
-            instancesFoRequest.Add(builder.RegisterType<HistoryJobRepository>().As<IHistoryJobRepository>());
-            instancesFoRequest.Add(builder.RegisterType<ParameterMachineRepository>().As<IParameterMachineRepository>());
-            instancesFoRequest.Add(builder.RegisterType<ParameterMachineValueRepository>().As<IParameterMachineValueRepository>());
-            instancesFoRequest.Add(builder.RegisterType<MessagesIndexRepository>().As<IMessagesIndexRepository>());
+                builder.RegisterType<SqLiteToSqlServerService>().As<ISqLiteToSqlServerService>(),
+                builder.RegisterType<PieceService>().As<IPieceService>(),
+                builder.RegisterType<LanguageService>().As<ILanguageService>(),
+                builder.RegisterType<StateService>().As<IStateService>(),
+                builder.RegisterType<MessageService>().As<IMessageService>(),
+                builder.RegisterType<UnitOfWork>().As<IUnitOfWork>(),
+                
+                builder.RegisterType<JsonToSqLiteService>().As<IJsonToSqLiteService>(),
+                builder.RegisterType<FST_FomMonitoringSQLiteEntities>().As<IFomMonitoringSQLiteEntities>(),
+                builder.RegisterType<JsonVariantsToSqlServerService>().As<IJsonVariantsToSqlServerService>(),
+                builder.RegisterType<BarService>().As<IBarService>(),
+                builder.RegisterType<MesService>().As<IMesService>(),
+                builder.RegisterType<PlantManagerService>().As<IPlantManagerService>(),
+                builder.RegisterType<ToolService>().As<IToolService>()
+            };
 
-            instancesFoRequest.Add(builder.RegisterType<MessageLanguagesRepository>().As<IMessageLanguagesRepository>());
-            instancesFoRequest.Add(builder.RegisterType<HistoryStateRepository>().As<IHistoryStateRepository>());
-            instancesFoRequest.Add(builder.RegisterType<MessageTranslationRepository>().As<IMessageTranslationRepository>());
-            instancesFoRequest.Add(builder.RegisterType<MachineGroupRepository>().As<IMachineGroupRepository>());
-            instancesFoRequest.Add(builder.RegisterType<HistoryPieceRepository>().As<IHistoryPieceRepository>());
-
-            instancesFoRequest.Add(builder.RegisterType<SqLiteToSqlServerService>().As<ISqLiteToSqlServerService>());
-            instancesFoRequest.Add(builder.RegisterType<PieceService>().As<IPieceService>());
-            instancesFoRequest.Add(builder.RegisterType<LanguageService>().As<ILanguageService>());
-            instancesFoRequest.Add(builder.RegisterType<StateService>().As<IStateService>());
-            instancesFoRequest.Add(builder.RegisterType<MessageService>().As<IMessageService>());
-            instancesFoRequest.Add(builder.RegisterType<UnitOfWork>().As<IUnitOfWork>());
-
-            instancesFoRequest.Add(builder.RegisterType<FST_FomMonitoringEntities>().As<IFomMonitoringEntities>());
-            instancesFoRequest.Add(builder.RegisterType<JsonToSqLiteService>().As<IJsonToSqLiteService>());
-            instancesFoRequest.Add(builder.RegisterType<FST_FomMonitoringSQLiteEntities>().As<IFomMonitoringSQLiteEntities>());
-            instancesFoRequest.Add(builder.RegisterType<JsonVariantsToSqlServerService>().As<IJsonVariantsToSqlServerService>());
-            instancesFoRequest.Add(builder.RegisterType<BarService>().As<IBarService>());
-            instancesFoRequest.Add(builder.RegisterType<MesService>().As<IMesService>());
-            instancesFoRequest.Add(builder.RegisterType<PlantManagerService>().As<IPlantManagerService>());
-            instancesFoRequest.Add(builder.RegisterType<ToolService>().As<IToolService>());
+            var dbContext = builder.RegisterType<FST_FomMonitoringEntities>().As<IFomMonitoringEntities>();
 
             if (instancePerRequest)
             {
@@ -72,12 +73,23 @@ namespace FomMonitoringCore.Ioc
                 {
                     b.InstancePerRequest();
                 }
+
+                dbContext.InstancePerRequest();
             }
             else
             {
                 foreach (var b in instancesFoRequest)
                 {
                     b.SingleInstance();
+                }
+
+                if (dbContextInstancePerLifetimeScope)
+                {
+                    dbContext.InstancePerLifetimeScope();
+                }
+                else
+                {
+                    dbContext.SingleInstance();
                 }
             }
 

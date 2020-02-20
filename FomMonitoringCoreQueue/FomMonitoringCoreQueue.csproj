@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -51,6 +54,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -62,7 +66,17 @@
   <ItemGroup>
     <Compile Include="Connection\IQueueConnection.cs" />
     <Compile Include="Connection\QueueConnection.cs" />
-    <Compile Include="ProcessData\IVariableListProcessor.cs" />
+    <Compile Include="Dto\Info.cs" />
+    <Compile Include="Forwarder\QueueForwarder.cs" />
+    <Compile Include="Ioc\IocContainerBuilder.cs" />
+    <Compile Include="ProcessData\HistoryJobProcessor.cs" />
+    <Compile Include="ProcessData\InfoProcessor.cs" />
+    <Compile Include="ProcessData\IProcessor.cs" />
+    <Compile Include="ProcessData\MessageProcessor.cs" />
+    <Compile Include="ProcessData\PieceProcessor.cs" />
+    <Compile Include="ProcessData\SpindleProcessor.cs" />
+    <Compile Include="ProcessData\StateProcessor.cs" />
+    <Compile Include="ProcessData\ToolProcessor.cs" />
     <Compile Include="ProcessData\VariableListProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dto\Bar.cs" />
@@ -75,18 +89,30 @@
     <Compile Include="Dto\Tool.cs" />
     <Compile Include="Dto\Value.cs" />
     <Compile Include="Dto\VariablesList.cs" />
-    <Compile Include="QueueConsumer\IVariableListConsumer.cs" />
+    <Compile Include="QueueConsumer\HistoryJobConsumer.cs" />
+    <Compile Include="QueueConsumer\IConsumer.cs" />
+    <Compile Include="QueueConsumer\InfoConsumer.cs" />
+    <Compile Include="QueueConsumer\MessageConsumer.cs" />
+    <Compile Include="QueueConsumer\PieceConsumer.cs" />
+    <Compile Include="QueueConsumer\SpindleConsumer.cs" />
+    <Compile Include="QueueConsumer\StateConsumer.cs" />
+    <Compile Include="QueueConsumer\ToolConsumer.cs" />
     <Compile Include="QueueConsumer\VariableListConsumer.cs" />
-    <Compile Include="QueueProducer\IVariableListProducer.cs" />
+    <Compile Include="QueueProducer\HistoryJobProducer.cs" />
+    <Compile Include="QueueProducer\InfoProducer.cs" />
+    <Compile Include="QueueProducer\IProducer.cs" />
+    <Compile Include="QueueProducer\MessageProducer.cs" />
+    <Compile Include="QueueProducer\PieceProducer.cs" />
+    <Compile Include="QueueProducer\SpindleProducer.cs" />
+    <Compile Include="QueueProducer\StateProducer.cs" />
+    <Compile Include="QueueProducer\ToolProducer.cs" />
     <Compile Include="QueueProducer\VariableListProducer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Ioc\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\FomMonitoringCore\FomMonitoringCore.csproj">
       <Project>{e28ab72b-8e73-4a94-94b4-85c23498dda0}</Project>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using RabbitMQ.Client;
 
 namespace FomMonitoringCoreQueue.Connection
@@ -10,14 +11,31 @@ namespace FomMonitoringCoreQueue.Connection
 
         public QueueConnection()
         {
-            var factory = new ConnectionFactory() { HostName = "10.104.1.170", UserName = "lola", Password = "lola" };
+
+            var rabbitHost = ConfigurationManager.AppSettings["RabbitMqHost"];
+            var rabbitUsername = ConfigurationManager.AppSettings["RabbitMqUsername"];
+            var rabbitPassword = ConfigurationManager.AppSettings["RabbitMqPassword"];
+
+            var factory = new ConnectionFactory
+            {
+                HostName = rabbitHost,
+                UserName = rabbitUsername,
+                Password = rabbitPassword,
+                AutomaticRecoveryEnabled = true
+            };
+
             Connection = factory.CreateConnection();
             Channel = Connection.CreateModel();
-            Channel.QueueDeclare(queue: "VariableList",
-                durable: true,
-                exclusive: false,
-                autoDelete: false,
-                arguments: null);
+            Channel.QueueDeclare("VariableList",
+                true,
+                false,
+                false,
+                null);
+            Channel.QueueDeclare("Info",
+                true,
+                false,
+                false,
+                null);
         }
 
         public void Dispose()

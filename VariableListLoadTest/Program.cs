@@ -23,15 +23,14 @@ namespace VariableListLoadTest
 
             FomMonitoringCore.Ioc.IocContainerBuilder.BuildCore(builder, false);
             builder.RegisterType<QueueConnection>().As<IQueueConnection>().SingleInstance();
-            builder.RegisterType<VariableListConsumer>().As<IVariableListConsumer>().SingleInstance();
-            builder.RegisterType<VariableListProcessor>().As<IVariableListProcessor>().SingleInstance();
-            builder.RegisterType<VariableListProducer>().As<IVariableListProducer>().SingleInstance();
+            builder.RegisterType<VariableListConsumer>().As<IConsumer<VariablesList>>().SingleInstance();
+            builder.RegisterType<VariableListProducer>().As<IProducer<VariablesList>>().SingleInstance();
 
 
             var container = builder.Build();
 
             var context = container.Resolve<IFomMonitoringEntities>();
-            var variableListProducer = container.Resolve<IVariableListProducer>();
+            var variableListProducer = container.Resolve<IProducer<VariablesList>>();
 
 
 

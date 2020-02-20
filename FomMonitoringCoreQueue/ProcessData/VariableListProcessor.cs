@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using FomMonitoringCore.DAL;
 using FomMonitoringCore.Service;
+using FomMonitoringCoreQueue.Dto;
 using MessageMachine = FomMonitoringCore.DAL.MessageMachine;
 
 namespace FomMonitoringCoreQueue.ProcessData
 {
-    public class VariableListProcessor : IVariableListProcessor
+    public class VariableListProcessor : IProcessor<VariablesList>
     {
         private readonly IFomMonitoringEntities _context;
         private readonly IMessageService _messageService;
@@ -18,7 +19,7 @@ namespace FomMonitoringCoreQueue.ProcessData
             _context = context;
         }
 
-        public bool ProcessData(Dto.VariablesList data)
+        public bool ProcessData(VariablesList data)
         {
 
             try

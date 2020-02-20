@@ -1,6 +1,8 @@
 ﻿using System.ServiceProcess;
 using Autofac;
+using Autofac.Core.Lifetime;
 using FomMonitoringCoreQueue.Connection;
+using FomMonitoringCoreQueue.Dto;
 using FomMonitoringCoreQueue.ProcessData;
 using FomMonitoringCoreQueue.QueueConsumer;
 using FomMonitoringCoreQueue.QueueProducer;
@@ -9,6 +11,15 @@ namespace FomMonitoringQueueConsumerService
 {
     public partial class LolaQueueConsumer : ServiceBase
     {
+        private ILifetimeScope _scopeVariable;
+        private ILifetimeScope _scopeInfo;
+        private ILifetimeScope _scopeMessage;
+        private ILifetimeScope _scopeHistoryJob;
+        private ILifetimeScope _scopeSpindle;
+        private ILifetimeScope _scopeTool;
+        private ILifetimeScope _scopePiece;
+        private ILifetimeScope _scopeState;
+
         public LolaQueueConsumer()
         {
             InitializeComponent();
@@ -18,20 +29,57 @@ namespace FomMonitoringQueueConsumerService
         {
 
             var builder = new ContainerBuilder();
+            
+            FomMonitoringCoreQueue.Ioc.IocContainerBuilder.BuildCore(builder, false);
 
-            FomMonitoringCore.Ioc.IocContainerBuilder.BuildCore(builder, false);
-
-            builder.RegisterType<QueueConnection>().As<IQueueConnection>().SingleInstance();
-            builder.RegisterType<VariableListConsumer>().As<IVariableListConsumer>().SingleInstance();
-            builder.RegisterType<VariableListProcessor>().As<IVariableListProcessor>().SingleInstance();
-            builder.RegisterType<VariableListProducer>().As<IVariableListProducer>().SingleInstance();
             var container = builder.Build();
-            var consumer = container.Resolve<IVariableListConsumer>();
-            consumer.Init();
+
+            _scopeVariable = container.BeginLifetimeScope();
+            _scopeInfo = container.BeginLifetimeScope();
+            _scopeMessage = container.BeginLifetimeScope();
+            _scopeHistoryJob = container.BeginLifetimeScope();
+            _scopeSpindle = container.BeginLifetimeScope();
+            _scopeTool = container.BeginLifetimeScope();
+            _scopePiece = container.BeginLifetimeScope();
+            _scopeState = container.BeginLifetimeScope();
+
+            var consumerVariable = _scopeVariable.Resolve<IConsumer<VariablesList>>();
+            consumerVariable.Init();
+            
+            var consumerInfo = _scopeVariable.Resolve<IConsumer<Info>>();
+            consumerInfo.Init();
+
+            var consumerPiece = _scopeVariable.Resolve<IConsumer<Piece>>();
+            consumerPiece.Init();
+
+            var consumerState = _scopeVariable.Resolve<IConsumer<State>>();
+            consumerState.Init();
+
+            var consumerHistoryJob = _scopeVariable.Resolve<IConsumer<HistoryJob>>();
+            consumerHistoryJob.Init();
+
+            var consumerMessage = _scopeVariable.Resolve<IConsumer<Message>>();
+            consumerMessage.Init();
+
+            var consumerSpindle = _scopeVariable.Resolve<IConsumer<Spindle>>();
+            consumerSpindle.Init();
+
+            var consumerTool = _scopeVariable.Resolve<IConsumer<Tool>>();
+            consumerTool.Init();
+
+
         }
 
         protected override void OnStop()
         {
+            _scopeVariable.Dispose();
+            _scopeInfo.Dispose();
+            _scopeMessage.Dispose();
+            _scopeHistoryJob.Dispose();
+            _scopeSpindle.Dispose();
+            _scopeTool.Dispose();
+            _scopePiece.Dispose();
+            _scopeState.Dispose();
         }
     }
 }

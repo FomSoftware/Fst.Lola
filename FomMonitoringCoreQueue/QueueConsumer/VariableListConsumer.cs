@@ -7,6 +7,7 @@ using FomMonitoringCore.DataProcessing.Dto.Mongo;
 using FomMonitoringCore.Repository.MongoDb;
 using FomMonitoringCore.Service;
 using FomMonitoringCoreQueue.Connection;
+using FomMonitoringCoreQueue.Dto;
 using FomMonitoringCoreQueue.ProcessData;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
@@ -14,11 +15,11 @@ using RabbitMQ.Client.Events;
 
 namespace FomMonitoringCoreQueue.QueueConsumer
 {
-    public class VariableListConsumer : IVariableListConsumer
+    public class VariableListConsumer : IConsumer<VariablesList>
     {
-        private readonly IVariableListProcessor _processor;
+        private readonly IProcessor<VariablesList> _processor;
         private readonly IQueueConnection _queueConnection;
-        public VariableListConsumer(IVariableListProcessor processor, IQueueConnection queueConnection)
+        public VariableListConsumer(IProcessor<VariablesList> processor, IQueueConnection queueConnection)
         {
             _processor = processor;
             _queueConnection = queueConnection;
@@ -30,11 +31,9 @@ namespace FomMonitoringCoreQueue.QueueConsumer
             var consumer = new EventingBasicConsumer(_queueConnection.Channel);
                 consumer.Received += (model, ea) =>
                 {
-
+                    var elapsedTime = string.Empty;
                     Stopwatch stopWatch = new Stopwatch();
                     stopWatch.Start();
-
-                    LogService.WriteLog("arrivato json " + DateTime.UtcNow.ToString("O"), LogService.TypeLevel.Info);
                     var data = new MachineDataModel();
                     var mongoContext = new MongoDbContext();
                     var repo = new GenericRepository<MachineDataModel>(mongoContext);
@@ -42,15 +41,10 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                     {
                         var body = ea.Body;
                         var message = Encoding.UTF8.GetString(body);
-                        var ii = JsonConvert.DeserializeObject<Dto.VariablesList>(message);
-
-
-                    data = repo.Find(ii.ObjectId);
-                    data.variablesList.AsParallel().ForAll(vl => vl.DateStartElaboration = DateTime.UtcNow);
-                    foreach (var variablesList in data.variablesList)
-                    {
-                        variablesList.DateStartElaboration = DateTime.UtcNow;
-                    }
+                        var ii = JsonConvert.DeserializeObject<VariablesList>(message);
+                        
+                        data = repo.Find(ii.ObjectId);
+                        data.variablesList.AsParallel().ForAll(vl => vl.DateStartElaboration = DateTime.UtcNow);
 
                         if (_processor.ProcessData(ii))
                         {
@@ -62,6 +56,14 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                             });
 
                         }
+
+                        stopWatch.Stop();
+                        // Get the elapsed time as a TimeSpan value.
+                        var ts = stopWatch.Elapsed;
+
+                        // Format and display the TimeSpan value.
+                        elapsedTime = $"{ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}.{ts.Milliseconds:00}";
+                        _queueConnection.Channel.BasicAck(ea.DeliveryTag, false); 
                     }
                     catch (Exception ex)
                     {
@@ -70,28 +72,22 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                             vl.DateEndElaboration = DateTime.UtcNow;
                             vl.ElaborationSuccesfull = false;
                         });
+                        LogService.WriteLog(
+                            $"Finita elaborazione con errori json {DateTime.UtcNow:O} tempo trascorso {elapsedTime} ", LogService.TypeLevel.Error, ex);
+
                     }
                     finally
                     {
-                        stopWatch.Stop();
-                        // Get the elapsed time as a TimeSpan value.
-                        var ts = stopWatch.Elapsed;
-
-                        // Format and display the TimeSpan value.
-                        var elapsedTime = string.Format("{0:00}:{1:00}:{2:00}.{3:00}.{4:00}",
-                            ts.Hours, ts.Minutes, ts.Seconds,
-                            ts.Milliseconds / 10, ts.Milliseconds);
-
-                        LogService.WriteLog("finita elaborazione json " + DateTime.UtcNow.ToString("O") + " tempo trascorso " + elapsedTime + " "+ DateTime.UtcNow.ToString("O"), LogService.TypeLevel.Info);
+                        LogService.WriteLog(
+                            $"Finita elaborazione json {DateTime.UtcNow:O} tempo trascorso {elapsedTime} ", LogService.TypeLevel.Info);
                         repo.Update(data);
                     }
                 };
 
-                _queueConnection.Channel.BasicConsume(queue: "VariableList",
-                    autoAck: true,
-                    consumer: consumer);
+                _queueConnection.Channel.BasicConsume("VariableList",false, consumer);
                 
-            
         }
     }
+
+
 }
