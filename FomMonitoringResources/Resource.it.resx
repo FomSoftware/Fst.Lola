@@ -289,7 +289,7 @@
     <value>Velocità Media</value>
   </data>
   <data name="TimeToLive" xml:space="preserve">
-    <value>Tempo residuo</value>
+    <value>T.Res.</value>
   </data>
   <data name="Overpower" xml:space="preserve">
     <value>Sovrapotenza</value>
@@ -693,7 +693,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
     <value>Ore lavoro tot. elettromandrino</value>
   </data>
   <data name="d_NumeroSblocchiUtensile" xml:space="preserve">
-    <value>N. sblocchi pinza elettromandrino</value>
+    <value>N. sblocchi pinza</value>
   </data>
   <data name="lw_contatoreSovracorrente" xml:space="preserve">
     <value>Qtà Sovra-assorbimento</value>
@@ -789,7 +789,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
     <value>ASSI TILTANTI MULTIMANDRINO</value>
   </data>
   <data name="LMX650_RotaryAxes" xml:space="preserve">
-    <value>ASSI ROTATIVI XMU/MAG.UTENSILI (X-MODULE)</value>
+    <value>ASSI ROTATIVI XMU/MAG.UTENSILI</value>
   </data>
   <data name="LMX650_XMUSp_Sensors" xml:space="preserve">
     <value>SENSORISTICA ELETTROMANDRINO XMU</value>
@@ -1038,25 +1038,25 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
     <value>Qta Vibrazioni</value>
   </data>
   <data name="TabTemperStatoreContatoreINT" xml:space="preserve">
-    <value>Qta Sovra-Temperatura Statore</value>
+    <value>Qta Sovra-Temper. Statore</value>
   </data>
   <data name="TabTemperCuscinettiContatoreINT" xml:space="preserve">
-    <value>Qta Sovra-Temperatura Cuscinetti</value>
+    <value>Qta Sovra-Temper. Cuscinetti</value>
   </data>
   <data name="TabTemperSchedaContatoreINT" xml:space="preserve">
-    <value>Qta Sovra-Temperatura Scheda</value>
+    <value>Qta Sovra-Temper. Scheda</value>
   </data>
   <data name="TabSoglieAmpereContatoreINT" xml:space="preserve">
     <value>Qta Sovra-assorbimento</value>
   </data>
   <data name="TabTemperStatoreMinutiINT" xml:space="preserve">
-    <value>Tempo Sovra-Temperatura Statore</value>
+    <value>Tempo Sovra-Temper. Statore</value>
   </data>
   <data name="TabTemperCuscinettiMinutiINT" xml:space="preserve">
-    <value>Tempo Sovra-Temperatura Cuscinetti</value>
+    <value>Tempo Sovra-Temper. Cuscinetti</value>
   </data>
   <data name="TabTemperSchedaMinutiINT" xml:space="preserve">
-    <value>Tempo Sovra-Temperatura Scheda</value>
+    <value>Tempo Sovra-Temper. Scheda</value>
   </data>
   <data name="TabAccelerometroINT_1" xml:space="preserve">
     <value>Tempo Vibrazioni soglia bassa</value>
@@ -1080,7 +1080,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
     <value>T.Tot.</value>
   </data>
   <data name="TimeResStim" xml:space="preserve">
-    <value>T.Res Stim.</value>
+    <value>T.Res.</value>
   </data>
   <data name="RotaryAxesXMU" xml:space="preserve">
     <value>ASSI ROTATIVI XMU</value>

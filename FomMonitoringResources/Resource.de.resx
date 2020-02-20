@@ -695,7 +695,7 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>Gesamtarbeitsst. Spindel</value>
   </data>
   <data name="d_NumeroSblocchiUtensile" xml:space="preserve">
-    <value>Anz. Entriegel. Zange E-spindel</value>
+    <value>Anz. Entriegel. Zange</value>
   </data>
   <data name="lw_contatoreSovracorrente" xml:space="preserve">
     <value>Menge überm. Stromaufnahme</value>
@@ -785,7 +785,7 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>MULTISPINDEL</value>
   </data>
   <data name="LMX650_RotaryAxes" xml:space="preserve">
-    <value>DREHACHSEN XMU/WERKZEUGLAGER (X-MODULE)</value>
+    <value>DREHACHSEN XMU/WERKZEUGLAGER</value>
   </data>
   <data name="LMX650_TiltingMSAxes" xml:space="preserve">
     <value>NEIGB. ACHSEN MULTISPINDEL</value>
@@ -1040,13 +1040,13 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>Menge Vibrationen</value>
   </data>
   <data name="TabTemperStatoreContatoreINT" xml:space="preserve">
-    <value>Menge Übertemperatur Stator</value>
+    <value>Menge Übertemp. Stator</value>
   </data>
   <data name="TabTemperCuscinettiContatoreINT" xml:space="preserve">
-    <value>Menge Übertemperatur Lager</value>
+    <value>Menge Übertemp. Lager</value>
   </data>
   <data name="TabTemperSchedaContatoreINT" xml:space="preserve">
-    <value>Menge Übertemperatur Platine</value>
+    <value>Menge Übertemp. Platine</value>
   </data>
   <data name="TabSoglieAmpereContatoreINT" xml:space="preserve">
     <value>Menge überm. Stromaufnahme</value>
@@ -1122,5 +1122,11 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   </data>
   <data name="XLABETICHETTATRICE" xml:space="preserve">
     <value>XLAB - MÁQUINA DE ETIQUETADO (OPCIONAL)</value>
+  </data>
+  <data name="TimeTot" xml:space="preserve">
+    <value>Gesamtzeit</value>
+  </data>
+  <data name="TimeResStim" xml:space="preserve">
+    <value>Restzeit</value>
   </data>
 </root>

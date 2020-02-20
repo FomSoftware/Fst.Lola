@@ -286,7 +286,7 @@
     <value>Velocidad Media</value>
   </data>
   <data name="TimeToLive" xml:space="preserve">
-    <value>Tiempo Restante</value>
+    <value>T.Rest.</value>
   </data>
   <data name="Overpower" xml:space="preserve">
     <value>Dominar</value>
@@ -693,7 +693,7 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
     <value>Tot. horas uso electromandril</value>
   </data>
   <data name="d_NumeroSblocchiUtensile" xml:space="preserve">
-    <value>Nº desbloqueos pinza electrom.</value>
+    <value>Nº desbloqueos pinza</value>
   </data>
   <data name="lw_contatoreSovracorrente" xml:space="preserve">
     <value>Cant. sobreabsorción</value>
@@ -783,7 +783,7 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
     <value>MULTIMANDRIL</value>
   </data>
   <data name="LMX650_RotaryAxes" xml:space="preserve">
-    <value>EJES ROTATIVOS XMU/ALM.HERRAM. (X-MODULE)</value>
+    <value>EJES ROTATIVOS XMU/ALM.HERRAM.</value>
   </data>
   <data name="LMX650_TiltingMSAxes" xml:space="preserve">
     <value>EJES OSCILATORIOS MULTIMAND.</value>
@@ -1038,13 +1038,13 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
     <value>Cant. Vibraciones</value>
   </data>
   <data name="TabTemperStatoreContatoreINT" xml:space="preserve">
-    <value>Cant. Sobretemperatura Estator</value>
+    <value>Cant. Sobretemper. Estator</value>
   </data>
   <data name="TabTemperCuscinettiContatoreINT" xml:space="preserve">
-    <value>Cant. Sobretemperatura Cojinetes</value>
+    <value>Cant. Sobretemper. Cojinetes</value>
   </data>
   <data name="TabTemperSchedaContatoreINT" xml:space="preserve">
-    <value>Cant. Sobretemperatura Placa</value>
+    <value>Cant. Sobretemper. Placa</value>
   </data>
   <data name="TabSoglieAmpereContatoreINT" xml:space="preserve">
     <value>Cant. Sobreabsorción</value>
@@ -1123,5 +1123,11 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   </data>
   <data name="XLABETICHETTATRICE" xml:space="preserve">
     <value>XLAB - MÁQUINA DE ETIQUETADO (OPCIONAL)</value>
+  </data>
+  <data name="TimeTot" xml:space="preserve">
+    <value>T.Tot.</value>
+  </data>
+  <data name="TimeResStim" xml:space="preserve">
+    <value>T.Rest.</value>
   </data>
 </root>

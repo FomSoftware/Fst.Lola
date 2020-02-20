@@ -286,7 +286,7 @@
     <value>Average Speed</value>
   </data>
   <data name="TimeToLive" xml:space="preserve">
-    <value>Time to Live</value>
+    <value>T.Res.</value>
   </data>
   <data name="Overpower" xml:space="preserve">
     <value>Overpower</value>
@@ -696,7 +696,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Tot. working hours</value>
   </data>
   <data name="d_NumeroSblocchiUtensile" xml:space="preserve">
-    <value>No. electrosp. gripper releases</value>
+    <value>No. gripper releases</value>
   </data>
   <data name="lw_contatoreSovracorrente" xml:space="preserve">
     <value>Over absorption q.ty</value>
@@ -786,7 +786,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>MULTISPINDLE</value>
   </data>
   <data name="LMX650_RotaryAxes" xml:space="preserve">
-    <value>XMU ROTARY AXES/TOOL MAG.(X-MODULE)</value>
+    <value>XMU ROTARY AXES/TOOL MAG.</value>
   </data>
   <data name="LMX650_TiltingMSAxes" xml:space="preserve">
     <value>TILTING MULTISPINDLE AXES</value>
@@ -1041,25 +1041,25 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Vibrations q.ty</value>
   </data>
   <data name="TabTemperStatoreContatoreINT" xml:space="preserve">
-    <value>Stator Over-Temperature q.ty</value>
+    <value>Stator Over-Temper. q.ty</value>
   </data>
   <data name="TabTemperCuscinettiContatoreINT" xml:space="preserve">
-    <value>Bearings Over-Temperature q.ty</value>
+    <value>Bearings Over-Temper. q.ty</value>
   </data>
   <data name="TabTemperSchedaContatoreINT" xml:space="preserve">
-    <value>Board Over-Temperature q.ty</value>
+    <value>Board Over-Temper. q.ty</value>
   </data>
   <data name="TabSoglieAmpereContatoreINT" xml:space="preserve">
     <value>Over absorption q.ty</value>
   </data>
   <data name="TabTemperStatoreMinutiINT" xml:space="preserve">
-    <value>Stator Over-Temperature time</value>
+    <value>Stator Over-Temper. time</value>
   </data>
   <data name="TabTemperCuscinettiMinutiINT" xml:space="preserve">
-    <value>Bearings Over-Temperature time</value>
+    <value>Bearings Over-Temper. time</value>
   </data>
   <data name="TabTemperSchedaMinutiINT" xml:space="preserve">
-    <value>Board Over-Temperature time</value>
+    <value>Board Over-Temper. time</value>
   </data>
   <data name="TabAccelerometroINT_1" xml:space="preserve">
     <value>Low threshold Vibration Time</value>
@@ -1077,10 +1077,10 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Bar time remaining</value>
   </data>
   <data name="TimeTot" xml:space="preserve">
-    <value>T.Tot.</value>
+    <value>Tot.T.</value>
   </data>
   <data name="TimeResStim" xml:space="preserve">
-    <value>T.Res Stim.</value>
+    <value>T.Res.</value>
   </data>
   <data name="RotaryAxesXMU" xml:space="preserve">
     <value>XMU ROTARY AXES</value>

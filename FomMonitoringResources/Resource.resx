@@ -696,7 +696,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Tot. electrosp. working hours</value>
   </data>
   <data name="d_NumeroSblocchiUtensile" xml:space="preserve">
-    <value>No. electrosp. gripper releases</value>
+    <value>No. gripper releases</value>
   </data>
   <data name="lw_contatoreSovracorrente" xml:space="preserve">
     <value>Excessive absorption q.ty</value>
@@ -789,7 +789,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>650 MOTOR/BLADE (X-MODULE)</value>
   </data>
   <data name="LMX650_RotaryAxes" xml:space="preserve">
-    <value>XMU ROTARY AXES/TOOL MAG. (X-MODULE)</value>
+    <value>XMU ROTARY AXES/TOOL MAG.</value>
   </data>
   <data name="LMX650_TiltingMSAxes" xml:space="preserve">
     <value>TILTING MULTISPINDLE AXES</value>

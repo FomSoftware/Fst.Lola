@@ -286,7 +286,7 @@
     <value>Vitesse Moyenne</value>
   </data>
   <data name="TimeToLive" xml:space="preserve">
-    <value>Temps Restant</value>
+    <value>T.Résid.</value>
   </data>
   <data name="Overpower" xml:space="preserve">
     <value>Maîtriser</value>
@@ -693,7 +693,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Heures tot. travail électrobroche</value>
   </data>
   <data name="d_NumeroSblocchiUtensile" xml:space="preserve">
-    <value>Nb déblocages pince électrobroche</value>
+    <value>Nb déblocages pince</value>
   </data>
   <data name="lw_contatoreSovracorrente" xml:space="preserve">
     <value>Q.té surabsorption</value>
@@ -783,7 +783,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>MULTIBROCHE</value>
   </data>
   <data name="LMX650_RotaryAxes" xml:space="preserve">
-    <value>AXES ROTATIFS XMU/MAG.OUTILS (X-MODULE)</value>
+    <value>AXES ROTATIFS XMU/MAG.OUTILS</value>
   </data>
   <data name="LMX650_TiltingMSAxes" xml:space="preserve">
     <value>AXES BASCULANTS MULTIBROCHE</value>
@@ -1038,25 +1038,25 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Q.té vibrations</value>
   </data>
   <data name="TabTemperStatoreContatoreINT" xml:space="preserve">
-    <value>Q.té surtempérature stator</value>
+    <value>Q.té surtempér. stator</value>
   </data>
   <data name="TabTemperCuscinettiContatoreINT" xml:space="preserve">
-    <value>Q.té surtempérature roulements</value>
+    <value>Q.té surtempér. roulements</value>
   </data>
   <data name="TabTemperSchedaContatoreINT" xml:space="preserve">
-    <value>Q.té surtempérature carte</value>
+    <value>Q.té surtempér. carte</value>
   </data>
   <data name="TabSoglieAmpereContatoreINT" xml:space="preserve">
     <value>Q.té surabsorption</value>
   </data>
   <data name="TabTemperStatoreMinutiINT" xml:space="preserve">
-    <value>Temps surtempérature stator</value>
+    <value>Temps surtempér. stator</value>
   </data>
   <data name="TabTemperCuscinettiMinutiINT" xml:space="preserve">
-    <value>Temps surtempérature roulements</value>
+    <value>Temps surtempér. roulements</value>
   </data>
   <data name="TabTemperSchedaMinutiINT" xml:space="preserve">
-    <value>Temps surtempérature carte</value>
+    <value>Temps surtempér. carte</value>
   </data>
   <data name="TabAccelerometroINT_1" xml:space="preserve">
     <value>Temps vibrations seuil bas</value>
@@ -1123,5 +1123,11 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   </data>
   <data name="XLABETICHETTATRICE" xml:space="preserve">
     <value>XLAB - MACHINE D'ÉTIQUETAGE (EN OPTION)</value>
+  </data>
+  <data name="TimeTot" xml:space="preserve">
+    <value>T.Tot.</value>
+  </data>
+  <data name="TimeResStim" xml:space="preserve">
+    <value>T.Résid.</value>
   </data>
 </root>
