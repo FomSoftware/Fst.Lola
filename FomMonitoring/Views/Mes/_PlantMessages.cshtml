@@ -43,7 +43,7 @@
                                             @Resource.Timestamp
                                         </span>
                                     </th>
-                                    <th style="min-width:120px;width:10%" class="th-duration sorting" v-bind:class="sorting.group" v-on:click="sortGroup()">
+                                    <th style="min-width:120px;width:12%" class="th-duration sorting" v-bind:class="sorting.group" v-on:click="sortGroup()">
                                         <span class="value-title" style="padding-left:0">
                                             @Resource.Group
                                         </span>
@@ -70,7 +70,7 @@
                                             </div>
                                         </td>
                                         <td style="min-width: 120px;width:10%">{{ convert_timestamp(message.message.timestamp, message.message.utc) }}</td>
-                                        <td style="min-width:120px;width:10%;">{{ message.message.group }}</td>
+                                        <td class="testo-a-capo" style="min-width:120px;width:12%;">{{ message.message.group }}</td>
                                         <td style="width:47%">{{ message.message.description }}</td>
                                     </tr>
                                 </tbody>
