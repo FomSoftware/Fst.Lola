@@ -180,7 +180,7 @@ namespace FomMonitoringBLL.ViewServices
 
             if (dataOperators.Count > 0)
             {
-                var groupOperator = dataOperators.GroupBy(g => new { g.Operator, g.TotalTime }).ToList();
+                var groupOperator = dataOperators.GroupBy(g => new { g.Operator, g.TotalTime }).OrderByDescending(x => x.Key.TotalTime).ToList();
 
                 if (groupOperator.Count <= 3)
                 {
