@@ -1,6 +1,5 @@
 ﻿using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Service.API;
-using FomMonitoringCore.Service.API.Concrete;
 using System.Net;
 using System.Web.Http;
 

@@ -1,10 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
-using FomMonitoringCore.DAL;
 using FomMonitoringCore.Ioc;
-using FomMonitoringCore.Service.API;
-using FomMonitoringCore.Service.API.Concrete;
-using System;
 using System.Web.Http;
 
 namespace FomMonitoringApi

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using FomMonitoringCore.DAL;
-using FomMonitoringCore.DAL;
 using FomMonitoringCore.Service;
 using MessageMachine = FomMonitoringCore.DAL.MessageMachine;
 

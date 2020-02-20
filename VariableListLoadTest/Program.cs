@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Autofac;
-using FomMonitoringCore.DAL;
 using FomMonitoringCore.DAL;
 using FomMonitoringCore.DalMongoDb;
 using FomMonitoringCore.DataProcessing.Dto.Mongo;
-using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Repository.MongoDb;
 using FomMonitoringCoreQueue.Connection;
 using FomMonitoringCoreQueue.Dto;

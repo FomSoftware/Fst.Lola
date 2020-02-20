@@ -3,13 +3,9 @@ using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Config;
 using FomMonitoringCore.Service;
 using FomMonitoringCore.Service.APIClient;
-using FomMonitoringCore.Service.APIClient.Concrete;
 using Mapster;
 using System;
-using System.IO;
-using System.Net;
 using System.Reflection;
-using System.Xml;
 
 namespace FomMonitoringUpdateUsers
 {

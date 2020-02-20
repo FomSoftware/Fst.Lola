@@ -1,8 +1,6 @@
 ﻿using FomMonitoringCore.Framework.Common;
-using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Framework.Model.Xml;
 using FomMonitoringCore.Service.API;
-using FomMonitoringCore.Service.API.Concrete;
 using System.Threading.Tasks;
 using System.Web.Http;
 

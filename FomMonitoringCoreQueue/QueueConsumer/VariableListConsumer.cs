@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using FomMonitoringCore.DalMongoDb;
 using FomMonitoringCore.DataProcessing.Dto.Mongo;
 using FomMonitoringCore.Repository.MongoDb;

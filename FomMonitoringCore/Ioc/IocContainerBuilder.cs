@@ -3,7 +3,6 @@ using Autofac.Builder;
 using FomMonitoringCore.DAL;
 using FomMonitoringCore.DAL_SQLite;
 using FomMonitoringCore.Framework.Common;
-using FomMonitoringCore.Repository;
 using FomMonitoringCore.Repository.SQL;
 using FomMonitoringCore.Service;
 using FomMonitoringCore.Service.API;

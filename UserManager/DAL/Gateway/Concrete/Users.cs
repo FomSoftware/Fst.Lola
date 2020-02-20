@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UserManager.Framework.Common;
-using UserManager.Service.Concrete;
 
 namespace UserManager.DAL.Gateway.Concrete
 {

@@ -1,5 +1,4 @@
-﻿using FomMonitoringCore.Service.API.Concrete;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FomMonitoringCore.Tests.Service.API.Concrete
 {
