@@ -201,7 +201,7 @@ namespace FomMonitoringBLL.ViewServices
                         {
                             text = o.Key.Operator,
                             perc = Common.GetPercentage(o.Key.TotalTime ?? 0, grossTime)
-                        }).ToList();
+                        }).OrderByDescending(p => p.perc).ToList();
                     }
 
                     if (secondGroup.Count > 0)
