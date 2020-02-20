@@ -327,12 +327,13 @@
 
     .button-adduser {
         margin-left: 0px !important;
+        max-width: 55vw;
     }
 }
 
 @media (max-width: 400px) {
     .dataTables_filter {
-        right: 60px;
+        right: 10px;
         width: 40%;
     }
 }
