@@ -20,7 +20,7 @@ header {
         border-top: solid 2px #B33157;
         background-color: #CBCACA;
 		/*margin-top: 5px;*/
-		
+        max-width: 100vw;
     }
 
     header .pull-left {
@@ -79,9 +79,6 @@ header {
         font-size: 8px;
     }
 
-    header .pull-left {
-        padding: 0;
-    }
 
     .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
         width: 170px !important;
