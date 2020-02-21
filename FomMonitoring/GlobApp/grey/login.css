@@ -283,7 +283,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
     .header {
         font-size: 30px;
         margin-bottom: 20px;
@@ -337,7 +337,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
 
 
 
-@media (max-height: 400px) {
+@media (max-height: 420px) {
     .container-login {
         width: 650px !important;
         height: 284px !important;
