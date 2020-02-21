@@ -180,13 +180,8 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     font-size: 20px;
 }
 
-@media(max-width:1024px) {
-    .form-actions button {
-        font-size: 14px;
-    }
-}
 
-@media(min-width:1024px) {
+@media(min-width:992px) {
     
     .header {
         margin-bottom: 30px;
@@ -196,9 +191,8 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     .container-login {
         height: 655px !important;
     }
-    .logo-login .img-fluid {
-        width: 215px;
-        height: 96px;
+    .logo-login {
+        width: 215px !important;
         padding: 0;
     }
 
@@ -209,6 +203,13 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     
 }
 
+@media(max-width:768px) {
+    #disclamerTextLink {
+        font-size: 14px;
+    }
+}
+
+    /*
 @media(max-height:768px) {
 
     .container-login {
@@ -282,60 +283,63 @@ input:-webkit-autofill:focus input:-webkit-autofill {
         padding: 12px 39px;
     }
 }
+    */
 
-@media (max-width: 420px) {
-    .header {
-        font-size: 30px;
-        margin-bottom: 20px;
-    }
-   
-    .header img.logo {
-        height: 83px;
-    }
+    @media (max-width: 576px) {
+        .header {
+            font-size: 30px;
+            margin-bottom: 20px;
+            margin-top: 0;
+        }
 
-    .header img.logo2 {
-        width: 260px;
-    }
+            .header img.logo {
+                height: 83px;
+            }
 
-    .container-login .content {
-        padding: 0 !important;
-    }
-    .logo-login {
-        padding: 0;
-    }
-    .logo-login .img-fluid {
-        width: 146px;
-        height: 65px;
-       
-    }
+            .header img.logo2 {
+                width: 260px;
+            }
 
-    .form-actions {
-        padding: 0;
-        text-align: left;
-    }
+        .container-login .content {
+            padding: 0 !important;
+        }
 
-    .form-actions button {
-        font-size: 14px;
-        padding: 9px 27px;
-    }
-    .container-login {
-        width: 315px;
-        height: 458px !important;
-        padding: 10px 20px !important;
-    }
+        .logo-login {
+            padding: 0;
+        }
 
-    .row {
-        margin-top: 10px;
-    }
-        
+            .logo-login .img-fluid {
+                width: 146px;
+            }
 
-    #disclamerTextLink {
-        padding-top: 10px;
-        font-size: 10px;
-    }
-}
+        .form-actions {
+            padding: 0;
+            text-align: left;
+        }
+
+            .form-actions button {
+                font-size: 14px;
+                padding: 9px 27px;
+            }
+
+        .container-login {
+            width: 315px;
+            height: 458px !important;
+            padding: 10px 20px !important;
+        }
+
+        .row {
+            margin-top: 10px;
+        }
 
 
+        #disclamerTextLink {
+            padding-top: 0;
+            font-size: 10px;
+        }
+    }
+
+    /*
 
 @media (max-height: 420px) {
     .container-login {
@@ -375,95 +379,95 @@ input:-webkit-autofill:focus input:-webkit-autofill {
         margin-top: 20px;
     }
 }
-
-/* Small devices (tablets, 768px and up) */
-
-
-/* Medium devices (desktops, 992px and up) */
+    */
+    /* Small devices (tablets, 768px and up) */
 
 
+    /* Medium devices (desktops, 992px and up) */
 
 
 
-/*#region alert validation */
 
-.alert.validation {
-    border: 1px solid transparent;
-    border-radius: 4px;
-    margin-bottom: -20px;
-    padding: 0 0 30px;
-}
 
-    .alert.validation .alert-danger {
-        border-radius: 3px;
-        background-color: #B33157;
-        color: #fff;
-        padding: 10px;
-        padding-bottom: 0;
-        text-align: center;
-        border: solid 1px;
+    /*#region alert validation */
+
+    .alert.validation {
+        border: 1px solid transparent;
+        border-radius: 4px;
+        margin-bottom: -20px;
+        padding: 0 0 30px;
     }
 
-        .alert.validation .alert-danger ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
+        .alert.validation .alert-danger {
+            border-radius: 3px;
+            background-color: #B33157;
+            color: #fff;
+            padding: 10px;
+            padding-bottom: 0;
+            text-align: center;
+            border: solid 1px;
         }
 
-            .alert.validation .alert-danger ul li {
-                margin-bottom: 10px;
+            .alert.validation .alert-danger ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
             }
 
+                .alert.validation .alert-danger ul li {
+                    margin-bottom: 10px;
+                }
 
 
 
 
 
-/*#endregion */
+
+    /*#endregion */
 
 
-.modal-dialog {
-    background-color: #eee;
-}
+    .modal-dialog {
+        background-color: #eee;
+    }
 
-.modal-content {
-    position: relative;
-    background-color: #eee;
-    box-shadow: none;
-    border: none;
-}
+    .modal-content {
+        position: relative;
+        background-color: #eee;
+        box-shadow: none;
+        border: none;
+    }
 
-.modal-footer {
-    border: none;
-    padding: 20px;
-    padding-top: 0px;
-}
+    .modal-footer {
+        border: none;
+        padding: 20px;
+        padding-top: 0px;
+    }
 
-.modal-footer button {
-    height: 36px;
-    /* border: solid 1px #fff; */
-    background-color: #ddd;
-    border-radius: 5px;
-    font-weight: 300;
-    font-family: 'Lato';
-}
+        .modal-footer button {
+            height: 36px;
+            /* border: solid 1px #fff; */
+            background-color: #ddd;
+            border-radius: 5px;
+            font-weight: 300;
+            font-family: 'Lato';
+        }
 
-.modal-footer button:hover {
-    outline-offset: 15px;
-    border: solid 1px #fff;
-}
+            .modal-footer button:hover {
+                outline-offset: 15px;
+                border: solid 1px #fff;
+            }
 
-.modal-footer .btn-confirm:focus {
-    background-color: #ddd;
-    border: solid 1px #fff;
-    outline: none;
-    border-color: #fff;
-}
+        .modal-footer .btn-confirm:focus {
+            background-color: #ddd;
+            border: solid 1px #fff;
+            outline: none;
+            border-color: #fff;
+        }
 
-.modal-footer .btn-annulla:focus {
-    color: #fff;
-    background-color: #ddd;
-    border: solid 1px #fff;
-    outline: none;
-    border-color: #fff;
-}
+        .modal-footer .btn-annulla:focus {
+            color: #fff;
+            background-color: #ddd;
+            border: solid 1px #fff;
+            outline: none;
+            border-color: #fff;
+        }

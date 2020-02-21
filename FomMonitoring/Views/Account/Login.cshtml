@@ -20,13 +20,13 @@
         <div class="row">
             <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 col-12">
                 <div class="row container-login justify-content-center">
-                    <div class="header">
+                    <div class="header col-12">
                         <div class="col-12">Welcome</div>
                         <img class="logo" src="~/Images/logo/Lola-lg.png">
                         @*<div class="title-small">Dashboard</div>*@
                         <img class="logo2" src="~/Images/logo/Log_On_Live_Automation-600x100px.png">
                     </div>
-                    <div class="content">
+                    <div class="content col-12">
                         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form" }))
                         {
                             @Html.AntiForgeryToken()
