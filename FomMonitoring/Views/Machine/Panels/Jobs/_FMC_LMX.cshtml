@@ -28,22 +28,22 @@
                             <th width="5%" class="th-duration sorting" v-bind:class="sortingProgress" v-on:click="sortProgress()">
                                 <span class="value-title" style="font-size: 14px;font-weight: bold">%</span>
                             </th>
-                            <th style="width:18%;padding-left:10px" class="th-duration sorting" v-bind:class="sorting.day" v-on:click="sortDay()">
+                            <th style="width:18%;padding-left:10px" class="th-duration sorting job-header testo-abbreviato" v-bind:class="sorting.day" v-on:click="sortDay()">
                                 <span class="value-title">@LocalizationService.GetResource("Date")</span>
                             </th>
-                            <th style="width: 20%;padding:0" class="th-duration sorting" v-bind:class="sorting.duration" v-on:click="sortDuration()">
+                            <th style="width: 20%;padding:0" class="th-duration sorting testo-abbreviato job-header" v-bind:class="sorting.duration" v-on:click="sortDuration()">
                                 <i class="fa fa-clock-o color-aaa"></i>
                                 <span class="value-title" style="font-size: 8px; padding-right: 0">
                                     @LocalizationService.GetResource("TimeResStim")
                                 </span>
                             </th>
-                            <th style="width: 17%;padding:0" class="th-duration sorting" v-bind:class="sorting.duration" v-on:click="sortDuration()">
+                            <th style="width: 17%;padding:0" class="th-duration sorting testo-abbreviato job-header" v-bind:class="sorting.duration" v-on:click="sortDuration()">
                                 <i class="fa fa-clock-o color-aaa"></i>
                                 <span class="value-title" style="font-size: 8px;">
                                     @LocalizationService.GetResource("TimeTot")
                                 </span>
                             </th>
-                            <th style="width: 10%;padding: 0;min-width: 70px;" class="th-duration sorting" v-bind:class="sorting.quantity" v-on:click="sortQuantity()">
+                            <th style="width: 10%;padding: 0;" class="th-duration sorting testo-abbreviato job-header" v-bind:class="sorting.quantity" v-on:click="sortQuantity()">
                                 <i class="fa fa-puzzle-piece color-aaa"></i>
                                 <span class="value-title">
                                     @LocalizationService.GetResource("Pieces")

@@ -324,6 +324,7 @@
 
     .button-addplant {
         margin-left: 0px !important;
+        max-width: 55vw;
     }
 }
 

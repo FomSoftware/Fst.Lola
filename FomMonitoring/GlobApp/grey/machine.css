@@ -1518,6 +1518,10 @@ hr.axes {
     width: 100%;
 }
 
+.job-header {
+
+}
+
 @media (max-height: 768px) {
     .img-button-group-lmx {
         width: 220px;
@@ -1561,6 +1565,10 @@ hr.axes {
     #CardSensorSpindles { padding-left: 30px; }
     #CardRotaryAxes, #CardElectroSpindle {
         padding-right: 15px;
+    }
+
+    .job-header {
+        max-width: 35px;
     }
 }
 
