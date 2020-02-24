@@ -49,7 +49,7 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                     if (_processor.ProcessData(ii))
                     {
 
-                        data.variablesList.AsParallel().ForAll(vl =>
+                        data.info.AsParallel().ForAll(vl =>
                         {
                             vl.DateEndElaboration = DateTime.UtcNow;
                             vl.ElaborationSuccesfull = true;

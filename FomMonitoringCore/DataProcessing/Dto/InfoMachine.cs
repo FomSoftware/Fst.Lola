@@ -37,5 +37,6 @@ namespace FomMonitoringCore.DataProcessing.Dto
         public DateTime DateEndElaboration { get; set; }
         public bool ElaborationSuccesfull { get; set; }
         public DateTime DateStartElaboration { get; set; }
+        public DateTime? LastUpdate { get; set; }
     }
 }
