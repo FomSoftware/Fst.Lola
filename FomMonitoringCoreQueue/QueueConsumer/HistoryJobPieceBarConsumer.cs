@@ -2,7 +2,7 @@
 
 namespace FomMonitoringCoreQueue.QueueConsumer
 {
-    public class HistoryJobConsumer : IConsumer<HistoryJob>
+    public class HistoryJobPieceBarConsumer : IConsumer<HistoryJobPieceBar>
     {
         public void Init()
         {

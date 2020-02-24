@@ -2,9 +2,9 @@
 
 namespace FomMonitoringCoreQueue.ProcessData
 {
-    public class HistoryJobProcessor : IProcessor<HistoryJob>
+    public class HistoryJobPieceBarProcessor : IProcessor<HistoryJobPieceBar>
     {
-        public bool ProcessData(HistoryJob data)
+        public bool ProcessData(HistoryJobPieceBar data)
         {
             throw new System.NotImplementedException();
         }

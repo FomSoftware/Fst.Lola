@@ -10,15 +10,15 @@ using RabbitMQ.Client;
 
 namespace FomMonitoringCoreQueue.QueueProducer
 {
-    public class HistoryJobProducer : IProducer<HistoryJob>
+    public class HistoryJobPieceBarProducer : IProducer<HistoryJobPieceBar>
     {
         private readonly IQueueConnection _queueConnection;
-        public HistoryJobProducer(IQueueConnection queueConnection)
+        public HistoryJobPieceBarProducer(IQueueConnection queueConnection)
         {
             _queueConnection = queueConnection;
         }
 
-        public bool Send(HistoryJob model)
+        public bool Send(HistoryJobPieceBar model)
         {
             var message = JsonConvert.SerializeObject(model);
             var body = Encoding.UTF8.GetBytes(message);
@@ -27,7 +27,7 @@ namespace FomMonitoringCoreQueue.QueueProducer
             props.DeliveryMode = 2;
 
             _queueConnection.Channel.BasicPublish("HistoryJobExchange",
-                "HistoryJob",
+                "HistoryJobPieceBar",
                 props,
                 body);
 

@@ -34,7 +34,8 @@ namespace FomMonitoringCore.DataProcessing.Dto
         public int? Shift3StartMinute { get; set; }
         public double? UTC { get; set; }
         public int? MachineCode { get; set; }
-
-
+        public DateTime DateEndElaboration { get; set; }
+        public bool ElaborationSuccesfull { get; set; }
+        public DateTime DateStartElaboration { get; set; }
     }
 }

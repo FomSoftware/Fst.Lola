@@ -17,7 +17,6 @@ namespace FomMonitoringQueueConsumerService
         private ILifetimeScope _scopeHistoryJob;
         private ILifetimeScope _scopeSpindle;
         private ILifetimeScope _scopeTool;
-        private ILifetimeScope _scopePiece;
         private ILifetimeScope _scopeState;
 
         public LolaQueueConsumer()
@@ -40,7 +39,6 @@ namespace FomMonitoringQueueConsumerService
             _scopeHistoryJob = container.BeginLifetimeScope();
             _scopeSpindle = container.BeginLifetimeScope();
             _scopeTool = container.BeginLifetimeScope();
-            _scopePiece = container.BeginLifetimeScope();
             _scopeState = container.BeginLifetimeScope();
 
             var consumerVariable = _scopeVariable.Resolve<IConsumer<VariablesList>>();
@@ -49,13 +47,10 @@ namespace FomMonitoringQueueConsumerService
             var consumerInfo = _scopeVariable.Resolve<IConsumer<Info>>();
             consumerInfo.Init();
 
-            var consumerPiece = _scopeVariable.Resolve<IConsumer<Piece>>();
-            consumerPiece.Init();
-
             var consumerState = _scopeVariable.Resolve<IConsumer<State>>();
             consumerState.Init();
 
-            var consumerHistoryJob = _scopeVariable.Resolve<IConsumer<HistoryJob>>();
+            var consumerHistoryJob = _scopeVariable.Resolve<IConsumer<HistoryJobPieceBar>>();
             consumerHistoryJob.Init();
 
             var consumerMessage = _scopeVariable.Resolve<IConsumer<Message>>();
@@ -78,7 +73,6 @@ namespace FomMonitoringQueueConsumerService
             _scopeHistoryJob.Dispose();
             _scopeSpindle.Dispose();
             _scopeTool.Dispose();
-            _scopePiece.Dispose();
             _scopeState.Dispose();
         }
     }
