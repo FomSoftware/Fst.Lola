@@ -73,7 +73,6 @@
         <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageMachineNotification_MessageMachine" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageMachine_MessagesIndex" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryMessage_MessagesIndex" />
-        <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageMachine_State1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
