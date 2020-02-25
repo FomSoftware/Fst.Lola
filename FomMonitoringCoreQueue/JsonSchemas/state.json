@@ -1,0 +1,232 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "state",
+    "info"
+  ],
+  "properties": {
+    "state": {
+      "$id": "#/properties/state",
+      "type": "array",
+      "title": "The State Schema",
+      "items": {
+        "$id": "#/properties/state/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "Id",
+          "Index",
+          "StartTime",
+          "EndTime",
+          "TimeSpanDuration",
+          "Operator",
+          "Overfeed",
+          "State",
+          "Reason"
+        ],
+        "properties": {
+          "Id": {
+            "$id": "#/properties/state/items/properties/Id",
+            "type": "number",
+            "title": "The Id Schema",
+            "default": 0,
+            "examples": [
+              28
+            ]
+          },
+          "Index": {
+            "$id": "#/properties/state/items/properties/Index",
+            "type": "number",
+            "title": "The Index Schema",
+            "default": 0,
+            "examples": [
+              28
+            ]
+          },
+          "StartTime": {
+            "$id": "#/properties/state/items/properties/StartTime",
+            "type": "string",
+            "title": "The Starttime Schema",
+            "default": "",
+            "examples": [
+              "2020-02-24T15:36:19"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "EndTime": {
+            "$id": "#/properties/state/items/properties/EndTime",
+            "type": "string",
+            "title": "The Endtime Schema",
+            "default": "",
+            "examples": [
+              "2020-02-24T15:36:19"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "TimeSpanDuration": {
+            "$id": "#/properties/state/items/properties/TimeSpanDuration",
+            "type": "number",
+            "title": "The Timespanduration Schema",
+            "default": 0,
+            "examples": [
+              0
+            ]
+          },
+          "Operator": {
+            "$id": "#/properties/state/items/properties/Operator",
+            "type": "string",
+            "title": "The Operator Schema",
+            "default": "",
+            "examples": [
+              "SoftwarePLC"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "Overfeed": {
+            "$id": "#/properties/state/items/properties/Overfeed",
+            "type": "number",
+            "title": "The Overfeed Schema",
+            "default": 0,
+            "examples": [
+              100
+            ]
+          },
+          "State": {
+            "$id": "#/properties/state/items/properties/State",
+            "type": "number",
+            "title": "The State Schema",
+            "default": 0,
+            "examples": [
+              4
+            ]
+          },
+          "Reason": {
+            "$id": "#/properties/state/items/properties/Reason",
+            "type": "string",
+            "title": "The Reason Schema",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^(.*)$"
+          }
+        }
+      }
+    },
+    "info": {
+      "$id": "#/properties/info",
+      "type": "array",
+      "title": "The Info Schema",
+      "items": {
+        "$id": "#/properties/info/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "KeyId",
+          "MachineSerial",
+          "MachineCode",
+          "Product",
+          "ProductVersion",
+          "FirmwareVersion",
+          "PlcVersion",
+          "LoginDate",
+          "UTC"
+        ],
+        "properties": {
+          "KeyId": {
+            "$id": "#/properties/info/items/properties/KeyId",
+            "type": "string",
+            "title": "The Keyid Schema",
+            "default": "",
+            "examples": [
+              "1347181548"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "MachineSerial": {
+            "$id": "#/properties/info/items/properties/MachineSerial",
+            "type": "string",
+            "title": "The Machineserial Schema",
+            "default": "",
+            "examples": [
+              "A1300001"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "MachineCode": {
+            "$id": "#/properties/info/items/properties/MachineCode",
+            "type": "number",
+            "title": "The Machinecode Schema",
+            "default": 0,
+            "examples": [
+              506
+            ]
+          },
+          "Product": {
+            "$id": "#/properties/info/items/properties/Product",
+            "type": "string",
+            "title": "The Product Schema",
+            "default": "",
+            "examples": [
+              "FSTCAM4"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "ProductVersion": {
+            "$id": "#/properties/info/items/properties/ProductVersion",
+            "type": "string",
+            "title": "The Productversion Schema",
+            "default": "",
+            "examples": [
+              "4.1.0.28"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "FirmwareVersion": {
+            "$id": "#/properties/info/items/properties/FirmwareVersion",
+            "type": "string",
+            "title": "The Firmwareversion Schema",
+            "default": "",
+            "examples": [
+              "1.7.2"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "PlcVersion": {
+            "$id": "#/properties/info/items/properties/PlcVersion",
+            "type": "string",
+            "title": "The Plcversion Schema",
+            "default": "",
+            "examples": [
+              "2.0.4.2"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "LoginDate": {
+            "$id": "#/properties/info/items/properties/LoginDate",
+            "type": "string",
+            "title": "The Logindate Schema",
+            "default": "",
+            "examples": [
+              "2020-02-24T16:24:32.3792614Z"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "UTC": {
+            "$id": "#/properties/info/items/properties/UTC",
+            "type": "number",
+            "title": "The Utc Schema",
+            "default": 0,
+            "examples": [
+              1
+            ]
+          }
+        }
+      }
+    }
+  }
+}

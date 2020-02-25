@@ -1,0 +1,211 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "tool",
+    "info"
+  ],
+  "properties": {
+    "tool": {
+      "$id": "#/properties/tool",
+      "type": "array",
+      "title": "The Tool Schema",
+      "items": {
+        "$id": "#/properties/tool/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "Id",
+          "Code",
+          "Description",
+          "DateLoaded",
+          "DateReplaced",
+          "CurrentLife",
+          "ExpectedLife"
+        ],
+        "properties": {
+          "Id": {
+            "$id": "#/properties/tool/items/properties/Id",
+            "type": "number",
+            "title": "The Id Schema",
+            "default": 0,
+            "examples": [
+              3
+            ]
+          },
+          "Code": {
+            "$id": "#/properties/tool/items/properties/Code",
+            "type": "number",
+            "title": "The Code Schema",
+            "default": 0,
+            "examples": [
+              3
+            ]
+          },
+          "Description": {
+            "$id": "#/properties/tool/items/properties/Description",
+            "type": "string",
+            "title": "The Description Schema",
+            "default": "",
+            "examples": [
+              "Fresa D.6"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "DateLoaded": {
+            "$id": "#/properties/tool/items/properties/DateLoaded",
+            "type": "string",
+            "title": "The Dateloaded Schema",
+            "default": "",
+            "examples": [
+              "2020-02-24T15:33:16.698486Z"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "DateReplaced": {
+            "$id": "#/properties/tool/items/properties/DateReplaced",
+            "type": "string",
+            "title": "The Datereplaced Schema",
+            "default": "",
+            "examples": [
+              "2020-02-24T15:33:16.698486Z"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "CurrentLife": {
+            "$id": "#/properties/tool/items/properties/CurrentLife",
+            "type": "number",
+            "title": "The Currentlife Schema",
+            "default": 0,
+            "examples": [
+              20756
+            ]
+          },
+          "ExpectedLife": {
+            "$id": "#/properties/tool/items/properties/ExpectedLife",
+            "type": "number",
+            "title": "The Expectedlife Schema",
+            "default": 0,
+            "examples": [
+              360000
+            ]
+          }
+        }
+      }
+    },
+    "info": {
+      "$id": "#/properties/info",
+      "type": "array",
+      "title": "The Info Schema",
+      "items": {
+        "$id": "#/properties/info/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "KeyId",
+          "MachineSerial",
+          "MachineCode",
+          "Product",
+          "ProductVersion",
+          "FirmwareVersion",
+          "PlcVersion",
+          "LoginDate",
+          "UTC"
+        ],
+        "properties": {
+          "KeyId": {
+            "$id": "#/properties/info/items/properties/KeyId",
+            "type": "string",
+            "title": "The Keyid Schema",
+            "default": "",
+            "examples": [
+              "1347181548"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "MachineSerial": {
+            "$id": "#/properties/info/items/properties/MachineSerial",
+            "type": "string",
+            "title": "The Machineserial Schema",
+            "default": "",
+            "examples": [
+              "A1300001"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "MachineCode": {
+            "$id": "#/properties/info/items/properties/MachineCode",
+            "type": "number",
+            "title": "The Machinecode Schema",
+            "default": 0,
+            "examples": [
+              506
+            ]
+          },
+          "Product": {
+            "$id": "#/properties/info/items/properties/Product",
+            "type": "string",
+            "title": "The Product Schema",
+            "default": "",
+            "examples": [
+              "FSTCAM4"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "ProductVersion": {
+            "$id": "#/properties/info/items/properties/ProductVersion",
+            "type": "string",
+            "title": "The Productversion Schema",
+            "default": "",
+            "examples": [
+              "4.1.0.28"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "FirmwareVersion": {
+            "$id": "#/properties/info/items/properties/FirmwareVersion",
+            "type": "string",
+            "title": "The Firmwareversion Schema",
+            "default": "",
+            "examples": [
+              "1.7.2"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "PlcVersion": {
+            "$id": "#/properties/info/items/properties/PlcVersion",
+            "type": "string",
+            "title": "The Plcversion Schema",
+            "default": "",
+            "examples": [
+              "2.0.4.2"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "LoginDate": {
+            "$id": "#/properties/info/items/properties/LoginDate",
+            "type": "string",
+            "title": "The Logindate Schema",
+            "default": "",
+            "examples": [
+              "2020-02-24T16:24:32.3792614Z"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "UTC": {
+            "$id": "#/properties/info/items/properties/UTC",
+            "type": "number",
+            "title": "The Utc Schema",
+            "default": 0,
+            "examples": [
+              1
+            ]
+          }
+        }
+      }
+    }
+  }
+}

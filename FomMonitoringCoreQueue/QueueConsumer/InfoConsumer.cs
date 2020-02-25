@@ -3,15 +3,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using FomMonitoringCore.DalMongoDb;
-using FomMonitoringCore.DataProcessing.Dto.Mongo;
 using FomMonitoringCore.Repository.MongoDb;
 using FomMonitoringCore.Service;
 using FomMonitoringCoreQueue.Connection;
-using FomMonitoringCoreQueue.Dto;
 using FomMonitoringCoreQueue.ProcessData;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using Info = FomMonitoringCoreQueue.Dto.Info;
 
 namespace FomMonitoringCoreQueue.QueueConsumer
 {
@@ -19,10 +18,15 @@ namespace FomMonitoringCoreQueue.QueueConsumer
     {
         private readonly IProcessor<Info> _processor;
         private readonly IQueueConnection _queueConnection;
-        public InfoConsumer(IProcessor<Info> processor, IQueueConnection queueConnection)
+        private readonly IGenericRepository<FomMonitoringCore.DataProcessing.Dto.Mongo.Info> _infoGenericRepository;
+
+        public InfoConsumer(IProcessor<Info> processor, 
+            IQueueConnection queueConnection, 
+            IGenericRepository<FomMonitoringCore.DataProcessing.Dto.Mongo.Info> infoGenericRepository)
         {
             _processor = processor;
             _queueConnection = queueConnection;
+            _infoGenericRepository = infoGenericRepository;
         }
 
         public void Init()
@@ -32,18 +36,16 @@ namespace FomMonitoringCoreQueue.QueueConsumer
             consumer.Received += (model, ea) =>
             {
                 var elapsedTime = string.Empty;
-                Stopwatch stopWatch = new Stopwatch();
+                var stopWatch = new Stopwatch();
                 stopWatch.Start();
-                var data = new MachineDataModel();
-                var mongoContext = new MongoDbContext();
-                var repo = new GenericRepository<MachineDataModel>(mongoContext);
+                var data = new FomMonitoringCore.DataProcessing.Dto.Mongo.Info();
                 try
                 {
                     var body = ea.Body;
                     var message = Encoding.UTF8.GetString(body);
                     var ii = JsonConvert.DeserializeObject<Info>(message);
 
-                    data = repo.Find(ii.ObjectId);
+                    data = _infoGenericRepository.Find(ii.ObjectId);
                     data.info.AsParallel().ForAll(vl => vl.DateStartElaboration = DateTime.UtcNow);
 
                     if (_processor.ProcessData(ii))
@@ -67,7 +69,7 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                 }
                 catch (Exception ex)
                 {
-                    data.variablesList.AsParallel().ForAll(vl =>
+                    data.info.AsParallel().ForAll(vl =>
                     {
                         vl.DateEndElaboration = DateTime.UtcNow;
                         vl.ElaborationSuccesfull = false;
@@ -80,7 +82,7 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                 {
                     LogService.WriteLog(
                         $"Finita elaborazione json {DateTime.UtcNow:O} tempo trascorso {elapsedTime} ", LogService.TypeLevel.Info);
-                    repo.Update(data);
+                    _infoGenericRepository.Update(data);
                 }
             };
 
