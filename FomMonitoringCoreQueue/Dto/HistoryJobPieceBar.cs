@@ -2,6 +2,6 @@
 {
     public class HistoryJobPieceBar : BaseModel
     {
-        public FomMonitoringCore.DataProcessing.Dto.HistoryJob HistoryJobMachine { get; set; }
+        public FomMonitoringCore.DataProcessing.Dto.HistoryJobMachine[] HistoryJobMachine { get; set; }
     }
 }

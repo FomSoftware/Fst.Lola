@@ -12,6 +12,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using State = FomMonitoringCoreQueue.Dto.State;
 
 namespace FomMonitoringCoreQueue.QueueConsumer
 {
@@ -33,9 +34,9 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                 var elapsedTime = string.Empty;
                 Stopwatch stopWatch = new Stopwatch();
                 stopWatch.Start();
-                var data = new MachineDataModel();
+                var data = new FomMonitoringCore.DataProcessing.Dto.Mongo.State();
                 var mongoContext = new MongoDbContext();
-                var repo = new GenericRepository<MachineDataModel>(mongoContext);
+                var repo = new GenericRepository<FomMonitoringCore.DataProcessing.Dto.Mongo.State>(mongoContext);
                 try
                 {
                     var body = ea.Body;

@@ -41,6 +41,21 @@ namespace FomMonitoringCoreQueue.Connection
                 false,
                 false,
                 null);
+            Channel.QueueDeclare("Messages",
+                true,
+                false,
+                false,
+                null);
+            Channel.QueueDeclare("Tool",
+                true,
+                false,
+                false,
+                null);
+            Channel.QueueDeclare("HistoryJobPieceBar",
+                true,
+                false,
+                false,
+                null);
         }
 
         public void Dispose()

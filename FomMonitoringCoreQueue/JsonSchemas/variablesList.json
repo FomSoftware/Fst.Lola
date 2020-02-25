@@ -1,0 +1,215 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "info",
+    "variablesList"
+  ],
+  "properties": {
+    "info": {
+      "$id": "#/properties/info",
+      "type": "array",
+      "title": "The Info Schema",
+      "items": {
+        "$id": "#/properties/info/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "KeyId",
+          "MachineSerial",
+          "MachineCode",
+          "Product",
+          "ProductVersion",
+          "FirmwareVersion",
+          "PlcVersion",
+          "LoginDate",
+          "UTC"
+        ],
+        "properties": {
+          "KeyId": {
+            "$id": "#/properties/info/items/properties/KeyId",
+            "type": "string",
+            "title": "The Keyid Schema",
+            "default": "",
+            "examples": [
+              "1347181548"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "MachineSerial": {
+            "$id": "#/properties/info/items/properties/MachineSerial",
+            "type": "string",
+            "title": "The Machineserial Schema",
+            "default": "",
+            "examples": [
+              "A1300001"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "MachineCode": {
+            "$id": "#/properties/info/items/properties/MachineCode",
+            "type": "number",
+            "title": "The Machinecode Schema",
+            "default": 0,
+            "examples": [
+              506
+            ]
+          },
+          "Product": {
+            "$id": "#/properties/info/items/properties/Product",
+            "type": "string",
+            "title": "The Product Schema",
+            "default": "",
+            "examples": [
+              "FSTCAM4"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "ProductVersion": {
+            "$id": "#/properties/info/items/properties/ProductVersion",
+            "type": "string",
+            "title": "The Productversion Schema",
+            "default": "",
+            "examples": [
+              "4.1.0.28"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "FirmwareVersion": {
+            "$id": "#/properties/info/items/properties/FirmwareVersion",
+            "type": "string",
+            "title": "The Firmwareversion Schema",
+            "default": "",
+            "examples": [
+              "1.7.2"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "PlcVersion": {
+            "$id": "#/properties/info/items/properties/PlcVersion",
+            "type": "string",
+            "title": "The Plcversion Schema",
+            "default": "",
+            "examples": [
+              "2.0.4.2"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "LoginDate": {
+            "$id": "#/properties/info/items/properties/LoginDate",
+            "type": "string",
+            "title": "The Logindate Schema",
+            "default": "",
+            "examples": [
+              "2020-02-24T16:24:32.3792614Z"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "UTC": {
+            "$id": "#/properties/info/items/properties/UTC",
+            "type": "number",
+            "title": "The Utc Schema",
+            "default": 0,
+            "examples": [
+              1
+            ]
+          }
+        }
+      }
+    },
+    "variablesList": {
+      "$id": "#/properties/variablesList",
+      "type": "array",
+      "title": "The Variableslist Schema",
+      "items": {
+        "$id": "#/properties/variablesList/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "Id",
+          "UtcDateTime",
+          "Values"
+        ],
+        "properties": {
+          "Id": {
+            "$id": "#/properties/variablesList/items/properties/Id",
+            "type": "number",
+            "title": "The Id Schema",
+            "default": 0,
+            "examples": [
+              25
+            ]
+          },
+          "UtcDateTime": {
+            "$id": "#/properties/variablesList/items/properties/UtcDateTime",
+            "type": "string",
+            "title": "The Utcdatetime Schema",
+            "default": "",
+            "examples": [
+              "2020-02-24T16:24:16"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "Values": {
+            "$id": "#/properties/variablesList/items/properties/Values",
+            "type": "array",
+            "title": "The Values Schema",
+            "items": {
+              "$id": "#/properties/variablesList/items/properties/Values/items",
+              "type": "object",
+              "title": "The Items Schema",
+              "required": [
+                "VariableType",
+                "VariableNumber",
+                "VariableValue"
+              ],
+              "properties": {
+                "VariableType": {
+                  "$id": "#/properties/variablesList/items/properties/Values/items/properties/VariableType",
+                  "type": "number",
+                  "title": "The Variabletype Schema",
+                  "default": 0,
+                  "examples": [
+                    8
+                  ]
+                },
+                "VariableNumber": {
+                  "$id": "#/properties/variablesList/items/properties/Values/items/properties/VariableNumber",
+                  "type": "string",
+                  "title": "The Variablenumber Schema",
+                  "default": "",
+                  "examples": [
+                    "3000"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "VariableValue": {
+                  "$id": "#/properties/variablesList/items/properties/Values/items/properties/VariableValue",
+                  "type": "number",
+                  "title": "The Variablevalue Schema",
+                  "default": 0,
+                  "examples": [
+                    52
+                  ]
+                },
+                "VariableResetDate": {
+                  "$id": "#/properties/variablesList/items/properties/Values/items/properties/VariableResetDate",
+                  "type": "string",
+                  "title": "The Variableresetdate Schema",
+                  "default": "",
+                  "examples": [
+                    "0001-01-01T00:00:00"
+                  ],
+                  "pattern": "^(.*)$"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

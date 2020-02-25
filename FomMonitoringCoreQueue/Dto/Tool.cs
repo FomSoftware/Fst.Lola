@@ -2,6 +2,6 @@
 {
     public class Tool : BaseModel
     {
-        public FomMonitoringCore.DataProcessing.Dto.Tool ToolMachine { get; set; }
+        public FomMonitoringCore.DataProcessing.Dto.ToolMachine[] ToolMachine { get; set; }
     }
 }

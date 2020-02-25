@@ -11,7 +11,7 @@ namespace FomMonitoringCore.Repository.MongoDb
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseModel
     {
         public IMongoCollection<T> Collection { get; private set; }
-        public GenericRepository(MongoDbContext dbContext)
+        public GenericRepository(IMongoDbContext dbContext)
         {
             Collection = dbContext.DbSet<T>();
         }

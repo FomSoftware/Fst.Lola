@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using FomMonitoringCoreQueue.Connection;
 using FomMonitoringCoreQueue.Dto;
 using Newtonsoft.Json;
@@ -24,6 +20,7 @@ namespace FomMonitoringCoreQueue.QueueProducer
             var body = Encoding.UTF8.GetBytes(message);
             var props = _queueConnection.Channel.CreateBasicProperties();
             props.Persistent = true;
+
             _queueConnection.Channel.BasicPublish("",
                 "State",
                 props, body);

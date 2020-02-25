@@ -31,28 +31,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
@@ -216,6 +199,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DalMongoDb\IMongoDbContext.cs" />
     <Compile Include="DalMongoDb\MongoDbContext.cs" />
     <Compile Include="DAL\Bar.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
@@ -411,15 +395,12 @@
     <Compile Include="DAL_SQLite\tool.cs">
       <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataProcessing\Dto\Bar.cs" />
     <Compile Include="DataProcessing\Dto\BaseModel.cs" />
     <Compile Include="DataProcessing\Dto\HistoryJob.cs" />
     <Compile Include="DataProcessing\Dto\InfoMachine.cs" />
     <Compile Include="DataProcessing\Dto\Message.cs" />
     <Compile Include="DataProcessing\Dto\Mongo\BaseModel.cs" />
     <Compile Include="DataProcessing\Dto\Mongo\MachineDataModel.cs" />
-    <Compile Include="DataProcessing\Dto\Piece.cs" />
-    <Compile Include="DataProcessing\Dto\Spindle.cs" />
     <Compile Include="DataProcessing\Dto\StateMachine.cs" />
     <Compile Include="DataProcessing\Dto\Tool.cs" />
     <Compile Include="DataProcessing\Dto\Value.cs" />

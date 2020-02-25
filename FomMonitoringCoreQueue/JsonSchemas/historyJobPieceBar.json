@@ -1,0 +1,510 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "bar",
+    "piece",
+    "historyjob",
+    "info"
+  ],
+  "properties": {
+    "bar": {
+      "$id": "#/properties/bar",
+      "type": "array",
+      "title": "The Bar Schema",
+      "items": {
+        "$id": "#/properties/bar/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "Id",
+          "Index",
+          "Brand",
+          "System",
+          "ProfileCode",
+          "Color",
+          "JobCode",
+          "StartTime",
+          "EndTime",
+          "Length",
+          "IsOffcut"
+        ],
+        "properties": {
+          "Id": {
+            "$id": "#/properties/bar/items/properties/Id",
+            "type": "number",
+            "title": "The Id Schema",
+            "default": 0,
+            "examples": [
+              3
+            ]
+          },
+          "Index": {
+            "$id": "#/properties/bar/items/properties/Index",
+            "type": "number",
+            "title": "The Index Schema",
+            "default": 0,
+            "examples": [
+              0
+            ]
+          },
+          "Brand": {
+            "$id": "#/properties/bar/items/properties/Brand",
+            "type": "string",
+            "title": "The Brand Schema",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^(.*)$"
+          },
+          "System": {
+            "$id": "#/properties/bar/items/properties/System",
+            "type": "string",
+            "title": "The System Schema",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^(.*)$"
+          },
+          "ProfileCode": {
+            "$id": "#/properties/bar/items/properties/ProfileCode",
+            "type": "string",
+            "title": "The Profilecode Schema",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^(.*)$"
+          },
+          "Color": {
+            "$id": "#/properties/bar/items/properties/Color",
+            "type": "string",
+            "title": "The Color Schema",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^(.*)$"
+          },
+          "JobCode": {
+            "$id": "#/properties/bar/items/properties/JobCode",
+            "type": "string",
+            "title": "The Jobcode Schema",
+            "default": "",
+            "examples": [
+              "ExecutionList_2020.02.24_5"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "StartTime": {
+            "$id": "#/properties/bar/items/properties/StartTime",
+            "type": "string",
+            "title": "The Starttime Schema",
+            "default": "",
+            "examples": [
+              "2020-02-24T15:04:46"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "EndTime": {
+            "$id": "#/properties/bar/items/properties/EndTime",
+            "type": "string",
+            "title": "The Endtime Schema",
+            "default": "",
+            "examples": [
+              "2020-02-24T15:04:46"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "RemaingWorkingTime": {
+            "$id": "#/properties/bar/items/properties/RemaingWorkingTime",
+            "type": "number",
+            "title": "The Remaingworkingtime Schema",
+            "default": 0,
+            "examples": [
+              0
+            ]
+          },
+          "Length": {
+            "$id": "#/properties/bar/items/properties/Length",
+            "type": "number",
+            "title": "The Length Schema",
+            "default": 0,
+            "examples": [
+              1500
+            ]
+          },
+          "IsOffcut": {
+            "$id": "#/properties/bar/items/properties/IsOffcut",
+            "type": "boolean",
+            "title": "The Isoffcut Schema",
+            "default": false,
+            "examples": [
+              false
+            ]
+          }
+        }
+      }
+    },
+    "piece": {
+      "$id": "#/properties/piece",
+      "type": "array",
+      "title": "The Piece Schema",
+      "items": {
+        "$id": "#/properties/piece/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "Id",
+          "BarId",
+          "Length",
+          "JobCode",
+          "EndTime",
+          "StartTime",
+          "TimeSpan",
+          "TimeSpanProducing",
+          "Operator",
+          "Redone",
+          "RedoneReason",
+          "TimeSpanCutting",
+          "TimeSpanWorking",
+          "TimeSpanTrim"
+        ],
+        "properties": {
+          "Id": {
+            "$id": "#/properties/piece/items/properties/Id",
+            "type": "number",
+            "title": "The Id Schema",
+            "default": 0,
+            "examples": [
+              3
+            ]
+          },
+          "BarId": {
+            "$id": "#/properties/piece/items/properties/BarId",
+            "type": "number",
+            "title": "The Barid Schema",
+            "default": 0,
+            "examples": [
+              3
+            ]
+          },
+          "Length": {
+            "$id": "#/properties/piece/items/properties/Length",
+            "type": "number",
+            "title": "The Length Schema",
+            "default": 0,
+            "examples": [
+              0
+            ]
+          },
+          "JobCode": {
+            "$id": "#/properties/piece/items/properties/JobCode",
+            "type": "string",
+            "title": "The Jobcode Schema",
+            "default": "",
+            "examples": [
+              "ExecutionList_2020.02.24_5"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "EndTime": {
+            "$id": "#/properties/piece/items/properties/EndTime",
+            "type": "string",
+            "title": "The Endtime Schema",
+            "default": "",
+            "examples": [
+              "2020-02-24T15:04:46"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "StartTime": {
+            "$id": "#/properties/piece/items/properties/StartTime",
+            "type": "string",
+            "title": "The Starttime Schema",
+            "default": "",
+            "examples": [
+              "2020-02-24T15:04:46"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "TimeSpan": {
+            "$id": "#/properties/piece/items/properties/TimeSpan",
+            "type": "number",
+            "title": "The Timespan Schema",
+            "default": 0,
+            "examples": [
+              0
+            ]
+          },
+          "TimeSpanProducing": {
+            "$id": "#/properties/piece/items/properties/TimeSpanProducing",
+            "type": "number",
+            "title": "The Timespanproducing Schema",
+            "default": 0,
+            "examples": [
+              0
+            ]
+          },
+          "RemaingWorkingTime": {
+            "$id": "#/properties/piece/items/properties/RemaingWorkingTime",
+            "type": "number",
+            "title": "The Remaingworkingtime Schema",
+            "default": 0,
+            "examples": [
+              0
+            ]
+          },
+          "Operator": {
+            "$id": "#/properties/piece/items/properties/Operator",
+            "type": "string",
+            "title": "The Operator Schema",
+            "default": "",
+            "examples": [
+              "Op1"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "Redone": {
+            "$id": "#/properties/piece/items/properties/Redone",
+            "type": "boolean",
+            "title": "The Redone Schema",
+            "default": false,
+            "examples": [
+              false
+            ]
+          },
+          "RedoneReason": {
+            "$id": "#/properties/piece/items/properties/RedoneReason",
+            "type": "string",
+            "title": "The Redonereason Schema",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^(.*)$"
+          },
+          "TimeSpanCutting": {
+            "$id": "#/properties/piece/items/properties/TimeSpanCutting",
+            "type": "number",
+            "title": "The Timespancutting Schema",
+            "default": 0,
+            "examples": [
+              0
+            ]
+          },
+          "TimeSpanWorking": {
+            "$id": "#/properties/piece/items/properties/TimeSpanWorking",
+            "type": "number",
+            "title": "The Timespanworking Schema",
+            "default": 0,
+            "examples": [
+              0
+            ]
+          },
+          "TimeSpanTrim": {
+            "$id": "#/properties/piece/items/properties/TimeSpanTrim",
+            "type": "number",
+            "title": "The Timespantrim Schema",
+            "default": 0,
+            "examples": [
+              0
+            ]
+          }
+        }
+      }
+    },
+    "historyjob": {
+      "$id": "#/properties/historyjob",
+      "type": "array",
+      "title": "The Historyjob Schema",
+      "items": {
+        "$id": "#/properties/historyjob/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "Id",
+          "JobCode",
+          "TotalPiecesInJob",
+          "CurrentlyProducedPieces",
+          "Day",
+          "ElapsedTime"
+        ],
+        "properties": {
+          "Id": {
+            "$id": "#/properties/historyjob/items/properties/Id",
+            "type": "number",
+            "title": "The Id Schema",
+            "default": 0,
+            "examples": [
+              1
+            ]
+          },
+          "JobCode": {
+            "$id": "#/properties/historyjob/items/properties/JobCode",
+            "type": "string",
+            "title": "The Jobcode Schema",
+            "default": "",
+            "examples": [
+              "ExecutionList_2020.02.24_5"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "TotalPiecesInJob": {
+            "$id": "#/properties/historyjob/items/properties/TotalPiecesInJob",
+            "type": "number",
+            "title": "The Totalpiecesinjob Schema",
+            "default": 0,
+            "examples": [
+              1
+            ]
+          },
+          "CurrentlyProducedPieces": {
+            "$id": "#/properties/historyjob/items/properties/CurrentlyProducedPieces",
+            "type": "number",
+            "title": "The Currentlyproducedpieces Schema",
+            "default": 0,
+            "examples": [
+              3
+            ]
+          },
+          "Day": {
+            "$id": "#/properties/historyjob/items/properties/Day",
+            "type": "string",
+            "title": "The Day Schema",
+            "default": "",
+            "examples": [
+              "2020-02-24T15:04:58.1772497Z"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "ElapsedTime": {
+            "$id": "#/properties/historyjob/items/properties/ElapsedTime",
+            "type": "number",
+            "title": "The Elapsedtime Schema",
+            "default": 0,
+            "examples": [
+              0
+            ]
+          }
+        }
+      }
+    },
+    "info": {
+      "$id": "#/properties/info",
+      "type": "array",
+      "title": "The Info Schema",
+      "items": {
+        "$id": "#/properties/info/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "KeyId",
+          "MachineSerial",
+          "MachineCode",
+          "Product",
+          "ProductVersion",
+          "FirmwareVersion",
+          "PlcVersion",
+          "LoginDate",
+          "UTC"
+        ],
+        "properties": {
+          "KeyId": {
+            "$id": "#/properties/info/items/properties/KeyId",
+            "type": "string",
+            "title": "The Keyid Schema",
+            "default": "",
+            "examples": [
+              "1347181548"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "MachineSerial": {
+            "$id": "#/properties/info/items/properties/MachineSerial",
+            "type": "string",
+            "title": "The Machineserial Schema",
+            "default": "",
+            "examples": [
+              "A1300001"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "MachineCode": {
+            "$id": "#/properties/info/items/properties/MachineCode",
+            "type": "number",
+            "title": "The Machinecode Schema",
+            "default": 0,
+            "examples": [
+              506
+            ]
+          },
+          "Product": {
+            "$id": "#/properties/info/items/properties/Product",
+            "type": "string",
+            "title": "The Product Schema",
+            "default": "",
+            "examples": [
+              "FSTCAM4"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "ProductVersion": {
+            "$id": "#/properties/info/items/properties/ProductVersion",
+            "type": "string",
+            "title": "The Productversion Schema",
+            "default": "",
+            "examples": [
+              "4.1.0.28"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "FirmwareVersion": {
+            "$id": "#/properties/info/items/properties/FirmwareVersion",
+            "type": "string",
+            "title": "The Firmwareversion Schema",
+            "default": "",
+            "examples": [
+              "1.7.2"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "PlcVersion": {
+            "$id": "#/properties/info/items/properties/PlcVersion",
+            "type": "string",
+            "title": "The Plcversion Schema",
+            "default": "",
+            "examples": [
+              "2.0.4.2"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "LoginDate": {
+            "$id": "#/properties/info/items/properties/LoginDate",
+            "type": "string",
+            "title": "The Logindate Schema",
+            "default": "",
+            "examples": [
+              "2020-02-24T15:04:58.1643146Z"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "UTC": {
+            "$id": "#/properties/info/items/properties/UTC",
+            "type": "number",
+            "title": "The Utc Schema",
+            "default": 0,
+            "examples": [
+              1
+            ]
+          }
+        }
+      }
+    }
+  }
+}

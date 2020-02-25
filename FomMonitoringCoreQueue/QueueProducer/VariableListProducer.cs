@@ -19,13 +19,11 @@ namespace FomMonitoringCoreQueue.QueueProducer
         {
             var message = JsonConvert.SerializeObject(variablesList);
             var body = Encoding.UTF8.GetBytes(message);
-            var props = _queueConnection.Channel.CreateBasicProperties();
-            props.ContentType = "text/plain";
-            props.DeliveryMode = 2;
-
-            _queueConnection.Channel.BasicPublish("VariableListExchange",
+            var properties = _queueConnection.Channel.CreateBasicProperties();
+            properties.Persistent = true;
+            _queueConnection.Channel.BasicPublish("",
                 "VariableList",
-                props,
+                properties,
                 body);
 
             return true;

@@ -12,6 +12,7 @@ using FomMonitoringCore.Service.APIClient.Concrete;
 using FomMonitoringCore.Service.DataMapping;
 using FomMonitoringCore.Uow;
 using System.Collections.Generic;
+using FomMonitoringCore.DalMongoDb;
 
 namespace FomMonitoringCore.Ioc
 {
@@ -62,7 +63,9 @@ namespace FomMonitoringCore.Ioc
                 builder.RegisterType<BarService>().As<IBarService>(),
                 builder.RegisterType<MesService>().As<IMesService>(),
                 builder.RegisterType<PlantManagerService>().As<IPlantManagerService>(),
-                builder.RegisterType<ToolService>().As<IToolService>()
+                builder.RegisterType<ToolService>().As<IToolService>(),
+                builder.RegisterType<MongoDbContext>().As<IMongoDbContext>(),
+                builder.RegisterGeneric(typeof(Repository.MongoDb.GenericRepository<>)).As(typeof(Repository.MongoDb.IGenericRepository<>))
             };
 
             var dbContext = builder.RegisterType<FST_FomMonitoringEntities>().As<IFomMonitoringEntities>();

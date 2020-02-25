@@ -7,7 +7,7 @@ using MongoDB.Driver;
 
 namespace FomMonitoringCore.DalMongoDb
 {
-    public class MongoDbContext
+    public class MongoDbContext : IMongoDbContext
     {
         public IMongoDatabase Database;
         public MongoDbContext()

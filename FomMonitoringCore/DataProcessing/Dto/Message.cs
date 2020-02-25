@@ -2,7 +2,7 @@
 
 namespace FomMonitoringCore.DataProcessing.Dto
 {
-    public class Message : BaseModel
+    public class MessageMachine : BaseModel
     {
         public int Id { get; set; }
         public DateTime? Time { get; set; }

@@ -2,7 +2,7 @@
 
 namespace FomMonitoringCore.DataProcessing.Dto
 {
-    public class Tool : BaseModel
+    public class ToolMachine : BaseModel
     {
         public int Id { get; set; }
         public string Code { get; set; }

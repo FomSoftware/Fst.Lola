@@ -5,6 +5,6 @@ namespace FomMonitoringCoreQueue.Dto
 
     public class VariablesList : BaseModel
     {
-        public IEnumerable<FomMonitoringCore.DataProcessing.Dto.VariablesList> VariablesListMachine { get; set; }
+        public IEnumerable<FomMonitoringCore.DataProcessing.Dto.VariablesListMachine> VariablesListMachine { get; set; }
     }
 }
