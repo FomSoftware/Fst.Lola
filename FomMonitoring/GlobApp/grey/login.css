@@ -203,13 +203,50 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     
 }
 
-@media(max-width:768px) {
+@media(max-width:991px) {
+    .container-login {
+        width: 650px ;
+        height: 284px;
+        padding: 10px 20px ;
+        max-width: 650px;
+        margin-top: 20px;
+    }
+    .container-login .content {
+        padding: 40px 25px 0;
+    }
+    .header, .content {
+        max-width: unset;
+    }
+
+    .header {
+        font-size: 30px;
+        margin-bottom: 20px;
+        margin-top: 0;
+    }
+
+    .header img.logo {
+        height: 83px;
+    }
+
+    .logo-login {
+        padding: 0;
+    }
+
+    .header img.logo2 {
+        width: 260px;
+    }
     #disclamerTextLink {
+        font-size: 10px;
+        padding: 0;
+    }
+
+    .form-actions button {
         font-size: 14px;
+        padding: 9px 27px;
     }
 }
 
-    /*
+/*
 @media(max-height:768px) {
 
     .container-login {
@@ -306,6 +343,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
 
         .logo-login {
             padding: 0;
+            top: -10px;
         }
 
             .logo-login .img-fluid {

@@ -19,14 +19,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 col-12">
-                <div class="row container-login justify-content-center">
-                    <div class="header col-12">
+                <div class="row container-login">
+                    <div class="header col-12 col-sm-6 col-md-6 col-lg-12">
                         <div class="col-12">Welcome</div>
                         <img class="logo" src="~/Images/logo/Lola-lg.png">
                         @*<div class="title-small">Dashboard</div>*@
                         <img class="logo2" src="~/Images/logo/Log_On_Live_Automation-600x100px.png">
                     </div>
-                    <div class="content col-12">
+                    <div class="content col-12 col-sm-6 col-md-6 col-lg-12">
                         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form" }))
                         {
                             @Html.AntiForgeryToken()
@@ -46,7 +46,7 @@
                             }
 
                             <div class="row justify-content-center">
-                                <div class="col-7 col-sm-6 logo-login">
+                                <div class="col-7 col-sm-6 col-md-6 logo-login">
                                     <img class="img-fluid" src="~/Images/logo/Powered_by_FOM-350x200px.png" />
                                 </div>
                                 <div class="form-actions col-5 col-sm-6" style="margin-top: 0; align-self: center;">
@@ -55,7 +55,7 @@
                             </div>
                         }
                     </div>
-                    <div class="col-12" style="padding-left: 0;padding-right: 0">
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-12 justify-content-md-start" style="padding-left: 0; padding-right: 0;top:-10px">
 
                         <a id="disclamerTextLink" class="btn btn-link btn-block text-center" data-toggle="modal" data-target="#disclamer-modal" style="white-space:unset;">
                             @Html.Raw(Resource.DisclaimerLogin)
