@@ -41,26 +41,26 @@ namespace FomMonitoringQueueConsumerService
             _scopeTool = container.BeginLifetimeScope();
             _scopeState = container.BeginLifetimeScope();
 
-            var consumerVariable = _scopeVariable.Resolve<IConsumer<VariablesList>>();
-            consumerVariable.Init();
-            
-            var consumerInfo = _scopeVariable.Resolve<IConsumer<Info>>();
-            consumerInfo.Init();
+            //var consumerVariable = _scopeVariable.Resolve<IConsumer<VariablesList>>();
+            //consumerVariable.Init();
+
+            //var consumerInfo = _scopeVariable.Resolve<IConsumer<Info>>();
+            //consumerInfo.Init();
 
             var consumerState = _scopeVariable.Resolve<IConsumer<State>>();
             consumerState.Init();
 
-            var consumerHistoryJob = _scopeVariable.Resolve<IConsumer<HistoryJobPieceBar>>();
-            consumerHistoryJob.Init();
+            //var consumerHistoryJob = _scopeVariable.Resolve<IConsumer<HistoryJobPieceBar>>();
+            //consumerHistoryJob.Init();
 
-            var consumerMessage = _scopeVariable.Resolve<IConsumer<Message>>();
-            consumerMessage.Init();
+            //var consumerMessage = _scopeVariable.Resolve<IConsumer<Message>>();
+            //consumerMessage.Init();
 
-            var consumerSpindle = _scopeVariable.Resolve<IConsumer<Spindle>>();
-            consumerSpindle.Init();
+            //var consumerSpindle = _scopeVariable.Resolve<IConsumer<Spindle>>();
+            //consumerSpindle.Init();
 
-            var consumerTool = _scopeVariable.Resolve<IConsumer<Tool>>();
-            consumerTool.Init();
+            //var consumerTool = _scopeVariable.Resolve<IConsumer<Tool>>();
+            //consumerTool.Init();
 
 
         }

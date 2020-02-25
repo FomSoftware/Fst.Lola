@@ -16,19 +16,17 @@ namespace FomMonitoringCoreQueue.QueueProducer
         public StateProducer(IQueueConnection queueConnection)
         {
             _queueConnection = queueConnection;
+            
         }
         public bool Send(State model)
         {
             var message = JsonConvert.SerializeObject(model);
             var body = Encoding.UTF8.GetBytes(message);
             var props = _queueConnection.Channel.CreateBasicProperties();
-            props.ContentType = "text/plain";
-            props.DeliveryMode = 2;
-
-            _queueConnection.Channel.BasicPublish("StateExchange",
+            props.Persistent = true;
+            _queueConnection.Channel.BasicPublish("",
                 "State",
-                props,
-                body);
+                props, body);
 
             return true;
         }

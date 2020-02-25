@@ -256,6 +256,16 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(d => d.WLevel, src => !string.IsNullOrWhiteSpace(src.W_LEVEL) ? src.W_LEVEL.Trim() : null)
                 .Map(d => d.Historicized, src => !string.IsNullOrWhiteSpace(src.HISTORICIZED) ? src.HISTORICIZED.Trim() : null)
                 .Map(d => d.ModelCode, src => MapContext.Current.Parameters["modelCode"]);
+
+            config.NewConfig<FomMonitoringCore.DataProcessing.Dto.StateMachine, StateMachine>()
+                .Ignore(dest => dest.Id)
+                .IgnoreAllVirtual()
+                .Map(dest => dest.Day, src => src.EndTime.HasValue ? src.EndTime.Value : (DateTime?)null)
+                .Map(dest => dest.ElapsedTime, src => src.TimeSpanDuration)
+                .Map(dest => dest.Operator, src => string.IsNullOrEmpty(src.Operator) || string.IsNullOrWhiteSpace(src.Operator) ? "Other" : src.Operator)
+                .Map(dest => dest.Shift, src => ((IMachineService)MapContext.Current.Parameters["machineService"]).GetShiftByStartTime((int)MapContext.Current.Parameters["machineId"], src.StartTime))
+                .Map(dest => dest.StateId, src => src.State)
+                .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
         }
     }
 }
