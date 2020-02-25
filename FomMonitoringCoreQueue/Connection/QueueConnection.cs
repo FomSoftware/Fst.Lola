@@ -36,6 +36,11 @@ namespace FomMonitoringCoreQueue.Connection
                 false,
                 false,
                 null);
+            Channel.QueueDeclare("State",
+                true,
+                false,
+                false,
+                null);
         }
 
         public void Dispose()
