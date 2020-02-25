@@ -1,4 +1,5 @@
-﻿using FomMonitoringCore.DataProcessing.Dto;
+﻿using System.Collections.Generic;
+using FomMonitoringCore.DataProcessing.Dto;
 
 namespace FomMonitoringCoreQueue.Dto
 {

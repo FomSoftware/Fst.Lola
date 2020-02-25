@@ -1332,6 +1332,10 @@ hr.axes {
         text-align: center;
     }
 
+    #CardSensorSpindles .label-other-data-value {
+        font-size: 19px;
+    }
+
     .label-other-title {
         font-size: 13px;
         font-weight: 400;
@@ -1355,7 +1359,7 @@ hr.axes {
     }
 
     .td-other-data label {
-        padding-top: 8px;
+        padding-top: 6px;
     }
 
 

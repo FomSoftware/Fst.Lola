@@ -12,6 +12,7 @@ namespace FomMonitoringCoreQueue.QueueProducer
         public StateProducer(IQueueConnection queueConnection)
         {
             _queueConnection = queueConnection;
+            
         }
         public bool Send(State model)
         {
@@ -22,8 +23,7 @@ namespace FomMonitoringCoreQueue.QueueProducer
 
             _queueConnection.Channel.BasicPublish("",
                 "State",
-                props,
-                body);
+                props, body);
 
             return true;
         }
