@@ -213,7 +213,7 @@
 }
 
 .portlet-body {
-    background-color: #bebebe;
+    background-color: #CBCACA;
 }
 
 
@@ -1172,7 +1172,7 @@ td.td-tool {
 td.td-other-data {
     vertical-align: top;
     width: 20%;
-    padding-top: 5px;
+    padding-top: 6px;
     background-color: #bebebe;
     text-align: left;
     word-break: break-word;
@@ -1335,7 +1335,7 @@ hr.axes {
 
 #CardSensorSpindles .label-other-data-value {
     font-size: 19px;
-    padding-top: 6px;
+    padding-top: 4px;
 }
 
     .label-other-title {
