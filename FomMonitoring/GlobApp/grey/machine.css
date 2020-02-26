@@ -212,7 +212,7 @@
 }
 
 .portlet-body {
-    background-color: #CBCACA;
+    background-color: #bebebe;
 }
 
 
@@ -1334,7 +1334,7 @@ hr.axes {
 
 #CardSensorSpindles .label-other-data-value {
     font-size: 19px;
-    padding-top: 5px;
+    padding-top: 6px;
 }
 
     .label-other-title {
