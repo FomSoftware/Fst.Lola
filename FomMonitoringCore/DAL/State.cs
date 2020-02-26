@@ -20,7 +20,6 @@ namespace FomMonitoringCore.DAL
             this.HistoryState = new HashSet<HistoryState>();
             this.StateMachine = new HashSet<StateMachine>();
             this.CurrentState = new HashSet<CurrentState>();
-            this.HistoryMessage = new HashSet<HistoryMessage>();
         }
     
         public int Id { get; set; }
@@ -33,7 +32,5 @@ namespace FomMonitoringCore.DAL
         public virtual ICollection<StateMachine> StateMachine { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CurrentState> CurrentState { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HistoryMessage> HistoryMessage { get; set; }
     }
 }

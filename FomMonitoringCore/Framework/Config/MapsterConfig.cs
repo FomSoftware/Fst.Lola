@@ -34,7 +34,8 @@ namespace FomMonitoringCore.Framework.Config
 
             config.NewConfig<Bar, BarModel>();
             config.NewConfig<HistoryMessage, HistoryMessageModel>()
-                .Map(dest => dest.Code, src => src.MessagesIndex != null ? src.MessagesIndex.MessageCode : null)
+                .Map(dest => dest.MessageIndexId, src => src.MessagesIndex.Id)
+                .Map(dest => dest.Code, src => src.MessagesIndex.MessageCode)
                 .Map(dest => dest.Type, src => src.MessagesIndex != null ? (int?)src.MessagesIndex.MessageTypeId : null);
             config.NewConfig<HistoryPiece, HistoryPieceModel>();
             config.NewConfig<HistoryState, HistoryStateModel>()

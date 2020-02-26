@@ -15,16 +15,16 @@ namespace FomMonitoringCore.Repository.SQL
 
         public IEnumerable<HistoryMessage> GetHistoryMessage(int idMachine, DateTime start, DateTime end, int? machineGroup = null)
         {
-            var query = Queryable.Where(context.Set<HistoryMessage>()
-                    .AsNoTracking()
-                    .Include("MessagesIndex")
-                    .AsNoTracking(), m => m.MachineId == idMachine && m.Day >= start && m.Day <= end && m.MessagesIndex.IsVisibleLOLA == true
+            var query = context.Set<HistoryMessage>()
+                .AsNoTracking()
+                .Include("MessagesIndex")
+                .AsNoTracking().Where(m => m.MachineId == idMachine && m.Day >= start && m.Day <= end && m.MessagesIndex.IsVisibleLOLA
                             && m.MessagesIndex.IsPeriodicM == false && m.MessagesIndex.IsDisabled == false  && m.MessagesIndex.MessageCode != null);
 
 
             if (machineGroup.HasValue)
             {
-                query = Queryable.Where(query, m => m.MessagesIndex != null && m.MessagesIndex.MachineGroupId == machineGroup);
+                query = query.Where(m => m.MessagesIndex != null && m.MessagesIndex.MachineGroupId == machineGroup);
             }
 
             return query.ToList();

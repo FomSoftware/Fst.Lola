@@ -11,13 +11,11 @@ namespace UserManager.DAL
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class Roles_Users
     {
         public System.Guid ID { get; set; }
         public System.Guid RoleID { get; set; }
-        [ForeignKey("Users")]
         public System.Guid UserID { get; set; }
     
         public virtual Roles Roles { get; set; }

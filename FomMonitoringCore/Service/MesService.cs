@@ -212,7 +212,6 @@ namespace FomMonitoringCore.Service
             if (historyMessage.Any())
             {
                 m.AlarmCount = historyMessage.Sum(hm => hm.Count ?? 0);
-                m.AlarmElapsedTime = historyMessage.Sum(hm => hm.ElapsedTime ?? 0);
             }
 
             long? efficiencyValue = 0;

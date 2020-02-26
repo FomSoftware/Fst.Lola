@@ -13,7 +13,6 @@ namespace FomMonitoringCore.Framework.Model
         public long? PieceElapsedTimeProducing { get; set; }
         public int? PieceRedoneCount { get; set; }
         public int? AlarmCount { get; set; }
-        public long? AlarmElapsedTime { get; set; }
         public int? ActualStateId { get; set; }
         public string ActualStateCode { get; set; }
         public string ActualJobCode { get; set; }

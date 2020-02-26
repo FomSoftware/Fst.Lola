@@ -580,18 +580,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_HistoryMessage_State">
-          <End Role="State" Type="Self.State" Multiplicity="0..1" />
-          <End Role="HistoryMessage" Type="Self.HistoryMessage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="State">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HistoryMessage">
-              <PropertyRef Name="StateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_HistoryPiece_Machine">
           <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
           <End Role="HistoryPiece" Type="Self.HistoryPiece" Multiplicity="*" />
@@ -919,13 +907,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Parameter Name="endDate" Type="datetime" Mode="In" />
           <Parameter Name="aggregation" Type="int" Mode="In" />
         </Function>
-        <Function Name="usp_AggregationMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="machineId" Type="int" Mode="In" />
-          <Parameter Name="startDate" Type="datetime" Mode="In" />
-          <Parameter Name="endDate" Type="datetime" Mode="In" />
-          <Parameter Name="aggregation" Type="int" Mode="In" />
-          <Parameter Name="dataType" Type="int" Mode="In" />
-        </Function>
         <Function Name="usp_AggregationPiece" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="machineId" Type="int" Mode="In" />
           <Parameter Name="startDate" Type="datetime" Mode="In" />
@@ -1046,10 +1027,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <End Role="MessagesIndex" EntitySet="MessagesIndex" />
             <End Role="HistoryMessage" EntitySet="HistoryMessage" />
           </AssociationSet>
-          <AssociationSet Name="FK_HistoryMessage_State" Association="Self.FK_HistoryMessage_State">
-            <End Role="State" EntitySet="State" />
-            <End Role="HistoryMessage" EntitySet="HistoryMessage" />
-          </AssociationSet>
           <AssociationSet Name="FK_HistoryPiece_Machine" Association="Self.FK_HistoryPiece_Machine">
             <End Role="Machine" EntitySet="Machine" />
             <End Role="HistoryPiece" EntitySet="HistoryPiece" />
@@ -1166,8 +1143,8 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySet Name="HistoryState" EntityType="FST_FomMonitoringModel.HistoryState" />
           <EntitySet Name="StateMachine" EntityType="FST_FomMonitoringModel.StateMachine" />
           <AssociationSet Name="FK_HistoryState_State" Association="FST_FomMonitoringModel.FK_HistoryState_State">
-            <End Role="State" EntitySet="State" />
-            <End Role="HistoryState" EntitySet="HistoryState" />
+            <End EntitySet="State" Role="State" />
+            <End EntitySet="HistoryState" Role="HistoryState" />
           </AssociationSet>
           <AssociationSet Name="FK_StateMachine_State" Association="FST_FomMonitoringModel.FK_StateMachine_State">
             <End Role="State" EntitySet="State" />
@@ -1288,10 +1265,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <End Role="Machine" EntitySet="Machine" />
             <End Role="HistoryMessage" EntitySet="HistoryMessage" />
           </AssociationSet>
-          <AssociationSet Name="FK_HistoryMessage_State" Association="FST_FomMonitoringModel.FK_HistoryMessage_State">
-            <End Role="State" EntitySet="State" />
-            <End Role="HistoryMessage" EntitySet="HistoryMessage" />
-          </AssociationSet>
           <AssociationSet Name="FK_MessageMachine_Machine" Association="FST_FomMonitoringModel.FK_MessageMachine_Machine">
             <End Role="Machine" EntitySet="Machine" />
             <End Role="MessageMachine" EntitySet="MessageMachine" />
@@ -1394,7 +1367,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <NavigationProperty Name="HistoryState" Relationship="FST_FomMonitoringModel.FK_HistoryState_State" FromRole="State" ToRole="HistoryState" />
           <NavigationProperty Name="StateMachine" Relationship="FST_FomMonitoringModel.FK_StateMachine_State" FromRole="State" ToRole="StateMachine" />
           <NavigationProperty Name="CurrentState" Relationship="FST_FomMonitoringModel.FK_CurrentState_State" FromRole="State" ToRole="CurrentState" />
-          <NavigationProperty Name="HistoryMessage" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_State" FromRole="State" ToRole="HistoryMessage" />
           </EntityType>
         <EntityType Name="HistoryBar">
           <Key>
@@ -1448,8 +1420,8 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_StateMachine_Machine" FromRole="StateMachine" ToRole="Machine" />
         </EntityType>
         <Association Name="FK_HistoryState_State">
-          <End Type="FST_FomMonitoringModel.State" Role="State" Multiplicity="0..1" />
-          <End Type="FST_FomMonitoringModel.HistoryState" Role="HistoryState" Multiplicity="*" />
+          <End Type="FST_FomMonitoringModel.State" Multiplicity="0..1" Role="State" />
+          <End Type="FST_FomMonitoringModel.HistoryState" Multiplicity="*" Role="HistoryState" />
           <ReferentialConstraint>
             <Principal Role="State">
               <PropertyRef Name="Id" />
@@ -1962,13 +1934,10 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Count" Type="Int32" />
           <Property Name="Day" Type="DateTime" Precision="3" />
-          <Property Name="ElapsedTime" Type="Int64" Nullable="true" />
           <Property Name="MachineId" Type="Int32" />
           <Property Name="Period" Type="Int32" />
-          <Property Name="StateId" Type="Int32" />
           <Property Name="TypeHistory" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_Machine" FromRole="HistoryMessage" ToRole="Machine" />
-          <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_State" FromRole="HistoryMessage" ToRole="State" />
           <Property Name="Params" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="MessagesIndexId" Type="Int32" />
           <NavigationProperty Name="MessagesIndex" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_MessagesIndex" FromRole="HistoryMessage" ToRole="MessagesIndex" />
@@ -1999,18 +1968,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             </Principal>
             <Dependent Role="HistoryMessage">
               <PropertyRef Name="MachineId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HistoryMessage_State">
-          <End Type="FST_FomMonitoringModel.State" Role="State" Multiplicity="0..1" />
-          <End Type="FST_FomMonitoringModel.HistoryMessage" Role="HistoryMessage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="State">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HistoryMessage">
-              <PropertyRef Name="StateId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2096,16 +2053,13 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
         </EntityType>
         <ComplexType Name="usp_AggregationMessage_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Code" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="Count" Nullable="true" />
           <Property Type="DateTime" Name="Day" Nullable="true" Precision="23" />
           <Property Type="String" Name="Params" Nullable="true" MaxLength="100" />
-          <Property Type="Int64" Name="ElapsedTime" Nullable="true" />
           <Property Type="Int32" Name="MachineId" Nullable="true" />
           <Property Type="Int32" Name="Period" Nullable="true" />
-          <Property Type="Int32" Name="StateId" Nullable="true" />
-          <Property Type="Int32" Name="Group" Nullable="true" />
           <Property Type="String" Name="TypeHistory" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="MessagesIndexId" Nullable="true" />
         </ComplexType>
         <EntityType Name="MachineGroup">
           <Key>
@@ -2439,8 +2393,8 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="HistoryState">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.HistoryState">
               <MappingFragment StoreEntitySet="HistoryState">
-                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
                 <ScalarProperty Name="Shift" ColumnName="Shift" />
                 <ScalarProperty Name="Period" ColumnName="Period" />
                 <ScalarProperty Name="OverfeedAvg" ColumnName="OverfeedAvg" />
@@ -2768,10 +2722,8 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
                 <ScalarProperty Name="MessagesIndexId" ColumnName="MessagesIndexId" />
                 <ScalarProperty Name="Params" ColumnName="Params" />
                 <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
-                <ScalarProperty Name="StateId" ColumnName="StateId" />
                 <ScalarProperty Name="Period" ColumnName="Period" />
                 <ScalarProperty Name="MachineId" ColumnName="MachineId" />
-                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
                 <ScalarProperty Name="Day" ColumnName="Day" />
                 <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -2845,23 +2797,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-		  <FunctionImportMapping FunctionImportName="usp_AggregationMessage" FunctionName="FST_FomMonitoringModel.Store.usp_AggregationMessage">
-          <ResultMapping>
-              <ComplexTypeMapping TypeName="FST_FomMonitoringModel.usp_AggregationMessage_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="Day" ColumnName="Day" />
-                <ScalarProperty Name="Params" ColumnName="Params" />
-                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
-                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
-                <ScalarProperty Name="Period" ColumnName="Period" />
-                <ScalarProperty Name="StateId" ColumnName="StateId" />
-                <ScalarProperty Name="Group" ColumnName="Group" />
-                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="MachineGroup">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.MachineGroup">
               <MappingFragment StoreEntitySet="MachineGroup">

@@ -123,7 +123,7 @@ namespace FomMonitoringCoreQueue.ProcessData
 
                     addedEntities.Clear();
                 }
-
+                mac.LastUpdate = DateTime.UtcNow;
                 _context.SaveChanges();
                 return true;
             }

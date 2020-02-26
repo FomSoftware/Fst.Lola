@@ -17,16 +17,13 @@ namespace FomMonitoringCore.DAL
         public int Id { get; set; }
         public Nullable<int> Count { get; set; }
         public Nullable<System.DateTime> Day { get; set; }
-        public Nullable<long> ElapsedTime { get; set; }
         public Nullable<int> MachineId { get; set; }
         public Nullable<int> Period { get; set; }
-        public Nullable<int> StateId { get; set; }
         public string TypeHistory { get; set; }
         public string Params { get; set; }
         public Nullable<int> MessagesIndexId { get; set; }
     
         public virtual Machine Machine { get; set; }
-        public virtual State State { get; set; }
         public virtual MessagesIndex MessagesIndex { get; set; }
     }
 }

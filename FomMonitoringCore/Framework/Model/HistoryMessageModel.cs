@@ -10,11 +10,10 @@ namespace FomMonitoringCore.Framework.Model
         public string Description { get; set; }
         public DateTime? Day { get; set; }
         public string Params { get; set; }
-        public long? ElapsedTime { get; set; }
         public int? MachineId { get; set; }
         public int? Period { get; set; }
-        public int? StateId { get; set; }
         public int? Type { get; set; }
         public string TypeHistory { get; set; }
+        public int MessageIndexId { get; set; }
     }
 }

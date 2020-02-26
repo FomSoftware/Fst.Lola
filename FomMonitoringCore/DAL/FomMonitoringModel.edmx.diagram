@@ -44,7 +44,6 @@
         <EntityTypeShape EntityType="FST_FomMonitoringModel.HistoryMessage" Width="1.5" PointX="11.25" PointY="29.875" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.MessageMachine" Width="1.875" PointX="10.25" PointY="24.75" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryMessage_Machine" />
-        <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryMessage_State" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageMachine_Machine" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.FomMonitoring" Width="1.5" PointX="2.75" PointY="6.875" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.FomMonitoringApi" Width="1.5" PointX="4.75" PointY="6.875" />

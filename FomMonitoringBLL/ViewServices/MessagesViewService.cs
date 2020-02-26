@@ -81,9 +81,7 @@ namespace FomMonitoringBLL.ViewServices
             {
                 code = a.Code,
                 type = a.Type != null ? ((enTypeAlarm)a.Type).GetDescription() : "",
-                //((enTypeAlarm)a.StateId).GetDescription(),
                 parameters = a.Params,
-                time = CommonViewService.getTimeViewModel(a.ElapsedTime),
                 quantity = a.Count ?? 0,
                 day = a.Day == null ? "-" : a.Day.Value.ToString("t"),
                 description = a.Description
