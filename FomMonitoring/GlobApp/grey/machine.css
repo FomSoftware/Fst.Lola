@@ -1823,7 +1823,7 @@ hr.axes {
     #CardOtherDataLMXMachine div.slimScrollBar, #CardTiltingAxes div.slimScrollBar,
     #CardRotaryAxes div.slimScrollBar, #CardOtherDataMachine div.slimScrollBar,
     #CardElectroSpindle div.slimScrollBar, #CardSpindles div.slimScrollBar,
-    #CardTools div.slimScrollBar {
+    #CardTools div.slimScrollBar, #CardSensorSpindles div.slimScrollBar {
         display: none !important;
     }
 }
