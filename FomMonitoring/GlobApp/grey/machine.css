@@ -70,6 +70,7 @@
 .portlet-title > div {
     display: inline-block;
     vertical-align: top;
+    max-width: 90%;
 }
 
 .portlet-title .portlet-kpi {
