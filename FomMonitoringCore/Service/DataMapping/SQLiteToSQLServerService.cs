@@ -143,14 +143,23 @@ namespace FomMonitoringCore.Service.DataMapping
                     message.Id = 0;
                     if (msg != null)
                     {
-                        message.MessagesIndexId = msg.Id;
-                        message.MessagesIndex = msg;
-                        messageMachine.Add(message);
+                        int old = _fomMonitoringEntities.Set<MessageMachine>().Count(a => a.MessagesIndexId == msg.Id &&
+                                                                                a.MachineId == message.MachineId &&
+                                                                                a.StartTime.Value.CompareTo(message.StartTime.Value) == 0);
+                        if (old == 0)
+                        {
+                            message.MessagesIndexId = msg.Id;
+                            message.MessagesIndex = msg;
+                            messageMachine.Add(message);
+                        }
                     }
                 }
 
                 //IS-754 escludere tutti quelli che hanno isLolaVisible = false && type error o warning 
-                messageMachine = messageMachine.Where(f => f.MessagesIndex!= null && f.MessagesIndex.IsVisibleLOLA && f.MessagesIndex.MessageType != null && (f.MessagesIndex.MessageType.Id == 11 || f.MessagesIndex.MessageType.Id == 12)).ToList();
+                messageMachine = messageMachine.Where(f => f.MessagesIndex!= null 
+                                                           && f.MessagesIndex.IsVisibleLOLA 
+                                                           && f.MessagesIndex.MessageType != null 
+                                                           && (f.MessagesIndex.MessageType.Id == 11 || f.MessagesIndex.MessageType.Id == 12)).ToList();
                 if (messageMachine.Count() > 0)
                 {
                     _fomMonitoringEntities.Set<MessageMachine>().AddRange(messageMachine);
