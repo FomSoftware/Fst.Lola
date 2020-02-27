@@ -31,7 +31,7 @@ namespace VariableListLoadTest
             var forwarder = container.Resolve<IQueueForwarder>();
 
             
-            var jsons = context.Set<JsonData>().OrderByDescending(i => i.Id).Take(5000).ToList()
+            var jsons = context.Set<JsonData>().Where(j => j.Json.Contains("variable")).OrderByDescending(i => i.Id).Take(5000).ToList()
                 .Select(o => o.Json).ToList();
 
             foreach (var data in jsons)

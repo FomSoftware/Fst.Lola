@@ -1,0 +1,54 @@
+﻿<Window x:Class="FomMonitoringQueueApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FomMonitoringQueueApplication"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        Icon=".\Resources\Icon1.ico"  >
+    <Grid>
+        <TabControl HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="772">
+            <TabItem Header="Info Machine">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock x:Name="TextInfo" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="351" Width="746"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Variabili">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock x:Name="TextVariabili" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="351" Width="746"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Messaggi">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock x:Name="TextMessaggi" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="351" Width="746"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="State">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock x:Name="TextState" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="351" Width="746"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="HistoryJobPieceBar">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock x:Name="TextHistoryJobPieceBar" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="351" Width="746"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tool">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock x:Name="TextTool" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="351" Width="746"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Errors">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="245*"/>
+                        <ColumnDefinition Width="521*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="TextErrors" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="351" Width="746" Grid.ColumnSpan="2"/>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>

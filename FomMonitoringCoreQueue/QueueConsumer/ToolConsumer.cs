@@ -12,6 +12,8 @@ using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using Tool = FomMonitoringCoreQueue.Dto.Tool;
+using FomMonitoringCoreQueue.Dto;
+using FomMonitoringCoreQueue.Events;
 
 namespace FomMonitoringCoreQueue.QueueConsumer
 {
@@ -29,6 +31,8 @@ namespace FomMonitoringCoreQueue.QueueConsumer
             _queueConnection = queueConnection;
             _toolGenericRepository = toolGenericRepository;
         }
+
+        public event EventHandler<LoggerEventsQueue> Log;
 
         public void Init()
         {

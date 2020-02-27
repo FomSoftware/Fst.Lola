@@ -12,6 +12,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using FomMonitoringCoreQueue.Events;
 using State = FomMonitoringCoreQueue.Dto.State;
 
 namespace FomMonitoringCoreQueue.QueueConsumer
@@ -30,6 +31,8 @@ namespace FomMonitoringCoreQueue.QueueConsumer
             _queueConnection = queueConnection;
             _stateGenericRepository = stateGenericRepository;
         }
+
+        public event EventHandler<LoggerEventsQueue> Log;
 
         public void Init()
         {
@@ -67,21 +70,29 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                     // Format and display the TimeSpan value.
                     elapsedTime = $"{ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}.{ts.Milliseconds:00}";
                     _queueConnection.Channel.BasicAck(ea.DeliveryTag, false);
+                    Log?.Invoke(this, new LoggerEventsQueue
+                    {
+                        Message = $"Finita elaborazione json { DateTime.UtcNow:O} tempo trascorso { elapsedTime }",
+                        Exception = null,
+                        TypeLevel = LogService.TypeLevel.Info,
+                        Type = TypeEvent.Info
+                    });
                 }
                 catch (Exception ex)
                 {
-                    if (data.state != null)
+                    data.state?.AsParallel().ForAll(vl =>
                     {
-                        data.state.AsParallel().ForAll(vl =>
-                        {
-                            vl.DateEndElaboration = DateTime.UtcNow;
-                            vl.ElaborationSuccesfull = false;
-                        });
-                    }
-                    
-                    LogService.WriteLog(
-                        $"Finita elaborazione con errori json {DateTime.UtcNow:O} tempo trascorso {elapsedTime} ", LogService.TypeLevel.Error, ex);
+                        vl.DateEndElaboration = DateTime.UtcNow;
+                        vl.ElaborationSuccesfull = false;
+                    });
 
+                    Log?.Invoke(this, new LoggerEventsQueue
+                    {
+                        Message = $"Finita elaborazione con errori json {DateTime.UtcNow:O} tempo trascorso {elapsedTime}",
+                        Exception = ex,
+                        TypeLevel = LogService.TypeLevel.Error,
+                        Type = TypeEvent.Info
+                    });
                 }
                 finally
                 {
