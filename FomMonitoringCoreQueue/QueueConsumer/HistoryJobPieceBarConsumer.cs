@@ -6,6 +6,7 @@ using FomMonitoringCore.Repository.MongoDb;
 using FomMonitoringCore.Service;
 using FomMonitoringCoreQueue.Connection;
 using FomMonitoringCoreQueue.Dto;
+using FomMonitoringCoreQueue.Events;
 using FomMonitoringCoreQueue.ProcessData;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
@@ -27,6 +28,9 @@ namespace FomMonitoringCoreQueue.QueueConsumer
             _queueConnection = queueConnection;
             _messageGenericRepository = messageGenericRepository;
         }
+        
+
+        public event EventHandler<LoggerEventsQueue> Log;
 
         public void Init()
         {
@@ -76,6 +80,13 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                     // Format and display the TimeSpan value.
                     elapsedTime = $"{ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}.{ts.Milliseconds:00}";
                     _queueConnection.Channel.BasicAck(ea.DeliveryTag, false);
+                    Log?.Invoke(this, new LoggerEventsQueue
+                    {
+                        Message = $"Finita elaborazione json { DateTime.UtcNow:O} tempo trascorso { elapsedTime }",
+                        Exception = null,
+                        TypeLevel = LogService.TypeLevel.Info,
+                        Type = TypeEvent.Info
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -84,14 +95,18 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                         vl.DateEndElaboration = DateTime.UtcNow;
                         vl.ElaborationSuccesfull = false;
                     });
-                    LogService.WriteLog(
-                        $"Finita elaborazione con errori json {DateTime.UtcNow:O} tempo trascorso {elapsedTime} ", LogService.TypeLevel.Error, ex);
+
+                    Log?.Invoke(this, new LoggerEventsQueue
+                    {
+                        Message = $"Finita elaborazione con errori json {DateTime.UtcNow:O} tempo trascorso {elapsedTime}",
+                        Exception = ex,
+                        TypeLevel = LogService.TypeLevel.Error,
+                        Type = TypeEvent.Info
+                    });
 
                 }
                 finally
                 {
-                    LogService.WriteLog(
-                        $"Finita elaborazione json {DateTime.UtcNow:O} tempo trascorso {elapsedTime} ", LogService.TypeLevel.Info);
                     _messageGenericRepository.Update(data);
                 }
             };

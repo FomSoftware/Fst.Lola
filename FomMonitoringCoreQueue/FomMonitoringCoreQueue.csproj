@@ -128,6 +128,7 @@
     <Compile Include="Connection\IQueueConnection.cs" />
     <Compile Include="Connection\QueueConnection.cs" />
     <Compile Include="Dto\Info.cs" />
+    <Compile Include="Events\LoggerEvents.cs" />
     <Compile Include="Forwarder\QueueForwarder.cs" />
     <Compile Include="Ioc\IocContainerBuilder.cs" />
     <Compile Include="ProcessData\HistoryJobPieceBarProcessor.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="Dto\Tool.cs" />
     <Compile Include="Dto\Value.cs" />
     <Compile Include="Dto\VariablesList.cs" />
+    <Compile Include="QueueConsumer\ConsumerInitializer.cs" />
     <Compile Include="QueueConsumer\HistoryJobPieceBarConsumer.cs" />
     <Compile Include="QueueConsumer\IConsumer.cs" />
     <Compile Include="QueueConsumer\InfoConsumer.cs" />
