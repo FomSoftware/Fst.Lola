@@ -358,7 +358,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No. electrosp. gripper releases.
+        ///   Looks up a localized string similar to No. gripper releases.
         /// </summary>
         public static string d_NumeroSblocchiUtensile {
             get {
@@ -1242,7 +1242,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XMU ROTARY AXES/TOOL MAG. (X-MODULE).
+        ///   Looks up a localized string similar to XMU ROTARY AXES/TOOL MAG..
         /// </summary>
         public static string LMX650_RotaryAxes {
             get {
@@ -1701,7 +1701,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No. pieces / gross time.
+        ///   Looks up a localized string similar to No. Pieces h/ gross time.
         /// </summary>
         public static string NPiecesGrossTime {
             get {
@@ -1710,7 +1710,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No. Pieces/Net Time.
+        ///   Looks up a localized string similar to No. Pieces h/Net Time.
         /// </summary>
         public static string NPiecesNetTime {
             get {
@@ -2745,7 +2745,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Piece time remaining.
+        ///   Looks up a localized string similar to Piece t. rem..
         /// </summary>
         public static string tempoAttualeProgramma {
             get {

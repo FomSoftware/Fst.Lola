@@ -723,7 +723,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
     <value>N. rotazioni (180°) asse A</value>
   </data>
   <data name="tempoAttualeProgramma" xml:space="preserve">
-    <value>Tempo residuo pezzo</value>
+    <value>T. res. pezzo</value>
   </data>
   <data name="lw_clickMicroIsolaSX" xml:space="preserve">
     <value>Nr. Click sensore carro isola DX</value>
@@ -762,10 +762,10 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
     <value>Altri dati macchina</value>
   </data>
   <data name="NPiecesNetTime" xml:space="preserve">
-    <value>N. Pezzi/T.Netto</value>
+    <value>N. Pezzi h/T.Netto</value>
   </data>
   <data name="NPiecesGrossTime" xml:space="preserve">
-    <value>N. Pezzi/T.Lordo</value>
+    <value>N. Pezzi h/T.Lordo</value>
   </data>
   <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
     <value>Range rpm</value>

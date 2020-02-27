@@ -723,7 +723,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Nb rotations (180°) axe A</value>
   </data>
   <data name="tempoAttualeProgramma" xml:space="preserve">
-    <value>Temps résiduel pièce</value>
+    <value>T. rés. pièce</value>
   </data>
   <data name="lw_clickMicroIsolaSX" xml:space="preserve">
     <value>Nb clics capteur chariot îlot D</value>
@@ -762,10 +762,10 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Autres données de la machine</value>
   </data>
   <data name="NPiecesNetTime" xml:space="preserve">
-    <value>N. de pièces / temps net</value>
+    <value>N. de pièces h/temps net</value>
   </data>
   <data name="NPiecesGrossTime" xml:space="preserve">
-    <value>N. de pièces / temps brut</value>
+    <value>N. de pièces h/temps brut</value>
   </data>
   <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
     <value>Plage Rpm</value>

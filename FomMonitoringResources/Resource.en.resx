@@ -726,7 +726,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>A axis No. turns (180°)</value>
   </data>
   <data name="tempoAttualeProgramma" xml:space="preserve">
-    <value>Piece time remaining</value>
+    <value>Piece t. rem.</value>
   </data>
   <data name="lw_clickMicroIsolaSX" xml:space="preserve">
     <value>RH w.area carr. sensor Click No.</value>
@@ -765,10 +765,10 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Other machine data</value>
   </data>
   <data name="NPiecesNetTime" xml:space="preserve">
-    <value>No. Pieces/Net Time</value>
+    <value>No. Pieces h/Net Time</value>
   </data>
   <data name="NPiecesGrossTime" xml:space="preserve">
-    <value>No. pieces / gross time</value>
+    <value>No. pieces h/ gross time</value>
   </data>
   <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
     <value>Range Rpm</value>

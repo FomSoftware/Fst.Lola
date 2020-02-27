@@ -725,7 +725,7 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>Anz. Drehungen (180°) A-Achse</value>
   </data>
   <data name="tempoAttualeProgramma" xml:space="preserve">
-    <value>Zeit verließ Stück</value>
+    <value>Z. verließ Stück</value>
   </data>
   <data name="lw_clickMicroIsolaSX" xml:space="preserve">
     <value>Klickzahl Sensor Wagen Insel RE</value>
@@ -764,10 +764,10 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>Sonstige Maschinendaten</value>
   </data>
   <data name="NPiecesNetTime" xml:space="preserve">
-    <value>Stückzahl / Nettozeit</value>
+    <value>Stückzahl h/Nettozeit</value>
   </data>
   <data name="NPiecesGrossTime" xml:space="preserve">
-    <value>Stückzahl / Bruttozeit</value>
+    <value>Stückzahl h/Bruttozeit</value>
   </data>
   <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
     <value>Range Rpm</value>
