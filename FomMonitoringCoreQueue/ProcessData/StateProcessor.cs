@@ -23,7 +23,9 @@ namespace FomMonitoringCoreQueue.ProcessData
             try
             {
                 _context.Refresh();
-                var mac = _context.Set<Machine>().FirstOrDefault(m => m.Serial == state.InfoMachine.First().MachineSerial);
+
+                var serial = state.InfoMachine.First().MachineSerial;
+                var mac = _context.Set<Machine>().FirstOrDefault(m => m.Serial == serial);
                 if (mac == null)
                     return false;
 
