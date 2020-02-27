@@ -271,7 +271,7 @@ namespace FomMonitoringCore.Framework.Config
             config.NewConfig<FomMonitoringCore.DataProcessing.Dto.ToolMachine, ToolMachine>()
                 .Ignore(dest => dest.Id)
                 .IgnoreAllVirtual()
-                .Map(dest => dest.IsActive, src => true)
+                .Map(dest => dest.IsActive, src => true);
 
             config.NewConfig<DataProcessing.Dto.MessageMachine, MessageMachine>()
                 .Ignore(dest => dest.Id)

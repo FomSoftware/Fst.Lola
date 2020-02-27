@@ -5,6 +5,6 @@ namespace FomMonitoringCore.DataProcessing.Dto.Mongo
     [Table("tool")]
     public class Tool : BaseModel
     {
-        public ToolMachine[] tools { get; set; }
+        public ToolMachine[] tool { get; set; }
     }
 }
