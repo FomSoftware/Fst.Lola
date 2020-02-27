@@ -66,7 +66,6 @@ namespace FomMonitoringCoreQueue.ProcessData
                     machineActual.Shift3 = new TimeSpan(machineData.Shift3StartHour.Value, machineData.Shift3StartMinute.Value, 0);
                     machineActual.BarsProductivityGreenThreshold = machineData.BarsProductivityGreenThreshold;
                     machineActual.BarsProductivityYellowThreshold = machineData.BarsProductivityYellowThreshold;
-                    machineActual.LastUpdate = machineData.LastUpdate ?? DateTime.UtcNow;
                     machineActual.OverfeedGreenThreshold = machineData.OverfeedGreenThreshold;
                     machineActual.OverfeedYellowThreshold = machineData.OverfeedYellowThreshold;
                     machineActual.PiecesProductivityGreenThreshold =

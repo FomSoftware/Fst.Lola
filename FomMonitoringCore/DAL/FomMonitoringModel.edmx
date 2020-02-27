@@ -81,17 +81,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Code" Type="varchar" MaxLength="100" />
           <Property Name="Count" Type="int" />
           <Property Name="Day" Type="datetime" />
           <Property Name="Params" Type="varchar(max)" />
-          <Property Name="ElapsedTime" Type="bigint" />
           <Property Name="MachineId" Type="int" />
           <Property Name="Period" Type="int" />
-          <Property Name="StateId" Type="int" />
           <Property Name="TypeHistory" Type="char" MaxLength="1" />
-          <Property Name="Group" Type="int" />
-          <Property Name="Type" Type="int" />
           <Property Name="MessagesIndexId" Type="int" />
         </EntityType>
         <EntityType Name="HistoryPiece">
@@ -895,6 +890,19 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
         <Function Name="usp_HistoricizingAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
           <Parameter Name="machineId" Type="int" Mode="In" />
         </Function>
+        <Function Name="usp_HistoricizingBars" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
+          <Parameter Name="machineId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_HistoricizingMessages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
+          <Parameter Name="machineId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_HistoricizingPieces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
+          <Parameter Name="machineId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_HistoricizingStates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
+          <Parameter Name="machineId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_HistoricizingToolMachine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api" />
         <Function Name="usp_AggregationBar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="machineId" Type="int" Mode="In" />
           <Parameter Name="startDate" Type="datetime" Mode="In" />
@@ -1342,6 +1350,19 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <End Role="MessagesIndex" EntitySet="MessagesIndex" />
             <End Role="HistoryMessage" EntitySet="HistoryMessage" />
           </AssociationSet>
+          <FunctionImport Name="usp_HistoricizingBars">
+            <Parameter Name="machineId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_HistoricizingMessages">
+            <Parameter Name="machineId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_HistoricizingPieces">
+            <Parameter Name="machineId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_HistoricizingStates">
+            <Parameter Name="machineId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_HistoricizingToolMachine" />
 		  </EntityContainer>
         <EntityType Name="MachineModel">
           <Key>
@@ -2916,6 +2937,11 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_HistoricizingBars" FunctionName="FST_FomMonitoringModel.Store.usp_HistoricizingBars" />
+          <FunctionImportMapping FunctionImportName="usp_HistoricizingMessages" FunctionName="FST_FomMonitoringModel.Store.usp_HistoricizingMessages" />
+          <FunctionImportMapping FunctionImportName="usp_HistoricizingPieces" FunctionName="FST_FomMonitoringModel.Store.usp_HistoricizingPieces" />
+          <FunctionImportMapping FunctionImportName="usp_HistoricizingStates" FunctionName="FST_FomMonitoringModel.Store.usp_HistoricizingStates" />
+          <FunctionImportMapping FunctionImportName="usp_HistoricizingToolMachine" FunctionName="FST_FomMonitoringModel.Store.usp_HistoricizingToolMachine" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

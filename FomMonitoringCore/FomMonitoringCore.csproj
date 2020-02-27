@@ -300,7 +300,9 @@
     <Compile Include="DAL\ParameterMachineValue.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Partials\FST_FomMonitoringEntities.cs" />
     <Compile Include="DAL\Partials\HistoryMessage.cs" />
+    <Compile Include="DAL\Partials\IDbContext.cs" />
     <Compile Include="DAL\Partials\IFomMonitoringEntities.cs" />
     <Compile Include="DAL\Partials\ToolMachine.cs" />
     <Compile Include="DAL\Piece.cs">
@@ -331,6 +333,9 @@
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\usp_AggregationJob_Result.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\usp_AggregationMessage_Result.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\usp_AggregationPiece_Result.cs">
@@ -397,7 +402,12 @@
     <Compile Include="DataProcessing\Dto\InfoMachine.cs" />
     <Compile Include="DataProcessing\Dto\Message.cs" />
     <Compile Include="DataProcessing\Dto\Mongo\BaseModel.cs" />
-    <Compile Include="DataProcessing\Dto\Mongo\MachineDataModel.cs" />
+    <Compile Include="DataProcessing\Dto\Mongo\HistoryJobPieceBar.cs" />
+    <Compile Include="DataProcessing\Dto\Mongo\Info.cs" />
+    <Compile Include="DataProcessing\Dto\Mongo\Message.cs" />
+    <Compile Include="DataProcessing\Dto\Mongo\State.cs" />
+    <Compile Include="DataProcessing\Dto\Mongo\Tool.cs" />
+    <Compile Include="DataProcessing\Dto\Mongo\VariablesList.cs" />
     <Compile Include="DataProcessing\Dto\StateMachine.cs" />
     <Compile Include="DataProcessing\Dto\Tool.cs" />
     <Compile Include="DataProcessing\Dto\Value.cs" />
