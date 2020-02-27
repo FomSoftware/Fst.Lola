@@ -46,9 +46,9 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                     var ii = JsonConvert.DeserializeObject<Info>(message);
 
                     data = _infoGenericRepository.Find(ii.ObjectId);
-                    data.info.AsParallel().ForAll(vl => vl.DateStartElaboration = DateTime.UtcNow);
+                    data?.info.AsParallel().ForAll(vl => vl.DateStartElaboration = DateTime.UtcNow);
 
-                    if (_processor.ProcessData(ii))
+                    if (_processor.ProcessData(ii) && data != null)
                     {
 
                         data.info.AsParallel().ForAll(vl =>

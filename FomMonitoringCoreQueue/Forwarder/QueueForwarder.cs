@@ -171,6 +171,7 @@ namespace FomMonitoringCoreQueue.Forwarder
             {
                 var data = JsonConvert.DeserializeObject<FomMonitoringCore.DataProcessing.Dto.Mongo.State>(json);
                 _stateGenericRepository.Create(data);
+                data.DateReceived = DateTime.UtcNow;
 
                 _infoGenericRepository.Create(new FomMonitoringCore.DataProcessing.Dto.Mongo.Info
                 {
@@ -206,6 +207,7 @@ namespace FomMonitoringCoreQueue.Forwarder
             {
                 var data = JsonConvert.DeserializeObject<FomMonitoringCore.DataProcessing.Dto.Mongo.Tool>(json);
                 _toolGenericRepository.Create(data);
+                data.DateReceived = DateTime.UtcNow;
 
                 _infoGenericRepository.Create(new FomMonitoringCore.DataProcessing.Dto.Mongo.Info
                 {
@@ -224,7 +226,7 @@ namespace FomMonitoringCoreQueue.Forwarder
                 {
                     ObjectId = data.Id.ToString(),
                     InfoMachine = data.info,
-                    ToolMachine = data.tools
+                    ToolMachine = data.tool
                 });
 
 

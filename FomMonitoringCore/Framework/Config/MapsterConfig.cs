@@ -267,6 +267,12 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.Shift, src => ((IMachineService)MapContext.Current.Parameters["machineService"]).GetShiftByStartTime((int)MapContext.Current.Parameters["machineId"], src.StartTime))
                 .Map(dest => dest.StateId, src => src.State)
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
+
+            config.NewConfig<FomMonitoringCore.DataProcessing.Dto.ToolMachine, ToolMachine>()
+                .Ignore(dest => dest.Id)
+                .IgnoreAllVirtual()
+                .Map(dest => dest.IsActive, src => true)
+                .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
         }
     }
 }

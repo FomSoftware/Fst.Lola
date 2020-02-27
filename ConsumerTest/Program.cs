@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
@@ -10,6 +11,7 @@ using FomMonitoringCoreQueue.Dto;
 using FomMonitoringCoreQueue.Forwarder;
 using FomMonitoringCoreQueue.QueueConsumer;
 using FomMonitoringCoreQueue.QueueProducer;
+using Mapster;
 
 namespace ConsumerTest
 {
@@ -27,6 +29,7 @@ namespace ConsumerTest
 
         static void Main(string[] args)
         {
+            Inizialization();
             var builder = new ContainerBuilder();
 
             FomMonitoringCore.Ioc.IocContainerBuilder.BuildCore(builder, false);
@@ -41,12 +44,12 @@ namespace ConsumerTest
             _scopeTool = container.BeginLifetimeScope();
             _scopeState = container.BeginLifetimeScope();
 
-            var consumerVariable = _scopeVariable.Resolve<IConsumer<VariablesList>>();
+            /*var consumerVariable = _scopeVariable.Resolve<IConsumer<VariablesList>>();
             consumerVariable.Init();
 
             var consumerInfo = _scopeInfo.Resolve<IConsumer<Info>>();
             consumerInfo.Init();
-
+            
             var consumerState = _scopeState.Resolve<IConsumer<State>>();
             consumerState.Init();
 
@@ -54,11 +57,15 @@ namespace ConsumerTest
             consumerHistoryJob.Init();
 
             var consumerMessage = _scopeMessage.Resolve<IConsumer<Message>>();
-            consumerMessage.Init();
-
+            consumerMessage.Init();*/
 
             var consumerTool = _scopeTool.Resolve<IConsumer<Tool>>();
             consumerTool.Init();
+        }
+
+        private static void Inizialization()
+        {
+            TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetAssembly(typeof(FomMonitoringCore.Framework.Config.MapsterConfig)));
         }
     }
 }

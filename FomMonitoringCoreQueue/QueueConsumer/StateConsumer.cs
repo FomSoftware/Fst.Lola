@@ -20,10 +20,15 @@ namespace FomMonitoringCoreQueue.QueueConsumer
     {
         private readonly IProcessor<State> _processor;
         private readonly IQueueConnection _queueConnection;
-        public StateConsumer(IProcessor<State> processor, IQueueConnection queueConnection)
+        private IMongoDbContext _mongoContext;
+        private readonly IGenericRepository<FomMonitoringCore.DataProcessing.Dto.Mongo.State> _stateGenericRepository;
+
+        public StateConsumer(IProcessor<State> processor, IQueueConnection queueConnection,
+            IGenericRepository<FomMonitoringCore.DataProcessing.Dto.Mongo.State> stateGenericRepository)
         {
             _processor = processor;
             _queueConnection = queueConnection;
+            _stateGenericRepository = stateGenericRepository;
         }
 
         public void Init()
@@ -35,15 +40,13 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                 Stopwatch stopWatch = new Stopwatch();
                 stopWatch.Start();
                 var data = new FomMonitoringCore.DataProcessing.Dto.Mongo.State();
-                var mongoContext = new MongoDbContext();
-                var repo = new GenericRepository<FomMonitoringCore.DataProcessing.Dto.Mongo.State>(mongoContext);
                 try
                 {
                     var body = ea.Body;
                     var message = Encoding.UTF8.GetString(body);
                     var ii = JsonConvert.DeserializeObject<State>(message);
 
-                    data = repo.Find(ii.ObjectId);
+                    data = _stateGenericRepository.Find(ii.ObjectId);
                     data.state.AsParallel().ForAll(vl => vl.DateStartElaboration = DateTime.UtcNow);
 
                     if (_processor.ProcessData(ii))
@@ -84,7 +87,7 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                 {
                     LogService.WriteLog(
                         $"Finita elaborazione json {DateTime.UtcNow:O} tempo trascorso {elapsedTime} ", LogService.TypeLevel.Info);
-                    repo.Update(data);
+                    _stateGenericRepository.Update(data);
                 }
             };
 
