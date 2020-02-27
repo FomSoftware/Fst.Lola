@@ -20,7 +20,8 @@ namespace FomMonitoringCoreQueue.Connection
             {
                 HostName = rabbitHost,
                 UserName = rabbitUsername,
-                Password = rabbitPassword
+                Password = rabbitPassword,
+                AutomaticRecoveryEnabled = true
             };
 
             Connection = factory.CreateConnection();
