@@ -44,7 +44,7 @@ namespace ConsumerTest
             _scopeTool = container.BeginLifetimeScope();
             _scopeState = container.BeginLifetimeScope();
 
-            /*var consumerVariable = _scopeVariable.Resolve<IConsumer<VariablesList>>();
+            var consumerVariable = _scopeVariable.Resolve<IConsumer<VariablesList>>();
             consumerVariable.Init();
 
             var consumerInfo = _scopeInfo.Resolve<IConsumer<Info>>();
@@ -57,7 +57,7 @@ namespace ConsumerTest
             consumerHistoryJob.Init();
 
             var consumerMessage = _scopeMessage.Resolve<IConsumer<Message>>();
-            consumerMessage.Init();*/
+            consumerMessage.Init();
 
             var consumerTool = _scopeTool.Resolve<IConsumer<Tool>>();
             consumerTool.Init();
