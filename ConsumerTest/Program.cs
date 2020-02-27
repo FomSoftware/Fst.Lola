@@ -1,26 +1,22 @@
-﻿using System.ServiceProcess;
+﻿using FomMonitoringCoreQueue.ProcessData;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Autofac;
-using Autofac.Core.Lifetime;
 using FomMonitoringCoreQueue.Connection;
 using FomMonitoringCoreQueue.Dto;
 using FomMonitoringCoreQueue.Forwarder;
-using FomMonitoringCoreQueue.ProcessData;
 using FomMonitoringCoreQueue.QueueConsumer;
 using FomMonitoringCoreQueue.QueueProducer;
 
-namespace FomMonitoringQueueConsumerService
+namespace ConsumerTest
 {
-    public partial class LolaQueueConsumer : ServiceBase
+    class Program
     {
-
-        public LolaQueueConsumer()
+        static void Main(string[] args)
         {
-            InitializeComponent();
-        }
-
-        protected override void OnStart(string[] args)
-        {
-
             var builder = new ContainerBuilder();
 
             FomMonitoringCore.Ioc.IocContainerBuilder.BuildCore(builder, false);
@@ -49,7 +45,7 @@ namespace FomMonitoringQueueConsumerService
             builder.RegisterType<ToolProcessor>().As<IProcessor<Tool>>().SingleInstance();
             builder.RegisterType<QueueForwarder>().As<IQueueForwarder>().SingleInstance();
             var container = builder.Build();
-            
+
 
             var consumerVariable = container.Resolve<IConsumer<VariablesList>>();
             consumerVariable.Init();
@@ -69,12 +65,6 @@ namespace FomMonitoringQueueConsumerService
 
             var consumerTool = container.Resolve<IConsumer<Tool>>();
             consumerTool.Init();
-
-
-        }
-
-        protected override void OnStop()
-        {
         }
     }
 }

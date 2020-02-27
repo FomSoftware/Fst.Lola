@@ -22,16 +22,19 @@ namespace StateLoadTest
     {
         static void Main(string[] args)
         {
+
             var builder = new ContainerBuilder();
 
             FomMonitoringCore.Ioc.IocContainerBuilder.BuildCore(builder, false);
             FomMonitoringCoreQueue.Ioc.IocContainerBuilder.BuildCore(builder, false);
+
             var container = builder.Build();
-            var context = container.Resolve<FomMonitoringCore.DAL.IFomMonitoringEntities>();
 
-
-            
+            var context = container.Resolve<IFomMonitoringEntities>();
             var forwarder = container.Resolve<IQueueForwarder>();
+
+
+
 
 
             var jsons = context.Set<JsonData>().Where(j => j.Json.Contains("state")).OrderByDescending(i => i.Id).Take(10).ToList()

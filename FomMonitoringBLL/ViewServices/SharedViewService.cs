@@ -61,7 +61,9 @@ namespace FomMonitoringBLL.ViewServices
                 toolbar.period.end = context.ActualPeriod.EndDate;
 
                 toolbar.machines = GetListMachines(context);
-                toolbar.selected_machine = toolbar.machines.FirstOrDefault(w => w.id == context.ActualMachine.Id);
+
+                    toolbar.selected_machine = toolbar.machines.FirstOrDefault(w => w.id == context.ActualMachine.Id);
+
             }
 
             return toolbar;
@@ -69,21 +71,23 @@ namespace FomMonitoringBLL.ViewServices
 
         public static List<MachineInfoViewModel> GetListMachines(ContextModel context)
         {
-            var machines = context.AllMachines.Where(w => w.PlantId == context.ActualPlant?.Id).Select(m => new MachineInfoViewModel()
-            {
-                id = m.Id,
-                serial = m.Serial,
-                icon = m.Type?.Image,
-                mtype = m.Type?.Name,
-                model = m.Model?.Name,
-                description = m.Description,
-                product_type = m.Product,
-                product_version = m.ProductVersion,
-                machineName = m.MachineName,
-                installation = m.InstallationDate?.ToString() ?? string.Empty
-            }).ToList();
 
-            return machines;
+                var machines = context.AllMachines.Where(w => w.PlantId == context.ActualPlant?.Id || w.Id == context.ActualMachine.Id).Select(m => new MachineInfoViewModel()
+                {
+                    id = m.Id,
+                    serial = m.Serial,
+                    icon = m.Type?.Image,
+                    mtype = m.Type?.Name,
+                    model = m.Model?.Name,
+                    description = m.Description,
+                    product_type = m.Product,
+                    product_version = m.ProductVersion,
+                    machineName = m.MachineName,
+                    installation = m.InstallationDate?.ToString() ?? string.Empty
+                }).ToList();
+
+                return machines;
+            
         }
 
         public static List<PlantInfoViewModel> GetListPlants(ContextModel context)

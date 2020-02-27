@@ -20,42 +20,41 @@ namespace FomMonitoringCoreQueue.Connection
             {
                 HostName = rabbitHost,
                 UserName = rabbitUsername,
-                Password = rabbitPassword,
-                AutomaticRecoveryEnabled = true
+                Password = rabbitPassword
             };
 
             Connection = factory.CreateConnection();
             Channel = Connection.CreateModel();
             Channel.QueueDeclare("VariableList",
-                true,
-                false,
-                false,
-                null);
+                durable: true,
+                exclusive: false,
+                autoDelete: false,
+                arguments: null);
             Channel.QueueDeclare("Info",
-                true,
-                false,
-                false,
-                null);
+                durable: true,
+                exclusive: false,
+                autoDelete: false,
+                arguments: null);
             Channel.QueueDeclare("State",
-                true,
-                false,
-                false,
-                null);
+                durable: true,
+                exclusive: false,
+                autoDelete: false,
+                arguments: null);
             Channel.QueueDeclare("Messages",
-                true,
-                false,
-                false,
-                null);
+                durable: true,
+                exclusive: false,
+                autoDelete: false,
+                arguments: null);
             Channel.QueueDeclare("Tool",
-                true,
-                false,
-                false,
-                null);
+                durable: true,
+                exclusive: false,
+                autoDelete: false,
+                arguments: null);
             Channel.QueueDeclare("HistoryJobPieceBar",
-                true,
-                false,
-                false,
-                null);
+                durable: true,
+                exclusive: false,
+                autoDelete: false,
+                arguments: null);
         }
 
         public void Dispose()

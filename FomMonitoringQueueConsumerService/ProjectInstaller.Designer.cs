@@ -35,7 +35,7 @@ namespace FomMonitoringQueueConsumerService
             // 
             // serviceProcessInstaller1
             // 
-            this.serviceProcessInstaller1.Account = ServiceAccount.LocalSystem;
+            this.serviceProcessInstaller1.Account = ServiceAccount.NetworkService;
             this.serviceProcessInstaller1.Password = null;
             this.serviceProcessInstaller1.Username = null;
             // 
