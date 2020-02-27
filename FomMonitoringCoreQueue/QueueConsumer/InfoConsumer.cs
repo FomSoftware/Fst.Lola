@@ -86,7 +86,7 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                 }
             };
 
-            _queueConnection.Channel.BasicConsume("VariableList", false, consumer);
+            _queueConnection.Channel.BasicConsume("Info", false, consumer);
 
         }
     }
