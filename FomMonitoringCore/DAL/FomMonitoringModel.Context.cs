@@ -171,6 +171,71 @@ namespace FomMonitoringCore.DAL
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_HistoricizingAll", machineIdParameter);
         }
-
+    
+        public virtual ObjectResult<usp_AggregationMessage_Result> usp_AggregationMessage(Nullable<int> machineId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<int> aggregation, Nullable<int> dataType)
+        {
+            var machineIdParameter = machineId.HasValue ?
+                new ObjectParameter("machineId", machineId) :
+                new ObjectParameter("machineId", typeof(int));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(System.DateTime));
+    
+            var aggregationParameter = aggregation.HasValue ?
+                new ObjectParameter("aggregation", aggregation) :
+                new ObjectParameter("aggregation", typeof(int));
+    
+            var dataTypeParameter = dataType.HasValue ?
+                new ObjectParameter("dataType", dataType) :
+                new ObjectParameter("dataType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AggregationMessage_Result>("usp_AggregationMessage", machineIdParameter, startDateParameter, endDateParameter, aggregationParameter, dataTypeParameter);
+        }
+    
+        public virtual int usp_HistoricizingBars(Nullable<int> machineId)
+        {
+            var machineIdParameter = machineId.HasValue ?
+                new ObjectParameter("machineId", machineId) :
+                new ObjectParameter("machineId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_HistoricizingBars", machineIdParameter);
+        }
+    
+        public virtual int usp_HistoricizingMessages(Nullable<int> machineId)
+        {
+            var machineIdParameter = machineId.HasValue ?
+                new ObjectParameter("machineId", machineId) :
+                new ObjectParameter("machineId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_HistoricizingMessages", machineIdParameter);
+        }
+    
+        public virtual int usp_HistoricizingPieces(Nullable<int> machineId)
+        {
+            var machineIdParameter = machineId.HasValue ?
+                new ObjectParameter("machineId", machineId) :
+                new ObjectParameter("machineId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_HistoricizingPieces", machineIdParameter);
+        }
+    
+        public virtual int usp_HistoricizingStates(Nullable<int> machineId)
+        {
+            var machineIdParameter = machineId.HasValue ?
+                new ObjectParameter("machineId", machineId) :
+                new ObjectParameter("machineId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_HistoricizingStates", machineIdParameter);
+        }
+    
+        public virtual int usp_HistoricizingToolMachine()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_HistoricizingToolMachine");
+        }
     }
 }
