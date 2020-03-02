@@ -15,5 +15,6 @@ namespace FomMonitoringCore.DAL
         int usp_HistoricizingMessages(Nullable<int> machineId);
         int usp_HistoricizingBars(Nullable<int> machineId);
         int usp_HistoricizingPieces(Nullable<int> machineId);
+        int usp_HistoricizingStates(Nullable<int> machineId);
     }
 }

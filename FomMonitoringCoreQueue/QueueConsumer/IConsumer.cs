@@ -5,7 +5,7 @@ using FomMonitoringCoreQueue.Events;
 
 namespace FomMonitoringCoreQueue.QueueConsumer
 {
-    public interface IConsumer<T> where T : BaseModel
+    public interface IConsumer<T> : IDisposable where T : BaseModel
     {
         event EventHandler<LoggerEventsQueue> Log;
 

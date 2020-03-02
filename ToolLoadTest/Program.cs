@@ -1,20 +1,14 @@
-﻿using System;
+﻿using FomMonitoringCore.DAL;
+using FomMonitoringCoreQueue.Forwarder;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Autofac;
-using FomMonitoringCore.DAL;
-using FomMonitoringCore.DalMongoDb;
-using FomMonitoringCore.DataProcessing.Dto.Mongo;
-using FomMonitoringCore.Repository.MongoDb;
-using FomMonitoringCoreQueue.Connection;
-using FomMonitoringCoreQueue.Dto;
-using FomMonitoringCoreQueue.Forwarder;
-using FomMonitoringCoreQueue.ProcessData;
-using FomMonitoringCoreQueue.QueueConsumer;
-using FomMonitoringCoreQueue.QueueProducer;
-using Newtonsoft.Json;
 
-namespace VariableListLoadTest
+namespace ToolLoadTest
 {
     class Program
     {
@@ -24,16 +18,17 @@ namespace VariableListLoadTest
 
             FomMonitoringCore.Ioc.IocContainerBuilder.BuildCore(builder, false);
             FomMonitoringCoreQueue.Ioc.IocContainerBuilder.BuildCore(builder, false);
-            
+
             var container = builder.Build();
 
             var context = container.Resolve<IFomMonitoringEntities>();
             var forwarder = container.Resolve<IQueueForwarder>();
 
-            
-            var jsons = context.Set<JsonData>().OrderByDescending(i => i.Id).ToList().AsParallel()
-                .Select(o => new {o.Id, o.Json}).OrderBy(n => n.Id).ToList();
-            
+
+            var jsons = context.Set<JsonData>().OrderByDescending(i => i.Id).ToList()
+                .Select(o => new { o.Id, o.Json }).Where(o => o.Json.Contains("tool")).ToList();
+
+            jsons = jsons.OrderBy(n => n.Id).ToList();
 
             foreach (var data in jsons)
             {

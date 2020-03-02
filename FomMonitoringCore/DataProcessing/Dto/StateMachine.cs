@@ -2,7 +2,7 @@
 
 namespace FomMonitoringCore.DataProcessing.Dto
 {
-    public class StateMachine : BaseModel
+    public class StateMachine
     {
         public int Id { get; set; }
         public DateTime? StartTime { get; set; }

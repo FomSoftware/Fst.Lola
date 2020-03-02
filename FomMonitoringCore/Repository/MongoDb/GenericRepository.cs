@@ -37,7 +37,6 @@ namespace FomMonitoringCore.Repository.MongoDb
         public void Create(T model)
         {
             Collection.InsertOne(model);
-            var x = model;
         }
 
         public bool Delete(object id)

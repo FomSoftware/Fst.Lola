@@ -12,7 +12,6 @@ using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using Tool = FomMonitoringCoreQueue.Dto.Tool;
-using FomMonitoringCoreQueue.Dto;
 using FomMonitoringCoreQueue.Events;
 
 namespace FomMonitoringCoreQueue.QueueConsumer
@@ -23,6 +22,7 @@ namespace FomMonitoringCoreQueue.QueueConsumer
         private readonly IQueueConnection _queueConnection;
         private IMongoDbContext _mongoContext;
         private readonly IGenericRepository<FomMonitoringCore.DataProcessing.Dto.Mongo.Tool> _toolGenericRepository;
+        private EventingBasicConsumer consumer;
 
         public ToolConsumer(IProcessor<Tool> processor, IQueueConnection queueConnection,
             IGenericRepository<FomMonitoringCore.DataProcessing.Dto.Mongo.Tool> toolGenericRepository)
@@ -36,8 +36,15 @@ namespace FomMonitoringCoreQueue.QueueConsumer
 
         public void Init()
         {
-            var consumer = new EventingBasicConsumer(_queueConnection.Channel);
-            consumer.Received += (model, ea) =>
+            consumer = new EventingBasicConsumer(_queueConnection.ChannelState);
+            consumer.Received += ConsumerOnReceived();
+
+            _queueConnection.ChannelTool.BasicConsume("Tool", false, consumer);
+        }
+
+        private EventHandler<BasicDeliverEventArgs> ConsumerOnReceived()
+        {
+            return (model, ea) =>
             {
                 var elapsedTime = string.Empty;
                 Stopwatch stopWatch = new Stopwatch();
@@ -50,16 +57,12 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                     var ii = JsonConvert.DeserializeObject<Tool>(message);
 
                     data = _toolGenericRepository.Find(ii.ObjectId);
-                    data.tool.AsParallel().ForAll(vl => vl.DateStartElaboration = DateTime.UtcNow);
+                    data.DateStartElaboration = DateTime.UtcNow;
 
                     if (_processor.ProcessData(ii))
                     {
-
-                        data.tool.AsParallel().ForAll(vl =>
-                        {
-                            vl.DateEndElaboration = DateTime.UtcNow;
-                            vl.ElaborationSuccesfull = true;
-                        });
+                        data.DateEndElaboration = DateTime.UtcNow;
+                        data.ElaborationSuccesfull = true;
 
                     }
 
@@ -69,18 +72,12 @@ namespace FomMonitoringCoreQueue.QueueConsumer
 
                     // Format and display the TimeSpan value.
                     elapsedTime = $"{ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}.{ts.Milliseconds:00}";
-                    _queueConnection.Channel.BasicAck(ea.DeliveryTag, false);
+                    _queueConnection.ChannelTool.BasicAck(ea.DeliveryTag, false);
                 }
                 catch (Exception ex)
                 {
-                    if (data.tool != null)
-                    {
-                        data.tool.AsParallel().ForAll(vl =>
-                        {
-                            vl.DateEndElaboration = DateTime.UtcNow;
-                            vl.ElaborationSuccesfull = false;
-                        });
-                    }
+                    data.DateEndElaboration = DateTime.UtcNow;
+                    data.ElaborationSuccesfull = false;
 
                     LogService.WriteLog(
                         $"Finita elaborazione con errori json tool {DateTime.UtcNow:O} tempo trascorso {elapsedTime} ", LogService.TypeLevel.Error, ex);
@@ -93,8 +90,12 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                     _toolGenericRepository.Update(data);
                 }
             };
+        }
 
-            _queueConnection.Channel.BasicConsume("Tool", false, consumer);
+        public void Dispose()
+        {
+            consumer.Received -= ConsumerOnReceived();
+            _processor?.Dispose();
         }
     }
 }

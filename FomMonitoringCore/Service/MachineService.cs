@@ -19,7 +19,6 @@ namespace FomMonitoringCore.Service
         private readonly IMachineRepository _machineRepository;
         private readonly IFomMonitoringEntities _context;
         private readonly IParameterMachineService _parameterMachineService;
-        private IUnitOfWork _unitOfWork;
 
         public MachineService(
             IMachineTypeRepository machineTypeRepository,
@@ -27,15 +26,13 @@ namespace FomMonitoringCore.Service
             IPanelRepository panelRepository,
             IFomMonitoringEntities context,
             IMachineRepository machineRepository,
-            IParameterMachineService parameterMachineService,
-            IUnitOfWork unitOfWork)
+            IParameterMachineService parameterMachineService)
         {
             _machineRepository = machineRepository;
             _machineTypeRepository = machineTypeRepository;
             _machineModelRepository = machineModelRepository;
             _panelRepository = panelRepository;
             _context = context;
-            _unitOfWork = unitOfWork;
             _parameterMachineService = parameterMachineService;
         }
         #region API
@@ -280,6 +277,11 @@ namespace FomMonitoringCore.Service
         {
             var par = _parameterMachineService.GetParameters(context, (int)pp).FirstOrDefault();
             return par;
+        }
+
+        public void Dispose()
+        {
+            _context?.Dispose();
         }
 
 

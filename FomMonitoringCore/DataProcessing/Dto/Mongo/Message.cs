@@ -5,6 +5,6 @@ namespace FomMonitoringCore.DataProcessing.Dto.Mongo
     [Table("messages")]
     public class Message : BaseModel
     {
-        public MessageMachine[] messages { get; set; }
+        public MessageMachine[] message { get; set; }
     }
 }

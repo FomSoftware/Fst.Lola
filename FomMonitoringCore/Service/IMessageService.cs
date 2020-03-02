@@ -6,7 +6,7 @@ using FomMonitoringCore.Framework.Model;
 
 namespace FomMonitoringCore.Service
 {
-    public interface IMessageService
+    public interface IMessageService : IDisposable
     {
         List<MessageMachineModel> GetMessageDetails(MachineInfoModel machine, PeriodModel period, string actualMachineGroup = null);
         void CheckMaintenance();

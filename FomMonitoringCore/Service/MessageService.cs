@@ -496,5 +496,10 @@ namespace FomMonitoringCore.Service
             var month2 = Math.Abs(month / 3) + 1;
             return month2;
         }
+
+        public void Dispose()
+        {
+            _context?.Dispose();
+        }
     }
 }

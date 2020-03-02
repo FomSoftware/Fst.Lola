@@ -19,7 +19,7 @@ namespace FomMonitoringCoreQueue.QueueProducer
             var message = JsonConvert.SerializeObject(model);
             var body = Encoding.UTF8.GetBytes(message);
 
-            _queueConnection.Channel.BasicPublish("",
+            _queueConnection.ChannelState.BasicPublish("",
                 "State",
                 null, body);
 

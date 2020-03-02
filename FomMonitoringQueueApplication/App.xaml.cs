@@ -35,8 +35,7 @@ namespace FomMonitoringQueueApplication
             _notifyIcon.Visible = true;
 
             CreateContextMenu();
-
-           
+            
 
         }
 

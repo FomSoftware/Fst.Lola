@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FomMonitoringQueueApplication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="470" Width="800"
         Icon=".\Resources\Icon1.ico"  >
-    <Grid>
+    <StackPanel x:Name="Panel">
         <TabControl HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="772">
             <TabItem Header="Info Machine">
                 <Grid Background="#FFE5E5E5">
@@ -15,9 +15,11 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Variabili">
-                <Grid Background="#FFE5E5E5">
-                    <TextBlock x:Name="TextVariabili" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="351" Width="746"/>
-                </Grid>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                    <Grid Background="#FFE5E5E5">
+                        <TextBlock x:Name="TextVariabili" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="351" Width="746"/>
+                    </Grid>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Messaggi">
                 <Grid Background="#FFE5E5E5">
@@ -49,6 +51,11 @@
                 </Grid>
             </TabItem>
 
+
         </TabControl>
-    </Grid>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <Button Content="Refresh GUI" Height="27" Width="75" Click="Button_Click"/>
+            <Button Content="Refresh Connection" Height="27" Width="120" Margin="8,0" Click="Button_Click_1"/>
+        </StackPanel>
+    </StackPanel>
 </Window>

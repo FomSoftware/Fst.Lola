@@ -20,6 +20,11 @@ namespace FomMonitoringCore.Service
             _historyJobRepository = historyJobRepository;
         }
 
+        public void Dispose()
+        {
+            _context?.Dispose();
+        }
+
         #region SP AGGREGATION
 
         /// <summary>

@@ -5,8 +5,6 @@ using System.Linq;
 using FomMonitoringCore.DataProcessing.Dto.Mongo;
 using FomMonitoringCore.Repository.MongoDb;
 using FomMonitoringCoreQueue.QueueProducer;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
 using Newtonsoft.Json;
 using NJsonSchema;
 using HistoryJobPieceBar = FomMonitoringCoreQueue.Dto.HistoryJobPieceBar;
@@ -97,22 +95,25 @@ namespace FomMonitoringCoreQueue.Forwarder
                 var data = JsonConvert
                     .DeserializeObject<FomMonitoringCore.DataProcessing.Dto.Mongo.VariablesList>(json);
 
-                _variablesGenericRepository.Create(data);
-
-                _infoGenericRepository.Create(new FomMonitoringCore.DataProcessing.Dto.Mongo.Info
+                var infoMongo = new FomMonitoringCore.DataProcessing.Dto.Mongo.Info
                 {
                     info = data.info,
                     DateReceived = data.DateReceived,
+                    DateSendedQueue = DateTime.UtcNow,
                     IsCumulative = data.IsCumulative
-                });
+                };
+
+                _infoGenericRepository.Create(infoMongo);
 
                 _infoProducer.Send(new Info
                 {
-                    ObjectId = data.Id.ToString(),
+                    ObjectId = infoMongo.Id.ToString(),
                     InfoMachine = data.info
                 });
 
+                _variablesGenericRepository.Create(data);
 
+                
                 _variablesProducer.Send(new VariablesList
                 {
                     ObjectId = data.Id.ToString(),
@@ -120,8 +121,7 @@ namespace FomMonitoringCoreQueue.Forwarder
                     VariablesListMachine = data.variablesList
                 });
 
-
-                _variablesGenericRepository.Update(data);
+                
                 return;
             }
 
@@ -133,32 +133,31 @@ namespace FomMonitoringCoreQueue.Forwarder
             if (!errorMessages.Any())
             {
                 var data = JsonConvert.DeserializeObject<FomMonitoringCore.DataProcessing.Dto.Mongo.Message>(json);
-                _messageGenericRepository.Create(data);
-
-                _infoGenericRepository.Create(new FomMonitoringCore.DataProcessing.Dto.Mongo.Info
+                var infoMongo = new FomMonitoringCore.DataProcessing.Dto.Mongo.Info
                 {
                     info = data.info,
                     DateReceived = data.DateReceived,
+                    DateSendedQueue = DateTime.UtcNow,
                     IsCumulative = data.IsCumulative
-                });
+                };
 
+                _infoGenericRepository.Create(infoMongo);
 
                 _infoProducer.Send(new Info
                 {
-                    ObjectId = data.Id.ToString(),
+                    ObjectId = infoMongo.Id.ToString(),
                     InfoMachine = data.info
                 });
 
+                _messageGenericRepository.Create(data);
 
                 _messageProducer.Send(new Message
                 {
                     ObjectId = data.Id.ToString(),
                     InfoMachine = data.info,
-                    MessageMachine = data.messages
+                    MessageMachine = data.message
                 });
 
-
-                _messageGenericRepository.Update(data);
                 return;
             }
 
@@ -170,21 +169,24 @@ namespace FomMonitoringCoreQueue.Forwarder
             if (!errorStates.Any())
             {
                 var data = JsonConvert.DeserializeObject<FomMonitoringCore.DataProcessing.Dto.Mongo.State>(json);
-                _stateGenericRepository.Create(data);
-                data.DateReceived = DateTime.UtcNow;
-
-                _infoGenericRepository.Create(new FomMonitoringCore.DataProcessing.Dto.Mongo.Info
+                var infoMongo = new FomMonitoringCore.DataProcessing.Dto.Mongo.Info
                 {
                     info = data.info,
                     DateReceived = data.DateReceived,
+                    DateSendedQueue = DateTime.UtcNow,
                     IsCumulative = data.IsCumulative
-                });
+                };
+
+                _infoGenericRepository.Create(infoMongo);
 
                 _infoProducer.Send(new Info
                 {
-                    ObjectId = data.Id.ToString(),
+                    ObjectId = infoMongo.Id.ToString(),
                     InfoMachine = data.info
                 });
+                
+                _stateGenericRepository.Create(data);
+                data.DateReceived = DateTime.UtcNow;
 
                 _stateProducer.Send(new State
                 {
@@ -193,8 +195,6 @@ namespace FomMonitoringCoreQueue.Forwarder
                     StateMachine = data.state
                 });
 
-
-                _stateGenericRepository.Update(data);
                 return;
             }
 
@@ -206,21 +206,26 @@ namespace FomMonitoringCoreQueue.Forwarder
             if (!errorTool.Any())
             {
                 var data = JsonConvert.DeserializeObject<FomMonitoringCore.DataProcessing.Dto.Mongo.Tool>(json);
-                _toolGenericRepository.Create(data);
-                data.DateReceived = DateTime.UtcNow;
 
-                _infoGenericRepository.Create(new FomMonitoringCore.DataProcessing.Dto.Mongo.Info
+                var infoMongo = new FomMonitoringCore.DataProcessing.Dto.Mongo.Info
                 {
                     info = data.info,
                     DateReceived = data.DateReceived,
+                    DateSendedQueue = DateTime.UtcNow,
                     IsCumulative = data.IsCumulative
-                });
+                };
+
+                _infoGenericRepository.Create(infoMongo);
 
                 _infoProducer.Send(new Info
                 {
-                    ObjectId = data.Id.ToString(),
+                    ObjectId = infoMongo.Id.ToString(),
                     InfoMachine = data.info
                 });
+
+                _toolGenericRepository.Create(data);
+
+                data.DateReceived = DateTime.UtcNow;
 
                 _toolProducer.Send(new Tool
                 {
@@ -228,9 +233,7 @@ namespace FomMonitoringCoreQueue.Forwarder
                     InfoMachine = data.info,
                     ToolMachine = data.tool
                 });
-
-
-                _toolGenericRepository.Update(data);
+                
                 return;
             }
 
@@ -244,37 +247,41 @@ namespace FomMonitoringCoreQueue.Forwarder
             {
                 var data = JsonConvert
                     .DeserializeObject<FomMonitoringCore.DataProcessing.Dto.Mongo.HistoryJobPieceBar>(json);
-                _historyJobPieceBarGenericRepository.Create(data);
 
-                _infoGenericRepository.Create(new FomMonitoringCore.DataProcessing.Dto.Mongo.Info
+                var infoMongo = new FomMonitoringCore.DataProcessing.Dto.Mongo.Info
                 {
                     info = data.info,
                     DateReceived = data.DateReceived,
+                    DateSendedQueue = DateTime.UtcNow,
                     IsCumulative = data.IsCumulative
-                });
+                };
+
+                _infoGenericRepository.Create(infoMongo);
 
                 _infoProducer.Send(new Info
                 {
-                    ObjectId = data.Id.ToString(),
+                    ObjectId = infoMongo.Id.ToString(),
                     InfoMachine = data.info
                 });
+
+                _historyJobPieceBarGenericRepository.Create(data);
 
                 _historyJobPieceBarProducer.Send(new HistoryJobPieceBar
                 {
                     ObjectId = data.Id.ToString(),
                     InfoMachine = data.info,
-                    HistoryJobMachine = data.historyjob
+                    HistoryJobMachine = data.historyjob,
+                    PieceMachine = data.piece,
+                    BarMachine = data.bar
                 });
-
-
-                _historyJobPieceBarGenericRepository.Update(data);
+                
                 return;
             }
 
             var dataUnknown = JsonConvert.DeserializeObject<BaseModel>(json);
             var en = new Unknown(dataUnknown)
             {
-                EntityUnknown = BsonSerializer.Deserialize<BsonDocument>(json),
+                EntityUnknown = json,
                 ErrorDataVariablesList = errorDataVariablesList.ToDictionary(mc => mc.Path,
                     mc => mc.Kind.ToString(),
                     StringComparer.OrdinalIgnoreCase),
