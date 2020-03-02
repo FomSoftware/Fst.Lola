@@ -19,6 +19,7 @@ namespace FomMonitoringCoreQueue.QueueConsumer
         private readonly IProcessor<Message> _processor;
         private readonly IQueueConnection _queueConnection;
         private readonly IGenericRepository<FomMonitoringCore.DataProcessing.Dto.Mongo.Message> _messageGenericRepository;
+        private EventingBasicConsumer consumer;
 
         public MessageConsumer(IProcessor<Message> processor,
             IQueueConnection queueConnection,
@@ -33,8 +34,15 @@ namespace FomMonitoringCoreQueue.QueueConsumer
 
         public void Init()
         {
-            var consumer = new EventingBasicConsumer(_queueConnection.Channel);
-            consumer.Received += (model, ea) =>
+            consumer = new EventingBasicConsumer(_queueConnection.ChannelMessages);
+            consumer.Received += ConsumerOnReceived();
+
+            _queueConnection.ChannelMessages.BasicConsume("Messages", false, consumer);
+        }
+
+        private EventHandler<BasicDeliverEventArgs> ConsumerOnReceived()
+        {
+            return (model, ea) =>
             {
                 var elapsedTime = string.Empty;
                 var stopWatch = new Stopwatch();
@@ -47,16 +55,12 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                     var ii = JsonConvert.DeserializeObject<Message>(message);
 
                     data = _messageGenericRepository.Find(ii.ObjectId);
-                    data.messages.AsParallel().ForAll(vl => vl.DateStartElaboration = DateTime.UtcNow);
+                    data.DateStartElaboration = DateTime.UtcNow;
 
                     if (_processor.ProcessData(ii))
                     {
-
-                        data.messages.AsParallel().ForAll(vl =>
-                        {
-                            vl.DateEndElaboration = DateTime.UtcNow;
-                            vl.ElaborationSuccesfull = true;
-                        });
+                        data.DateEndElaboration = DateTime.UtcNow;
+                        data.ElaborationSuccesfull = true;
 
                     }
 
@@ -66,7 +70,7 @@ namespace FomMonitoringCoreQueue.QueueConsumer
 
                     // Format and display the TimeSpan value.
                     elapsedTime = $"{ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}.{ts.Milliseconds:00}";
-                    _queueConnection.Channel.BasicAck(ea.DeliveryTag, false);
+                    _queueConnection.ChannelMessages.BasicAck(ea.DeliveryTag, false);
 
                     Log?.Invoke(this, new LoggerEventsQueue
                     {
@@ -78,11 +82,8 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                 }
                 catch (Exception ex)
                 {
-                    data.info.AsParallel().ForAll(vl =>
-                    {
-                        vl.DateEndElaboration = DateTime.UtcNow;
-                        vl.ElaborationSuccesfull = false;
-                    });
+                    data.DateEndElaboration = DateTime.UtcNow;
+                    data.ElaborationSuccesfull = false;
                     Log?.Invoke(this, new LoggerEventsQueue
                     {
                         Message = $"Finita elaborazione con errori json {DateTime.UtcNow:O} tempo trascorso {elapsedTime}",
@@ -97,8 +98,12 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                     _messageGenericRepository.Update(data);
                 }
             };
+        }
 
-            _queueConnection.Channel.BasicConsume("Messages", false, consumer);
+        public void Dispose()
+        {
+            consumer.Received -= ConsumerOnReceived();
+            _processor?.Dispose();
         }
     }
 }

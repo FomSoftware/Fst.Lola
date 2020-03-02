@@ -8,32 +8,38 @@ namespace FomMonitoringCoreQueue.QueueConsumer
     public interface IConsumerInitializer : IDisposable
     {
         event EventHandler<LoggerEventsQueue> MessageLogged;
+        void Reconnect();
     }
 
     public class ConsumerInitializer : IConsumerInitializer
     {
-        private readonly ILifetimeScope _scopeVariable;
-        private readonly ILifetimeScope _scopeInfo;
-        private readonly ILifetimeScope _scopeMessage;
-        private readonly ILifetimeScope _scopeHistoryJob;
-        private readonly ILifetimeScope _scopeTool;
-        private readonly ILifetimeScope _scopeState;
-
+        private ILifetimeScope _scopeVariable;
+        private ILifetimeScope _scopeInfo;
+        private ILifetimeScope _scopeMessage;
+        private ILifetimeScope _scopeHistoryJob;
+        private ILifetimeScope _scopeTool;
+        private ILifetimeScope _scopeState;
+        private IContainer CurrentContainer { get; set; }
 
         public ConsumerInitializer()
         {
+            Init();
+        }
+
+        private void Init()
+        {
             var builder = new ContainerBuilder();
-            
-            Ioc.IocContainerBuilder.BuildCore(builder, false);
 
-            var container = builder.Build();
+            Ioc.IocContainerBuilder.BuildCore(builder, false, true);
 
-            _scopeVariable = container.BeginLifetimeScope();
-            _scopeInfo = container.BeginLifetimeScope();
-            _scopeMessage = container.BeginLifetimeScope();
-            _scopeHistoryJob = container.BeginLifetimeScope();
-            _scopeTool = container.BeginLifetimeScope();
-            _scopeState = container.BeginLifetimeScope();
+            CurrentContainer = builder.Build();
+
+            _scopeVariable = CurrentContainer.BeginLifetimeScope();
+            _scopeInfo = CurrentContainer.BeginLifetimeScope();
+            _scopeMessage = CurrentContainer.BeginLifetimeScope();
+            _scopeHistoryJob = CurrentContainer.BeginLifetimeScope();
+            _scopeTool = CurrentContainer.BeginLifetimeScope();
+            _scopeState = CurrentContainer.BeginLifetimeScope();
 
             var consumerVariable = _scopeVariable.Resolve<IConsumer<VariablesList>>();
             consumerVariable.Log += WriteLog;
@@ -61,7 +67,15 @@ namespace FomMonitoringCoreQueue.QueueConsumer
             consumerTool.Init();
         }
 
+
         public event EventHandler<LoggerEventsQueue> MessageLogged;
+
+
+        public void Reconnect()
+        {
+            Dispose();
+            Init();
+        }
 
         protected void WriteLog(object sender, LoggerEventsQueue eventLog)
         {
@@ -83,6 +97,9 @@ namespace FomMonitoringCoreQueue.QueueConsumer
             _scopeHistoryJob?.Dispose();
             _scopeTool?.Dispose();
             _scopeState?.Dispose();
+            CurrentContainer?.Dispose();
+            CurrentContainer = null;
+
         }
     }
 }

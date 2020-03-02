@@ -18,7 +18,7 @@ namespace FomMonitoringCore.Ioc
 {
     public static class IocContainerBuilder
     {
-        public static void BuildCore(ContainerBuilder builder, bool instancePerRequest = true, bool dbContextInstancePerLifetimeScope = false)
+        public static void BuildCore(ContainerBuilder builder, bool instancePerRequest = true, bool instancePerLifetimeScope = false)
         {
 
             var instancesFoRequest = new List<IRegistrationBuilder<object, object, object>>
@@ -86,12 +86,20 @@ namespace FomMonitoringCore.Ioc
                     b.SingleInstance();
                 }
 
-                if (dbContextInstancePerLifetimeScope)
+                if (instancePerLifetimeScope)
                 {
+                    foreach (var b in instancesFoRequest)
+                    {
+                        b.InstancePerLifetimeScope();
+                    }
                     dbContext.InstancePerLifetimeScope();
                 }
                 else
                 {
+                    foreach (var b in instancesFoRequest)
+                    {
+                        b.SingleInstance();
+                    }
                     dbContext.SingleInstance();
                 }
             }

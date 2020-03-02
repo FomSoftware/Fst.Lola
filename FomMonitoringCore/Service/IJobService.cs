@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using FomMonitoringCore.Framework.Model;
 
 namespace FomMonitoringCore.Service
 {
-    public interface IJobService
+    public interface IJobService : IDisposable
     {
         List<HistoryJobModel> GetAggregationJobs(MachineInfoModel machine, PeriodModel period);
         List<HistoryJobModel> GetAllHistoryJobs(MachineInfoModel machine, PeriodModel period);

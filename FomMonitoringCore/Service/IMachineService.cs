@@ -5,7 +5,7 @@ using FomMonitoringCore.Framework.Model;
 
 namespace FomMonitoringCore.Service
 {
-    public interface IMachineService
+    public interface IMachineService: IDisposable
     {
         bool AddMachineModel(string modelName, int modelCode);
         List<MachineInfoModel> GetAllMachines();

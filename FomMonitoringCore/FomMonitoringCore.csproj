@@ -397,7 +397,6 @@
     <Compile Include="DAL_SQLite\tool.cs">
       <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataProcessing\Dto\BaseModel.cs" />
     <Compile Include="DataProcessing\Dto\HistoryJob.cs" />
     <Compile Include="DataProcessing\Dto\InfoMachine.cs" />
     <Compile Include="DataProcessing\Dto\Message.cs" />
@@ -407,6 +406,7 @@
     <Compile Include="DataProcessing\Dto\Mongo\Message.cs" />
     <Compile Include="DataProcessing\Dto\Mongo\State.cs" />
     <Compile Include="DataProcessing\Dto\Mongo\Tool.cs" />
+    <Compile Include="DataProcessing\Dto\Mongo\Unknown.cs" />
     <Compile Include="DataProcessing\Dto\Mongo\VariablesList.cs" />
     <Compile Include="DataProcessing\Dto\StateMachine.cs" />
     <Compile Include="DataProcessing\Dto\Tool.cs" />

@@ -1,84 +1,101 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading;
+using System.Reflection;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using FomMonitoringCore.Service;
 using FomMonitoringCoreQueue.Events;
 using FomMonitoringCoreQueue.QueueConsumer;
+using Mapster;
 
 namespace FomMonitoringQueueApplication
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
+        private static Timer _aTimer;
         public static ConsumerInitializer ConsumerInitializer;
         public MainWindow()
         {
             InitializeComponent();
+
+            TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetAssembly(typeof(FomMonitoringCore.Framework.Config.MapsterConfig)));
             Init();
+            SetTimer();
         }
 
-        public void Init()
+        private void Init()
         {
-            ConsumerInitializer = new ConsumerInitializer();
-            ConsumerInitializer.MessageLogged += ConsumerInitializer_MessageLogged;
+            if (ConsumerInitializer == null)
+            {
+
+                ConsumerInitializer = new ConsumerInitializer();
+                ConsumerInitializer.MessageLogged += ConsumerInitializer_MessageLogged;
+            }
         }
+
+        private void SetTimer()
+        {
+            if (_aTimer == null)
+            {
+                _aTimer = new Timer(180000);
+                // Hook up the Elapsed event for the timer. 
+                _aTimer.Elapsed += OnTimedEvent;
+                _aTimer.AutoReset = true;
+                _aTimer.Enabled = true;
+            }
+        }
+        private static void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
+            ConsumerInitializer?.Reconnect();
+        }
+
+        public void UpdateTextBlock(TextBlock textBlock, string message)
+        {
+            Dispatcher?.BeginInvoke(new Action(() =>
+            {
+                textBlock.Text += $"\n {message}";
+                textBlock.UpdateLayout();
+            }), DispatcherPriority.Send);
+        }
+
         private void ConsumerInitializer_MessageLogged(object sender, LoggerEventsQueue e)
         {
-            new Thread(()=>
-            {
-                LogService.WriteLog(e.Message, e.TypeLevel, e.Exception);
+            
+            LogService.WriteLog(e.Message, e.TypeLevel, e.Exception);
                 switch (e.Type)
                 {
                     case TypeEvent.Variable:
-                        TextVariabili.Dispatcher?.Invoke(() =>
-                        {
-                            TextVariabili.Text += $"\n {e.Message}";
-                            TextVariabili.UpdateLayout();
-                        });
+                        Task.Factory.StartNew(() => UpdateTextBlock(TextVariabili, e.Message));
 
                         break;
                     case TypeEvent.Messages:
-                        TextMessaggi.Dispatcher?.Invoke(() => {
+
+                        Panel.Dispatcher?.BeginInvoke(DispatcherPriority.Send, new Action(() => {
                             TextMessaggi.Text += $"\n {e.Message}";
-                            TextMessaggi.UpdateLayout();
-                        });
+                        })).Wait();
                         break;
                     case TypeEvent.HistoryBarJobPiece:
-                        TextHistoryJobPieceBar.Dispatcher?.Invoke(() =>
-                        {
+
+                        Panel.Dispatcher?.BeginInvoke(DispatcherPriority.Send, new Action(() => {
                             TextHistoryJobPieceBar.Text += $"\n {e.Message}";
                             TextHistoryJobPieceBar.UpdateLayout();
-                        });
+                        }));
                         break;
                     case TypeEvent.State:
-                        TextState.Dispatcher?.Invoke(() => {
+                        Panel.Dispatcher?.BeginInvoke( DispatcherPriority.Send, new Action(() => {
                             TextState.Text += $"\n {e.Message}";
-                            TextState.UpdateLayout();
-                        });
+                        })).Wait();
                         break;
                     case TypeEvent.Info:
-                        TextInfo.Dispatcher?.Invoke(() =>
-                        {
+                        Panel.Dispatcher?.BeginInvoke(DispatcherPriority.Send, new Action(() => {
                             TextInfo.Text += $"\n {e.Message}";
                             TextInfo.UpdateLayout();
-                        }
-                        );
+                        }));
                         break;
                     case TypeEvent.Tool:
                         TextTool.Dispatcher?.Invoke(() => {
@@ -89,9 +106,23 @@ namespace FomMonitoringQueueApplication
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
-            }).Start();
             
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TextInfo.UpdateLayout();
+            TextState.UpdateLayout();
+            TextHistoryJobPieceBar.UpdateLayout();
+            TextMessaggi.UpdateLayout();
+            TextVariabili.UpdateLayout();
+            TextTool.UpdateLayout();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ConsumerInitializer.Reconnect();
         }
     }
 }

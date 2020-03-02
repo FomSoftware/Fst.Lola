@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using Autofac;
 using FomMonitoringCore.DAL;
+using FomMonitoringCore.DAL_SQLite;
 using FomMonitoringCore.Service;
 using Mapster;
 using State = FomMonitoringCoreQueue.Dto.State;
@@ -9,50 +11,69 @@ namespace FomMonitoringCoreQueue.ProcessData
 {
     public class StateProcessor : IProcessor<State>
     {
-        private readonly IFomMonitoringEntities _context;
-        private readonly IMachineService _machineService;
+        private readonly ILifetimeScope _parentScope;
 
-        public StateProcessor(IFomMonitoringEntities context, IMachineService machineService)
+
+        public StateProcessor(ILifetimeScope parentScope)
         {
-            _machineService = machineService;
-            _context = context;
+            _parentScope = parentScope;
         }
-
         public bool ProcessData(State state)
         {
             try
             {
-                _context.Refresh();
-
-                var serial = state.InfoMachine.First().MachineSerial;
-                var mac = _context.Set<Machine>().FirstOrDefault(m => m.Serial == serial);
-                if (mac == null)
-                    return false;
-
-                foreach (var var in state.StateMachine)
+                using (var threadLifetime = _parentScope.BeginLifetimeScope())
+                using (var _context = threadLifetime.Resolve<IFomMonitoringEntities>())
+                using (var machineService = threadLifetime.Resolve<IMachineService>())
                 {
-                    var.StartTime = var.StartTime.HasValue && var.StartTime.Value.Year < 1900 ? null : var.StartTime;
-                    var.EndTime = var.EndTime.HasValue && var.EndTime.Value.Year < 1900 ? null : var.EndTime;
-                    if (var.StartTime != null && var.EndTime != null)
-                        var.TimeSpanDuration = var.EndTime?.Subtract((DateTime)var.StartTime).Ticks;
-                    else
-                        var.TimeSpanDuration = null;
 
-                    StateMachine stateM = var.BuildAdapter().AddParameters("machineService", _machineService).AddParameters("machineId", mac.Id).AdaptToType<StateMachine>();
 
-                    if (var.EndTime > (mac.LastUpdate ?? new DateTime()))
+                    var serial = state.InfoMachine.First().MachineSerial;
+                    var mac = _context.Set<Machine>().FirstOrDefault(m => m.Serial == serial);
+                    if (mac == null)
+                        return false;
+
+                    var maxDate = _context.Set<StateMachine>()
+                        .Where(m => m.MachineId == mac.Id && m.EndTime != null).Max(et => et.EndTime);
+
+                    foreach (var var in state.StateMachine)
                     {
-                        _context.Set<StateMachine>().Add(stateM);
-                    }
-                }
+                        var.StartTime = var.StartTime.HasValue && var.StartTime.Value.Year < 1900
+                            ? null
+                            : var.StartTime;
+                        var.EndTime = var.EndTime.HasValue && var.EndTime.Value.Year < 1900 ? null : var.EndTime;
+                        if (var.StartTime != null && var.EndTime != null)
+                            var.TimeSpanDuration = var.EndTime?.Subtract((DateTime) var.StartTime).Ticks;
+                        else
+                            var.TimeSpanDuration = null;
 
-                _context.SaveChanges();
-                return true;
+                        var stateM = var.BuildAdapter().AddParameters("machineService", machineService)
+                            .AddParameters("machineId", mac.Id).AdaptToType<StateMachine>();
+
+
+
+
+                        if (var.EndTime > (maxDate ?? new DateTime()))
+                        {
+                            _context.Set<StateMachine>().Add(stateM);
+                        }
+                    }
+
+                    _context.SaveChanges();
+                    _context.usp_HistoricizingStates(mac.Id);
+                    _context.SaveChanges();
+                    return true;
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        public void Dispose()
+        {
+            _parentScope?.Dispose();
         }
     }
 }

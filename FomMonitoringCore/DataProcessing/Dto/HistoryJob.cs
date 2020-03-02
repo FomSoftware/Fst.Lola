@@ -2,7 +2,7 @@
 
 namespace FomMonitoringCore.DataProcessing.Dto
 {
-    public class HistoryJobMachine : BaseModel
+    public class HistoryJobMachine
     {
         public int Id { get; set; }
         public string JobCode { get; set; }
@@ -12,7 +12,7 @@ namespace FomMonitoringCore.DataProcessing.Dto
         public long? ElapsedTime { get; set; }
     }
 
-    public class BarMachine : BaseModel
+    public class BarMachine
     {
         public int Id { get; set; }
         public int? Index { get; set; }
@@ -27,7 +27,7 @@ namespace FomMonitoringCore.DataProcessing.Dto
         public string JobCode { get; set; }
     }
 
-    public class PieceMachine : BaseModel
+    public class PieceMachine
     {
         public int Id { get; set; }
         public int? BarId { get; set; }

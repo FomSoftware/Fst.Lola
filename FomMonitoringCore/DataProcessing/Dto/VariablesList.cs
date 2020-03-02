@@ -2,7 +2,7 @@
 
 namespace FomMonitoringCore.DataProcessing.Dto
 {
-    public class VariablesListMachine : BaseModel
+    public class VariablesListMachine
     {
         public int Id { get; set; }
         public DateTime UtcDateTime { get; set; }
