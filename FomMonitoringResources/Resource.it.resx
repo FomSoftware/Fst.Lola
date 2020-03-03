@@ -690,7 +690,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
     <value>La password deve essere almeno di 6 caratteri</value>
   </data>
   <data name="lw_minutiMandrinoAttivo" xml:space="preserve">
-    <value>Ore lavoro tot. elettromandrino</value>
+    <value>Ore lavoro tot.</value>
   </data>
   <data name="d_NumeroSblocchiUtensile" xml:space="preserve">
     <value>N. sblocchi pinza</value>
@@ -1020,10 +1020,10 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
     <value>Qta Schock</value>
   </data>
   <data name="TabSoglieAmpereMandriniINT_1" xml:space="preserve">
-    <value>Tempo Sovra-Assorbimento soglia alta</value>
+    <value>T. Sovrassorbimento soglia alta</value>
   </data>
   <data name="TabSoglieAmpereMandriniCUT_1" xml:space="preserve">
-    <value>Tempo Sovra-Assorbimento soglia media</value>
+    <value>T. Sovrassorbimento soglia media</value>
   </data>
   <data name="TabEtichettePerse" xml:space="preserve">
     <value>N. Etichette perse</value>
@@ -1047,34 +1047,34 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
     <value>Qta Sovra-Temper. Scheda</value>
   </data>
   <data name="TabSoglieAmpereContatoreINT" xml:space="preserve">
-    <value>Qta Sovra-assorbimento</value>
+    <value>Qta Sovrassorbimento</value>
   </data>
   <data name="TabTemperStatoreMinutiINT" xml:space="preserve">
-    <value>Tempo Sovra-Temper. Statore</value>
+    <value>Tempo Sovra-Temperatura</value>
   </data>
   <data name="TabTemperCuscinettiMinutiINT" xml:space="preserve">
-    <value>Tempo Sovra-Temper. Cuscinetti</value>
+    <value>Tempo Sovra-Temperatura</value>
   </data>
   <data name="TabTemperSchedaMinutiINT" xml:space="preserve">
-    <value>Tempo Sovra-Temper. Scheda</value>
+    <value>Tempo Sovra-Temperatura</value>
   </data>
   <data name="TabAccelerometroINT_1" xml:space="preserve">
     <value>Tempo Vibrazioni soglia bassa</value>
   </data>
   <data name="TabAccelerometroINT_2" xml:space="preserve">
-    <value>Tempo Vibrazioni soglia media</value>
+    <value>T. Vibrazioni soglia media</value>
   </data>
   <data name="TabAccelerometroINT_3" xml:space="preserve">
-    <value>Tempo Vibrazioni soglia alta</value>
+    <value>T. Vibrazioni soglia alta</value>
   </data>
   <data name="oreMandrinoAttivo" xml:space="preserve">
-    <value>Ore lavoro tot. elettromandrino</value>
+    <value>Ore lavoro tot.</value>
   </data>
   <data name="TimePassed" xml:space="preserve">
     <value>tempo trascorso</value>
   </data>
   <data name="TabTempoResiduoBarra" xml:space="preserve">
-    <value>Tempo residuo barra</value>
+    <value>Tempo res. barra</value>
   </data>
   <data name="TimeTot" xml:space="preserve">
     <value>T.Tot.</value>

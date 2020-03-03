@@ -1023,10 +1023,10 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Shock q.ty</value>
   </data>
   <data name="TabSoglieAmpereMandriniINT_1" xml:space="preserve">
-    <value>Exc. absorption time high threshold</value>
+    <value>Exc. absorption t. high threshold</value>
   </data>
   <data name="TabSoglieAmpereMandriniCUT_1" xml:space="preserve">
-    <value>Exc. absorption time med. threshold</value>
+    <value>Exc. absorption t. med. threshold</value>
   </data>
   <data name="TabEtichettePerse" xml:space="preserve">
     <value>No. Labels lost</value>
@@ -1053,22 +1053,22 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Excessive absorption q.ty</value>
   </data>
   <data name="TabTemperStatoreMinutiINT" xml:space="preserve">
-    <value>Stator Over-Temperature time</value>
+    <value>Over-Temperature time</value>
   </data>
   <data name="TabTemperCuscinettiMinutiINT" xml:space="preserve">
-    <value>Bearings Over-Temperature time</value>
+    <value>Over-Temperature time</value>
   </data>
   <data name="TabTemperSchedaMinutiINT" xml:space="preserve">
-    <value>Board Over-Temperature time</value>
+    <value>Over-Temperature time</value>
   </data>
   <data name="TabAccelerometroINT_1" xml:space="preserve">
     <value>Low threshold Vibration Time</value>
   </data>
   <data name="TabAccelerometroINT_2" xml:space="preserve">
-    <value>Medium threshold Vibration Time</value>
+    <value>Medium threshold Vibration T.</value>
   </data>
   <data name="TabAccelerometroINT_3" xml:space="preserve">
-    <value>High threshold Vibration Time</value>
+    <value>High threshold Vibration T.</value>
   </data>
   <data name="oreMandrinoAttivo" xml:space="preserve">
     <value>oreMandrinoAttivo</value>

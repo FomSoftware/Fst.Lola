@@ -692,7 +692,7 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>Das Kennwort muss aus mindestens 6 Zeichen bestehen</value>
   </data>
   <data name="lw_minutiMandrinoAttivo" xml:space="preserve">
-    <value>Gesamtarbeitsst. Spindel</value>
+    <value>Gesamtarbeitsst.</value>
   </data>
   <data name="d_NumeroSblocchiUtensile" xml:space="preserve">
     <value>Anz. Entriegel. Zange</value>
@@ -1022,10 +1022,10 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>Anz. Stöße</value>
   </data>
   <data name="TabSoglieAmpereMandriniINT_1" xml:space="preserve">
-    <value>Zeit überm. Aufnahme hohe Schwelle</value>
+    <value>Z. überm. Aufnahme hohe Schwelle</value>
   </data>
   <data name="TabSoglieAmpereMandriniCUT_1" xml:space="preserve">
-    <value>Zeit überm. Aufnahme mitt. Schwelle</value>
+    <value>Z. überm. Aufnahme mitt. Schwelle</value>
   </data>
   <data name="TabEtichettePerse" xml:space="preserve">
     <value>Anz. verlorene Etiketten</value>
@@ -1052,22 +1052,22 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>Menge überm. Stromaufnahme</value>
   </data>
   <data name="TabTemperStatoreMinutiINT" xml:space="preserve">
-    <value>Dauer Übertemperatur Stator</value>
+    <value>Dauer Übertemperatur</value>
   </data>
   <data name="TabTemperCuscinettiMinutiINT" xml:space="preserve">
-    <value>Dauer Übertemperatur Lager</value>
+    <value>Dauer Übertemperatur</value>
   </data>
   <data name="TabTemperSchedaMinutiINT" xml:space="preserve">
-    <value>Dauer Übertemperatur Platine</value>
+    <value>Dauer Übertemperatur</value>
   </data>
   <data name="TabAccelerometroINT_1" xml:space="preserve">
     <value>Zeit Vibrationen tiefe Schwelle</value>
   </data>
   <data name="TabAccelerometroINT_2" xml:space="preserve">
-    <value>Zeit Vibrationen mittlere Schwelle</value>
+    <value>Z. Vibrationen mittlere Schwelle</value>
   </data>
   <data name="TabAccelerometroINT_3" xml:space="preserve">
-    <value>Zeit Vibrationen hohe Schwelle</value>
+    <value>Z. Vibrationen hohe Schwelle</value>
   </data>
   <data name="TimePassed" xml:space="preserve">
     <value>verstr. Zeit</value>
@@ -1082,7 +1082,7 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>WERKZEUGLAGER (X-MODULE)</value>
   </data>
   <data name="oreMandrinoAttivo" xml:space="preserve">
-    <value>Gesamtarbeitsst. Spindel</value>
+    <value>Gesamtarbeitsst.</value>
   </data>
   <data name="UserNotEnabled" xml:space="preserve">
     <value>Benutzer nicht aktiviert</value>

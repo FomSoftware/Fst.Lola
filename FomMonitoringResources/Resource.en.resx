@@ -693,7 +693,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>The password must be at least 6 characters</value>
   </data>
   <data name="lw_minutiMandrinoAttivo" xml:space="preserve">
-    <value>Tot. working hours</value>
+    <value>Tot. working hous</value>
   </data>
   <data name="d_NumeroSblocchiUtensile" xml:space="preserve">
     <value>No. gripper releases</value>
@@ -1023,10 +1023,10 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Shock q.ty</value>
   </data>
   <data name="TabSoglieAmpereMandriniINT_1" xml:space="preserve">
-    <value>Exc. absorption time high threshold</value>
+    <value>Exc. absorption t. high threshold</value>
   </data>
   <data name="TabSoglieAmpereMandriniCUT_1" xml:space="preserve">
-    <value>Exc. absorption time med. threshold</value>
+    <value>Exc. absorption t. med. threshold</value>
   </data>
   <data name="TabEtichettePerse" xml:space="preserve">
     <value>No. Labels lost</value>
@@ -1053,28 +1053,28 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Over absorption q.ty</value>
   </data>
   <data name="TabTemperStatoreMinutiINT" xml:space="preserve">
-    <value>Stator Over-Temper. time</value>
+    <value>Over-Temper. time</value>
   </data>
   <data name="TabTemperCuscinettiMinutiINT" xml:space="preserve">
-    <value>Bearings Over-Temper. time</value>
+    <value>Over-Temper. time</value>
   </data>
   <data name="TabTemperSchedaMinutiINT" xml:space="preserve">
-    <value>Board Over-Temper. time</value>
+    <value>Over-Temper. time</value>
   </data>
   <data name="TabAccelerometroINT_1" xml:space="preserve">
     <value>Low threshold Vibration Time</value>
   </data>
   <data name="TabAccelerometroINT_2" xml:space="preserve">
-    <value>Medium threshold Vibration Time</value>
+    <value>Medium threshold Vibration T.</value>
   </data>
   <data name="TabAccelerometroINT_3" xml:space="preserve">
-    <value>High threshold Vibration Time</value>
+    <value>High threshold Vibration T.</value>
   </data>
   <data name="TimePassed" xml:space="preserve">
     <value>time passed</value>
   </data>
   <data name="TabTempoResiduoBarra" xml:space="preserve">
-    <value>Bar time remaining</value>
+    <value>Bar time rem.</value>
   </data>
   <data name="TimeTot" xml:space="preserve">
     <value>Tot.T.</value>
@@ -1089,7 +1089,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>TOOL MAG. (X-MODULE)</value>
   </data>
   <data name="oreMandrinoAttivo" xml:space="preserve">
-    <value>Tot. working hours</value>
+    <value>Tot. working hous</value>
   </data>
   <data name="UserNotEnabled" xml:space="preserve">
     <value>User not enabled</value>

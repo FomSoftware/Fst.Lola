@@ -690,7 +690,7 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
     <value>La contraseña debe tener al menos 6 caracteres.</value>
   </data>
   <data name="lw_minutiMandrinoAttivo" xml:space="preserve">
-    <value>Tot. horas uso electromandril</value>
+    <value>Tot. horas uso</value>
   </data>
   <data name="d_NumeroSblocchiUtensile" xml:space="preserve">
     <value>Nº desbloqueos pinza</value>
@@ -1020,10 +1020,10 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
     <value>Cant. Impactos</value>
   </data>
   <data name="TabSoglieAmpereMandriniINT_1" xml:space="preserve">
-    <value>Tiempo Sobreabsorción umbral alto</value>
+    <value>T. Sobreabsorción umbral alto</value>
   </data>
   <data name="TabSoglieAmpereMandriniCUT_1" xml:space="preserve">
-    <value>Tiempo Sobreabsorción umbral mediano</value>
+    <value>T. Sobreabsorción umbral med.</value>
   </data>
   <data name="TabEtichettePerse" xml:space="preserve">
     <value>Nº Etiquetas perdidas</value>
@@ -1050,28 +1050,28 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
     <value>Cant. Sobreabsorción</value>
   </data>
   <data name="TabTemperStatoreMinutiINT" xml:space="preserve">
-    <value>Tiempo Sobretemperatura Estator</value>
+    <value>Tiempo Sobretemperatura</value>
   </data>
   <data name="TabTemperCuscinettiMinutiINT" xml:space="preserve">
-    <value>Tiempo Sobretemperatura Cojinetes</value>
+    <value>Tiempo Sobretemperatura</value>
   </data>
   <data name="TabTemperSchedaMinutiINT" xml:space="preserve">
-    <value>Tiempo Sobretemperatura Placa</value>
+    <value>Tiempo Sobretemperatura</value>
   </data>
   <data name="TabAccelerometroINT_1" xml:space="preserve">
     <value>Tiempo Vibraciones umbral bajo</value>
   </data>
   <data name="TabAccelerometroINT_2" xml:space="preserve">
-    <value>Tiempo Vibraciones umbral mediano</value>
+    <value>T. Vibraciones umbral mediano</value>
   </data>
   <data name="TabAccelerometroINT_3" xml:space="preserve">
-    <value>Tiempo Vibraciones umbral alto</value>
+    <value>T. Vibraciones umbral alto</value>
   </data>
   <data name="TimePassed" xml:space="preserve">
     <value>tiempo transc.</value>
   </data>
   <data name="TabTempoResiduoBarra" xml:space="preserve">
-    <value>Tiempo restante bar</value>
+    <value>Tiempo rest. bar</value>
   </data>
   <data name="RotaryAxesXMU" xml:space="preserve">
     <value>EJES ROTATIVOS XMU</value>
@@ -1080,7 +1080,7 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
     <value>ALM.HERRAM. (X-MODULE)</value>
   </data>
   <data name="oreMandrinoAttivo" xml:space="preserve">
-    <value>Tot. horas uso electromandril</value>
+    <value>Tot. horas uso</value>
   </data>
   <data name="UserNotEnabled" xml:space="preserve">
     <value>Usuario no habilitado</value>

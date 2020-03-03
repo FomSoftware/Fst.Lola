@@ -2430,7 +2430,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Medium threshold Vibration Time.
+        ///   Looks up a localized string similar to Medium threshold Vibration T..
         /// </summary>
         public static string TabAccelerometroINT_2 {
             get {
@@ -2439,7 +2439,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to High threshold Vibration Time.
+        ///   Looks up a localized string similar to High threshold Vibration T..
         /// </summary>
         public static string TabAccelerometroINT_3 {
             get {
@@ -2520,7 +2520,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exc. absorption time med. threshold.
+        ///   Looks up a localized string similar to Exc. absorption t. med. threshold.
         /// </summary>
         public static string TabSoglieAmpereMandriniCUT_1 {
             get {
@@ -2529,7 +2529,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exc. absorption time high threshold.
+        ///   Looks up a localized string similar to Exc. absorption t. high threshold.
         /// </summary>
         public static string TabSoglieAmpereMandriniINT_1 {
             get {
@@ -2655,7 +2655,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bearings Over-Temperature time.
+        ///   Looks up a localized string similar to Over-Temperature time.
         /// </summary>
         public static string TabTemperCuscinettiMinutiINT {
             get {
@@ -2673,7 +2673,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Board Over-Temperature time.
+        ///   Looks up a localized string similar to Over-Temperature time.
         /// </summary>
         public static string TabTemperSchedaMinutiINT {
             get {
@@ -2691,7 +2691,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stator Over-Temperature time.
+        ///   Looks up a localized string similar to Over-Temperature time.
         /// </summary>
         public static string TabTemperStatoreMinutiINT {
             get {

@@ -690,7 +690,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Le mot de passe doit comporter au moins 6 caractères.</value>
   </data>
   <data name="lw_minutiMandrinoAttivo" xml:space="preserve">
-    <value>Heures tot. travail électrobroche</value>
+    <value>Heures tot. Travail</value>
   </data>
   <data name="d_NumeroSblocchiUtensile" xml:space="preserve">
     <value>Nb déblocages pince</value>
@@ -1020,10 +1020,10 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Q.té chocs</value>
   </data>
   <data name="TabSoglieAmpereMandriniINT_1" xml:space="preserve">
-    <value>Temps sur-absorption seuil haut</value>
+    <value>T. sur-absorption seuil haut</value>
   </data>
   <data name="TabSoglieAmpereMandriniCUT_1" xml:space="preserve">
-    <value>Temps sur-absorption seuil moyen</value>
+    <value>T. sur-absorption seuil moyen</value>
   </data>
   <data name="TabEtichettePerse" xml:space="preserve">
     <value>Nb étiquettes perdues</value>
@@ -1050,28 +1050,28 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Q.té surabsorption</value>
   </data>
   <data name="TabTemperStatoreMinutiINT" xml:space="preserve">
-    <value>Temps surtempér. stator</value>
+    <value>Temps surtempérature</value>
   </data>
   <data name="TabTemperCuscinettiMinutiINT" xml:space="preserve">
-    <value>Temps surtempér. roulements</value>
+    <value>Temps surtempérature</value>
   </data>
   <data name="TabTemperSchedaMinutiINT" xml:space="preserve">
-    <value>Temps surtempér. carte</value>
+    <value>Temps surtempérature</value>
   </data>
   <data name="TabAccelerometroINT_1" xml:space="preserve">
     <value>Temps vibrations seuil bas</value>
   </data>
   <data name="TabAccelerometroINT_2" xml:space="preserve">
-    <value>Temps vibrations seuil moyen</value>
+    <value>T. vibrations seuil moyen</value>
   </data>
   <data name="TabAccelerometroINT_3" xml:space="preserve">
-    <value>Temps vibrations seuil haut</value>
+    <value>T. vibrations seuil haut</value>
   </data>
   <data name="TimePassed" xml:space="preserve">
     <value>tps écoulé</value>
   </data>
   <data name="TabTempoResiduoBarra" xml:space="preserve">
-    <value>Temps résiduel bar</value>
+    <value>Temps résid. bar</value>
   </data>
   <data name="RotaryAxesXMU" xml:space="preserve">
     <value>AXES ROTATIFS XMU</value>
@@ -1080,7 +1080,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>MAG.OUTILS (X-MODULE)</value>
   </data>
   <data name="oreMandrinoAttivo" xml:space="preserve">
-    <value>Heures tot. travail électrobroche</value>
+    <value>Heures tot. Travail</value>
   </data>
   <data name="UserNotEnabled" xml:space="preserve">
     <value>Utilisateur non activé</value>
