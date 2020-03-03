@@ -65,7 +65,7 @@
         </div>
 
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 panels-area" id="panels-area">
-            <div class="row">
+            <div class="row background-machine">
                 @Html.Partial("Panels/_Efficiency", Model.Efficiency, new ViewDataDictionary
                 {
                     {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
@@ -110,9 +110,6 @@
                             @Html.Partial("Panels/_Messages", Model.Messages)
                         </div>
 
-                        <div class="col-12 placeholder-panel-full" style="height: 298px;">
-                            <div class="empty-area"></div>
-                        </div>
                     </div>
                 </div>
             </div>

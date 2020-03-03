@@ -24,7 +24,7 @@
                         <table style="height:auto">
                             <tr>
                                 <td style="padding:0">
-                                    <table class="table-spindle">
+                                    <table class="table-xmu-electrospindle">
                                         <tr>
                                             <td class="portlet-subtitle" style="font-size: 11px">
                                                 @Html.Raw(LocalizationService.GetResource("Assorbimento"))
@@ -34,28 +34,28 @@
                                             <td>
                                                 <table style="width: 100%; height: 100%">
                                                     <tr>
-                                                        <td class="td-other-data">
+                                                        <td class="td-xmu-electrospindle">
                                                             <label style="vertical-align: top; width: 20px"><i class="fa fa-clock-o  fa-lg" aria-hidden="true"></i></label>
                                                             <label v-if="values.SoglieAmpereMandrini != null" class="label-other-title" v-html="values.SoglieAmpereMandrini.Description"></label>
                                                         </td>
-                                                        <td class="td-other-data  tool-border-left">
+                                                        <td class="td-xmu-electrospindle  tool-border-left">
                                                             <label style="vertical-align: top; width: 20px;"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
                                                             <label v-if="values.SoglieAmpereContatore != null" class="label-other-title" v-html="values.SoglieAmpereContatore.Description"></label>
                                                         </td>
-                                                        <td class="td-other-data"></td>
+                                                        <td class="td-xmu-electrospindle"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="td-other-data ">
+                                                        <td class="td-xmu-electrospindle ">
                                                             <label v-if="values.SoglieAmpereMandrini != null && values.SoglieAmpereMandrini.ConvertedValue" class="label-other-data-value" v-html="values.SoglieAmpereMandrini.ConvertedValue"></label>
                                                         </td>
-                                                        <td class="td-other-data tool-border-left">
+                                                        <td class="td-xmu-electrospindle tool-border-left">
                                                             <label v-if="values.SoglieAmpereContatore != null && values.SoglieAmpereContatore.ConvertedValue" class="label-other-data-value" v-html="values.SoglieAmpereContatore.ConvertedValue"></label>
                                                         </td>
-                                                        <td class="td-other-data"></td>
+                                                        <td class="td-xmu-electrospindle"></td>
                                                     </tr>
                                                 </table>
                                     </table>
-                                    <table class="table-spindle">
+                                    <table class="table-xmu-electrospindle">
                                         <tr>
                                             <td class="portlet-subtitle" style="font-size: 11px">
                                                 @Html.Raw(LocalizationService.GetResource("Vibrazioni"))
@@ -65,27 +65,27 @@
                                             <td>
                                                 <table style="width: 100%; height: 100%">
                                                     <tr>
-                                                        <td class="td-other-data">
+                                                        <td class="td-xmu-electrospindle">
                                                             <label><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                             <label v-if="values.AccelerometroINT_1 != null" class="label-other-title" v-html="values.AccelerometroINT_1.Description"></label>
                                                         </td>
-                                                        <td class="td-other-data tool-border-left">
+                                                        <td class="td-xmu-electrospindle tool-border-left">
                                                             <label><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                             <label v-if="values.AccelerometroINT_2 != null" class="label-other-title" v-html="values.AccelerometroINT_2.Description"></label>
                                                         </td>
-                                                        <td class="td-other-data">
+                                                        <td class="td-xmu-electrospindle">
                                                             <label style="vertical-align: top;"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                             <label v-if="values.AccelerometroINT_3 != null" class="label-other-title" v-html="values.AccelerometroINT_3.Description"></label>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="td-other-data">
+                                                        <td class="td-xmu-electrospindle">
                                                             <label v-if="values.AccelerometroINT_1 != null && values.AccelerometroINT_1.ConvertedValue" class="label-other-data-value" v-html="values.AccelerometroINT_1.ConvertedValue"></label>
                                                         </td>
-                                                        <td class="td-other-data tool-border-left">
+                                                        <td class="td-xmu-electrospindle tool-border-left">
                                                             <label v-if="values.AccelerometroINT_2 != null && values.AccelerometroINT_2.ConvertedValue" class="label-other-data-value" v-html="values.AccelerometroINT_2.ConvertedValue"></label>
                                                         </td>
-                                                        <td class="td-other-data">
+                                                        <td class="td-xmu-electrospindle">
                                                             <label v-if="values.AccelerometroINT_3 != null && values.AccelerometroINT_3.ConvertedValue" class="label-other-data-value" v-html="values.AccelerometroINT_3.ConvertedValue"></label>
                                                         </td>
                                                     </tr>
@@ -95,27 +95,27 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="td-other-data">
+                                                        <td class="td-xmu-electrospindle">
                                                             <label class="label-second-row"><i class="fa fa-exclamation-triangle color-red fa-lg" aria-hidden="true"></i></label>
                                                             <label v-if="values.HSD_NumCollRilevate != null" class="label-sensors-title" v-html="values.HSD_NumCollRilevate.Description"></label>
                                                         </td>
-                                                        <td class="td-other-data tool-border-left">
+                                                        <td class="td-xmu-electrospindle tool-border-left">
                                                             <label class="label-second-row"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
                                                             <label v-if="values.AccelContatoreINT_2 != null" class="label-sensors-title" v-html="values.AccelContatoreINT_2.Description"></label>
                                                         </td>
-                                                        <td class="td-other-data">
+                                                        <td class="td-xmu-electrospindle">
                                                             <label class="label-second-row"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
                                                             <label v-if="values.AccelContatoreINT_3 != null" class="label-sensors-title" v-html="values.AccelContatoreINT_3.Description"></label>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="td-other-data">
+                                                        <td class="td-xmu-electrospindle">
                                                             <label v-if="values.HSD_NumCollRilevate != null && values.HSD_NumCollRilevate.ConvertedValue" class="label-other-data-value" v-html="values.HSD_NumCollRilevate.ConvertedValue"></label>
                                                         </td>
-                                                        <td class="td-other-data tool-border-left">
+                                                        <td class="td-xmu-electrospindle tool-border-left">
                                                             <label v-if="values.AccelContatoreINT_2 != null && values.AccelContatoreINT_2.ConvertedValue" class="label-other-data-value" v-html="values.AccelContatoreINT_2.ConvertedValue"></label>
                                                         </td>
-                                                        <td class="td-other-data">
+                                                        <td class="td-xmu-electrospindle">
                                                             <label v-if="values.AccelContatoreINT_3 != null && values.AccelContatoreINT_3.ConvertedValue" class="label-other-data-value" v-html="values.AccelContatoreINT_3.ConvertedValue"></label>
                                                         </td>
                                                     </tr>
@@ -123,7 +123,7 @@
                                             </td>
                                         </tr>
                                     </table>
-                                    <table class="table-spindle">
+                                    <table class="table-xmu-electrospindle">
                                         <tr>
                                             <td class="portlet-subtitle" style="font-size: 11px">
                                                 @Html.Raw(LocalizationService.GetResource("TemperaturaSchedaEl"))
@@ -133,28 +133,28 @@
                                             <td>
                                                 <table style="width: 100%; height: 100%">
                                                     <tr>
-                                                        <td class="td-other-data">
+                                                        <td class="td-xmu-electrospindle">
                                                             <label style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                             <label v-if="values.TemperSchedaMinutiINT != null" class="label-other-title" v-html="values.TemperSchedaMinutiINT.Description"></label>
                                                         </td>
-                                                        <td class="td-other-data  tool-border-left">
+                                                        <td class="td-xmu-electrospindle  tool-border-left">
                                                             <label style="vertical-align: top; width: 20px;"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
                                                             <label v-if="values.TemperSchedaContatoreINT != null" class="label-other-title" v-html="values.TemperSchedaContatoreINT.Description"></label>
                                                         </td>
-                                                        <td class="td-other-data"></td>
+                                                        <td class="td-xmu-electrospindle"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="td-other-data ">
+                                                        <td class="td-xmu-electrospindle ">
                                                             <label v-if="values.TemperSchedaMinutiINT != null && values.TemperSchedaMinutiINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperSchedaMinutiINT.ConvertedValue"></label>
                                                         </td>
-                                                        <td class="td-other-data tool-border-left">
+                                                        <td class="td-xmu-electrospindle tool-border-left">
                                                             <label v-if="values.TemperSchedaContatoreINT != null && values.TemperSchedaContatoreINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperSchedaContatoreINT.ConvertedValue"></label>
                                                         </td>
-                                                        <td class="td-other-data"></td>
+                                                        <td class="td-xmu-electrospindle"></td>
                                                     </tr>
                                                 </table>
                                     </table>
-                                    <table class="table-spindle">
+                                    <table class="table-xmu-electrospindle">
                                         <tr>
                                             <td class="portlet-subtitle" style="font-size: 11px">
                                                 @Html.Raw(LocalizationService.GetResource("TemperaturaStatore"))
@@ -164,28 +164,28 @@
                                             <td>
                                                 <table style="width: 100%; height: 100%">
                                                     <tr>
-                                                        <td class="td-other-data">
+                                                        <td class="td-xmu-electrospindle">
                                                             <label style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                             <label v-if="values.TemperStatoreMinutiINT != null" class="label-other-title" v-html="values.TemperStatoreMinutiINT.Description"></label>
                                                         </td>
-                                                        <td class="td-other-data  tool-border-left">
+                                                        <td class="td-xmu-electrospindle  tool-border-left">
                                                             <label style="vertical-align: top; width: 20px;"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
                                                             <label v-if="values.TemperStatoreContatoreINT != null" class="label-other-title" v-html="values.TemperStatoreContatoreINT.Description"></label>
                                                         </td>
-                                                        <td class="td-other-data"></td>
+                                                        <td class="td-xmu-electrospindle"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="td-other-data ">
+                                                        <td class="td-xmu-electrospindle ">
                                                             <label v-if="values.TemperStatoreMinutiINT != null && values.TemperStatoreMinutiINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperStatoreMinutiINT.ConvertedValue"></label>
                                                         </td>
-                                                        <td class="td-other-data tool-border-left">
+                                                        <td class="td-xmu-electrospindle tool-border-left">
                                                             <label v-if="values.TemperStatoreContatoreINT != null && values.TemperStatoreContatoreINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperStatoreContatoreINT.ConvertedValue"></label>
                                                         </td>
-                                                        <td class="td-other-data"></td>
+                                                        <td class="td-xmu-electrospindle"></td>
                                                     </tr>
                                                 </table>
                                     </table>
-                                    <table class="table-spindle">
+                                    <table class="table-xmu-electrospindle" style="height: 95px;">
                                         <tr>
                                             <td class="portlet-subtitle" style="font-size: 11px">
                                                 @Html.Raw(LocalizationService.GetResource("TemperaturaCuscinetti"))
@@ -195,24 +195,24 @@
                                             <td>
                                                 <table style="width: 100%; height: 100%">
                                                     <tr>
-                                                        <td class="td-other-data">
+                                                        <td class="td-xmu-electrospindle">
                                                             <label style="vertical-align: top; width: 20px"><i class="fa fa-clock-o  fa-lg" aria-hidden="true"></i></label>
                                                             <label v-if="values.TemperCuscinettiMinutiINT != null" class="label-other-title" v-html="values.TemperCuscinettiMinutiINT.Description"></label>
                                                         </td>
-                                                        <td class="td-other-data  tool-border-left">
+                                                        <td class="td-xmu-electrospindle  tool-border-left">
                                                             <label style="vertical-align: top; width: 20px;"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
                                                             <label v-if="values.TemperCuscinettiContatoreINT != null" class="label-other-title" v-html="values.TemperCuscinettiContatoreINT.Description"></label>
                                                         </td>
-                                                        <td class="td-other-data"></td>
+                                                        <td class="td-xmu-electrospindle"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="td-other-data ">
+                                                        <td class="td-xmu-electrospindle ">
                                                             <label v-if="values.TemperCuscinettiMinutiINT != null && values.TemperCuscinettiMinutiINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperCuscinettiMinutiINT.ConvertedValue"></label>
                                                         </td>
-                                                        <td class="td-other-data tool-border-left">
+                                                        <td class="td-xmu-electrospindle tool-border-left">
                                                             <label v-if="values.TemperCuscinettiContatoreINT != null && values.TemperCuscinettiContatoreINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperCuscinettiContatoreINT.ConvertedValue"></label>
                                                         </td>
-                                                        <td class="td-other-data"></td>
+                                                        <td class="td-xmu-electrospindle"></td>
                                                     </tr>
                                                 </table>
                                     </table>
