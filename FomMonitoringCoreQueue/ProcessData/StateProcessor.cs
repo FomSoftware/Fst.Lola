@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using Autofac;
 using FomMonitoringCore.DAL;
@@ -34,7 +35,7 @@ namespace FomMonitoringCoreQueue.ProcessData
                         return false;
 
                     var maxDate = _context.Set<StateMachine>()
-                        .Where(m => m.MachineId == mac.Id && m.EndTime != null).Max(et => et.EndTime);
+                        .Where(m => m.MachineId == mac.Id && m.EndTime != null).Max(et => et.EndTime) ?? new DateTime();
 
                     foreach (var var in state.StateMachine)
                     {
@@ -50,13 +51,10 @@ namespace FomMonitoringCoreQueue.ProcessData
                         var stateM = var.BuildAdapter().AddParameters("machineService", machineService)
                             .AddParameters("machineId", mac.Id).AdaptToType<StateMachine>();
 
-
-
-
-                        if (var.EndTime > (maxDate ?? new DateTime()))
-                        {
+                        if(stateM.EndTime > maxDate)
                             _context.Set<StateMachine>().Add(stateM);
-                        }
+ 
+
                     }
 
                     _context.SaveChanges();

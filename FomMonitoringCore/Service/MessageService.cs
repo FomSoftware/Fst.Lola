@@ -476,7 +476,7 @@ namespace FomMonitoringCore.Service
 
         public void InsertMessageMachine(Machine machine, string code, DateTime day)
         {
-            if (code == null) return;
+            if (string.IsNullOrWhiteSpace(code)) return;
             var msgIndex = _context.Set<MessagesIndex>().FirstOrDefault(mi =>
                 mi.MessageCode == code && mi.MessageCategory.Id == machine.MachineModel.MessageCategoryId);
             if (msgIndex == null) return;

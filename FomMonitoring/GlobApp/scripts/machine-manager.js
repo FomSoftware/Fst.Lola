@@ -84,6 +84,7 @@
                 Tools.update(tools[0]);
                 XTools.update(xTools[0]);
                 Jobs.update(job[0]);
+                OtherMachinesJobs.update(job[0]);
                 Messages.update(messages[0]);
                 Maintenance.update(maintenance[0]);
                 MotorAxesBlitz.update(parameters[0]);

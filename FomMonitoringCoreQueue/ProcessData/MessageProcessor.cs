@@ -76,9 +76,9 @@ namespace FomMonitoringCoreQueue.ProcessData
 
                     }
 
-
                     mac.LastUpdate = DateTime.UtcNow;
 
+                    _context.SaveChanges();
                     _context.usp_HistoricizingMessages(mac.Id);
 
 
