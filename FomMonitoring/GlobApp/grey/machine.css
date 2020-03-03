@@ -1781,6 +1781,15 @@ hr.axes {
             flex: 0 0 100%;
             max-width: 100%;
         }
+
+        .order-xxl-11 {
+            order: 11;
+        }
+
+        .order-xxl-12 {
+            order: 12;
+        }
+
         .empty-area-row {
             background-size: 49% 285px;
         }
