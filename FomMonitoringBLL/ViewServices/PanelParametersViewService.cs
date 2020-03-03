@@ -272,9 +272,10 @@ namespace FomMonitoringBLL.ViewServices
         private MultiSpindleParameterVueModel GetMultiSpindleVueModelCluster(List<ParameterMachineValueModel> par,
             int cluster)
         {
+            string varOreTot = "TabRpmTotMandriniMM_"+ cluster.ToString();
             var result = new MultiSpindleParameterVueModel
             {
-                OreLavoroTotali = par.FirstOrDefault(p => p.Cluster == cluster.ToString() && p.VarNumber == 40141),
+                OreLavoroTotali = par.FirstOrDefault(p => p.Cluster == cluster.ToString() && p.Keyword.Equals(varOreTot)),
                 RpmRange1500 = par.FirstOrDefault(p => p.Cluster == cluster.ToString() && p.Keyword.EndsWith("_1")),
                 RpmRange3999 = par.FirstOrDefault(p => p.Cluster == cluster.ToString() && p.Keyword.Contains("_2")),
                 RpmRange7999 = par.FirstOrDefault(p => p.Cluster == cluster.ToString() && p.Keyword.Contains("_3")),

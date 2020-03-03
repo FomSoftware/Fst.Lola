@@ -117,14 +117,10 @@
             if (vmImageMachine.machineGroupSelected == 'LMX650_StepIn_Out') {
                 AxesLmx650.show();
                 OtherDataLMX.show();
-                $(".placeholder-panel-mob-lmx").hide();
+              
             } else {
                 AxesLmx650.hide();
                 OtherDataLMX.hide();
-                if (vmImageMachine.isTablet() || vmImageMachine.isLargeTablet())
-                    $(".placeholder-panel-mob-lmx").show();
-                else
-                    $(".placeholder-panel-mob-lmx").hide();
             }
             if (vmImageMachine.machineGroupSelected == 'LMX650_MM') {
                 MultiSpindles.show();
@@ -136,12 +132,6 @@
                 ToolsFmcLmx.hide();
             }
 
-            if (vmImageMachine.isTablet() && vmImageMachine.machineGroupSelected != 'LMX650_XMU') {
-                $(".placeholder-panel-full-lmx").show();
-            } else {
-                $(".placeholder-panel-full-lmx").hide();
-            }
-            
         }
 
 

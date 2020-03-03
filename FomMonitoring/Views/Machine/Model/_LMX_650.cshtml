@@ -71,24 +71,23 @@
 
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 panels-area" id="panels-area">
 
-                <div class="row">
-                    @Html.Partial("Panels/_Efficiency", Model.Efficiency, new ViewDataDictionary
-                        {
-                            {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
-                        })
-                    @Html.Partial("Panels/_Productivity", Model.Productivity, new ViewDataDictionary
+            <div class="row empty-area-row">
+                @Html.Partial("Panels/_Efficiency", Model.Efficiency, new ViewDataDictionary
                     {
-                        {"Classes", "col-xxl-4 col-xl-6  col-lg-6 col-md-12 col-sm-12 col-12"}
+                        {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
                     })
-                    @Html.Partial("Panels/Jobs/_FMC_LMX", Model.Jobs, new ViewDataDictionary
-                    {
-                        {"Classes", "col-xxl-4 col-xl-6  col-lg-6 col-md-12 col-sm-12 col-12"}
-                    })
-               
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4">
-                        @Html.Partial("Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter, new ViewDataDictionary { })
+                @Html.Partial("Panels/_Productivity", Model.Productivity, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-6  col-lg-6 col-md-12 col-sm-12 col-12"}
+                })
+                @Html.Partial("Panels/Jobs/_FMC_LMX", Model.Jobs, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-6  col-lg-6 col-md-12 col-sm-12 col-12"}
+                })
 
+                <div class="row" style="padding:0 15px">
+                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4" style="padding:0">
+                        @Html.Partial("Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter, new ViewDataDictionary { })
 
                         @Html.Partial("Panels/RotaryAxes/_LMX650", Model.PanelParameter, new ViewDataDictionary
                         {
@@ -98,60 +97,58 @@
                     {
                         {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
                     })
-                </div>
-                
+
                     @Html.Partial("Panels/XTools/_Lmx", Model.PanelParameter, new ViewDataDictionary
                     {
                         {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
                     })
 
-                    @Html.Partial("Panels/MultiSpindles/_Multispindle", Model.PanelParameter, new ViewDataDictionary
-                    {
-                        {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
-                    })
-                    @Html.Partial("Panels/TiltingAxes/_LMX650", Model.PanelParameter, new ViewDataDictionary
-                    {
-                        {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
-                    })
-
-                    @Html.Partial("Panels/Tools/_FmcLmx", Model.PanelParameter, new ViewDataDictionary
-                    {
-                        {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
-                    })
-
-                    @Html.Partial("Panels/Axes/_LMX_650", Model.PanelParameter, new ViewDataDictionary
-                    {
-                        {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
-                    })
-                    @Html.Partial("Panels/OtherMachineData/_LMX650", Model.PanelParameter, new ViewDataDictionary
-                    {
-                        {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
-                    })
-
-                    @Html.Partial("Panels/motor/_LMX_650", Model.PanelParameter, new ViewDataDictionary
-                    {
-                        {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
-                    })
+                </div>
 
 
-                    @Html.Partial("Panels/_Maintenance", Model.Maintenance, new ViewDataDictionary
-                    {
-                        {"Classes", "col-xxl-4 col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12 order-xl-last"}
-                    })
-                    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 placeholder-panel-mob-lmx" style="min-height: 298px;">
-                        <div class="empty-area" style="height: 100%"></div>
-                    </div>
-                    <div id="MsgPanel" class="col-xxl-8 col-xl-6 col-lg-6 col-md-12 col-sm-12 order-lg-11 order-xl-11">
-                        <div class="row">
-                            <div class="col-12">
-                                @Html.Partial("Panels/_Messages", Model.Messages)
-                            </div>
-                            <div class="col-12 placeholder-panel-full-lmx" style="height: 298px;">
-                                <div class="empty-area" style="background-repeat: round;"></div>
-                            </div>
+                @Html.Partial("Panels/MultiSpindles/_Multispindle", Model.PanelParameter, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 order-xl-1"}
+                })
+                @Html.Partial("Panels/TiltingAxes/_LMX650", Model.PanelParameter, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 order-xl-11"}
+                })
+
+                @Html.Partial("Panels/Tools/_FmcLmx", Model.PanelParameter, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 order-xl-11"}
+                })
+
+                @Html.Partial("Panels/Axes/_LMX_650", Model.PanelParameter, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 padding-left-30"}
+                })
+                @Html.Partial("Panels/OtherMachineData/_LMX650", Model.PanelParameter, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 order-xl-12"}
+                })
+
+                @Html.Partial("Panels/motor/_LMX_650", Model.PanelParameter, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
+                })
+
+                @Html.Partial("Panels/_Maintenance", Model.Maintenance, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12 order-lg-10 order-xl-last"}
+                })
+
+
+
+                <div id="MsgPanel" class="col-xxl-8 col-xl-6 col-lg-6 col-md-12 col-sm-12 order-lg-11 order-xl-9">
+                    <div class="row">
+                        <div class="col-12">
+                            @Html.Partial("Panels/_Messages", Model.Messages)
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
 </div>
