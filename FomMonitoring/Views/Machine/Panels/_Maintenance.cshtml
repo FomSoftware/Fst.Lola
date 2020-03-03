@@ -34,17 +34,17 @@
                             <thead>
                                 <tr>
                                     <th style="width:5%"></th>
-                                    <th style="width:55%">
+                                    <th style="width: 35%;">
                                     </th>
                                     <th style="width:22%" class="th-duration sorting" v-bind:class="sorting.timestamp" v-on:click="sortTimestamp()">
                                         <i class="fa fa-clock-o color-aaa"></i>
-                                        <span class="value-title">
+                                        <span class="value-title testo-abbreviato">
                                             @LocalizationService.GetResource("Timestamp")
                                         </span>
                                     </th>
                                     <th style="width:18%">
                                         <i class="fa fa-clock-o color-aaa"></i>
-                                        <span class="value-title">
+                                        <span class="value-title testo-abbreviato">
                                             @LocalizationService.GetResource("MsgExpiredTime")
                                         </span>
                                     </th>
@@ -65,9 +65,9 @@
                                                 <i class="fa fa-check fa-stack-1x fa-inverse" style="top: 0;"></i>
                                             </span>
                                         </td>
-                                        <td style="width:55%">{{ message.description }}</td>
-                                        <td style="width:20%">{{ convert_timestamp(message.timestamp, message.utc) }}</td>
-                                        <td style="min-width:80px;width:20%">
+                                        <td style="width:35%">{{ message.description }}</td>
+                                        <td style="width:22%">{{ convert_timestamp(message.timestamp, message.utc) }}</td>
+                                        <td style="min-width:80px;width:18%">
                                             <time-span v-bind:duration="message.expiredSpan"></time-span>
                                         </td>
                                     </tr>
