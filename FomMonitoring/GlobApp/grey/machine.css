@@ -1107,7 +1107,7 @@ td.td-xmu-electrospindle {
     padding-left: 6px;
 }
 
-td.tool-border-left {
+td.tool-border-left, td.xmu-electrospindle-border-left {
     /*border-left: 1px solid #676767;*/
     background-color: #b4b4b4
 }
