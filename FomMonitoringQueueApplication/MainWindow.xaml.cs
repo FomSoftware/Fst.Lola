@@ -19,6 +19,7 @@ namespace FomMonitoringQueueApplication
     {
         private static Timer _aTimer;
         public static ConsumerInitializer ConsumerInitializer;
+
         public MainWindow()
         {
             InitializeComponent();

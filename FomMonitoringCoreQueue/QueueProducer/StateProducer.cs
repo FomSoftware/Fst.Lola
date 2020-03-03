@@ -18,10 +18,11 @@ namespace FomMonitoringCoreQueue.QueueProducer
         {
             var message = JsonConvert.SerializeObject(model);
             var body = Encoding.UTF8.GetBytes(message);
-
+            var props = _queueConnection.ChannelHistoryJobPieceBar.CreateBasicProperties();
+            props.Persistent = true;
             _queueConnection.ChannelState.BasicPublish("",
                 "State",
-                null, body);
+                props, body);
 
             return true;
         }

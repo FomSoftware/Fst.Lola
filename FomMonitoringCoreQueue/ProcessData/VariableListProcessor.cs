@@ -19,15 +19,14 @@ namespace FomMonitoringCoreQueue.ProcessData
         public VariableListProcessor(ILifetimeScope parentScope)
         {
             _parentScope = parentScope;
+            _context = parentScope.Resolve<IFomMonitoringEntities>();
+            _messageService = parentScope.Resolve<IMessageService>();
         }
         public bool ProcessData(VariablesList data)
         {
             try
             {
-                using (var threadLifetime = _parentScope.BeginLifetimeScope())
-                using (var _context = threadLifetime.Resolve<IFomMonitoringEntities>())
-                using (var messageService = threadLifetime.Resolve<IMessageService>())
-                {
+
                     var serial = data.InfoMachine.FirstOrDefault()?.MachineSerial;
                     var mac = _context.Set<Machine>().FirstOrDefault(m => m.Serial == serial);
                     if (mac == null)
@@ -131,7 +130,7 @@ namespace FomMonitoringCoreQueue.ProcessData
                     mac.LastUpdate = DateTime.UtcNow;
                     _context.SaveChanges();
                     return true;
-                }
+                
             }
             catch (Exception ex)
             {
@@ -155,7 +154,7 @@ namespace FomMonitoringCoreQueue.ProcessData
             if (value.VariableValue < min || value.VariableValue > max)
             {
                 var mes = _context.Set<MessageMachine>().AsNoTracking().FirstOrDefault(mm =>
-                    mm.MachineId == machine.Id && mm.MessagesIndex.IsPeriodicM &&
+                    mm.MachineId == machine.Id && mm.MessagesIndex != null && mm.MessagesIndex.IsPeriodicM &&
                     mm.MessagesIndex.MessageCode == par.ThresholdLabel);
                 if (mes == null)
                     _messageService.InsertMessageMachine(machine, par.ThresholdLabel, utcDatetime);
@@ -188,8 +187,6 @@ namespace FomMonitoringCoreQueue.ProcessData
         public void Dispose()
         {
             _parentScope?.Dispose();
-            _context?.Dispose();
-            _messageService?.Dispose();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Autofac;
+using FomMonitoringCoreQueue.Connection;
 using FomMonitoringCoreQueue.Dto;
 using FomMonitoringCoreQueue.Events;
 
@@ -21,6 +22,8 @@ namespace FomMonitoringCoreQueue.QueueConsumer
         private ILifetimeScope _scopeState;
         private IContainer CurrentContainer { get; set; }
 
+        private IQueueConnection Connection;
+
         public ConsumerInitializer()
         {
             Init();
@@ -33,7 +36,7 @@ namespace FomMonitoringCoreQueue.QueueConsumer
             Ioc.IocContainerBuilder.BuildCore(builder, false, true);
 
             CurrentContainer = builder.Build();
-
+            Connection = CurrentContainer.Resolve<IQueueConnection>();
             _scopeVariable = CurrentContainer.BeginLifetimeScope();
             _scopeInfo = CurrentContainer.BeginLifetimeScope();
             _scopeMessage = CurrentContainer.BeginLifetimeScope();

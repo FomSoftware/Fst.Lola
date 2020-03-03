@@ -30,7 +30,6 @@ namespace FomMonitoringCoreQueue.ProcessData
                         var barService = threadLifetime.Resolve<IBarService>();
                         var jobService = threadLifetime.Resolve<IJobService>();
                         var machineService = threadLifetime.Resolve<IMachineService>();
-                        context.Refresh();
                         var serial = data.InfoMachine.FirstOrDefault()?.MachineSerial;
                         var mac = context.Set<Machine>().FirstOrDefault(m => m.Serial == serial);
 
@@ -41,10 +40,6 @@ namespace FomMonitoringCoreQueue.ProcessData
                         var bar = data.BarMachine.BuildAdapter().AddParameters("machineId", mac.Id)
                             .AdaptToType<List<Bar>>();
 
-                        var maxDate = context.Set<FomMonitoringCore.DAL.Bar>()
-                            .Where(m => m.MachineId == mac.Id && m.StartTime != null).Max(et => et.StartTime);
-
-                        bar = bar.Where(w => w.StartTime > (maxDate ?? new DateTime())).ToList();
 
                         foreach (var bb in bar)
                         {
@@ -59,35 +54,23 @@ namespace FomMonitoringCoreQueue.ProcessData
 
                         var historyJob = data.HistoryJobMachine.BuildAdapter().AddParameters("machineId", mac.Id)
                             .AdaptToType<List<HistoryJob>>();
-                        if (historyJob != null)
-                        {
-                            context.Set<HistoryJob>().AddRange(historyJob);
-                        }
+
+                        var minDateHistoryJob = historyJob.Any(a => a.Day.HasValue) ? historyJob.Where(w => w.Day.HasValue && w.MachineId == mac.Id).Select(s => s.Day).Min() : new DateTime();
+                        var removeHistoryJob = context.Set<HistoryJob>().Where(w => w.Day.HasValue && w.Day.Value >= minDateHistoryJob && w.MachineId == mac.Id).ToList();
+                        context.Set<HistoryJob>().RemoveRange(removeHistoryJob);
+                        context.Set<HistoryJob>().AddRange(historyJob);
+
                         context.SaveChanges();
-                        var maxDatePiece = context.Set<Piece>()
-                            .Where(m => m.MachineId == mac.Id && m.EndTime != null).Max(et => et.EndTime);
 
                         var piece = data.PieceMachine.BuildAdapter().AddParameters("machineId", mac.Id).AddParameters("barService", barService).AddParameters("jobService", jobService).AddParameters("machineService", machineService)
                             .AdaptToType<List<Piece>>();
 
-
-                        piece = piece.Where(w => w.EndTime > (maxDatePiece ?? new DateTime())).ToList();
-                        foreach (var p in piece)
-                        {
-                            var exists = context.Set<Piece>().Any(pp =>
-                                pp.Operator == p.Operator && pp.MachineId == mac.Id && (pp.Day == null && p.Day == null || pp.Day.Value ==p.Day.Value) &&
-                                pp.Shift == p.Shift);
-                            if(exists)
-                                continue;
-
-                            context.Set<Piece>().Add(p);
-                        }
-
-                        context.SaveChanges();
-
+                        
+                        context.Set<Piece>().AddRange(piece);
                         mac.LastUpdate = DateTime.UtcNow;
-
                         context.SaveChanges();
+
+
                         context.usp_HistoricizingPieces(mac.Id);
                         context.usp_HistoricizingBars(mac.Id);
 
