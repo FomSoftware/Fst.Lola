@@ -925,10 +925,14 @@ a.click-more {
 
 /*#region table spindle */
 
-.table-spindle, .table-xmu-electrospindle {
+.table-spindle, .table-xmu-electrospindle, .table-rotary-axes {
     width: calc(100% + 1px);
     table-layout: fixed;
     height: 100%;
+}
+
+.table-rotary-axes{
+    width: 100%;
 }
 
 
@@ -1292,7 +1296,7 @@ td.td-tools-light {
 .table-electro-spindle, .table-other-data {
     height: 100%;
     table-layout: fixed;
-    width: calc(100% + 1px);
+    width: 100%;
     overflow-x: hidden;
 }
 

@@ -2,7 +2,7 @@
 @model FomMonitoringBLL.ViewModel.PanelParametersViewModel
 @using FomMonitoringCore.Service
 
-<div id="CardSensorSpindles"  class="@ViewData["Classes"]" style="height: 581px;" v-show="showed">
+<div id="CardSensorSpindles"  class="@ViewData["Classes"]" style="height: 580px;" v-show="showed">
     <div class="portlet">
         <div class="portlet-title">
             <div class="portlet-kpi">
@@ -19,11 +19,11 @@
         <div class="portlet-body text-center" >
             <div class="card-portlet" style="height:542px">
                 <div id="sensorSlimscroll" v-if="noData() == false" style="height:100%" class="slimscroll">
-                    <hr style="background-color:#0c3817;height:2px;border:none" />
-                    <div style="cursor: auto;">
-                        <table style="height:auto">
+                <div style="cursor: auto;">
+                        <table style="height: auto">
+                            <tr style="background-color: #0c3817; height: 2px; border: none;"><td></td></tr>
                             <tr>
-                                <td style="padding:0">
+                                <td style="padding: 0">
                                     <table class="table-xmu-electrospindle">
                                         <tr>
                                             <td class="portlet-subtitle" style="font-size: 11px">
@@ -31,29 +31,29 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <table style="width: 100%; height: 100%">
-                                                    <tr>
-                                                        <td class="td-xmu-electrospindle">
-                                                            <label style="vertical-align: top; width: 20px"><i class="fa fa-clock-o  fa-lg" aria-hidden="true"></i></label>
-                                                            <label v-if="values.SoglieAmpereMandrini != null" class="label-other-title" v-html="values.SoglieAmpereMandrini.Description"></label>
-                                                        </td>
-                                                        <td class="td-xmu-electrospindle  xmu-electrospindle-border-left">
-                                                            <label style="vertical-align: top; width: 20px;"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
-                                                            <label v-if="values.SoglieAmpereContatore != null" class="label-other-title" v-html="values.SoglieAmpereContatore.Description"></label>
-                                                        </td>
-                                                        <td class="td-xmu-electrospindle"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-xmu-electrospindle ">
-                                                            <label v-if="values.SoglieAmpereMandrini != null && values.SoglieAmpereMandrini.ConvertedValue" class="label-other-data-value" v-html="values.SoglieAmpereMandrini.ConvertedValue"></label>
-                                                        </td>
-                                                        <td class="td-xmu-electrospindle xmu-electrospindle-border-left">
-                                                            <label v-if="values.SoglieAmpereContatore != null && values.SoglieAmpereContatore.ConvertedValue" class="label-other-data-value" v-html="values.SoglieAmpereContatore.ConvertedValue"></label>
-                                                        </td>
-                                                        <td class="td-xmu-electrospindle"></td>
-                                                    </tr>
-                                                </table>
+                                        <td>
+                                        <table style="width: 100%; height: 100%">
+                                            <tr>
+                                                <td class="td-xmu-electrospindle">
+                                                    <label style="vertical-align: top; width: 20px"><i class="fa fa-clock-o  fa-lg" aria-hidden="true"></i></label>
+                                                    <label v-if="values.SoglieAmpereMandrini != null" class="label-other-title" v-html="values.SoglieAmpereMandrini.Description"></label>
+                                                </td>
+                                                <td class="td-xmu-electrospindle  xmu-electrospindle-border-left">
+                                                    <label style="vertical-align: top; width: 20px;"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
+                                                    <label v-if="values.SoglieAmpereContatore != null" class="label-other-title" v-html="values.SoglieAmpereContatore.Description"></label>
+                                                </td>
+                                                <td class="td-xmu-electrospindle"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td-xmu-electrospindle ">
+                                                    <label v-if="values.SoglieAmpereMandrini != null && values.SoglieAmpereMandrini.ConvertedValue" class="label-other-data-value" v-html="values.SoglieAmpereMandrini.ConvertedValue"></label>
+                                                </td>
+                                                <td class="td-xmu-electrospindle xmu-electrospindle-border-left">
+                                                    <label v-if="values.SoglieAmpereContatore != null && values.SoglieAmpereContatore.ConvertedValue" class="label-other-data-value" v-html="values.SoglieAmpereContatore.ConvertedValue"></label>
+                                                </td>
+                                                <td class="td-xmu-electrospindle"></td>
+                                            </tr>
+                                        </table>
                                     </table>
                                     <table class="table-xmu-electrospindle">
                                         <tr>
@@ -91,7 +91,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td colspan="3" style="background-color: #bebebe; padding: 0">
-                                                            <hr class="tools" align="center" style="background-color: #d2d2d2; width: 88%" />
+                                                            <hr class="tools" align="center" style="background-color: #d2d2d2; width: 88%"/>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -130,29 +130,29 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <table style="width: 100%; height: 100%">
-                                                    <tr>
-                                                        <td class="td-xmu-electrospindle">
-                                                            <label style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                                            <label v-if="values.TemperSchedaMinutiINT != null" class="label-other-title" v-html="values.TemperSchedaMinutiINT.Description"></label>
-                                                        </td>
-                                                        <td class="td-xmu-electrospindle  tool-border-left">
-                                                            <label style="vertical-align: top; width: 20px;"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
-                                                            <label v-if="values.TemperSchedaContatoreINT != null" class="label-other-title" v-html="values.TemperSchedaContatoreINT.Description"></label>
-                                                        </td>
-                                                        <td class="td-xmu-electrospindle"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-xmu-electrospindle ">
-                                                            <label v-if="values.TemperSchedaMinutiINT != null && values.TemperSchedaMinutiINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperSchedaMinutiINT.ConvertedValue"></label>
-                                                        </td>
-                                                        <td class="td-xmu-electrospindle xmu-electrospindle-border-left">
-                                                            <label v-if="values.TemperSchedaContatoreINT != null && values.TemperSchedaContatoreINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperSchedaContatoreINT.ConvertedValue"></label>
-                                                        </td>
-                                                        <td class="td-xmu-electrospindle"></td>
-                                                    </tr>
-                                                </table>
+                                        <td>
+                                        <table style="width: 100%; height: 100%">
+                                            <tr>
+                                                <td class="td-xmu-electrospindle">
+                                                    <label style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                    <label v-if="values.TemperSchedaMinutiINT != null" class="label-other-title" v-html="values.TemperSchedaMinutiINT.Description"></label>
+                                                </td>
+                                                <td class="td-xmu-electrospindle  tool-border-left">
+                                                    <label style="vertical-align: top; width: 20px;"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
+                                                    <label v-if="values.TemperSchedaContatoreINT != null" class="label-other-title" v-html="values.TemperSchedaContatoreINT.Description"></label>
+                                                </td>
+                                                <td class="td-xmu-electrospindle"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td-xmu-electrospindle ">
+                                                    <label v-if="values.TemperSchedaMinutiINT != null && values.TemperSchedaMinutiINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperSchedaMinutiINT.ConvertedValue"></label>
+                                                </td>
+                                                <td class="td-xmu-electrospindle xmu-electrospindle-border-left">
+                                                    <label v-if="values.TemperSchedaContatoreINT != null && values.TemperSchedaContatoreINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperSchedaContatoreINT.ConvertedValue"></label>
+                                                </td>
+                                                <td class="td-xmu-electrospindle"></td>
+                                            </tr>
+                                        </table>
                                     </table>
                                     <table class="table-xmu-electrospindle">
                                         <tr>
@@ -161,60 +161,60 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <table style="width: 100%; height: 100%">
-                                                    <tr>
-                                                        <td class="td-xmu-electrospindle">
-                                                            <label style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
-                                                            <label v-if="values.TemperStatoreMinutiINT != null" class="label-other-title" v-html="values.TemperStatoreMinutiINT.Description"></label>
-                                                        </td>
-                                                        <td class="td-xmu-electrospindle  xmu-electrospindle-border-left">
-                                                            <label style="vertical-align: top; width: 20px;"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
-                                                            <label v-if="values.TemperStatoreContatoreINT != null" class="label-other-title" v-html="values.TemperStatoreContatoreINT.Description"></label>
-                                                        </td>
-                                                        <td class="td-xmu-electrospindle"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-xmu-electrospindle ">
-                                                            <label v-if="values.TemperStatoreMinutiINT != null && values.TemperStatoreMinutiINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperStatoreMinutiINT.ConvertedValue"></label>
-                                                        </td>
-                                                        <td class="td-xmu-electrospindle xmu-electrospindle-border-left">
-                                                            <label v-if="values.TemperStatoreContatoreINT != null && values.TemperStatoreContatoreINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperStatoreContatoreINT.ConvertedValue"></label>
-                                                        </td>
-                                                        <td class="td-xmu-electrospindle"></td>
-                                                    </tr>
-                                                </table>
+                                        <td>
+                                        <table style="width: 100%; height: 100%">
+                                            <tr>
+                                                <td class="td-xmu-electrospindle">
+                                                    <label style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                    <label v-if="values.TemperStatoreMinutiINT != null" class="label-other-title" v-html="values.TemperStatoreMinutiINT.Description"></label>
+                                                </td>
+                                                <td class="td-xmu-electrospindle  xmu-electrospindle-border-left">
+                                                    <label style="vertical-align: top; width: 20px;"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
+                                                    <label v-if="values.TemperStatoreContatoreINT != null" class="label-other-title" v-html="values.TemperStatoreContatoreINT.Description"></label>
+                                                </td>
+                                                <td class="td-xmu-electrospindle"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td-xmu-electrospindle ">
+                                                    <label v-if="values.TemperStatoreMinutiINT != null && values.TemperStatoreMinutiINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperStatoreMinutiINT.ConvertedValue"></label>
+                                                </td>
+                                                <td class="td-xmu-electrospindle xmu-electrospindle-border-left">
+                                                    <label v-if="values.TemperStatoreContatoreINT != null && values.TemperStatoreContatoreINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperStatoreContatoreINT.ConvertedValue"></label>
+                                                </td>
+                                                <td class="td-xmu-electrospindle"></td>
+                                            </tr>
+                                        </table>
                                     </table>
-                                    <table class="table-xmu-electrospindle" style="height: 102px;">
+                                    <table class="table-xmu-electrospindle" style="height: 100px;">
                                         <tr>
                                             <td class="portlet-subtitle" style="font-size: 11px">
                                                 @Html.Raw(LocalizationService.GetResource("TemperaturaCuscinetti"))
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <table style="width: 100%; height: 100%">
-                                                    <tr>
-                                                        <td class="td-xmu-electrospindle">
-                                                            <label style="vertical-align: top; width: 20px"><i class="fa fa-clock-o  fa-lg" aria-hidden="true"></i></label>
-                                                            <label v-if="values.TemperCuscinettiMinutiINT != null" class="label-other-title" v-html="values.TemperCuscinettiMinutiINT.Description"></label>
-                                                        </td>
-                                                        <td class="td-xmu-electrospindle  xmu-electrospindle-border-left">
-                                                            <label style="vertical-align: top; width: 20px;"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
-                                                            <label v-if="values.TemperCuscinettiContatoreINT != null" class="label-other-title" v-html="values.TemperCuscinettiContatoreINT.Description"></label>
-                                                        </td>
-                                                        <td class="td-xmu-electrospindle"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-xmu-electrospindle ">
-                                                            <label v-if="values.TemperCuscinettiMinutiINT != null && values.TemperCuscinettiMinutiINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperCuscinettiMinutiINT.ConvertedValue"></label>
-                                                        </td>
-                                                        <td class="td-xmu-electrospindle xmu-electrospindle-border-left">
-                                                            <label v-if="values.TemperCuscinettiContatoreINT != null && values.TemperCuscinettiContatoreINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperCuscinettiContatoreINT.ConvertedValue"></label>
-                                                        </td>
-                                                        <td class="td-xmu-electrospindle"></td>
-                                                    </tr>
-                                                </table>
+                                        <td>
+                                        <table style="width: 100%; height: 100%">
+                                            <tr>
+                                                <td class="td-xmu-electrospindle">
+                                                    <label style="vertical-align: top; width: 20px"><i class="fa fa-clock-o  fa-lg" aria-hidden="true"></i></label>
+                                                    <label v-if="values.TemperCuscinettiMinutiINT != null" class="label-other-title" v-html="values.TemperCuscinettiMinutiINT.Description"></label>
+                                                </td>
+                                                <td class="td-xmu-electrospindle  xmu-electrospindle-border-left">
+                                                    <label style="vertical-align: top; width: 20px;"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
+                                                    <label v-if="values.TemperCuscinettiContatoreINT != null" class="label-other-title" v-html="values.TemperCuscinettiContatoreINT.Description"></label>
+                                                </td>
+                                                <td class="td-xmu-electrospindle"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td-xmu-electrospindle ">
+                                                    <label v-if="values.TemperCuscinettiMinutiINT != null && values.TemperCuscinettiMinutiINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperCuscinettiMinutiINT.ConvertedValue"></label>
+                                                </td>
+                                                <td class="td-xmu-electrospindle xmu-electrospindle-border-left">
+                                                    <label v-if="values.TemperCuscinettiContatoreINT != null && values.TemperCuscinettiContatoreINT.ConvertedValue" class="label-other-data-value" v-html="values.TemperCuscinettiContatoreINT.ConvertedValue"></label>
+                                                </td>
+                                                <td class="td-xmu-electrospindle"></td>
+                                            </tr>
+                                        </table>
                                     </table>
                                 </td>
                             </tr>
