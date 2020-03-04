@@ -31,33 +31,33 @@
                                 <td>
                                     <table style="width: 100%; height: 100%">
                                         <tr>
-                                            <td class="td-other-data">
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                            <td class="td-motor-blade">
+                                                <label class="motor-blade-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
                                                 <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniCUT_1")</label>
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="motor-blade-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                 <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
                                             </td>
-                                            <td class="td-other-data tool-border-left">
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                            <td class="td-motor-blade tool-border-left">
+                                                <label class="motor-blade-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
                                                 <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniCUT_2")</label>
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="motor-blade-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                 <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
                                             </td>
-                                            <td class="td-other-data">
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                            <td class="td-motor-blade">
+                                                <label class="motor-blade-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
                                                 <label class="label-electrospindle-title">@LocalizationService.GetResource("TabSoglieRpmMandriniCUT_3")</label>
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="motor-blade-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                 <label class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="td-other-data">
+                                            <td class="td-motor-blade">
                                                 <label v-if="values.RpmRange1500 && values.RpmRange1500.ConvertedValue != null" class="label-electrospindle-data-value" v-html="values.RpmRange1500.ConvertedValue"></label>
                                             </td>
-                                            <td class="td-other-data tool-border-left">
+                                            <td class="td-motor-blade tool-border-left">
                                                 <label v-if="values.RpmRange2500 != null && values.RpmRange2500.ConvertedValue" class="label-electrospindle-data-value" v-html="values.RpmRange2500.ConvertedValue"></label>
                                             </td>
-                                            <td class="td-other-data">
+                                            <td class="td-motor-blade">
                                                 <label v-if="values.RpmRange3000 != null && values.RpmRange3000.ConvertedValue" class="label-electrospindle-data-value" v-html="values.RpmRange3000.ConvertedValue"></label>
                                             </td>
                                         </tr>
@@ -65,27 +65,27 @@
                                             <td colspan="3"><hr style="height: 2px;" width="88%" align="center" class="axes"/></td>
                                         </tr>
                                         <tr>
-                                            <td class="td-other-data">
+                                            <td class="td-motor-blade">
                                                 <label class="label-second-row" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                 <label class="label-electrospindle-title-bottom">@LocalizationService.GetResource("TabSoglieAmpereMandriniCUT_1")</label>
                                             </td>
-                                            <td class="td-other-data tool-border-left">
+                                            <td class="td-motor-blade tool-border-left">
                                                 <label class="label-second-row" style="vertical-align: top; width: 20px"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
                                                 <label class="label-electrospindle-title-bottom">@LocalizationService.GetResource("TabSoglieAmpereContatoreINT")</label>
                                             </td>
-                                            <td class="td-other-data">
+                                            <td class="td-motor-blade">
                                                 <label class="label-second-row" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                 <label class="label-electrospindle-title-bottom">@LocalizationService.GetResource("oreMandrinoAttivo")</label>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="td-other-data">
+                                            <td class="td-motor-blade">
                                                 <label v-if="values.TempoSovraAss != null && values.TempoSovraAss.ConvertedValue" class="label-electrospindle-data-value" v-html="values.TempoSovraAss.ConvertedValue"></label>
                                             </td>
-                                            <td class="td-other-data tool-border-left">
+                                            <td class="td-motor-blade tool-border-left">
                                                 <label v-if="values.QtaSovraAss != null && values.QtaSovraAss.ConvertedValue" class="label-electrospindle-data-value" v-html="values.QtaSovraAss.ConvertedValue"></label>
                                             </td>
-                                            <td class="td-other-data">
+                                            <td class="td-motor-blade">
                                                 <label v-if="values.TempoTot != null && values.TempoTot.ConvertedValue" class="label-electrospindle-data-value" v-html="values.TempoTot.ConvertedValue"></label>
                                             </td>
                                         </tr>
@@ -101,24 +101,24 @@
                                 <td>
                                     <table style="width: 100%; height: 100%">
                                         <tr>
-                                            <td class="td-other-data">
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-dot-circle-o fa-lg" aria-hidden="true"></i></label>
+                                            <td class="td-motor-blade">
+                                                <label class="motor-blade-icon" style="vertical-align: top; width: 20px"><i class="fa fa-dot-circle-o fa-lg" aria-hidden="true"></i></label>
                                                 <label class="label-electrospindle-title-bottom">@LocalizationService.GetResource("TabTagliContatoreTotCUT")</label>
                                             </td>
-                                            <td class="td-other-data tool-border-left">
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-circle-o fa-lg" aria-hidden="true"></i></label>
+                                            <td class="td-motor-blade tool-border-left">
+                                                <label class="motor-blade-icon" style="vertical-align: top; width: 20px"><i class="fa fa-circle-o fa-lg" aria-hidden="true"></i></label>
                                                 <label class="label-electrospindle-title-bottom">@LocalizationService.GetResource("TabTagliContatoreParzCUT")</label>
                                             </td>
-                                            <td class="td-other-data"></td>
+                                            <td class="td-motor-blade"></td>
                                         </tr>
                                         <tr>
-                                            <td class="td-other-data">
-                                                <label v-if="values.TagliLamaTot != null && values.TagliLamaTot.ConvertedValue" class="label-electrospindle-data-value" v-html="values.TagliLamaTot.ConvertedValue"></label>
+                                            <td class="td-motor-blade">
+                                                <label v-if="values.TagliLamaTot != null && values.TagliLamaTot.ConvertedValue" class="label-motor-blade-data-value" v-html="values.TagliLamaTot.ConvertedValue"></label>
                                             </td>
-                                            <td class="td-other-data tool-border-left">
-                                                <label v-if="values.TagliLamaPar != null && values.TagliLamaPar.ConvertedValue" class="label-electrospindle-data-value" v-html="values.TagliLamaPar.ConvertedValue"></label>
+                                            <td class="td-motor-blade tool-border-left">
+                                                <label v-if="values.TagliLamaPar != null && values.TagliLamaPar.ConvertedValue" class="label-motor-blade-data-value" v-html="values.TagliLamaPar.ConvertedValue"></label>
                                             </td>
-                                            <td class="td-other-data"></td>
+                                            <td class="td-motor-blade"></td>
                                         </tr>
                                     </table>
                                 </td>

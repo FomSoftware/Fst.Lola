@@ -1085,7 +1085,7 @@ td.td-tool {
     padding-top: 5px;
 }
 
-td.td-other-data, td.td-xmu-electrospindle {
+td.td-other-data, td.td-xmu-electrospindle, td.td-motor-blade {
     vertical-align: top;
     width: 20%;
     background-color: #bebebe;
@@ -1099,6 +1099,10 @@ td.td-other-data {
 
 td.td-xmu-electrospindle {
     padding-top: 4px;
+}
+
+td.td-motor-blade {
+    padding-top: 3px;
 }
 
 
@@ -1214,7 +1218,7 @@ hr.axes {
 }
 
 
-.label-electrospindle-data-value {
+.label-electrospindle-data-value, .label-motor-blade-data-value {
     font-size: 21px;
     font-weight: 400;
     color: #403D3D;
@@ -1223,6 +1227,7 @@ hr.axes {
     width: 100%;
     text-align: center;
 }
+
 
 .label-electrospindle-title {
     font-size: 13px;
@@ -1301,9 +1306,13 @@ td.td-tools-light {
         font-size: 20px;
     }
 
-.electro-spindle-icon {
+.electro-spindle-icon, .motor-blade-icon {
     clear: both;
     float: left;
+}
+
+.motor-blade-icon {
+    margin-bottom: 0.2rem;
 }
 
 .font-11-pt {

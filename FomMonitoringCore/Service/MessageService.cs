@@ -295,10 +295,14 @@ namespace FomMonitoringCore.Service
             {
                 var cat = _context.Set<Machine>().Find(mm.MachineId)?.MachineModel.MessageCategoryId;
                 var msg = _context.Set<MessagesIndex>().FirstOrDefault(f =>
-                    f.MessageCode == mm.Code && f.MessageCategoryId == cat && f.PeriodicSpan != null);
+                    f.MessageCode == mm.Code && f.MessageCategoryId == cat );
                 if (msg == null) return null;
-                var span = msg.PeriodicSpan ?? 0;
 
+                //caso dei messaggi arrivati da json, non hanno span, vanno visualizzati subito
+                if (msg.PeriodicSpan == null && mm.IgnoreDate == null)
+                    return DateTime.UtcNow.Subtract(mm.Day.Value).Ticks;
+
+                var span = msg.PeriodicSpan ?? 0;
                 var initTime = _context.Set<Machine>().Find(mm.MachineId).ActivationDate?.AddHours(span);
                 if (mm.IgnoreDate != null)
                 {
@@ -461,8 +465,8 @@ namespace FomMonitoringCore.Service
                         {
                             // aggiorno la data di scadenza all'intervallo 
                             mess.Day = (DateTime) mess.IgnoreDate?.AddHours((long) messaggio.PeriodicSpan);
-                            _context.SaveChanges();
                         }
+                        _context.SaveChanges();
                     }
                 }
             }
