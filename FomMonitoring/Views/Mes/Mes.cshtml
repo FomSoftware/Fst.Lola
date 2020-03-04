@@ -177,12 +177,15 @@
                                 </span>
                             </div>
                             <div class="col-9 padding-left-5">
-                                <div class="item-label clearfix" v-if="machine.errors != null">
+                                <div class="item-label clearfix">
                                     <div class="pull-left">
                                         @Resource.AlarmsNumber
                                     </div> 
-                                    <div class="pull-right text-right">
+                                    <div class="pull-right text-right" v-if="machine.errors != null">
                                         <div>{{ machine.errors.quantity }}</div>
+                                    </div>
+                                    <div class="pull-right text-right" v-else >
+                                        <div>0</div>
                                     </div>
                                 </div>
                             </div>
@@ -320,6 +323,11 @@
                                 <div class="item-label clearfix" v-if="machine.errors != null">
                                     <div class="pull-left">
                                         <div>{{ machine.errors.quantity }}</div>
+                                    </div>                                   
+                                </div>
+                                <div class="item-label clearfix" v-else>
+                                    <div class="pull-left">
+                                        <div>0</div>
                                     </div>                                   
                                 </div>
                             </div>
