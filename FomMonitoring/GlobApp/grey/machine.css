@@ -1292,7 +1292,8 @@ td.td-tools-light {
 .table-electro-spindle, .table-other-data {
     height: 100%;
     table-layout: fixed;
-    width: 100%;
+    width: calc(100% + 1px);
+    overflow-x: hidden;
 }
 
     .table-electro-spindle tr:first-child td, .table-other-data tr:first-child td {

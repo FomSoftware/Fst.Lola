@@ -19,29 +19,29 @@
         <div class="portlet-body text-center" style="height:244px">
             <div class="card-portlet">
                 <div v-if="noData() == false" style="height:242px" class="slimscroll">
-                    <hr style="background-color:#0c3817;height:2px;border:none" />
                     <div style="cursor:auto;height:100%">
                         <table class="table-electro-spindle">
+                            <tr style="background-color: #0c3817; height: 3px; border: none"><td></td></tr>
                             <tr>
                                 <td>
-                                    <table style="width: 100%; height:100%">
+                                    <table style="width: 100%; height: 100%">
                                         <tr>
                                             <td class="td-electrospindle-data">
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
                                                 <label v-if="values.RpmRange1500 != null" class="label-electrospindle-title" v-html="values.RpmRange1500.Description"></label>
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                 <label v-if="values.RpmRange1500 != null" class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
-                                                </td>
+                                            </td>
                                             <td class="td-electrospindle-data tool-border-left">
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
                                                 <label v-if="values.RpmRange5500 != null" class="label-electrospindle-title" v-html="values.RpmRange5500.Description"></label>
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                 <label v-if="values.RpmRange1500 != null" class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
                                             </td>
                                             <td class="td-electrospindle-data">
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
                                                 <label v-if="values.RpmRange8000 != null" class="label-electrospindle-title" v-html="values.RpmRange8000.Description"></label>
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>                                                
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                 <label v-if="values.RpmRange1500 != null" class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
                                             </td>
                                         </tr>
@@ -58,21 +58,21 @@
                                         </tr>
                                         <tr>
                                             <td class="td-electrospindle-data">
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
                                                 <label v-if="values.RpmRange11500 != null" class="label-electrospindle-title" v-html="values.RpmRange11500.Description"></label>
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                 <label v-if="values.RpmRange1500 != null" class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
                                             </td>
                                             <td class="td-electrospindle-data  tool-border-left">
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
                                                 <label v-if="values.RpmRange14500 != null" class="label-electrospindle-title" v-html="values.RpmRange14500.Description"></label>
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                 <label v-if="values.RpmRange1500 != null" class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
                                             </td>
                                             <td class="td-electrospindle-data">
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
                                                 <label v-if="values.RpmRange20000 != null" class="label-electrospindle-title" v-html="values.RpmRange20000.Description"></label>
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                 <label v-if="values.RpmRange1500 != null" class="label-electrospindle-title">@LocalizationService.GetResource("ElapsedTime")</label>
                                             </td>
                                         </tr>
@@ -87,22 +87,20 @@
                                                 <label v-if="values.RpmRange20000 != null && values.RpmRange8000.ConvertedValue" class="label-electrospindle-data-value" v-html="values.RpmRange20000.ConvertedValue"></label>
                                             </td>
                                         </tr>
-                                        <tr style="height:3px;">
-                                            <td style="padding-left:0;"><hr width="80%" style="margin-right:0;" class="axes" /></td>
-                                            <td style="padding-left:0;"><hr width="100%" style="padding-left:0;" class="axes" /></td>
-                                            <td style="padding-left:0;"><hr width="80%" style="margin-left:0;" class="axes" /></td>
+                                        <tr style="height: 1px;">
+                                            <td colspan="3" style="padding: 0;"><hr align="center" width="80%" class="axes"/></td>
                                         </tr>
                                         <tr>
                                             <td class="td-electrospindle-data">
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
                                                 <label class="label-electrospindle-title-bottom">@LocalizationService.GetResource("oreMandrinoAttivo")</label>
                                             </td>
                                             <td class="td-electrospindle-data tool-border-left">
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></label>
                                                 <label v-if="values.SblocchiPinza != null" class="label-electrospindle-title-bottom" v-html="values.SblocchiPinza.Description"></label>
                                             </td>
                                             <td v-if="values.ShowSovrassorbimento == true" class="td-electrospindle-data">
-                                                <label class="electro-spindle-icon" style="vertical-align: top; width:20px"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-sort-amount-asc fa-lg fa-rotate-180" aria-hidden="true"></i></label>
                                                 <label v-if="values.QtaSovrassorbimento != null" class="label-electrospindle-title-bottom" v-html="values.QtaSovrassorbimento.Description"></label>
                                             </td>
                                         </tr>
