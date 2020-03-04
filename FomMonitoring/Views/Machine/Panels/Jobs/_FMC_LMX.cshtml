@@ -21,11 +21,11 @@
                 <table class="table table-alerts table-jobs table-header">
                     <thead>
                         <tr>
-                            <th width="35%" class="th-duration sorting" v-bind:class="sortingCode" v-on:click="sortCode()">
+                            <th width="33%" class="th-duration sorting" v-bind:class="sortingCode" v-on:click="sortCode()">
                                 <span class="value-title">
                                     @LocalizationService.GetResource("Code")</span>
                             </th>
-                            <th width="5%" class="th-duration sorting" v-bind:class="sortingProgress" v-on:click="sortProgress()">
+                            <th width="7%" class="th-duration sorting" v-bind:class="sortingProgress" v-on:click="sortProgress()">
                                 <span class="value-title" style="font-size: 14px;font-weight: bold">%</span>
                             </th>
                             <th style="width:18%;padding-left:10px" class="th-duration sorting job-header testo-abbreviato" v-bind:class="sorting.day" v-on:click="sortDay()">
