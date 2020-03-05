@@ -1519,41 +1519,6 @@ td.td-axes {
 }
 
 
-
-
-
-
-@media (max-height: 768px) {
-    .img-button-group-lmx {
-        width: 220px;
-        padding-top: 0;
-    }
-
-    .lmx-button-container {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .lmx-button-group {
-        padding: 0 15px 0 15px;
-    }
-}
-
-@media (max-height: 400px) {
-    .lmx-button-container {
-        width: 100%;
-        padding-top: 20px;
-    }
-
-    .lmx-button-group {
-        padding: 0 15px 0 0;
-    }
-}
-
-
-
-
 @media (max-width: 1396px) {
 
     .icon-message-header {
@@ -1855,6 +1820,21 @@ td.td-axes {
         font-size: 100px;
         line-height: 120px;
     }
+
+    .img-button-group-lmx {
+        width: 220px;
+        padding-top: 0;
+    }
+
+    .lmx-button-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .lmx-button-group {
+        padding: 0 15px 0 15px;
+    }
 }
 
 @media (min-width: 1396px) {
@@ -1910,3 +1890,29 @@ td.td-axes {
         width: 50%;
     }
 }
+
+@media (max-height: 767px) {
+    
+    .lmx-button-container {
+        display: block;
+        justify-content: center;
+        width: 100%;
+    }
+
+}
+
+@media (max-height: 450px) {
+    .lmx-button-container {
+        display: flex;
+        width: 100%;
+        padding-top: 20px;
+    }
+    .img-button-group-lmx {
+        width: 120px;
+    }
+
+    .lmx-button-group {
+        padding: 0 15px 0 0;
+    }
+}
+
