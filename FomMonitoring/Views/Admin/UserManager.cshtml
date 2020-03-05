@@ -69,7 +69,7 @@
                             <label class="col-4 control-label" for="role-input">@Resource.Role:</label>
                             <div class="col-7">
                                 <select v-model="roles.active" class="form-control input-md modal-input" id="role-input" type="text" title="@Resource.NothingSelected" required>
-                                    <option v-for="(role, index) in roles.all" v-if="role.Code == enRoles.Operator || role.Code == enRoles.HeadWorkshop" v-bind:value="role.Code" v-bind:disabled="selectOptionClass(role)">{{role.Name}}</option>
+                                    <option v-for="role in roles.all" v-if="role.Code == enRoles.Operator || role.Code == enRoles.HeadWorkshop" v-bind:value="role.Code" v-bind:disabled="selectOptionClass(role)">{{role.Name}}</option>
                                 </select>
                                 <div v-show="missing.Role" class="validation">@Resource.FieldRequired.</div>
                             </div>
