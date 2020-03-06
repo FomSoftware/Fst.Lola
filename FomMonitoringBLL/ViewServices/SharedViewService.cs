@@ -1,4 +1,5 @@
-﻿using FomMonitoringBLL.ViewModel;
+﻿using System;
+using FomMonitoringBLL.ViewModel;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Framework.Common;
 using System.Collections.Generic;
@@ -62,7 +63,7 @@ namespace FomMonitoringBLL.ViewServices
 
                 toolbar.machines = GetListMachines(context);
 
-                    toolbar.selected_machine = toolbar.machines.FirstOrDefault(w => w.id == context.ActualMachine.Id);
+                toolbar.selected_machine = toolbar.machines.FirstOrDefault(w => w.id == context.ActualMachine.Id);
 
             }
 
@@ -72,7 +73,9 @@ namespace FomMonitoringBLL.ViewServices
         public static List<MachineInfoViewModel> GetListMachines(ContextModel context)
         {
 
-                var machines = context.AllMachines.Where(w => w.PlantId == context.ActualPlant?.Id || w.Id == context.ActualMachine.Id).Select(m => new MachineInfoViewModel()
+                var machines = context.AllMachines.Where(w => w.Id == context.ActualMachine.Id || 
+                                                              (w.PlantId == context.ActualPlant?.Id &&
+                                                               (w.ExpirationDate == null || w.ExpirationDate >= DateTime.UtcNow))).Select(m => new MachineInfoViewModel()
                 {
                     id = m.Id,
                     serial = m.Serial,
