@@ -358,10 +358,6 @@
             template: '#modal-tool'
         });
 
-        Vue.component('modal-spindle', {
-            props: ['spindle'],
-            template: '#modal-spindle'
-        });
     }
 
     var callAjaxMesViewModelData = function (plantID)

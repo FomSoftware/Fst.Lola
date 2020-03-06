@@ -27,7 +27,6 @@ namespace FomMonitoring
 
             builder.RegisterFilterProvider();
             builder.RegisterType<JobsViewService>().As<IJobsViewService>().InstancePerRequest();
-            builder.RegisterType<SpindleViewService>().As<ISpindleViewService>().InstancePerRequest();
             builder.RegisterType<EfficiencyViewService>().As<IEfficiencyViewService>().InstancePerRequest();
             builder.RegisterType<MachineViewService>().As<IMachineViewService>().InstancePerRequest();
             builder.RegisterType<MaintenanceViewService>().As<IMaintenanceViewService>().InstancePerRequest();

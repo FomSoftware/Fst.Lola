@@ -311,9 +311,6 @@
     <Compile Include="DAL\Plant.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL\Spindle.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DAL\State.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
@@ -388,9 +385,6 @@
     <Compile Include="DAL_SQLite\piece.cs">
       <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL_SQLite\spindle.cs">
-      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
-    </Compile>
     <Compile Include="DAL_SQLite\state.cs">
       <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
     </Compile>
@@ -453,7 +447,6 @@
     <Compile Include="Framework\Model\PlantModel.cs" />
     <Compile Include="Framework\Model\ResponseModel.cs" />
     <Compile Include="Framework\Model\RoleModel.cs" />
-    <Compile Include="Framework\Model\SpindleModel.cs" />
     <Compile Include="Framework\Model\StateMachineModel.cs" />
     <Compile Include="Framework\Model\StateModel.cs" />
     <Compile Include="Framework\Model\ToolMachineModel.cs" />
@@ -485,7 +478,6 @@
     <Compile Include="Repository\SQL\IPanelRepository.cs" />
     <Compile Include="Repository\SQL\IParameterMachineRepository.cs" />
     <Compile Include="Repository\SQL\IParameterMachineValueRepository.cs" />
-    <Compile Include="Repository\SQL\ISpindleRepository.cs" />
     <Compile Include="Repository\SQL\MachineGroupRepository.cs" />
     <Compile Include="Repository\SQL\MachineModelRepository.cs" />
     <Compile Include="Repository\SQL\MachineRepository.cs" />
@@ -497,7 +489,6 @@
     <Compile Include="Repository\SQL\PanelRepository.cs" />
     <Compile Include="Repository\SQL\ParameterMachineRepository.cs" />
     <Compile Include="Repository\SQL\ParameterMachineValueRepository.cs" />
-    <Compile Include="Repository\SQL\SpindleRepository.cs" />
     <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\API\Concrete\JsonDataService.cs" />
     <Compile Include="Service\API\Concrete\XmlDataService.cs" />
@@ -530,7 +521,6 @@
     <Compile Include="Service\IParameterMachineService.cs" />
     <Compile Include="Service\IPieceService.cs" />
     <Compile Include="Service\IPlantManagerService.cs" />
-    <Compile Include="Service\ISpindleService.cs" />
     <Compile Include="Service\IStateService.cs" />
     <Compile Include="Service\IToolService.cs" />
     <Compile Include="Service\JobService.cs" />
@@ -545,7 +535,6 @@
     <Compile Include="Service\PlantManagerService.cs" />
     <Compile Include="Service\SessionService.cs" />
     <Compile Include="Service\ToolService.cs" />
-    <Compile Include="Service\SpindleService.cs" />
     <Compile Include="Service\StateService.cs" />
     <Compile Include="Service\APIClient\Concrete\JsonAPIClientService.cs" />
     <Compile Include="Service\APIClient\IJsonAPIClientService.cs" />

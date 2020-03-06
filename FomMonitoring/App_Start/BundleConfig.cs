@@ -85,8 +85,6 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/productivity.js",
                         //"~/GlobApp/scripts/machine/alarms.js",
                         "~/GlobApp/scripts/machine/messages.js",
-                        "~/GlobApp/scripts/machine/spindles.js",
-                        "~/GlobApp/scripts/machine/xspindles.js",
                         "~/GlobApp/scripts/machine/tools.js",
                         "~/GlobApp/scripts/machine/xtools.js",
                         "~/GlobApp/scripts/machine/jobs/fmc-lmx.js",

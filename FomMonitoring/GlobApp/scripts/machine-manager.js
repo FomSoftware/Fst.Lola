@@ -71,15 +71,12 @@
             buildRequest(urls.urlParameters, filters),
             buildRequest(urls.urlXTools, filters),
             buildRequest(urls.urlTools, filters),
-            buildRequest(urls.urlToolsBlitz, filters),
-            buildRequest(urls.urlXSpindles, filters))
-            .done(function(efficiency, productivity, job, maintenance, messages, parameters, xTools, tools, toolsBlitz, xSpindles ) {
+            buildRequest(urls.urlToolsBlitz, filters))
+            .done(function(efficiency, productivity, job, maintenance, messages, parameters, xTools, tools, toolsBlitz ) {
                 $(".slimscroll").slimScroll({ destroy: true });
 
                 Efficiency.update(efficiency[0]);
                 Productivity.update(productivity[0]);
-                Spindles.update(parameters[0]);
-                XSpindles.update(xSpindles[0]);
                 ToolsBlitz.update(toolsBlitz[0]);
                 Tools.update(tools[0]);
                 XTools.update(xTools[0]);
@@ -338,10 +335,6 @@
             template: '#modal-tool'
         });
 
-        Vue.component('modal-spindle', {
-            props: ['spindle'],
-            template: '#modal-spindle'
-        });
     };
 
     var getColorKPI = function (color_name)

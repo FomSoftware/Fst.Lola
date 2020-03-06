@@ -440,7 +440,6 @@
     <Content Include="GlobApp\scripts\machine\tools\fmcLmx.js" />
     <Content Include="GlobApp\scripts\machine\tools\blitz.js" />
     <Content Include="GlobApp\scripts\machine\xtools.js" />
-    <Content Include="GlobApp\scripts\machine\xspindles.js" />
     <Content Include="GlobApp\scripts\machine\xtools\lmx.js" />
     <Content Include="GlobApp\scripts\mes-manager.js" />
     <Content Include="GlobApp\scripts\notification-manager.js" />
@@ -450,7 +449,6 @@
     <Content Include="GlobApp\scripts\machine-manager.js" />
     <Content Include="GlobApp\scripts\machine\jobs\fmc-lmx.js" />
     <Content Include="GlobApp\scripts\machine\tools.js" />
-    <Content Include="GlobApp\scripts\machine\spindles.js" />
     <Content Include="GlobApp\scripts\machine\productivity.js" />
     <Content Include="GlobApp\scripts\machine\efficiency.js" />
     <Content Include="GlobApp\scripts\user-manager.js" />
@@ -1086,7 +1084,6 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Machine\Panels\_Efficiency.cshtml" />
     <Content Include="Views\Machine\Panels\_Productivity.cshtml" />
-    <Content Include="Views\Machine\Panels\_Spindles.cshtml" />
     <Content Include="Views\Machine\Panels\_Tools.cshtml" />
     <Content Include="Views\Machine\Panels\Jobs\_FMC_LMX.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
@@ -1094,7 +1091,6 @@
     <Content Include="Views\Shared\_Toolbar.cshtml" />
     <Content Include="Views\Machine\Panels\_Maintenance.cshtml" />
     <Content Include="Views\Machine\Panels\_Messages.cshtml" />
-    <Content Include="Views\Machine\Panels\_XSpindles.cshtml" />
     <Content Include="Views\Machine\Panels\_XTools.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

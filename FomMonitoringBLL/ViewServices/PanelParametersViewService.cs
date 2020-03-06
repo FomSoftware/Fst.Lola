@@ -11,14 +11,12 @@ namespace FomMonitoringBLL.ViewServices
     {
         private readonly IMachineService _machineService;
         private readonly IParameterMachineService _parameterMachineService;
-        private readonly ISpindleViewService _spindleViewService;
         private readonly IToolService _toolsService;
 
-        public PanelParametersViewService(IMachineService machineService, ISpindleViewService spindleViewService,
+        public PanelParametersViewService(IMachineService machineService,
             IParameterMachineService parameterMachineService, IToolService toolsService)
         {
             _machineService = machineService;
-            _spindleViewService = spindleViewService;
             _parameterMachineService = parameterMachineService;
             _toolsService = toolsService;
         }
@@ -35,8 +33,6 @@ namespace FomMonitoringBLL.ViewServices
             {
                 if (panels.Contains((int) enPanel.KeopeMotors))
                     result.vm_motor_keope = GetVueModelKeope(context.ActualMachine);
-                else
-                    result.vm_spindles = _spindleViewService.GetSpindles(context);
 
                 if (panels.Contains((int) enPanel.KeopeAxes))
                     result.vm_axes_keope = GetAxesVueModelKeope(context.ActualMachine);

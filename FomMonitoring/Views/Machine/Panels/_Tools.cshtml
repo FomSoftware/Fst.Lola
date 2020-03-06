@@ -106,7 +106,7 @@
         </div>
     </div>
 
-        <modal-tool v-for="tool in tools" v-bind:tool="tool"></modal-tool>
+        <modal-tool v-for="tool in tools" v-bind:tool="tool" v-bind:key="tool.code"></modal-tool>
     </div>
 </div>
 

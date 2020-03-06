@@ -42,7 +42,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 var historyJobSqLite = _fomMonitoringSqLiteEntities.Set<historyJob>().ToList();
                 var infoSqLite = _fomMonitoringSqLiteEntities.Set<info>().ToList();
                 var pieceSqLite = _fomMonitoringSqLiteEntities.Set<piece>().ToList();
-                var spindleSqLite = _fomMonitoringSqLiteEntities.Set<spindle>().ToList();
                 var stateSqLite = _fomMonitoringSqLiteEntities.Set<state>().ToList();
                 var toolSqLite = _fomMonitoringSqLiteEntities.Set<tool>().ToList();
                 var messageSqLite = _fomMonitoringSqLiteEntities.Set<message>().ToList();
@@ -186,13 +185,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 _fomMonitoringEntities.Set<Piece>().AddRange(piece);
                 _fomMonitoringEntities.SaveChanges();
 
-                var spindle = spindleSqLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<Spindle>>();
-                var removeSpindles = _fomMonitoringEntities.Set<Spindle>().Where(w => w.MachineId == machineActual.Id).ToList();
-                _fomMonitoringEntities.Set<Spindle>().RemoveRange(removeSpindles);
-                _fomMonitoringEntities.SaveChanges();
-                _fomMonitoringEntities.Set<Spindle>().AddRange(spindle);
-                _fomMonitoringEntities.SaveChanges();
-
                 var state = stateSqLite.BuildAdapter().AddParameters("machineService", _machineService).AddParameters("machineId", machineActual.Id).AdaptToType<List<StateMachine>>();
                 state = state.Where(w => w.EndTime > (machineActual.LastUpdate ?? new DateTime())).ToList();
 
@@ -247,7 +239,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 var historyStateSqLite = _fomMonitoringSqLiteEntities.Set<historyState>().ToList();
                 var historyMessageSqLite = _fomMonitoringSqLiteEntities.Set<historyMessage>().ToList();
                 var infoSqLite = _fomMonitoringSqLiteEntities.Set<info>().ToList();
-                var spindleSqLite = _fomMonitoringSqLiteEntities.Set<spindle>().ToList();
                 var toolSqLite = _fomMonitoringSqLiteEntities.Set<tool>().ToList();
                 
                 var matricola = infoSqLite.OrderByDescending(o => o.Id).FirstOrDefault()?.MachineSerial;
@@ -314,13 +305,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 _fomMonitoringEntities.Set<HistoryState>().RemoveRange(removeHistoryState);
                 _fomMonitoringEntities.SaveChanges();
                 _fomMonitoringEntities.Set<HistoryState>().AddRange(historyState);
-                _fomMonitoringEntities.SaveChanges();
-
-                var spindle = spindleSqLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<Spindle>>();
-                var removeSpindle = _fomMonitoringEntities.Set<Spindle>().Where(w => w.MachineId == machineActual.Id).ToList();
-                _fomMonitoringEntities.Set<Spindle>().RemoveRange(removeSpindle);
-                _fomMonitoringEntities.SaveChanges();
-                _fomMonitoringEntities.Set<Spindle>().AddRange(spindle);
                 _fomMonitoringEntities.SaveChanges();
 
                 var tool = toolSqLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<ToolMachine>>();
