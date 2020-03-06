@@ -1,4 +1,8 @@
-﻿
+﻿/* stili per prevenire overscroll/bounce in iOS MobileSafari 
+    https://www.bram.us/2016/05/02/prevent-overscroll-bounce-in-ios-mobilesafari-pure-css/
+*/
+
+
 html,
 body {
     position: fixed;
