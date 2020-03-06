@@ -86,7 +86,7 @@ namespace FomMonitoringBLL.ViewServices
                     product_type = m.Product,
                     product_version = m.ProductVersion,
                     machineName = m.MachineName,
-                    installation = m.InstallationDate?.ToString() ?? string.Empty
+                    activation = m.ActivationDate?.ToString() ?? string.Empty
                 }).ToList();
 
                 return machines;
