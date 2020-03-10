@@ -74,10 +74,11 @@
             }
         });
 
-        request.done(function (data) {
+        //non serve perchè il servizio ignoreMessage restituisce la nuova lista 
+        /*request.done(function (data) {
             Maintenance.update(data);             
 
-        });
+        });*/
 
         request.fail(function (jqXHR, textStatus, errorThrown) {
             console.debug(jqXHR);

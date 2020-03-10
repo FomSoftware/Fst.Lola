@@ -78,19 +78,6 @@ namespace FomMonitoring.Controllers
             }
         }
 
-        [Route("Machine/IgnoreMessage/{MessageID}")]
-        public ActionResult IgnoreMessage(int MessageID)
-        {           
-            var res = _maintenanceViewService.IgnoreMessage(MessageID);
-
-            var context = _contextService.GetContext();
-
-            var mvm = _maintenanceViewService.GetMessages(context);
-
-            return Json(mvm);
-
-            
-        }
 
     }
 }

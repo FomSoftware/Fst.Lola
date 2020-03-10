@@ -317,5 +317,20 @@ namespace FomMonitoring.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, xTools, MediaTypeHeaderValue.Parse("application/json"));
 
         }
+
+        [HttpPost]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Route("ajax/AppApi/IgnoreMessage/{MessageID}")]
+        public HttpResponseMessage IgnoreMessage(int MessageID)
+        {
+            var res = _maintenanceViewService.IgnoreMessage(MessageID);
+
+            var context = _contextService.GetContext();
+
+            var mvm = _maintenanceViewService.GetMessages(context);
+
+            return Request.CreateResponse(HttpStatusCode.OK, Json(mvm), MediaTypeHeaderValue.Parse("application/json"));
+
+        }
     }
 }

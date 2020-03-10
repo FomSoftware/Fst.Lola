@@ -86,7 +86,8 @@
     $(document).ready(function ()
     {
         var data = @Html.Raw(Json.Encode(Model));
-        var urlIgnoreMessageAPI = '/Machine/IgnoreMessage';       
+        var urlIgnoreMessageAPI =
+            '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "IgnoreMessage" })';
         Maintenance.init(data, urlIgnoreMessageAPI);        
 
     });
