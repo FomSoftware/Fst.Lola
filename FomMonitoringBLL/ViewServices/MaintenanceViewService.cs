@@ -46,7 +46,7 @@ namespace FomMonitoringBLL.ViewServices
                     code = a.Code,
                     type = ((enTypeAlarm)a.Type).GetDescription(),
                     time = CommonViewService.getTimeViewModel(a.ElapsedTime),
-                    timestamp = DateTime.SpecifyKind(a.Day.HasValue ? a.Day.Value : DateTime.MinValue, DateTimeKind.Utc),
+                    timestamp = DateTime.SpecifyKind(a.IgnoreDate.HasValue ? a.IgnoreDate.Value : DateTime.MinValue, DateTimeKind.Utc),
                     utc = machine.UTC,
                     expiredSpan = CommonViewService.getTimeViewModel(_messageService.GetExpiredSpan(a)),
                     description = a.Description,
