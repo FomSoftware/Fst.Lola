@@ -72,7 +72,7 @@
             buildRequest(urls.urlXTools, filters),
             buildRequest(urls.urlTools, filters),
             buildRequest(urls.urlToolsBlitz, filters))
-            .done(function(efficiency, productivity, job, maintenance, messages, parameters, xTools, tools, toolsBlitz ) {
+            .done(function(efficiency, productivity, job, maintenance, messages, parameters, xTools, tools, toolsBlitz) {
                 $(".slimscroll").slimScroll({ destroy: true });
 
                 Efficiency.update(efficiency[0]);

@@ -307,6 +307,7 @@ namespace FomMonitoringCore.Service.DataMapping
                 _fomMonitoringEntities.Set<HistoryState>().AddRange(historyState);
                 _fomMonitoringEntities.SaveChanges();
 
+
                 var tool = toolSqLite.BuildAdapter().AddParameters("machineId", machineActual.Id).AdaptToType<List<ToolMachine>>();
                 var removeTool = _fomMonitoringEntities.Set<ToolMachine>().Where(w => w.MachineId == machineActual.Id).ToList();
                 _fomMonitoringEntities.Set<ToolMachine>().RemoveRange(removeTool);

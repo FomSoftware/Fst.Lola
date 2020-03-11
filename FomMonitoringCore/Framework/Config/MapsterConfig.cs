@@ -51,6 +51,7 @@ namespace FomMonitoringCore.Framework.Config
             config.NewConfig<Piece, PieceModel>();
             config.NewConfig<Plant, PlantModel>()
                 .Map(dest => dest.Machines, src => src.Machine);
+
             config.NewConfig<State, StateModel>()
                 .Map(dest => dest.Code, src => src.Description);
             config.NewConfig<StateMachine, StateMachineModel>();
@@ -191,6 +192,7 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.ElapsedTimeTrim, src => src.TimeSpanTrim)
                 .Map(dest => dest.ElapsedTimeAnuba, src => src.TimeSpanAnuba)
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
+
             config.NewConfig<DAL_SQLite.state, StateMachine>()
                 .Ignore(dest => dest.Id)
                 .IgnoreAllVirtual()
