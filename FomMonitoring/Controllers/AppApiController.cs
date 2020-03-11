@@ -281,6 +281,23 @@ namespace FomMonitoring.Controllers
 
         }
 
+        [HttpPost]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Route("ajax/AppApi/GetMachineToolsViewModel")]
+        public HttpResponseMessage GetMachineToolsViewModel(FilterViewModel filters)
+        {
+            if (filters.period != null)
+            {
+                _contextService.SetActualPeriod(filters.period.start, filters.period.end);
+                _contextService.SetActualMachineGroup(filters.machineGroup);
+            }
+
+            var context = _contextService.GetContext();
+            var tools = _toolsViewService.GetTools(context);
+
+            return Request.CreateResponse(HttpStatusCode.OK, tools, MediaTypeHeaderValue.Parse("application/json"));
+
+        }
 
         [HttpPost]
         [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
