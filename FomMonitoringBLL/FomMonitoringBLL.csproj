@@ -105,7 +105,6 @@
     <Compile Include="ViewServices\IPlantManagerViewService.cs" />
     <Compile Include="ViewServices\IPlantMessagesViewService.cs" />
     <Compile Include="ViewServices\IProductivityViewService.cs" />
-    <Compile Include="ViewServices\ISpindleViewService.cs" />
     <Compile Include="ViewServices\IToolsViewService.cs" />
     <Compile Include="ViewServices\IXToolsViewService.cs" />
     <Compile Include="ViewServices\MachineViewService.cs" />
@@ -121,7 +120,6 @@
     <Compile Include="ViewServices\JobsViewService.cs" />
     <Compile Include="ViewServices\ProductivityViewService.cs" />
     <Compile Include="ViewServices\SharedViewService.cs" />
-    <Compile Include="ViewServices\SpindleViewService.cs" />
     <Compile Include="ViewServices\ToolsViewService.cs" />
     <Compile Include="ViewServices\XToolsViewService.cs" />
     <Compile Include="ViewServices\UserManagerViewService.cs" />

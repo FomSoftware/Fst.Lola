@@ -51,16 +51,7 @@ namespace FomMonitoringCore.Framework.Config
             config.NewConfig<Piece, PieceModel>();
             config.NewConfig<Plant, PlantModel>()
                 .Map(dest => dest.Machines, src => src.Machine);
-            config.NewConfig<Spindle, SpindleModel>()
-                //.Ignore(dest => dest.ChangeCount)
-                .Map(dest => dest.AverageElapsedTimeWork, src => src.ElapsedTimeWorkTotal.HasValue && src.ElapsedTimeWorkTotal > 0 ?
-                                                                    (
-                                                                        ((decimal)(src.ElapsedTimeWork3K ?? 0) * 3) + ((decimal)(src.ElapsedTimeWork6K ?? 0) * 6) +
-                                                                        ((decimal)(src.ElapsedTimeWork9K ?? 0) * 9) + ((decimal)(src.ElapsedTimeWork12K ?? 0) * 12) +
-                                                                        ((decimal)(src.ElapsedTimeWork15K ?? 0) * 15) + ((decimal)(src.ElapsedTimeWork18K ?? 0) * 18)
-                                                                    )
-                                                                    * 1000 / (decimal)(src.ElapsedTimeWorkTotal)
-                                                                 : 0);
+
             config.NewConfig<State, StateModel>()
                 .Map(dest => dest.Code, src => src.Description);
             config.NewConfig<StateMachine, StateMachineModel>();
@@ -201,21 +192,7 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.ElapsedTimeTrim, src => src.TimeSpanTrim)
                 .Map(dest => dest.ElapsedTimeAnuba, src => src.TimeSpanAnuba)
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
-            config.NewConfig<DAL_SQLite.spindle, Spindle>()
-                .Ignore(dest => dest.Id)
-                .IgnoreAllVirtual()
-                .Map(dest => dest.ElapsedTimeWorkTotal, src => src.WorkTotalTime)
-                .Map(dest => dest.ElapsedTimeWork3K, src => src.Work3KTime)
-                .Map(dest => dest.ElapsedTimeWork6K, src => src.Work6KTime)
-                .Map(dest => dest.ElapsedTimeWork9K, src => src.Work9KTime)
-                .Map(dest => dest.ElapsedTimeWork12K, src => src.Work12KTime)
-                .Map(dest => dest.ElapsedTimeWork15K, src => src.Work15KTime)
-                .Map(dest => dest.ElapsedTimeWork18K, src => src.Work18KTime)
-                .Map(dest => dest.WorkOverPowerCount, src => src.WorkOverPowerEvents)
-                .Map(dest => dest.WorkOverheatingCount, src => src.WorkOverheatingEvents)
-                .Map(dest => dest.WorkOverVibratingCount, src => src.WorkOverVibratingEvents)
-                .Map(dest => dest.ReplacedDate, src => src.Replaced)
-                .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
+
             config.NewConfig<DAL_SQLite.state, StateMachine>()
                 .Ignore(dest => dest.Id)
                 .IgnoreAllVirtual()

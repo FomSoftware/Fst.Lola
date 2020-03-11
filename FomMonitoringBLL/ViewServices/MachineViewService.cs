@@ -21,7 +21,6 @@ namespace FomMonitoringBLL.ViewServices
         private readonly IToolsViewService _toolsViewService;
         private readonly IPanelParametersViewService _panelParametersViewService;
         private readonly IXToolsViewService _xToolsViewService;
-        private readonly ISpindleViewService _spindleViewService;
         private readonly IJobsViewService _jobsViewService;
 
         public MachineViewService(
@@ -33,7 +32,6 @@ namespace FomMonitoringBLL.ViewServices
             IPanelParametersViewService panelParametersViewService,
             IXToolsViewService xToolsViewService,
             IToolsViewService toolsViewService,
-            ISpindleViewService spindleViewService,
             IJobsViewService jobsViewService)
         {
             _messagesViewService = messagesViewService;
@@ -44,7 +42,6 @@ namespace FomMonitoringBLL.ViewServices
             _toolsViewService = toolsViewService;
             _panelParametersViewService = panelParametersViewService;
             _xToolsViewService = xToolsViewService;
-            _spindleViewService = spindleViewService;
             _jobsViewService = jobsViewService;
         }
 
@@ -68,10 +65,7 @@ namespace FomMonitoringBLL.ViewServices
                 id_mtype = context.ActualMachine.Type.Id,
                 machineName = context.ActualMachine.MachineName
             };
-            if (!machine.MachinePanels.Contains((int) enPanel.XSpindles))
-            {
-                machine.XSpindles = _spindleViewService.GetXSpindles(context);
-            }
+
             machine.XTools = _xToolsViewService.GetXTools(context);
             machine.Maintenance = _maintenanceViewService.GetMessages(context);           
             return machine;

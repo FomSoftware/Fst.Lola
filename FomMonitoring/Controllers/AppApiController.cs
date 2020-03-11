@@ -25,7 +25,6 @@ namespace FomMonitoring.Controllers
         private readonly IJobsViewService _jobsViewService;
         private readonly IMaintenanceViewService _maintenanceViewService;
         private readonly IXToolsViewService _xToolsViewService;
-        private readonly ISpindleViewService _spindleViewService;
         private readonly IToolsViewService _toolsViewService;
 
         public AppApiController(
@@ -41,8 +40,7 @@ namespace FomMonitoring.Controllers
             IJobsViewService jobsViewService,
             IMaintenanceViewService maintenanceViewService,
             IXToolsViewService xToolsViewService,
-            IToolsViewService toolsViewService,
-            ISpindleViewService spindleViewService)
+            IToolsViewService toolsViewService)
         {
             _contextService = contextService;
             _plantMessagesViewService = plantMessagesViewService;
@@ -56,7 +54,6 @@ namespace FomMonitoring.Controllers
             _jobsViewService = jobsViewService;
             _maintenanceViewService = maintenanceViewService;
             _xToolsViewService = xToolsViewService;
-            _spindleViewService = spindleViewService;
             _toolsViewService = toolsViewService;
         }
 
@@ -284,25 +281,6 @@ namespace FomMonitoring.Controllers
 
         }
 
-
-        [HttpPost]
-        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
-        [Route("ajax/AppApi/GetMachineXSpindlesViewModel")]
-        public HttpResponseMessage GetMachineXSpindlesViewModel(FilterViewModel filters)
-        {
-
-            if (filters.period != null)
-            {
-                _contextService.SetActualPeriod(filters.period.start, filters.period.end);
-                _contextService.SetActualMachineGroup(filters.machineGroup);
-            }
-
-            var context = _contextService.GetContext();
-            var xSpindles = _spindleViewService.GetXSpindles(context);
-
-            return Request.CreateResponse(HttpStatusCode.OK, xSpindles, MediaTypeHeaderValue.Parse("application/json"));
-
-        }
 
         [HttpPost]
         [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]

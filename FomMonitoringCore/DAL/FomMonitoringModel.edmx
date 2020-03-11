@@ -336,29 +336,6 @@
           <Property Name="Address" Type="varchar(max)" />
           <Property Name="UserId" Type="uniqueidentifier" />
         </EntityType>
-        <EntityType Name="Spindle">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Code" Type="varchar" MaxLength="100" />
-          <Property Name="ElapsedTimeWorkTotal" Type="bigint" />
-          <Property Name="ElapsedTimeWork3K" Type="bigint" />
-          <Property Name="ElapsedTimeWork6K" Type="bigint" />
-          <Property Name="ElapsedTimeWork9K" Type="bigint" />
-          <Property Name="ElapsedTimeWork12K" Type="bigint" />
-          <Property Name="ElapsedTimeWork15K" Type="bigint" />
-          <Property Name="ElapsedTimeWork18K" Type="bigint" />
-          <Property Name="ExpectedWorkTime" Type="bigint" />
-          <Property Name="WorkOverheatingCount" Type="int" />
-          <Property Name="WorkOverPowerCount" Type="int" />
-          <Property Name="WorkOverVibratingCount" Type="int" />
-          <Property Name="InstallDate" Type="datetime" />
-          <Property Name="MachineId" Type="int" />
-          <Property Name="ReplacedDate" Type="datetime" />
-          <Property Name="Serial" Type="varchar" MaxLength="100" />
-          <Property Name="ToolChangedCount" Type="int" />
-        </EntityType>
         <EntityType Name="State">
           <Key>
             <PropertyRef Name="Id" />
@@ -827,18 +804,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Spindle_Machine">
-          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
-          <End Role="Spindle" Type="Self.Spindle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Machine">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Spindle">
-              <PropertyRef Name="MachineId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_StateMachine_Machine">
           <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
           <End Role="StateMachine" Type="Self.StateMachine" Multiplicity="*" />
@@ -957,7 +922,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySet Name="ParameterMachineValue" EntityType="Self.ParameterMachineValue" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Piece" EntityType="Self.Piece" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Plant" EntityType="Self.Plant" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Spindle" EntityType="Self.Spindle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StateMachine" EntityType="Self.StateMachine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ToolMachine" EntityType="Self.ToolMachine" Schema="dbo" store:Type="Tables" />
@@ -1119,10 +1083,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <End Role="Machine" EntitySet="Machine" />
             <End Role="Piece" EntitySet="Piece" />
           </AssociationSet>
-          <AssociationSet Name="FK_Spindle_Machine" Association="Self.FK_Spindle_Machine">
-            <End Role="Machine" EntitySet="Machine" />
-            <End Role="Spindle" EntitySet="Spindle" />
-          </AssociationSet>
           <AssociationSet Name="FK_StateMachine_Machine" Association="Self.FK_StateMachine_Machine">
             <End Role="Machine" EntitySet="Machine" />
             <End Role="StateMachine" EntitySet="StateMachine" />
@@ -1249,11 +1209,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <AssociationSet Name="FK_Bar_Machine" Association="FST_FomMonitoringModel.FK_Bar_Machine">
             <End Role="Machine" EntitySet="Machine" />
             <End Role="Bar" EntitySet="Bar" />
-          </AssociationSet>
-          <EntitySet Name="Spindle" EntityType="FST_FomMonitoringModel.Spindle" />
-          <AssociationSet Name="FK_Spindle_Machine" Association="FST_FomMonitoringModel.FK_Spindle_Machine">
-            <End Role="Machine" EntitySet="Machine" />
-            <End Role="Spindle" EntitySet="Spindle" />
           </AssociationSet>
           <FunctionImport Name="usp_CleanMachineData" ReturnType="Collection(Int32)">
           <Parameter Name="machineId" Mode="In" Type="Int32" />
@@ -1683,7 +1638,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <NavigationProperty Name="ToolMachine" Relationship="FST_FomMonitoringModel.FK_ToolMachine_Machine" FromRole="Machine" ToRole="ToolMachine" />
           <NavigationProperty Name="HistoryJob" Relationship="FST_FomMonitoringModel.FK_HistoryJob_Machine" FromRole="Machine" ToRole="HistoryJob" />
           <NavigationProperty Name="Bar" Relationship="FST_FomMonitoringModel.FK_Bar_Machine" FromRole="Machine" ToRole="Bar" />
-          <NavigationProperty Name="Spindle" Relationship="FST_FomMonitoringModel.FK_Spindle_Machine" FromRole="Machine" ToRole="Spindle" />
           <NavigationProperty Name="UserMachineMapping" Relationship="FST_FomMonitoringModel.FK_UserMachineMapping_Machine" FromRole="Machine" ToRole="UserMachineMapping" />
           <NavigationProperty Name="HistoryMessage" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_Machine" FromRole="Machine" ToRole="HistoryMessage" />
           <NavigationProperty Name="MessageMachine" Relationship="FST_FomMonitoringModel.FK_MessageMachine_Machine" FromRole="Machine" ToRole="MessageMachine" />
@@ -1876,42 +1830,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Bar">
-              <PropertyRef Name="MachineId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Spindle">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ElapsedTimeWorkTotal" Type="Int64" />
-          <Property Name="ElapsedTimeWork3K" Type="Int64" />
-          <Property Name="ElapsedTimeWork6K" Type="Int64" />
-          <Property Name="ElapsedTimeWork9K" Type="Int64" />
-          <Property Name="ElapsedTimeWork12K" Type="Int64" />
-          <Property Name="ElapsedTimeWork15K" Type="Int64" />
-          <Property Name="ElapsedTimeWork18K" Type="Int64" />
-          <Property Name="ExpectedWorkTime" Type="Int64" />
-          <Property Name="WorkOverheatingCount" Type="Int32" />
-          <Property Name="WorkOverPowerCount" Type="Int32" />
-          <Property Name="WorkOverVibratingCount" Type="Int32" />
-          <Property Name="InstallDate" Type="DateTime" Precision="3" />
-          <Property Name="MachineId" Type="Int32" />
-          <Property Name="ReplacedDate" Type="DateTime" Precision="3" />
-          <Property Name="Serial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ToolChangedCount" Type="Int32" />
-          <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_Spindle_Machine" FromRole="Spindle" ToRole="Machine" />
-        </EntityType>
-        <Association Name="FK_Spindle_Machine">
-          <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
-          <End Type="FST_FomMonitoringModel.Spindle" Role="Spindle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Machine">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Spindle">
               <PropertyRef Name="MachineId" />
             </Dependent>
           </ReferentialConstraint>
@@ -2690,30 +2608,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="Spindle">
-            <EntityTypeMapping TypeName="FST_FomMonitoringModel.Spindle">
-              <MappingFragment StoreEntitySet="Spindle">
-                <ScalarProperty Name="ToolChangedCount" ColumnName="ToolChangedCount" />
-                <ScalarProperty Name="Serial" ColumnName="Serial" />
-                <ScalarProperty Name="ReplacedDate" ColumnName="ReplacedDate" />
-                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
-                <ScalarProperty Name="InstallDate" ColumnName="InstallDate" />
-                <ScalarProperty Name="WorkOverVibratingCount" ColumnName="WorkOverVibratingCount" />
-                <ScalarProperty Name="WorkOverPowerCount" ColumnName="WorkOverPowerCount" />
-                <ScalarProperty Name="WorkOverheatingCount" ColumnName="WorkOverheatingCount" />
-                <ScalarProperty Name="ExpectedWorkTime" ColumnName="ExpectedWorkTime" />
-                <ScalarProperty Name="ElapsedTimeWork18K" ColumnName="ElapsedTimeWork18K" />
-                <ScalarProperty Name="ElapsedTimeWork15K" ColumnName="ElapsedTimeWork15K" />
-                <ScalarProperty Name="ElapsedTimeWork12K" ColumnName="ElapsedTimeWork12K" />
-                <ScalarProperty Name="ElapsedTimeWork9K" ColumnName="ElapsedTimeWork9K" />
-                <ScalarProperty Name="ElapsedTimeWork6K" ColumnName="ElapsedTimeWork6K" />
-                <ScalarProperty Name="ElapsedTimeWork3K" ColumnName="ElapsedTimeWork3K" />
-                <ScalarProperty Name="ElapsedTimeWorkTotal" ColumnName="ElapsedTimeWorkTotal" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="usp_CleanMachineData" FunctionName="FST_FomMonitoringModel.Store.usp_CleanMachineData" />
           <EntitySetMapping Name="JsonData">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.JsonData">
