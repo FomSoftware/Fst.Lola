@@ -42,7 +42,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 var historyJobSqLite = _fomMonitoringSqLiteEntities.Set<historyJob>().ToList();
                 var infoSqLite = _fomMonitoringSqLiteEntities.Set<info>().ToList();
                 var pieceSqLite = _fomMonitoringSqLiteEntities.Set<piece>().ToList();
-                var spindleSqLite = _fomMonitoringSqLiteEntities.Set<spindle>().ToList();
                 var stateSqLite = _fomMonitoringSqLiteEntities.Set<state>().ToList();
                 var toolSqLite = _fomMonitoringSqLiteEntities.Set<tool>().ToList();
                 var messageSqLite = _fomMonitoringSqLiteEntities.Set<message>().ToList();
@@ -240,7 +239,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 var historyStateSqLite = _fomMonitoringSqLiteEntities.Set<historyState>().ToList();
                 var historyMessageSqLite = _fomMonitoringSqLiteEntities.Set<historyMessage>().ToList();
                 var infoSqLite = _fomMonitoringSqLiteEntities.Set<info>().ToList();
-                var spindleSqLite = _fomMonitoringSqLiteEntities.Set<spindle>().ToList();
                 var toolSqLite = _fomMonitoringSqLiteEntities.Set<tool>().ToList();
                 
                 var matricola = infoSqLite.OrderByDescending(o => o.Id).FirstOrDefault()?.MachineSerial;

@@ -51,7 +51,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 List<info> infoSqLite = new List<info>();
                 List<piece> pieceSqLite = new List<piece>();
                 List<message> messageSqLite = new List<message>();
-                List<spindle> spindleSqLite = new List<spindle>();
                 List<state> stateSqLite = new List<state>();
                 List<tool> toolSqLite = new List<tool>();
                 
@@ -75,9 +74,6 @@ namespace FomMonitoringCore.Service.DataMapping
 
                 if (_fomMonitoringSqLiteEntities.Set<piece>() != null)
                     _fomMonitoringSqLiteEntities.Set<piece>().RemoveRange(_fomMonitoringSqLiteEntities.Set<piece>());
-
-                if (_fomMonitoringSqLiteEntities.Set<spindle>() != null)
-                    _fomMonitoringSqLiteEntities.Set<spindle>().RemoveRange(_fomMonitoringSqLiteEntities.Set<spindle>());
 
                 if (_fomMonitoringSqLiteEntities.Set<state>() != null)
                     _fomMonitoringSqLiteEntities.Set<state>().RemoveRange(_fomMonitoringSqLiteEntities.Set<state>());
@@ -143,15 +139,6 @@ namespace FomMonitoringCore.Service.DataMapping
                                     piece.StartTime = piece.StartTime.HasValue && piece.StartTime.Value.Year < 1900 ? null : piece.StartTime;
                             }
                                 break;
-                            case "spindle":
-                                spindleSqLite = JsonConvert.DeserializeObject<List<spindle>>(JsonConvert.SerializeObject(token.First));
-                                foreach (spindle spindle in spindleSqLite)
-                                {
-                                    spindle.Id = 0;
-                                    spindle.InstallDate = spindle.InstallDate.HasValue && spindle.InstallDate.Value.Year < 1900 ? null : spindle.InstallDate;
-                                    spindle.Replaced = spindle.Replaced.HasValue && spindle.Replaced.Value.Year < 1900 ? null : spindle.Replaced;
-                                }
-                                break;
                             case "state":
                                 string jsonSerialized = JsonConvert.SerializeObject(token.First);
                                 stateSqLite = JsonConvert.DeserializeObject<List<state>>(jsonSerialized);
@@ -213,11 +200,6 @@ namespace FomMonitoringCore.Service.DataMapping
                     _fomMonitoringSqLiteEntities.Set<piece>().AddRange(pieceSqLite);
                     _fomMonitoringSqLiteEntities.SaveChanges();
                 }
-                if (spindleSqLite.Any())
-                {
-                    _fomMonitoringSqLiteEntities.Set<spindle>().AddRange(spindleSqLite);
-                    _fomMonitoringSqLiteEntities.SaveChanges();
-                }
                 if (stateSqLite.Any())
                 {
                     _fomMonitoringSqLiteEntities.Set<state>().AddRange(stateSqLite);
@@ -257,7 +239,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 List<info> infoSqLite = new List<info>();
                 List<historyMessage> historyMessageSqLite = new List<historyMessage>();
                 List<historyState> historyStateSqLite = new List<historyState>();
-                List<spindle> spindleSqLite = new List<spindle>();
                 List<tool> toolSqLite = new List<tool>();
                 List<message> messageSqLite = new List<message>();
                 
@@ -268,7 +249,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 _fomMonitoringSqLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE info");
                 _fomMonitoringSqLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyState");
                 _fomMonitoringSqLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE historyMessage");
-                _fomMonitoringSqLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE spindle");
                 _fomMonitoringSqLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE tool");
                 _fomMonitoringSqLiteEntities.Database.ExecuteSqlCommand("TRUNCATE TABLE message");
 
@@ -324,14 +304,6 @@ namespace FomMonitoringCore.Service.DataMapping
                                 historyState.Day = historyState.Day.HasValue && historyState.Day.Value.Year < 1900 ? null : historyState.Day;
                             }
                             break;
-                        case "spindle":
-                            spindleSqLite = JsonConvert.DeserializeObject<List<spindle>>(JsonConvert.SerializeObject(token.First));
-                            foreach (var spindle in spindleSqLite)
-                            {
-                                spindle.InstallDate = spindle.InstallDate.HasValue && spindle.InstallDate.Value.Year < 1900 ? null : spindle.InstallDate;
-                                spindle.Replaced = spindle.Replaced.HasValue && spindle.Replaced.Value.Year < 1900 ? null : spindle.Replaced;
-                            }
-                            break;
                         case "tool":
                             toolSqLite = JsonConvert.DeserializeObject<List<tool>>(JsonConvert.SerializeObject(token.First));
                             foreach (var tool in toolSqLite)
@@ -368,9 +340,6 @@ namespace FomMonitoringCore.Service.DataMapping
                 _fomMonitoringSqLiteEntities.SaveChanges();
 
                 _fomMonitoringSqLiteEntities.Set<historyState>().AddRange(historyStateSqLite);
-                _fomMonitoringSqLiteEntities.SaveChanges();
-
-                _fomMonitoringSqLiteEntities.Set<spindle>().AddRange(spindleSqLite);
                 _fomMonitoringSqLiteEntities.SaveChanges();
 
                 _fomMonitoringSqLiteEntities.Set<tool>().AddRange(toolSqLite);

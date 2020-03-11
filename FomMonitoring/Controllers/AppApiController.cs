@@ -284,24 +284,6 @@ namespace FomMonitoring.Controllers
 
         [HttpPost]
         [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
-        [Route("ajax/AppApi/GetMachineToolsViewModel")]
-        public HttpResponseMessage GetMachineToolsViewModel(FilterViewModel filters)
-        {
-            if (filters.period != null)
-            {
-                _contextService.SetActualPeriod(filters.period.start, filters.period.end);
-                _contextService.SetActualMachineGroup(filters.machineGroup);
-            }
-
-            var context = _contextService.GetContext();
-            var tools = _toolsViewService.GetTools(context);
-
-            return Request.CreateResponse(HttpStatusCode.OK, tools, MediaTypeHeaderValue.Parse("application/json"));
-
-        }
-
-        [HttpPost]
-        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
         [Route("ajax/AppApi/GetMachineToolsBlitzViewModel")]
         public HttpResponseMessage GetMachineToolsBlitzViewModel(FilterViewModel filters)
         {
@@ -315,6 +297,21 @@ namespace FomMonitoring.Controllers
             var xTools = _xToolsViewService.GetXTools(context);
 
             return Request.CreateResponse(HttpStatusCode.OK, xTools, MediaTypeHeaderValue.Parse("application/json"));
+
+        }
+
+        [HttpPost]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Route("ajax/AppApi/IgnoreMessage/{MessageID}")]
+        public HttpResponseMessage IgnoreMessage(int MessageID)
+        {
+            var res = _maintenanceViewService.IgnoreMessage(MessageID);
+
+            var context = _contextService.GetContext();
+
+            var mvm = _maintenanceViewService.GetMessages(context);
+
+            return Request.CreateResponse(HttpStatusCode.OK, Json(mvm), MediaTypeHeaderValue.Parse("application/json"));
 
         }
     }

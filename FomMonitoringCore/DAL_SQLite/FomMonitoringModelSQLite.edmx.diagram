@@ -13,7 +13,6 @@
         <EntityTypeShape EntityType="FomMonitoringSQLiteModel.state" Width="1.5" PointX="2.75" PointY="8.75" />
         <EntityTypeShape EntityType="FomMonitoringSQLiteModel.tool" Width="1.5" PointX="11.375" PointY="9.375" />
         <EntityTypeShape EntityType="FomMonitoringSQLiteModel.historyBar" Width="1.5" PointX="2.75" PointY="4.75" />
-        <EntityTypeShape EntityType="FomMonitoringSQLiteModel.spindle" Width="1.5" PointX="0.75" PointY="4.75" />
         <EntityTypeShape EntityType="FomMonitoringSQLiteModel.bar" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="FomMonitoringSQLiteModel.message" Width="1.5" PointX="11.375" PointY="0.75" />
         <EntityTypeShape EntityType="FomMonitoringSQLiteModel.historyMessage" Width="1.5" PointX="11.375" PointY="4.75" />

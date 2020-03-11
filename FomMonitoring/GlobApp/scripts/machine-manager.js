@@ -77,7 +77,6 @@
 
                 Efficiency.update(efficiency[0]);
                 Productivity.update(productivity[0]);
-                Spindles.update(parameters[0]);
                 ToolsBlitz.update(toolsBlitz[0]);
                 Tools.update(tools[0]);
                 XTools.update(xTools[0]);
@@ -336,10 +335,6 @@
             template: '#modal-tool'
         });
 
-        Vue.component('modal-spindle', {
-            props: ['spindle'],
-            template: '#modal-spindle'
-        });
     };
 
     var getColorKPI = function (color_name)

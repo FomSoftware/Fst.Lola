@@ -55,7 +55,8 @@ namespace FomMonitoringBLL.ViewServices
                     machineName = machine.MachineName,
                     icon = machine.Type.Image,
                     expired = dataMachine.Expired,
-                    id_mtype = machine.Type != null ? machine.Type.Id : 0
+                    id_mtype = machine.Type != null ? machine.Type.Id : 0,
+                    serial = machine.Serial
                 };
 
 

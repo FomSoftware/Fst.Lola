@@ -150,28 +150,6 @@
           <Property Name="TimeSpanTrim" Type="bigint" />
           <Property Name="TimeSpanAnuba" Type="bigint" />
         </EntityType>
-        <EntityType Name="spindle">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Code" Type="varchar(max)" />
-          <Property Name="ExpectedWorkTime" Type="bigint" />
-          <Property Name="InstallDate" Type="datetime" />
-          <Property Name="WorkTotalTime" Type="bigint" />
-          <Property Name="Work3KTime" Type="bigint" />
-          <Property Name="Work6KTime" Type="bigint" />
-          <Property Name="Work9KTime" Type="bigint" />
-          <Property Name="Work12KTime" Type="bigint" />
-          <Property Name="Work15KTime" Type="bigint" />
-          <Property Name="Work18KTime" Type="bigint" />
-          <Property Name="WorkOverheatingEvents" Type="int" />
-          <Property Name="WorkOverPowerEvents" Type="int" />
-          <Property Name="WorkOverVibratingEvents" Type="int" />
-          <Property Name="Replaced" Type="datetime" />
-          <Property Name="ToolChangedCount" Type="int" />
-          <Property Name="Serial" Type="varchar(max)" />
-        </EntityType>
         <EntityType Name="state">
           <Key>
             <PropertyRef Name="Id" />
@@ -207,7 +185,6 @@
           <EntitySet Name="info" EntityType="Self.info" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="message" EntityType="Self.message" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="piece" EntityType="Self.piece" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="spindle" EntityType="Self.spindle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="state" EntityType="Self.state" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tool" EntityType="Self.tool" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -224,7 +201,6 @@
           <EntitySet Name="state" EntityType="FomMonitoringSQLiteModel.state" />
           <EntitySet Name="tool" EntityType="FomMonitoringSQLiteModel.tool" />
           <EntitySet Name="historyBar" EntityType="FomMonitoringSQLiteModel.historyBar" />
-          <EntitySet Name="spindle" EntityType="FomMonitoringSQLiteModel.spindle" />
           <EntitySet Name="bar" EntityType="FomMonitoringSQLiteModel.bar" />
           <EntitySet Name="message" EntityType="FomMonitoringSQLiteModel.message" />
           <EntitySet Name="historyMessage" EntityType="FomMonitoringSQLiteModel.historyMessage" />
@@ -358,28 +334,6 @@
           <Property Name="Day" Type="DateTime" Precision="3" />
           <Property Name="ElapsedTime" Type="Int64" />
           <Property Name="ElapsedTimeProducing" Type="Int64" />
-        </EntityType>
-        <EntityType Name="spindle">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ExpectedWorkTime" Type="Int64" />
-          <Property Name="InstallDate" Type="DateTime" Precision="3" />
-          <Property Name="WorkTotalTime" Type="Int64" />
-          <Property Name="Work3KTime" Type="Int64" />
-          <Property Name="Work6KTime" Type="Int64" />
-          <Property Name="Work9KTime" Type="Int64" />
-          <Property Name="Work12KTime" Type="Int64" />
-          <Property Name="Work15KTime" Type="Int64" />
-          <Property Name="Work18KTime" Type="Int64" />
-          <Property Name="WorkOverheatingEvents" Type="Int32" />
-          <Property Name="WorkOverPowerEvents" Type="Int32" />
-          <Property Name="WorkOverVibratingEvents" Type="Int32" />
-          <Property Name="Replaced" Type="DateTime" Precision="3" />
-          <Property Name="ToolChangedCount" Type="Int32" />
-          <Property Name="Serial" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="bar">
           <Key>
@@ -560,29 +514,6 @@
                 <ScalarProperty Name="OffCutCount" ColumnName="OffCutCount" />
                 <ScalarProperty Name="BarLengthSum" ColumnName="BarLengthSum" />
                 <ScalarProperty Name="System" ColumnName="System" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="spindle">
-            <EntityTypeMapping TypeName="FomMonitoringSQLiteModel.spindle">
-              <MappingFragment StoreEntitySet="spindle">
-                <ScalarProperty Name="Serial" ColumnName="Serial" />
-                <ScalarProperty Name="ToolChangedCount" ColumnName="ToolChangedCount" />
-                <ScalarProperty Name="Replaced" ColumnName="Replaced" />
-                <ScalarProperty Name="WorkOverVibratingEvents" ColumnName="WorkOverVibratingEvents" />
-                <ScalarProperty Name="WorkOverPowerEvents" ColumnName="WorkOverPowerEvents" />
-                <ScalarProperty Name="WorkOverheatingEvents" ColumnName="WorkOverheatingEvents" />
-                <ScalarProperty Name="Work18KTime" ColumnName="Work18KTime" />
-                <ScalarProperty Name="Work15KTime" ColumnName="Work15KTime" />
-                <ScalarProperty Name="Work12KTime" ColumnName="Work12KTime" />
-                <ScalarProperty Name="Work9KTime" ColumnName="Work9KTime" />
-                <ScalarProperty Name="Work6KTime" ColumnName="Work6KTime" />
-                <ScalarProperty Name="Work3KTime" ColumnName="Work3KTime" />
-                <ScalarProperty Name="WorkTotalTime" ColumnName="WorkTotalTime" />
-                <ScalarProperty Name="InstallDate" ColumnName="InstallDate" />
-                <ScalarProperty Name="ExpectedWorkTime" ColumnName="ExpectedWorkTime" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

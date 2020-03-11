@@ -36,5 +36,6 @@ namespace FomMonitoringCore.Framework.Model
         public double? UTC { get; set; }
         public string MachineName { get; set; }
         public DateTime? ExpirationDate { get; set; }
+        public DateTime? ActivationDate { get; set; }
     }
 }

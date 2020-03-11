@@ -87,7 +87,7 @@
                         this.actual.LastName.trim() === ""
                         ? this.missing.LastName = true
                         : this.missing.LastName = false;
-                    this.roles.active.length === 0 ? this.missing.Role = true : this.missing.Role = false;
+                    this.roles.active.length === "" ? this.missing.Role = true : this.missing.Role = false;
                     this.customers.active === "" && roleUser !== enRoles.Customer
                         ? this.missing.Customer = true
                         : this.missing.Customer = false;
@@ -536,7 +536,8 @@
 
         $('#machines-input').selectpicker('destroy');
         $('#customer-input').selectpicker('destroy');
-        $('#role-input').selectpicker('destroy');
+        //commentata la riga perchè fa moltiplicare le opzioni vuote ogni volta cha si apre la select
+        //$('#role-input').selectpicker('destroy');
 
         $('#user-modal #username-input').removeClass('input-read-only');
 
@@ -597,19 +598,19 @@
         var result;
         switch (val) {
         case 'English':
-            result = '/Images/flags/en.png';
+                result = '/FomMonitoringWeb/Images/flags/en.png';
             break;
         case 'Italian':
-            result = '/Images/flags/it.png';
+                result = '/FomMonitoringWeb/Images/flags/it.png';
             break;
         case 'Spanish':
-            result = '/Images/flags/es.png';
+                result = '/FomMonitoringWeb/Images/flags/es.png';
             break;
         case 'French':
-            result = '/Images/flags/fr.png';
+                result = '/FomMonitoringWeb/Images/flags/fr.png';
             break;
         case 'German':
-            result = '/Images/flags/de.png';
+                result = '/FomMonitoringWeb/Images/flags/de.png';
             break;
         }
         return result;

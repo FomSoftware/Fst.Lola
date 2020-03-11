@@ -65,7 +65,7 @@ namespace FomMonitoringBLL.ViewServices
                 id_mtype = context.ActualMachine.Type.Id,
                 machineName = context.ActualMachine.MachineName
             };
-
+            
             machine.XTools = _xToolsViewService.GetXTools(context);
             machine.Maintenance = _maintenanceViewService.GetMessages(context);           
             return machine;

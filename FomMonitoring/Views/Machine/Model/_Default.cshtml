@@ -49,27 +49,8 @@
                 </div>
             </div>
         }
-        else
-        {
-            if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)
-            {
-                <div class="row">
-                    <div class="col-12">
-                        @Html.Partial("Panels/_Spindles", Model.PanelParameter)
-                    </div>
-                </div>
-            }
-        }
-
     }
-    @*@if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)
-        {
-            <div class="row">
-                <div class="col-sm-12">
-                    @Html.Partial("_XSpindles", Model.XSpindles)
-                </div>
-            </div>
-        }*@
+ 
     @if (Model.MachinePanels.Contains((int)enPanel.XSpindles))
     {
         <div class="row">

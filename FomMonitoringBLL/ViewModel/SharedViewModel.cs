@@ -81,6 +81,8 @@ namespace FomMonitoringBLL.ViewModel
 
         public string machineName { get; set; }
 
+        public string activation { get; set; }
+
     }
 
 

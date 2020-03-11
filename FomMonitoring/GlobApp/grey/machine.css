@@ -1,4 +1,31 @@
-﻿
+﻿/* stili per prevenire overscroll/bounce in iOS MobileSafari 
+    https://www.bram.us/2016/05/02/prevent-overscroll-bounce-in-ios-mobilesafari-pure-css/
+*/
+html,
+body {
+    position: fixed;
+    overflow: hidden;
+}
+
+.container-fluid {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.container-fluid::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.container-fluid {
+    -ms-overflow-style: none;
+}
+
+/* fine */
 
 #MachineLevel {
     opacity: 0;
@@ -925,10 +952,14 @@ a.click-more {
 
 /*#region table spindle */
 
-.table-spindle, .table-xmu-electrospindle {
+.table-spindle, .table-xmu-electrospindle, .table-rotary-axes {
     width: calc(100% + 1px);
     table-layout: fixed;
     height: 100%;
+}
+
+.table-rotary-axes{
+    width: 100%;
 }
 
 
@@ -1085,7 +1116,7 @@ td.td-tool {
     padding-top: 5px;
 }
 
-td.td-other-data, td.td-xmu-electrospindle {
+td.td-other-data, td.td-xmu-electrospindle, td.td-motor-blade {
     vertical-align: top;
     width: 20%;
     background-color: #bebebe;
@@ -1099,6 +1130,10 @@ td.td-other-data {
 
 td.td-xmu-electrospindle {
     padding-top: 4px;
+}
+
+td.td-motor-blade {
+    padding-top: 3px;
 }
 
 
@@ -1214,7 +1249,7 @@ hr.axes {
 }
 
 
-.label-electrospindle-data-value {
+.label-electrospindle-data-value, .label-motor-blade-data-value {
     font-size: 21px;
     font-weight: 400;
     color: #403D3D;
@@ -1223,6 +1258,7 @@ hr.axes {
     width: 100%;
     text-align: center;
 }
+
 
 .label-electrospindle-title {
     font-size: 13px;
@@ -1288,6 +1324,7 @@ td.td-tools-light {
     height: 100%;
     table-layout: fixed;
     width: 100%;
+    overflow-x: hidden;
 }
 
     .table-electro-spindle tr:first-child td, .table-other-data tr:first-child td {
@@ -1301,9 +1338,13 @@ td.td-tools-light {
         font-size: 20px;
     }
 
-.electro-spindle-icon {
+.electro-spindle-icon, .motor-blade-icon {
     clear: both;
     float: left;
+}
+
+.motor-blade-icon {
+    margin-bottom: 0.2rem;
 }
 
 .font-11-pt {
@@ -1503,41 +1544,6 @@ td.td-axes {
 .rotaryAxesHeader {
     font-size: 16px;
 }
-
-
-
-
-
-
-@media (max-height: 768px) {
-    .img-button-group-lmx {
-        width: 220px;
-        padding-top: 0;
-    }
-
-    .lmx-button-container {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .lmx-button-group {
-        padding: 0 15px 0 15px;
-    }
-}
-
-@media (max-height: 400px) {
-    .lmx-button-container {
-        width: 100%;
-        padding-top: 20px;
-    }
-
-    .lmx-button-group {
-        padding: 0 15px 0 0;
-    }
-}
-
-
 
 
 @media (max-width: 1396px) {
@@ -1841,6 +1847,21 @@ td.td-axes {
         font-size: 100px;
         line-height: 120px;
     }
+
+    .img-button-group-lmx {
+        width: 220px;
+        padding-top: 0;
+    }
+
+    .lmx-button-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .lmx-button-group {
+        padding: 0 15px 0 15px;
+    }
 }
 
 @media (min-width: 1396px) {
@@ -1896,3 +1917,29 @@ td.td-axes {
         width: 50%;
     }
 }
+
+@media (max-height: 767px) {
+    
+    .lmx-button-container {
+        display: block;
+        justify-content: center;
+        width: 100%;
+    }
+
+}
+
+@media (max-height: 450px) {
+    .lmx-button-container {
+        display: flex;
+        width: 100%;
+        padding-top: 20px;
+    }
+    .img-button-group-lmx {
+        width: 120px;
+    }
+
+    .lmx-button-group {
+        padding: 0 15px 0 0;
+    }
+}
+
