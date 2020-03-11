@@ -1130,4 +1130,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="XLABETICHETTATRICE" xml:space="preserve">
     <value>XLAB - ETICHETTATRICE (OPTIONAL)</value>
   </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>Attività</value>
+  </data>
 </root>

@@ -2,39 +2,55 @@
 @using FomMonitoringCore.Service
 
 <div id="CardMaintenance" class="@ViewData["Classes"]" style="height:581px" v-show="showed">
-    <div class="portlet">
-        <div class="portlet-title" style="font-size: 16px;">
-            <div class="portlet-kpi" v-cloak>
+<div class="portlet">
+    <div class="portlet-title" style="font-size: 16px;">
+        <div class="portlet-kpi" v-cloak>
 
-                <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x" style="color:cornflowerblue"></i>
-                    <i class="fa fa-info fa-stack-1x fa-inverse"></i>
-                </span>
-            </div>
-            <div class="title-kpi">
-                <span>
-                    @LocalizationService.GetResource("PeriodicMaintenance")
-                </span>
-                <div class="sub-period">
-                    @LocalizationService.GetResource("UntilNow")</div>
-            </div>
-            <div class="portlet-details" v-show="show.historical">
-                <div class="dropdown" onclick="SharedManager.handlerDropdown($(this))">
-                    <div class="button drop-btn">
-                        <i class="icon-options-vertical"></i>
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x" style="color:cornflowerblue"></i>
+                <i class="fa fa-info fa-stack-1x fa-inverse"></i>
+            </span>
+        </div>
+        <div class="title-kpi">
+            <span>
+                @LocalizationService.GetResource("PeriodicMaintenance")
+            </span>
+            <div class="sub-period">
+                @LocalizationService.GetResource("UntilNow")</div>
+        </div>
+        <div class="portlet-details" v-show="show.historical">
+            <div class="dropdown" onclick="SharedManager.handlerDropdown($(this))">
+                <div class="button drop-btn">
+                    <i class="icon-options-vertical"></i>
+                </div>
+                <div class="dropdown-content right">
+                    <div class="dd-item active slide-dashboard" data-group="maintenance">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Dashboard</span>
+                    </div>
+                    <div class="dd-item slide-history" data-group="maintenance" v-show="show.historical">
+                        <i class="fa fa-history"></i>
+                        <span>@LocalizationService.GetResource("Historical")</span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="portlet-body border-panel" style="border-top-color:cornflowerblue">
-            <div class="card-portlet card-maintenance" style="height:100%" v-cloak>
-                <div class="front" style="padding: 0px;">
-                    <div v-if="messages != null" class="table-container" style="height:100%">
-                        <table class="table table-alerts table-header">
-                            <thead>
+    </div>
+    <div class="portlet-body border-panel" style="border-top-color:cornflowerblue">
+        <div class="card-portlet card-maintenance" style="height:100%" v-cloak>
+            <div class="swiper-container maintenance">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div v-if="messages != null" class="table-container" style="height:100%">
+                            <table class="table table-alerts table-header">
+                                <thead>
                                 <tr>
-                                    <th style="width:5%"></th>
+                                    <th style="width: 5%;text-align: center"><i class="fa fa-check"></i></th>
                                     <th style="width: 35%;">
+                                        <i class="fa fa-list"></i>
+                                        <span class="value-title testo-abbreviato">
+                                            @LocalizationService.GetResource("Tasks")
+                                        </span>
                                     </th>
                                     <th style="width:22%" class="th-duration sorting" v-bind:class="sorting.timestamp" v-on:click="sortTimestamp()">
                                         <i class="fa fa-clock-o color-aaa"></i>
@@ -49,19 +65,16 @@
                                         </span>
                                     </th>
                                 </tr>
-                            </thead>
-                        </table>
-                        <div class="slimscroll" id="maintenanceSlimscroll" >
-                            <table class="table table-alerts">
-                                <tbody>
+                                </thead>
+                            </table>
+                            <div class="slimscroll" id="maintenanceSlimscroll">
+                                <table class="table table-alerts">
+                                    <tbody>
                                     <tr v-for="message in messages">
-                                        <td style="width:5%">
-                                            <span class="fa-stack fa">
-                                                <i class="fa fa-circle fa-stack-2x" style="color:cornflowerblue"></i>
-                                                <i class="fa fa-info fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                            <span class="fa-stack fa btn" style="border:none" v-on:click="ignoreMessage(message.id, $event)">
-                                                <i class="fa fa-square fa-stack-2x" style="color:limegreen;top: 0;"></i>
+                                        <td style="width: 5%;vertical-align: middle">
+                                            <span class="fa-stack fa btn" style="border:none" v-on:click="ignoreMessage(message.id, $event)"
+                                                  v-on:mouseover="changeIconColor('red-square-icon', $event)" v-on:mouseleave="changeIconColor('green-square-icon', $event)">
+                                                <i class="fa fa-square fa-stack-2x red-square-icon" style="top: 0;"></i>
                                                 <i class="fa fa-check fa-stack-1x fa-inverse" style="top: 0;"></i>
                                             </span>
                                         </td>
@@ -71,15 +84,57 @@
                                             <time-span v-bind:duration="message.expiredSpan"></time-span>
                                         </td>
                                     </tr>
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+                        <no-data v-else></no-data>
                     </div>
-                    <no-data v-else></no-data>
+                    <div class="swiper-slide">
+                        <div v-if="show.historical" class="table-container" style="height: 100%">
+                            <table class="table table-alerts table-header">
+                                <thead>
+                                    <tr>
+                                        <th style="width:20%" class="th-duration sorting" v-bind:class="sorting.timestamp" v-on:click="sortTimestamp()">
+                                            <i class="fa fa-clock-o color-aaa"></i>
+                                            <span class="value-title testo-abbreviato">
+                                                @LocalizationService.GetResource("Timestamp")
+                                            </span>
+                                        </th>
+                                        <th style="width:20%" class="th-duration sorting" v-bind:class="sorting.user" v-on:click="sortTimestamp()">
+                                            <i class="fa fa-user"></i>
+                                            <span class="value-title testo-abbreviato">
+                                                @LocalizationService.GetResource("User")
+                                            </span>
+                                        </th>
+                                        <th style="width: 40%;">
+                                            <i class="fa fa-list"></i>
+                                            <span class="value-title testo-abbreviato">
+                                                @LocalizationService.GetResource("Tasks")
+                                            </span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div class="slimscroll" id="maintenanceSlimscroll">
+                                <table class="table table-alerts">
+                                    <tbody>
+                                        <tr v-for="message in ignoredMessages">
+                                            <td style="width:20%">{{ convert_timestamp(message.timestamp, message.utc) }}</td>
+                                            <td style="width: 20%"><span v-if="message.user != null && message.user.user != null">{{ message.user.user.Username }} ({{message.user.user.RoleName}})</span></td>
+                                            <td style="width: 35%">{{ message.description }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <no-data v-else></no-data>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
     <script type="text/javascript">
 

@@ -16,8 +16,9 @@
             data: {
                 messages: data.vm_messages.messages,
                 sorting: data.vm_messages.sorting,
+                ignoredMessages: data.ignored_messages.messages,
                 show: {
-                    historical: false
+                    historical: (data.ignored_messages.messages != null)
                 },
                 showed: true
             },
@@ -43,8 +44,25 @@
                 },
 
                 ignoreMessage: function ignoreMessage(messageId, event) {
-                    console.log(urlIgnoreMessageAPI);
-                    callAjaxIgnoreMessage(messageId);
+                    var icon = event.currentTarget.getElementsByClassName('red-square-icon')[0];
+                    if (icon) {
+                        icon.className = icon.className.replace(className, "green-square-icon");
+                    }
+
+                    setTimeout(function() {
+                        console.log(urlIgnoreMessageAPI);
+                        callAjaxIgnoreMessage(messageId);
+                    }, 1000);
+
+                },
+                changeIconColor: function changeIconColor(className, event) {
+                    var icon = event.currentTarget.getElementsByClassName(className)[0];
+                    if (icon) {
+                        if (className == 'red-square-icon')
+                            icon.className = icon.className.replace(className, "green-square-icon");
+                        else
+                            icon.className = icon.className.replace(className, 'red-square-icon');
+                    }
                 }
 
             }
@@ -92,9 +110,14 @@
     {
         // update vue model
         var vm_messages = data.vm_messages;
+        var ignored_messages = data.ignored_messages;
         if (vm_messages) {
             vmMessages.messages = vm_messages.messages;
             vmMessages.sorting = vm_messages.sorting;
+        }
+        if (ignored_messages) {
+            vmMessages.ignored_messages = ignored_messages.messages;
+
         }
 
     }

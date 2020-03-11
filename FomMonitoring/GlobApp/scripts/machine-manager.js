@@ -214,6 +214,11 @@
             loop: false
         });
 
+        var swiper_maintenance = new Swiper('.swiper-container.maintenance', {
+            direction: 'horizontal',
+            loop: false
+        });
+
         $('.slide-dashboard').click(function (e) {
             e.preventDefault();
             var group = $(this).data('group');
@@ -228,6 +233,10 @@
             if (group == 'productivity') {
                 showStandardPeriod("#CardProductivity");
                 swiper_productivity.slideTo(0, 300);
+            }
+            if (group == 'maintenance') {
+                showStandardPeriod("#CardMaintenance");
+                swiper_maintenance.slideTo(0, 300);
             }
 
             setGroupActive(group, ".slide-dashboard");
@@ -264,6 +273,11 @@
             if (group == 'messages') {
                 showHistoricalPeriod("#CardMessages");
                 swiper_message.slideTo(1, 300);
+            }
+
+            if (group == 'maintenance') {
+                showStandardPeriod("#CardMaintenance");
+                swiper_maintenance.slideTo(1, 300);
             }
 
 

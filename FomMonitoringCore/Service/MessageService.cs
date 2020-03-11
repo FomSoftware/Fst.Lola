@@ -295,7 +295,7 @@ namespace FomMonitoringCore.Service
             {
                 var cat = _context.Set<Machine>().Find(mm.MachineId)?.MachineModel.MessageCategoryId;
                 var msg = _context.Set<MessagesIndex>().FirstOrDefault(f =>
-                    f.MessageCode == mm.Code && f.MessageCategoryId == cat );
+                    f.MessageCode == mm.Code && f.MessageCategoryId == cat);
                 if (msg == null) return null;
 
                 //caso dei messaggi arrivati da json, non hanno span, vanno visualizzati subito
@@ -317,6 +317,46 @@ namespace FomMonitoringCore.Service
             }
 
             return null;
+        }
+
+        public List<MessageMachineModel> GetOldMaintenanceMessages(MachineInfoModel machine, PeriodModel period)
+        {
+            var result = new List<MessageMachineModel>();
+
+            try
+            {
+                var query = _context.Set<MessageMachine>().Where(m => m.MachineId == machine.Id &&
+                                                                      m.Machine.ActivationDate != null &&
+                                                                      m.MessagesIndex.IsPeriodicM &&
+                                                                      m.IgnoreDate != null)
+                    .ToList().GroupBy(g => g.MessagesIndexId)
+                    .Select(s => new MessageMachine
+                    {
+                        Day = s.Max(i => i.Day),
+                        MessagesIndexId = s.Key,
+                        Operator = s.OrderByDescending(i => i.Day).FirstOrDefault().Operator,
+                        Id = s.OrderByDescending(i => i.Day).FirstOrDefault().Id,
+                        IgnoreDate = s.OrderByDescending(i => i.Day).FirstOrDefault().IgnoreDate,
+                        MachineId = machine.Id,
+                        Machine = _context.Set<Machine>().Find(machine.Id),
+                        MessagesIndex = _context.Set<MessagesIndex>().Find(s.Key),
+                        UserId = s.OrderByDescending(i => i.Day).FirstOrDefault().UserId
+                    }).ToList()
+                    .OrderByDescending(o => o.Day).ToList();
+
+                var cl = _languageService.GetCurrentLanguage() ?? 0;
+                result = query.BuildAdapter().AddParameters("idLanguage", cl).AdaptToType<List<MessageMachineModel>>();
+            }
+            catch (Exception ex)
+            {
+                var errMessage = string.Format(ex.GetStringLog(),
+                    machine.Id.ToString(),
+                    string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ",
+                        period.Aggregation.ToString()));
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+
+            return result;
         }
 
         public List<MessageMachineModel> GetMaintenanceMessages(MachineInfoModel machine, PeriodModel period)
@@ -343,7 +383,6 @@ namespace FomMonitoringCore.Service
 
                 query = query.Where(m =>
                 {
-                    var cat = _context.Set<Machine>().Find(m.MachineId)?.MachineModel.MessageCategoryId;
                     var msg = _context.Set<MessagesIndex>().Find(m.MessagesIndexId);
                     if (msg == null) return false;
                     var span = msg.PeriodicSpan ?? 0;
@@ -409,7 +448,9 @@ namespace FomMonitoringCore.Service
         {
             try
             {
-                _context.Set<MessageMachine>().Find(messageId).IgnoreDate = DateTime.UtcNow;
+                MessageMachine cur = _context.Set<MessageMachine>().Find(messageId);
+                cur.IgnoreDate = DateTime.UtcNow;
+                cur.UserId = AccountService.Init().GetLoggedUser().ID.ToString();
                 _context.SaveChanges();
                 return true;
             }

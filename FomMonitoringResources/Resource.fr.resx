@@ -1130,4 +1130,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="TimeResStim" xml:space="preserve">
     <value>T.Résid.</value>
   </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>Tâches</value>
+  </data>
 </root>

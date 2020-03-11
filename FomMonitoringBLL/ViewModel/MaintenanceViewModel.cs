@@ -11,6 +11,8 @@ namespace FomMonitoringBLL.ViewModel
     {
         public MaintenceVueModel vm_messages { get; set; }
 
+        public MaintenceVueModel ignored_messages { get; set; }
+
     }
 
     public class MaintenceVueModel
@@ -38,6 +40,7 @@ namespace FomMonitoringBLL.ViewModel
             get { return timestamp?.ToString(CultureInfo.CurrentCulture); }
         }
         public double? utc { get; set; }
+        public UserManagerViewModel user { get; set; }
     }
 
 }

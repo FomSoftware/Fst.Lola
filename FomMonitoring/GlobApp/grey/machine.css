@@ -1545,6 +1545,14 @@ td.td-axes {
     font-size: 16px;
 }
 
+.red-square-icon {
+    color: #D32337;
+}
+
+.green-square-icon {
+    color: #07FF07;
+}
+
 
 @media (max-width: 1396px) {
 

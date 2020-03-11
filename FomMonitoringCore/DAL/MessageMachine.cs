@@ -29,6 +29,7 @@ namespace FomMonitoringCore.DAL
         public Nullable<System.DateTime> IgnoreDate { get; set; }
         public Nullable<int> MessagesIndexId { get; set; }
         public Nullable<bool> IsPeriodicMsg { get; set; }
+        public string UserId { get; set; }
     
         public virtual Machine Machine { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

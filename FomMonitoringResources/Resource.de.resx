@@ -1129,4 +1129,7 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="TimeResStim" xml:space="preserve">
     <value>Restzeit</value>
   </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>Aufgaben</value>
+  </data>
 </root>
