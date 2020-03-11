@@ -30,5 +30,7 @@ namespace FomMonitoringCore.Framework.Model
         public bool? IsPeriodicMsg { get; set; }
         public object TypeName { get; internal set; }
         public string Description { get; set; }
+
+        public string UserId { get; set; }
     }
 }

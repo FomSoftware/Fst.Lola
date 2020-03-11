@@ -1130,4 +1130,7 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="XLABETICHETTATRICE" xml:space="preserve">
     <value>XLAB - LABELING MACHINE (OPTIONAL)</value>
   </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>Tasks</value>
+  </data>
 </root>

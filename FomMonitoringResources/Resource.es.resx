@@ -1130,4 +1130,7 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   <data name="TimeResStim" xml:space="preserve">
     <value>T.Rest.</value>
   </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>Tareas</value>
+  </data>
 </root>
