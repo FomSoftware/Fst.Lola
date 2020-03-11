@@ -89,7 +89,7 @@
                 AxesKeope.update(parameters[0]);
                 ElectroSpindle.update(parameters[0]);
                 OtherData.update(parameters[0]);
-                MultiSpindles.update(parameters[0]);
+                MultiSpindles.update(parameters[0].vm_multi_spindle);
 
                 Vue.nextTick(function () {
                     initProgressBar();

@@ -160,7 +160,11 @@
             $('#MsgPanel').addClass("col-xl-6 col-lg-6");
         }
 
-        MachineManager.initFlipAndSwipMenu();
+        setTimeout(function() {
+
+                MachineManager.initFlipAndSwipMenu();
+            },
+            1000);
 
 
     }
