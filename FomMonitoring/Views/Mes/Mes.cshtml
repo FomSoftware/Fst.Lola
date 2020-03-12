@@ -23,11 +23,11 @@
                                 <div class="text-uppercase">
                                     {{ machine.info.description }}
                                 </div>
-                                <div class="text-lowercase">{{ machine.info.machineName || machine.info.model }} Serial: {{ machine.info.serial }}</div>
+                                <div class="text-lowercase">{{ machine.info.machineName || machine.info.model }} - Serial: {{ machine.info.serial }}</div>
                             </div>
                             <div class="machine-info" v-else>
                                 <div class="text-uppercase">
-                                    {{ machine.info.machineName || machine.info.model }} Serial: {{ machine.info.serial }}
+                                    {{ machine.info.machineName || machine.info.model }} - Serial: {{ machine.info.serial }}
                                 </div>
                             </div>
                         </div>
