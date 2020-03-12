@@ -69,6 +69,7 @@ namespace FomMonitoringCore.Service.API.Concrete
                             currentState.Operator = currentStateDynamic.Operator;
                             currentState.StateId = (int?)currentStateDynamic.State;
                             currentState.StateTransitionCode = currentStateDynamic.StateTransitionCode;
+                            currentState.ResidueWorkingTime = currentStateDynamic.ResidueWorkingTime;
                             if (!currentStateExists)
                             {
                                 _context.Set<CurrentState>().Add(currentState);

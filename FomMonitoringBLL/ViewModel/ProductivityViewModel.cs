@@ -27,7 +27,10 @@ namespace FomMonitoringBLL.ViewModel
         public List<ProdDataModel> operators { get; set; }
         public TimeViewModel time { get; set; }
         public ParameterMachineValueModel productionVariables { get; set; }
+
+        public CurrentStateModel currentState { get; set; }
     }
+
 
     public class PieceViewModel
     {

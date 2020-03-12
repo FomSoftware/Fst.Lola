@@ -279,6 +279,24 @@ namespace FomMonitoringCore.Service
             return par;
         }
 
+        public CurrentStateModel GetCurrentStateModel(int MachineID)
+        {
+            CurrentStateModel result = new CurrentStateModel();
+
+            try
+            {
+                var query = _context.Set<CurrentState>().FirstOrDefault(w => w.MachineId == MachineID);
+                result = query.Adapt<CurrentStateModel>();
+            }
+            catch (Exception ex)
+            {
+                string errMessage = string.Format(ex.GetStringLog(), MachineID.ToString());
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+
+            return result;
+        }
+
         public void Dispose()
         {
             _context?.Dispose();

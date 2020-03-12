@@ -38,16 +38,16 @@
             <td>{{ piece.redone.perc | round }}<em>%</em></td>
             <td>{{ piece.redone.number }}<em>pz</em></td>
         </tr>
-        <tr v-if="productionVariables != null && machineModel.toLocaleUpperCase().includes('FMC')">
+        <tr v-if="currentState != null && machineModel.toLocaleUpperCase().includes('FMC')">
             <td style="padding:0" class="testo-abbreviato">
                 <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
-                {{productionVariables.Description}}:
+                @LocalizationService.GetResource("tempoAttualeProgramma"):
             </td>
             <td>
-                <span> {{productionVariables.ConvertedMinValue}}m</span>
+                <span> {{currentState.ResidueWorkingTimeMin}}m</span>
             </td>
             <td>
-                <span> {{productionVariables.ConvertedSecValue}}s</span>
+                <span> {{currentState.ResidueWorkingTimeSec}}s</span>
             </td>
         </tr>
     </table>

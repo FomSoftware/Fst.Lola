@@ -23,6 +23,7 @@ namespace FomMonitoringCore.DAL
         public string Operator { get; set; }
         public Nullable<int> StateId { get; set; }
         public string StateTransitionCode { get; set; }
+        public Nullable<long> ResidueWorkingTime { get; set; }
     
         public virtual State State { get; set; }
         public virtual Machine Machine { get; set; }

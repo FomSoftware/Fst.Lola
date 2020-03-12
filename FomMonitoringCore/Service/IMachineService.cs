@@ -21,5 +21,6 @@ namespace FomMonitoringCore.Service
 
         List<int> GetMachinePanels(int? MachineModelId);
         ParameterMachineValueModel GetProductionValueModel(MachineInfoModel context, enPanel pp);
+        CurrentStateModel GetCurrentStateModel(int MachineID);
     }
 }

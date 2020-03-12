@@ -42,6 +42,7 @@
                 operators: data.operators,
                 time: data.time,
                 productionVariables: data.productionVariables,
+                currentState: data.currentState,
                 show: {
                     historical: false,
                     operators: false
@@ -125,6 +126,7 @@
         vmProductivity.operators = vm_prod.operators;
         vmProductivity.time = vm_prod.time;
         vmProductivity.productionVariables = vm_prod.productionVariables;
+        vmProductivity.currentState = vm_prod.currentState;
 
         // chart historical
         if (data.opt_historical != null)

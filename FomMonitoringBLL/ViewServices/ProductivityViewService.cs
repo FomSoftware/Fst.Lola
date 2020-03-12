@@ -54,19 +54,23 @@ namespace FomMonitoringBLL.ViewServices
         {
             ParameterMachineValueModel result = null;
             List<int> panels = _machineService.GetMachinePanels(machine.MachineModelId);
-
             if (panels != null)
             {
-                if(panels.Contains((int) enPanel.ProductionFmc34))
-                {
-                   result = _machineService.GetProductionValueModel(machine, enPanel.ProductionFmc34);
-                }
-                else if (panels.Contains((int) enPanel.ProductionLMX))
+                if (panels.Contains((int) enPanel.ProductionLMX))
                 {
                     result = _machineService.GetProductionValueModel(machine, enPanel.ProductionLMX);
                 }
         }
         return result;
+        }
+
+        private CurrentStateModel GetCurrentState(int machineId)
+        {
+            CurrentStateModel result = null;
+            //solo in questo caso (FMC) il dato lo devo leggere dal currentState
+            result = _machineService.GetCurrentStateModel(machineId);
+            
+            return result;
         }
 
         private ProductivityVueModel GetVueModel(List<EfficiencyStateMachineModel> operatorActivities, MachineInfoModel machine, PeriodModel period)
@@ -221,9 +225,13 @@ namespace FomMonitoringBLL.ViewServices
             result.time = CommonViewService.getTimeViewModel(grossTime);
 
             result.productionVariables = GetVariables(machine);
-
+            if (machine.Model.Name.ToUpper().Contains("FMC"))
+            {
+                result.currentState = GetCurrentState(machine.Id);
+            }
             return result;
         }
+
 
 
         private ChartViewModel GetHistoricalOptions(MachineInfoModel machine, PeriodModel period)

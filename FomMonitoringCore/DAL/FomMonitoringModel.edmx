@@ -46,6 +46,7 @@
           <Property Name="Operator" Type="varchar" MaxLength="100" />
           <Property Name="StateId" Type="int" />
           <Property Name="StateTransitionCode" Type="varchar" MaxLength="100" />
+          <Property Name="ResidueWorkingTime" Type="bigint" />
         </EntityType>
         <EntityType Name="HistoryBar">
           <Key>
@@ -1556,6 +1557,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="StateTransitionCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="State" Relationship="FST_FomMonitoringModel.FK_CurrentState_State" FromRole="CurrentState" ToRole="State" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_CurrentState_Machine" FromRole="CurrentState" ToRole="Machine" />
+          <Property Name="ResidueWorkingTime" Type="Int64" Nullable="true" />
         </EntityType>
         <Association Name="FK_CurrentState_State">
           <End Type="FST_FomMonitoringModel.State" Role="State" Multiplicity="0..1" />
@@ -2486,6 +2488,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="CurrentState">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.CurrentState">
               <MappingFragment StoreEntitySet="CurrentState">
+                <ScalarProperty Name="ResidueWorkingTime" ColumnName="ResidueWorkingTime" />
                 <ScalarProperty Name="StateTransitionCode" ColumnName="StateTransitionCode" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
                 <ScalarProperty Name="Operator" ColumnName="Operator" />

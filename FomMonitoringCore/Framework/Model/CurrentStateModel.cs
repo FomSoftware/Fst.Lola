@@ -13,5 +13,37 @@ namespace FomMonitoringCore.Framework.Model
         public string Operator { get; set; }
         public int? StateId { get; set; }
         public string StateTransitionCode { get; set; }
+        public long? ResidueWorkingTime { get; set; }
+
+        public virtual string ResidueWorkingTimeMin => ResTimeMin();
+        public virtual string ResidueWorkingTimeSec => ResTimeSec();
+
+        public string ResTimeMin()
+        {
+            string result = "";
+            if (ResidueWorkingTime != null)
+            {
+                TimeSpan interval = new TimeSpan((long)ResidueWorkingTime);
+                int res = interval.Days * 24 * 60 +
+                          interval.Hours * 60 +
+                          interval.Minutes;
+                result = res.ToString("D");
+            }
+
+            return result;
+        }
+
+        public string ResTimeSec()
+        {
+            string result = "";
+            if (ResidueWorkingTime != null)
+            {
+                TimeSpan interval = new TimeSpan((long)ResidueWorkingTime);
+                int res = interval.Seconds;
+                result = res.ToString("D");
+            }
+            return result;
+        }
+
     }
 }
