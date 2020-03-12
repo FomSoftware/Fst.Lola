@@ -956,6 +956,7 @@ a.click-more {
     width: calc(100% + 1px);
     table-layout: fixed;
     height: 100%;
+    text-align: left;
 }
 
 .table-rotary-axes{
