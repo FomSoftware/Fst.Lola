@@ -68,11 +68,10 @@
             buildRequest(urls.urlJob, filters),
             buildRequest(urls.urlMaintenance, filters),
             buildRequest(urls.urlMessages, filters),
-            buildRequest(urls.urlParameters, filters),
             buildRequest(urls.urlXTools, filters),
             buildRequest(urls.urlTools, filters),
             buildRequest(urls.urlToolsBlitz, filters))
-            .done(function(efficiency, productivity, job, maintenance, messages, parameters, xTools, tools, toolsBlitz) {
+            .done(function(efficiency, productivity, job, maintenance, messages, xTools, tools, toolsBlitz) {
                 $(".slimscroll").slimScroll({ destroy: true });
 
                 Efficiency.update(efficiency[0]);
@@ -84,12 +83,6 @@
                 OtherMachinesJobs.update(job[0]);
                 Messages.update(messages[0]);
                 Maintenance.update(maintenance[0]);
-                MotorAxesBlitz.update(parameters[0]);
-                MotorKeope.update(parameters[0]);
-                AxesKeope.update(parameters[0]);
-                ElectroSpindle.update(parameters[0]);
-                OtherData.update(parameters[0]);
-                MultiSpindles.update(parameters[0].vm_multi_spindle);
 
                 Vue.nextTick(function () {
                     initProgressBar();
