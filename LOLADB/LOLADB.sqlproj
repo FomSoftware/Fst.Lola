@@ -60,5 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="LOLATEST_2020_02_27.sql" />
+    <None Include="LOLATEST_2020_03_12.sql" />
+    <None Include="LOLATEST_2020_03_12_1.sql" />
   </ItemGroup>
 </Project>
