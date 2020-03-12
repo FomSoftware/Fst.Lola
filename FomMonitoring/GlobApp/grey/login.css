@@ -197,7 +197,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     }
 
     #disclamerTextLink {
-        padding-top: 30px;
+        padding-top: 20px;
         font-size: 14px;
     }
     
@@ -212,7 +212,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
         margin-top: 20px;
     }
     .container-login .content {
-        padding: 40px 25px 0;
+        padding: 30px 25px 0;
     }
     .header, .content {
         max-width: unset;
@@ -238,6 +238,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     #disclamerTextLink {
         font-size: 10px;
         padding: 0;
+        margin-top: -50px;
     }
 
     .form-actions button {
@@ -325,7 +326,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     @media (max-width: 576px) {
         .header {
             font-size: 30px;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             margin-top: 0;
         }
 
@@ -374,6 +375,10 @@ input:-webkit-autofill:focus input:-webkit-autofill {
         #disclamerTextLink {
             padding-top: 0;
             font-size: 10px;
+            margin-top: 0;
+        }
+        .form-group {
+            margin-bottom: 5px;
         }
     }
 
@@ -429,18 +434,23 @@ input:-webkit-autofill:focus input:-webkit-autofill {
 
     /*#region alert validation */
 
+.alert {
+    padding: 0 1.25rem 0.6rem;
+}
     .alert.validation {
         border: 1px solid transparent;
         border-radius: 4px;
-        margin-bottom: -20px;
-        padding: 0 0 30px;
+        margin-bottom: -10px;
+        padding: 0 0 10px;
     }
+
+
 
         .alert.validation .alert-danger {
             border-radius: 3px;
             background-color: #B33157;
             color: #fff;
-            padding: 10px;
+            padding: 5px;
             padding-bottom: 0;
             text-align: center;
             border: solid 1px;
@@ -453,7 +463,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
             }
 
                 .alert.validation .alert-danger ul li {
-                    margin-bottom: 10px;
+                    margin-bottom: 5px;
                 }
 
 
