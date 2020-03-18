@@ -223,10 +223,10 @@
     <value>La Description</value>
   </data>
   <data name="ProductType" xml:space="preserve">
-    <value>Type Software</value>
+    <value>Type Produit</value>
   </data>
   <data name="ProductVersion" xml:space="preserve">
-    <value>Version Software</value>
+    <value>Version Produit</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>Aujourd'hui</value>

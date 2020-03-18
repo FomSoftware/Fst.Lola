@@ -2196,7 +2196,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Software Type.
+        ///   Looks up a localized string similar to Product Type.
         /// </summary>
         public static string ProductType {
             get {
@@ -2205,7 +2205,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Software Version.
+        ///   Looks up a localized string similar to Product Version.
         /// </summary>
         public static string ProductVersion {
             get {
