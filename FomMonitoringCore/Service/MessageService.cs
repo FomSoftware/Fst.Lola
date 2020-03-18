@@ -414,7 +414,8 @@ namespace FomMonitoringCore.Service
             var notificationsUser = GetMaintenanceMessages(machine, period);
             var notificationsRead = _context.Set<MessageMachineNotification>().Where(n => n.UserId == userId)
                 .Select(nu => nu.IdMessageMachine).ToList();
-            notificationsUser = notificationsUser.Where(o => notificationsRead.All(i => i != o.Id)).ToList();
+            notificationsUser = notificationsUser.Where(o => notificationsRead.All(i => i != o.Id)).OrderBy(n => n.MachineId).ThenByDescending(n => n.Day).ToList();
+
             return notificationsUser;
         }
 
