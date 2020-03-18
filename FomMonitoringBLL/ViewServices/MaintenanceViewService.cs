@@ -22,7 +22,7 @@ namespace FomMonitoringBLL.ViewServices
 
         public MaintenanceViewModel GetMessages(ContextModel context)
         {
-            MaintenanceViewModel result = new MaintenanceViewModel();
+            var result = new MaintenanceViewModel();
 
             result.vm_messages = GetVueModel(context.ActualMachine, context.ActualPeriod);
             result.ignored_messages = GetIgnoredVueModel(context.ActualMachine, context.ActualPeriod);
@@ -32,21 +32,20 @@ namespace FomMonitoringBLL.ViewServices
 
         private MaintenceVueModel GetIgnoredVueModel(MachineInfoModel machine, PeriodModel period)
         {
-            MaintenceVueModel result = new MaintenceVueModel();
-            List<MessageMachineModel> data = _messageService.GetOldMaintenanceMessages(machine, period);
+            var result = new MaintenceVueModel();
+            var data = _messageService.GetOldMaintenanceMessages(machine, period);
 
             if (data.Count == 0)
                 return result;
-            UserManagerViewModel user = new UserManagerViewModel();
 
-            List<ManteinanceDataModel> messages = data.Select(a =>
-                new ManteinanceDataModel()
+            var messages = data.Select(a =>
+                new ManteinanceDataModel
                 {
                     id = a.Id,
                     code = a.Code,
                     type = ((enTypeAlarm)a.Type).GetDescription(),
                     time = CommonViewService.getTimeViewModel(a.ElapsedTime),
-                    timestamp = DateTime.SpecifyKind(a.IgnoreDate.HasValue ? a.IgnoreDate.Value : DateTime.MinValue, DateTimeKind.Utc),
+                    timestamp = DateTime.SpecifyKind(a.IgnoreDate ?? DateTime.MinValue, DateTimeKind.Utc),
                     utc = machine.UTC,
                     expiredSpan = CommonViewService.getTimeViewModel(_messageService.GetExpiredSpan(a)),
                     description = a.Description,
@@ -55,27 +54,32 @@ namespace FomMonitoringBLL.ViewServices
                 }).ToList();
 
             result.messages = messages.OrderByDescending(o => o.time.elapsed).ToList();
+            var sorting = new SortingViewModel();
+            sorting.duration = enSorting.Descending.GetDescription();
+            sorting.user = enSorting.Descending.GetDescription();
+            sorting.timestamp = enSorting.Descending.GetDescription();
+            
+            result.sorting = sorting;
             return result;
         }
 
     private MaintenceVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
         {
-            MaintenceVueModel result = new MaintenceVueModel();
+            var result = new MaintenceVueModel();
 
-            List<MessageMachineModel> data = _messageService.GetMaintenanceMessages(machine, period);
+            var data = _messageService.GetMaintenanceMessages(machine, period);
 
             if (data.Count == 0)
                 return result;
-            UserManagerViewModel user = new UserManagerViewModel();
             
-            List<ManteinanceDataModel> messages = data.Select(a =>
+            var messages = data.Select(a =>
             new ManteinanceDataModel()
             {
                 id = a.Id,
                 code = a.Code,
                 type = ((enTypeAlarm)a.Type).GetDescription(),
                 time = CommonViewService.getTimeViewModel(a.ElapsedTime),
-                timestamp = DateTime.SpecifyKind(a.Day.HasValue ? a.Day.Value : DateTime.MinValue, DateTimeKind.Utc),
+                timestamp = DateTime.SpecifyKind(a.Day ?? DateTime.MinValue, DateTimeKind.Utc),
                 utc = machine.UTC,
                 expiredSpan = CommonViewService.getTimeViewModel(_messageService.GetExpiredSpan(a)),
                 description = a.Description
@@ -84,7 +88,7 @@ namespace FomMonitoringBLL.ViewServices
 
             messages = messages.OrderByDescending(o => o.time.elapsed).ToList();
 
-            SortingViewModel sorting = new SortingViewModel();
+            var sorting = new SortingViewModel();
             sorting.duration = enSorting.Descending.GetDescription();
 
             result.messages = messages;
