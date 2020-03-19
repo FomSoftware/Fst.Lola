@@ -316,3 +316,7 @@ section.container-fluid {
 .dropdown-menu > .active > a {
     color: #403D3D !important;
 }
+
+#alert-refresh-page  {
+    cursor: pointer;
+}

@@ -16,6 +16,7 @@
             data: {
                 messages: data.vm_messages.messages,
                 sorting: data.vm_messages.sorting,
+                sortingIgnoredMessages: data.ignored_messages.sorting,
                 ignoredMessages: data.ignored_messages.messages,
                 show: {
                     historical: (data.ignored_messages.messages != null)
@@ -29,16 +30,46 @@
                     return moment.utc(timestamp).add(utc, 'hour').format('L LTS');
                 },
                 sortTimestamp: function () {
-
+                    console.log(this.$data);
                     if (this.sorting.timestamp == 'desc') {
-                        this.$data.details = _.sortBy(this.$data.details, function (message) { return message.timestamp; });
+                        this.$data.messages = _.sortBy(this.$data.messages, function (message) { return message.timestamp; });
                         this.sorting.timestamp = 'asc';
                         return;
                     }
 
                     if (this.sorting.timestamp == 'asc' || this.sorting.timestamp == null) {
-                        this.$data.details = _.sortBy(this.$data.details, function (message) { return message.timestamp; }).reverse();
+                        this.$data.messages = _.sortBy(this.$data.messages, function (message) { return message.timestamp; }).reverse();
                         this.sorting.timestamp = 'desc';
+                        return;
+                    }
+                },
+                sortIgnoredMessagesTimestamp: function () {
+
+                    console.log(this.$data);
+                    if (this.sortingIgnoredMessages.timestamp == 'desc') {
+                        this.$data.ignoredMessages = _.sortBy(this.$data.ignoredMessages, function (message) { return message.timestamp; });
+                        this.sortingIgnoredMessages.timestamp = 'asc';
+                        return;
+                    }
+
+                    if (this.sortingIgnoredMessages.timestamp == 'asc' || this.sortingIgnoredMessages.timestamp == null) {
+                        this.$data.ignoredMessages = _.sortBy(this.$data.ignoredMessages, function (message) { return message.timestamp; }).reverse();
+                        this.sortingIgnoredMessages.timestamp = 'desc';
+                        return;
+                    }
+                },
+                sortIgnoredMessagesUser: function () {
+
+                    console.log(this.$data);
+                    if (this.sortingIgnoredMessages.user == 'desc') {
+                        this.$data.ignoredMessages = _.sortBy(this.$data.ignoredMessages, function (message) { return message.user; });
+                        this.sortingIgnoredMessages.user = 'asc';
+                        return;
+                    }
+
+                    if (this.sortingIgnoredMessages.user == 'asc' || this.sortingIgnoredMessages.user == null) {
+                        this.$data.ignoredMessages = _.sortBy(this.$data.ignoredMessages, function (message) { return message.user; }).reverse();
+                        this.sortingIgnoredMessages.user = 'desc';
                         return;
                     }
                 },
@@ -50,9 +81,8 @@
                     }
 
                     setTimeout(function() {
-                        console.log(urlIgnoreMessageAPI);
                         callAjaxIgnoreMessage(messageId);
-                    }, 1000);
+                    }, 500);
 
                 },
                 changeIconColor: function changeIconColor(className, event) {

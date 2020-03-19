@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8">
-
+    <meta name="format-detection" content="telephone=no">
     <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
     <title>@ViewBag.AppTitle</title>
 
@@ -106,7 +106,7 @@
                 }
             }, 300);
 
-            $("#button-refresh-page").click(function() {
+            $("#button-refresh-page, #alert-refresh-page").click(function() {
                 location.reload();
             });
         });

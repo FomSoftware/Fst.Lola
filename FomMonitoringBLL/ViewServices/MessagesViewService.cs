@@ -59,9 +59,11 @@ namespace FomMonitoringBLL.ViewServices
             sorting.timestamp = enSorting.Descending.GetDescription();
 
             sorting.group = enSorting.Ascending.GetDescription();
+            sorting.user = enSorting.Ascending.GetDescription();
 
             result.messages = messages;
             result.sorting = sorting;
+            
 
 
             return result;
@@ -96,7 +98,6 @@ namespace FomMonitoringBLL.ViewServices
 
             result.messages = messages;
             result.sorting = sorting;
-            
 
             return result;
         }

@@ -28,8 +28,7 @@ namespace FomMonitoringBLL.ViewModel
         public string description { get; set; }
     }
 
-    public class MessageDetailsVueModel
-    {
+    public class MessageDetailsVueModel { 
         public List<MessageDetailViewModel> messages { get; set; }
         public SortingViewModel sorting { get; set; }
 
