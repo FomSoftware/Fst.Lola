@@ -1133,4 +1133,7 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="Tasks" xml:space="preserve">
     <value>Tasks</value>
   </data>
+  <data name="MaintenanceRegister" xml:space="preserve">
+    <value>Register</value>
+  </data>
 </root>

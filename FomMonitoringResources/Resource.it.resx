@@ -1133,4 +1133,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="Tasks" xml:space="preserve">
     <value>Attività</value>
   </data>
+  <data name="MaintenanceRegister" xml:space="preserve">
+    <value>Registro</value>
+  </data>
 </root>

@@ -1133,4 +1133,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="Tasks" xml:space="preserve">
     <value>Tâches</value>
   </data>
+  <data name="MaintenanceRegister" xml:space="preserve">
+    <value>Registre</value>
+  </data>
 </root>

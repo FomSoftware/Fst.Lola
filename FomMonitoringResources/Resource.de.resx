@@ -1132,4 +1132,7 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="Tasks" xml:space="preserve">
     <value>Aufgaben</value>
   </data>
+  <data name="MaintenanceRegister" xml:space="preserve">
+    <value>Register</value>
+  </data>
 </root>
