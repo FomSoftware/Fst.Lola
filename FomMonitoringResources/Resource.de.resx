@@ -223,10 +223,10 @@
     <value>Beschreibung</value>
   </data>
   <data name="ProductType" xml:space="preserve">
-    <value>Softwaretyp</value>
+    <value>Produkttyp</value>
   </data>
   <data name="ProductVersion" xml:space="preserve">
-    <value>Softwareausführung</value>
+    <value>Produktausführung</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>Heute</value>
@@ -1052,13 +1052,13 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>Menge überm. Stromaufnahme</value>
   </data>
   <data name="TabTemperStatoreMinutiINT" xml:space="preserve">
-    <value>Dauer Übertemperatur</value>
+    <value>Dauer Übertemper.</value>
   </data>
   <data name="TabTemperCuscinettiMinutiINT" xml:space="preserve">
-    <value>Dauer Übertemperatur</value>
+    <value>Dauer Übertemper.</value>
   </data>
   <data name="TabTemperSchedaMinutiINT" xml:space="preserve">
-    <value>Dauer Übertemperatur</value>
+    <value>Dauer Übertemper.</value>
   </data>
   <data name="TabAccelerometroINT_1" xml:space="preserve">
     <value>Zeit Vibrationen tiefe Schwelle</value>

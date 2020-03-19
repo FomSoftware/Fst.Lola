@@ -160,7 +160,7 @@
     <value>Materiali</value>
   </data>
   <data name="GrossTime" xml:space="preserve">
-    <value>Tempo Lordo</value>
+    <value>T. Lordo</value>
   </data>
   <data name="ErrorStates" xml:space="preserve">
     <value>Stati di Errore</value>
@@ -223,10 +223,10 @@
     <value>Descrizione</value>
   </data>
   <data name="ProductType" xml:space="preserve">
-    <value>Tipo Software</value>
+    <value>Tipo Prodotto</value>
   </data>
   <data name="ProductVersion" xml:space="preserve">
-    <value>Versione Software</value>
+    <value>Versione Prodotto</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>Oggi</value>
@@ -364,7 +364,7 @@
     <value>Quantità</value>
   </data>
   <data name="NetTime" xml:space="preserve">
-    <value>Tempo Netto</value>
+    <value>T. Netto</value>
   </data>
   <data name="SpeedRanges" xml:space="preserve">
     <value>Fasce di Velocità</value>
@@ -753,7 +753,7 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
     <value>Range rpm 14501-20000</value>
   </data>
   <data name="ElapsedTime" xml:space="preserve">
-    <value>Tempo trascorso</value>
+    <value>T. trascorso</value>
   </data>
   <data name="Electrospindle" xml:space="preserve">
     <value>Elettromandrino</value>
@@ -1050,16 +1050,16 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
     <value>Qta Sovrassorbimento</value>
   </data>
   <data name="TabTemperStatoreMinutiINT" xml:space="preserve">
-    <value>Tempo Sovra-Temperatura</value>
+    <value>T. Sovra-Temperatura</value>
   </data>
   <data name="TabTemperCuscinettiMinutiINT" xml:space="preserve">
-    <value>Tempo Sovra-Temperatura</value>
+    <value>T. Sovra-Temperatura</value>
   </data>
   <data name="TabTemperSchedaMinutiINT" xml:space="preserve">
-    <value>Tempo Sovra-Temperatura</value>
+    <value>T. Sovra-Temperatura</value>
   </data>
   <data name="TabAccelerometroINT_1" xml:space="preserve">
-    <value>Tempo Vibrazioni soglia bassa</value>
+    <value>T. Vibrazioni soglia bassa</value>
   </data>
   <data name="TabAccelerometroINT_2" xml:space="preserve">
     <value>T. Vibrazioni soglia media</value>
@@ -1071,10 +1071,10 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
     <value>Ore lavoro tot.</value>
   </data>
   <data name="TimePassed" xml:space="preserve">
-    <value>tempo trascorso</value>
+    <value>T. trascorso</value>
   </data>
   <data name="TabTempoResiduoBarra" xml:space="preserve">
-    <value>Tempo res. barra</value>
+    <value>T. res. barra</value>
   </data>
   <data name="TimeTot" xml:space="preserve">
     <value>T.Tot.</value>

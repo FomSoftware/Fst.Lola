@@ -133,10 +133,10 @@
     <value>états machine</value>
   </data>
   <data name="TimeOn" xml:space="preserve">
-    <value>temps total sur</value>
+    <value>T. total sur</value>
   </data>
   <data name="TimeOff" xml:space="preserve">
-    <value>temps off tot</value>
+    <value>T. off tot</value>
   </data>
   <data name="StateOff" xml:space="preserve">
     <value>été éteint</value>
@@ -160,7 +160,7 @@
     <value>Matière</value>
   </data>
   <data name="GrossTime" xml:space="preserve">
-    <value>Temps Brut</value>
+    <value>T. Brut</value>
   </data>
   <data name="ErrorStates" xml:space="preserve">
     <value>états d'erreur</value>
@@ -223,10 +223,10 @@
     <value>La Description</value>
   </data>
   <data name="ProductType" xml:space="preserve">
-    <value>Type Software</value>
+    <value>Type Produit</value>
   </data>
   <data name="ProductVersion" xml:space="preserve">
-    <value>Version Software</value>
+    <value>Version Produit</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>Aujourd'hui</value>
@@ -304,7 +304,7 @@
     <value>Entretien</value>
   </data>
   <data name="UsageTime" xml:space="preserve">
-    <value>temps d'utilisation</value>
+    <value>T. d'utilisation</value>
   </data>
   <data name="Usury" xml:space="preserve">
     <value>Usure</value>
@@ -361,7 +361,7 @@
     <value>Quantité</value>
   </data>
   <data name="NetTime" xml:space="preserve">
-    <value>Temps Net</value>
+    <value>T. Net</value>
   </data>
   <data name="SpeedRanges" xml:space="preserve">
     <value>Plages de Vitesse</value>
@@ -753,7 +753,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Intervalle rpm 14501-20000</value>
   </data>
   <data name="ElapsedTime" xml:space="preserve">
-    <value>Temps écoulé</value>
+    <value>T. écoulé</value>
   </data>
   <data name="Electrospindle" xml:space="preserve">
     <value>Électrobroche</value>
@@ -762,10 +762,10 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Autres données de la machine</value>
   </data>
   <data name="NPiecesNetTime" xml:space="preserve">
-    <value>N. de pièces h/temps net</value>
+    <value>N. de pièces h/T. net</value>
   </data>
   <data name="NPiecesGrossTime" xml:space="preserve">
-    <value>N. de pièces h/temps brut</value>
+    <value>N. de pièces h/T. brut</value>
   </data>
   <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
     <value>Plage Rpm</value>
@@ -1050,16 +1050,16 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Q.té surabsorption</value>
   </data>
   <data name="TabTemperStatoreMinutiINT" xml:space="preserve">
-    <value>Temps surtempérature</value>
+    <value>T. surtempér.</value>
   </data>
   <data name="TabTemperCuscinettiMinutiINT" xml:space="preserve">
-    <value>Temps surtempérature</value>
+    <value>T. surtempér.</value>
   </data>
   <data name="TabTemperSchedaMinutiINT" xml:space="preserve">
-    <value>Temps surtempérature</value>
+    <value>T. surtempér.</value>
   </data>
   <data name="TabAccelerometroINT_1" xml:space="preserve">
-    <value>Temps vibrations seuil bas</value>
+    <value>T. vibrations seuil bas</value>
   </data>
   <data name="TabAccelerometroINT_2" xml:space="preserve">
     <value>T. vibrations seuil moyen</value>
@@ -1068,10 +1068,10 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>T. vibrations seuil haut</value>
   </data>
   <data name="TimePassed" xml:space="preserve">
-    <value>tps écoulé</value>
+    <value>Tps écoulé</value>
   </data>
   <data name="TabTempoResiduoBarra" xml:space="preserve">
-    <value>Temps résid. bar</value>
+    <value>T. résid. bar</value>
   </data>
   <data name="RotaryAxesXMU" xml:space="preserve">
     <value>AXES ROTATIFS XMU</value>

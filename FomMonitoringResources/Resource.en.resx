@@ -133,10 +133,10 @@
     <value>Machine States</value>
   </data>
   <data name="TimeOn" xml:space="preserve">
-    <value>Tot time on</value>
+    <value>Tot t. on</value>
   </data>
   <data name="TimeOff" xml:space="preserve">
-    <value>Tot time off</value>
+    <value>Tot t. off</value>
   </data>
   <data name="StateOff" xml:space="preserve">
     <value>State OFF</value>
@@ -223,10 +223,10 @@
     <value>Description</value>
   </data>
   <data name="ProductType" xml:space="preserve">
-    <value>Software Type</value>
+    <value>Product Type</value>
   </data>
   <data name="ProductVersion" xml:space="preserve">
-    <value>Software Version</value>
+    <value>Product Version</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>Today</value>
@@ -756,7 +756,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Range rpm 14501-20000</value>
   </data>
   <data name="ElapsedTime" xml:space="preserve">
-    <value>Elapsed time</value>
+    <value>Elapsed t.</value>
   </data>
   <data name="Electrospindle" xml:space="preserve">
     <value>Electrospindle</value>
@@ -768,7 +768,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>No. Pieces h/Net Time</value>
   </data>
   <data name="NPiecesGrossTime" xml:space="preserve">
-    <value>No. pieces h/ gross time</value>
+    <value>No. pieces h/ gross t.</value>
   </data>
   <data name="TabSoglieRpmMandriniMM" xml:space="preserve">
     <value>Range Rpm</value>
@@ -1053,13 +1053,13 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Over absorption q.ty</value>
   </data>
   <data name="TabTemperStatoreMinutiINT" xml:space="preserve">
-    <value>Over-Temper. time</value>
+    <value>Over-Temper. t.</value>
   </data>
   <data name="TabTemperCuscinettiMinutiINT" xml:space="preserve">
-    <value>Over-Temper. time</value>
+    <value>Over-Temper. t.</value>
   </data>
   <data name="TabTemperSchedaMinutiINT" xml:space="preserve">
-    <value>Over-Temper. time</value>
+    <value>Over-Temper. t.</value>
   </data>
   <data name="TabAccelerometroINT_1" xml:space="preserve">
     <value>Low threshold Vibration Time</value>
@@ -1071,10 +1071,10 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>High threshold Vibration T.</value>
   </data>
   <data name="TimePassed" xml:space="preserve">
-    <value>time passed</value>
+    <value>t. passed</value>
   </data>
   <data name="TabTempoResiduoBarra" xml:space="preserve">
-    <value>Bar time rem.</value>
+    <value>Bar t. rem.</value>
   </data>
   <data name="TimeTot" xml:space="preserve">
     <value>Tot.T.</value>
