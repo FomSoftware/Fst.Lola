@@ -519,3 +519,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
             outline: none;
             border-color: #fff;
         }
+
+#alert-refresh-page  {
+    cursor: pointer;
+}

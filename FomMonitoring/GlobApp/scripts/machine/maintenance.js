@@ -81,7 +81,6 @@
                     }
 
                     setTimeout(function() {
-                        console.log(urlIgnoreMessageAPI);
                         callAjaxIgnoreMessage(messageId);
                     }, 500);
 
