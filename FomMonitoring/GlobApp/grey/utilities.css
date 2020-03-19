@@ -759,12 +759,14 @@ em,
 }
 
 #toast-container > div {
-    width: 550px;
+    width: 100%;
     box-shadow: unset;
 }
 
 .toast {
     max-width: 100%;
+    width: 100%;
+    box-shadow: unset;
 }
 
 .toast-info {
