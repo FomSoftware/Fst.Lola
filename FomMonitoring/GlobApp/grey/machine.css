@@ -1328,7 +1328,7 @@ td.td-tools-light {
     overflow-x: hidden;
 }
 
-    .table-electro-spindle tr:first-child td, .table-other-data tr:first-child td {
+    .table-electro-spindle tr td, .table-other-data tr td {
         padding-bottom: 0;
         text-align: left;
         font-size: 18px;
