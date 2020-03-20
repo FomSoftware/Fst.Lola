@@ -1678,7 +1678,7 @@ td.td-axes {
     }
 }
 
-@media (max-width:767px) {
+@media (max-width:768px) {
     .portlet-title .portlet-subtitle {
         font-size: 8px;
     }
@@ -1707,6 +1707,10 @@ td.td-axes {
 
     .el-state.el-code > div {
         font-size: 14px;
+    }
+
+    #CardXToolsLmx {
+        margin-top: 18px;
     }
 }
 
