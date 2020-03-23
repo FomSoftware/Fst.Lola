@@ -57,11 +57,11 @@
                         <tbody>
                             <tr v-for="job in jobs" v-cloak>
                                 <td style="width: 32%; max-width: 160px; word-break: break-all;min-width: 60px;">
-                                    <div class="worder-info">
-                                        <div class="progress progress-job">
+                                    <div class="worder-info padding-left-5">
+                                        <div class="progress progress-job ">
                                             <div class="progress-bar" v-bind:class="bgClass(job.perc)" v-bind:aria-valuenow="job.perc"></div>
                                         </div>
-                                        <div class="item-alert">
+                                        <div class="item-alert ">
                                             <div class="code-alert">
                                                 {{ job.code }}
                                             </div>
