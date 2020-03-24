@@ -1954,32 +1954,4 @@ td.td-axes {
 
 
 
-#toast-container {
-    width: calc(100% - 28px);
-    margin-right: 2px;
-}
 
-@media (min-width: 576px) {
-    #toast-container {
-        width: calc(100% - 28px);
-    }
-}
-
-
-@media (min-width: 768px) {
-    #toast-container {
-        width: calc(50% - 28px);
-    }
-}
-
-@media (min-width: 992px) {
-    #toast-container {
-        width: calc(33% - 24px);
-    }
-}
-
-@media (min-width: 1200px) {
-    #toast-container {
-        width: calc(25% - 28px);
-    }
-}
