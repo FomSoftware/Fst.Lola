@@ -329,8 +329,8 @@ section.container-fluid {
     }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
     #toast-container {
-        width: calc(33% - 28px);
+        width: calc(33% - 24px);
     }
 }
