@@ -328,7 +328,7 @@ namespace FomMonitoring.Controllers
 
             var mvm = _maintenanceViewService.GetMessages(context);
 
-            return Request.CreateResponse(HttpStatusCode.OK, Json(mvm), MediaTypeHeaderValue.Parse("application/json"));
+            return Request.CreateResponse(HttpStatusCode.OK, mvm, MediaTypeHeaderValue.Parse("application/json"));
 
         }
     }
