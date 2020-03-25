@@ -3,6 +3,8 @@
 
 @{
     Layout = "~/Views/Shared/_LayoutApp.cshtml";
+    var baseUrl = $"{Request.Url?.Scheme}://{Request.Url?.Authority}{Url.Content("~")}";
+    
 }
 
 <div class="row">
@@ -225,6 +227,7 @@
             ResetPassword: '@Resource.ResetPassword',
             UsernameExists: '@Resource.UsernameExists',
             PasswordPolicy: '@Resource.PasswordPolicy'
+            
          };
 
         var data = @Html.Raw(Json.Encode(Model.User));
