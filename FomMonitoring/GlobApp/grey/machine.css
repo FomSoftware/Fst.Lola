@@ -952,15 +952,18 @@ a.click-more {
 
 /*#region table spindle */
 
-.table-spindle, .table-xmu-electrospindle, .table-rotary-axes {
+.table-spindle, .table-xmu-electrospindle {
     width: calc(100% + 1px);
     table-layout: fixed;
     height: 100%;
     text-align: left;
 }
 
-.table-rotary-axes{
-    width: 100%;
+
+.table-rotary-axes {
+    width: calc(100% + 1px);
+    height: 100%;
+    text-align: left;
 }
 
 
@@ -1246,7 +1249,7 @@ hr.axes {
 }
 
 .td-other-data label {
-    padding-top: 6px;
+    padding-top: 5px;
 }
 
 
@@ -1725,7 +1728,13 @@ td.td-axes {
     }
 }
 
+@media (max-width: 576px) {
 
+    .label-other-data-value, .label-electrospindle-data-value,
+    .label-motor-blade-data-value, #CardSensorSpindles .label-other-data-value {
+        font-size: 17px;
+    }
+}
 
 @media (max-width: 500px) {
 
@@ -1760,7 +1769,7 @@ td.td-axes {
     }
 
     .label-tools-value {
-        font-size: 19px !important;
+        font-size: 17px !important;
     }
 
     .rotaryAxesHeader {
