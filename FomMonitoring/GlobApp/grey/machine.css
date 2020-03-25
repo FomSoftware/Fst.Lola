@@ -49,7 +49,6 @@ body {
 .portlet {
     background-color: #eee;
     margin-bottom: 10px;
-    height: 288px;
     box-shadow: 0 2px 7px #000000;
     box-shadow: 0 2px 7px rgba(0,0,0,0.25);
 }
@@ -1712,9 +1711,6 @@ td.td-axes {
         font-size: 14px;
     }
 
-    #CardXToolsLmx {
-        margin-top: 18px;
-    }
 }
 
 @media (max-width: 755px) {

@@ -5,7 +5,7 @@
     var roleUser;
     var table;
     var baseApiUrl;
-
+    var baseUrl;
     // change password
     var dataPassword;
     var resourceChangePassword;
@@ -24,12 +24,12 @@
         modify: 1
     };
 
-    var init = function (user, baseUrl, resourceText) {
-        baseApiUrl = baseUrl + "/ajax/UserManagerApi";
+    var init = function (user, baseUrlA, resourceText) {
+        baseApiUrl = baseUrlA + "/ajax/UserManagerApi";
         resource = resourceText;
         contextUser = user;
         roleUser = user.Role;
-
+        baseUrl = baseUrlA;
         initVueModelUser();
         getData();
     };
@@ -39,6 +39,7 @@
         vmUsers = new Vue({
             el: '#user-modal-form',
             data: {
+                baseUrl: baseUrl,
                 users: {},
                 actual: {},
                 roles: {
@@ -98,8 +99,8 @@
                     if (!val.status || !val.enabled)
                         return true;
                 },
-                setLanguageFlag: function(val) {
-                    return setLanguageFlag(val);
+                setLanguageFlag: function(val, url) {
+                    return setLanguageFlag(val, url);
                 }
             },
             mounted: function() {
@@ -175,7 +176,7 @@
                 elem.Enabled = '<span class="btn-active btn-enabled" data-toggle="tooltip" title="' + resource.EnabledUser + '"><i class="fa fa-check" aria-hidden="true"></i></span>';
             else
                 elem.Enabled = '<span class="btn-disactive btn-enabled" data-toggle="tooltip"  title="' + resource.DisabledUser + '"><i class="fa fa-times" aria-hidden="true"></i></span>';
-            elem.Language = '<img class="flag" src=' + setLanguageFlag(elem.LanguageName) + ' data-toggle="tooltip"  title="' + resource.Language + ": " + elem.LanguageName + '">';
+            elem.Language = '<img class="flag" src=' + setLanguageFlag(elem.LanguageName, vmUsers.$data.baseUrl) + ' data-toggle="tooltip"  title="' + resource.Language + ": " + elem.LanguageName + '">';
             elem.ChangePassword = '<div class="button btn-modify" data-toggle="tooltip"  title="' + resource.ResetPassword + '" onclick="UserManager.resetPasswordClickEvent(\'' + elem.ID + '\')" data-id="' + elem.ID + '"><i class="fa fa-lock"></i></div>';
             if (elem.RoleCode != enRoles.Administrator && elem.RoleCode != enRoles.Customer)
                 elem.Delete = '<div class="button btn-modify" data-toggle="tooltip"  title="' + resource.Delete + '" onclick="UserManager.deleteClickEvent(\'' + elem.ID + '\')" data-id="' + elem.ID + '"><i class="fa fa-trash"></i></div>';
@@ -594,23 +595,23 @@
 
     };
 
-    setLanguageFlag = function (val) {
+    setLanguageFlag = function (val, baseUrl) {
         var result;
         switch (val) {
         case 'English':
-                result = '/FomMonitoringWeb/Images/flags/en.png';
+                result = baseUrl + '/Images/flags/en.png';
             break;
         case 'Italian':
-                result = '/FomMonitoringWeb/Images/flags/it.png';
+                result = baseUrl + '/Images/flags/it.png';
             break;
         case 'Spanish':
-                result = '/FomMonitoringWeb/Images/flags/es.png';
+                result = baseUrl + '/Images/flags/es.png';
             break;
         case 'French':
-                result = '/FomMonitoringWeb/Images/flags/fr.png';
+                result = baseUrl + '/Images/flags/fr.png';
             break;
         case 'German':
-                result = '/FomMonitoringWeb/Images/flags/de.png';
+                result = baseUrl + '/Images/flags/de.png';
             break;
         }
         return result;
