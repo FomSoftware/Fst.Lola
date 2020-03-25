@@ -261,3 +261,35 @@
     width: auto;
 }
 
+@media(max-width: 670px) {
+    .daterangepicker.ltr .calendar.left, .daterangepicker.ltr .calendar.right {
+        max-width: 36% ;
+        font-size: 13px;
+    }
+}
+
+@media(max-width: 576px) {
+    .ranges li {
+        width: 50%;
+        margin-bottom: 1px;
+    }
+    .ranges ul {
+        display: contents;
+
+    }
+    .ranges {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .range_inputs {
+        margin-top: 3px;
+    }
+    .daterangepicker .calendar td {
+        font-size: 15px;
+    }
+    .daterangepicker.ltr .calendar.left, .daterangepicker.ltr .calendar.right {
+        max-width: 100%;
+        font-size: 13px;
+    }
+}
+
