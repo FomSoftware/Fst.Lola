@@ -82,7 +82,7 @@
 
                     setTimeout(function() {
                         callAjaxIgnoreMessage(messageId);
-                    }, 500);
+                    }, 1000);
 
                 },
                 changeIconColor: function changeIconColor(className, event) {
@@ -123,10 +123,10 @@
         });
 
         //non serve perchè il servizio ignoreMessage restituisce la nuova lista 
-        /*request.done(function (data) {
+        request.done(function (data) {
             Maintenance.update(data);             
 
-        });*/
+        });
 
         request.fail(function (jqXHR, textStatus, errorThrown) {
             console.debug(jqXHR);
@@ -140,16 +140,18 @@
     {
         // update vue model
         var vm_messages = data.vm_messages;
-        var ignored_messages = data.ignored_messages;
+        var vm_ignored_messages = data.ignored_messages;
         if (vm_messages) {
             vmMessages.messages = vm_messages.messages;
             vmMessages.sorting = vm_messages.sorting;
         }
-        if (ignored_messages) {
-            vmMessages.ignored_messages = ignored_messages.messages;
-
+        if (vm_ignored_messages) {
+            vmMessages.ignoredMessages = vm_ignored_messages.messages;
+            vmMessages.sortingIgnoredMessages = vm_ignored_messages.sorting;
+            vmMessages.show.historical = true;
         }
-
+        else
+            vmMessages.show.historical = false;
     }
 
     return {

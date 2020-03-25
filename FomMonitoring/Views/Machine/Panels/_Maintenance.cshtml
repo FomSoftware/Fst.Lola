@@ -91,7 +91,7 @@
                         <no-data v-else></no-data>
                     </div>
                     <div class="swiper-slide">
-                        <div v-if="show.historical" class="table-container" style="height: 100%">
+                        <div v-if="ignoredMessages != null" class="table-container" style="height: 100%">
                             <table class="table table-alerts table-header">
                                 <thead>
                                     <tr>
@@ -116,7 +116,7 @@
                                     </tr>
                                 </thead>
                             </table>
-                            <div class="slimscroll" id="maintenanceSlimscroll">
+                            <div class="slimscroll" id="maintenanceSlimscroll2">
                                 <table class="table table-alerts">
                                     <tbody>
                                         <tr v-for="message in ignoredMessages">

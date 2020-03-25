@@ -1588,7 +1588,7 @@ td.td-axes {
     }
 }
 @media (max-width: 1024px) {
-    #maintenanceSlimscroll {
+    #maintenanceSlimscroll, #maintenanceSlimscroll2 {
         height: 94% !important;
     }
 
