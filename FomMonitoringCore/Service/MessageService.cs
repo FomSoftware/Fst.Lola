@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
@@ -467,6 +469,9 @@ namespace FomMonitoringCore.Service
 
         public void SetNotificationAsRead(int id, string userId)
         {
+            if (_context.Set<MessageMachineNotification>()
+                .Any(m => m.IdMessageMachine == id && DbFunctions.TruncateTime(m.ReadingDate) == DbFunctions.TruncateTime(DateTime.UtcNow))) return;
+
             _context.Set<MessageMachineNotification>().Add(new MessageMachineNotification
             {
                 IdMessageMachine = id,
@@ -475,6 +480,7 @@ namespace FomMonitoringCore.Service
             });
 
             _context.SaveChanges();
+
         }
 
         /// Per ogni macchina non scaduta e con data di attivazione valida estrae i messaggi periodici da controllare 
