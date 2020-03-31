@@ -25,10 +25,12 @@
                 cluster: pos
             }),
             beforeSend: function () {
-                WaitmeManager.start('body');
+                WaitmeManager.start('#bodyMultiSpindles');
+                
+
             },
             complete: function () {
-                WaitmeManager.end('body');
+                WaitmeManager.end('#bodyMultiSpindles');
             }
         });
 
