@@ -269,48 +269,49 @@
 }
 
 @media(max-width: 576px) {
-
+	
     .daterangepicker {
-        padding: 2px;
+        padding: 2px;		
     }
     .ranges li {
+        font-size: 10px;
         margin-bottom: 1px;
     }
     .ranges ul {
         display: grid;
         grid-template-columns: 50% 50%;
     }
-    }
-    .ranges {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .range_inputs {
-        margin-top: 2px;
-    }
-    .range_inputs .btn-sm{
-        font-size: 13px;
-    }
 
-.daterangepicker .calendar td, .daterangepicker .calendar th {
+.ranges {
+    display: flex;
+    flex-wrap: wrap;
+}
+.range_inputs {
+    margin-top: 2px;
+}
+.range_inputs .btn-sm{
+    font-size: 13px;
+}
+	
+.daterangepicker .calendar td , .daterangepicker .calendar th{
     font-size: 12px;
     height: 17px;
 }
-    .daterangepicker.ltr .calendar.left, .daterangepicker.ltr .calendar.right {
-        max-width: 100%;
-        font-size: 12px;
-    }
+.daterangepicker.ltr .calendar.left, .daterangepicker.ltr .calendar.right {
+    max-width: 100%;
+    font-size: 12px;
+}
+	
+.daterangepicker .daterangepicker_input i {
+    top: 2px;
+}
 
-    .daterangepicker .daterangepicker_input i {
-        top: 2px;
-    }
-
-    .daterangepicker .input-mini {
-        border: 1px solid #ddd;
-        background-color: #ddd;
-        font-size: 13px;
-        line-height: 20px;
-        height: 20px;
-    }
+.daterangepicker .input-mini {
+    border: 1px solid #ddd;
+    background-color: #ddd;
+    font-size: 13px;
+    line-height: 17px;
+    height: 20px;
+}
 }
 
