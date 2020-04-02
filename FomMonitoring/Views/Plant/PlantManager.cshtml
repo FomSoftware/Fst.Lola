@@ -1,4 +1,5 @@
 ﻿@model FomMonitoringBLL.ViewModel.HeaderViewModel
+@using FomMonitoringCore.Service
 @using FomMonitoringResources
 
 @{
@@ -89,31 +90,31 @@
     $(document).ready(function ()
     {
         var resource = {
-            PlantName: '@Html.Raw(Resource.PlantName)',
-            Address: '@Html.Raw(Resource.PlantAddress)',
-            PlantCustomer: '@Html.Raw(Resource.PlantCustomers)',
-            PlantMachines: '@Html.Raw(Resource.PlantMachines)',
-            Modify: '@Html.Raw(Resource.Modify)',
-            Delete: '@Html.Raw(Resource.Delete)',
-            Error: '@Html.Raw(Resource.Error)',
-            Search: '@Html.Raw(Resource.Search)',
-            AddPlant: '@Html.Raw(Resource.AddPlant)',
-            PlantCreated: '@Html.Encode(Resource.PlantCreated)',
-            NothingFound: '@Html.Raw(Resource.NothingFound)',
-            PlantDeleted: '@Html.Raw(Resource.PlantDeleted)',
-            PlantDeletedConfirm: '@Html.Raw(Resource.PlantDeletedConfirm)',
-            ComeBack: '@Html.Raw(Resource.ComeBack)',
-            Continue: '@Html.Raw(Resource.Continue)',
-            PlantImpossibileDeleted: '@Html.Raw(Resource.PlantImpossibileDeleted)',
-            PlantModify: '@Html.Raw(Resource.PlantModify)',
-            PlantModified: '@Html.Raw(Resource.PlantModified)',
-            ErrorOccurred: '@Html.Raw(Resource.ErrorOccurred)',
-            PlantDelete: '@Html.Raw(Resource.PlantDelete)',
-            MachineWithPlantConfirm: '@Html.Raw(Resource.MachineAssociatedToPlant)'
+            PlantName: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantName))',
+            Address: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantAddress))',
+            PlantCustomer: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantCustomers))',
+            PlantMachines: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantMachines))',
+            Modify: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Modify))',
+            Delete: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Delete))',
+            Error: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Error))',
+            Search: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Search))',
+            AddPlant: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.AddPlant))',
+            PlantCreated: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantCreated))',
+            NothingFound: '@Html.Raw(HttpUtility.JavaScriptStringEncode("NothingFound"))',
+            PlantDeleted: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantDeleted))',
+            PlantDeletedConfirm: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantDeletedConfirm))',
+            ComeBack: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.ComeBack))',
+            Continue: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Continue))',
+            PlantImpossibileDeleted: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantImpossibileDeleted))',
+            PlantModify: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantModify))',
+            PlantModified: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantModified))',
+            ErrorOccurred: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.ErrorOccurred))',
+            PlantDelete: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantDelete))',
+            MachineWithPlantConfirm: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.MachineAssociatedToPlant))'
         };
 
-        var data = @Html.Raw(Json.Encode(Model.User));
-        PlantManager.init(data, "@ViewBag.BaseUrl", resource);
+                var data = @Html.Raw(Json.Encode(Model.User));
+                PlantManager.init(data, "@ViewBag.BaseUrl", resource);
     });
 </script>
 

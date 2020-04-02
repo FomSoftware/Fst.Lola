@@ -192,45 +192,46 @@
 
         $('[data-toggle="popover"]').popover();
         var resource = {
-            Username: '@Resource.Username',
-            FirstName: '@Resource.FirstName',
-            LastName: '@Resource.LastName',
-            Name: '@Resource.Name',
-            Role:'@Resource.Role',
-            Customer: '@Resource.Customer',
-            Machines: '@Resource.Machines',
-            Language: '@Resource.Language',
-            Modify: '@Resource.Modify',
-            Enable: '@Resource.Enable',
-            Disable: '@Resource.Disable',
-            Delete: '@Resource.Delete',
-            DeleteUser: '@Resource.DeleteUser',
-            EnabledUser: '@Resource.EnableUser',
-            DisabledUser: '@Resource.DisableUser',
-            Error: '@Resource.Error',
-            Search: '@Resource.Search',
-            AddUser: '@Resource.AddUser',
-            NoRecordAvailables: '@Resource.NoRecordsAvailable',
-            NothingFound: '@Resource.NothingFound',
-            ModifyUser: '@Resource.ModifyUser',
-            ComeBack: '@Resource.ComeBack',
-            Continue: '@Resource.Continue',
-            EmailNotValid: '@Resource.EmailNotValid',
-            PasswordShort: '@Resource.PasswordShort',
-            PasswordsNotSame: '@Resource.PasswordsNotSame',
-            CreatedUser: '@Resource.CreatedUser',
-            UserSuccessfullyModify: '@Resource.UserSuccessfullyModify',
-            UserSuccessfullyDeleted: '@Resource.UserSuccessfullyDeleted',
-            PasswordSuccessfullyReseted: '@Resource.PasswordSuccessfullyReseted',
-            ErrorOccurred: '@Resource.ErrorOccurred',
-            ResetUserPassword: '@Resource.ResetUserPassword',
-            ResetPassword: '@Resource.ResetPassword',
-            UsernameExists: '@Resource.UsernameExists',
-            PasswordPolicy: '@Resource.PasswordPolicy'
-            
+            Username: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Username))',
+            FirstName: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.FirstName))',
+            LastName: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.LastName))',
+            Name: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Name))',
+            Role: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Role))',
+            Customer: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Customer))',
+            Machines: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Machines))',
+            Language: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Language))',
+            Modify: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Modify))',
+            Enable: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Enable))',
+            Disable: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Disable))',
+            Delete: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Delete))',
+            DeleteUser: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.DeleteUser))',
+            EnabledUser: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.EnableUser))',
+            DisabledUser: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.DisableUser))',
+            Error: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Error))',
+            Search: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Search))',
+            AddUser: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.AddUser))',
+            NoRecordAvailables: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.NoRecordsAvailable))',
+            NothingFound: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.NothingFound))',
+            ModifyUser: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.ModifyUser))',
+            ComeBack: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.ComeBack))',
+            Continue: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Continue))',
+            EmailNotValid: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.EmailNotValid))',
+            PasswordShort: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PasswordShort))',
+            PasswordsNotSame: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PasswordsNotSame))',
+            CreatedUser: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.CreatedUser))',
+            UserSuccessfullyModify: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.UserSuccessfullyModify))',
+            UserSuccessfullyDeleted: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.UserSuccessfullyDeleted))',
+            PasswordSuccessfullyReseted: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PasswordSuccessfullyReseted))',
+            ErrorOccurred: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.ErrorOccurred))',
+            ResetUserPassword: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.ResetUserPassword))',
+            ResetPassword: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.ResetPassword))',
+            UsernameExists: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.UsernameExists))',
+            PasswordPolicy: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PasswordPolicy))'
+
+
          };
 
-        var data = @Html.Raw(Json.Encode(Model.User));
-        UserManager.init(data, "@ViewBag.BaseUrl", resource);
+                var data = @Html.Raw(Json.Encode(Model.User));
+                UserManager.init(data, "@ViewBag.BaseUrl", resource);
     });
 </script>
