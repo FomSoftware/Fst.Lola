@@ -17,13 +17,17 @@ namespace FomMonitoringQueueApplication
     /// </summary>
     public partial class MainWindow
     {
-        private static Timer _aTimer;
+        private static Timer _aTimerQueue;
         public static ConsumerInitializer ConsumerInitializer;
+        private static Timer _aTimerUnknown;
+        private static Timer _aTimerNotElaborated;
+        private static MyViewModel _viewModel;
 
         public MainWindow()
         {
             InitializeComponent();
-
+            _viewModel = new MyViewModel();
+            DataContext = _viewModel;
             TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetAssembly(typeof(FomMonitoringCore.Framework.Config.MapsterConfig)));
             Init();
             SetTimer();
@@ -41,28 +45,34 @@ namespace FomMonitoringQueueApplication
 
         private void SetTimer()
         {
-            if (_aTimer == null)
+            if (_aTimerQueue == null)
             {
-                _aTimer = new Timer(180000);
+                _aTimerQueue = new Timer(180000);
                 // Hook up the Elapsed event for the timer. 
-                _aTimer.Elapsed += OnTimedEvent;
-                _aTimer.AutoReset = true;
-                _aTimer.Enabled = true;
+                _aTimerQueue.Elapsed += OnTimedQueueEvent;
+                _aTimerQueue.AutoReset = true;
+                _aTimerQueue.Enabled = true;
+            }
+
+            if (_aTimerUnknown == null)
+            {
+                _aTimerUnknown = new Timer(180000);
+                // Hook up the Elapsed event for the timer. 
+                _aTimerUnknown.Elapsed += OnTimedUnknownEvent;
+                _aTimerUnknown.AutoReset = true;
+                _aTimerUnknown.Enabled = true;
             }
         }
-        private static void OnTimedEvent(object source, ElapsedEventArgs e)
+        private static void OnTimedQueueEvent(object source, ElapsedEventArgs e)
+        {
+            ConsumerInitializer?.ElaborateUnknown();
+        }
+
+        private static void OnTimedUnknownEvent(object source, ElapsedEventArgs e)
         {
             ConsumerInitializer?.Reconnect();
         }
 
-        public void UpdateTextBlock(TextBlock textBlock, string message)
-        {
-            Dispatcher?.BeginInvoke(new Action(() =>
-            {
-                textBlock.Text += $"\n {message}";
-                textBlock.UpdateLayout();
-            }), DispatcherPriority.Send);
-        }
 
         private void ConsumerInitializer_MessageLogged(object sender, LoggerEventsQueue e)
         {
@@ -71,44 +81,31 @@ namespace FomMonitoringQueueApplication
                 switch (e.Type)
                 {
                     case TypeEvent.Variable:
-                        Task.Factory.StartNew(() => UpdateTextBlock(TextVariabili, e.Message));
-
-                        break;
+                       _viewModel.TextVariabili += $"\n {e.Message}";
+                    break;
                     case TypeEvent.Messages:
-
-                        Panel.Dispatcher?.BeginInvoke(DispatcherPriority.Send, new Action(() => {
-                            TextMessaggi.Text += $"\n {e.Message}";
-                        })).Wait();
+                        _viewModel.TextMessaggi += $"\n {e.Message}";
                         break;
                     case TypeEvent.HistoryBarJobPiece:
-
-                        Panel.Dispatcher?.BeginInvoke(DispatcherPriority.Send, new Action(() => {
-                            TextHistoryJobPieceBar.Text += $"\n {e.Message}";
-                            TextHistoryJobPieceBar.UpdateLayout();
-                        }));
+                        _viewModel.TextHistoryJobPieceBar += $"\n {e.Message}";
                         break;
                     case TypeEvent.State:
-                        Panel.Dispatcher?.BeginInvoke( DispatcherPriority.Send, new Action(() => {
-                            TextState.Text += $"\n {e.Message}";
-                        })).Wait();
+                        _viewModel.TextState += $"\n {e.Message}";
                         break;
                     case TypeEvent.Info:
-                        Panel.Dispatcher?.BeginInvoke(DispatcherPriority.Send, new Action(() => {
-                            TextInfo.Text += $"\n {e.Message}";
-                            TextInfo.UpdateLayout();
-                        }));
+                        _viewModel.TextInfo += $"\n {e.Message}";
                         break;
                     case TypeEvent.Tool:
-                        TextTool.Dispatcher?.Invoke(() => {
-                            TextTool.Text += $"\n {e.Message}";
-                            TextTool.UpdateLayout();
-                        });
-                        break;
+                        _viewModel.TextTool += $"\n {e.Message}";
+                    break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
-            
 
+                if (e.TypeLevel == LogService.TypeLevel.Error || e.TypeLevel == LogService.TypeLevel.Fatal)
+                {
+                    _viewModel.TextErrors += $"\n {e.Message} \n {e.Exception}";
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

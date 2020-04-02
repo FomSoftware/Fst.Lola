@@ -57,6 +57,7 @@ namespace FomMonitoringQueueApplication
             _notifyIcon = null;
             FomMonitoringQueueApplication.MainWindow.ConsumerInitializer.Dispose();
             FomMonitoringQueueApplication.MainWindow.ConsumerInitializer = null;
+            Application.Current.Shutdown();
         }
 
         private void ShowMainWindow()
@@ -86,7 +87,10 @@ namespace FomMonitoringQueueApplication
             {
                 FomMonitoringQueueApplication.MainWindow.ConsumerInitializer.Dispose();
                 FomMonitoringQueueApplication.MainWindow.ConsumerInitializer = null;
+                Application.Current.Shutdown();
             }
+
+
         }
     }
 }

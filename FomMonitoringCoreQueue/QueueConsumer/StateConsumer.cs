@@ -82,10 +82,10 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                     _queueConnection.ChannelState.BasicAck(ea.DeliveryTag, false);
                     Log?.Invoke(this, new LoggerEventsQueue
                     {
-                        Message = $"Finita elaborazione json { DateTime.UtcNow:O} tempo trascorso { elapsedTime }",
+                        Message = $"Finita elaborazione State {data.Id.ToString()} - { DateTime.UtcNow:O} tempo trascorso { elapsedTime }",
                         Exception = null,
                         TypeLevel = LogService.TypeLevel.Info,
-                        Type = TypeEvent.Info
+                        Type = TypeEvent.State
                     });
                 }
                 catch (Exception ex)
@@ -95,7 +95,7 @@ namespace FomMonitoringCoreQueue.QueueConsumer
 
                     Log?.Invoke(this, new LoggerEventsQueue
                     {
-                        Message = $"Finita elaborazione con errori json {DateTime.UtcNow:O} tempo trascorso {elapsedTime}",
+                        Message = $"Finita elaborazione  State {data.Id.ToString()} con errori - {DateTime.UtcNow:O} tempo trascorso {elapsedTime}",
                         Exception = ex,
                         TypeLevel = LogService.TypeLevel.Error,
                         Type = TypeEvent.Info

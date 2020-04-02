@@ -3,6 +3,7 @@ using Autofac;
 using FomMonitoringCoreQueue.Connection;
 using FomMonitoringCoreQueue.Dto;
 using FomMonitoringCoreQueue.Events;
+using FomMonitoringCoreQueue.Forwarder;
 
 namespace FomMonitoringCoreQueue.QueueConsumer
 {
@@ -23,6 +24,7 @@ namespace FomMonitoringCoreQueue.QueueConsumer
         private IContainer CurrentContainer { get; set; }
 
         private IQueueConnection Connection;
+        private ILifetimeScope _scopeUnknown;
 
         public ConsumerInitializer()
         {
@@ -43,6 +45,7 @@ namespace FomMonitoringCoreQueue.QueueConsumer
             _scopeHistoryJob = CurrentContainer.BeginLifetimeScope();
             _scopeTool = CurrentContainer.BeginLifetimeScope();
             _scopeState = CurrentContainer.BeginLifetimeScope();
+            _scopeUnknown = CurrentContainer.BeginLifetimeScope();
 
             var consumerVariable = _scopeVariable.Resolve<IConsumer<VariablesList>>();
             consumerVariable.Log += WriteLog;
@@ -100,9 +103,15 @@ namespace FomMonitoringCoreQueue.QueueConsumer
             _scopeHistoryJob?.Dispose();
             _scopeTool?.Dispose();
             _scopeState?.Dispose();
+            _scopeUnknown?.Dispose();
             CurrentContainer?.Dispose();
             CurrentContainer = null;
 
+        }
+
+        public void ElaborateUnknown()
+        {
+            _scopeUnknown.Resolve<IUnknownForwarder>().ReForward();
         }
     }
 }

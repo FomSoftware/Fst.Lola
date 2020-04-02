@@ -7,47 +7,44 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="470" Width="800"
         Icon=".\Resources\Icon1.ico"  >
-    <StackPanel x:Name="Panel">
+
+        <StackPanel x:Name="Panel">
         <TabControl HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="772">
             <TabItem Header="Info Machine">
                 <Grid Background="#FFE5E5E5">
-                    <TextBlock x:Name="TextInfo" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="351" Width="746"/>
+                    <TextBlock x:Name="TextInfo" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding TextInfo, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="351" Width="746"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Variabili">
                 <ScrollViewer HorizontalScrollBarVisibility="Auto">
                     <Grid Background="#FFE5E5E5">
-                        <TextBlock x:Name="TextVariabili" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="351" Width="746"/>
+                        <TextBlock x:Name="TextVariabili" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding TextVariabili, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="351" Width="746"/>
                     </Grid>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="Messaggi">
                 <Grid Background="#FFE5E5E5">
-                    <TextBlock x:Name="TextMessaggi" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="351" Width="746"/>
+                    <TextBlock x:Name="TextMessaggi" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding TextMessaggi, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="351" Width="746"/>
                 </Grid>
             </TabItem>
             <TabItem Header="State">
                 <Grid Background="#FFE5E5E5">
-                    <TextBlock x:Name="TextState" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="351" Width="746"/>
+                    <TextBlock x:Name="TextState" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding TextState, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="351" Width="746"/>
                 </Grid>
             </TabItem>
             <TabItem Header="HistoryJobPieceBar">
                 <Grid Background="#FFE5E5E5">
-                    <TextBlock x:Name="TextHistoryJobPieceBar" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="351" Width="746"/>
+                    <TextBlock x:Name="TextHistoryJobPieceBar" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding TextHistoryJobPieceBar, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="351" Width="746"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Tool">
                 <Grid Background="#FFE5E5E5">
-                    <TextBlock x:Name="TextTool" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="351" Width="746"/>
+                    <TextBlock x:Name="TextTool" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding TextTool, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="351" Width="746"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Errors">
                 <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="245*"/>
-                        <ColumnDefinition Width="521*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="TextErrors" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="351" Width="746" Grid.ColumnSpan="2"/>
+                    <TextBlock x:Name="TextErrors" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding TextErrors, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="351" Width="746"/>
                 </Grid>
             </TabItem>
 

@@ -74,10 +74,10 @@ namespace FomMonitoringCoreQueue.QueueConsumer
 
                     Log?.Invoke(this, new LoggerEventsQueue
                     {
-                        Message = $"Finita elaborazione json { DateTime.UtcNow:O} tempo trascorso { elapsedTime }",
+                        Message = $"Finita elaborazione Messages {data.Id.ToString()} - { DateTime.UtcNow:O} tempo trascorso { elapsedTime }",
                         Exception = null,
                         TypeLevel = LogService.TypeLevel.Info,
-                        Type = TypeEvent.Info
+                        Type = TypeEvent.Messages
                     });
                 }
                 catch (Exception ex)
@@ -86,10 +86,10 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                     data.ElaborationSuccesfull = false;
                     Log?.Invoke(this, new LoggerEventsQueue
                     {
-                        Message = $"Finita elaborazione con errori json {DateTime.UtcNow:O} tempo trascorso {elapsedTime}",
+                        Message = $"Finita elaborazione Messages {data.Id.ToString()} con errori - {DateTime.UtcNow:O} tempo trascorso {elapsedTime}",
                         Exception = ex,
                         TypeLevel = LogService.TypeLevel.Error,
-                        Type = TypeEvent.Info
+                        Type = TypeEvent.Messages
                     });
 
                 }

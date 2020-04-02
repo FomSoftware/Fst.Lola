@@ -12,7 +12,7 @@ namespace FomMonitoringApi
             var builder = new ContainerBuilder();
             var config = GlobalConfiguration.Configuration;
             builder.RegisterApiControllers(typeof(WebApiApplication).Assembly);
-            IocContainerBuilder.BuildCore(builder);
+            FomMonitoringCoreQueue.Ioc.IocContainerBuilder.BuildCore(builder);
 
             builder.RegisterWebApiFilterProvider(config);
             builder.RegisterWebApiModelBinderProvider();

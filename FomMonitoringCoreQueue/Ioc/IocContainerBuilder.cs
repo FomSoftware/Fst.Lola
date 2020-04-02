@@ -30,7 +30,8 @@ namespace FomMonitoringCoreQueue.Ioc
             FomMonitoringCore.Ioc.IocContainerBuilder.BuildCore(builder, false, true);
             builder.RegisterType<QueueConnection>().As<IQueueConnection>().SingleInstance();
 
-            
+
+            builder.RegisterType<UnknownForwarder>().As<IUnknownForwarder>().InstancePerLifetimeScope();
             builder.RegisterType<VariableListProducer>().As<IProducer<VariablesList>>().InstancePerLifetimeScope();
             builder.RegisterType<InfoProducer>().As<IProducer<Info>>().InstancePerLifetimeScope();
             builder.RegisterType<HistoryJobPieceBarProducer>().As<IProducer<HistoryJobPieceBar>>().InstancePerLifetimeScope();

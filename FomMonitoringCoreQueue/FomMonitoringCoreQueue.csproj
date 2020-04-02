@@ -130,6 +130,7 @@
     <Compile Include="Dto\Info.cs" />
     <Compile Include="Events\LoggerEvents.cs" />
     <Compile Include="Forwarder\QueueForwarder.cs" />
+    <Compile Include="Forwarder\UnknownForwarder.cs" />
     <Compile Include="Ioc\IocContainerBuilder.cs" />
     <Compile Include="ProcessData\HistoryJobPieceBarProcessor.cs" />
     <Compile Include="ProcessData\InfoProcessor.cs" />

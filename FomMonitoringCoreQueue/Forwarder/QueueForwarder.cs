@@ -95,11 +95,13 @@ namespace FomMonitoringCoreQueue.Forwarder
                 var data = JsonConvert
                     .DeserializeObject<FomMonitoringCore.DataProcessing.Dto.Mongo.VariablesList>(json);
 
+                data.DateSendedQueue = DateTime.UtcNow;
+                data.DateReceived = DateTime.UtcNow;
                 var infoMongo = new FomMonitoringCore.DataProcessing.Dto.Mongo.Info
                 {
                     info = data.info,
                     DateReceived = data.DateReceived,
-                    DateSendedQueue = DateTime.UtcNow,
+                    DateSendedQueue = data.DateSendedQueue,
                     IsCumulative = data.IsCumulative
                 };
 
@@ -133,11 +135,14 @@ namespace FomMonitoringCoreQueue.Forwarder
             if (!errorMessages.Any())
             {
                 var data = JsonConvert.DeserializeObject<FomMonitoringCore.DataProcessing.Dto.Mongo.Message>(json);
+
+                data.DateSendedQueue = DateTime.UtcNow;
+                data.DateReceived = DateTime.UtcNow;
                 var infoMongo = new FomMonitoringCore.DataProcessing.Dto.Mongo.Info
                 {
                     info = data.info,
                     DateReceived = data.DateReceived,
-                    DateSendedQueue = DateTime.UtcNow,
+                    DateSendedQueue = data.DateSendedQueue,
                     IsCumulative = data.IsCumulative
                 };
 
@@ -169,11 +174,14 @@ namespace FomMonitoringCoreQueue.Forwarder
             if (!errorStates.Any())
             {
                 var data = JsonConvert.DeserializeObject<FomMonitoringCore.DataProcessing.Dto.Mongo.State>(json);
+
+                data.DateSendedQueue = DateTime.UtcNow;
+                data.DateReceived = DateTime.UtcNow;
                 var infoMongo = new FomMonitoringCore.DataProcessing.Dto.Mongo.Info
                 {
                     info = data.info,
                     DateReceived = data.DateReceived,
-                    DateSendedQueue = DateTime.UtcNow,
+                    DateSendedQueue = data.DateSendedQueue,
                     IsCumulative = data.IsCumulative
                 };
 
@@ -207,11 +215,14 @@ namespace FomMonitoringCoreQueue.Forwarder
             {
                 var data = JsonConvert.DeserializeObject<FomMonitoringCore.DataProcessing.Dto.Mongo.Tool>(json);
 
+
+                data.DateSendedQueue = DateTime.UtcNow;
+                data.DateReceived = DateTime.UtcNow;
                 var infoMongo = new FomMonitoringCore.DataProcessing.Dto.Mongo.Info
                 {
                     info = data.info,
                     DateReceived = data.DateReceived,
-                    DateSendedQueue = DateTime.UtcNow,
+                    DateSendedQueue = data.DateSendedQueue,
                     IsCumulative = data.IsCumulative
                 };
 
@@ -248,11 +259,14 @@ namespace FomMonitoringCoreQueue.Forwarder
                 var data = JsonConvert
                     .DeserializeObject<FomMonitoringCore.DataProcessing.Dto.Mongo.HistoryJobPieceBar>(json);
 
+
+                data.DateSendedQueue = DateTime.UtcNow;
+                data.DateReceived = DateTime.UtcNow;
                 var infoMongo = new FomMonitoringCore.DataProcessing.Dto.Mongo.Info
                 {
                     info = data.info,
                     DateReceived = data.DateReceived,
-                    DateSendedQueue = DateTime.UtcNow,
+                    DateSendedQueue = data.DateSendedQueue,
                     IsCumulative = data.IsCumulative
                 };
 

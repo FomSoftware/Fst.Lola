@@ -73,6 +73,13 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                     // Format and display the TimeSpan value.
                     elapsedTime = $"{ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}.{ts.Milliseconds:00}";
                     _queueConnection.ChannelTool.BasicAck(ea.DeliveryTag, false);
+                    Log?.Invoke(this, new LoggerEventsQueue
+                    {
+                        Message = $"Finita elaborazione Tool {data.Id.ToString()} - { DateTime.UtcNow:O} tempo trascorso { elapsedTime }",
+                        Exception = null,
+                        TypeLevel = LogService.TypeLevel.Info,
+                        Type = TypeEvent.Tool
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -85,8 +92,6 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                 }
                 finally
                 {
-                    LogService.WriteLog(
-                        $"Finita elaborazione json tool {DateTime.UtcNow:O} tempo trascorso {elapsedTime} ", LogService.TypeLevel.Info);
                     _toolGenericRepository.Update(data);
                 }
             };
