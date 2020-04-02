@@ -219,7 +219,7 @@
     var addClickEvent = function () {
         action = enAction.add;
         clearActualPlant();
-        $('#plant-modal .modal-title').text(resource.AddPlant);
+        $('#plant-modal .modal-title').html(resource.AddPlant);
         $('#plant-modal .form-check').hide();
         
         if (roleUser == enRoles.Customer) {
@@ -295,7 +295,7 @@
                         vmPlants.machines.active = _.pluck(result.Plant.Machines, 'Id');
                         vmPlants.machines.all = result.Machines;
 
-                        $('#plant-modal .modal-title').text(resource.PlantModify);
+                        $('#plant-modal .modal-title').html(resource.PlantModify);
                         $('#plant-modal').modal('show');
                         $('#plant-modal .js-modify').show();
                         $('#plant-modal .js-add').hide();

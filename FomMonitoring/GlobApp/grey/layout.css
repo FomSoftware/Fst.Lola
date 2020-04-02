@@ -24,7 +24,7 @@ header {
     }
 
     header .pull-left {
-        padding: 3px 15px 0 20px;
+        padding: 3px 5px 0 20px;
     }
 
         header .pull-left > * {
@@ -294,17 +294,17 @@ section.container-fluid {
 }
 
 @media (max-width: 400px) {
-    header .time-stamp.visible-xs {
-        font-size: 8px;
-    }
-
-
     .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
         width: 170px !important;
     }
 }
 
-
+@media (max-width: 576px) {
+    header .time-stamp.visible-xs {
+        font-size: 8px;
+        margin-left: -30px;
+    }
+}
 #toast-container {
     width: calc(100% - 28px);
     margin-right: 2px;

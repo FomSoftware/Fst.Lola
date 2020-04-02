@@ -269,27 +269,49 @@
 }
 
 @media(max-width: 576px) {
+	
+    .daterangepicker {
+        padding: 2px;		
+    }
     .ranges li {
-        width: 50%;
+        font-size: 10px;
         margin-bottom: 1px;
     }
     .ranges ul {
-        display: contents;
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
 
-    }
-    .ranges {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .range_inputs {
-        margin-top: 3px;
-    }
-    .daterangepicker .calendar td {
-        font-size: 15px;
-    }
-    .daterangepicker.ltr .calendar.left, .daterangepicker.ltr .calendar.right {
-        max-width: 100%;
-        font-size: 13px;
-    }
+.ranges {
+    display: flex;
+    flex-wrap: wrap;
+}
+.range_inputs {
+    margin-top: 2px;
+}
+.range_inputs .btn-sm{
+    font-size: 13px;
+}
+	
+.daterangepicker .calendar td , .daterangepicker .calendar th{
+    font-size: 12px;
+    height: 17px;
+}
+.daterangepicker.ltr .calendar.left, .daterangepicker.ltr .calendar.right {
+    max-width: 100%;
+    font-size: 12px;
+}
+	
+.daterangepicker .daterangepicker_input i {
+    top: 2px;
+}
+
+.daterangepicker .input-mini {
+    border: 1px solid #ddd;
+    background-color: #ddd;
+    font-size: 13px;
+    line-height: 17px;
+    height: 20px;
+}
 }
 

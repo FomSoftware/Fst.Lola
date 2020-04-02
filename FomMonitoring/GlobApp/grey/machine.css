@@ -1743,44 +1743,37 @@ td.td-axes {
     }
 }
 
+
 @media(max-width: 400px) {
-    .first-td-tool {
-        width: 20%;
-    }
+    .first-td-tool { width: 20%; }
 
-    .table-spindle tr:first-child td {
-        padding-left: 5px;
-    }
+    .table-spindle tr:first-child td { padding-left: 5px; }
 
-    .portlet-title {
-        font-size: 10px !important;
-    }
+    .portlet-title { font-size: 10px !important; }
 
-    .jobs-firstcol-width {
-        width: 23%
-    }
+    .jobs-firstcol-width { width: 23% }
 
-    .label-tools {
-        display: inline;
-    }
+    .label-tools { display: inline; }
 
-    .label-tools-value {
-        font-size: 17px !important;
-    }
+    .label-tools-value { font-size: 17px !important; }
 
-    .rotaryAxesHeader {
-        font-size: 10px;
-    }
+    .rotaryAxesHeader { font-size: 10px; }
 
-    .lmx-button-container {
-        width: 100%;
-    }
+    .lmx-button-container { width: 100%; }
 
-    .job-header {
-        max-width: 35px;
+    .job-header { max-width: 35px; }
+
+    .overfeed .overfeed-title {
+        line-height: 0.7em;
     }
 }
-
+/* S7*/
+@media(max-width: 370px) {
+    div.title-kpi span.testo-abbreviato {
+        width: 250px;
+        display: block;
+    }
+}
 
 @media (max-height: 767px) {
 
