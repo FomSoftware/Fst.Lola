@@ -235,7 +235,7 @@
     var addClickEvent = function () {
         action = enAction.add;
         clearActualUser();
-        $('#user-modal .modal-title').text(resource.AddUser);
+        $('#user-modal .modal-title').html(resource.AddUser);
         $('#user-modal .form-check').hide();
         $('#form-customer-input').show();
         $('#form-role-input-disabled').hide();
@@ -327,7 +327,7 @@
                     vmUsers.customers.active = result.user.CustomerName;
                     vmUsers.machines.active = _.pluck(result.user.Machines, 'Id');
 
-                    $('#user-modal .modal-title').text(resource.ModifyUser);
+                    $('#user-modal .modal-title').html(resource.ModifyUser);
                     $('#user-modal').modal('show');
                     $('#user-modal .js-add').hide();
                     $('#user-modal .js-modify').show();
