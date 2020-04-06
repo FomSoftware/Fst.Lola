@@ -21,13 +21,13 @@
         yAxis: {
             title: {
                 style: {
-                    fontSize: '8px',
+                    fontSize: '10px',
                     fontWeight: '400'
                 }
             },
             labels: {
                 style: {
-                    fontSize: '8px'
+                    fontSize: '10px'
                 }
             }
         },
@@ -43,8 +43,8 @@
             itemDistance: 8,
             itemStyle: {
                 fontWeight: 'normal',
-                fontSize: '8px',
-                lineHeight: '8px'
+                fontSize: '10px',
+                lineHeight: '10px'
             }
         },
         plotOptions: {
@@ -608,10 +608,10 @@
                 data: _.map(options.series, function (opt) { return Math.round(opt.y); }),
 
                 dataLabels: {
-                    format: '<div style="text-align:center"><span style="font-size:8px;color:' +
+                    format: '<div style="text-align:center"><span style="font-size:10px;color:' +
                         ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">' + localizations.efficiency + '</span><br /><span style="font-size:10px;color:' +
                         ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span>' +
-                        '<span style="font-size:8px;">%</span></div>'
+                        '<span style="font-size:10px;">%</span></div>'
                 },
                 tooltip: {
                     valueSuffix: ' %'
