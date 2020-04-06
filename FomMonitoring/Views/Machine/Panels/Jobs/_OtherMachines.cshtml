@@ -1,4 +1,5 @@
 ﻿@model FomMonitoringBLL.ViewModel.JobViewModel
+@using FomMonitoringCore.Service
 @using FomMonitoringResources
 
 <div id="CardOtherMachinesJobs" class="@ViewData["Classes"]" v-show="showed">
@@ -11,7 +12,7 @@
                 </span>
             </div>
             <div class="title-kpi">
-                @Resource.Orders
+                <span class="testo-abbreviato">@LocalizationService.GetResource("Orders")</span>
                 <div class="sub-period js-period d-none d-sm-block"></div>
             </div>
         </div>

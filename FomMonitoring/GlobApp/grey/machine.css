@@ -81,7 +81,9 @@ body {
 .portlet-title > div {
     display: inline-block;
     vertical-align: top;
-    max-width: 90%;
+    max-width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .portlet-title .portlet-kpi {
@@ -1163,17 +1165,11 @@ hr.axes {
 
 .testo-abbreviato {
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .icon-message-header {
     width: 4%;
 }
-
-
-
-
 
 .border-panel {
     border-top-width: 2px;
