@@ -85,7 +85,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
+ 
 .portlet-title .portlet-kpi {
     display: inline-block;
 }
