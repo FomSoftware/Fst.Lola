@@ -134,7 +134,7 @@
     {
         moment.locale(language.initial);
         var formatLabel = moment.localeData().longDateFormat('L');
-        var formatCalendar = moment.localeData().longDateFormat('ll');
+        var formatCalendar = moment.localeData().longDateFormat('L');
 
 
 

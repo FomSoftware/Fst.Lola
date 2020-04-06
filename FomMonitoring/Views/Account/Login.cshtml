@@ -78,18 +78,15 @@
     $(function() {
         var $window = $(window);
         var width = $window.width();
-        var height = $window.height();
 
         setInterval(function() {
-                if ((width !== $window.width()) || (height !== $window.height())) {
+                if (width !== $window.width()) {
 
                     var diffWidth = Math.abs(width - $window.width());
-                    var diffHeight = Math.abs(height - $window.height());
 
-                    if (diffWidth > 50 || diffHeight > 50) {
+                    if (diffWidth > 50) {
 
                         width = $window.width();
-                        height = $window.height();
 
                         $('#alert-refresh-page').show();
                     }

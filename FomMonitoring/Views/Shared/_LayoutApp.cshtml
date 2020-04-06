@@ -84,32 +84,30 @@
     </script>
 <script type="text/javascript">
 
-        $(function() {
-            var $window = $(window);
-            var width = $window.width();
-            var height = $window.height();
+    $(function () {
+        var $window = $(window);
+        var width = $window.width();
 
-            setInterval(function () {
-                if ((width !== $window.width()) || (height !== $window.height())) {
+        setInterval(function () {
+            if (width !== $window.width()) {
 
-                    var diffWidth = Math.abs(width - $window.width());
-                    var diffHeight = Math.abs(height - $window.height());
+                var diffWidth = Math.abs(width - $window.width());
 
-                    if (diffWidth > 50 || diffHeight > 50) {
-                        
-                        width = $window.width();
-                        height = $window.height();
+                if (diffWidth > 50) {
 
-                        $('#alert-refresh-page').show();
-                    }
+                    width = $window.width();
 
+                    $('#alert-refresh-page').show();
                 }
-            }, 300);
 
-            $("#button-refresh-page, #alert-refresh-page").click(function() {
-                location.reload();
-            });
+            }
+        },
+            300);
+
+        $("#button-refresh-page, #alert-refresh-page").click(function () {
+            location.reload();
         });
+    });
 
 </script>
 
