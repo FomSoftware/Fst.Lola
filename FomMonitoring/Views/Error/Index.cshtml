@@ -18,9 +18,9 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-4 col-lg-offset-4 col-md-12 col-sm-12">
-                <div class="container-login">
+        <div class="row justify-content-md-center">
+            <div class="col-lg-4 col-12">
+                <div class="container-login" style="height: 400px !important;">
                     <div class="header">
                         <div>@string.Concat(Resource.Error, " ", ViewBag.Error)</div>
                         <img class="logo" src="~/Images/logo/Lola-lg.png">
@@ -29,7 +29,7 @@
                     {
                         <div class="form-actions">
                             <div class="form-actions">
-                                <button type="submit">@Resource.BackToLogin</button>
+                                <button type="submit" class="col-12">@Resource.BackToLogin</button>
                             </div>
                         </div>
                     }
