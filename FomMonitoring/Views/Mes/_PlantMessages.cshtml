@@ -32,25 +32,25 @@
                                             @Resource.Serial
                                         </span>
                                     </th>
-                                    <th style="width:8%">
-                                        <span class="value-title" style="padding-left:10px">
-                                            @Resource.Code
-                                        </span>
-                                    </th>
                                     <th style="width:17%" class="th-duration sorting" v-bind:class="sorting.timestamp" v-on:click="sortTimestamp()">
                                         <i class="fa fa-clock-o color-aaa"></i>
                                         <span class="value-title">
                                             @Resource.Timestamp
                                         </span>
                                     </th>
-                                    <th style="width:12%" class="th-duration sorting" v-bind:class="sorting.group" v-on:click="sortGroup()">
-                                        <span class="value-title" style="padding-left:0">
-                                            @Resource.Group
+                                    <th style="width:8%">
+                                        <span class="value-title" style="padding-left:10px">
+                                            @Resource.Code
                                         </span>
                                     </th>
                                     <th style="width:35%">
                                         <span class="value-title" style="padding-left:5px">
                                             @Resource.Description
+                                        </span>
+                                    </th>
+                                    <th style="width:12%" class="th-duration sorting" v-bind:class="sorting.group" v-on:click="sortGroup()">
+                                        <span class="value-title" style="padding-left:0">
+                                            @Resource.Group
                                         </span>
                                     </th>
                                 </tr>
@@ -61,7 +61,8 @@
                                 <tbody v-for="message in messages">
                                     <tr>
                                         <td class="testo-a-capo" style="width:15%">{{ message.machine.machineName || message.machine.model }}</td>
-                                        <td class="testo-a-capo" style="width:15%" >{{ message.machine.serial }}</td>
+                                        <td class="testo-a-capo" style="width:14%">{{ message.machine.serial }}</td>
+                                        <td class="testo-a-capo" style="width:17%">{{ convert_timestamp(message.message.timestamp, message.message.utc) }}</td>
                                         <td style="width:8%">
                                             <div class="item-icon fa fa-2x" v-bind:class="iconClass(message.message.type)"></div>
                                             <div class="item-alert">
@@ -69,9 +70,8 @@
                                                 <div class="subtitle-alert" v-bind:class="colorClass(message.message.type)">{{ message.message.type }}</div>
                                             </div>
                                         </td>
-                                        <td class="testo-a-capo" style="width:17%">{{ convert_timestamp(message.message.timestamp, message.message.utc) }}</td>
-                                        <td class="testo-a-capo" style="width:12%;">{{ message.message.group }}</td>
                                         <td class="testo-a-capo" style="width:35%">{{ message.message.description }}</td>
+                                        <td class="testo-a-capo" style="width:13%;">{{ message.message.group }}</td>
                                     </tr>
                                 </tbody>
                             </table>
