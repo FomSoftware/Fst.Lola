@@ -201,11 +201,12 @@
 
         if (roleUser != enRoles.Customer)
             columns.push({ title: resource.Customer, data: "CustomerName" });
-        columns.push({ title: resource.Machines, data: "Machines", width: 40 });
+        columns.push({ title: resource.Machines, data: "Machines" });
         columns.push({ title: "", data: 'Language', orderable: false, width: 15 });
         columns.push({ title: "", data: "Modify", orderable: false });
         columns.push({ title: "", data: "ChangePassword", orderable: false });
         columns.push({ title: "", data: "Delete", orderable: false });
+
 
         var config = {
             data: data,
@@ -222,7 +223,6 @@
                 zeroRecords: resource.NothingFound
             },
         };
-
         table = $(renderID).DataTable(config);
 
         //init tooltip 
