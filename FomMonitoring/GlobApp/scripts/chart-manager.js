@@ -608,10 +608,10 @@
                 data: _.map(options.series, function (opt) { return Math.round(opt.y); }),
 
                 dataLabels: {
-                    format: '<div style="text-align:center"><span style="font-size:10px;color:' +
-                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">' + localizations.efficiency + '</span><br /><span style="font-size:10px;color:' +
+                    format: '<div style="text-align:center"><span style="font-size:8px;color:' +
+                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">' + localizations.efficiency + '</span><br /><span style="font-size:8px;color:' +
                         ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span>' +
-                        '<span style="font-size:10px;">%</span></div>'
+                        '<span style="font-size:8px;">%</span></div>'
                 },
                 tooltip: {
                     valueSuffix: ' %'
