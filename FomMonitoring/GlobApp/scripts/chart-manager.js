@@ -39,8 +39,9 @@
             verticalAlign: 'top',
             itemMarginTop: 0,
             itemMarginBottom: 0,
-            itemMarginRight: 0,
-            itemDistance: 8,
+            itemMarginRight: 1,
+            itemDistance: 10,
+            align: 'center',
             itemStyle: {
                 fontWeight: 'normal',
                 fontSize: '10px',
