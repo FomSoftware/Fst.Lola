@@ -198,7 +198,7 @@
             order: [],
             paging: false,
             responsive: true,
-            autoWidth: false,
+            autoWidth: true,
             language: {
                 search: "",
                 searchPlaceholder: resource.Search,
