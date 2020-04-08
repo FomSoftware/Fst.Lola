@@ -737,11 +737,18 @@ em,
     background-color: #ddd !important;
 }
 
+table.dataTable {
+    margin-top: 50px !important;
+}
+
 table.dataTable .nowrap {
     white-space: nowrap;
 }
+
 .dataTables_filter {
     float: right;
+    position: fixed;
+    right: 15px;
 }
 
 
