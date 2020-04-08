@@ -1891,6 +1891,10 @@ td.td-axes {
     }
 }
 
+#CardJobs div.slimScrollBar {
+    display: none !important;
+}
+
 @media (min-width: 1396px) {
     #CardMultiSpindles div.slimScrollBar, #CardElectroSpindle div.slimScrollBar,
     #CardOtherDataLMXMachine div.slimScrollBar, #CardTiltingAxes div.slimScrollBar,
