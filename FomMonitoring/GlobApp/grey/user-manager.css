@@ -10,6 +10,9 @@
     box-shadow: 0px 2px 7px rgba(0,0,0,0.25);
 }
 
+#users-table_wrapper .row {
+    margin: 0;
+}
 .users-table thead tr th{
     background-color: #eee;
     border-bottom: solid 1px #b33157 !important;
@@ -59,7 +62,7 @@
 
 /*#region button*/
 
-.button-adduser{
+.button-adduser {
     color: #b33157;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -73,6 +76,7 @@
     cursor: pointer;
     position: absolute;
     z-index: 1;
+    margin-left: 15px;
 }
 
 .button-adduser i{
@@ -325,7 +329,6 @@
         }
 
     .button-adduser {
-        margin-left: 0px !important;
         max-width: 55vw;
     }
 }
@@ -342,5 +345,9 @@ label.form-check {
     padding-left: 0;
 }
 
-
+@media (min-width: 768px) {
+    .scroll-desktop {
+        overflow: auto;
+    }
+}
     /*#endregion */

@@ -9,17 +9,19 @@
 .plants-table {
     box-shadow: 0px 2px 7px rgba(0,0,0,0.25);
 }
-
-    .plants-table thead tr th {
-        background-color: #eee;
-        border-bottom: solid 1px #b33157 !important;
-        color: #b33157;
-        text-transform: uppercase;
-        border-bottom: 0px solid;
-        letter-spacing: 1px;
-        font-weight: 500;
-        font-size: 15px;
-    }
+#plants-table_wrapper .row {
+    margin: 0;
+}
+.plants-table thead tr th {
+    background-color: #eee;
+    border-bottom: solid 1px #b33157 !important;
+    color: #b33157;
+    text-transform: uppercase;
+    border-bottom: 0px solid;
+    letter-spacing: 1px;
+    font-weight: 500;
+    font-size: 15px;
+}
 
     .plants-table tbody tr {
         background-color: #eee !important;
@@ -73,6 +75,7 @@
     cursor: pointer;
     position: absolute;
     z-index: 1;
+    margin-left: 15px;
 }
 
     .button-addplant i {
@@ -234,7 +237,6 @@
     -webkit-plant-select: none;
     -moz-plant-select: none;
     -ms-plant-select: none;
-    plant-select: none;
 }
 
     /* Hide the browser's default checkbox */
@@ -312,9 +314,8 @@
 
     .dataTables_filter {
         margin-top: 0px !important;
-        position: fixed;
-        right: 20px;
         z-index: 4;
+        right: 16px !important;
     }
 
         .dataTables_filter label input {
@@ -322,14 +323,13 @@
         }
 
     .button-addplant {
-        margin-left: 0px !important;
         max-width: 55vw;
     }
 }
 
 @media (max-width: 400px) {
     .dataTables_filter {
-        right: 60px;
+        right: 16px !important;
         width: 40%;
     }
 }

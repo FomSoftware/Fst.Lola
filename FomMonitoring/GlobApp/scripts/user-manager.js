@@ -214,14 +214,7 @@
             info: false,
             order: [],
             paging: false,
-            responsive: {
-                breakpoints: [
-                    { name: 'desktop', width: Infinity },
-                    { name: 'tablet', width: 1424 },
-                    { name: 'fablet', width: 768 },
-                    { name: 'phone', width: 480 }
-                ]
-            },
+            responsive: true,
             autoWidth: false,
 
             language: {

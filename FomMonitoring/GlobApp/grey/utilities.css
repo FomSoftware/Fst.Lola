@@ -748,7 +748,7 @@ table.dataTable .nowrap {
 .dataTables_filter {
     float: right;
     position: fixed;
-    right: 15px;
+    right: 30px;
 }
 
 
