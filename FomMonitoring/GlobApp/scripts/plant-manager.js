@@ -179,17 +179,17 @@
         });
 
         var columns = [
-            { title: resource.PlantName, data: "Name"},
-            { title: resource.Address, data: "Address" }
+            { title: resource.PlantName, data: "Name", className: "all"},
+            { title: resource.Address, data: "Address", className: "all" }
         ];
 
         if (roleUser != enRoles.Customer)
-            columns.push({ title: resource.PlantCustomer, data: "CustomerName" });
+            columns.push({ title: resource.PlantCustomer, data: "CustomerName", className: "all"});
 
-        columns.push({ title: resource.PlantMachines, data: "Machines" });
+        columns.push({ title: resource.PlantMachines, data: "Machines", className: "all" });
 
-        columns.push({ title: "", data: "Modify", orderable: false });
-        columns.push({ title: "", data: "Delete", orderable: false });
+        columns.push({ title: "", data: "Modify", orderable: false, className: "all"});
+        columns.push({ title: "", data: "Delete", orderable: false, className: "all"});
 
         var config = {
             data: data,
@@ -198,7 +198,7 @@
             order: [],
             paging: false,
             responsive: true,
-            autoWidth: true,
+            autoWidth: false,
             language: {
                 search: "",
                 searchPlaceholder: resource.Search,

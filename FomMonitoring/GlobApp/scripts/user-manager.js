@@ -192,20 +192,20 @@
         });
 
         var columns = [
-            { title: "", data: "Enabled", orderable: false, width: 2 },
-            { title: resource.Username, data: "Username" },
-            { title: resource.Name, data: "Name" },
-            { title: "Email", data: "Email" },
-            { title: resource.Role, data: "RoleName" }
+            { title: "", data: "Enabled", orderable: false, width: 2, className: "all" },
+            { title: resource.Username, data: "Username", className: "all" },
+            { title: resource.Name, data: "Name", width: 350, className: "all" },
+            { title: "Email", data: "Email", className: "all" },
+            { title: resource.Role, data: "RoleName", className: "all" }
         ];
 
         if (roleUser != enRoles.Customer)
-            columns.push({ title: resource.Customer, data: "CustomerName" });
-        columns.push({ title: resource.Machines, data: "Machines" });
-        columns.push({ title: "", data: 'Language', orderable: false, width: 15 });
-        columns.push({ title: "", data: "Modify", orderable: false });
-        columns.push({ title: "", data: "ChangePassword", orderable: false });
-        columns.push({ title: "", data: "Delete", orderable: false });
+            columns.push({ title: resource.Customer, data: "CustomerName", className: "all" });
+        columns.push({ title: resource.Machines, data: "Machines", className: "all" });
+        columns.push({ title: "", data: 'Language', orderable: false, width: 15, className: "all" });
+        columns.push({ title: "", data: "Modify", orderable: false, className: "all" });
+        columns.push({ title: "", data: "ChangePassword", orderable: false, className: "all" });
+        columns.push({ title: "", data: "Delete", orderable: false, className: "all" });
 
 
         var config = {
@@ -214,8 +214,16 @@
             info: false,
             order: [],
             paging: false,
-            responsive: true,
-            autoWidth: true,
+            responsive: {
+                breakpoints: [
+                    { name: 'desktop', width: Infinity },
+                    { name: 'tablet', width: 1424 },
+                    { name: 'fablet', width: 768 },
+                    { name: 'phone', width: 480 }
+                ]
+            },
+            autoWidth: false,
+
             language: {
                 search: "",
                 searchPlaceholder: resource.Search,

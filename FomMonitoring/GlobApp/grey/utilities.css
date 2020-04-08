@@ -737,8 +737,16 @@ em,
     background-color: #ddd !important;
 }
 
-@media screen and (min-width: 640px) and (max-width : 1204px) {
+table.dataTable .nowrap {
+    white-space: nowrap;
+}
+.dataTables_filter {
+    float: right;
+}
 
+
+
+@media screen and (min-width: 640px) and (max-width : 1204px) {
     .form-horizontal {
         margin-right: 35px;
         margin-left: 35px;
@@ -842,4 +850,11 @@ button.selected .fa {
 
 button.selected .fa-info {
     color: cornflowerblue !important;
+}
+
+
+@media (min-width: 1024px) {
+    .scroll-desktop {
+        overflow: auto;
+    }
 }

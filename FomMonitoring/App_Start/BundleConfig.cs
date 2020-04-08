@@ -21,7 +21,8 @@ namespace FomMonitoring.App_Start
                         "~/Content/daterangepicker.css",
                         "~/Content/font-awesome.min.css",
                         "~/Content/simple-line-icons.css",
-                        "~/Content/DataTables/css/jquery.dataTables.css",
+                        "~/Scripts/DataTables/dataTables.bootstrap4.css",
+                        "~/Scripts/DataTables/responsive.bootstrap4.css",
                         "~/Content/bootstrap-select.css",
                         "~/Content/toastr.css"
                       ));
@@ -39,6 +40,8 @@ namespace FomMonitoring.App_Start
                         //"~/Scripts/highcharts/5.0.14/themes/dark-unica.js",
                         "~/Scripts/DataTables/jquery.dataTables.js",
                         "~/Scripts/DataTables/dataTables.bootstrap4.js",
+                        "~/Scripts/DataTables/dataTables.responsive.js",
+                        "~/Scripts/DataTables/responsive.bootstrap4.js",
                         "~/Scripts/moment.js",
                         "~/Scripts/moment-with-locales.js",
                         "~/Scripts/daterangepicker.js",
