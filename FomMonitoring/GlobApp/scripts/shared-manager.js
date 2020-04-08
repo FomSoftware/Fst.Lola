@@ -240,6 +240,7 @@
         var labels = language.labels;
 
         var locale = {
+            format: moment_locale.longDateFormat('L'),
             applyLabel: labels.ApplyLabel,
             cancelLabel: labels.CancelLabel,
             customRangeLabel: labels.CustomRangeLabel,
