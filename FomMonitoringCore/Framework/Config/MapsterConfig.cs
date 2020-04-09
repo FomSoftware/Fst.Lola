@@ -255,6 +255,7 @@ namespace FomMonitoringCore.Framework.Config
                 .Ignore(dest => dest.Id)
                 .IgnoreAllVirtual()
                 .Map(dest => dest.Day, src => src.Time)
+                .Map(dest => dest.Params, src => src.Parameters)
                 .Map(dest => dest.StartTime, src => src.Time)
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
 

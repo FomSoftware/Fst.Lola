@@ -31,7 +31,7 @@ namespace VariableListLoadTest
             var forwarder = container.Resolve<IQueueForwarder>();
 
             
-            var jsons = context.Set<JsonData>().Where(h => h.ElaborationDate > new DateTime(2020, 1, 1)).OrderByDescending(i => i.Id).ToList().AsParallel()
+            var jsons = context.Set<JsonData>().Where(h => h.Json.Contains("param") && h.ElaborationDate > new DateTime(2020, 1, 1)).OrderByDescending(i => i.Id).ToList().AsParallel()
                 .Select(o => new {o.Id, o.Json}).OrderBy(n => n.Id).ToList();
             
 
