@@ -8,7 +8,7 @@ namespace FomMonitoringCore.DataProcessing.Dto
         public DateTime? Time { get; set; }
         public long? TimeSpanDuration { get; set; }
         public string Code { get; set; }
-        public string Parameters { get; set; }
+        public object Parameters { get; set; }
         public string Operator { get; set; }
         public int? State { get; set; }
         public string Type { get; set; }
