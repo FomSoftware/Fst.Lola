@@ -269,7 +269,7 @@
 
     var addUser = function () {
         vmUsers.formValidation();
-        if (controlValidation()) {
+        if (controlValidation(enAction.add)) {
             var machines = [];
             vmUsers.machines.active.forEach(function (val, index) {
                 machines.push({ Id: val });
@@ -367,7 +367,7 @@
     var modifyUser = function () {
         action = enAction.modify;
         vmUsers.formValidation();
-        if (controlValidation()) {
+        if (controlValidation(action)) {
             var machines = [];
             vmUsers.machines.active.forEach(function (val, index) {
                 machines.push({ Id: val });
@@ -555,7 +555,7 @@
         $('#user-modal .form-password').css('display', 'block');
     };
 
-    var controlValidation = function () {
+    var controlValidation = function (action) {
         if (vmUsers.missing.Username === false &&
             vmUsers.missing.Firstname === false &&
             vmUsers.missing.LastName === false &&
@@ -574,17 +574,20 @@
                 return false;
             }
 
-            if (roleUser == enRoles.Customer) {
-                if (vmUsers.actual.Password == undefined || vmUsers.actual.Password == null || vmUsers.actual.Password.trim() == "" || vmUsers.actual.Password.length < 6) {
-                    errorSwal(resource.PasswordPolicy);
+            if (action === enAction.add || (vmUsers.actual.Password || vmUsers.actual.ConfirmPassword)) {
+                if (roleUser == enRoles.Customer) {
+                    if (vmUsers.actual.Password == undefined || vmUsers.actual.Password == null || vmUsers.actual.Password.trim() == "" || vmUsers.actual.Password.length < 6) {
+                        errorSwal(resource.PasswordPolicy);
+                        return false;
+                    }
+                }
+
+                if (vmUsers.actual.Password != vmUsers.actual.ConfirmPassword) {
+                    errorSwal(resource.PasswordsNotSame);
                     return false;
                 }
             }
-
-            if (vmUsers.actual.Password != vmUsers.actual.ConfirmPassword) {
-                errorSwal(resource.PasswordsNotSame);
-                return false;
-            }
+            
             return true;
         } else
             return false;

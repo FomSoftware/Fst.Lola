@@ -85,7 +85,8 @@ namespace FomMonitoring.Controllers
         [Route("ajax/UserManagerApi/EditUser")]
         public HttpResponseMessage EditUser(UserViewModel user)
         {
-            var result = UserManagerViewService.EditUser(user);
+            ContextModel context = _contextService.GetContext();
+            var result = UserManagerViewService.EditUser(user, context);
             return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
         }
 

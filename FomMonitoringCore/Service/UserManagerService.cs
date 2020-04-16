@@ -460,7 +460,7 @@ namespace FomMonitoringCore.Service
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public static bool ModifyUser(UserModel user)
+        public static bool ModifyUser(UserModel user, string email)
         {
             try
             {
@@ -481,6 +481,19 @@ namespace FomMonitoringCore.Service
                     updUser.Email = user.Email;
                     updUser.LanguageID = user.Language.ID;
                     updUser.Enabled = user.Enabled;
+
+                    bool modifiedPsw = false;
+                    if (user.Password != null && !string.IsNullOrEmpty(user.Password.Trim()))
+                    {
+                        LoginServices ls = new LoginServices();
+                        string newPsw = ls.EncryptPassword(user.Password);
+                        if (updUser.Password != newPsw)
+                        {
+                            updUser.Password = newPsw;
+                            updUser.LastDateUpdatePassword = null;
+                            modifiedPsw = true;
+                        }
+                    }
 
                     if (updUser.Roles_Users.Count > 0 && ((enRole)updUser.Roles_Users.First().Roles.IdRole) != user.Role)
                     {
@@ -526,8 +539,11 @@ namespace FomMonitoringCore.Service
 
                         ent.SaveChanges();
                     }
-
                     entUM.SaveChanges();
+
+                    if (modifiedPsw && email != null)
+                        SendPassword(email, updUser.ID);
+         
                     return true;
                 }
             }

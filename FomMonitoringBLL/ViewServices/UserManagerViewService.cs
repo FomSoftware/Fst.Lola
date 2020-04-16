@@ -162,7 +162,7 @@ namespace FomMonitoringBLL.ViewServices
             }
         }
 
-        public static bool EditUser(UserViewModel userModel)
+        public static bool EditUser(UserViewModel userModel, ContextModel context)
         {
             try
             {
@@ -180,7 +180,16 @@ namespace FomMonitoringBLL.ViewServices
                     Enabled = userModel.Enabled
                 };
 
-                return UserManagerService.ModifyUser(user);
+                string email = null;
+                if (context.User.Role == enRole.Customer && context.User.Email != null)
+                {
+                    email = context.User.Email;
+                    user.Password = userModel.Password;
+                }
+
+                return UserManagerService.ModifyUser(user, email);
+
+
             }
             catch (Exception ex)
             {
