@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LastUpdate" xml:space="preserve">
-    <value>Last update</value>
+    <value>Dernière mise à jour</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>Prenom</value>
@@ -442,94 +442,94 @@
     <value>Modifier d'utilisateur</value>
   </data>
   <data name="ComeBack" xml:space="preserve">
-    <value>No, come back</value>
+    <value>Non, reviens</value>
   </data>
   <data name="Continue" xml:space="preserve">
-    <value>Yes, continue</value>
+    <value>Oui, continuez</value>
   </data>
   <data name="DisableUser" xml:space="preserve">
-    <value>User disabled</value>
+    <value>Utilisateur désactivé</value>
   </data>
   <data name="EnableUser" xml:space="preserve">
-    <value>User enabled</value>
+    <value>Utilisateur activé</value>
   </data>
   <data name="LastPassword" xml:space="preserve">
-    <value>Previous password</value>
+    <value>Ancien mot de passe</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
-    <value>New password</value>
+    <value>Nouveau mot de passe</value>
   </data>
   <data name="RepeatNewPassword" xml:space="preserve">
-    <value>Repeat new password</value>
+    <value>Répété le nouveau mot de passe</value>
   </data>
   <data name="EmailNotValid" xml:space="preserve">
-    <value>Email is not valid</value>
+    <value>Courriel invalide</value>
   </data>
   <data name="PasswordShort" xml:space="preserve">
     <value>Password must have at least 6 characters</value>
   </data>
   <data name="PasswordsNotSame" xml:space="preserve">
-    <value>Passwords are not the same</value>
+    <value>Les mots de passe saisis ne sont pas les mêmes</value>
   </data>
   <data name="Customer" xml:space="preserve">
-    <value>Customer</value>
+    <value>Client</value>
   </data>
   <data name="FieldRequired" xml:space="preserve">
-    <value>This field is required</value>
+    <value>Dieses Feld ist erforderlich</value>
   </data>
   <data name="NothingSelected" xml:space="preserve">
-    <value>Nothing selected</value>
+    <value>Rien de sélectionné</value>
   </data>
   <data name="Machines" xml:space="preserve">
     <value>Machines</value>
   </data>
   <data name="CreatedUser" xml:space="preserve">
-    <value>User successfully created</value>
+    <value>L'utilisateur a été créé avec succès</value>
   </data>
   <data name="ErrorOccurred" xml:space="preserve">
-    <value>An error occurred</value>
+    <value>Une erreur s'est produite</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Langue</value>
   </data>
   <data name="UserSuccessfullyModify" xml:space="preserve">
-    <value>User successfully modified</value>
+    <value>L'utilisateur a été mis à jour avec succès</value>
   </data>
   <data name="PasswordSuccessfullyReseted" xml:space="preserve">
-    <value>Password successfully reseted</value>
+    <value>Réinitialisation du mot de passe réussie</value>
   </data>
   <data name="ResetUserPassword" xml:space="preserve">
-    <value>Do you want to reset user's password?</value>
+    <value>Voulez-vous réinitialiser le mot de passe de cet utilisateur?</value>
   </data>
   <data name="ChangePasswordSuccessfully" xml:space="preserve">
-    <value>Password changed successfully</value>
+    <value>Le mot de passe a été modifié avec succès</value>
   </data>
   <data name="EnterPasswords" xml:space="preserve">
-    <value>Enter passwords</value>
+    <value>Entrez le mot de passe</value>
   </data>
   <data name="PasswordNotSame" xml:space="preserve">
-    <value>New password and repeat new password do not match</value>
+    <value>Les nouveaux mots de passe saisis ne sont pas les mêmes</value>
   </data>
   <data name="PasswordSamePrevious" xml:space="preserve">
-    <value>The old password is incorrect</value>
+    <value>L'ancien mot de passe est incorrect</value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
-    <value>Reset password</value>
+    <value>Réinitialiser le mot de passe</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Prénom</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Supprimer</value>
   </data>
   <data name="DeleteUser" xml:space="preserve">
-    <value>Are you sure to delete this user?</value>
+    <value>Voulez-vous vraiment supprimer cet utilisateur?</value>
   </data>
   <data name="UserSuccessfullyDeleted" xml:space="preserve">
-    <value>User successfully deleted</value>
+    <value>L'utilisateur a bien été supprimé</value>
   </data>
   <data name="UsernameExists" xml:space="preserve">
-    <value>The username already exists. Please use a different username</value>
+    <value>Un utilisateur avec ce nom d'utilisateur existe déjà</value>
   </data>
   <data name="Position" xml:space="preserve">
     <value>Emplacement</value>
@@ -660,7 +660,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Adresse</value>
   </data>
   <data name="PlantCustomers" xml:space="preserve">
-    <value>Customer</value>
+    <value>Client</value>
   </data>
   <data name="PlantDelete" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir supprimer l'usine sélectionnée?</value>
