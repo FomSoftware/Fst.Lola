@@ -337,13 +337,13 @@
                     //text: 'Efficienza (%)',
                     text: options.yTitle,
                     style: {
-                        color: '#c0f73c',
+                        color: '#8EBF36',
                     },
                     x: 5
                 },
                 labels: {
                     style: {
-                        color: '#c0f73c'
+                        color: '#8EBF36'
                     },
                     x: -3,
                     y: 4
