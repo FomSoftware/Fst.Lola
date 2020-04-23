@@ -643,11 +643,11 @@
     var openChangePasswordModal = function (mustChange) {
         if (mustChange) {
             $('#change-password-modal #close').addClass("display-none");
-            $('#change-password-modal .btn-annulla').addClass('display-none');
+            $('#change-password-modal .modal-footer .btn-annulla').addClass('display-none');
         }
         else {
             $('#change-password-modal #close').removeClass("display-none");
-            $('#change-password-modal .btn-annulla').removeClass('display-none');
+            $('#change-password-modal .modal-footer .btn-annulla').removeClass('display-none');
         }
         $('#last-password').val(null);
         $('#new-password').val(null);

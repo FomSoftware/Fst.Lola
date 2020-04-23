@@ -26,7 +26,7 @@ namespace FomMonitoringCore.Service
 
             try
             {
-                using (UserManagerEntities entUM = new UserManagerEntities())
+                using (var entUM = new UserManagerEntities())
                 {
                     entUM.Configuration.LazyLoadingEnabled = false;
 
@@ -41,7 +41,7 @@ namespace FomMonitoringCore.Service
 
 
                     // Recupero le sue macchine ed il customer associato
-                    using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                    using (var ent = new FST_FomMonitoringEntities())
                     {
                         ent.Configuration.LazyLoadingEnabled = false;
                         var customerName = ent.UserCustomerMapping.FirstOrDefault(f => f.UserId == userId)?.CustomerName;
@@ -54,7 +54,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), userId.ToString());
+                var errMessage = string.Format(ex.GetStringLog(), userId.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -72,7 +72,7 @@ namespace FomMonitoringCore.Service
 
             try
             {
-                using (UserManagerEntities entUM = new UserManagerEntities())
+                using (var entUM = new UserManagerEntities())
                 {
                     var user = entUM.Users.FirstOrDefault(f => f.Username == username);
                     if (user == null) return result;
@@ -81,7 +81,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), username);
+                var errMessage = string.Format(ex.GetStringLog(), username);
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -93,7 +93,7 @@ namespace FomMonitoringCore.Service
             List<UserModel> result = null;
             try
             {
-                using (UserManagerEntities entUM = new UserManagerEntities())
+                using (var entUM = new UserManagerEntities())
                 {
                     entUM.Configuration.LazyLoadingEnabled = false;
 
@@ -109,7 +109,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog());
+                var errMessage = string.Format(ex.GetStringLog());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -122,10 +122,10 @@ namespace FomMonitoringCore.Service
             if (users == null || users.Count == 0) return;
             try
             {
-                using (UserManagerEntities entUM = new UserManagerEntities())
+                using (var entUM = new UserManagerEntities())
                 {                    
-                    List<Guid> ids = users.Select(a => a.ID).ToList();
-                    List<Users> rem = entUM.Users.Where(y => ids.Contains(y.ID)).ToList();
+                    var ids = users.Select(a => a.ID).ToList();
+                    var rem = entUM.Users.Where(y => ids.Contains(y.ID)).ToList();
  
                     entUM.Users.RemoveRange(rem);
 
@@ -134,7 +134,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog());
+                var errMessage = string.Format(ex.GetStringLog());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -151,7 +151,7 @@ namespace FomMonitoringCore.Service
 
             try
             {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                using (var ent = new FST_FomMonitoringEntities())
                 {
                     ent.Configuration.LazyLoadingEnabled = false;
 
@@ -163,7 +163,7 @@ namespace FomMonitoringCore.Service
                         if (customerUsers.Count == 0) return result;
                     }
 
-                    using (UserManagerEntities entUM = new UserManagerEntities())
+                    using (var entUM = new UserManagerEntities())
                     {
                         entUM.Configuration.LazyLoadingEnabled = false;
 
@@ -202,7 +202,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), customerName);
+                var errMessage = string.Format(ex.GetStringLog(), customerName);
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -219,7 +219,7 @@ namespace FomMonitoringCore.Service
 
             try
             {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                using (var ent = new FST_FomMonitoringEntities())
                 {
                     ent.Configuration.LazyLoadingEnabled = false;
                     result = ent.UserCustomerMapping.Select(s => s.CustomerName).Distinct().ToList();
@@ -227,7 +227,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = ex.GetStringLog();
+                var errMessage = ex.GetStringLog();
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -244,7 +244,7 @@ namespace FomMonitoringCore.Service
 
             try
             {
-                using (UserManagerEntities entUM = new UserManagerEntities())
+                using (var entUM = new UserManagerEntities())
                 {
                     entUM.Configuration.LazyLoadingEnabled = false;
 
@@ -254,7 +254,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = ex.GetStringLog();
+                var errMessage = ex.GetStringLog();
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -272,17 +272,17 @@ namespace FomMonitoringCore.Service
 
             try
             {
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                using (var ent = new FST_FomMonitoringEntities())
                 {
                     ent.Configuration.LazyLoadingEnabled = false;
 
                     // Recupero la lista degli utenti associati al cliente
-                    List<Guid> users = ent.UserCustomerMapping.Where(w => w.CustomerName == customerName).Select(s => s.UserId).Distinct().ToList();
+                    var users = ent.UserCustomerMapping.Where(w => w.CustomerName == customerName).Select(s => s.UserId).Distinct().ToList();
                     if (users.Count == 0) return result;
 
                     // Recupero l'utente con ruolo cliente
                     Guid customerUser;
-                    using (UserManagerEntities entUM = new UserManagerEntities())
+                    using (var entUM = new UserManagerEntities())
                     {
                         entUM.Configuration.LazyLoadingEnabled = false;
 
@@ -301,7 +301,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = ex.GetStringLog();
+                var errMessage = ex.GetStringLog();
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -318,7 +318,7 @@ namespace FomMonitoringCore.Service
 
             try
             {
-                using (UserManagerEntities entUM = new UserManagerEntities())
+                using (var entUM = new UserManagerEntities())
                 {
                     entUM.Configuration.LazyLoadingEnabled = false;
                     result = entUM.Languages.ToList();
@@ -326,7 +326,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = ex.GetStringLog();
+                var errMessage = ex.GetStringLog();
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -342,10 +342,10 @@ namespace FomMonitoringCore.Service
         {
             try
             {
-                using (UserManagerEntities entUM = new UserManagerEntities())
+                using (var entUM = new UserManagerEntities())
                 {
 
-                    LoginServices ls = new LoginServices();
+                    var ls = new LoginServices();
 
                     var usernameUser = entUM.Users.Where(w => w.Username == user.Username).FirstOrDefault();
                     if (usernameUser != null)
@@ -384,7 +384,7 @@ namespace FomMonitoringCore.Service
                     if (newRole != null)
                         addUser.Roles_Users.Add(new Roles_Users() { ID = Guid.NewGuid(), UserID = addUser.ID, RoleID = newRole.ID });
 
-                    using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                    using (var ent = new FST_FomMonitoringEntities())
                     {
                         // Add user customer
                         ent.UserCustomerMapping.Add(new UserCustomerMapping() { UserId = addUser.ID, CustomerName = user.CustomerName });
@@ -409,7 +409,7 @@ namespace FomMonitoringCore.Service
             //}
             catch (Exception ex)
             {
-                string errMessage = ex.GetStringLog();
+                var errMessage = ex.GetStringLog();
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
                 throw ex;
             }
@@ -417,28 +417,29 @@ namespace FomMonitoringCore.Service
 
         public static bool SendPassword(string email, Guid id)
         {
-            bool result = true;
+            var result = true;
             try
             {
-                using (UserManagerEntities entUM = new UserManagerEntities())
+                email = "mbelletti@fomsoftware.com";
+                using (var entUM = new UserManagerEntities())
                 {
                     var user = entUM.Users.Find(id);
                     if (user == null) return false;
-                    string subject = Resource.CreateUserEmailSubject + " " + user.Username;
-                    LoginServices ls = new LoginServices();
-                    string ruolo = user.Roles_Users.FirstOrDefault().Roles.Description;
-                    int? idRuolo = user.Roles_Users.FirstOrDefault().Roles.IdRole;
+                    var subject = Resource.CreateUserEmailSubject + " " + user.Username;
+                    var ls = new LoginServices();
+                    var ruolo = user.Roles_Users.FirstOrDefault().Roles.Description;
+                    var idRuolo = user.Roles_Users.FirstOrDefault().Roles.IdRole;
 
                     if (idRuolo == 1)
-                        ruolo = Resource.Operator.ToString();
+                        ruolo = Resource.Operator;
                     else if (idRuolo == 2)
-                        ruolo = Resource.HeadWorkshop.ToString();
+                        ruolo = Resource.HeadWorkshop;
 
-                    string body = Resource.CreateUserEmailBody.Replace("[TIPO_USER]", ruolo )
+                    var body = Resource.CreateUserEmailBody.Replace("[TIPO_USER]", ruolo )
                                                               .Replace("[USERNAME]", user.Username)
                                                               .Replace("[PASSWORD]", ls.DecryptPassword(user.Password));
 
-                    MailMessage message = new MailMessage(ApplicationSettingService.GetWebConfigKey("EmailFromAddress"), 
+                    var message = new MailMessage(ApplicationSettingService.GetWebConfigKey("EmailFromAddress"), 
                                                            email, subject, body);
                     message.IsBodyHtml = true;
                     EmailSender.SendEmail(message);
@@ -447,7 +448,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = ex.GetStringLog();
+                var errMessage = ex.GetStringLog();
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
                 result = false;
             }
@@ -464,7 +465,7 @@ namespace FomMonitoringCore.Service
         {
             try
             {
-                using (UserManagerEntities entUM = new UserManagerEntities())
+                using (var entUM = new UserManagerEntities())
                 {
                     // recupero l'utente
                     var updUser = entUM.Users
@@ -482,11 +483,11 @@ namespace FomMonitoringCore.Service
                     updUser.LanguageID = user.Language.ID;
                     updUser.Enabled = user.Enabled;
 
-                    bool modifiedPsw = false;
+                    var modifiedPsw = false;
                     if (user.Password != null && !string.IsNullOrEmpty(user.Password.Trim()))
                     {
-                        LoginServices ls = new LoginServices();
-                        string newPsw = ls.EncryptPassword(user.Password);
+                        var ls = new LoginServices();
+                        var newPsw = ls.EncryptPassword(user.Password);
                         if (updUser.Password != newPsw)
                         {
                             updUser.Password = newPsw;
@@ -510,7 +511,7 @@ namespace FomMonitoringCore.Service
 
                     }
 
-                    using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                    using (var ent = new FST_FomMonitoringEntities())
                     {
                         // Update user customer
                         var userCustomer = ent.UserCustomerMapping.FirstOrDefault(f => f.UserId == user.ID);
@@ -549,7 +550,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = ex.GetStringLog();
+                var errMessage = ex.GetStringLog();
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
                 throw ex;
             }
@@ -568,13 +569,13 @@ namespace FomMonitoringCore.Service
             {
                 string message = null;
 
-                UserServices userServices = new UserServices();
-                LoginServices ls = new LoginServices();
+                var userServices = new UserServices();
+                var ls = new LoginServices();
                 return userServices.ChangePassword(userId, ls.EncryptPassword(newPassword), ls.EncryptPassword(oldPassword), out message);
             }
             catch (Exception ex)
             {
-                string errMessage = ex.GetStringLog();
+                var errMessage = ex.GetStringLog();
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
                 throw ex;
             }
@@ -589,7 +590,7 @@ namespace FomMonitoringCore.Service
         {
             try
             {
-                using (UserManagerEntities entUM = new UserManagerEntities())
+                using (var entUM = new UserManagerEntities())
                 {
                     // recupero l'utente
                     var updUser = entUM.Users.SingleOrDefault(s => s.ID == userId);
@@ -597,7 +598,7 @@ namespace FomMonitoringCore.Service
                     if (updUser == null)
                         return false; // not found
 
-                    LoginServices ls = new LoginServices();
+                    var ls = new LoginServices();
 
                     // resetto password utente
                     var defaultPassword = ApplicationSettingService.GetWebConfigKey("DefaultPassword");
@@ -609,7 +610,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = ex.GetStringLog();
+                var errMessage = ex.GetStringLog();
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
                 throw ex;
             }
@@ -624,7 +625,7 @@ namespace FomMonitoringCore.Service
         {
             try
             {
-                using (UserManagerEntities entUM = new UserManagerEntities())
+                using (var entUM = new UserManagerEntities())
                 {
                     // recupero l'utente dal customers mapping
                     var user = entUM.Users.Where(s => s.ID == userId).SingleOrDefault();
@@ -645,16 +646,16 @@ namespace FomMonitoringCore.Service
                     entUM.SaveChanges();
                 }
 
-                using (FST_FomMonitoringEntities ent = new FST_FomMonitoringEntities())
+                using (var ent = new FST_FomMonitoringEntities())
                 {
                     // recupero l'utente dal customers mapping
-                   UserCustomerMapping userCustomer = ent.UserCustomerMapping.Where(s => s.UserId == userId).SingleOrDefault();
+                   var userCustomer = ent.UserCustomerMapping.Where(s => s.UserId == userId).SingleOrDefault();
 
                     if (userCustomer == null)
                         return false; // not found
                     ent.UserCustomerMapping.Remove(userCustomer);
 
-                    List<UserMachineMapping> userMachines = ent.UserMachineMapping.Where(s => s.UserId == userId).ToList();
+                    var userMachines = ent.UserMachineMapping.Where(s => s.UserId == userId).ToList();
 
                     if (userMachines.Count() == 0)
                         return false; // not found
@@ -667,7 +668,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = ex.GetStringLog();
+                var errMessage = ex.GetStringLog();
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
                 throw ex;
             }
