@@ -1137,4 +1137,10 @@ Husillos XModule / XMU</value>
   <data name="MaintenanceRegister" xml:space="preserve">
     <value>Registro</value>
   </data>
+  <data name="ModifyUserEmailBody" xml:space="preserve">
+    <value>Se ha generado un nuevo usuario de tipo [TIPO_USER], con las siguientes credenciales: &lt;br/&gt;usuario: [USERNAME] &lt;br/&gt;password: [PASSWORD] provisoria generada&lt;br/&gt;La password deberá cambiarse obligatoriamente la primera vez que se acceda a LOLA.</value>
+  </data>
+  <data name="ModifyUserEmailSubject" xml:space="preserve">
+    <value>LOLA - Credenciales usuario: </value>
+  </data>
 </root>

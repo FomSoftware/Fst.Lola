@@ -5,6 +5,7 @@ using FomMonitoringResources;
 using Mapster;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Mail;
 using UserManager.DAL;
@@ -415,7 +416,7 @@ namespace FomMonitoringCore.Service
             }
         }
 
-        public static bool SendPassword(string email, Guid id)
+        public static bool SendPassword(string email, Guid id, string keySubject, string keyObject)
         {
             var result = true;
             try
@@ -425,7 +426,7 @@ namespace FomMonitoringCore.Service
                 {
                     var user = entUM.Users.Find(id);
                     if (user == null) return false;
-                    var subject = Resource.CreateUserEmailSubject + " " + user.Username;
+                    var subject = LocalizationService.GetResource(keySubject, new CultureInfo(user.Languages.DotNetCulture)) + " " + user.Username;
                     var ls = new LoginServices();
                     var ruolo = user.Roles_Users.FirstOrDefault().Roles.Description;
                     var idRuolo = user.Roles_Users.FirstOrDefault().Roles.IdRole;
@@ -435,9 +436,10 @@ namespace FomMonitoringCore.Service
                     else if (idRuolo == 2)
                         ruolo = Resource.HeadWorkshop;
 
-                    var body = Resource.CreateUserEmailBody.Replace("[TIPO_USER]", ruolo )
-                                                              .Replace("[USERNAME]", user.Username)
-                                                              .Replace("[PASSWORD]", ls.DecryptPassword(user.Password));
+                    var body = LocalizationService.GetResource(keyObject, new CultureInfo(user.Languages.DotNetCulture))
+                        .Replace("[TIPO_USER]", ruolo )
+                        .Replace("[USERNAME]", user.Username)
+                        .Replace("[PASSWORD]", ls.DecryptPassword(user.Password));
 
                     var message = new MailMessage(ApplicationSettingService.GetWebConfigKey("EmailFromAddress"), 
                                                            email, subject, body);
@@ -543,7 +545,7 @@ namespace FomMonitoringCore.Service
                     entUM.SaveChanges();
 
                     if (modifiedPsw && email != null)
-                        SendPassword(email, updUser.ID);
+                        SendPassword(email, updUser.ID, "ModifyUserEmailSubject", "ModifyUserEmailBody");
          
                     return true;
                 }

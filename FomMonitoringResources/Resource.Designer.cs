@@ -1575,6 +1575,24 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E&apos; stata modificata la password per l&apos;utenza di tipo [TIPO_USER] di seguito le nuove credenziali. &lt;br /&gt;Utente: [USERNAME]&lt;br /&gt;Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resettata obbligatoriamente al primo accesso in LOLA.&lt;br /&gt;&lt;a href=&quot;https://lola.fomindustrie.com&quot;&gt;Clicca qui per accedere. &lt;/a&gt;.
+        /// </summary>
+        public static string ModifyUserEmailBody {
+            get {
+                return ResourceManager.GetString("ModifyUserEmailBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LOLA - Credenziali utente:.
+        /// </summary>
+        public static string ModifyUserEmailSubject {
+            get {
+                return ResourceManager.GetString("ModifyUserEmailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MOTOR BLADE.
         /// </summary>
         public static string MotorBlade {

@@ -123,7 +123,7 @@ namespace FomMonitoringBLL.ViewServices
                 // se sono customer invio la mail con la password del nuovo utente
                 if(context.User.Role == enRole.Customer && context.User.Email != null)
                 {
-                    UserManagerService.SendPassword(context.User.Email, id);
+                    UserManagerService.SendPassword(context.User.Email, id, "CreateUserEmailSubject", "CreateUserEmailBody");
 
                 }
               
