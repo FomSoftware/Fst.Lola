@@ -421,7 +421,6 @@ namespace FomMonitoringCore.Service
             var result = true;
             try
             {
-                email = "mbelletti@fomsoftware.com";
                 using (var entUM = new UserManagerEntities())
                 {
                     var user = entUM.Users.Find(id);
