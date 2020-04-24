@@ -88,27 +88,27 @@
     $(document).ready(function ()
     {
         var resource = {
-            PlantName: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantName))',
-            Address: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantAddress))',
-            PlantCustomer: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantCustomers))',
-            PlantMachines: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantMachines))',
-            Modify: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Modify))',
-            Delete: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Delete))',
-            Error: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Error))',
-            Search: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Search))',
-            AddPlant: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.AddPlant))',
-            PlantCreated: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantCreated))',
-            NothingFound: '@Html.Raw(HttpUtility.JavaScriptStringEncode("NothingFound"))',
-            PlantDeleted: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantDeleted))',
-            PlantDeletedConfirm: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantDeletedConfirm))',
-            ComeBack: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.ComeBack))',
-            Continue: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.Continue))',
-            PlantImpossibileDeleted: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantImpossibileDeleted))',
-            PlantModify: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantModify))',
-            PlantModified: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantModified))',
-            ErrorOccurred: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.ErrorOccurred))',
-            PlantDelete: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.PlantDelete))',
-            MachineWithPlantConfirm: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Resource.MachineAssociatedToPlant))'
+            PlantName: '@LocalizationService.GetResourceForJs("PlantName")',
+            Address: '@LocalizationService.GetResourceForJs("PlantAddress")',
+            PlantCustomer: '@LocalizationService.GetResourceForJs("PlantCustomers")',
+            PlantMachines: '@LocalizationService.GetResourceForJs("PlantMachines")',
+            Modify: '@LocalizationService.GetResourceForJs("Modify")',
+            Delete: '@LocalizationService.GetResourceForJs("Delete")',
+            Error: '@LocalizationService.GetResourceForJs("Error")',
+            Search: '@LocalizationService.GetResourceForJs("Search")',
+            AddPlant: '@LocalizationService.GetResourceForJs("AddPlant")',
+            PlantCreated: '@LocalizationService.GetResourceForJs("PlantCreated")',
+            NothingFound: '@LocalizationService.GetResourceForJs("NothingFound")',
+            PlantDeleted: '@LocalizationService.GetResourceForJs("PlantDeleted")',
+            PlantDeletedConfirm: '@LocalizationService.GetResourceForJs("PlantDeletedConfirm")',
+            ComeBack: '@LocalizationService.GetResourceForJs("ComeBack")',
+            Continue: '@LocalizationService.GetResourceForJs("Continue")',
+            PlantImpossibileDeleted: '@LocalizationService.GetResourceForJs("PlantImpossibileDeleted")',
+            PlantModify: '@LocalizationService.GetResourceForJs("PlantModify")',
+            PlantModified: '@LocalizationService.GetResourceForJs("PlantModified")',
+            ErrorOccurred: '@LocalizationService.GetResourceForJs("ErrorOccurred")',
+            PlantDelete: '@LocalizationService.GetResourceForJs("PlantDelete")',
+            MachineWithPlantConfirm: '@LocalizationService.GetResourceForJs("MachineAssociatedToPlant")'
         };
 
                 var data = @Html.Raw(Json.Encode(Model.User));
