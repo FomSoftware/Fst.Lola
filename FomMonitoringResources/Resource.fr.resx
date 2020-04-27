@@ -1137,7 +1137,11 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Registre</value>
   </data>
   <data name="ModifyUserEmailBody" xml:space="preserve">
-    <value>Un nouvel utilisateur de type [TIPO_USER] a été créé, ci-dessous les identifiants de connexion:&lt;br/&gt;nom d’utilisateur : [USERNAME]&lt;br/&gt; mot de passe : [PASSWORD] provisoire généré&lt;br/&gt;Le mot de passe sera réinitialisé obligatoirement lors du premier accès dans LOLA</value>
+    <value>Le mot de passe pour le type [TIPO_USER] a été modifié, suite aux nouvelles informations d'identification.&lt;br /&gt;
+Utilisateur: [USERNAME]&lt;br /&gt;
+Mot de passe provisoire généré: [PASSWORD]&lt;br /&gt;
+Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br /&gt;
+&lt;a href="https://lola.fomindustrie.com"&gt;Cliquez ici pour vous connecter.&lt;/a&gt;</value>
   </data>
   <data name="ModifyUserEmailSubject" xml:space="preserve">
     <value>LOLA – Identifiants de connexion utilisateur: </value>

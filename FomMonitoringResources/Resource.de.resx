@@ -1136,7 +1136,11 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>Register</value>
   </data>
   <data name="ModifyUserEmailBody" xml:space="preserve">
-    <value>Es wurde ein neues Benutzerkonto vom Typ [TIPO_USER] erstellt; nachstehend die Anmeldedaten:&lt;br/&gt;Benutzer: [USERNAME]&lt;br/&gt;Passwort: [PASSWORD] erzeugtes provisorisches.&lt;br/&gt;Das Passwort ist obligatorisch zu ändern, wenn das erste Login bei LOLA vorgenommen wird.</value>
+    <value>Das Kennwort fÃ¼r den Typ [TIPO_USER] wurde entsprechend den neuen Anmeldeinformationen geÃ¤ndert.&lt;br /&gt;
+Benutzer: [USERNAME]&lt;br /&gt;
+Vorläufiges Passwort generiert: [PASSWORD]&lt;br /&gt;
+Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt;
+&lt;a href="https://lola.fomindustrie.com"&gt;Klicken Sie hier, um sich anzumelden&lt;/a&gt;</value>
   </data>
   <data name="ModifyUserEmailSubject" xml:space="preserve">
     <value>LOLA – Anmeldedaten Benutzer: </value>
