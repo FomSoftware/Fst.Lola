@@ -20,6 +20,7 @@ namespace FomMonitoringCore.DAL
             this.MessageTranslation = new HashSet<MessageTranslation>();
             this.MessageMachine = new HashSet<MessageMachine>();
             this.HistoryMessages = new HashSet<HistoryMessage>();
+            this.ParameterMachineThreshold = new HashSet<ParameterMachineThreshold>();
         }
     
         public int Id { get; set; }
@@ -41,5 +42,7 @@ namespace FomMonitoringCore.DAL
         public virtual ICollection<MessageMachine> MessageMachine { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoryMessage> HistoryMessages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ParameterMachineThreshold> ParameterMachineThreshold { get; set; }
     }
 }

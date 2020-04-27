@@ -295,6 +295,16 @@
           <Property Name="Cluster" Type="nvarchar" MaxLength="50" />
           <Property Name="Historicized" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="ParameterMachineThreshold">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParameterMachineId" Type="int" Nullable="false" />
+          <Property Name="MessageIndexId" Type="int" Nullable="false" />
+          <Property Name="ThresholdMin" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ThresholdMax" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
         <EntityType Name="ParameterMachineValue">
           <Key>
             <PropertyRef Name="Id" />
@@ -758,6 +768,30 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ParameterMachineThreshold_MessagesIndex">
+          <End Role="MessagesIndex" Type="Self.MessagesIndex" Multiplicity="1" />
+          <End Role="ParameterMachineThreshold" Type="Self.ParameterMachineThreshold" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessagesIndex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParameterMachineThreshold">
+              <PropertyRef Name="MessageIndexId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParameterMachineThreshold_ParameterMachine">
+          <End Role="ParameterMachine" Type="Self.ParameterMachine" Multiplicity="1" />
+          <End Role="ParameterMachineThreshold" Type="Self.ParameterMachineThreshold" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParameterMachine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParameterMachineThreshold">
+              <PropertyRef Name="ParameterMachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ParameterMachineValue_MachineId">
           <End Role="Machine" Type="Self.Machine" Multiplicity="1" />
           <End Role="ParameterMachineValue" Type="Self.ParameterMachineValue" Multiplicity="*" />
@@ -920,6 +954,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySet Name="MessageType" EntityType="Self.MessageType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Panel" EntityType="Self.Panel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ParameterMachine" EntityType="Self.ParameterMachine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParameterMachineThreshold" EntityType="Self.ParameterMachineThreshold" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ParameterMachineValue" EntityType="Self.ParameterMachineValue" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Piece" EntityType="Self.Piece" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Plant" EntityType="Self.Plant" Schema="dbo" store:Type="Tables" />
@@ -1067,6 +1102,14 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <AssociationSet Name="FK_ParameterMachine_Panel" Association="Self.FK_ParameterMachine_Panel">
             <End Role="Panel" EntitySet="Panel" />
             <End Role="ParameterMachine" EntitySet="ParameterMachine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParameterMachineThreshold_MessagesIndex" Association="Self.FK_ParameterMachineThreshold_MessagesIndex">
+            <End Role="MessagesIndex" EntitySet="MessagesIndex" />
+            <End Role="ParameterMachineThreshold" EntitySet="ParameterMachineThreshold" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParameterMachineThreshold_ParameterMachine" Association="Self.FK_ParameterMachineThreshold_ParameterMachine">
+            <End Role="ParameterMachine" EntitySet="ParameterMachine" />
+            <End Role="ParameterMachineThreshold" EntitySet="ParameterMachineThreshold" />
           </AssociationSet>
           <AssociationSet Name="FK_ParameterMachineValue_MachineId" Association="Self.FK_ParameterMachineValue_MachineId">
             <End Role="Machine" EntitySet="Machine" />
@@ -1319,6 +1362,15 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Parameter Name="machineId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_HistoricizingToolMachine" />
+          <EntitySet Name="ParameterMachineThreshold" EntityType="FST_FomMonitoringModel.ParameterMachineThreshold" />
+          <AssociationSet Name="FK_ParameterMachineThreshold_ParameterMachine" Association="FST_FomMonitoringModel.FK_ParameterMachineThreshold_ParameterMachine">
+            <End Role="ParameterMachine" EntitySet="ParameterMachine" />
+            <End Role="ParameterMachineThreshold" EntitySet="ParameterMachineThreshold" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParameterMachineThreshold_MessagesIndex" Association="FST_FomMonitoringModel.FK_ParameterMachineThreshold_MessagesIndex">
+            <End Role="MessagesIndex" EntitySet="MessagesIndex" />
+            <End Role="ParameterMachineThreshold" EntitySet="ParameterMachineThreshold" />
+          </AssociationSet>
 		  </EntityContainer>
         <EntityType Name="MachineModel">
           <Key>
@@ -2051,6 +2103,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="IsPeriodicM" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="MessageMachine" Relationship="FST_FomMonitoringModel.FK_MessageMachine_MessagesIndex" FromRole="MessagesIndex" ToRole="MessageMachine" />
           <NavigationProperty Name="HistoryMessages" Relationship="FST_FomMonitoringModel.FK_HistoryMessage_MessagesIndex" FromRole="MessagesIndex" ToRole="HistoryMessage" />
+          <NavigationProperty Name="ParameterMachineThreshold" Relationship="FST_FomMonitoringModel.FK_ParameterMachineThreshold_MessagesIndex" FromRole="MessagesIndex" ToRole="ParameterMachineThreshold" />
         </EntityType>
         <EntityType Name="MessageTranslation">
           <Key>
@@ -2173,6 +2226,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="Historicized" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PanelId" Type="Int32" />
           <NavigationProperty Name="Panel" Relationship="FST_FomMonitoringModel.FK_ParameterMachine_Panel" FromRole="ParameterMachine" ToRole="Panel" />
+          <NavigationProperty Name="ParameterMachineThreshold" Relationship="FST_FomMonitoringModel.FK_ParameterMachineThreshold_ParameterMachine" FromRole="ParameterMachine" ToRole="ParameterMachineThreshold" />
         </EntityType>
         <Association Name="FK_ParameterMachine_MachineModel">
           <End Type="FST_FomMonitoringModel.MachineModel" Role="MachineModel" Multiplicity="1" />
@@ -2286,6 +2340,42 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             </Principal>
             <Dependent Role="HistoryMessage">
               <PropertyRef Name="MessagesIndexId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ParameterMachineThreshold">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParameterMachineId" Type="Int32" Nullable="false" />
+          <Property Name="MessageIndexId" Type="Int32" Nullable="false" />
+          <Property Name="ThresholdMin" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ThresholdMax" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="ParameterMachine" Relationship="FST_FomMonitoringModel.FK_ParameterMachineThreshold_ParameterMachine" FromRole="ParameterMachineThreshold" ToRole="ParameterMachine" />
+          <NavigationProperty Name="MessagesIndex" Relationship="FST_FomMonitoringModel.FK_ParameterMachineThreshold_MessagesIndex" FromRole="ParameterMachineThreshold" ToRole="MessagesIndex" />
+        </EntityType>
+        <Association Name="FK_ParameterMachineThreshold_ParameterMachine">
+          <End Type="FST_FomMonitoringModel.ParameterMachine" Role="ParameterMachine" Multiplicity="1" />
+          <End Type="FST_FomMonitoringModel.ParameterMachineThreshold" Role="ParameterMachineThreshold" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParameterMachine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParameterMachineThreshold">
+              <PropertyRef Name="ParameterMachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParameterMachineThreshold_MessagesIndex">
+          <End Type="FST_FomMonitoringModel.MessagesIndex" Role="MessagesIndex" Multiplicity="1" />
+          <End Type="FST_FomMonitoringModel.ParameterMachineThreshold" Role="ParameterMachineThreshold" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessagesIndex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParameterMachineThreshold">
+              <PropertyRef Name="MessageIndexId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2840,6 +2930,17 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <FunctionImportMapping FunctionImportName="usp_HistoricizingMessages" FunctionName="FST_FomMonitoringModel.Store.usp_HistoricizingMessages" />
           <FunctionImportMapping FunctionImportName="usp_HistoricizingPieces" FunctionName="FST_FomMonitoringModel.Store.usp_HistoricizingPieces" />
           <FunctionImportMapping FunctionImportName="usp_HistoricizingStates" FunctionName="FST_FomMonitoringModel.Store.usp_HistoricizingStates" />
+          <EntitySetMapping Name="ParameterMachineThreshold">
+            <EntityTypeMapping TypeName="FST_FomMonitoringModel.ParameterMachineThreshold">
+              <MappingFragment StoreEntitySet="ParameterMachineThreshold">
+                <ScalarProperty Name="ThresholdMax" ColumnName="ThresholdMax" />
+                <ScalarProperty Name="ThresholdMin" ColumnName="ThresholdMin" />
+                <ScalarProperty Name="MessageIndexId" ColumnName="MessageIndexId" />
+                <ScalarProperty Name="ParameterMachineId" ColumnName="ParameterMachineId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

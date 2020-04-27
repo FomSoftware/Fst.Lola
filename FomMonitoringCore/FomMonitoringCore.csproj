@@ -297,6 +297,9 @@
     <Compile Include="DAL\ParameterMachine.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\ParameterMachineThreshold.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\ParameterMachineValue.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>

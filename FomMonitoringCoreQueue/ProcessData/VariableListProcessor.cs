@@ -106,10 +106,13 @@ namespace FomMonitoringCoreQueue.ProcessData
                                 }
                             }
 
+                            foreach (var threshold in pm.ParameterMachineThreshold)
+                            {
+                                if (!string.IsNullOrEmpty(pm.ThresholdMax) && pm.ThresholdMax != "0" ||
+                                    !string.IsNullOrEmpty(pm.ThresholdMin) && pm.ThresholdMin != "0")
+                                    CheckVariableTresholds(mac, threshold, value, previousValue, var.UtcDateTime);
+                            }
 
-                            if (!string.IsNullOrEmpty(pm.ThresholdMax) && pm.ThresholdMax != "0" ||
-                                !string.IsNullOrEmpty(pm.ThresholdMin) && pm.ThresholdMin != "0")
-                                CheckVariableTresholds(mac, pm, value, previousValue, var.UtcDateTime);
                         });
 
 
@@ -140,7 +143,7 @@ namespace FomMonitoringCoreQueue.ProcessData
         }
 
         public void CheckVariableTresholds(Machine machine,
-            ParameterMachine par, FomMonitoringCore.DataProcessing.Dto.Value value, decimal? oldValue, DateTime utcDatetime)
+            ParameterMachineThreshold par, FomMonitoringCore.DataProcessing.Dto.Value value, decimal? oldValue, DateTime utcDatetime)
         {
             if (machine == null || par == null || value == null)
                 return;
@@ -148,23 +151,23 @@ namespace FomMonitoringCoreQueue.ProcessData
                 return;
 
             //controllo se il valore oltrepassa la soglia e non esiste già un msessaggio lo inserisco                                      
-            var min = Convert.ToDecimal(par.ThresholdMin);
-            var max = Convert.ToDecimal(par.ThresholdMax);
+            var min = par.ThresholdMin;
+            var max = par.ThresholdMax;
 
             if (value.VariableValue < min || value.VariableValue > max)
             {
                 var mes = _context.Set<MessageMachine>().AsNoTracking().FirstOrDefault(mm =>
-                    mm.MachineId == machine.Id && mm.MessagesIndex != null && mm.MessagesIndex.IsPeriodicM &&
-                    mm.MessagesIndex.MessageCode == par.ThresholdLabel);
+                    mm.MachineId == machine.Id && mm.MessagesIndex != null &&
+                    mm.MessagesIndex.Id == par.MessagesIndex.Id);
                 if (mes == null)
-                    _messageService.InsertMessageMachine(machine, par.ThresholdLabel, utcDatetime);
+                    _messageService.InsertMessageMachine(machine, par.MessagesIndex.MessageCode, utcDatetime);
                 else if (oldValue != null)
                     if (mes.Day < utcDatetime)
                     {
                         //verifico se il precedente valore era sotto la soglia inserisco un nuovo messaggio
                         if (oldValue >= min && oldValue <= max)
                         {
-                            _messageService.InsertMessageMachine(machine, par.ThresholdLabel, utcDatetime);
+                            _messageService.InsertMessageMachine(machine, par.MessagesIndex.MessageCode, utcDatetime);
                         }
                         //in questo caso ero sopra la soglia e continuo ad essere sopra la soglia
                         // controllo se il valore del parametro ha superato il prossimo multiplo del valore max
@@ -177,7 +180,7 @@ namespace FomMonitoringCoreQueue.ProcessData
                                 var multiploOld = Math.Floor(valOld / max);
                                 var multiploNew = Math.Floor((valNew ?? 0) / max);
                                 if (multiploNew > multiploOld)
-                                    _messageService.InsertMessageMachine(machine, par.ThresholdLabel, utcDatetime);
+                                    _messageService.InsertMessageMachine(machine, par.MessagesIndex.MessageCode, utcDatetime);
                             }
                         }
                     }

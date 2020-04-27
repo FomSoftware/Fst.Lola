@@ -46,7 +46,7 @@
         <EntityTypeShape EntityType="FST_FomMonitoringModel.FomMonitoring" Width="1.5" PointX="2.75" PointY="6.875" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.FomMonitoringApi" Width="1.5" PointX="4.75" PointY="6.875" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.FomMonitoringDatabaseMapping" Width="1.5" PointX="6.75" PointY="3.875" />
-        <EntityTypeShape EntityType="FST_FomMonitoringModel.FomMonitoringUpdateUsers" Width="1.5" PointX="6.75" PointY="7.875" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.FomMonitoringUpdateUsers" Width="3.375" PointX="6.75" PointY="7.875" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.MachineGroup" Width="1.5" PointX="5.5" PointY="16.75" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.MessageCategory" Width="1.5" PointX="7.5" PointY="24.375" />
         <EntityTypeShape EntityType="FST_FomMonitoringModel.MessageLanguages" Width="1.5" PointX="8.25" PointY="12.75" />
@@ -70,6 +70,9 @@
         <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageMachineNotification_MessageMachine" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_MessageMachine_MessagesIndex" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_HistoryMessage_MessagesIndex" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.ParameterMachineThreshold" Width="2.875" PointX="10.625" PointY="34.125" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_ParameterMachineThreshold_ParameterMachine" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_ParameterMachineThreshold_MessagesIndex" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
