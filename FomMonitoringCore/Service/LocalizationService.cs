@@ -1,5 +1,8 @@
 ﻿using System.Globalization;
+using System.Web;
+using System.Web.Mvc;
 using FomMonitoringResources;
+using HtmlHelper = System.Web.WebPages.Html.HtmlHelper;
 
 namespace FomMonitoringCore.Service
 {
@@ -11,6 +14,13 @@ namespace FomMonitoringCore.Service
         {
             var str = new System.Resources.ResourceManager(typeof(Resource)).GetString(key);
             return string.IsNullOrWhiteSpace(str) ? $"[{key}]" : str;
+        }
+
+        public static HtmlString GetResourceForJs(string key)
+        {
+            string str1 = GetResource(key);
+            HtmlString str = new HtmlString(HttpUtility.JavaScriptStringEncode(str1));
+            return str;
         }
 
         public static string GetResource(string key, CultureInfo cultureInfo)
