@@ -110,7 +110,9 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/motor/motorbladelmx.js",
                         "~/GlobApp/scripts/machine/otherdata/otherdataLMX.js",
                         "~/GlobApp/scripts/machine/jobs/other-machines.js",
-                        "~/GlobApp/scripts/machine/xtools/lmx.js"
+                        "~/GlobApp/scripts/machine/xtools/lmx.js",
+                        "~/GlobApp/scripts/machine/image-manager-fmc.js",
+                        "~/GlobApp/scripts/machine/image-manager-lmx.js"
 
                       ));
 

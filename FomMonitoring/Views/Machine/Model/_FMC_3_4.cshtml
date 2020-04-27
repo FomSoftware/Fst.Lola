@@ -118,7 +118,8 @@
     </div>
 </div>
 <script>
-    $(document).ready(function() {
-        ImageManager.init('FMC');      
+    $(document).ready(function () {
+        ImageManagerFmc = new ImageManFmc();
+        ImageManagerFmc.init(ImageManagerFmc.checkModello);
     });
 </script>

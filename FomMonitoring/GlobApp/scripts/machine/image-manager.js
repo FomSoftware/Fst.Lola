@@ -1,26 +1,27 @@
-﻿var ImageManager = function () {
+﻿function ImageManager () {
 
     var vmImageMachine;
     var vmButtonsMenu;
     var vmPanelsMachine;
+    var checkModello;
 
-    var mixinDetictingMobile = {
+    this.mixinDetictingMobile = {
         methods: {
-            isMobile: function () {
+            isMobile: function() {
                 var check = false;
-                (function (a) {
+                (function(a) {
 
                     /*if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(a) ||
                         (/iPad/i.test(a) && $(window).width() < 1200))*/
                     if ($(window).width() <= 992)
                         check = true;
-                    
+
                 })(navigator.userAgent || navigator.vendor || window.opera);
                 return check;
             },
-            isTablet: function () {
+            isTablet: function() {
                 var check = false;
-                (function (a) {
+                (function(a) {
 
                     /*if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(a) ||
                         (/iPad/i.test(a) && $(window).width() < 1200))*/
@@ -30,9 +31,9 @@
                 })(navigator.userAgent || navigator.vendor || window.opera);
                 return check;
             },
-            isLargeTablet: function () {
+            isLargeTablet: function() {
                 var check = false;
-                (function (a) {
+                (function(a) {
 
                     /*if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(a) ||
                         (/iPad/i.test(a) && $(window).width() < 1200))*/
@@ -43,9 +44,9 @@
                 return check;
             }
         }
-    }
+    };
 
-    var checkVisibility = function() {
+    checkVisibility = function (checkModello) {
         if (vmImageMachine.machinePanelSelected == 'maintenance' ||
             (!(vmImageMachine.isTablet() || vmImageMachine.isMobile()) &&
                 (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
@@ -78,62 +79,7 @@
             Jobs.hide();
         }
 
-        if (vmImageMachine.modello == 'FMC') {
-            if (vmImageMachine.machineGroupSelected == 'FMC3-4_axes') {
-                OtherData.show();
-            } else  {
-                OtherData.hide();
-            }
-
-            if (vmImageMachine.machineGroupSelected == 'FMC3-4_spindles') {
-                ElectroSpindle.show();
-            } else {
-                ElectroSpindle.hide();
-            }
-
-            if (vmImageMachine.machineGroupSelected == 'FMC3-4_tools') {
-                ToolsFmcLmx.show();
-            } else {
-                ToolsFmcLmx.hide();
-            }
-        }
-        else if (vmImageMachine.modello == 'LMX') {
-            if (vmImageMachine.machineGroupSelected == 'LMX650_Motor_Blade') {
-                MotorBladeLMX.show();
-            } else {
-                MotorBladeLMX.hide();
-            }
-            if (vmImageMachine.machineGroupSelected == 'LMX650_XMU') {
-                ElectroSpindle.show();
-                SensorSpindles.show();
-                RotaryAxes.show();
-                XToolsLmx.show();
-            } else {
-                ElectroSpindle.hide();
-                SensorSpindles.hide();
-                RotaryAxes.hide();
-                XToolsLmx.hide();
-            }
-            if (vmImageMachine.machineGroupSelected == 'LMX650_StepIn_Out') {
-                AxesLmx650.show();
-                OtherDataLMX.show();
-              
-            } else {
-                AxesLmx650.hide();
-                OtherDataLMX.hide();
-            }
-            if (vmImageMachine.machineGroupSelected == 'LMX650_MM') {
-                MultiSpindles.show();
-                TiltingAxes.show();
-                ToolsFmcLmx.show();
-            } else {
-                MultiSpindles.hide();
-                TiltingAxes.hide();
-                ToolsFmcLmx.hide();
-            }
-
-        }
-
+        checkModello(vmImageMachine.machineGroupSelected);
 
 
         if ((!(vmImageMachine.isLargeTablet() || vmImageMachine.isTablet()) &&
@@ -168,14 +114,15 @@
 
 
     }
-    var selectedGroup = function () {
+    this.selectedGroup = function () {
         if (vmImageMachine)
             return vmImageMachine.machineGroupSelected;
         else
             return null;
     }
+   
 
-    var selectMachineGroup = function (element) {
+    selectMachineGroup = function (element) {
         var group = $(element).data('group');
         $("[data-panel]").removeClass("selected");
         vmImageMachine.machineGroupSelected = group;
@@ -196,7 +143,7 @@
         MachineManager.callAjaxMachineMessageViewModelData(filters);
     };
 
-    var selectPanel = function (element) {
+    this.selectPanel = function (element) {
         var panel = $(element).data('panel');
 
         $("[data-panel]").removeClass("selected");
@@ -221,7 +168,7 @@
 
 
 
-    var initMachineImage = function () {
+    initMachineImage = function (checkModello) {
         if (vmImageMachine.isMobile() || vmImageMachine.isTablet()) {
             $("#panels-area").hide();
         }
@@ -238,7 +185,7 @@
             e.preventDefault();
             selectMachineGroup(this);
 
-            checkVisibility();
+            checkVisibility(checkModello);
         });
 
         $("g[data-group]").mouseover(function (e) {
@@ -257,14 +204,14 @@
             e.preventDefault();
             selectMachineGroup(this);
 
-            checkVisibility();
+            checkVisibility(checkModello);
         });
 
         $("button[data-panel]").click(function (e) {
             e.preventDefault();
             selectPanel(this);
 
-            checkVisibility();
+            checkVisibility(checkModello);
         });
 
         $("#button-back-machine").click(function (e) {
@@ -290,14 +237,14 @@
                 } else {
                     $("#panels-area").show();
                 }
-                checkVisibility();
+                checkVisibility(checkModello);
             }
         });
 
-        checkVisibility();
+        this.checkVisibility(checkModello);
     };
 
-    var checkVisibilityImageMachine = function () {
+    checkVisibilityImageMachine = function (checkModello) {
        
             if (vmImageMachine.isLargeTablet() || vmImageMachine.isTablet() || vmImageMachine.isMobile()) {
                 $("#image-machine-sm").show();
@@ -306,20 +253,18 @@
                 $("#image-machine-sm").hide();
                 $("#image-machine-lg").show();
             }
-            initMachineImage();
+        initMachineImage(checkModello);
       
     }
 
-    var init = function (model) {
-
+    this.init = function (checkModello) {
         vmImageMachine = new Vue({
             el: '#panels-box',
             data: {
                 machineGroupSelected: null,
-                machinePanelSelected: null,
-                modello: model
+                machinePanelSelected: null
             },
-            mixins: [mixinDetictingMobile],
+            mixins: [this.mixinDetictingMobile],
             watch: {
 
                 machineGroupSelected: function (val, oldVal) {
@@ -341,20 +286,25 @@
 
         vmButtonsMenu = new Vue({
             el: "#buttons-bar",
-            mixins: [mixinDetictingMobile]
+            mixins: [this.mixinDetictingMobile]
         });
 
-        checkVisibilityImageMachine();
-        $(window).resize(function() {
-            checkVisibilityImageMachine();
+        checkVisibilityImageMachine(checkModello);
+        $(window).resize(function () {
+            checkVisibilityImageMachine(checkModello);
         });
 
-        initMachineImage();
+        initMachineImage(checkModello);
+        return this;
     };
 
     return {
         init: init,
-        selectedGroup: selectedGroup
+        selectedGroup: this.selectedGroup,
+        checkVisibility: this.checkVisibility
     };
 
-}();
+};
+
+
+

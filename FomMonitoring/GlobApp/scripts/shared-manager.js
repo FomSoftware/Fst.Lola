@@ -174,12 +174,19 @@
         }, function (start, end, label)
         {
             // callback change period
+            var selectedGroup1 = null;
+
+            if (typeof ImageManagerFmc !== 'undefined' && ImageManagerFmc !== null )
+                selectedGroup1 = ImageManagerFmc.selectedGroup();
+            else if (typeof ImageManagerLmx !== 'undefined' && ImageManagerLmx !== null)
+                selectedGroup1 = ImageManagerLmx.selectedGroup();
+
             var filters = {
                 period: {
                     start: start.toDate(),
                     end: end.toDate()
                 },
-                machineGroup: ImageManager.selectedGroup()
+                machineGroup: selectedGroup1
         };
             
 
