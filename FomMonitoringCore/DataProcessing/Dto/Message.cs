@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 namespace FomMonitoringCore.DataProcessing.Dto
 {
@@ -8,7 +10,7 @@ namespace FomMonitoringCore.DataProcessing.Dto
         public DateTime? Time { get; set; }
         public long? TimeSpanDuration { get; set; }
         public string Code { get; set; }
-        public object Parameters { get; set; }
+        public Dictionary<string, string> Parameters { get; set; }
         public string Operator { get; set; }
         public int? State { get; set; }
         public string Type { get; set; }

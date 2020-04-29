@@ -55,6 +55,19 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                     var ii = JsonConvert.DeserializeObject<Message>(message);
 
                     data = _messageGenericRepository.Find(ii.ObjectId);
+                    if (data == null)
+                    {
+                        Log?.Invoke(this, new LoggerEventsQueue
+                        {
+                            Message = $"Finita elaborazione Messages {ii.ObjectId} con errori - {DateTime.UtcNow:O} tempo trascorso {elapsedTime}",
+                            Exception = new Exception($"Messaggio {ii.ObjectId} non trovato... eliminato dalla coda..."),
+                            TypeLevel = LogService.TypeLevel.Error,
+                            Type = TypeEvent.Messages
+                        });
+                        _queueConnection.ChannelMessages.BasicAck(ea.DeliveryTag, false);
+                        return;
+                    }
+
                     data.DateStartElaboration = DateTime.UtcNow;
 
                     if (_processor.ProcessData(ii))
@@ -74,7 +87,7 @@ namespace FomMonitoringCoreQueue.QueueConsumer
 
                     Log?.Invoke(this, new LoggerEventsQueue
                     {
-                        Message = $"Finita elaborazione Messages {data.Id.ToString()} - { DateTime.UtcNow:O} tempo trascorso { elapsedTime }",
+                        Message = $"Finita elaborazione Messages {ii.ObjectId} - { DateTime.UtcNow:O} tempo trascorso { elapsedTime }",
                         Exception = null,
                         TypeLevel = LogService.TypeLevel.Info,
                         Type = TypeEvent.Messages
