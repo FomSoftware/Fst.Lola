@@ -4,6 +4,7 @@ using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using FomMonitoringResources;
 using Mapster;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 using UserManager.DAL;
@@ -255,7 +256,7 @@ namespace FomMonitoringCore.Framework.Config
                 .Ignore(dest => dest.Id)
                 .IgnoreAllVirtual()
                 .Map(dest => dest.Day, src => src.Time)
-                .Map(dest => dest.Params, src => src.Parameters.ToString())
+                .Map(dest => dest.Params, src => JsonConvert.SerializeObject(src.Parameters))
                 .Map(dest => dest.StartTime, src => src.Time)
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
 
