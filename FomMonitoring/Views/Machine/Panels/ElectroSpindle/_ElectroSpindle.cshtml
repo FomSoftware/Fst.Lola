@@ -11,8 +11,10 @@
                     <i class="fa icofom-elettromandrino fa-stack-1x fa-inverse" style="font-size:1.5em"></i>
                 </span>
             </div>
-            <div class="title-kpi" style="max-width: 230px;">
-                <span class="testo-abbreviato">@LocalizationService.GetResource("Electrospindle")</span>
+            <div class="title-kpi" >
+                <span v-if="isLmx >= 0" class="testo-abbreviato">XMU @LocalizationService.GetResource("Electrospindle")</span>
+                <span v-else class="testo-abbreviato">@LocalizationService.GetResource("Electrospindle")</span>
+
                 <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
             </div>
         </div>

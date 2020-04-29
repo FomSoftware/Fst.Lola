@@ -1053,7 +1053,7 @@ a.click-more {
 }
 
 .label-tools-value {
-    font-size: 21px;
+    font-size: 19px;
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
@@ -1061,7 +1061,7 @@ a.click-more {
 }
 
     .label-tools-value.fmc {
-        font-size: 21px;
+        font-size: 19px;
         padding-left: 27px;
     }
 
@@ -1207,7 +1207,7 @@ hr.axes {
 
 
 .label-other-data-value {
-    font-size: 21px;
+    font-size: 19px;
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
@@ -1217,7 +1217,6 @@ hr.axes {
 }
 
 #CardSensorSpindles .label-other-data-value {
-    font-size: 19px;
     padding-top: 4px;
 }
 
@@ -1244,18 +1243,19 @@ hr.axes {
 }
 
 .td-other-data label {
-    padding-top: 5px;
+    padding-top: 3px;
 }
 
 
 .label-electrospindle-data-value, .label-motor-blade-data-value {
-    font-size: 21px;
+    font-size: 19px;
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
     margin-bottom: 0;
     width: 100%;
     text-align: center;
+    padding-top: 3px;
 }
 
 
@@ -1896,7 +1896,7 @@ td.td-axes {
 }
 
 @media (min-width: 1396px) {
-    #CardMultiSpindles div.slimScrollBar, #CardElectroSpindle div.slimScrollBar,
+    #CardMotorKeope div.slimScrollBar, #CardMultiSpindles div.slimScrollBar, #CardElectroSpindle div.slimScrollBar,
     #CardOtherDataLMXMachine div.slimScrollBar, #CardTiltingAxes div.slimScrollBar,
     #CardRotaryAxes div.slimScrollBar, #CardOtherDataMachine div.slimScrollBar,
     #CardElectroSpindle div.slimScrollBar, #CardSpindles div.slimScrollBar,

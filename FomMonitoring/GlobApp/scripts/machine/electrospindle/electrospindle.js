@@ -2,7 +2,7 @@
     var vmElectroSpindle;
 
     var init = function (data) {
-        initVueModel(data.vm_electro_spindle);
+        initVueModel(data.vm_electro_spindle, data.vm_machine_info);
     }
 
 
@@ -14,11 +14,12 @@
         vmElectroSpindle.showed = false;
     }
 
-    var initVueModel = function (data) {
+    var initVueModel = function (data, info) {
         vmElectroSpindle = new Vue({
             el: '#CardElectroSpindle',
             data: {
                 values: data,
+                isLmx: info.model.toUpperCase().indexOf('LMX'),
                 showed: true
             },
             computed: {
