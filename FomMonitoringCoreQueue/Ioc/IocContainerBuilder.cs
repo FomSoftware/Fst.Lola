@@ -27,7 +27,7 @@ namespace FomMonitoringCoreQueue.Ioc
         public static void BuildCore(ContainerBuilder builder, bool instancePerRequest = true, bool instancePerLifetimeScope = false)
         {
 
-            FomMonitoringCore.Ioc.IocContainerBuilder.BuildCore(builder, false, true);
+            FomMonitoringCore.Ioc.IocContainerBuilder.BuildCore(builder, instancePerRequest, instancePerLifetimeScope);
             builder.RegisterType<QueueConnection>().As<IQueueConnection>().SingleInstance();
 
 

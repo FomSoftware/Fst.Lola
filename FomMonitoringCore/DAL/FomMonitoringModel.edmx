@@ -294,6 +294,7 @@
           <Property Name="PanelId" Type="int" />
           <Property Name="Cluster" Type="nvarchar" MaxLength="50" />
           <Property Name="Historicized" Type="nvarchar" MaxLength="50" />
+          <Property Name="VarComponent" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ParameterMachineThreshold">
           <Key>
@@ -2227,6 +2228,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="PanelId" Type="Int32" />
           <NavigationProperty Name="Panel" Relationship="FST_FomMonitoringModel.FK_ParameterMachine_Panel" FromRole="ParameterMachine" ToRole="Panel" />
           <NavigationProperty Name="ParameterMachineThreshold" Relationship="FST_FomMonitoringModel.FK_ParameterMachineThreshold_ParameterMachine" FromRole="ParameterMachine" ToRole="ParameterMachineThreshold" />
+          <Property Name="VarComponent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_ParameterMachine_MachineModel">
           <End Type="FST_FomMonitoringModel.MachineModel" Role="MachineModel" Multiplicity="1" />
@@ -2873,6 +2875,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="ParameterMachine">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.ParameterMachine">
               <MappingFragment StoreEntitySet="ParameterMachine">
+                <ScalarProperty Name="VarComponent" ColumnName="VarComponent" />
                 <ScalarProperty Name="PanelId" ColumnName="PanelId" />
                 <ScalarProperty Name="Historicized" ColumnName="Historicized" />
                 <ScalarProperty Name="MachineModelId" ColumnName="MachineModelId" />

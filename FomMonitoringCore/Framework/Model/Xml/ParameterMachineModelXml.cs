@@ -47,15 +47,6 @@ namespace FomMonitoringCore.Framework.Model.Xml
         /// <remarks/>
         public string LOLA_LABEL { get; set; }
 
-        /// <remarks/>
-        public string THRESHOLD_MIN { get; set; }
-
-        /// <remarks/>
-        public string THRESHOLD_MAX { get; set; }
-
-        /// <remarks/>
-        public string THRESHOLD_LABEL { get; set; }
-        
         public string PANEL { get; set; }
         public int? PANEL_ID {
             get
@@ -79,6 +70,8 @@ namespace FomMonitoringCore.Framework.Model.Xml
 
         /// <remarks/>
         public string HISTORICIZED { get; set; }
+
+        public string VARCOMPONENT { get; set; }
     }
 
 }

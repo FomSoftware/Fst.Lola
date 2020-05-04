@@ -93,12 +93,10 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(d => d.MACHINE_GROUP, src => src.MachineGroup)
                 .Map(d => d.PANEL_ID, src => src.PanelId)
                 .Map(d => d.R_LEVEL, src => src.RLevel)
-                .Map(d => d.THRESHOLD_LABEL, src => src.ThresholdLabel)
-                .Map(d => d.THRESHOLD_MAX, src => src.ThresholdMax)
-                .Map(d => d.THRESHOLD_MIN, src => src.ThresholdMin)
                 .Map(d => d.VAR_NUMBER, src => src.VarNumber)
                 .Map(d => d.W_LEVEL, src => src.WLevel)
-                .Map(d => d.HISTORICIZED, src => src.Historicized);
+                .Map(d => d.HISTORICIZED, src => src.Historicized)
+                .Map(d => d.VARCOMPONENT, src => src.VarComponent);
 
 
             // SP to Model
@@ -228,12 +226,10 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(d => d.MachineGroup, src => !string.IsNullOrWhiteSpace(src.MACHINE_GROUP) ? src.MACHINE_GROUP.Trim() : null)
                 .Map(d => d.PanelId, src => src.PANEL_ID)
                 .Map(d => d.RLevel, src => !string.IsNullOrWhiteSpace(src.R_LEVEL) ? src.R_LEVEL.Trim() : null)
-                .Map(d => d.ThresholdLabel, src => !string.IsNullOrWhiteSpace(src.THRESHOLD_LABEL) ? src.THRESHOLD_LABEL.Trim() : null)
-                .Map(d => d.ThresholdMax, src => !string.IsNullOrWhiteSpace(src.THRESHOLD_MAX) ? src.THRESHOLD_MAX.Trim() : null)
-                .Map(d => d.ThresholdMin, src => !string.IsNullOrWhiteSpace(src.THRESHOLD_MIN) ? src.THRESHOLD_MIN.Trim() : null)
                 .Map(d => d.VarNumber, src => !string.IsNullOrWhiteSpace(src.VAR_NUMBER) ? src.VAR_NUMBER.Trim() : null)
                 .Map(d => d.WLevel, src => !string.IsNullOrWhiteSpace(src.W_LEVEL) ? src.W_LEVEL.Trim() : null)
                 .Map(d => d.Historicized, src => !string.IsNullOrWhiteSpace(src.HISTORICIZED) ? src.HISTORICIZED.Trim() : null)
+                .Map(d => d.VarComponent, src => !string.IsNullOrWhiteSpace(src.VARCOMPONENT) ? src.VARCOMPONENT.Trim() : null)
                 .Map(d => d.ModelCode, src => MapContext.Current.Parameters["modelCode"]);
 
             config.NewConfig<DataProcessing.Dto.StateMachine, StateMachine>()
