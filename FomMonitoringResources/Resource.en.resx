@@ -1146,4 +1146,7 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   <data name="ModifyUserEmailSubject" xml:space="preserve">
     <value>LOLA – User credentials: </value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
 </root>

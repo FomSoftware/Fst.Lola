@@ -1146,4 +1146,7 @@ La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;
   <data name="ModifyUserEmailSubject" xml:space="preserve">
     <value>LOLA - Credenciales usuario: </value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
 </root>
