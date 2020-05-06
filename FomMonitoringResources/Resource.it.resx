@@ -1144,4 +1144,7 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
   <data name="ModifyUserEmailSubject" xml:space="preserve">
     <value>LOLA - Credenziali utente:</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
 </root>

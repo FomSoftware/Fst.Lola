@@ -1145,4 +1145,7 @@ Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt
   <data name="ModifyUserEmailSubject" xml:space="preserve">
     <value>LOLA – Anmeldedaten Benutzer: </value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
 </root>

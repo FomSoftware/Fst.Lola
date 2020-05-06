@@ -1146,4 +1146,7 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
   <data name="ModifyUserEmailSubject" xml:space="preserve">
     <value>LOLA – Identifiants de connexion utilisateur: </value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
 </root>
