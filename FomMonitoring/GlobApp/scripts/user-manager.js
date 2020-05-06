@@ -668,8 +668,11 @@
             NewPassword: newPassword
         };
 
+        
         if (newPassword != "" && repeatPassword != "") {
-            if (newPassword != repeatPassword)
+            if (newPassword == oldPassword)
+                errorSwal(resourceChangePassword.PasswordNotChanged);
+            else if (newPassword != repeatPassword)
                 errorSwal(resourceChangePassword.PasswordNotSame);
             else if (newPassword.length < 6)
                 errorSwal(resourceChangePassword.PasswordPolicy);

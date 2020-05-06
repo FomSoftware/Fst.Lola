@@ -421,13 +421,14 @@ namespace FomMonitoringCore.Service
             var result = true;
             try
             {
+                email = "mbelletti@fomsoftware.com";
                 using (var entUM = new UserManagerEntities())
                 {
                     var user = entUM.Users.Find(id);
                     if (user == null) return false;
                     var subject = LocalizationService.GetResource(keySubject, new CultureInfo(user.Languages.DotNetCulture)) + " " + user.Username;
                     var ls = new LoginServices();
-                    var ruolo = user.Roles_Users.FirstOrDefault().Roles.Description;
+                    var ruolo = user.Roles_Users.FirstOrDefault()?.Roles.Description;
                     var idRuolo = user.Roles_Users.FirstOrDefault().Roles.IdRole;
 
                     if (idRuolo == 1)

@@ -1993,6 +1993,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to La password non può essere uguale alla precedente.
+        /// </summary>
+        public static string PasswordNotChanged {
+            get {
+                return ResourceManager.GetString("PasswordNotChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New password and repeat new password do not match.
         /// </summary>
         public static string PasswordNotSame {
