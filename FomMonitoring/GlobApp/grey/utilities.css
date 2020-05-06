@@ -764,6 +764,11 @@ table.dataTable .nowrap {
         width: 600px;
         margin: 30px auto;
     }
+
+    .modal-dialog .form-horizontal {
+        margin-right: 0;
+        margin-left: 0;
+    }
 }
 
 @media screen and (max-width: 640px) {

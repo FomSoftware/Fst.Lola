@@ -31,7 +31,7 @@
                         <fieldset>
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-4 control-label" for="name-input">Name:</label>
+                                <label class="col-4 control-label" for="name-input">Name: *</label>
                                 <div class="col-7">
                                     <input v-model="actual.Name" name="name-input" class="form-control input-md modal-input" id="name-input" type="text" placeholder="Name" maxlength="100" required>
                                     <div v-show="missing.Name" class="validation">@Resource.FieldRequired.</div>
@@ -49,7 +49,7 @@
                             {
                                 <!-- Select Basic -->
                                 <div class="form-group" id="form-customer-input">
-                                    <label class="col-4 control-label" for="role-input">@Resource.PlantCustomers:</label>
+                                    <label class="col-4 control-label" for="role-input">@Resource.PlantCustomers: *</label>
                                     <div class="col-7">
                                         <select v-model="customers.active" class="form-control input-md modal-input" id="customer-input" v-on:change="changeCustomer()" title="@Resource.NothingSelected" type="text" required>
                                             <option v-for="customer in customers.all" v-bind:value="customer">{{customer}}</option>
@@ -62,7 +62,7 @@
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-4 control-label" for="role-input">@Resource.PlantMachines:</label>
+                                <label class="col-4 control-label" for="role-input">@Resource.PlantMachines: *</label>
                                 <div class="col-7">
                                     <select v-model="machines.active" class="form-control input-md modal-input" id="machines-input" title="@Resource.NothingSelected" type="text" multiple required>
                                         <option v-for="machine in machines.all" v-bind:value="machine.Id">({{machine.Serial}}) - {{machine.MachineName}}</option>

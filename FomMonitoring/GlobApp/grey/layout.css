@@ -314,6 +314,10 @@ section.container-fluid {
     #toast-container {
         width: calc(100% - 28px);
     }
+
+    .modal-dialog {
+        max-width: 550px;
+    }
 }
 
 
@@ -334,3 +338,4 @@ section.container-fluid {
         width: calc(33% - 24px);
     }
 }
+
