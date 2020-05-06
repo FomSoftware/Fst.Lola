@@ -1137,7 +1137,7 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Register</value>
   </data>
   <data name="ModifyUserEmailBody" xml:space="preserve">
-    <value>The password for the [TIPO_USER] type has been changed, following the new credentials.&lt;br /&gt;
+    <value>The password for the [TIPO_USER] user type has been changed, following the new credentials.&lt;br /&gt;
 User: [USERNAME]&lt;br /&gt;
 Provisional password generated: [PASSWORD]&lt;br /&gt;
 The password must be reset at the first access to LOLA.&lt;br /&gt;

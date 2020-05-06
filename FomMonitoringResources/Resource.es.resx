@@ -1137,7 +1137,7 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
     <value>Registro</value>
   </data>
   <data name="ModifyUserEmailBody" xml:space="preserve">
-    <value>La contraseña para el tipo [TIPO_USER] se ha cambiado, siguiendo las nuevas credenciales.&lt;br /&gt;
+    <value>La contraseña para el tipo de usuario [TIPO_USER] se ha cambiado, siguiendo las nuevas credenciales.&lt;br /&gt;
 Usuario: [USERNAME]&lt;br /&gt;
 Contraseña provisional generada: [PASSWORD]&lt;br /&gt;
 La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;

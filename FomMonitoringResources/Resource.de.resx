@@ -1136,7 +1136,7 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>Register</value>
   </data>
   <data name="ModifyUserEmailBody" xml:space="preserve">
-    <value>Das Kennwort fÃ¼r den Typ [TIPO_USER] wurde entsprechend den neuen Anmeldeinformationen geÃ¤ndert.&lt;br /&gt;
+    <value>Das Kennwort für den Benutzertyp [TIPO_USER] wurde entsprechend den neuen Anmeldeinformationen geändert.&lt;br /&gt;
 Benutzer: [USERNAME]&lt;br /&gt;
 Vorläufiges Passwort generiert: [PASSWORD]&lt;br /&gt;
 Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt;

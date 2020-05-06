@@ -1137,7 +1137,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Registre</value>
   </data>
   <data name="ModifyUserEmailBody" xml:space="preserve">
-    <value>Le mot de passe pour le type [TIPO_USER] a été modifié, suite aux nouvelles informations d'identification.&lt;br /&gt;
+    <value>Le mot de passe pour le type d’utilisateur [TIPO_USER] a été modifié, suite aux nouvelles informations d'identification.&lt;br /&gt;
 Utilisateur: [USERNAME]&lt;br /&gt;
 Mot de passe provisoire généré: [PASSWORD]&lt;br /&gt;
 Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br /&gt;

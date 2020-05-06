@@ -1137,11 +1137,13 @@ Customers are informed that the reliability of the statistics obtained from the 
     <value>Register</value>
   </data>
   <data name="ModifyUserEmailBody" xml:space="preserve">
-    <value>E' stata modificata la password per l'utenza di tipo [TIPO_USER] di seguito le nuove credenziali. &lt;br /&gt;
-Utente: [USERNAME]&lt;br /&gt;
-Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resettata obbligatoriamente al primo accesso in LOLA.&lt;br /&gt;&lt;a href="https://lola.fomindustrie.com"&gt;Clicca qui per accedere. &lt;/a&gt;</value>
+    <value>The password for the [TIPO_USER] user type has been changed, following the new credentials.&lt;br /&gt;
+User: [USERNAME]&lt;br /&gt;
+Provisional password generated: [PASSWORD]&lt;br /&gt;
+The password must be reset at the first access to LOLA.&lt;br /&gt;
+&lt;a href="https://lola.fomindustrie.com"&gt;Click here to log in.&lt;/a&gt;</value>
   </data>
   <data name="ModifyUserEmailSubject" xml:space="preserve">
-    <value>LOLA - Credenziali utente:</value>
+    <value>LOLA – User credentials: </value>
   </data>
 </root>
