@@ -1148,4 +1148,7 @@ Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt
   <data name="Password" xml:space="preserve">
     <value>Passwort</value>
   </data>
+  <data name="PasswordNotChanged" xml:space="preserve">
+    <value>Warnung: Das neue Passwort muss sich vom vorherigen unterscheiden.</value>
+  </data>
 </root>

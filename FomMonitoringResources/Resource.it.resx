@@ -1147,4 +1147,7 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="PasswordNotChanged" xml:space="preserve">
+    <value>Attenzione: la nuova password deve essere diversa dalla precedente.</value>
+  </data>
 </root>

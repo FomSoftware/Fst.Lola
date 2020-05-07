@@ -1149,4 +1149,7 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="PasswordNotChanged" xml:space="preserve">
+    <value>Warning: the new password must be different from the previous one.</value>
+  </data>
 </root>

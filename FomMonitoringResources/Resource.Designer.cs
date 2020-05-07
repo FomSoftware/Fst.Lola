@@ -1993,7 +1993,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to La password non può essere uguale alla precedente.
+        ///   Looks up a localized string similar to Attenzione: la nuova password deve essere diversa dalla precedente..
         /// </summary>
         public static string PasswordNotChanged {
             get {
