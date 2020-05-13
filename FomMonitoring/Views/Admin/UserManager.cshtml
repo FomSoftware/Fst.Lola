@@ -132,7 +132,7 @@
                         @if (Model.User.Role == enRole.Customer)
                         {
                             <div class="form-group row" id="form-group-password">
-                                <label class="col-4 control-label" for="lastname-input">Password: *</label>
+                                <label class="col-4 control-label" for="lastname-input">@Resource.Password: *</label>
                                 <div class="col-7">
                                     <div class="input-group">
                                         <input v-model="actual.Password" name="password-input" class="form-control input-md modal-input" id="password-input" type="text" placeholder="@Resource.Password" maxlength="50" required>
