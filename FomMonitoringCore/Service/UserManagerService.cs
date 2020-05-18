@@ -488,12 +488,13 @@ namespace FomMonitoringCore.Service
                     if (user.Password != null && !string.IsNullOrEmpty(user.Password.Trim()))
                     {
                         var ls = new LoginServices();
+                        //ha riempito i campi password mando sempre la mail
+                        modifiedPsw = true;
                         var newPsw = ls.EncryptPassword(user.Password);
                         if (updUser.Password != newPsw)
                         {
                             updUser.Password = newPsw;
                             updUser.LastDateUpdatePassword = null;
-                            modifiedPsw = true;
                         }
                     }
 
