@@ -87,10 +87,6 @@ namespace FomMonitoringApi.Controllers
             return Json(json);
         }
 
-        [HttpPost]
-        private object Client(object data)
-        {
-            return Json(data);
-        }
+
     }
 }
