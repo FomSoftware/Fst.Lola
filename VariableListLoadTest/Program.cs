@@ -31,13 +31,14 @@ namespace VariableListLoadTest
             var forwarder = container.Resolve<IQueueForwarder>();
 
             
-            var jsons = context.Set<JsonData>().Where(h => h.Json.Contains("param") && h.ElaborationDate > new DateTime(2020, 1, 1)).OrderByDescending(i => i.Id).ToList().AsParallel()
-                .Select(o => new {o.Id, o.Json}).OrderBy(n => n.Id).ToList();
+            var jsons = context.Set<JsonData>().Where(h => h.Json.Contains("variable") && h.ElaborationDate > new DateTime(2020, 1, 1)).OrderByDescending(i => i.Id).ToList().AsParallel()
+                .Select(o => new {o.Id, o.Json}).OrderByDescending(n => n.Id).ToList();
             
 
             foreach (var data in jsons)
             {
                 forwarder.Forward(data.Json);
+                break;
             }
 
             Debugger.Break();
