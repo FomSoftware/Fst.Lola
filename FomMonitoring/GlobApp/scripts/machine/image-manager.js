@@ -143,7 +143,7 @@
         MachineManager.callAjaxMachineMessageViewModelData(filters);
     };
 
-    this.selectPanel = function (element) {
+    selectPanel = function (element) {
         var panel = $(element).data('panel');
 
         $("[data-panel]").removeClass("selected");
