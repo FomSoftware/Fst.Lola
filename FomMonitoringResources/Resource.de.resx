@@ -740,19 +740,19 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>Reichweite rpm 0-1500</value>
   </data>
   <data name="lw_tempiMandrinoASoglia_1" xml:space="preserve">
-    <value>Reichweite rpm 1501-5500</value>
+    <value>Reichweite rpm 1501-7500</value>
   </data>
   <data name="lw_tempiMandrinoASoglia_2" xml:space="preserve">
-    <value>Reichweite rpm 5501-8000</value>
+    <value>Reichweite rpm 7501-11500</value>
   </data>
   <data name="lw_tempiMandrinoASoglia_3" xml:space="preserve">
-    <value>Reichweite rpm 8001-11500</value>
+    <value>Reichweite rpm 11501-15500</value>
   </data>
   <data name="lw_tempiMandrinoASoglia_4" xml:space="preserve">
-    <value>Reichweite rpm 11501-14500</value>
+    <value>Reichweite rpm 15501-18500</value>
   </data>
   <data name="lw_tempiMandrinoASoglia_5" xml:space="preserve">
-    <value>Reichweite rpm 14501-20000</value>
+    <value>Reichweite rpm 18501-20000</value>
   </data>
   <data name="ElapsedTime" xml:space="preserve">
     <value>Verstrichene Zeit</value>

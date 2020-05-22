@@ -1404,7 +1404,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Range rpm 1501-5500.
+        ///   Looks up a localized string similar to Range rpm 1501-7500.
         /// </summary>
         public static string lw_tempiMandrinoASoglia_1 {
             get {
@@ -1413,7 +1413,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Range rpm 5501-8000.
+        ///   Looks up a localized string similar to Range rpm 7501-11500.
         /// </summary>
         public static string lw_tempiMandrinoASoglia_2 {
             get {
@@ -1422,7 +1422,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Range rpm 8001-11500.
+        ///   Looks up a localized string similar to Range rpm 11501-15500.
         /// </summary>
         public static string lw_tempiMandrinoASoglia_3 {
             get {
@@ -1431,7 +1431,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Range rpm 11501-14500.
+        ///   Looks up a localized string similar to Range rpm 15501-18500.
         /// </summary>
         public static string lw_tempiMandrinoASoglia_4 {
             get {
@@ -1440,7 +1440,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Range rpm 14501-20000.
+        ///   Looks up a localized string similar to Range rpm 18501-20000.
         /// </summary>
         public static string lw_tempiMandrinoASoglia_5 {
             get {
