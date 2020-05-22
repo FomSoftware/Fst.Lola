@@ -18,6 +18,7 @@ namespace FomMonitoringCore.Framework.Model
         public string CnUm { get; set; }
         public string Keyword { get; set; }
         public string HmiUm { get; set; }
+        public DateTime? VariableResetDate { get; set; }
 
         //public string ConvertedDistanceValue(string format = "{0:0,0.00}")
         public string ConvertedDistanceValue(string format = "0.000")

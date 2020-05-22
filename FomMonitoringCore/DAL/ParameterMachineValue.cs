@@ -20,6 +20,7 @@ namespace FomMonitoringCore.DAL
         public string VarNumber { get; set; }
         public Nullable<decimal> VarValue { get; set; }
         public System.DateTime UtcDateTime { get; set; }
+        public Nullable<System.DateTime> VariableResetDate { get; set; }
     
         public virtual Machine Machine { get; set; }
         public virtual ParameterMachine ParameterMachine { get; set; }

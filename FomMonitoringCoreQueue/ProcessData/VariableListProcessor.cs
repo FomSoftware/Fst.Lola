@@ -52,6 +52,8 @@ namespace FomMonitoringCoreQueue.ProcessData
                             if (pm == null)
                                 return;
 
+                            DateTime? lastReset = value.VariableResetDate.HasValue && value.VariableResetDate.Value.Year < 1900 ? DateTime.UtcNow : value.VariableResetDate;
+
                             //ordino per data e poi per id perchè spesso arrivano valori diversi con la stessa data
                             var previousValue = oldValues.FirstOrDefault(p => p.VarNumber == value.VariableNumber)
                                 ?.VarValue;
@@ -66,7 +68,8 @@ namespace FomMonitoringCoreQueue.ProcessData
                                     ParameterMachineId = pm.Id,
                                     var.UtcDateTime,
                                     VarNumber = value.VariableNumber,
-                                    VarValue = value.VariableValue
+                                    VarValue = value.VariableValue,
+                                    VariableResetDate = lastReset
                                 };
                                 addedEntities.Add(pmv);
                             }
@@ -81,12 +84,14 @@ namespace FomMonitoringCoreQueue.ProcessData
                                         pmv.UtcDateTime = var.UtcDateTime;
 
                                         pmv.VarValue = value.VariableValue;
+                                        pmv.VariableResetDate = lastReset;
                                     }
                                     else
                                     {
                                         if (pm.Historicized != "0" && exists)
                                         {
                                             pmv.VarValue = value.VariableValue;
+                                            pmv.VariableResetDate = lastReset;
                                         }
                                     }
                                 }
@@ -98,8 +103,8 @@ namespace FomMonitoringCoreQueue.ProcessData
                                         ParameterMachineId = pm.Id,
                                         var.UtcDateTime,
                                         VarNumber = value.VariableNumber,
-                                        VarValue = value.VariableValue
-
+                                        VarValue = value.VariableValue,
+                                        VariableResetDate = lastReset
                                     };
 
                                     addedEntities.Add(nVar);
@@ -124,7 +129,8 @@ namespace FomMonitoringCoreQueue.ProcessData
                                     ParameterMachineId = a.ParameterMachineId,
                                     UtcDateTime = a.UtcDateTime,
                                     VarNumber = a.VarNumber,
-                                    VarValue = a.VarValue
+                                    VarValue = a.VarValue,
+                                    VariableResetDate = a.VariableResetDate
                                 }).ToList());
 
                         addedEntities.Clear();

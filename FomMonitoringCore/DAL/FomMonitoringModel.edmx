@@ -316,6 +316,7 @@
           <Property Name="VarNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="VarValue" Type="decimal" Precision="18" Scale="5" />
           <Property Name="UtcDateTime" Type="datetime" Nullable="false" />
+          <Property Name="VariableResetDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Piece">
           <Key>
@@ -2254,6 +2255,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="UtcDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_ParameterMachineValue_MachineId" FromRole="ParameterMachineValue" ToRole="Machine" />
           <NavigationProperty Name="ParameterMachine" Relationship="FST_FomMonitoringModel.FK_ParameterMachineValue_ParameterMachineId" FromRole="ParameterMachineValue" ToRole="ParameterMachine" />
+          <Property Name="VariableResetDate" Type="DateTime" Precision="3" Nullable="true" />
         </EntityType>
         <Association Name="FK_ParameterMachineValue_MachineId">
           <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="1" />
@@ -2903,6 +2905,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="ParameterMachineValue">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.ParameterMachineValue">
               <MappingFragment StoreEntitySet="ParameterMachineValue">
+                <ScalarProperty Name="VariableResetDate" ColumnName="VariableResetDate" />
                 <ScalarProperty Name="UtcDateTime" ColumnName="UtcDateTime" />
                 <ScalarProperty Name="VarValue" ColumnName="VarValue" />
                 <ScalarProperty Name="VarNumber" ColumnName="VarNumber" />
