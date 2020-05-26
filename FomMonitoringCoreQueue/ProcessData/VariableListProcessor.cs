@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Autofac;
 using FomMonitoringCore.DAL;
@@ -35,9 +36,7 @@ namespace FomMonitoringCoreQueue.ProcessData
                     var pms = _context.Set<ParameterMachine>().AsNoTracking().Where(p =>
                         p.MachineModelId == mac.MachineModelId).ToList();
 
-                    var oldValues = _context.Set<ParameterMachineValue>().Where(p =>
-                            p.MachineId == mac.Id).GroupBy(o => o.VarNumber)
-                        .Select(o => o.OrderByDescending(p => p.UtcDateTime).FirstOrDefault()).ToList();
+
 
                     foreach (var var in data.VariablesListMachine)
                     {
@@ -46,7 +45,7 @@ namespace FomMonitoringCoreQueue.ProcessData
                             continue;
 
                         var addedEntities = new List<dynamic>();
-                        var.Values.AsParallel().ForAll(value =>
+                        var.Values.ToList().ForEach(value =>
                         {
                             var pm = pms.FirstOrDefault(p => p.VarNumber == value.VariableNumber);
                             if (pm == null)
@@ -54,46 +53,59 @@ namespace FomMonitoringCoreQueue.ProcessData
 
                             DateTime? lastReset = value.VariableResetDate.HasValue && value.VariableResetDate.Value.Year < 1900 ? DateTime.UtcNow : value.VariableResetDate;
 
-                            //ordino per data e poi per id perchè spesso arrivano valori diversi con la stessa data
-                            var previousValue = oldValues.FirstOrDefault(p => p.VarNumber == value.VariableNumber)
+                            var previousValue = _context.Set<ParameterMachineValue>().Where(p =>
+                                    p.MachineId == mac.Id && p.VarNumber == value.VariableNumber).OrderByDescending(p => p.UtcDateTime).FirstOrDefault(p => p.VarNumber == value.VariableNumber)
                                 ?.VarValue;
-                            var exists = oldValues.Any(p =>
-                                p.VarNumber == value.VariableNumber && p.UtcDateTime == var.UtcDateTime);
+                            //var exists = oldValues.Any(p =>
+                            //    p.VarNumber == value.VariableNumber && p.UtcDateTime == var.UtcDateTime);
 
-                            if ((pm.Historicized == null || pm.Historicized == "1") && !exists)
+                            if (pm.Historicized == null || pm.Historicized == "1")
                             {
-                                var pmv = new
+                                var dayValues = _context.Set<ParameterMachineValue>().Where(p =>
+                                    p.MachineId == mac.Id && p.ParameterMachineId == pm.Id &&
+                                    DbFunctions.TruncateTime(p.UtcDateTime) == var.UtcDateTime.Date).ToList();
+
+                                if (dayValues.Any())
                                 {
-                                    MachineId = mac.Id,
-                                    ParameterMachineId = pm.Id,
-                                    var.UtcDateTime,
-                                    VarNumber = value.VariableNumber,
-                                    VarValue = value.VariableValue,
-                                    VariableResetDate = lastReset
-                                };
-                                addedEntities.Add(pmv);
-                            }
-                            else if (pm.Historicized == "0" || exists)
-                            {
-                                var pmv = oldValues.FirstOrDefault(p => p.VarNumber == value.VariableNumber);
 
+                                    _context.Set<ParameterMachineValue>().RemoveRange(dayValues.Where(dv => dv.Id != dayValues.Max(n => n.Id)));
+
+                                    var dayValue = _context.Set<ParameterMachineValue>().Find(dayValues.Max(n => n.Id));
+                                    dayValue.UtcDateTime = var.UtcDateTime;
+                                    dayValue.VarValue = value.VariableValue;
+                                    dayValue.VariableResetDate = lastReset;
+
+                                }
+                                else
+                                {
+                                    var pmv = new
+                                    {
+                                        MachineId = mac.Id,
+                                        ParameterMachineId = pm.Id,
+                                        var.UtcDateTime,
+                                        VarNumber = value.VariableNumber,
+                                        VarValue = value.VariableValue,
+                                        VariableResetDate = lastReset
+                                    };
+                                    addedEntities.Add(pmv);
+                                }
+                                
+
+                            }
+                            else
+                            {
+                                var values = _context.Set<ParameterMachineValue>().Where(p =>
+                                    p.MachineId == mac.Id && p.ParameterMachineId == pm.Id).ToList();
+
+                                _context.Set<ParameterMachineValue>().RemoveRange(values.Where(dv => dv.Id != values.Max(n => n.Id)));
+
+                                var pmv = _context.Set<ParameterMachineValue>().Find(values.Max(n => n.Id));
                                 if (pmv != null)
                                 {
-                                    if (pm.Historicized == "0" && pmv.UtcDateTime < var.UtcDateTime)
-                                    {
                                         pmv.UtcDateTime = var.UtcDateTime;
 
                                         pmv.VarValue = value.VariableValue;
                                         pmv.VariableResetDate = lastReset;
-                                    }
-                                    else
-                                    {
-                                        if (pm.Historicized != "0" && exists)
-                                        {
-                                            pmv.VarValue = value.VariableValue;
-                                            pmv.VariableResetDate = lastReset;
-                                        }
-                                    }
                                 }
                                 else
                                 {
@@ -118,7 +130,8 @@ namespace FomMonitoringCoreQueue.ProcessData
                                     CheckVariableTresholds(mac, threshold, value, previousValue, var.UtcDateTime);
                             }
 
-                        });
+                            _context.SaveChanges();
+                        }) ;
 
 
                         if (addedEntities.Any())
