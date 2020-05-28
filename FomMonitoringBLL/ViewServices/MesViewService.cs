@@ -96,7 +96,7 @@ namespace FomMonitoringBLL.ViewServices
                     mes.efficiency.kpi = CommonViewService.getKpiViewModel((decimal)(data.StateEfficiency ?? 0), machine.StateProductivityGreenThreshold, machine.StateProductivityYellowThreshold);
                     mes.efficiency.overfeed = CommonViewService.getKpiViewModel((decimal)(data.StateOverfeedAvg ?? 0), null, null);
                 }
-
+                
                 if (data.PieceCompletedCount != null)
                 {
                     mes.productivity = new ProductivityVueModel();

@@ -194,7 +194,8 @@ namespace FomMonitoringCore.Service
             var historyMessage = machine.HistoryMessage.Where(cs => cs.Day.HasValue && cs.Day.Value.Date == date && cs.MessagesIndex?.MessageTypeId == 11).ToList();
             var historyPiece = machine.HistoryPiece.Where(cs => cs.Day.HasValue && cs.Day.Value.Date == date && cs.Shift == null && cs.Operator == null).ToList();
             var historyEfficiency = machine.HistoryState.Where(cs => cs.Day.HasValue && cs.Day.Value.Date == date && cs.Shift == null && cs.Operator == null).ToList();
-
+            var stateMachine = machine.StateMachine.Where(cs => cs.Day.HasValue && cs.Day.Value.Date == date)
+                .OrderByDescending(s => s.StartTime).FirstOrDefault();
 
             var m = new MachineMesDataModel();
             m.Id = machine.Id;
@@ -242,7 +243,12 @@ namespace FomMonitoringCore.Service
 
                 }
 
-                m.StateOverfeedAvg = historyEfficiency.Max(n => n.OverfeedAvg);
+                //m.StateOverfeedAvg = historyEfficiency.Max(n => n.OverfeedAvg);
+            }
+            //prendo l'overfeed dell'ultimo state
+            if (stateMachine != null)
+            {
+                m.StateOverfeedAvg = stateMachine.Overfeed;
             }
 
             if (historyPiece.Any())
