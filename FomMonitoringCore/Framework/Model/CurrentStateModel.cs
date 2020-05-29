@@ -20,10 +20,11 @@ namespace FomMonitoringCore.Framework.Model
 
         public string ResTimeMin()
         {
-            string result = "";
+            string result = "0";
             if (ResidueWorkingTime != null)
             {
-                TimeSpan interval = new TimeSpan((long)ResidueWorkingTime);
+                //ResidueWorkingTime arriva in secondi e non in ticks
+                TimeSpan interval = new TimeSpan((long)ResidueWorkingTime * 10000000);
                 int res = interval.Days * 24 * 60 +
                           interval.Hours * 60 +
                           interval.Minutes;
@@ -35,10 +36,10 @@ namespace FomMonitoringCore.Framework.Model
 
         public string ResTimeSec()
         {
-            string result = "";
+            string result = "0";
             if (ResidueWorkingTime != null)
             {
-                TimeSpan interval = new TimeSpan((long)ResidueWorkingTime);
+                TimeSpan interval = new TimeSpan((long)ResidueWorkingTime * 10000000);
                 int res = interval.Seconds;
                 result = res.ToString("D");
             }
