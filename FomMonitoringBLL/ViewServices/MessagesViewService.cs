@@ -132,15 +132,25 @@ namespace FomMonitoringBLL.ViewServices
             var serieOperator = new SerieViewModel();
             serieOperator.name = enTypeAlarm.Warning.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieOperator.color = CommonViewService.GetColorAlarm(enTypeAlarm.Warning);
-            serieOperator.data = data.Where(w => w.Type == (int)enTypeAlarm.Warning).Select(s => s.Count ?? 0).ToList();
-            series.Add(serieOperator);
-
+            
             var serieError = new SerieViewModel();
             serieError.name = enTypeAlarm.Error.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieError.color = CommonViewService.GetColorAlarm(enTypeAlarm.Error);
-            serieError.data = data.Where(w => w.Type == (int)enTypeAlarm.Error).Select(s => s.Count ?? 0).ToList();
-            series.Add(serieError);
+            
+            serieOperator.data = new List<int>();
+            serieError.data = new List<int>();
+            foreach (string cat in options.categories)
+            {
+                var catVal = data.Where(w => w.Type == (int)enTypeAlarm.Warning && 
+                                CommonViewService.GetTimeCategory((DateTime)w.Day, granularity) == cat).Select(s => s.Count ?? 0).FirstOrDefault();
+                serieOperator.data.Add(catVal);
+                var catVal2 = data.Where(w => w.Type == (int)enTypeAlarm.Error &&
+                                             CommonViewService.GetTimeCategory((DateTime)w.Day, granularity) == cat).Select(s => s.Count ?? 0).FirstOrDefault();
+                serieError.data.Add(catVal2);
+            }
 
+            series.Add(serieOperator);
+            series.Add(serieError);
             options.series = series;
 
             return options;

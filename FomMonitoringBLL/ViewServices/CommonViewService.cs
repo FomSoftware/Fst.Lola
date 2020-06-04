@@ -77,6 +77,34 @@ namespace FomMonitoringBLL.ViewServices
             return categories;
         }
 
+        public static string GetTimeCategory(DateTime day, enAggregation granularity)
+        {
+            string category = "";
+
+            switch (granularity)
+            {
+                case enAggregation.Day:
+                    category = day.ToString("dd/MM");
+                    break;
+                case enAggregation.Week:
+                    category = $"w{day.GetWeekNumber()}";
+                    break;
+                case enAggregation.Month:
+                    category = day.ToString("MMM", CultureInfo.InvariantCulture);
+                    break;
+                case enAggregation.Quarter:
+                    //categories = days.Select(s => s.ToString("MMM", CultureInfo.InvariantCulture)).Distinct().ToList();
+                    break;
+                case enAggregation.Year:
+                    category = day.ToString("yyyy", CultureInfo.InvariantCulture);
+                    break;
+                default:
+                    break;
+            }
+
+            return category;
+        }
+
         public static enToolType GetTypeTool(ToolMachineModel tool)
         {
             enToolType type = enToolType.Breaking;
