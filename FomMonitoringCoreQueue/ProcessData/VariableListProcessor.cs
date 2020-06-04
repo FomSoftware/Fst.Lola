@@ -27,8 +27,7 @@ namespace FomMonitoringCoreQueue.ProcessData
         {
             try
             {
-
-                    var serial = data.InfoMachine.FirstOrDefault()?.MachineSerial;
+                var serial = data.InfoMachine.FirstOrDefault()?.MachineSerial;
                     var mac = _context.Set<Machine>().FirstOrDefault(m => m.Serial == serial);
                     if (mac == null)
                         return false;
@@ -36,22 +35,19 @@ namespace FomMonitoringCoreQueue.ProcessData
                     var pms = _context.Set<ParameterMachine>().AsNoTracking().Where(p =>
                         p.MachineModelId == mac.MachineModelId).ToList();
 
-
-
                     foreach (var var in data.VariablesListMachine)
                     {
                         var.UtcDateTime = var.UtcDateTime.Year < 1900 ? DateTime.UtcNow : var.UtcDateTime;
                         if (var.Values == null || !var.Values.Any())
                             continue;
 
-                        var addedEntities = new List<dynamic>();
                         var.Values.ToList().ForEach(value =>
                         {
                             var pm = pms.FirstOrDefault(p => p.VarNumber == value.VariableNumber);
                             if (pm == null)
                                 return;
 
-                            DateTime? lastReset = value.VariableResetDate.HasValue && value.VariableResetDate.Value.Year < 1900 ? DateTime.UtcNow : value.VariableResetDate;
+                            DateTime? lastReset = value.VariableResetDate.HasValue && value.VariableResetDate.Value.Year < 1900 ? null : value.VariableResetDate;
 
                             var previousValue = _context.Set<ParameterMachineValue>().Where(p =>
                                     p.MachineId == mac.Id && p.VarNumber == value.VariableNumber).OrderByDescending(p => p.UtcDateTime).FirstOrDefault(p => p.VarNumber == value.VariableNumber)
@@ -61,36 +57,42 @@ namespace FomMonitoringCoreQueue.ProcessData
 
                             if (pm.Historicized == null || pm.Historicized == "1")
                             {
+                                var day = lastReset != null ? ((DateTime)lastReset).Date : var.UtcDateTime.Date;
                                 var dayValues = _context.Set<ParameterMachineValue>().Where(p =>
                                     p.MachineId == mac.Id && p.ParameterMachineId == pm.Id &&
-                                    DbFunctions.TruncateTime(p.UtcDateTime) == var.UtcDateTime.Date).ToList();
+                                    DbFunctions.TruncateTime(p.UtcDateTime) == day).ToList();
 
                                 if (dayValues.Any())
                                 {
-
                                     _context.Set<ParameterMachineValue>().RemoveRange(dayValues.Where(dv => dv.Id != dayValues.Max(n => n.Id)));
-
                                     var dayValue = _context.Set<ParameterMachineValue>().Find(dayValues.Max(n => n.Id));
-                                    dayValue.UtcDateTime = var.UtcDateTime;
+                                    //dayValue.UtcDateTime = var.UtcDateTime;
+                                    if (lastReset != null)
+                                    {
+                                        dayValue.UtcDateTime = (DateTime)lastReset;
+                                        AddResetValue(dayValue.Id, (DateTime)lastReset, value.VariableValue, dayValue.VarValue);
+                                    }
                                     dayValue.VarValue = value.VariableValue;
-                                    dayValue.VariableResetDate = lastReset;
-
                                 }
                                 else
                                 {
-                                    var pmv = new
-                                    {
-                                        MachineId = mac.Id,
-                                        ParameterMachineId = pm.Id,
-                                        var.UtcDateTime,
-                                        VarNumber = value.VariableNumber,
-                                        VarValue = value.VariableValue,
-                                        VariableResetDate = lastReset
-                                    };
-                                    addedEntities.Add(pmv);
-                                }
-                                
+                                    var nuovo = _context.Set<ParameterMachineValue>().Add(
+                                        new ParameterMachineValue
+                                        {
+                                            MachineId = mac.Id,
+                                            ParameterMachineId = pm.Id,
+                                            UtcDateTime = lastReset != null ? (DateTime)lastReset : var.UtcDateTime,
+                                            VarNumber = value.VariableNumber,
+                                            VarValue = value.VariableValue
+                                        });
+                                    _context.SaveChanges();
 
+                                    if (lastReset != null)
+                                    {
+                                        AddResetValue(nuovo.Id, (DateTime)lastReset, value.VariableValue, previousValue);
+                                        _context.SaveChanges();
+                                    }
+                                }
                             }
                             else
                             {
@@ -102,24 +104,34 @@ namespace FomMonitoringCoreQueue.ProcessData
                                 var pmv = _context.Set<ParameterMachineValue>().Find(values.Max(n => n.Id));
                                 if (pmv != null)
                                 {
-                                        pmv.UtcDateTime = var.UtcDateTime;
-
-                                        pmv.VarValue = value.VariableValue;
-                                        pmv.VariableResetDate = lastReset;
+                                        //pmv.UtcDateTime = var.UtcDateTime;
+                                    if (lastReset != null)
+                                    {
+                                        pmv.UtcDateTime = (DateTime)lastReset;
+                                        AddResetValue(pmv.Id, (DateTime)lastReset, value.VariableValue, pmv.VarValue);
+                                    }
+                                    pmv.VarValue = value.VariableValue;
                                 }
                                 else
                                 {
-                                    var nVar = new
-                                    {
-                                        MachineId = mac.Id,
-                                        ParameterMachineId = pm.Id,
-                                        var.UtcDateTime,
-                                        VarNumber = value.VariableNumber,
-                                        VarValue = value.VariableValue,
-                                        VariableResetDate = lastReset
-                                    };
+                                    var nuovo = _context.Set<ParameterMachineValue>().Add(
+                                        new ParameterMachineValue
+                                        {
+                                            MachineId = mac.Id,
+                                            ParameterMachineId = pm.Id,
+                                            UtcDateTime = lastReset != null ? (DateTime)lastReset : var.UtcDateTime,
+                                            VarNumber = value.VariableNumber,
+                                            VarValue = value.VariableValue
+                                        });
+                                    _context.SaveChanges();
 
-                                    addedEntities.Add(nVar);
+                                    if (lastReset != null)
+                                    {
+                                        AddResetValue(nuovo.Id, (DateTime) lastReset, value.VariableValue, null);
+                                        _context.SaveChanges();
+                                    }
+                                    
+
                                 }
                             }
 
@@ -133,24 +145,11 @@ namespace FomMonitoringCoreQueue.ProcessData
                             _context.SaveChanges();
                         }) ;
 
-
-                        if (addedEntities.Any())
-                            _context.Set<ParameterMachineValue>().AddRange(addedEntities.Select(a =>
-                                new ParameterMachineValue
-                                {
-                                    MachineId = a.MachineId,
-                                    ParameterMachineId = a.ParameterMachineId,
-                                    UtcDateTime = a.UtcDateTime,
-                                    VarNumber = a.VarNumber,
-                                    VarValue = a.VarValue,
-                                    VariableResetDate = a.VariableResetDate
-                                }).ToList());
-
-                        addedEntities.Clear();
                     }
-
                     mac.LastUpdate = DateTime.UtcNow;
                     _context.SaveChanges();
+
+
                     return true;
                 
             }
@@ -159,6 +158,18 @@ namespace FomMonitoringCoreQueue.ProcessData
                 throw ex;
             }
 
+        }
+
+        private void AddResetValue(int valueId, DateTime lastReset, decimal? variableValue, decimal? valueBeforeReset)
+        {
+            _context.Set<ParameterResetValue>().Add(
+                new ParameterResetValue()
+                {
+                    ParameterMachineValueId = valueId,
+                    ResetDate = (DateTime)lastReset,
+                    ResetValue = variableValue,
+                    ValueBeforeReset = valueBeforeReset
+                });
         }
 
         public void CheckVariableTresholds(Machine machine,

@@ -79,8 +79,7 @@ namespace FomMonitoringCore.Service.DataMapping
                                                     ParameterMachineId = pm.Id,
                                                     UtcDateTime = var.UtcDateTime,
                                                     VarNumber = value.VariableNumber,
-                                                    VarValue = value.VariableValue,
-                                                    VariableResetDate = value.VariableResetDate
+                                                    VarValue = value.VariableValue
                                                 };
                                                 addedEntities.Add(pmv);
                                             }

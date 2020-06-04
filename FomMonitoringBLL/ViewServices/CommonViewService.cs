@@ -65,6 +65,7 @@ namespace FomMonitoringBLL.ViewServices
                     categories = days.Select(s => s.ToString("MMM", CultureInfo.InvariantCulture)).Distinct().ToList();
                     break;
                 case enAggregation.Quarter:
+                    //categories = days.Select(s => s.ToString("MMM", CultureInfo.InvariantCulture)).Distinct().ToList();
                     break;
                 case enAggregation.Year:
                     categories = days.Select(s => s.ToString("yyyy", CultureInfo.InvariantCulture)).Distinct().ToList();

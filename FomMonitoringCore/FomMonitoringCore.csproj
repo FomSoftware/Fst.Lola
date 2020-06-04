@@ -303,6 +303,9 @@
     <Compile Include="DAL\ParameterMachineValue.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\ParameterResetValue.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Partials\FST_FomMonitoringEntities.cs" />
     <Compile Include="DAL\Partials\HistoryMessage.cs" />
     <Compile Include="DAL\Partials\IDbContext.cs" />
