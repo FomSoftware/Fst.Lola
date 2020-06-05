@@ -214,7 +214,6 @@ namespace FomMonitoringCore.Framework.Common
         {
             int result = 0;
             result = (int)Math.Ceiling((decimal)dt.Month / 3);
-            //Math.DivRem(dt.Month, 3, out result);
             return result;
         }
 
