@@ -210,6 +210,14 @@ namespace FomMonitoringCore.Framework.Common
             return result;
         }
 
+        public static int GetQuarter(this DateTime dt)
+        {
+            int result = 0;
+            result = (int)Math.Ceiling((decimal)dt.Month / 3);
+            //Math.DivRem(dt.Month, 3, out result);
+            return result;
+        }
+
         /// <summary>
         /// Extension method to handle localized URL using a dedicated, multi-language custom route.
         /// for additional info, read the following post:
