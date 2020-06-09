@@ -1150,4 +1150,10 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
   <data name="PasswordNotChanged" xml:space="preserve">
     <value>Attenzione: la nuova password deve essere diversa dalla precedente.</value>
   </data>
+  <data name="Administrator" xml:space="preserve">
+    <value>Amministratore</value>
+  </data>
+  <data name="Assistance" xml:space="preserve">
+    <value>Assistenza</value>
+  </data>
 </root>

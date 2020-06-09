@@ -29,7 +29,7 @@ namespace FomMonitoringBLL.ViewServices
                 Email = s.Email,
                 CustomerName = s.CustomerName,
                 RoleCode = (int)s.Role,
-                RoleName = s.Role.GetDescription(),
+                RoleName = LocalizationService.GetResource(s.Role.GetDescription()),
                 LanguageId = s.Language.ID,
                 LanguageName = s.Language.Name,
                 Enabled = s.Enabled,
@@ -41,7 +41,7 @@ namespace FomMonitoringBLL.ViewServices
             userManager.roles = rolesModel.Select(s => new UserRoleViewModel
             {
                 Code = s.Code,
-                Name = s.Name,
+                Name = LocalizationService.GetResource(s.Name),
                 status = s.status,
                 enabled = s.enabled
             }).ToList();
