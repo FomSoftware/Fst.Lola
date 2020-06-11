@@ -25,8 +25,6 @@ namespace FomMonitoringCoreQueue.ProcessData
         }
         public bool ProcessData(VariablesList data)
         {
-            try
-            {
                 var serial = data.InfoMachine.FirstOrDefault()?.MachineSerial;
                     var mac = _context.Set<Machine>().FirstOrDefault(m => m.Serial == serial);
                     if (mac == null)
@@ -57,14 +55,16 @@ namespace FomMonitoringCoreQueue.ProcessData
 
                             if (pm.Historicized == null || pm.Historicized == "1")
                             {
-                                var day = lastReset != null ? ((DateTime)lastReset).Date : var.UtcDateTime.Date;
+                                var day = lastReset?.Date ?? var.UtcDateTime.Date;
                                 var dayValues = _context.Set<ParameterMachineValue>().Where(p =>
                                     p.MachineId == mac.Id && p.ParameterMachineId == pm.Id &&
                                     DbFunctions.TruncateTime(p.UtcDateTime) == day).ToList();
 
                                 if (dayValues.Any())
                                 {
-                                    _context.Set<ParameterMachineValue>().RemoveRange(dayValues.Where(dv => dv.Id != dayValues.Max(n => n.Id)));
+                                    if(dayValues.Count(dv => dv.Id != dayValues.Max(n => n.Id)) > 1)
+                                        _context.Set<ParameterMachineValue>().RemoveRange(dayValues.Where(dv => dv.Id != dayValues.Max(n => n.Id)));
+
                                     var dayValue = _context.Set<ParameterMachineValue>().Find(dayValues.Max(n => n.Id));
                                     //dayValue.UtcDateTime = var.UtcDateTime;
                                     if (lastReset != null)
@@ -152,11 +152,7 @@ namespace FomMonitoringCoreQueue.ProcessData
 
                     return true;
                 
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            
 
         }
 

@@ -65,12 +65,12 @@ namespace FomMonitoringQueueApplication
         }
         private static void OnTimedQueueEvent(object source, ElapsedEventArgs e)
         {
-            ConsumerInitializer?.ElaborateUnknown();
+            ConsumerInitializer?.Reconnect();
         }
 
         private static void OnTimedUnknownEvent(object source, ElapsedEventArgs e)
         {
-            ConsumerInitializer?.Reconnect();
+            ConsumerInitializer?.ElaborateUnknown();
         }
 
 
