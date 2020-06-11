@@ -7,6 +7,14 @@
         initVueModel(data.vm_tools_blitz);
     }
 
+    var show = function () {
+        vmTools.showed = true;
+    }
+
+    var hide = function () {
+        vmTools.showed = false;
+    }
+
     var initVueModel = function (data)
     {
         vmTools = new Vue({
@@ -14,6 +22,7 @@
             data: {
                 toolsTm: data.toolsTm,
                 toolsTf: data.toolsTf,
+                showed: true
             },
             computed: {
                 colorKPI: function ()
@@ -43,7 +52,9 @@
 
     return {
         init: init,
-        update: update
+        update: update,
+        show: show,
+        hide: hide
     }
 
 }();

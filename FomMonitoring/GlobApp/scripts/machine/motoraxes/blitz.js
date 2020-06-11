@@ -7,6 +7,14 @@
         initVueModel(data.vm_motoraxes_blitz);
     }
 
+    var show = function () {
+        vmMotorAxes.showed = true;
+    }
+
+    var hide = function () {
+        vmMotorAxes.showed = false;
+    }
+
     var initVueModel = function (data)
     {
         vmMotorAxes = new Vue({
@@ -14,6 +22,7 @@
             data: {
                 motors: data.motors,
                 axes: data.axes,
+                showed: true
             },
             computed: {
                 colorKPI: function ()
@@ -43,7 +52,9 @@
 
     return {
         init: init,
-        update: update
+        update: update,
+        show: show,
+        hide: hide
     }
 
 }();

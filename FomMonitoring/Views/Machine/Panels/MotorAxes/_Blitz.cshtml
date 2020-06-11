@@ -2,25 +2,26 @@
 @using FomMonitoringCore.Service
 @using FomMonitoringResources
 
-<div id="CardSpindles" class="portlet">
+<div id="CardSpindles" class="@ViewData["Classes"]" v-show="showed">
+    <div class="portlet">
     <div class="portlet-title">
         <div class="portlet-kpi">
             <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
-                <i class="fa icofom-motoriassi fa-stack-1x fa-inverse" style="font-size:1.5em"></i>
+                <i class="fa icofom-motoriassi fa-stack-1x fa-inverse" style="font-size: 1.5em"></i>
             </span>
         </div>
-        <div class="title-kpi" >
+        <div class="title-kpi">
             <span class="testo-abbreviato">@LocalizationService.GetResource("AxisMotors")</span>
             <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
-        </div>      
+        </div>
     </div>
-    <div class="portlet-body text-center" style="height:244px">
+    <div class="portlet-body text-center" style="height: 244px">
         <div class="card-portlet">
-            <div v-if="motors != null && motors.length > 0 && axes != null && axes.length > 0" style="height:242px" class="slimscroll">
-                <hr style="background-color:#0c3817;height:2px;border:none" />
-                <div style="cursor:auto;height:100%">
-                    <table class="table-spindle" style="height:60%">
+            <div v-if="motors != null && motors.length > 0 && axes != null && axes.length > 0" style="height: 242px" class="slimscroll">
+                <hr style="background-color: #0c3817; height: 2px; border: none"/>
+                <div style="cursor: auto; height: 100%">
+                    <table class="table-spindle" style="height: 60%">
                         <tr>
                             <td class="portlet-subtitle" style="font-size: 11px">
                                 @Html.Raw(LocalizationService.GetResource("Motors"))
@@ -28,15 +29,15 @@
                         </tr>
                         <tr>
                             <td>
-                                <table style="width: 100%;height:100%">
+                                <table style="width: 100%; height: 100%">
                                     <tr>
-                                        
+
                                         <td class="td-tool" style="width: 25%">
                                             <i class="fa fa-toggle-on fa-lg" aria-hidden="true" style="vertical-align: top;"></i>
                                             <label v-if="motors[0] != null" class="label-tools" v-html="motors[0].Description"></label>
                                         </td>
                                         <td class="td-tool tool-border-left" style="width: 25%">
-                                            <i class="fa fa-toggle-on fa-lg" aria-hidden="true"  style="vertical-align: top;"></i>
+                                            <i class="fa fa-toggle-on fa-lg" aria-hidden="true" style="vertical-align: top;"></i>
                                             <label v-if="motors[1] != null" class="label-tools" v-html="motors[1].Description"></label>
                                         </td>
                                         <td class="td-tool" style="width: 25%">
@@ -49,16 +50,16 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="td-tool" style="width:25%">
+                                        <td class="td-tool" style="width: 25%">
                                             <label v-if="motors[0] && motors[0].Value != null" class="label-tools-value text-center" v-html="motors[0].Value"></label>
                                         </td>
-                                        <td class="td-tool tool-border-left" style="width:25%">
+                                        <td class="td-tool tool-border-left" style="width: 25%">
                                             <label v-if="motors[1] != null && motors[1].Value" class="label-tools-value text-center" v-html="motors[1].Value"></label>
                                         </td>
-                                        <td class="td-tool" style="width:25%">
+                                        <td class="td-tool" style="width: 25%">
                                             <label v-if="motors[2] && motors[2].Value != null" class="label-tools-value text-center" v-html="motors[2].Value"></label>
                                         </td>
-                                        <td class="td-tool tool-border-left" style="width:25%">
+                                        <td class="td-tool tool-border-left" style="width: 25%">
                                             <label v-if="motors[3] != null && motors[3].Value" class="label-tools-value text-center" v-html="motors[3].Value"></label>
                                         </td>
 
@@ -68,7 +69,7 @@
                         </tr>
                     </table>
 
-                    <table class="table-spindle" style="height:40%">
+                    <table class="table-spindle" style="height: 40%">
                         <tr>
                             <td class="portlet-subtitle" style="font-size: 11px">
                                 @Html.Raw(LocalizationService.GetResource("Axes"))
@@ -76,15 +77,15 @@
                         </tr>
                         <tr>
                             <td>
-                                <table style="width: 100%;height:100%">
+                                <table style="width: 100%; height: 100%">
                                     <tr>
                                         <td class="td-tool">
                                             <label style="font-size: 0.7rem;"><i class="fa icofom-assekm fa-2x" aria-hidden="true"></i></label>
                                             <label v-if="axes[1] != null && axes[1].Description != null" class="label-tools" v-html="axes[1].Description"></label>
                                         </td>
-                                        <td class="td-tool tool-border-left">                                            
+                                        <td class="td-tool tool-border-left">
                                             <label style="font-size: 0.7rem;"><i class="fa icofom-assekm fa-2x" aria-hidden="true"></i></label>
-                                            <label v-if="axes[0] != null" class="label-tools" v-html="axes[0].Description"></label>                                        
+                                            <label v-if="axes[0] != null" class="label-tools" v-html="axes[0].Description"></label>
                                         </td>
                                         <td class="td-tool">
                                             <label style="font-size: 0.7rem;"><i class="fa icofom-assekm fa-2x" aria-hidden="true"></i></label>
@@ -110,6 +111,7 @@
             </div>
             <no-data v-else></no-data>
         </div>
+    </div>
     </div>
 </div>
 

@@ -180,6 +180,8 @@
                 selectedGroup1 = ImageManagerFmc.selectedGroup();
             else if (typeof ImageManagerLmx !== 'undefined' && ImageManagerLmx !== null)
                 selectedGroup1 = ImageManagerLmx.selectedGroup();
+            else if (typeof ImageManagerBlitz !== 'undefined' && ImageManagerBlitz !== null)
+                selectedGroup1 = ImageManagerBlitz.selectedGroup();
 
             var filters = {
                 period: {

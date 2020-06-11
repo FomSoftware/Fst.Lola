@@ -424,6 +424,7 @@
     <Content Include="GlobApp\scripts\machine\axes\keope.js" />
     <Content Include="GlobApp\scripts\machine\axes\lmx.js" />
     <Content Include="GlobApp\scripts\machine\electrospindle\electrospindle.js" />
+    <Content Include="GlobApp\scripts\machine\image-manager-blitz.js" />
     <Content Include="GlobApp\scripts\machine\image-manager-lmx.js" />
     <Content Include="GlobApp\scripts\machine\image-manager-fmc.js" />
     <Content Include="GlobApp\scripts\machine\jobs\other-machines.js" />
@@ -1137,6 +1138,7 @@
     <Content Include="Views\Machine\Panels\OtherMachineData\_LMX650.cshtml" />
     <Content Include="Views\Machine\Panels\Jobs\_OtherMachines.cshtml" />
     <Content Include="Views\Machine\Panels\XTools\_Lmx.cshtml" />
+    <Content Include="Views\Machine\Model\_BLITZ.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

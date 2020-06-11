@@ -74,9 +74,15 @@
         if (vmImageMachine.machinePanelSelected == 'ordersStandard' ||
             (!(vmImageMachine.isTablet() || vmImageMachine.isMobile()) &&
                 (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
-            Jobs.show();
+            if (Jobs.showed)
+                Jobs.show();
+            else
+                OtherMachinesJobs.show();
         } else {
-            Jobs.hide();
+            if (Jobs.showed)
+                Jobs.hide();
+            else
+                OtherMachinesJobs.hide();
         }
 
         checkModello(vmImageMachine.machineGroupSelected);

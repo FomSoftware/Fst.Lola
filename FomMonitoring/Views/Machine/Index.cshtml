@@ -12,9 +12,13 @@
     {
         @Html.Partial("Model/_FMC_3_4", Model);
     }
-    else if (Model.MachineInfo.model.ToUpper().Contains("LMX"))
+    else if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)
     {
         @Html.Partial("Model/_LMX_650", Model);
+    }
+    else if (Model.MachineInfo.id_mtype == (int)enMachineType.Troncatrice)
+    {
+        @Html.Partial("Model/_BLITZ", Model);
     }
     else
     {

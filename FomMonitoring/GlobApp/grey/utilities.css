@@ -852,7 +852,7 @@ button.selected[data-panel='maintenance'] {
     background-color: cornflowerblue;
 }
 
-button.selected[data-panel='ordersStandard'] {
+button.selected[data-panel='ordersStandard'], button.selected[data-panel='ordersOtherMachines'] {
     background-color: #FF7F00;
 }
 
