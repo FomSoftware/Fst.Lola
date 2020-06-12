@@ -27,6 +27,17 @@ namespace FomMonitoringCore.Repository.MongoDb
             return model;
         }
 
+        public T Find(string id)
+        {
+            if (!ObjectId.TryParse(id, out var objectId))
+            {
+                return null;
+            }
+            var filterId = Builders<T>.Filter.Eq("_id", objectId);
+            var model = Collection.Find(filterId).FirstOrDefault();
+            return model;
+        }
+
         public bool Update(T model)
         {
             var filterId = Builders<T>.Filter.Eq("_id", model.Id);
@@ -36,7 +47,8 @@ namespace FomMonitoringCore.Repository.MongoDb
 
         public void Create(T model)
         {
-            Collection.InsertOne(model);
+            if(Find(model.Id) == null)
+                Collection.InsertOne(model);
         }
 
         public bool Delete(object id)

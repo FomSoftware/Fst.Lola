@@ -7,8 +7,9 @@ namespace FomMonitoringCore.DataProcessing.Dto.Mongo
 {
     public class BaseModel
     {
-        [BsonId(IdGenerator = typeof(ObjectIdGenerator))]
-        public ObjectId Id { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         public DateTime? DateReceived { get; set; }
         public InfoMachine[] info { get; set; }
         public bool IsCumulative { get; set; }

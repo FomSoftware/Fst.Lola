@@ -13,6 +13,7 @@ using FomMonitoringCoreQueue.ProcessData;
 using FomMonitoringCoreQueue.QueueConsumer;
 using FomMonitoringCoreQueue.QueueProducer;
 using Newtonsoft.Json;
+using VariablesList = FomMonitoringCore.DataProcessing.Dto.Mongo.VariablesList;
 
 namespace VariableListLoadTest
 {
@@ -27,18 +28,16 @@ namespace VariableListLoadTest
             
             var container = builder.Build();
 
-            var context = container.Resolve<IFomMonitoringEntities>();
+            var repository = container.Resolve<IGenericRepository<VariablesList>>();
             var forwarder = container.Resolve<IQueueForwarder>();
 
-            
-            var jsons = context.Set<JsonData>().Where(h => h.Json.Contains("variable") && h.ElaborationDate > new DateTime(2020, 1, 1)).OrderByDescending(i => i.Id).ToList().AsParallel()
-                .Select(o => new {o.Id, o.Json}).OrderByDescending(n => n.Id).ToList();
-            
+
+            var jsons = repository.Query(vl => vl.DateStartElaboration > new DateTime(2020, 6, 7)).ToList();
+
 
             foreach (var data in jsons)
             {
-                forwarder.Forward(data.Json);
-                break;
+                forwarder.Forward(JsonConvert.SerializeObject(data));
             }
 
             Debugger.Break();

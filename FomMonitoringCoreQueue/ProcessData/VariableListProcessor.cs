@@ -55,23 +55,25 @@ namespace FomMonitoringCoreQueue.ProcessData
 
                             if (pm.Historicized == null || pm.Historicized == "1")
                             {
-                                var day = lastReset?.Date ?? var.UtcDateTime.Date;
-                                var dayValues = _context.Set<ParameterMachineValue>().Where(p =>
-                                    p.MachineId == mac.Id && p.ParameterMachineId == pm.Id &&
+                                var day = var.UtcDateTime.Date;
+                                var values = _context.Set<ParameterMachineValue>().Where(p =>
+                                    p.MachineId == mac.Id && p.ParameterMachineId == pm.Id);
+
+                                var dayValues = values.Where(p =>
                                     DbFunctions.TruncateTime(p.UtcDateTime) == day).ToList();
 
                                 if (dayValues.Any())
                                 {
-                                    if(dayValues.Count(dv => dv.Id != dayValues.Max(n => n.Id)) > 1)
+                                    if(dayValues.Any(dv => dv.Id != dayValues.Max(n => n.Id)))
                                         _context.Set<ParameterMachineValue>().RemoveRange(dayValues.Where(dv => dv.Id != dayValues.Max(n => n.Id)));
 
                                     var dayValue = _context.Set<ParameterMachineValue>().Find(dayValues.Max(n => n.Id));
                                     //dayValue.UtcDateTime = var.UtcDateTime;
                                     if (lastReset != null)
                                     {
-                                        dayValue.UtcDateTime = (DateTime)lastReset;
                                         AddResetValue(dayValue.Id, (DateTime)lastReset, value.VariableValue, dayValue.VarValue);
                                     }
+                                    dayValue.UtcDateTime = var.UtcDateTime;
                                     dayValue.VarValue = value.VariableValue;
                                 }
                                 else
@@ -99,7 +101,9 @@ namespace FomMonitoringCoreQueue.ProcessData
                                 var values = _context.Set<ParameterMachineValue>().Where(p =>
                                     p.MachineId == mac.Id && p.ParameterMachineId == pm.Id).ToList();
 
-                                _context.Set<ParameterMachineValue>().RemoveRange(values.Where(dv => dv.Id != values.Max(n => n.Id)));
+                                var valuesToRemove = values.Where(dv => dv.Id != values.Max(n => n.Id));
+                                if (valuesToRemove.Any())
+                                    _context.Set<ParameterMachineValue>().RemoveRange(valuesToRemove);
 
                                 var pmv = _context.Set<ParameterMachineValue>().Find(values.Max(n => n.Id));
                                 if (pmv != null)
