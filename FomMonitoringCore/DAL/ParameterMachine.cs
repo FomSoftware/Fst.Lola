@@ -19,6 +19,7 @@ namespace FomMonitoringCore.DAL
         {
             this.ParameterMachineValue = new HashSet<ParameterMachineValue>();
             this.ParameterMachineThreshold = new HashSet<ParameterMachineThreshold>();
+            this.ParameterResetValue = new HashSet<ParameterResetValue>();
         }
     
         public int Id { get; set; }
@@ -50,5 +51,7 @@ namespace FomMonitoringCore.DAL
         public virtual Panel Panel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ParameterMachineThreshold> ParameterMachineThreshold { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ParameterResetValue> ParameterResetValue { get; set; }
     }
 }

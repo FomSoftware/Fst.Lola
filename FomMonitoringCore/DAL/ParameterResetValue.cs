@@ -15,11 +15,11 @@ namespace FomMonitoringCore.DAL
     public partial class ParameterResetValue
     {
         public int Id { get; set; }
-        public int ParameterMachineValueId { get; set; }
         public System.DateTime ResetDate { get; set; }
         public Nullable<decimal> ResetValue { get; set; }
         public Nullable<decimal> ValueBeforeReset { get; set; }
+        public int ParameterMachineId { get; set; }
     
-        public virtual ParameterMachineValue ParameterMachineValue { get; set; }
+        public virtual ParameterMachine ParameterMachine { get; set; }
     }
 }

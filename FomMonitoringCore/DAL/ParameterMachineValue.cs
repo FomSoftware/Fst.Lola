@@ -14,12 +14,6 @@ namespace FomMonitoringCore.DAL
     
     public partial class ParameterMachineValue
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ParameterMachineValue()
-        {
-            this.ParameterResetValue = new HashSet<ParameterResetValue>();
-        }
-    
         public int Id { get; set; }
         public int MachineId { get; set; }
         public int ParameterMachineId { get; set; }
@@ -29,7 +23,5 @@ namespace FomMonitoringCore.DAL
     
         public virtual Machine Machine { get; set; }
         public virtual ParameterMachine ParameterMachine { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ParameterResetValue> ParameterResetValue { get; set; }
     }
 }

@@ -322,7 +322,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ParameterMachineValueId" Type="int" Nullable="false" />
+          <Property Name="ParameterMachineId" Type="int" Nullable="false" />
           <Property Name="ResetDate" Type="datetime" Nullable="false" />
           <Property Name="ResetValue" Type="decimal" Precision="18" Scale="5" />
           <Property Name="ValueBeforeReset" Type="decimal" Precision="18" Scale="5" />
@@ -828,14 +828,14 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ParameterResetValue_ParameterMachineValue">
-          <End Role="ParameterMachineValue" Type="Self.ParameterMachineValue" Multiplicity="1" />
+          <End Role="ParameterMachine" Type="Self.ParameterMachine" Multiplicity="1" />
           <End Role="ParameterResetValue" Type="Self.ParameterResetValue" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ParameterMachineValue">
+            <Principal Role="ParameterMachine">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ParameterResetValue">
-              <PropertyRef Name="ParameterMachineValueId" />
+              <PropertyRef Name="ParameterMachineId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1144,7 +1144,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <End Role="ParameterMachineValue" EntitySet="ParameterMachineValue" />
           </AssociationSet>
           <AssociationSet Name="FK_ParameterResetValue_ParameterMachineValue" Association="Self.FK_ParameterResetValue_ParameterMachineValue">
-            <End Role="ParameterMachineValue" EntitySet="ParameterMachineValue" />
+            <End Role="ParameterMachine" EntitySet="ParameterMachine" />
             <End Role="ParameterResetValue" EntitySet="ParameterResetValue" />
           </AssociationSet>
           <AssociationSet Name="FK_Piece_Bar" Association="Self.FK_Piece_Bar">
@@ -1400,8 +1400,8 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <End Role="ParameterMachineThreshold" EntitySet="ParameterMachineThreshold" />
           </AssociationSet>
           <EntitySet Name="ParameterResetValue" EntityType="FST_FomMonitoringModel.ParameterResetValue" />
-          <AssociationSet Name="FK_ParameterResetValue_ParameterMachineValue" Association="FST_FomMonitoringModel.FK_ParameterResetValue_ParameterMachineValue">
-            <End Role="ParameterMachineValue" EntitySet="ParameterMachineValue" />
+          <AssociationSet Name="FK_ParameterResetValue_ParameterMachineValue1" Association="FST_FomMonitoringModel.FK_ParameterResetValue_ParameterMachineValue1">
+            <End Role="ParameterMachine" EntitySet="ParameterMachine" />
             <End Role="ParameterResetValue" EntitySet="ParameterResetValue" />
           </AssociationSet>
 		  </EntityContainer>
@@ -2261,6 +2261,7 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <NavigationProperty Name="Panel" Relationship="FST_FomMonitoringModel.FK_ParameterMachine_Panel" FromRole="ParameterMachine" ToRole="Panel" />
           <NavigationProperty Name="ParameterMachineThreshold" Relationship="FST_FomMonitoringModel.FK_ParameterMachineThreshold_ParameterMachine" FromRole="ParameterMachine" ToRole="ParameterMachineThreshold" />
           <Property Name="VarComponent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ParameterResetValue" Relationship="FST_FomMonitoringModel.FK_ParameterResetValue_ParameterMachineValue1" FromRole="ParameterMachine" ToRole="ParameterResetValue" />
         </EntityType>
         <Association Name="FK_ParameterMachine_MachineModel">
           <End Type="FST_FomMonitoringModel.MachineModel" Role="MachineModel" Multiplicity="1" />
@@ -2286,7 +2287,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Property Name="UtcDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Machine" Relationship="FST_FomMonitoringModel.FK_ParameterMachineValue_MachineId" FromRole="ParameterMachineValue" ToRole="Machine" />
           <NavigationProperty Name="ParameterMachine" Relationship="FST_FomMonitoringModel.FK_ParameterMachineValue_ParameterMachineId" FromRole="ParameterMachineValue" ToRole="ParameterMachine" />
-          <NavigationProperty Name="ParameterResetValue" Relationship="FST_FomMonitoringModel.FK_ParameterResetValue_ParameterMachineValue" FromRole="ParameterMachineValue" ToRole="ParameterResetValue" />
         </EntityType>
         <Association Name="FK_ParameterMachineValue_MachineId">
           <End Type="FST_FomMonitoringModel.Machine" Role="Machine" Multiplicity="1" />
@@ -2419,21 +2419,21 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ParameterMachineValueId" Type="Int32" Nullable="false" />
           <Property Name="ResetDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ResetValue" Type="Decimal" Precision="18" Scale="5" />
           <Property Name="ValueBeforeReset" Type="Decimal" Precision="18" Scale="5" />
-          <NavigationProperty Name="ParameterMachineValue" Relationship="FST_FomMonitoringModel.FK_ParameterResetValue_ParameterMachineValue" FromRole="ParameterResetValue" ToRole="ParameterMachineValue" />
+          <Property Name="ParameterMachineId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ParameterMachine" Relationship="FST_FomMonitoringModel.FK_ParameterResetValue_ParameterMachineValue1" FromRole="ParameterResetValue" ToRole="ParameterMachine" />
         </EntityType>
-        <Association Name="FK_ParameterResetValue_ParameterMachineValue">
-          <End Type="FST_FomMonitoringModel.ParameterMachineValue" Role="ParameterMachineValue" Multiplicity="1" />
+        <Association Name="FK_ParameterResetValue_ParameterMachineValue1">
+          <End Type="FST_FomMonitoringModel.ParameterMachine" Role="ParameterMachine" Multiplicity="1" />
           <End Type="FST_FomMonitoringModel.ParameterResetValue" Role="ParameterResetValue" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ParameterMachineValue">
+            <Principal Role="ParameterMachine">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ParameterResetValue">
-              <PropertyRef Name="ParameterMachineValueId" />
+              <PropertyRef Name="ParameterMachineId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3003,10 +3003,10 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <EntitySetMapping Name="ParameterResetValue">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.ParameterResetValue">
               <MappingFragment StoreEntitySet="ParameterResetValue">
+                <ScalarProperty Name="ParameterMachineId" ColumnName="ParameterMachineId" />
                 <ScalarProperty Name="ValueBeforeReset" ColumnName="ValueBeforeReset" />
                 <ScalarProperty Name="ResetValue" ColumnName="ResetValue" />
                 <ScalarProperty Name="ResetDate" ColumnName="ResetDate" />
-                <ScalarProperty Name="ParameterMachineValueId" ColumnName="ParameterMachineValueId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

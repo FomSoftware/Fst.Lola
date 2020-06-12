@@ -73,8 +73,8 @@
         <EntityTypeShape EntityType="FST_FomMonitoringModel.ParameterMachineThreshold" Width="2.875" PointX="10.625" PointY="34.125" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_ParameterMachineThreshold_ParameterMachine" />
         <AssociationConnector Association="FST_FomMonitoringModel.FK_ParameterMachineThreshold_MessagesIndex" />
-        <EntityTypeShape EntityType="FST_FomMonitoringModel.ParameterResetValue" Width="1.5" PointX="10.875" PointY="46.625" />
-        <AssociationConnector Association="FST_FomMonitoringModel.FK_ParameterResetValue_ParameterMachineValue" />
+        <EntityTypeShape EntityType="FST_FomMonitoringModel.ParameterResetValue" Width="3.125" PointX="10.875" PointY="46.625" />
+        <AssociationConnector Association="FST_FomMonitoringModel.FK_ParameterResetValue_ParameterMachineValue1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
