@@ -101,6 +101,15 @@ namespace FomMonitoringCore.Service
             else
                 context.AllPlants = _mesService.GetUserPlants(context.User.ID);
 
+
+            context.ActualPeriod = new PeriodModel()
+            {
+                LastUpdate = new DataUpdateModel()
+                {
+                    DateTime = DateTime.UtcNow
+                }
+            };
+
             if (context.AllPlants.Any())
             {
                 if(context.ActualPlant == null)
@@ -110,13 +119,6 @@ namespace FomMonitoringCore.Service
                     context.AllMachines = _machineService.GetAllMachines();
                 else
                     context.AllMachines = _machineService.GetUserMachines(context.User.ID);
-
-                context.ActualPeriod = new PeriodModel() {
-                    LastUpdate = new DataUpdateModel() {
-                        DateTime = DateTime.UtcNow
-                    }
-                };
-                
 
                 SetContext(context);
             }

@@ -24,19 +24,27 @@ namespace FomMonitoringBLL.ViewServices
         {
             PlantMessagesViewModel result = new PlantMessagesViewModel();           
             result.messages = GetVueModel(context.ActualPlant, context.AllMachines, context.ActualPeriod);
-            result.plant = new PlantInfoViewModel()
+            if (context.ActualPlant != null)
             {
-                id = context.ActualPlant.Id,
-                name = context.ActualPlant.Name
-            };
-            SortingViewModel sorting = new SortingViewModel
-            {
-                timestamp = enSorting.Descending.GetDescription()
-            };
-            
-            result.sorting = sorting;
+                result.plant = new PlantInfoViewModel()
+                {
+                    id = context.ActualPlant.Id,
+                    name = context.ActualPlant.Name
+                };
 
-            result.UtcOffset = context.AllMachines.FirstOrDefault(w => w.Id == (result.messages?.FirstOrDefault()?.machine.id ?? 0))?.UTC ?? 0; 
+
+                SortingViewModel sorting = new SortingViewModel
+                {
+                    timestamp = enSorting.Descending.GetDescription()
+                };
+
+                result.sorting = sorting;
+
+                result.UtcOffset = context.AllMachines
+                                       .FirstOrDefault(
+                                           w => w.Id == (result.messages?.FirstOrDefault()?.machine.id ?? 0))?.UTC ?? 0;
+            }
+
             return result;
         }
 

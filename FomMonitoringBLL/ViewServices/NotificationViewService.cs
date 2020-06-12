@@ -44,34 +44,36 @@ namespace FomMonitoringBLL.ViewServices
             };
 
             var messages = new List<ManteinanceDataModel>();
-            foreach (var machine in context.AllMachines)
+            if (context.AllMachines != null)
             {
-                var userId = context.User.ID.ToString();
-                var data = _messageService.GetMaintenanceNotifications(machine, period, userId);
+                foreach (var machine in context.AllMachines)
+                {
+                    var userId = context.User.ID.ToString();
+                    var data = _messageService.GetMaintenanceNotifications(machine, period, userId);
 
-                data = data.Where(m => m.Day.HasValue && m.Day.Value.Date == DateTime.UtcNow.Date).ToList();
+                    data = data.Where(m => m.Day.HasValue && m.Day.Value.Date == DateTime.UtcNow.Date).ToList();
 
-                var mes = data.Select(a =>
-                    new ManteinanceDataModel
-                    {
-                        id = a.Id,
-                        code = a.Code,
-                        type = ((enTypeAlarm)a.Type).GetDescription(),
-                        time = CommonViewService.getTimeViewModel(a.ElapsedTime),
-                        timestamp = DateTime.SpecifyKind(a.Day ?? DateTime.MinValue, DateTimeKind.Utc),
-                        utc = machine.UTC,
-                        expiredSpan = CommonViewService.getTimeViewModel(_messageService.GetExpiredSpan(a)),
-                        description = a.Description,
-                        machineName = machine.MachineName,
-                        machineModel = machine.Model.Name,
-                        machineSerial = machine.Serial,
-                        panelName = Resource.PeriodicMaintenance
-                    }).ToList();
+                    var mes = data.Select(a =>
+                        new ManteinanceDataModel
+                        {
+                            id = a.Id,
+                            code = a.Code,
+                            type = ((enTypeAlarm)a.Type).GetDescription(),
+                            time = CommonViewService.getTimeViewModel(a.ElapsedTime),
+                            timestamp = DateTime.SpecifyKind(a.Day ?? DateTime.MinValue, DateTimeKind.Utc),
+                            utc = machine.UTC,
+                            expiredSpan = CommonViewService.getTimeViewModel(_messageService.GetExpiredSpan(a)),
+                            description = a.Description,
+                            machineName = machine.MachineName,
+                            machineModel = machine.Model.Name,
+                            machineSerial = machine.Serial,
+                            panelName = Resource.PeriodicMaintenance
+                        }).ToList();
 
-                messages.AddRange(mes);
-
-
+                    messages.AddRange(mes);
+                }
             }
+            
             
             messages = messages.OrderByDescending(o => o.expiredSpan.elapsed).ToList();
 
