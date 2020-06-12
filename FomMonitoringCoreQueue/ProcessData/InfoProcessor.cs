@@ -31,7 +31,12 @@ namespace FomMonitoringCoreQueue.ProcessData
                         var machineActual = _context.Set<Machine>()
                             .FirstOrDefault(m => m.Serial == machineData.MachineSerial);
                         if (machineActual == null)
-                            return false;
+                            machineActual = _context.Set<Machine>().Add(new Machine()
+                            {
+                                Serial = machineData.MachineSerial
+                            });
+
+
                         machineData.LoginDate =
                             machineData.LoginDate.HasValue && machineData.LoginDate.Value.Year < 1900
                                 ? null
