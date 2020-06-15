@@ -18,21 +18,22 @@ namespace FomMonitoringCoreQueue.ProcessData
         }
         public bool ProcessData(Info data)
         {
-            try
-            {
+
 
                 using (var threadLifetime = _parentScope.BeginLifetimeScope())
-                using (var _context = threadLifetime.Resolve<IFomMonitoringEntities>())
+                using (var context = threadLifetime.Resolve<IFomMonitoringEntities>())
                 using (var machineService = threadLifetime.Resolve<IMachineService>())
                 {
 
                     foreach (var machineData in data.InfoMachine)
                     {
-                        var machineActual = _context.Set<Machine>()
-                                                .FirstOrDefault(m => m.Serial == machineData.MachineSerial) ?? _context.Set<Machine>().Add(new Machine()
+                        var machineActual = context.Set<Machine>()
+                                                .FirstOrDefault(m => m.Serial == machineData.MachineSerial) ?? context.Set<Machine>().Add(new Machine()
                                             {
-                                                Serial = machineData.MachineSerial
+                                                Serial = machineData.MachineSerial,
+                                                LastUpdate = DateTime.UtcNow
                                             });
+                        var lastState = context.Set<HistoryState>().Where(w => w.MachineId == machineActual.Id).OrderByDescending(o => o.Day).FirstOrDefault();
 
 
                         machineData.LoginDate =
@@ -92,19 +93,16 @@ namespace FomMonitoringCoreQueue.ProcessData
                         machineActual.StateProductivityYellowThreshold =
                             machineData.StateProductivityYellowThreshold;
                         machineActual.UTC = machineData.UTC;
+                        machineActual.LastUpdate = machineData.LastUpdate ?? lastState?.Day ?? machineActual.LastUpdate;
                     }
 
 
 
-                    _context.SaveChanges();
+                    context.SaveChanges();
 
                     return true;
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+                
         }
 
         public void Dispose()

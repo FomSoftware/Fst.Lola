@@ -33,39 +33,58 @@ namespace VariableListLoadTest
             var container = builder.Build();
 
             var repository = container.Resolve<IGenericRepository<State>>();
+            var repositoryInfo = container.Resolve<IGenericRepository<Info>>();
             var repositoryHistoryJobPieceBar = container.Resolve<IGenericRepository<HistoryJobPieceBar>>();
             var repositoryMessage = container.Resolve<IGenericRepository<Message>>();
             var repositoryVariablesList = container.Resolve<IGenericRepository<VariablesList>>();
             var forwarder = container.Resolve<IQueueForwarder>();
 
 
-            var jsonsState = repository.Query(vl => vl.DateSendedQueue > new DateTime(2020, 6, 12)).ToList();
-            var jsonshistory = repositoryHistoryJobPieceBar.Query(vl => vl.DateSendedQueue > new DateTime(2020, 6, 12)).ToList();
-            var jsonsMessage = repositoryMessage.Query(vl => vl.DateSendedQueue > new DateTime(2020, 6, 12)).ToList();
-            var jsonsVariablesList = repositoryVariablesList.Query(vl => vl.DateSendedQueue > new DateTime(2020, 6, 12)).ToList();
+            var jsonsInfo = repositoryInfo.Query(vl => vl.ElaborationSuccesfull == null).ToList();
+            var jsonsState = repository.Query(vl => vl.ElaborationSuccesfull == null).ToList();
+            var jsonshistory = repositoryHistoryJobPieceBar.Query(vl => vl.ElaborationSuccesfull == null).ToList();
+            //var jsonsMessage = repositoryMessage.Query(vl => vl.ElaborationSuccesfull == null).ToList();
+            var jsonsVariablesList = repositoryVariablesList.Query(vl => vl.ElaborationSuccesfull == null).ToList();
 
+
+            foreach (var data in jsonsInfo)
+            {
+                data.DateEndElaboration = data.DateSendedQueue;
+                data.DateStartElaboration = data.DateSendedQueue;
+                data.ElaborationSuccesfull = true;
+                repositoryInfo.Update(data);
+                //forwarder.Forward(JsonConvert.SerializeObject(data));
+            }
 
             foreach (var data in jsonsState)
             {
-                
-                forwarder.Forward(JsonConvert.SerializeObject(data));
+                data.DateEndElaboration = data.DateSendedQueue;
+                data.DateStartElaboration = data.DateSendedQueue;
+                data.ElaborationSuccesfull = true;
+                repository.Update(data);
+                //forwarder.Forward(JsonConvert.SerializeObject(data));
             }
 
             foreach (var data in jsonshistory)
             {
-
-                forwarder.Forward(JsonConvert.SerializeObject(data));
+                data.DateEndElaboration = data.DateSendedQueue;
+                data.DateStartElaboration = data.DateSendedQueue;
+                data.ElaborationSuccesfull = true;
+                repositoryHistoryJobPieceBar.Update(data);
+                //forwarder.Forward(JsonConvert.SerializeObject(data));
             }
 
-            foreach (var data in jsonsMessage)
-            {
-
-                forwarder.Forward(JsonConvert.SerializeObject(data));
-            }
+            //foreach (var data in jsonsMessage)
+            //{
+            //    data.DateEndElaboration = data.DateSendedQueue;
+            //    data.DateStartElaboration = data.DateSendedQueue;
+            //    data.ElaborationSuccesfull = true;
+            //    repositoryMessage.Update(data);
+            //    //forwarder.Forward(JsonConvert.SerializeObject(data));
+            //}
 
             foreach (var data in jsonsVariablesList)
             {
-
                 forwarder.Forward(JsonConvert.SerializeObject(data));
             }
 

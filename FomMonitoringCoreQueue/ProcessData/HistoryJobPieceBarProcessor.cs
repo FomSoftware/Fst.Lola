@@ -67,7 +67,6 @@ namespace FomMonitoringCoreQueue.ProcessData
 
                         
                         context.Set<Piece>().AddRange(piece);
-                        mac.LastUpdate = DateTime.UtcNow;
                         context.SaveChanges();
 
 
