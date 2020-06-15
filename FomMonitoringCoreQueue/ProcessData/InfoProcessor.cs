@@ -29,12 +29,10 @@ namespace FomMonitoringCoreQueue.ProcessData
                     foreach (var machineData in data.InfoMachine)
                     {
                         var machineActual = _context.Set<Machine>()
-                            .FirstOrDefault(m => m.Serial == machineData.MachineSerial);
-                        if (machineActual == null)
-                            machineActual = _context.Set<Machine>().Add(new Machine()
-                            {
-                                Serial = machineData.MachineSerial
-                            });
+                                                .FirstOrDefault(m => m.Serial == machineData.MachineSerial) ?? _context.Set<Machine>().Add(new Machine()
+                                            {
+                                                Serial = machineData.MachineSerial
+                                            });
 
 
                         machineData.LoginDate =

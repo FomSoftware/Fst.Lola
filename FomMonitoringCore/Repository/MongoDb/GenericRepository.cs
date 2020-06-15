@@ -40,7 +40,7 @@ namespace FomMonitoringCore.Repository.MongoDb
 
         public bool Update(T model)
         {
-            var filterId = Builders<T>.Filter.Eq("_id", model.Id);
+            var filterId = Builders<T>.Filter.Eq("_id", ObjectId.Parse(model.Id));
             var updated = Collection.FindOneAndReplace(filterId, model);
             return updated != null;
         }

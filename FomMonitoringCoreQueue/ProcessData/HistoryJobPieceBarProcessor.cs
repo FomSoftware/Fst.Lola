@@ -31,7 +31,7 @@ namespace FomMonitoringCoreQueue.ProcessData
                         var jobService = threadLifetime.Resolve<IJobService>();
                         var machineService = threadLifetime.Resolve<IMachineService>();
                         var serial = data.InfoMachine.FirstOrDefault()?.MachineSerial;
-                        var mac = context.Set<Machine>().FirstOrDefault(m => m.Serial == serial);
+                        var mac = context.Set<Machine>().AsNoTracking().FirstOrDefault(m => m.Serial == serial);
 
                         if (mac == null)
                             return false;

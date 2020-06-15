@@ -26,7 +26,7 @@ namespace FomMonitoringCoreQueue.ProcessData
         public bool ProcessData(VariablesList data)
         {
                 var serial = data.InfoMachine.FirstOrDefault()?.MachineSerial;
-                    var mac = _context.Set<Machine>().FirstOrDefault(m => m.Serial == serial);
+                    var mac = _context.Set<Machine>().AsNoTracking().FirstOrDefault(m => m.Serial == serial);
                     if (mac == null)
                         return false;
 
@@ -62,7 +62,12 @@ namespace FomMonitoringCoreQueue.ProcessData
                                 var dayValues = values.Where(p =>
                                     DbFunctions.TruncateTime(p.UtcDateTime) == day).ToList();
 
-                                var dayValue = _context.Set<ParameterMachineValue>().Find(dayValues.Max(n => n.Id));
+                                ParameterMachineValue dayValue = null;
+                                if (dayValues.Any())
+                                {
+                                    dayValue = _context.Set<ParameterMachineValue>().Find(dayValues.Max(n => n.Id));
+                                }
+                                
                                 if (dayValue != null)
                                 {
                                     if(dayValues.Any(dv => dv.Id != dayValues.Max(n => n.Id)))
@@ -101,11 +106,15 @@ namespace FomMonitoringCoreQueue.ProcessData
                                 var values = _context.Set<ParameterMachineValue>().Where(p =>
                                     p.MachineId == mac.Id && p.ParameterMachineId == pm.Id).ToList();
 
-                                var valuesToRemove = values.Where(dv => dv.Id != values.Max(n => n.Id)).ToList();
-                                if (valuesToRemove.Any())
-                                    _context.Set<ParameterMachineValue>().RemoveRange(valuesToRemove);
-
-                                var pmv = _context.Set<ParameterMachineValue>().Find(values.Max(n => n.Id));
+                                ParameterMachineValue pmv = null;
+                                if (values.Any())
+                                {
+                                    pmv = _context.Set<ParameterMachineValue>().Find(values.Max(n => n.Id));
+                                    var valuesToRemove = values.Where(dv => dv.Id != values.Max(n => n.Id)).ToList();
+                                    if (valuesToRemove.Any())
+                                        _context.Set<ParameterMachineValue>().RemoveRange(valuesToRemove);
+                                }
+                                
                                 if (pmv != null)
                                 {
                                         //pmv.UtcDateTime = var.UtcDateTime;

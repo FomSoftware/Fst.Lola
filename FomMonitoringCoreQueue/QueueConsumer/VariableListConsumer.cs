@@ -66,22 +66,25 @@ namespace FomMonitoringCoreQueue.QueueConsumer
                         data.DateEndElaboration = DateTime.UtcNow;
                         data.ElaborationSuccesfull = true;
 
+                        stopWatch.Stop();
+                        // Get the elapsed time as a TimeSpan value.
+                        var ts = stopWatch.Elapsed;
+
+                        _queueConnection.ChannelVariableList.BasicAck(ea.DeliveryTag, false);
+                        // Format and display the TimeSpan value.
+                        elapsedTime = $"{ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}.{ts.Milliseconds:00}";
+                        Log?.Invoke(this, new LoggerEventsQueue
+                        {
+                            Message = $"Finita elaborazione VariableLists {data.Id.ToString()} - { DateTime.UtcNow:O} tempo trascorso { elapsedTime }",
+                            Exception = null,
+                            TypeLevel = LogService.TypeLevel.Info,
+                            Type = TypeEvent.Variable
+                        });
                     }
-
-                    stopWatch.Stop();
-                    // Get the elapsed time as a TimeSpan value.
-                    var ts = stopWatch.Elapsed;
-
-                    // Format and display the TimeSpan value.
-                    elapsedTime = $"{ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}.{ts.Milliseconds:00}";
-                    _queueConnection.ChannelVariableList.BasicAck(ea.DeliveryTag, false);
-                    Log?.Invoke(this, new LoggerEventsQueue
+                    else
                     {
-                        Message = $"Finita elaborazione VariableLists {data.Id.ToString()} - { DateTime.UtcNow:O} tempo trascorso { elapsedTime }",
-                        Exception = null,
-                        TypeLevel = LogService.TypeLevel.Info,
-                        Type = TypeEvent.Variable
-                    });
+                        throw new Exception("Errore elaborazione json senza eccezioni");
+                    }
                 }
                 catch (Exception ex)
                 {
