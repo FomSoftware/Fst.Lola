@@ -15,6 +15,10 @@
         vmJobs.showed = false;
     }
 
+    var hidden = function () {
+        return vmJobs.showed == true;
+    }
+
     var dataBindVueModel = function (data)
     {
         vmJobs = new Vue({
@@ -262,7 +266,8 @@
         init: init,
         update: update,
         show: show,
-        hide: hide
+        hide: hide,
+        hidden: hidden
     }
 
 }();

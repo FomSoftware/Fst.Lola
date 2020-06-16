@@ -74,12 +74,12 @@
         if (vmImageMachine.machinePanelSelected == 'ordersStandard' ||
             (!(vmImageMachine.isTablet() || vmImageMachine.isMobile()) &&
                 (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
-            if (Jobs.showed)
+            if (Jobs != null)
                 Jobs.show();
             else
                 OtherMachinesJobs.show();
         } else {
-            if (Jobs.showed)
+            if (Jobs != null)
                 Jobs.hide();
             else
                 OtherMachinesJobs.hide();
