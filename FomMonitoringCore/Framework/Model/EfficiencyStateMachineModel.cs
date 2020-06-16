@@ -29,6 +29,16 @@ namespace FomMonitoringCore.Framework.Model
                 return prod;
             }
         }
-        
+
+        public long? ProducionModeTime
+        {
+            get
+            {
+                if (StatesTime == null || StatesTime.Count == 0) return null;
+                long? prod = StatesTime.ContainsKey((int?)enState.Production) ? StatesTime[(int?)enState.Production] : 0;
+                return prod;
+            }
+        }
+
     }
 }

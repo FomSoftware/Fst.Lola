@@ -39,54 +39,19 @@ namespace VariableListLoadTest
             var repositoryVariablesList = container.Resolve<IGenericRepository<VariablesList>>();
             var forwarder = container.Resolve<IQueueForwarder>();
 
+            
+            var jsonsMessage = repositoryMessage.Query(vl => vl.ElaborationSuccesfull == null).ToList();
 
-            var jsonsInfo = repositoryInfo.Query(vl => vl.ElaborationSuccesfull == null).ToList();
-            var jsonsState = repository.Query(vl => vl.ElaborationSuccesfull == null).ToList();
-            var jsonshistory = repositoryHistoryJobPieceBar.Query(vl => vl.ElaborationSuccesfull == null).ToList();
-            //var jsonsMessage = repositoryMessage.Query(vl => vl.ElaborationSuccesfull == null).ToList();
-            var jsonsVariablesList = repositoryVariablesList.Query(vl => vl.ElaborationSuccesfull == null).ToList();
-
-
-            foreach (var data in jsonsInfo)
+            
+            foreach (var data in jsonsMessage)
             {
                 data.DateEndElaboration = data.DateSendedQueue;
                 data.DateStartElaboration = data.DateSendedQueue;
                 data.ElaborationSuccesfull = true;
-                repositoryInfo.Update(data);
+                repositoryMessage.Update(data);
                 //forwarder.Forward(JsonConvert.SerializeObject(data));
             }
 
-            foreach (var data in jsonsState)
-            {
-                data.DateEndElaboration = data.DateSendedQueue;
-                data.DateStartElaboration = data.DateSendedQueue;
-                data.ElaborationSuccesfull = true;
-                repository.Update(data);
-                //forwarder.Forward(JsonConvert.SerializeObject(data));
-            }
-
-            foreach (var data in jsonshistory)
-            {
-                data.DateEndElaboration = data.DateSendedQueue;
-                data.DateStartElaboration = data.DateSendedQueue;
-                data.ElaborationSuccesfull = true;
-                repositoryHistoryJobPieceBar.Update(data);
-                //forwarder.Forward(JsonConvert.SerializeObject(data));
-            }
-
-            //foreach (var data in jsonsMessage)
-            //{
-            //    data.DateEndElaboration = data.DateSendedQueue;
-            //    data.DateStartElaboration = data.DateSendedQueue;
-            //    data.ElaborationSuccesfull = true;
-            //    repositoryMessage.Update(data);
-            //    //forwarder.Forward(JsonConvert.SerializeObject(data));
-            //}
-
-            foreach (var data in jsonsVariablesList)
-            {
-                forwarder.Forward(JsonConvert.SerializeObject(data));
-            }
 
             Debugger.Break();
         }

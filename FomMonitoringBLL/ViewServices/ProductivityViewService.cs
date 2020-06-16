@@ -85,6 +85,7 @@ namespace FomMonitoringBLL.ViewServices
             // tempo lordo: devo andare sulla tabella degli stati perchè non ce l'ho sui pezzi
             var grossTime = operatorActivities.Sum(m => m.TotalTime);
             var netTime = operatorActivities.Sum(m => m.ProducingTime);
+            var productionTime = operatorActivities.Sum(m => m.ProducionModeTime ?? 0);
             //var grossTime = data.Select(s => s.ElapsedTime).Sum();
             var doneCount = data.Select(s => s.CompletedCount).Sum() ?? 0;
             var redoneCount = data.Select(s => s.RedoneCount).Sum() ?? 0;
@@ -139,31 +140,41 @@ namespace FomMonitoringBLL.ViewServices
 
             // phases
             var phases = new List<ProdDataModel>();
-            if (machine.MachineTypeId != (int)enMachineType.Troncatrice)
+            switch (machine.MachineTypeId)
             {
-                var working = new ProdDataModel();
-                working.text = Resource.Working;
-                working.perc = Common.GetPercentage(data.Select(s => s.ElapsedTimeWorking ?? 0).Sum(), grossTime);
-                phases.Add(working);
+                case (int)enMachineType.Troncatrice:
+                    var cut = new ProdDataModel();
+                    cut.text = Resource.Cut;
+                    cut.perc = Common.GetPercentage(netTime, grossTime);
+                    phases.Add(cut);
+                    break;
 
-                var trim = new ProdDataModel();
-                trim.text = Resource.Trim;
-                trim.perc = Common.GetPercentage(data.Select(s => s.ElapsedTimeTrim ?? 0).Sum(), grossTime);
-                phases.Add(trim);
+                case (int)enMachineType.CentroLavoro:
+                    var working = new ProdDataModel();
+                    working.text = Resource.Working;
+                    working.perc = Common.GetPercentage(productionTime, grossTime);
+                    phases.Add(working);
+                    break;
 
-                var cut = new ProdDataModel();
-                cut.text = Resource.Cut;
-                cut.perc = Common.GetPercentage(data.Select(s => s.ElapsedTimeCut ?? 0).Sum(), grossTime);
-                phases.Add(cut);
+                default:
+                    working = new ProdDataModel();
+                    working.text = Resource.Working;
+                    working.perc = Common.GetPercentage(data.Select(s => s.ElapsedTimeWorking ?? 0).Sum(), grossTime);
+                    phases.Add(working);
+
+                    var trim = new ProdDataModel();
+                    trim.text = Resource.Trim;
+                    trim.perc = Common.GetPercentage(data.Select(s => s.ElapsedTimeTrim ?? 0).Sum(), grossTime);
+                    phases.Add(trim);
+
+                    cut = new ProdDataModel();
+                    cut.text = Resource.Cut;
+                    cut.perc = Common.GetPercentage(data.Select(s => s.ElapsedTimeCut ?? 0).Sum(), grossTime);
+                    phases.Add(cut);
+
+                    break;
             }
-            else
-            {
-                var cut = new ProdDataModel();
-                cut.text = Resource.Cut;
-                cut.perc = Common.GetPercentage(netTime, grossTime);
-                phases.Add(cut);
-            }
-            
+         
 
             var timeAnuba = data.Select(s => s.ElapsedTimeAnuba ?? 0).Sum();
 
