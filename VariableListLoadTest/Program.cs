@@ -40,16 +40,12 @@ namespace VariableListLoadTest
             var forwarder = container.Resolve<IQueueForwarder>();
 
             
-            var jsonsMessage = repositoryMessage.Query(vl => vl.ElaborationSuccesfull == null).ToList();
+            var jsonsMessage = repositoryMessage.Query(vl => vl.DateSendedQueue > new DateTime(2020, 06,15)).ToList();
 
             
             foreach (var data in jsonsMessage)
             {
-                data.DateEndElaboration = data.DateSendedQueue;
-                data.DateStartElaboration = data.DateSendedQueue;
-                data.ElaborationSuccesfull = true;
-                repositoryMessage.Update(data);
-                //forwarder.Forward(JsonConvert.SerializeObject(data));
+                forwarder.Forward(JsonConvert.SerializeObject(data));
             }
 
 

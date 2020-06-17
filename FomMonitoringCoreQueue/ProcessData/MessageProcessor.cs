@@ -36,32 +36,37 @@ namespace FomMonitoringCoreQueue.ProcessData
 
                     var cat = _context.Set<MachineModel>().Find(mac.MachineModelId)?.MessageCategoryId;
 
-                    var maxDate = _context.Set<MessageMachine>()
-                        .Where(m => m.MachineId == mac.Id && m.Day != null).Max(et => et.Day);
+                    //var maxDate = _context.Set<MessageMachine>()
+                    //    .Any(m => m.MachineId == mac.Id && m.Day != null && m.IsPeriodicMsg != true) ? _context.Set<MessageMachine>().Where(m => m.MachineId == mac.Id && m.Day != null && m.IsPeriodicMsg != true).Max(et => et.Day ?? DateTime.MinValue) : DateTime.MinValue;
 
-                    var messages = data.MessageMachine.Where(w => w.Time > (maxDate ?? new DateTime())).ToList();
+                    //var messages = data.MessageMachine.Where(w => w.Time > maxDate).ToList();
 
                     //devo eliminare quei messaggi che hanno isLolaVisible = 0 da mdb
                     var messageMachine = new List<MessageMachine>();
 
-                    foreach (var mm in messages)
+                    foreach (var mm in data.MessageMachine)
                     {
+                        if (_context.Set<MessageMachine>().Any(msg =>
+                            msg.MessagesIndex.MessageCode == mm.Code && msg.Operator == mm.Operator &&
+                            msg.Day == mm.Time)) continue;
+
                         var message = mm.BuildAdapter().AddParameters("machineId", mac.Id)
                             .AdaptToType<MessageMachine>();
-                        var msg = _context.Set<MessagesIndex>()
+                        var msgIndex = _context.Set<MessagesIndex>()
                             .FirstOrDefault(f => f.MessageCode == mm.Code && f.MessageCategoryId == cat);
                         message.Id = 0;
-                        if (msg == null)
+                        if (msgIndex == null)
                             continue;
-                        var old = _context.Set<MessageMachine>().Count(a => a.MessagesIndexId == msg.Id &&
+                        var old = _context.Set<MessageMachine>().Count(a => a.MessagesIndexId == msgIndex.Id &&
                                                                             a.MachineId == message.MachineId &&
                                                                             a.StartTime.Value.CompareTo(
                                                                                 message.StartTime.Value) == 0);
                         if (old != 0)
                             continue;
-                        message.MessagesIndexId = msg.Id;
-                        message.MessagesIndex = msg;
+                        message.MessagesIndexId = msgIndex.Id;
+                        message.MessagesIndex = msgIndex;
                         messageMachine.Add(message);
+
                     }
 
                     //IS-754 escludere tutti quelli che hanno isLolaVisible = false && type error o warning 
