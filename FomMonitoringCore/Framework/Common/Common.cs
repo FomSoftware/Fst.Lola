@@ -61,6 +61,19 @@ namespace FomMonitoringCore.Framework.Common
             return result;
         }
 
+        public static decimal GetPercentage(double? value, double? total)
+        {
+            decimal result = 0;
+
+            if (value != null && total != null)
+            {
+                if (total != 0)
+                    result = (decimal)value * 100 / (decimal)total;
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Ritorna il valore percentuale del value passato come parametro
         /// </summary>

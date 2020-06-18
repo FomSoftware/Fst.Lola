@@ -46,7 +46,7 @@ namespace FomMonitoringBLL.ViewModel
 
     public class MaterialViewModel
     {
-        public int total { get; set; }
+        public double total { get; set; }
         public ProdDataModel bar { get; set; }
         public ProdDataModel cutoff { get; set; }
     }
@@ -55,6 +55,6 @@ namespace FomMonitoringBLL.ViewModel
     {
         public string text { get; set; }
         public decimal? perc { get; set; }
-        public int number { get; set; }
+        public double number { get; set; }
     }
 }
