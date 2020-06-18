@@ -1155,4 +1155,7 @@ La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;
   <data name="Automatico" xml:space="preserve">
     <value>Automático</value>
   </data>
+  <data name="DoppieTeste" xml:space="preserve">
+    <value>Dobles cabezas</value>
+  </data>
 </root>

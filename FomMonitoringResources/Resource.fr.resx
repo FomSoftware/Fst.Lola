@@ -1155,4 +1155,7 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
   <data name="Automatico" xml:space="preserve">
     <value>Automatique</value>
   </data>
+  <data name="DoppieTeste" xml:space="preserve">
+    <value>Doubles têtes</value>
+  </data>
 </root>

@@ -1154,4 +1154,7 @@ Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt
   <data name="Automatico" xml:space="preserve">
     <value>Automatisch</value>
   </data>
+  <data name="DoppieTeste" xml:space="preserve">
+    <value>Doppelköpfe</value>
+  </data>
 </root>

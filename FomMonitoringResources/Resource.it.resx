@@ -1159,4 +1159,7 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
   <data name="Automatico" xml:space="preserve">
     <value>Automatico</value>
   </data>
+  <data name="DoppieTeste" xml:space="preserve">
+    <value>Doppie Teste</value>
+  </data>
 </root>

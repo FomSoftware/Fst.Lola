@@ -1161,4 +1161,7 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   <data name="Automatico" xml:space="preserve">
     <value>Automatico</value>
   </data>
+  <data name="DoppieTeste" xml:space="preserve">
+    <value>DoppieTeste</value>
+  </data>
 </root>

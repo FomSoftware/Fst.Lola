@@ -990,6 +990,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DoppieTeste.
+        /// </summary>
+        public static string DoppieTeste {
+            get {
+                return ResourceManager.GetString("DoppieTeste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hours since last greasing.
         /// </summary>
         public static string durataIngrassatura {
