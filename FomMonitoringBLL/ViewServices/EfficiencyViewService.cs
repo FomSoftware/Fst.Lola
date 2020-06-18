@@ -48,7 +48,7 @@ namespace FomMonitoringBLL.ViewServices
             if (data.Count == 0)
                 return result;
 
-            var stateProd = data.FirstOrDefault(w => w.enState == enState.Production);
+            var stateProd = data.FirstOrDefault(w => w.enState == enState.Automatico);
 
             var totalProd = stateProd?.ElapsedTime;
 
@@ -69,8 +69,8 @@ namespace FomMonitoringBLL.ViewServices
 
             // state prod
             var prod = new StateViewModel();
-            prod.code = enState.Production.GetDescription();
-            prod.text = enState.Production.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
+            prod.code = enState.Automatico.GetDescription();
+            prod.text = enState.Automatico.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             prod.perc = percProd;
             prod.time = CommonViewService.getTimeViewModel(totalProd);
             states.Add(prod);
@@ -172,9 +172,9 @@ namespace FomMonitoringBLL.ViewServices
             var series = new List<SerieViewModel>();
 
             var serieProd = new SerieViewModel();
-            serieProd.name = enState.Production.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
-            serieProd.color = CommonViewService.GetColorState(enState.Production);
-            serieProd.data = Common.ConvertElapsedByMeasurement(data.Where(w => w.enState == enState.Production).Select(s => s.ElapsedTime ?? 0).ToList(), measurement);
+            serieProd.name = enState.Automatico.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
+            serieProd.color = CommonViewService.GetColorState(enState.Automatico);
+            serieProd.data = Common.ConvertElapsedByMeasurement(data.Where(w => w.enState == enState.Automatico).Select(s => s.ElapsedTime ?? 0).ToList(), measurement);
             series.Add(serieProd);
 
             var seriePause = new SerieViewModel();
@@ -214,12 +214,12 @@ namespace FomMonitoringBLL.ViewServices
             if (machine.MachineTypeId == (int)enMachineType.Troncatrice || machine.MachineTypeId == (int)enMachineType.CentroLavoro)
             {
                 efficiency = states
-                    .Where(w => (w.enState == enState.Manual || w.enState == enState.Production) &&
+                    .Where(w => (w.enState == enState.Manual || w.enState == enState.Automatico) &&
                                 w.Operator == operatorName).Sum(w => w.ElapsedTime ?? 0);
                 return (efficiency * 100) / totalTime;
             }
             efficiency = states
-                .Where(w => w.enState == enState.Production &&
+                .Where(w => w.enState == enState.Automatico &&
                             w.Operator == operatorName).Sum(w => w.ElapsedTime ?? 0);
             return (efficiency * 100) / totalTime;
         }
@@ -253,7 +253,7 @@ namespace FomMonitoringBLL.ViewServices
             var data = _stateService.GetAggregationStates(machine, period, enDataType.Dashboard);
 
 
-            var stateProd = data.FirstOrDefault(w => w.enState == enState.Production);
+            var stateProd = data.FirstOrDefault(w => w.enState == enState.Automatico);
 
             var stateManual = data.FirstOrDefault(w => w.enState == enState.Manual);
             
@@ -303,7 +303,7 @@ namespace FomMonitoringBLL.ViewServices
             if (!data.Any())
                 return options;
 
-            var stateProd = data.FirstOrDefault(w => w.enState == enState.Production);
+            var stateProd = data.FirstOrDefault(w => w.enState == enState.Automatico);
             var statePause = data.FirstOrDefault(w => w.enState == enState.Pause);
 
             var stateError = data.FirstOrDefault(w => w.enState == enState.Error);
@@ -328,9 +328,9 @@ namespace FomMonitoringBLL.ViewServices
 
             // state prod
             var prod = new SerieViewModel();
-            prod.name = enState.Production.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
+            prod.name = enState.Automatico.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             prod.y = percProd ?? 0;
-            prod.color = CommonViewService.GetColorState(enState.Production);
+            prod.color = CommonViewService.GetColorState(enState.Automatico);
             options.series.Add(prod);
             
             // state pause
@@ -363,8 +363,8 @@ namespace FomMonitoringBLL.ViewServices
             var series = new List<SerieViewModel>();
 
             var serieProd = new SerieViewModel();
-            serieProd.name = enState.Production.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
-            serieProd.color = CommonViewService.GetColorState(enState.Production);
+            serieProd.name = enState.Automatico.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
+            serieProd.color = CommonViewService.GetColorState(enState.Automatico);
             serieProd.data = new List<int>();
 
             var seriePause = new SerieViewModel();
@@ -399,7 +399,7 @@ namespace FomMonitoringBLL.ViewServices
 
                 var totalOn = dataCategorie.Where(w => w.enState != enState.Offline).Select(s => s.ElapsedTime).Sum();
 
-                var stateProd = dataCategorie.Where(w => w.enState == enState.Production).FirstOrDefault();
+                var stateProd = dataCategorie.Where(w => w.enState == enState.Automatico).FirstOrDefault();
 
                 if (stateProd != null)
                 {

@@ -1152,4 +1152,7 @@ La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;
   <data name="PasswordNotChanged" xml:space="preserve">
     <value>Advertencia: la nueva contraseña debe ser diferente de la anterior.</value>
   </data>
+  <data name="Automatico" xml:space="preserve">
+    <value>Automático</value>
+  </data>
 </root>

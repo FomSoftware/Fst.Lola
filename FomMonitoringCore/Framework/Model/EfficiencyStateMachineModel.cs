@@ -21,7 +21,7 @@ namespace FomMonitoringCore.Framework.Model
             get
             {
                 if (StatesTime == null || StatesTime.Count == 0) return null;
-                long? prod = StatesTime.ContainsKey((int?)enState.Production) ? StatesTime[(int?)enState.Production] : 0;
+                long? prod = StatesTime.ContainsKey((int?)enState.Automatico) ? StatesTime[(int?)enState.Automatico] : 0;
                 if (machineType == null || (machineType != (int) enMachineType.Troncatrice && machineType != (int)enMachineType.CentroLavoro)) return prod;
                 long? manual = StatesTime.ContainsKey((int)enState.Manual) ? StatesTime[(int?)enState.Manual] : 0;
                 if (manual != null)
@@ -35,7 +35,7 @@ namespace FomMonitoringCore.Framework.Model
             get
             {
                 if (StatesTime == null || StatesTime.Count == 0) return null;
-                long? prod = StatesTime.ContainsKey((int?)enState.Production) ? StatesTime[(int?)enState.Production] : 0;
+                long? prod = StatesTime.ContainsKey((int?)enState.Automatico) ? StatesTime[(int?)enState.Automatico] : 0;
                 return prod;
             }
         }

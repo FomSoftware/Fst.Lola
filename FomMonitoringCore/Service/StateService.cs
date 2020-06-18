@@ -195,7 +195,7 @@ namespace FomMonitoringCore.Service
                     var tmp3 = _context.Set<HistoryState>()
                         .Where(w => w.MachineId == machine.Id && w.Day >= dateFrom && w.Day <= dateTo 
                                     && w.Operator == item.Operator &&  w.Shift == null && w.Operator != null &&
-                                    (w.StateId == (int)enState.Production || w.StateId == (int) enState.Manual)).ToList();
+                                    (w.StateId == (int)enState.Automatico || w.StateId == (int) enState.Manual)).ToList();
 
                     item.StatesTime = tmp3.GroupBy(g => g.StateId )
                         .ToDictionary(s => s.Key, s => s.Sum(x => x.ElapsedTime));

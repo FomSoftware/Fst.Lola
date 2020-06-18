@@ -39,7 +39,7 @@ namespace FomMonitoringCore.Framework.Common
         [Description("off")]
         Offline = 0,
         [Description("prod")]
-        Production = 1,
+        Automatico = 1,
         [Description("pause")]
         Pause = 2,
         [Description("error")]

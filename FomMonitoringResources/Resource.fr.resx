@@ -1152,4 +1152,7 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
   <data name="PasswordNotChanged" xml:space="preserve">
     <value>Attention: le nouveau mot de passe doit être différent du précédent.</value>
   </data>
+  <data name="Automatico" xml:space="preserve">
+    <value>Automatique</value>
+  </data>
 </root>

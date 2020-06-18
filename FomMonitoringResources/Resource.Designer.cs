@@ -133,6 +133,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatico.
+        /// </summary>
+        public static string Automatico {
+            get {
+                return ResourceManager.GetString("Automatico", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Average Speed.
         /// </summary>
         public static string AverageSpeed {
