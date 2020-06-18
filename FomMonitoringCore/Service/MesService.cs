@@ -116,7 +116,7 @@ namespace FomMonitoringCore.Service
 
             if (string.IsNullOrWhiteSpace(plantName))
             {
-                plantName = "DEFAULT_PLANT_" + user.Username;
+                plantName = "Default_" + user.Username;
             }
 
             try
