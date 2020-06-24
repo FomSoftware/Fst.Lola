@@ -101,20 +101,21 @@
                 {
                     {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
                 })
-                <div id="MsgPanel" class="col-xxl-8 col-xl-6 col-lg-6 col-md-12 col-sm-12 order-lg-11 order-xl-11">
-                    <div class="row">
-                        <div class="col-12">
-                            @Html.Partial("Panels/_Messages", Model.Messages)
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-xxl-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 order-xl-last">
+               
+                <div class="col-xxl-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 order-md-11 order-lg-11 order-xl-11 order-xxl-12">
                     <div class="row">
                         @Html.Partial("Panels/_Maintenance", Model.Maintenance, new ViewDataDictionary
                         {
                             { "Classes", "col-12" }
                         })
+                    </div>
+                </div>
+                <div id="MsgPanel" class="col-xxl-8 col-xl-6 col-lg-6 col-md-12 col-sm-12 order-md-12 order-lg-12 order-xl-12 order-xxl-11">
+                    <div class="row">
+                        <div class="col-12">
+                            @Html.Partial("Panels/_Messages", Model.Messages)
+                        </div>
+
                     </div>
                 </div>
 
