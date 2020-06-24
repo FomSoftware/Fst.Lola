@@ -76,12 +76,12 @@
                 (vmImageMachine.machineGroupSelected == null && vmImageMachine.machinePanelSelected == null))) {
             if (Jobs != null)
                 Jobs.show();
-            else
+            if (OtherMachinesJobs != null)
                 OtherMachinesJobs.show();
         } else {
             if (Jobs != null)
                 Jobs.hide();
-            else
+            if (OtherMachinesJobs != null)
                 OtherMachinesJobs.hide();
         }
 

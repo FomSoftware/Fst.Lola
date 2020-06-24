@@ -6,6 +6,15 @@
     {
         initVueModel(data.vm_motor_keope);
     }
+    var show = function () {
+        if(vmMotor != null)
+            vmMotor.showed = true;
+    }
+
+    var hide = function () {
+        if (vmMotor != null)
+            vmMotor.showed = false;
+    }
 
     var initVueModel = function (data)
     {
@@ -14,6 +23,7 @@
             data: {
                 fixedHead: data.fixedHead,
                 mobileHead: data.mobileHead,
+                showed: true
             },
             computed: {
                 colorKPI: function () {
@@ -42,7 +52,9 @@
 
     return {
         init: init,
-        update: update
+        update: update,
+        show: show,
+        hide: hide
     }
 
 }();
