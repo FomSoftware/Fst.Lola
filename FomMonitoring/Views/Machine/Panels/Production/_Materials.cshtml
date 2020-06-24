@@ -14,7 +14,7 @@
                     @LocalizationService.GetResource("Used")
                 </span>
                 <span class="value">
-                    {{ material.total | number:'1.0-1' }}<em>m</em>
+                    {{ material.total | roundDecimal(1) }}<em>m</em>
                 </span>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 @LocalizationService.GetResource("Bars")
             </td>
             <td>{{ material.bar.perc | round }}<em>%</em></td>
-            <td>{{ material.bar.number |  number:'1.0-1' }}<em>m</em></td>
+            <td>{{ material.bar.number |  roundDecimal(1) }}<em>m</em></td>
         </tr>
         <tr>
             <td>
@@ -38,7 +38,7 @@
                 @LocalizationService.GetResource("Cutoff")
             </td>
             <td>{{ material.cutoff.perc | round }}<em>%</em></td>
-            <td>{{ material.cutoff.number | number:'1.0-1' }}<em>m</em></td>
+            <td>{{ material.cutoff.number | roundDecimal(1) }}<em>m</em></td>
         </tr>
         <tr v-if="productionVariables != null && machineModel.toLocaleUpperCase().includes('LMX')">
             <td style="padding:0" class="testo-abbreviato">
