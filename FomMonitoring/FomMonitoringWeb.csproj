@@ -17,8 +17,8 @@
     <RootNamespace>FomMonitoring</RootNamespace>
     <AssemblyName>FomMonitoring</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>44391</IISExpressSSLPort>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort>62186</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
@@ -457,6 +457,8 @@
     <Content Include="GlobApp\scripts\user-manager.js" />
     <Content Include="GlobApp\scripts\vue-manager.js" />
     <Content Include="GlobApp\scripts\waitme-manager.js" />
+    <Content Include="Images\email\background-min.jpg" />
+    <Content Include="Images\email\Logo_email.jpg" />
     <Content Include="Images\flags\de.png" />
     <Content Include="Images\flags\en.png" />
     <Content Include="Images\flags\es.png" />
@@ -1139,6 +1141,7 @@
     <Content Include="Views\Machine\Panels\Jobs\_OtherMachines.cshtml" />
     <Content Include="Views\Machine\Panels\XTools\_Lmx.cshtml" />
     <Content Include="Views\Machine\Model\_BLITZ.cshtml" />
+    <Content Include="Views\EmailTemplates\ChangedPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

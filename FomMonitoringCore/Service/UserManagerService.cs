@@ -431,17 +431,48 @@ namespace FomMonitoringCore.Service
                     var idRuolo = user.Roles_Users.FirstOrDefault().Roles.IdRole;
 
                     if (idRuolo == 1)
-                        ruolo = Resource.Operator;
+                        ruolo = LocalizationService.GetResource($"Operator", new CultureInfo(user.Languages.DotNetCulture));
                     else if (idRuolo == 2)
-                        ruolo = Resource.HeadWorkshop;
+                        ruolo = LocalizationService.GetResource($"HeadWorkshop", new CultureInfo(user.Languages.DotNetCulture)); 
 
-                    var body = LocalizationService.GetResource(keyObject, new CultureInfo(user.Languages.DotNetCulture))
-                        .Replace("[TIPO_USER]", ruolo )
-                        .Replace("[USERNAME]", user.Username)
-                        .Replace("[PASSWORD]", ls.DecryptPassword(user.Password));
+                    //var body = LocalizationService.GetResource(keyObject, new CultureInfo(user.Languages.DotNetCulture))
+                    //    .Replace("[TIPO_USER]", ruolo )
+                    //    .Replace("[USERNAME]", user.Username)
+                    //    .Replace("[PASSWORD]", ls.DecryptPassword(user.Password));
 
-                    var message = new MailMessage(ApplicationSettingService.GetWebConfigKey("EmailFromAddress"), 
-                                                           email, subject, body);
+                    //var message = new MailMessage(ApplicationSettingService.GetWebConfigKey("EmailFromAddress"), 
+                    //                                       email, subject, body);
+                    //message.IsBodyHtml = true;
+                    //EmailSender.SendEmail(message);
+
+
+                    var firstPart = LocalizationService.GetResource($"{keyObject}_FirstPart", new CultureInfo(user.Languages.DotNetCulture))
+                        .Replace("[TIPO_USER]", ruolo);
+
+                    var footer = LocalizationService.GetResource($"{keyObject}_Footer", new CultureInfo(user.Languages.DotNetCulture));
+
+                    var usernameLabel = LocalizationService.GetResource($"{keyObject}_Username", new CultureInfo(user.Languages.DotNetCulture));
+
+                    var passwordLabel = LocalizationService.GetResource($"{keyObject}_Password", new CultureInfo(user.Languages.DotNetCulture));
+
+                    var lastPart = LocalizationService.GetResource($"{keyObject}_LastPart", new CultureInfo(user.Languages.DotNetCulture))
+                        .Replace("[TIPO_USER]", ruolo);
+
+                    var modelEmail = new Renderer.EmailChangedPasswordDto
+                    {
+                        FirstPart = firstPart,
+                        Username = user.Username,
+                        Password = ls.DecryptPassword(user.Password),
+                        FooterText = footer,
+                        UsernameLabel = usernameLabel,
+                        PasswordLabel = passwordLabel,
+                        LastPart = lastPart
+                    };
+
+
+                    var body = FomMonitoringCore.Renderer.RazorViewToString.RenderRazorEmailChangedPasswordViewToString(modelEmail);
+                    var message = new MailMessage(ApplicationSettingService.GetWebConfigKey("EmailFromAddress"),
+                        email, subject, body);
                     message.IsBodyHtml = true;
                     EmailSender.SendEmail(message);
                     return true;

@@ -1157,4 +1157,29 @@ Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt
   <data name="DoppieTeste" xml:space="preserve">
     <value>Doppelköpfe</value>
   </data>
+  <data name="CreateUserEmailBody_FirstPart" xml:space="preserve">
+    <value>Es wurde ein neues Benutzerkonto vom Typ &lt;span class="user-type-label"&gt;[TIPO_USER]&lt;/span&gt; erstellt; nachstehend die Anmeldedaten:</value>
+  </data>
+  <data name="CreateUserEmailBody_UsernameLabel" xml:space="preserve">
+    <value>Benutzer: </value>
+  </data>
+  <data name="CreateUserEmailBody_PasswordLabel" xml:space="preserve">
+    <value>Vorläufiges passwort generiert:</value>
+  </data>
+  <data name="CreateUserEmailBody_LastPart" xml:space="preserve">
+    <value>Das Passwort ist obligatorisch zu ändern, wenn das erste Login bei LOLA vorgenommen wird.</value>
+  </data>
+  <data name="ModifyUserEmailBody_FirstPart" xml:space="preserve">
+    <value>Das Kennwort für den Benutzertyp &lt;span class="user-type-label"&gt;[TIPO_USER]&lt;/span&gt; wurde entsprechend den neuen Anmeldeinformationen geändert.</value>
+  </data>
+  <data name="ModifyUserEmailBody_Username" xml:space="preserve">
+    <value>Benutzer: </value>
+  </data>
+  <data name="ModifyUserEmailBody_Password" xml:space="preserve">
+    <value>Vorläufiges passwort generiert:</value>
+  </data>
+  <data name="ModifyUserEmailBody_LastPart" xml:space="preserve">
+    <value>Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt;
+&lt;a href="https://lola.fomindustrie.com"&gt;Klicken Sie hier, um sich anzumelden&lt;/a&gt;</value>
+  </data>
 </root>

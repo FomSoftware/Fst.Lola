@@ -322,6 +322,51 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A new &lt;span class=&quot;user-type-label&quot;&gt;[TIPO_USER]&lt;/span&gt; type user has been generated with the following credentials:.
+        /// </summary>
+        public static string CreateUserEmailBody_FirstPart {
+            get {
+                return ResourceManager.GetString("CreateUserEmailBody_FirstPart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string CreateUserEmailBody_Footer {
+            get {
+                return ResourceManager.GetString("CreateUserEmailBody_Footer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password must be reset on first access to LOLA. .
+        /// </summary>
+        public static string CreateUserEmailBody_LastPart {
+            get {
+                return ResourceManager.GetString("CreateUserEmailBody_LastPart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provisional password generated:.
+        /// </summary>
+        public static string CreateUserEmailBody_PasswordLabel {
+            get {
+                return ResourceManager.GetString("CreateUserEmailBody_PasswordLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User:.
+        /// </summary>
+        public static string CreateUserEmailBody_UsernameLabel {
+            get {
+                return ResourceManager.GetString("CreateUserEmailBody_UsernameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LOLA - Credenziali nuovo utente:.
         /// </summary>
         public static string CreateUserEmailSubject {
@@ -1620,6 +1665,52 @@ namespace FomMonitoringResources {
         public static string ModifyUserEmailBody {
             get {
                 return ResourceManager.GetString("ModifyUserEmailBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password for the &lt;span class=&quot;user-type-label&quot;&gt;[TIPO_USER]&lt;/span&gt; user type has been changed, following the new credentials..
+        /// </summary>
+        public static string ModifyUserEmailBody_FirstPart {
+            get {
+                return ResourceManager.GetString("ModifyUserEmailBody_FirstPart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ModifyUserEmailBody_Footer {
+            get {
+                return ResourceManager.GetString("ModifyUserEmailBody_Footer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password must be reset at the first access to LOLA.&lt;br /&gt;
+        ///&lt;a href=&quot;https://lola.fomindustrie.com&quot;&gt;Click here to log in.&lt;/a&gt;.
+        /// </summary>
+        public static string ModifyUserEmailBody_LastPart {
+            get {
+                return ResourceManager.GetString("ModifyUserEmailBody_LastPart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provisional password generated:.
+        /// </summary>
+        public static string ModifyUserEmailBody_Password {
+            get {
+                return ResourceManager.GetString("ModifyUserEmailBody_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User:.
+        /// </summary>
+        public static string ModifyUserEmailBody_Username {
+            get {
+                return ResourceManager.GetString("ModifyUserEmailBody_Username", resourceCulture);
             }
         }
         

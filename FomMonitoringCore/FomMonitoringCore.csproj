@@ -130,6 +130,9 @@
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RazorEngine, Version=3.10.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
     <Reference Include="SharpCompress, Version=0.23.0.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpCompress.0.23.0\lib\net45\SharpCompress.dll</HintPath>
     </Reference>
@@ -462,6 +465,7 @@
     <Compile Include="Framework\Model\UserModel.cs" />
     <Compile Include="Ioc\IocContainerBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderer\Renderer.cs" />
     <Compile Include="Repository\MongoDb\GenericRepository.cs" />
     <Compile Include="Repository\MongoDb\IGenericRepository.cs" />
     <Compile Include="Repository\SQL\GenericRepository.cs" />

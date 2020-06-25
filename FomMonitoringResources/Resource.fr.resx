@@ -1158,4 +1158,26 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
   <data name="DoppieTeste" xml:space="preserve">
     <value>Doubles têtes</value>
   </data>
+  <data name="CreateUserEmailBody_UsernameLabel" xml:space="preserve">
+    <value>Utilisateur:</value>
+  </data>
+  <data name="CreateUserEmailBody_PasswordLabel" xml:space="preserve">
+    <value>Mot de passe provisoire généré:</value>
+  </data>
+  <data name="CreateUserEmailBody_LastPart" xml:space="preserve">
+    <value>La password deberá cambiarse obligatoriamente la primera vez que se acceda a LOLA.</value>
+  </data>
+  <data name="ModifyUserEmailBody_FirstPart" xml:space="preserve">
+    <value>Le mot de passe pour le type d’utilisateur &lt;span class="user-type-label"&gt;[TIPO_USER]&lt;/span&gt; a été modifié, suite aux nouvelles informations d'identification.</value>
+  </data>
+  <data name="ModifyUserEmailBody_Username" xml:space="preserve">
+    <value>Utilisateur:</value>
+  </data>
+  <data name="ModifyUserEmailBody_Password" xml:space="preserve">
+    <value>Mot de passe provisoire généré:</value>
+  </data>
+  <data name="ModifyUserEmailBody_LastPart" xml:space="preserve">
+    <value>Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br /&gt;
+&lt;a href="https://lola.fomindustrie.com"&gt;Cliquez ici pour vous connecter.&lt;/a&gt;</value>
+  </data>
 </root>
