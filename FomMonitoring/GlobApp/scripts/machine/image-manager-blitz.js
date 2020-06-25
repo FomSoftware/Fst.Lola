@@ -7,16 +7,26 @@ ImageManBlitz.prototype.constructor = ImageManFmc;
 ImageManBlitz.prototype.checkModello = function (machineGroupSelected) {
 
     if (machineGroupSelected == 'SawM_Axes') {
-        MotorAxesBlitz.show();
-        } else {
+        if (MotorAxesBlitz != null)
+            MotorAxesBlitz.show();
+        if (AxesKeope != null)
+            AxesKeope.show();
+    } else {
+        if (AxesKeope != null)
+            AxesKeope.hide();
+        if (MotorAxesBlitz != null)
             MotorAxesBlitz.hide();
         }
 
     if (machineGroupSelected == 'SawM_DoubleHeads') {
+        if (MotorKeope != null)
+            MotorKeope.show();
         ToolsBlitz.show();
-        } else {
+    } else {
+        if (MotorKeope != null)
+            MotorKeope.hide();
         ToolsBlitz.hide();
-        }
+    }
 
 };
 

@@ -53,7 +53,12 @@
                 round: function (value)
                 {
                     return Math.round(value);
+                },
+                roundDecimal: function (value, dec) {
+                    if (isNaN(value)) return "";
+                    return Math.round(value * Math.pow(10, dec)) / Math.pow(10, dec);
                 }
+                
             },
             computed: {
                 showDashboard: function ()

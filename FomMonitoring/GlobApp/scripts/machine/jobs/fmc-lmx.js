@@ -8,11 +8,13 @@
     }
 
     var show = function () {
-        vmJobs.showed = true;
+        if (vmJobs)
+            vmJobs.showed = true;
     }
 
     var hide = function () {
-        vmJobs.showed = false;
+        if (vmJobs)
+            vmJobs.showed = false;
     }
 
     var hidden = function () {

@@ -4,12 +4,22 @@
     var init = function (data) {
         initVueModel(data.vm_axes_keope);
     }
+    var show = function () {
+        if (vmAxes != null)
+            vmAxes.showed = true;
+    }
+
+    var hide = function () {
+        if (vmAxes != null)
+            vmAxes.showed = false;
+    }
 
     var initVueModel = function (data) {
         vmAxes = new Vue({
             el: '#CardAxesKeope',
             data: {
                 axes: data.axes,
+                showed: true
             },
             computed: {
                 colorKPI: function () {
@@ -36,7 +46,9 @@
 
     return {
         init: init,
-        update: update
+        update: update,
+        show: show,
+        hide: hide
     }
 
 }();

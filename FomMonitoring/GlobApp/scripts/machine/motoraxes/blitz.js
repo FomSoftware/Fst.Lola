@@ -8,11 +8,13 @@
     }
 
     var show = function () {
-        vmMotorAxes.showed = true;
+        if (vmMotorAxes != null)
+            vmMotorAxes.showed = true;
     }
 
     var hide = function () {
-        vmMotorAxes.showed = false;
+        if (vmMotorAxes != null)
+            vmMotorAxes.showed = false;
     }
 
     var initVueModel = function (data)
@@ -20,8 +22,8 @@
         vmMotorAxes = new Vue({
             el: '#CardSpindles',
             data: {
-                motors: data.motors,
-                axes: data.axes,
+                motors: data ? data.motors : null,
+                axes: data ? data.axes : null,
                 showed: true
             },
             computed: {
