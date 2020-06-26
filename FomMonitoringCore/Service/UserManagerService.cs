@@ -472,7 +472,7 @@ namespace FomMonitoringCore.Service
 
                     var body = FomMonitoringCore.Renderer.RazorViewToString.RenderRazorEmailChangedPasswordViewToString(modelEmail);
                     var message = new MailMessage(ApplicationSettingService.GetWebConfigKey("EmailFromAddress"),
-                        "matteobelletti89@gmail.com", subject, body);
+                        email, subject, body);
                     message.IsBodyHtml = true;
                     EmailSender.SendEmail(message);
                     return true;
