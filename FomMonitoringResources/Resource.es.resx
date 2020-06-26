@@ -1168,7 +1168,7 @@ La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;
     <value>La password deberá cambiarse obligatoriamente la primera vez que se acceda a LOLA.</value>
   </data>
   <data name="ModifyUserEmailBody_FirstPart" xml:space="preserve">
-    <value>La contraseña para el tipo de usuario &lt;span class="user-type-label"&gt;[TIPO_USER]&lt;/span&gt; se ha cambiado, siguiendo las nuevas credenciales.&lt;br /&gt;</value>
+    <value>La contraseña para el tipo de usuario &lt;span  style="color: #6f1130;"&gt;[TIPO_USER]&lt;/span&gt; se ha cambiado, siguiendo las nuevas credenciales.&lt;br /&gt;</value>
   </data>
   <data name="ModifyUserEmailBody_Username" xml:space="preserve">
     <value>Usuario:</value>
@@ -1179,5 +1179,14 @@ La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;
   <data name="ModifyUserEmailBody_LastPart" xml:space="preserve">
     <value>La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;
 &lt;a href="https://lola.fomindustrie.com"&gt;Haga clic aquí para iniciar sesión.&lt;/a&gt;</value>
+  </data>
+  <data name="CreateUserEmailBody_FirstPart" xml:space="preserve">
+    <value>Se ha generado un nuevo usuario de tipo &lt;span  style="color: #6f1130;"&gt;[TIPO_USER]&lt;/span&gt;, con las siguientes credenciales: </value>
+  </data>
+  <data name="ModifyUserEmailBody_UsernameLabel" xml:space="preserve">
+    <value>Usuario:</value>
+  </data>
+  <data name="ModifyUserEmailBody_PasswordLabel" xml:space="preserve">
+    <value>Contraseña provisional generada:</value>
   </data>
 </root>

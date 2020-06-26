@@ -322,7 +322,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A new &lt;span class=&quot;user-type-label&quot;&gt;[TIPO_USER]&lt;/span&gt; type user has been generated with the following credentials:.
+        ///   Looks up a localized string similar to A new &lt;span  style=&quot;color: #6f1130;&quot;&gt;[TIPO_USER]&lt;/span&gt; type user has been generated with the following credentials:.
         /// </summary>
         public static string CreateUserEmailBody_FirstPart {
             get {
@@ -1669,7 +1669,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The password for the &lt;span class=&quot;user-type-label&quot;&gt;[TIPO_USER]&lt;/span&gt; user type has been changed, following the new credentials..
+        ///   Looks up a localized string similar to The password for the &lt;span  style=&quot;color: #6f1130;&quot;&gt;[TIPO_USER]&lt;/span&gt; user type has been changed, following the new credentials..
         /// </summary>
         public static string ModifyUserEmailBody_FirstPart {
             get {
@@ -1706,11 +1706,29 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Provisional password generated:.
+        /// </summary>
+        public static string ModifyUserEmailBody_PasswordLabel {
+            get {
+                return ResourceManager.GetString("ModifyUserEmailBody_PasswordLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User:.
         /// </summary>
         public static string ModifyUserEmailBody_Username {
             get {
                 return ResourceManager.GetString("ModifyUserEmailBody_Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User:.
+        /// </summary>
+        public static string ModifyUserEmailBody_UsernameLabel {
+            get {
+                return ResourceManager.GetString("ModifyUserEmailBody_UsernameLabel", resourceCulture);
             }
         }
         

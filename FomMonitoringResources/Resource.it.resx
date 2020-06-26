@@ -1163,7 +1163,7 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
     <value>Doppie Teste</value>
   </data>
   <data name="CreateUserEmailBody_FirstPart" xml:space="preserve">
-    <value>E’ stata generata una nuova utenza di tipo  &lt;span class="user-type-label"&gt;[TIPO_USER]&lt;/span&gt;, di seguito le credenziali:</value>
+    <value>E’ stata generata una nuova utenza di tipo  &lt;span  style="color: #6f1130;"&gt;[TIPO_USER]&lt;/span&gt;, di seguito le credenziali:</value>
   </data>
   <data name="CreateUserEmailBody_UsernameLabel" xml:space="preserve">
     <value>Utente:</value>
@@ -1175,7 +1175,7 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
     <value>La password andrà resettata obbligatoriamente al primo accesso in LOLA</value>
   </data>
   <data name="ModifyUserEmailBody_FirstPart" xml:space="preserve">
-    <value>E' stata modificata la password per l'utenza di tipo &lt;span class="user-type-label"&gt;[TIPO_USER]&lt;/span&gt; di seguito le nuove credenziali.</value>
+    <value>E' stata modificata la password per l'utenza di tipo &lt;span  style="color: #6f1130;"&gt;[TIPO_USER]&lt;/span&gt; di seguito le nuove credenziali.</value>
   </data>
   <data name="ModifyUserEmailBody_Username" xml:space="preserve">
     <value>Utente:</value>
@@ -1186,5 +1186,11 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
   <data name="ModifyUserEmailBody_LastPart" xml:space="preserve">
     <value>La password andrà  resettata obbligatoriamente al primo accesso in LOLA.&lt;br /&gt;
 &lt;a href="https://lola.fomindustrie.com"&gt;Clicca qui per accedere. &lt;/a&gt;</value>
+  </data>
+  <data name="ModifyUserEmailBody_UsernameLabel" xml:space="preserve">
+    <value>Utente:</value>
+  </data>
+  <data name="ModifyUserEmailBody_PasswordLabel" xml:space="preserve">
+    <value>Password provvisoria generata:</value>
   </data>
 </root>

@@ -1165,7 +1165,7 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
     <value>Doble heads</value>
   </data>
   <data name="CreateUserEmailBody_FirstPart" xml:space="preserve">
-    <value>A new &lt;span class="user-type-label"&gt;[TIPO_USER]&lt;/span&gt; type user has been generated with the following credentials:</value>
+    <value>A new &lt;span  style="color: #6f1130;"&gt;TIPO_USER]&lt;/span&gt; type user has been generated with the following credentials:</value>
   </data>
   <data name="CreateUserEmailBody_UsernameLabel" xml:space="preserve">
     <value>User:</value>
@@ -1177,7 +1177,7 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
     <value>The password must be reset on first access to LOLA. </value>
   </data>
   <data name="ModifyUserEmailBody_FirstPart" xml:space="preserve">
-    <value>The password for the &lt;span class="user-type-label"&gt;[TIPO_USER]&lt;/span&gt; user type has been changed, following the new credentials.</value>
+    <value>The password for the &lt;span  style="color: #6f1130;"&gt;[TIPO_USER]&lt;/span&gt; user type has been changed, following the new credentials.</value>
   </data>
   <data name="ModifyUserEmailBody_Username" xml:space="preserve">
     <value>User:</value>
@@ -1188,5 +1188,11 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   <data name="ModifyUserEmailBody_LastPart" xml:space="preserve">
     <value>The password must be reset at the first access to LOLA.&lt;br /&gt;
 &lt;a href="https://lola.fomindustrie.com"&gt;Click here to log in.&lt;/a&gt;</value>
+  </data>
+  <data name="ModifyUserEmailBody_UsernameLabel" xml:space="preserve">
+    <value>User:</value>
+  </data>
+  <data name="ModifyUserEmailBody_PasswordLabel" xml:space="preserve">
+    <value>Provisional password generated:</value>
   </data>
 </root>

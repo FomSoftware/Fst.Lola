@@ -1165,7 +1165,7 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
     <value>DoppieTeste</value>
   </data>
   <data name="CreateUserEmailBody_FirstPart" xml:space="preserve">
-    <value>A new &lt;span class="user-type-label"&gt;[TIPO_USER]&lt;/span&gt; type user has been generated with the following credentials:</value>
+    <value>A new &lt;span  style="color: #6f1130;"&gt;[TIPO_USER]&lt;/span&gt; type user has been generated with the following credentials:</value>
   </data>
   <data name="CreateUserEmailBody_UsernameLabel" xml:space="preserve">
     <value>User:</value>
@@ -1180,7 +1180,7 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
     <value />
   </data>
   <data name="ModifyUserEmailBody_FirstPart" xml:space="preserve">
-    <value>The password for the &lt;span class="user-type-label"&gt;[TIPO_USER]&lt;/span&gt; user type has been changed, following the new credentials.</value>
+    <value>The password for the &lt;span  style="color: #6f1130;"&gt;[TIPO_USER]&lt;/span&gt; user type has been changed, following the new credentials.</value>
   </data>
   <data name="ModifyUserEmailBody_Username" xml:space="preserve">
     <value>User:</value>
@@ -1194,5 +1194,11 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   </data>
   <data name="ModifyUserEmailBody_Footer" xml:space="preserve">
     <value />
+  </data>
+  <data name="ModifyUserEmailBody_UsernameLabel" xml:space="preserve">
+    <value>User:</value>
+  </data>
+  <data name="ModifyUserEmailBody_PasswordLabel" xml:space="preserve">
+    <value>Provisional password generated:</value>
   </data>
 </root>

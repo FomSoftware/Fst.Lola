@@ -1168,7 +1168,7 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
     <value>La password deberá cambiarse obligatoriamente la primera vez que se acceda a LOLA.</value>
   </data>
   <data name="ModifyUserEmailBody_FirstPart" xml:space="preserve">
-    <value>Le mot de passe pour le type d’utilisateur &lt;span class="user-type-label"&gt;[TIPO_USER]&lt;/span&gt; a été modifié, suite aux nouvelles informations d'identification.</value>
+    <value>Le mot de passe pour le type d’utilisateur &lt;span  style="color: #6f1130;"&gt;[TIPO_USER]&lt;/span&gt; a été modifié, suite aux nouvelles informations d'identification.</value>
   </data>
   <data name="ModifyUserEmailBody_Username" xml:space="preserve">
     <value>Utilisateur:</value>
@@ -1179,5 +1179,14 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
   <data name="ModifyUserEmailBody_LastPart" xml:space="preserve">
     <value>Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br /&gt;
 &lt;a href="https://lola.fomindustrie.com"&gt;Cliquez ici pour vous connecter.&lt;/a&gt;</value>
+  </data>
+  <data name="CreateUserEmailBody_FirstPart" xml:space="preserve">
+    <value>Un nouvel utilisateur de type  &lt;span  style="color: #6f1130;"&gt;[TIPO_USER]&lt;/span&gt; a été créé, ci-dessous les identifiants de connexion:</value>
+  </data>
+  <data name="ModifyUserEmailBody_UsernameLabel" xml:space="preserve">
+    <value>Utilisateur:</value>
+  </data>
+  <data name="ModifyUserEmailBody_PasswordLabel" xml:space="preserve">
+    <value>Mot de passe provisoire généré:</value>
   </data>
 </root>
