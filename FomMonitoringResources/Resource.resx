@@ -1189,8 +1189,7 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
     <value>Provisional password generated:</value>
   </data>
   <data name="ModifyUserEmailBody_LastPart" xml:space="preserve">
-    <value>The password must be reset at the first access to LOLA.&lt;br /&gt;
-&lt;a href="https://lola.fomindustrie.com"&gt;Click here to log in.&lt;/a&gt;</value>
+    <value>The password must be reset at the first access to LOLA.</value>
   </data>
   <data name="ModifyUserEmailBody_Footer" xml:space="preserve">
     <value>Le informazioni contenute in questo messaggo sono riservate e confidenziali. Il loro utilizzo è consentito esclusivamente ad utenti sottoscrittori di licenza LOLA, per le finalià indicate nel messaggio stesso. Qualora Lei non fosse la persona a cui il presente messaggio èdestinato, La invitiamo ad eliminarlo dal Suo sistema ed a distruggere le varie copie o stampe, dandocene gentilmente comunicazione a questo indirizzo. The information contained in this e-mail and its attachments is intended for the exclusive use of the addressee(s), and may contain confidential information. If you are not the intended recipient, pleas notify the sender by sending an e-mail and destroy this message and its attachment(s). Please note that any unauthorised use, circulation, forwarding of all or part of this message is strictly prohibited.</value>

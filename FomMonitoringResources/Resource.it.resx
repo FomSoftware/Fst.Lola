@@ -1184,8 +1184,7 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
     <value>Password provvisoria generata:</value>
   </data>
   <data name="ModifyUserEmailBody_LastPart" xml:space="preserve">
-    <value>La password andrà  resettata obbligatoriamente al primo accesso in LOLA.&lt;br /&gt;
-&lt;a href="https://lola.fomindustrie.com"&gt;Clicca qui per accedere. &lt;/a&gt;</value>
+    <value>La password andrà  resettata obbligatoriamente al primo accesso in LOLA.</value>
   </data>
   <data name="ModifyUserEmailBody_UsernameLabel" xml:space="preserve">
     <value>Utente:</value>

@@ -1179,8 +1179,7 @@ Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt
     <value>Vorläufiges passwort generiert:</value>
   </data>
   <data name="ModifyUserEmailBody_LastPart" xml:space="preserve">
-    <value>Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt;
-&lt;a href="https://lola.fomindustrie.com"&gt;Klicken Sie hier, um sich anzumelden&lt;/a&gt;</value>
+    <value>Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.</value>
   </data>
   <data name="ModifyUserEmailBody_UsernameLabel" xml:space="preserve">
     <value>Benutzer: </value>

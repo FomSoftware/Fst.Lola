@@ -1177,8 +1177,7 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
     <value>Mot de passe provisoire généré:</value>
   </data>
   <data name="ModifyUserEmailBody_LastPart" xml:space="preserve">
-    <value>Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br /&gt;
-&lt;a href="https://lola.fomindustrie.com"&gt;Cliquez ici pour vous connecter.&lt;/a&gt;</value>
+    <value>Le mot de passe doit être réinitialisé lors du premier accès à LOLA.</value>
   </data>
   <data name="CreateUserEmailBody_FirstPart" xml:space="preserve">
     <value>Un nouvel utilisateur de type  &lt;span  style="color: #6f1130;"&gt;[TIPO_USER]&lt;/span&gt; a été créé, ci-dessous les identifiants de connexion:</value>

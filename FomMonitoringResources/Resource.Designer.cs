@@ -1687,8 +1687,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The password must be reset at the first access to LOLA.&lt;br /&gt;
-        ///&lt;a href=&quot;https://lola.fomindustrie.com&quot;&gt;Click here to log in.&lt;/a&gt;.
+        ///   Looks up a localized string similar to The password must be reset at the first access to LOLA..
         /// </summary>
         public static string ModifyUserEmailBody_LastPart {
             get {

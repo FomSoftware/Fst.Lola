@@ -1177,8 +1177,7 @@ La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;
     <value>Contraseña provisional generada:</value>
   </data>
   <data name="ModifyUserEmailBody_LastPart" xml:space="preserve">
-    <value>La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;
-&lt;a href="https://lola.fomindustrie.com"&gt;Haga clic aquí para iniciar sesión.&lt;/a&gt;</value>
+    <value>La contraseña debe restablecerse en el primer acceso a LOLA</value>
   </data>
   <data name="CreateUserEmailBody_FirstPart" xml:space="preserve">
     <value>Se ha generado un nuevo usuario de tipo &lt;span  style="color: #6f1130;"&gt;[TIPO_USER]&lt;/span&gt;, con las siguientes credenciales: </value>
