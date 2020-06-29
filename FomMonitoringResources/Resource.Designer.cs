@@ -331,7 +331,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Le informazioni contenute in questo messaggo sono riservate e confidenziali. Il loro utilizzo è consentito esclusivamente ad utenti sottoscrittori di licenza LOLA, per le finalià indicate nel messaggio stesso. Qualora Lei non fosse la persona a cui il presente messaggio èdestinato, La invitiamo ad eliminarlo dal Suo sistema ed a distruggere le varie copie o stampe, dandocene gentilmente comunicazione a questo indirizzo. The information contained in this e-mail and its attachments is intended for the exclusi [rest of string was truncated]&quot;;.
         /// </summary>
         public static string CreateUserEmailBody_Footer {
             get {
@@ -1678,7 +1678,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Le informazioni contenute in questo messaggo sono riservate e confidenziali. Il loro utilizzo è consentito esclusivamente ad utenti sottoscrittori di licenza LOLA, per le finalià indicate nel messaggio stesso. Qualora Lei non fosse la persona a cui il presente messaggio èdestinato, La invitiamo ad eliminarlo dal Suo sistema ed a distruggere le varie copie o stampe, dandocene gentilmente comunicazione a questo indirizzo. The information contained in this e-mail and its attachments is intended for the exclusi [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ModifyUserEmailBody_Footer {
             get {
