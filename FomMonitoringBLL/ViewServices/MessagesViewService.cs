@@ -117,7 +117,7 @@ namespace FomMonitoringBLL.ViewServices
             periodTrend.Aggregation = granularity;
 
 
-            var data = _messageService.GetAggregationMessages(machine, periodTrend, enDataType.Historical)?.OrderBy(o => o.Day).ToList() ?? new List<HistoryMessageModel>();
+            var data = _messageService.GetAggregationMessages(machine, periodTrend, enDataType.Historical, actualMachineGroup)?.OrderBy(o => o.Day).ToList() ?? new List<HistoryMessageModel>();
 
             if (data.Count == 0)
                 return null;
