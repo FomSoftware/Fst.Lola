@@ -22,7 +22,12 @@
             <div class="card-portlet">
                 <div v-if="tools != null && tools.length > 0" class="slimscroll">
                     <hr style="background-color:#0c3817;height:2px;border:none" />
-                    <table class="table-tools-fmc">
+                    <div v-if="tools.length> 0 && tools.length < 3" style="width: 100%;height:100%;display: flex">
+                        <div style="background-color: #b4b4b4; width: calc(33% + 3px);height: 100%"></div>
+                        <div style="background-color: #BEBEBE; width:calc(33% + 1px);"></div>
+                        <div style="background-color: #b4b4b4; width:calc(33% + 3px);"></div>
+                    </div>
+                    <table class="table-tools-fmc" style="position: absolute;top:0">
                         <tr>
                             <td>
                                 <table style="width: 100%; height:100%">
