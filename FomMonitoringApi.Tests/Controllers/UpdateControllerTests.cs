@@ -11,33 +11,6 @@ namespace TokenController.Tests
     [TestClass]
     public class UpdateControllerTests
     {
-        [TestMethod]
-        public void MachineTest()
-        {
-            string json = "{\"test\":\"test\"}";
-            string jsonResult = "{\"test\":\"test\",\"imported\":true}";
-            Mock<IJsonDataService> mock = new Mock<IJsonDataService>();
-            mock.Setup(s => s.AddJsonData(It.IsAny<string>(), It.IsAny<bool>())).Returns(true);
-            object obj = JsonConvert.DeserializeObject(json);
-            /*var updateController = new UpdateController(mock.Object);
-            var actual = updateController.Machine(obj);
-            Assert.AreEqual(jsonResult, JsonConvert.SerializeObject(((JsonResult<JObject>)actual).Content));
-            */
-        }
-
-        [TestMethod]
-        public void MachineCumulativeTest()
-        {
-            string json = "{\"test\":\"test\"}";
-            string jsonResult = "{\"test\":\"test\",\"imported\":true}";
-            Mock<IJsonDataService> mock = new Mock<IJsonDataService>();
-            mock.Setup(s => s.AddJsonData(It.IsAny<string>(), It.IsAny<bool>())).Returns(true);
-            object obj = JsonConvert.DeserializeObject(json);
-            /*var updateController = new UpdateController(mock.Object);
-            var actual = updateController.MachineCumulative(obj);
-            Assert.AreEqual(jsonResult, JsonConvert.SerializeObject(((JsonResult<JObject>)actual).Content));
-            */
-        }
 
         [TestMethod]
         public void ClientTest()

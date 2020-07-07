@@ -258,9 +258,6 @@
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\Interceptor\IsolationLevelInterceptor.cs" />
-    <Compile Include="DAL\JsonData.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DAL\Machine.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
@@ -350,56 +347,7 @@
     <Compile Include="DAL\usp_AggregationState_Result.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL_SQLite\Partials\IFST_FomMonitoringSQLiteEntities.cs" />
     <Compile Include="DAL\Partials\MessageMachine.cs" />
-    <Compile Include="DAL_SQLite\bar.cs">
-      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL_SQLite\FomMonitoringModelSQLite.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FomMonitoringModelSQLite.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL_SQLite\FomMonitoringModelSQLite.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL_SQLite\FomMonitoringModelSQLite.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FomMonitoringModelSQLite.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DAL_SQLite\historyBar.cs">
-      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL_SQLite\historyJob.cs">
-      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL_SQLite\historyMessage.cs">
-      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL_SQLite\historyPiece.cs">
-      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL_SQLite\historyState.cs">
-      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL_SQLite\info.cs">
-      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL_SQLite\message.cs">
-      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL_SQLite\piece.cs">
-      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL_SQLite\state.cs">
-      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL_SQLite\tool.cs">
-      <DependentUpon>FomMonitoringModelSQLite.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataProcessing\Dto\HistoryJob.cs" />
     <Compile Include="DataProcessing\Dto\InfoMachine.cs" />
     <Compile Include="DataProcessing\Dto\Message.cs" />
@@ -432,7 +380,6 @@
     <Compile Include="Framework\Model\HistoryStateModel.cs" />
     <Compile Include="Framework\Model\HistoryJobModel.cs" />
     <Compile Include="Framework\Model\JsonCustomersModel.cs" />
-    <Compile Include="Framework\Model\JsonDataModel.cs" />
     <Compile Include="Framework\Model\JsonLoginModel.cs" />
     <Compile Include="Framework\Model\JsonVariableModel.cs" />
     <Compile Include="Framework\Model\JsonVariableValueModel.cs" />
@@ -514,12 +461,6 @@
     <Compile Include="Service\BarService.cs" />
     <Compile Include="Service\CacheService.cs" />
     <Compile Include="Service\ContextService.cs" />
-    <Compile Include="Service\DataMapping\IJsonToSQLiteService.cs" />
-    <Compile Include="Service\DataMapping\IJsonVariantsToSQLServerService.cs" />
-    <Compile Include="Service\DataMapping\ISQLiteToSQLServerService.cs" />
-    <Compile Include="Service\DataMapping\JsonToSQLiteService.cs" />
-    <Compile Include="Service\DataMapping\JsonVariantsToSQLServerService.cs" />
-    <Compile Include="Service\DataMapping\SQLiteToSQLServerService.cs" />
     <Compile Include="Service\IBarService.cs" />
     <Compile Include="Service\IContextService.cs" />
     <Compile Include="Service\IJobService.cs" />
@@ -563,13 +504,6 @@
     <None Include="DAL\FomMonitoringModel.edmx.diagram">
       <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
     </None>
-    <EntityDeploy Include="DAL_SQLite\FomMonitoringModelSQLite.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FomMonitoringModelSQLite.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="DAL_SQLite\FomMonitoringModelSQLite.edmx.diagram">
-      <DependentUpon>FomMonitoringModelSQLite.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -593,21 +527,13 @@
       <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
       <LastGenOutput>FomMonitoringModel.cs</LastGenOutput>
     </Content>
-    <Content Include="DAL_SQLite\FomMonitoringModelSQLite.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FomMonitoringModelSQLite.edmx</DependentUpon>
-      <LastGenOutput>FomMonitoringModelSQLite.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DAL_SQLite\FomMonitoringModelSQLite.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FomMonitoringModelSQLite.edmx</DependentUpon>
-      <LastGenOutput>FomMonitoringModelSQLite.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Service\DataMapping\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

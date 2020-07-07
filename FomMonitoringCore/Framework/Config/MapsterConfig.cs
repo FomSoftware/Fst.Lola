@@ -59,7 +59,6 @@ namespace FomMonitoringCore.Framework.Config
             config.NewConfig<ToolMachine, ToolMachineModel>();
             config.NewConfig<UserMachineMapping, UserMachineMappingModel>()
                 .Map(dest => dest.Machine, src => src.Machine);
-            config.NewConfig<JsonData, JsonDataModel>();
             config.NewConfig<UserCustomerMapping, UserCustomerModel>()
                 .Map(dest => dest.Username, src => src.CustomerName);
             config.NewConfig<Users, UserModel>()
@@ -109,11 +108,10 @@ namespace FomMonitoringCore.Framework.Config
 
 
             // Model to DAL
-            config.NewConfig<JsonDataModel, JsonData>();
             config.NewConfig<UserModel, Users>();
 
             // SQLite to SQLServer 
-            config.NewConfig<DAL_SQLite.bar, Bar>()
+            /*config.NewConfig<DAL_SQLite.bar, Bar>()
                 .Ignore(dest => dest.Id)
                 .IgnoreAllVirtual()
                 .Map(dest => dest.IdOld, src => src.Id)
@@ -207,7 +205,7 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.IsActive, src => true)
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
 
-
+            */
             config.NewConfig<AggregationMessageModel, HistoryMessageModel>();
 
             config.NewConfig<Model.Xml.ParameterMachineModelXml, ParameterMachine>()

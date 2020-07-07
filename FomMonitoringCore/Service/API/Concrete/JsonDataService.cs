@@ -17,28 +17,6 @@ namespace FomMonitoringCore.Service.API.Concrete
             _context = context;
         }
 
-        public bool AddJsonData(string json, bool isCumulative)
-        {
-            var result = false;
-            try
-            {
-                var jsonData = new JsonData
-                {
-                    Json = json,
-                    IsCumulative = isCumulative
-                };
-                _context.Set<JsonData>().Add(jsonData);
-                _context.SaveChanges();
-                result = true;
-            }
-            catch (Exception ex)
-            {
-                var errMessage = string.Format(ex.GetStringLog(), json, isCumulative.ToString());
-                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-            }
-            return result;
-        }
-
         public bool ElaborateJsonData(string json)
         {
             var result = false;

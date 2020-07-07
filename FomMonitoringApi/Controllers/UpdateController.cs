@@ -43,21 +43,6 @@ namespace FomMonitoringApi.Controllers
         }
 
         [HttpPost]
-        public object MachineCumulative(object data)
-        {
-            var result = false;
-            var json = new JObject();
-            if (data != null)
-            {
-                var jsonSerialized = JsonConvert.SerializeObject(data);
-                result = _jsonDataService.AddJsonData(jsonSerialized, true);
-                json = JObject.Parse(jsonSerialized);
-            }
-            json.AddFirst(new JProperty("imported", result));
-            return Json(json);
-        }
-
-        [HttpPost]
         public object MachineRealTime(object data)
         {
             var result = false;

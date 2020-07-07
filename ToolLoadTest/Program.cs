@@ -25,16 +25,6 @@ namespace ToolLoadTest
             var forwarder = container.Resolve<IQueueForwarder>();
 
 
-            var jsons = context.Set<JsonData>().OrderByDescending(i => i.Id).ToList()
-                .Select(o => new { o.Id, o.Json }).Where(o => o.Json.Contains("tool")).ToList();
-
-            jsons = jsons.OrderBy(n => n.Id).ToList();
-
-            foreach (var data in jsons)
-            {
-                forwarder.Forward(data.Json);
-            }
-
             Debugger.Break();
         }
     }

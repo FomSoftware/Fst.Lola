@@ -35,21 +35,7 @@ namespace StateLoadTest
             var context = container.Resolve<IFomMonitoringEntities>();
             var forwarder = container.Resolve<IQueueForwarder>();
 
-
-
-
-
-            var jsons = context.Set<JsonData>().Where(j => j.Json.Contains("state")).OrderByDescending(i => i.Id).Take(10).ToList()
-                .Select(o => o.Json).ToList();
-
-            foreach (var data in jsons)
-            {
-                forwarder.Forward(data);
-            }
-
             Debugger.Break();
-            
-
 
         }
         private static void Inizialization()

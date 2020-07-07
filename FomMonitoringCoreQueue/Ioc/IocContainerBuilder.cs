@@ -2,7 +2,6 @@
 using Autofac;
 using Autofac.Builder;
 using FomMonitoringCore.DAL;
-using FomMonitoringCore.DAL_SQLite;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Repository.SQL;
 using FomMonitoringCore.Service;
@@ -10,7 +9,6 @@ using FomMonitoringCore.Service.API;
 using FomMonitoringCore.Service.API.Concrete;
 using FomMonitoringCore.Service.APIClient;
 using FomMonitoringCore.Service.APIClient.Concrete;
-using FomMonitoringCore.Service.DataMapping;
 using FomMonitoringCore.Uow;
 using FomMonitoringCoreQueue.Connection;
 using FomMonitoringCoreQueue.Dto;

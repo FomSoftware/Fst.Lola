@@ -5,17 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="FST_FomMonitoringModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="JsonData">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ElaborationDate" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="IsCumulative" Type="bit" Nullable="false" />
-          <Property Name="IsElaborated" Type="bit" Nullable="false" />
-          <Property Name="IsLoaded" Type="bit" Nullable="false" />
-          <Property Name="Json" Type="ntext" />
-        </EntityType>
         <EntityType Name="Bar">
           <Key>
             <PropertyRef Name="Id" />
@@ -956,7 +945,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <Parameter Name="machineId" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="FST_FomMonitoringModelStoreContainer">
-          <EntitySet Name="JsonData" EntityType="Self.JsonData" Schema="api" store:Type="Tables" />
           <EntitySet Name="Bar" EntityType="Self.Bar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CurrentState" EntityType="Self.CurrentState" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistoryBar" EntityType="Self.HistoryBar" Schema="dbo" store:Type="Tables" />
@@ -1285,7 +1273,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
           <FunctionImport Name="usp_CleanMachineData" ReturnType="Collection(Int32)">
           <Parameter Name="machineId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="JsonData" EntityType="FST_FomMonitoringModel.JsonData" />
           <FunctionImport Name="usp_HistoricizingAll">
           <Parameter Name="machineId" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1921,17 +1908,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="JsonData">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ElaborationDate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="IsCumulative" Type="Boolean" Nullable="false" />
-          <Property Name="IsElaborated" Type="Boolean" Nullable="false" />
-          <Property Name="IsLoaded" Type="Boolean" Nullable="false" />
-          <Property Name="Json" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="UserMachineMapping">
           <Key>
             <PropertyRef Name="Id" />
@@ -2761,18 +2737,6 @@ warning 6002: The table/view 'LOLAPROD.log.FomMonitoringUpdateUsers' does not ha
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_CleanMachineData" FunctionName="FST_FomMonitoringModel.Store.usp_CleanMachineData" />
-          <EntitySetMapping Name="JsonData">
-            <EntityTypeMapping TypeName="FST_FomMonitoringModel.JsonData">
-              <MappingFragment StoreEntitySet="JsonData">
-                <ScalarProperty Name="Json" ColumnName="Json" />
-                <ScalarProperty Name="IsLoaded" ColumnName="IsLoaded" />
-                <ScalarProperty Name="IsElaborated" ColumnName="IsElaborated" />
-                <ScalarProperty Name="IsCumulative" ColumnName="IsCumulative" />
-                <ScalarProperty Name="ElaborationDate" ColumnName="ElaborationDate" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="usp_HistoricizingAll" FunctionName="FST_FomMonitoringModel.Store.usp_HistoricizingAll" />
           <EntitySetMapping Name="UserMachineMapping">
             <EntityTypeMapping TypeName="FST_FomMonitoringModel.UserMachineMapping">

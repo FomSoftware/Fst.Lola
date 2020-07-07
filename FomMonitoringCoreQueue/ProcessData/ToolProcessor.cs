@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Autofac;
 using FomMonitoringCore.DAL;
-using FomMonitoringCore.DAL_SQLite;
 using FomMonitoringCore.Service;
 using FomMonitoringCoreQueue.Dto;
 using Mapster;
