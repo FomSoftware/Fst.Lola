@@ -2,6 +2,7 @@
 {
     var urlMachineAPI;
     var urls;
+    var swiper_msg;
 
     var init = function (url)
     {
@@ -47,7 +48,8 @@
                 $(".slimscroll").slimScroll({ destroy: true });
 
                 Messages.update(messages);
-
+                MachineManager.setGroupActive("messages", ".slide-dashboard");
+                swiper_msg.slideTo(0, 300);
                 Vue.nextTick(function () {
                     initProgressBar();
                     initFlipCard();
@@ -206,6 +208,7 @@
             direction: 'horizontal',
             loop: false
         });
+        swiper_msg = swiper_message;
 
         var swiper_maintenance = new Swiper('.swiper-container.maintenance', {
             direction: 'horizontal',
@@ -373,7 +376,8 @@
         initVueComponents: initVueComponents,
         getColorKPI: getColorKPI,
         initScrollBar: initScrollBar,
-        initFlipAndSwipMenu: initFlipAndSwipMenu
+        initFlipAndSwipMenu: initFlipAndSwipMenu,
+        setGroupActive: setGroupActive
     };
 
 }();
