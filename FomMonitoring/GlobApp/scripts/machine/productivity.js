@@ -34,6 +34,7 @@
             el: '#CardProductivity',
             data: {
                 type: infoMachine.mtype,
+                idType: infoMachine.id_mtype,
                 machineModel: infoMachine.model,
                 kpi: data.kpi,
                 piece: data.piece,
@@ -123,6 +124,7 @@
         // update vue model
         var vm_prod = data.vm_productivity;
         vmProductivity.type = data.vm_machine_info.mtype;
+        vmProductivity.idType = data.vm_machine_info.id_mtype;
         vmProductivity.machineModel = data.vm_machine_info.model;
         vmProductivity.kpi = vm_prod.kpi;
         vmProductivity.piece = vm_prod.piece;
