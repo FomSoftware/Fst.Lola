@@ -451,9 +451,9 @@ namespace FomMonitoringCore.Service
 
                     var footer = LocalizationService.GetResource($"{keyObject}_Footer", new CultureInfo(user.Languages.DotNetCulture));
 
-                    var usernameLabel = LocalizationService.GetResource($"{keyObject}_Username", new CultureInfo(user.Languages.DotNetCulture));
+                    var usernameLabel = LocalizationService.GetResource($"{keyObject}_UsernameLabel", new CultureInfo(user.Languages.DotNetCulture));
 
-                    var passwordLabel = LocalizationService.GetResource($"{keyObject}_Password", new CultureInfo(user.Languages.DotNetCulture));
+                    var passwordLabel = LocalizationService.GetResource($"{keyObject}_PasswordLabel", new CultureInfo(user.Languages.DotNetCulture));
 
                     var lastPart = LocalizationService.GetResource($"{keyObject}_LastPart", new CultureInfo(user.Languages.DotNetCulture))
                         .Replace("[TIPO_USER]", ruolo);

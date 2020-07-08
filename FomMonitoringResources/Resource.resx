@@ -1165,7 +1165,7 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
     <value>DoppieTeste</value>
   </data>
   <data name="CreateUserEmailBody_FirstPart" xml:space="preserve">
-    <value>A new &lt;span  style="color: #6f1130;"&gt;[TIPO_USER]&lt;/span&gt; type user has been generated with the following credentials:</value>
+    <value>A new &lt;span  style="color: #6f1130;"&gt; [TIPO_USER] &lt;/span&gt; type user has been generated with the following credentials:</value>
   </data>
   <data name="CreateUserEmailBody_UsernameLabel" xml:space="preserve">
     <value>User:</value>
