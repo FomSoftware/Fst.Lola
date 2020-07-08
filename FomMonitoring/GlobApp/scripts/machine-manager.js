@@ -121,7 +121,7 @@
                 //se sono in mobile o ipad le card sono visualizzate dopo (es. quando scelgo un gruppo) per cui devo tenere conto
                 // di una minima altezza degli header fissi nelle tabelle (es. jobs e messaggi)
                 var headerHeight = tableContainer.first().children('.table-header').height();
-                if (headerHeight === 0) headerHeight = 26;
+                if (headerHeight === 0) headerHeight = 27;
                 hh = hh - headerHeight;
             }
 
