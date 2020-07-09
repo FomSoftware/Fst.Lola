@@ -5,7 +5,7 @@ namespace UserManager.Service
 {
     public interface IRolesService
     {
-            List<FomMonitoringCore.SqlServer.Roles> GetListOfNonDeletedRoles(FomMonitoringCore.SqlServer.FomMonitoringEntities modelloEntity);
+            List<FomMonitoringCore.SqlServer.Roles> GetListOfNonDeletedRoles();
 
             List<FomMonitoringCore.SqlServer.Roles> GetRoles();
 
@@ -20,8 +20,6 @@ namespace UserManager.Service
             bool CheckUserRoles(Guid userId, FomMonitoringCore.SqlServer.Roles role);
         
             List<FomMonitoringCore.SqlServer.Roles> GetUserRoles(Guid userId);
-
-            List<FomMonitoringCore.SqlServer.Roles> GetUserRoles(FomMonitoringCore.SqlServer.FomMonitoringEntities userManagerEntities, Guid userId);
 
             void AddGroupToUser(Guid userId, Guid roleId);
 

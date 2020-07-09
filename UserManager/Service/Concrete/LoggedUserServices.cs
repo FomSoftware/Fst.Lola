@@ -2,24 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using UserManager.Framework.Common;
+using UserManager.Gateway;
 
 namespace UserManager.Service.Concrete
 {
     public class LoggedUserServices : ILoggedUserServices
     {
-        #region Logged User
 
+        #region Logged User
+        
         public Guid GetLoggedUserID()
         {
             var user = GetLoggedUser();
             return user?.ID ?? Guid.Empty;
         }
 
-        public string GetLoggedUserName()
-        {
-            var user = GetLoggedUser();
-            return null == user ? string.Empty : user.Username;
-        }
 
         public string GetLoggedUserDefualtHomePage()
         {
@@ -47,33 +44,6 @@ namespace UserManager.Service.Concrete
             return user;
         }
 
-        //-------- ROLE SECTION ---------
-
-        public bool CheckUserRole(int idRole)
-        {
-            IRolesService rol = new RoleService();
-            return rol.CheckUserRoles(GetLoggedUserID(), idRole);
-        }
-
-        public bool CheckUserRole(FomMonitoringCore.SqlServer.Roles role)
-        {
-            IRolesService rol = new RoleService();
-            return rol.CheckUserRoles(GetLoggedUserID(), role);
-        }
-
-        public List<FomMonitoringCore.SqlServer.Roles> GetLoggedUserRoles()
-        {
-            IRolesService rol = new RoleService();
-            return rol.GetUserRoles(GetLoggedUserID());
-        }
-
-        public string GetLoggedUserRolesString()
-        {
-            IRolesService rol = new RoleService();
-            return String.Join(",", rol.GetUserRoles(GetLoggedUserID()).Select(s => s.Name).ToList());
-        }
-
-        //--------END ROLE SECTION ---------
 
 
         #endregion

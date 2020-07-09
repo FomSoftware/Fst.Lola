@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FomMonitoringCore.SqlServer;
-using UserManager.Gateway.Concrete;
+using UserManager.Gateway;
 using Users = FomMonitoringCore.SqlServer.Users;
 
 namespace UserManager.Service.Concrete

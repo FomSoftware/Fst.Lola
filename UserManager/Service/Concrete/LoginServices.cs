@@ -3,7 +3,7 @@ using System.Web;
 using System.Web.Security;
 using UserManager.Framework.Common;
 using UserManager.Framework.Model;
-using UserManager.Gateway.Concrete;
+using UserManager.Gateway;
 
 namespace UserManager.Service.Concrete
 {
@@ -11,11 +11,15 @@ namespace UserManager.Service.Concrete
     {
         private readonly IUserServices _userService;
         private readonly IUsers _usersGateway;
+        private readonly IAuditLogin _auditLogin;
+        private readonly ILoggedUserServices _loggedUserServices;
 
-        public LoginServices(IUserServices userServices, IUsers usersGateway)
+        public LoginServices(IUserServices userServices, IUsers usersGateway, IAuditLogin auditLogin, ILoggedUserServices loggedUserServices)
         {
             _userService = userServices;
             _usersGateway = usersGateway;
+            _auditLogin = auditLogin;
+            _loggedUserServices = loggedUserServices;
         }
 
         #region Private Variables
@@ -121,13 +125,12 @@ namespace UserManager.Service.Concrete
         {
             var userId = Guid.Empty;
             if (null != user) { userId = user.ID; }
-            AuditLogin.InsertAuditLogin(accessed, username, userId, message);
+            _auditLogin.InsertAuditLogin(accessed, username, userId, message);
         }
 
         public string GetUserDefaultHomePage()
         {
-            ILoggedUserServices myLoggedUserServices = new LoggedUserServices();
-            return myLoggedUserServices.GetLoggedUserDefualtHomePage();
+            return _loggedUserServices.GetLoggedUserDefualtHomePage();
         }
 
         public void RedirectUserToDefaultHomePage()
@@ -243,8 +246,7 @@ namespace UserManager.Service.Concrete
 
         public bool IsFirstLogin()
         {
-                var service = new LoggedUserServices();
-                var user = service.GetLoggedUser();
+                var user = _loggedUserServices.GetLoggedUser();
                 var realUser = _userService.GetUser(user.Username);
 
                 return realUser.LastDateUpdatePassword == null;
@@ -252,8 +254,7 @@ namespace UserManager.Service.Concrete
 
         public bool IsPasswordExpired()
         {
-            var service = new LoggedUserServices();
-            var user = service.GetLoggedUser();
+            var user = _loggedUserServices.GetLoggedUser();
 
             if (user.LastDateUpdatePassword == null) return false;
 

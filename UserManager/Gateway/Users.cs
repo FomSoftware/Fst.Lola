@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using FomMonitoringCore.SqlServer;
 using UserManager.Framework.Common;
+using UserManager.Service;
 
-namespace UserManager.Gateway.Concrete
+namespace UserManager.Gateway
 {
     public class Users : IUsers
     {
         private readonly IFomMonitoringEntities _fomMonitoringEntities;
+        private readonly ILoggedUserServices _loggedUserServices;
 
-        public Users(IFomMonitoringEntities fomMonitoringEntities)
+        public Users(IFomMonitoringEntities fomMonitoringEntities, ILoggedUserServices loggedUserServices)
         {
             _fomMonitoringEntities = fomMonitoringEntities;
+            _loggedUserServices = loggedUserServices;
         }
 
 
@@ -368,8 +371,7 @@ namespace UserManager.Gateway.Concrete
 
                     // disabilito l'utente
                     userToDelete.Enabled = false;
-                    Service.ILoggedUserServices iLogUser = new Service.Concrete.LoggedUserServices();
-                    userToDelete.DeletedBy = iLogUser.GetLoggedUserID();
+                    userToDelete.DeletedBy = _loggedUserServices.GetLoggedUserID();
                     userToDelete.DeletedDate = DateTime.Now;
 
                     // Persisto le modifiche nel DB

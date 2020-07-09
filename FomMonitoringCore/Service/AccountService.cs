@@ -15,11 +15,13 @@ namespace FomMonitoringCore.Service
     {
         private readonly ILoginServices _loginServices;
         private readonly IUserServices _userServices;
+        private readonly ILoggedUserServices _loggedUserServices;
 
-        public AccountService(ILoginServices loginServices, IUserServices userServices)
+        public AccountService(ILoginServices loginServices, IUserServices userServices, ILoggedUserServices loggedUserServices)
         {
             _loginServices = loginServices;
             _userServices = userServices;
+            _loggedUserServices = loggedUserServices;
         }
 
         /// <summary>
@@ -29,9 +31,8 @@ namespace FomMonitoringCore.Service
         public UserModel GetLoggedUser()
         {
             var LoggedUser = new UserModel();
-
-            var loggedUserServices = new LoggedUserServices();
-            var User = loggedUserServices.GetLoggedUser();
+            
+            var User = _loggedUserServices.GetLoggedUser();
 
             if (!User.Enabled)
                 return null;

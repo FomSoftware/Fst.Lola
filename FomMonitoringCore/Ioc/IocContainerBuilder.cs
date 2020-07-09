@@ -11,8 +11,12 @@ using FomMonitoringCore.Uow;
 using System.Collections.Generic;
 using FomMonitoringCore.SqlServer.Repository;
 using FomMonitoringCore.Mongo;
+using UserManager.Gateway;
 using UserManager.Service;
 using UserManager.Service.Concrete;
+using AuditLogin = UserManager.Gateway.AuditLogin;
+using Roles = UserManager.Gateway.Roles;
+using Users = UserManager.Gateway.Users;
 
 namespace FomMonitoringCore.Ioc
 {
@@ -64,8 +68,12 @@ namespace FomMonitoringCore.Ioc
                 builder.RegisterType<UserManagerService>().As<IUserManagerService>(),
                 builder.RegisterType<AccountService>().As<IAccountService>(),
                 builder.RegisterType<LoginServices>().As<ILoginServices>(),
+                builder.RegisterType<AuditLogin>().As<IAuditLogin>(),
                 builder.RegisterType<UserServices>().As<IUserServices>(),
-                builder.RegisterType<UserManager.Gateway.Concrete.Users>().As<UserManager.Gateway.Concrete.IUsers>(),
+                builder.RegisterType<LoggedUserServices>().As<ILoggedUserServices>(),
+                builder.RegisterType<Users>().As<IUsers>(),
+                builder.RegisterType<Roles>().As<IRoles>(),
+                builder.RegisterType<RoleService>().As<IRolesService>(),
                 builder.RegisterGeneric(typeof(Mongo.Repository.GenericRepository<>)).As(typeof(Mongo.Repository.IGenericRepository<>))
             };
 

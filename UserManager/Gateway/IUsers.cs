@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using FomMonitoringCore.SqlServer;
 using UserManager.Framework.Common;
 
-namespace UserManager.Gateway.Concrete
+namespace UserManager.Gateway
 {
     public interface IUsers
     {
