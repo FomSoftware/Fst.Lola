@@ -9,9 +9,16 @@ using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoringBLL.ViewServices
 {
-    public class UserManagerViewService
+    public class UserManagerViewService : IUserManagerViewService
     {
-        public static UserManagerViewModel GetUsers(ContextModel context)
+        private readonly IUserManagerService _userManagerService;
+
+        public UserManagerViewService(IUserManagerService userManagerService)
+        {
+            _userManagerService = userManagerService;
+        }
+
+        public UserManagerViewModel GetUsers(ContextModel context)
         {
             UserManagerViewModel userManager = new UserManagerViewModel();
             string usernameCustomer = null;
@@ -20,7 +27,7 @@ namespace FomMonitoringBLL.ViewServices
                 usernameCustomer = context.User.Username;
 
             // users
-            List<UserModel> usersModel = UserManagerService.GetUsers(usernameCustomer);
+            List<UserModel> usersModel = _userManagerService.GetUsers(usernameCustomer);
             userManager.users = usersModel.Select(s => new UserViewModel
             {
                 ID = s.ID,
@@ -38,7 +45,7 @@ namespace FomMonitoringBLL.ViewServices
             }).ToList();
 
             //roles
-            List<RoleModel> rolesModel = UserManagerService.GetRoles();
+            List<RoleModel> rolesModel = _userManagerService.GetRoles();
             userManager.roles = rolesModel.Select(s => new UserRoleViewModel
             {
                 Code = s.Code,
@@ -48,23 +55,23 @@ namespace FomMonitoringBLL.ViewServices
             }).ToList();
 
             //customers
-            userManager.customers = UserManagerService.GetCustomerNames();
+            userManager.customers = _userManagerService.GetCustomerNames();
 
             //machines
             if (context.User.Role == enRole.Customer)
             {
-                List<MachineInfoModel> machinesModel = UserManagerService.GetCustomerMachines(usernameCustomer);
+                List<MachineInfoModel> machinesModel = _userManagerService.GetCustomerMachines(usernameCustomer);
                 userManager.machines = machinesModel.Select(s => new UserMachineViewModel { Id = s.Id, Serial = s.Serial, MachineName = s.MachineName }).ToList();
             }
 
             //languages
-            List<Languages> languagesModel = UserManagerService.GetLanguages();
+            List<Languages> languagesModel = _userManagerService.GetLanguages();
             userManager.languages = languagesModel.Select(s => new UserLanguageViewModel { Id = s.ID, Name = s.Name }).ToList();
 
             return userManager;
         }
 
-        public static UserManagerViewModel GetUser(string idUser)
+        public UserManagerViewModel GetUser(string idUser)
         {
             UserManagerViewModel result = new UserManagerViewModel();
 
@@ -72,7 +79,7 @@ namespace FomMonitoringBLL.ViewServices
             if (Guid.TryParse(idUser, out userId))
             {
                 //user
-                UserModel userModel = UserManagerService.GetUser(userId);
+                UserModel userModel = _userManagerService.GetUser(userId);
                 UserViewModel user = new UserViewModel();
 
                 user.ID = userModel.ID;
@@ -98,7 +105,7 @@ namespace FomMonitoringBLL.ViewServices
                 return null;
         }
 
-        public static bool CreateUser(UserViewModel userModel, ContextModel context)
+        public bool CreateUser(UserViewModel userModel, ContextModel context)
         {
             try
             {
@@ -120,13 +127,13 @@ namespace FomMonitoringBLL.ViewServices
                 if (context.User.Role != enRole.Customer)
                     user.LastDateUpdatePassword = DateTime.Now;
 
-                Guid id = UserManagerService.CreateUser(user);
+                Guid id = _userManagerService.CreateUser(user);
                 // se sono customer invio la mail con la password del nuovo utente
                 //rileggo le info dello user
-                context.User = UserManagerService.GetUser(context.User.ID);
+                context.User = _userManagerService.GetUser(context.User.ID);
                 if (context.User.Role == enRole.Customer && context.User.Email != null)
                 {
-                    UserManagerService.SendPassword(context.User.Email, id, "CreateUserEmailSubject", "CreateUserEmailBody");
+                    _userManagerService.SendPassword(context.User.Email, id, "CreateUserEmailSubject", "CreateUserEmailBody");
                 }
               
                 return true;
@@ -140,13 +147,13 @@ namespace FomMonitoringBLL.ViewServices
             }
         }
 
-        public static List<UserMachineViewModel> GetMachinesByCustomer(string name, bool includeExpired = true)
+        public List<UserMachineViewModel> GetMachinesByCustomer(string name, bool includeExpired = true)
         {
             try
             {
                 List<UserMachineViewModel> result = new List<UserMachineViewModel>();
 
-                List<MachineInfoModel> machinesModel = UserManagerService.GetCustomerMachines(name);
+                List<MachineInfoModel> machinesModel = _userManagerService.GetCustomerMachines(name);
 
                 if (!includeExpired)
                     machinesModel = machinesModel
@@ -164,7 +171,7 @@ namespace FomMonitoringBLL.ViewServices
             }
         }
 
-        public static bool EditUser(UserViewModel userModel, ContextModel context)
+        public bool EditUser(UserViewModel userModel, ContextModel context)
         {
             try
             {
@@ -189,7 +196,7 @@ namespace FomMonitoringBLL.ViewServices
                     user.Password = userModel.Password;
                 }
 
-                return UserManagerService.ModifyUser(user, email);
+                return _userManagerService.ModifyUser(user, email);
 
 
             }
@@ -199,21 +206,21 @@ namespace FomMonitoringBLL.ViewServices
             }
         }
 
-        public static bool ChangePassword(ContextModel context, ChangePasswordViewModel changePasswordInfo)
+        public bool ChangePassword(ContextModel context, ChangePasswordViewModel changePasswordInfo)
         {
-            return UserManagerService.ChangePassword(context.User.ID, changePasswordInfo.OldPassword, changePasswordInfo.NewPassword);
+            return _userManagerService.ChangePassword(context.User.ID, changePasswordInfo.OldPassword, changePasswordInfo.NewPassword);
         }
 
-        public static bool ResetUserPassword(string userId)
+        public bool ResetUserPassword(string userId)
         {
             Guid id = Guid.Parse(userId);
-            return UserManagerService.ResetPassword(id);
+            return _userManagerService.ResetPassword(id);
         }
 
-        public static bool DeleteUser(string userId)
+        public bool DeleteUser(string userId)
         {
             Guid id = Guid.Parse(userId);
-            return UserManagerService.DeleteUser(id);
+            return _userManagerService.DeleteUser(id);
         }
     }
 }

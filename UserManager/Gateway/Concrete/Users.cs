@@ -6,110 +6,94 @@ using UserManager.Framework.Common;
 
 namespace UserManager.Gateway.Concrete
 {
-    public static class Users
+    public class Users : IUsers
     {
-        public const string EntitySetName = "Users";
+        private readonly IFomMonitoringEntities _fomMonitoringEntities;
 
-        public static bool LoginUser(string username, string password, out string message, out FomMonitoringCore.SqlServer.Users user)
+        public Users(IFomMonitoringEntities fomMonitoringEntities)
         {
-            return LoginUser(username, password, "", out message, out user);
+            _fomMonitoringEntities = fomMonitoringEntities;
         }
 
-        public static bool LoginUser(string username, string password, string domain, out string message, out FomMonitoringCore.SqlServer.Users user)
+
+        public bool LoginUser(string username, string password, string domain, out string message, out FomMonitoringCore.SqlServer.Users user)
         {
 
-                using (var fomMonitoringEntities = new FomMonitoringEntities())
-                {
-                    try
-                    {
-                        fomMonitoringEntities.Configuration.ProxyCreationEnabled = false;
+            try
+            {
 
-                        if (domain != "")
-                            user = fomMonitoringEntities.Users
-                                .Include("Groups_Users")
-                                .Include("Groups_Users.Groups")
-                                .Include("Roles_Users")
-                                .Include("Roles_Users.Roles")
-                                //.Include("Languages")
-                                .SingleOrDefault(i => i.Username == username && i.Domain == domain);
-                        else
-                            user = fomMonitoringEntities.Users
-                                .Include("Groups_Users")
-                                .Include("Groups_Users.Groups")
-                                .Include("Roles_Users")
-                                .Include("Roles_Users.Roles")
-                                //.Include("Languages")
-                                .SingleOrDefault(i => i.Username == username);
+                if (domain != "")
+                    user = _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>()
+                        .Include("Roles_Users")
+                        .Include("Roles_Users.Roles")
+                        .SingleOrDefault(i => i.Username == username && i.Domain == domain);
+                else
+                    user = _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>()
+                        .Include("Roles_Users")
+                        .Include("Roles_Users.Roles")
+                        .SingleOrDefault(i => i.Username == username);
 
-                        if (null == user) { message = "Username is wrong"; return false; }
-                        if (user.Password != password) { message = "Password is wrong"; return false; }
-                        if (user.Enabled == false) { message = "User is not enabled"; return false; }
+                if (null == user) { message = "Username is wrong"; return false; }
+                if (user.Password != password) { message = "Password is wrong"; return false; }
+                if (user.Enabled == false) { message = "User is not enabled"; return false; }
 
-                        message = "Login done successfully";
+                message = "Login done successfully";
 
-                        //Ritorna true per indicare che il login dell'utente è avvenuto correttamente
-                        return true;
-                    }
-                    catch (Exception ex)
-                    {
-                        message =
-                            $"Non è stato possibile effettuare il login dell'utente perchè è stata rilevata la seguente eccezione: {ex.Message}";
-                        user = null;
-                        return false;
-                    }
-                }
+                //Ritorna true per indicare che il login dell'utente è avvenuto correttamente
+                return true;
+            }
+            catch (Exception ex)
+            {
+                message =
+                    $"Non è stato possibile effettuare il login dell'utente perchè è stata rilevata la seguente eccezione: {ex.Message}";
+                user = null;
+                return false;
+            }
+                
 
         }
 
         /**
          * Esegue il login dell'utente partendo FomMonitoringCore.SqlServerla sola Username
          */
-        public static bool LoginUserWithoutPassword(string username, out string message, out FomMonitoringCore.SqlServer.Users user)
+        public bool LoginUserWithoutPassword(string username, out string message, out FomMonitoringCore.SqlServer.Users user)
         {
-            var userId = Guid.Empty;
-            using (var fomMonitoringEntities = new FomMonitoringEntities())
-            {
-                userId = (from users in fomMonitoringEntities.Users
-                          where users.Username == username
-                          select users.ID).FirstOrDefault();
 
-            }
+            var userId = _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>()
+                .FirstOrDefault(u => u.Username == username)?.ID ?? Guid.Empty;
+
+            
             return LoginUserWithoutPassword(userId, out message, out user);
         }
 
         /**
          * Esegue il login dell'utente partendo FomMonitoringCore.SqlServerla sola Username e FomMonitoringCore.SqlServer Dominio
          */
-        public static bool LoginUserWithoutPassword(string username, string domain, out string message, out FomMonitoringCore.SqlServer.Users user)
+        public bool LoginUserWithoutPassword(string username, string domain, out string message, out FomMonitoringCore.SqlServer.Users user)
         {
-            var userId = Guid.Empty;
-            using (var fomMonitoringEntities = new FomMonitoringEntities())
-            {
-                userId = (from users in fomMonitoringEntities.Users
-                          where users.Username == username
-                          && users.Domain == domain
-                          select users.ID).FirstOrDefault();
+            var userId = _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>().FirstOrDefault(users =>
+                         users.Username == username
+                         && users.Domain == domain)?.ID ?? Guid.Empty;
 
-            }
+            
             return LoginUserWithoutPassword(userId, out message, out user);
         }
 
         /**
          * Autentica l'utente partendo solamente FomMonitoringCore.SqlServerla UserID
          */
-        public static bool LoginUserWithoutPassword(Guid userId, out string message, out FomMonitoringCore.SqlServer.Users user)
+        public bool LoginUserWithoutPassword(Guid userId, out string message, out FomMonitoringCore.SqlServer.Users user)
         {
             try
             {
-                var fomMonitoringEntities = new FomMonitoringEntities();
 
-                user = fomMonitoringEntities.Users.FirstOrDefault(i => i.ID == userId);
+                user = _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>().FirstOrDefault(i => i.ID == userId);
 
                 if (null == user) { message = "User not found"; new Exception(message); return false; }
                 if (user.Enabled == false) { message = "User is not allowed to have accessed to this application"; new Exception(message); return false; }
 
                 //Cancella il record della richiesta
-                fomMonitoringEntities.SaveChanges();
+                _fomMonitoringEntities.SaveChanges();
 
                 message = "Login done successfully";
                 return true;
@@ -124,14 +108,13 @@ namespace UserManager.Gateway.Concrete
         /**
          * Cambia la password dell'utente
          */
-        public static bool ChangePassword(Guid userId, string newPassword, string oldPassword, out string message)
+        public bool ChangePassword(Guid userId, string newPassword, string oldPassword, out string message)
         {
             message = string.Empty;
             try
             {
-                using (var fomMonitoringEntities = new FomMonitoringEntities())
-                {
-                    var user = fomMonitoringEntities.Users.First(i => i.ID == userId);
+
+                    var user = _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>().First(i => i.ID == userId);
 
                     if (user.Password != oldPassword) { message = "The old password does not match with your password!"; return false; }
 
@@ -139,8 +122,8 @@ namespace UserManager.Gateway.Concrete
                     user.ModifiedBy = userId;
                     user.ModifiedDate = DateTime.Now;
                     user.LastDateUpdatePassword = DateTime.Now;
-                    fomMonitoringEntities.SaveChanges();
-                }
+                    _fomMonitoringEntities.SaveChanges();
+                
                 return true;
             }
             catch (Exception ex)
@@ -154,16 +137,13 @@ namespace UserManager.Gateway.Concrete
         /**
          * Get users by GuidID
          */
-        public static FomMonitoringCore.SqlServer.Users GetUser(Guid userId)
+        public FomMonitoringCore.SqlServer.Users GetUser(Guid userId)
         {
             try
             {
-                using (var fomMonitoringEntities = new FomMonitoringEntities())
-                {
-                    return (from users in fomMonitoringEntities.Users
-                            where users.ID == userId
-                            select users).FirstOrDefault();
-                }
+
+                return _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>().FirstOrDefault(i => i.ID == userId);
+                
             }
             catch (Exception ex)
             {
@@ -174,16 +154,15 @@ namespace UserManager.Gateway.Concrete
         /**
         * Get users by Username
         */
-        public static FomMonitoringCore.SqlServer.Users GetUser(string username)
+        public FomMonitoringCore.SqlServer.Users GetUser(string username)
         {
             try
             {
-                using (var fomMonitoringEntities = new FomMonitoringEntities())
-                {
-                    return fomMonitoringEntities.Users
+
+                    return _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>()
                             .Include("Roles_Users")
                             .Include("Roles_Users.Roles").FirstOrDefault(w => w.Username == username);
-                }
+                
             }
             catch (Exception ex)
             {
@@ -194,16 +173,15 @@ namespace UserManager.Gateway.Concrete
         /**
         * Get users by Username e Password
         */
-        public static FomMonitoringCore.SqlServer.Users GetUser(string username, string password)
+        public FomMonitoringCore.SqlServer.Users GetUser(string username, string password)
         {
             try
             {
-                using (var fomMonitoringEntities = new FomMonitoringEntities())
-                {
-                    return (from users in fomMonitoringEntities.Users
-                            where users.Username == username && users.Password == password
-                            select users).FirstOrDefault();
-                }
+
+                    return _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>()
+                        .Include("Roles_Users")
+                        .Include("Roles_Users.Roles").FirstOrDefault(w => w.Username == username && w.Password == password);
+                
             }
             catch (Exception ex)
             {
@@ -214,15 +192,12 @@ namespace UserManager.Gateway.Concrete
         /**
          * Get all users
          */
-        public static List<FomMonitoringCore.SqlServer.Users> GetAllUsers()
+        public List<FomMonitoringCore.SqlServer.Users> GetAllUsers()
         {
             try
             {
-                using (var fomMonitoringEntities = new FomMonitoringEntities())
-                {
-                    return (from users in fomMonitoringEntities.Users
-                            select users).ToList();
-                }
+                return _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>().ToList();
+                
             }
             catch (Exception ex)
             {
@@ -233,13 +208,12 @@ namespace UserManager.Gateway.Concrete
         /**
          * Get all users
          */
-        public static List<FomMonitoringCore.SqlServer.Users> GetListOfNonDeletedUsers(FomMonitoringEntities fomMonitoringEntities)
+        public List<FomMonitoringCore.SqlServer.Users> GetListOfNonDeletedUsers(FomMonitoringEntities fomMonitoringEntities)
         {
             try
             {
-                return (from users in fomMonitoringEntities.Users
-                        where users.DeletedBy == null && users.DeletedDate == null
-                        select users).ToList();
+                return _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>()
+                    .Where(users => users.DeletedBy == null && users.DeletedDate == null).ToList();
             }
             catch (Exception ex)
             {
@@ -250,18 +224,16 @@ namespace UserManager.Gateway.Concrete
         /**
          * Get all users and check Role
          */
-        public static List<FomMonitoringCore.SqlServer.Users> GetAllUsers(Enumerators.UserRole userRole)
+        public List<FomMonitoringCore.SqlServer.Users> GetAllUsers(Enumerators.UserRole userRole)
         {
             try
             {
                 var usersRoleString = Enum.GetName(typeof(Enumerators.UserRole), (int)userRole);
 
-                using (var fomMonitoringEntities = new FomMonitoringEntities())
-                {
-                    return (from users in fomMonitoringEntities.Users
-                            where users.Roles_Users.Select(x => x.Roles.Name).Contains(usersRoleString)
-                            select users).ToList();
-                }
+                return _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>()
+                    .Where(users => users.Roles_Users.Select(x => x.Roles.Name).Contains(usersRoleString)).ToList();
+                
+                
             }
             catch (Exception ex)
             {
@@ -269,16 +241,13 @@ namespace UserManager.Gateway.Concrete
             }
         }
 
-        public static List<FomMonitoringCore.SqlServer.Users> GetAllUsers(string userRoleName)
+        public List<FomMonitoringCore.SqlServer.Users> GetAllUsers(string userRoleName)
         {
             try
             {
-                using (var fomMonitoringEntities = new FomMonitoringEntities())
-                {
-                    return (from users in fomMonitoringEntities.Users
-                            where users.Roles_Users.Select(x => x.Roles.Name).Contains(userRoleName)
-                            select users).ToList();
-                }
+
+                return _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>().Where(users => users.Roles_Users.Select(x => x.Roles.Name).Contains(userRoleName)).ToList();
+
             }
             catch (Exception ex)
             {
@@ -289,16 +258,13 @@ namespace UserManager.Gateway.Concrete
         /**
          * Restituisce una stringa con la culture DOT.NET partendo FomMonitoringCore.SqlServerl'ID dell'utente
          */
-        public static string GetDotNetCultureFromUserId(Guid userId)
+        public string GetDotNetCultureFromUserId(Guid userId)
         {
             try
             {
-                using (var fomMonitoringEntities = new FomMonitoringEntities())
-                {
-                    return (from users in fomMonitoringEntities.Users
-                            where users.ID == userId
-                            select users.Languages.DotNetCulture).Distinct().FirstOrDefault();
-                }
+
+                return _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>().FirstOrDefault(users => users.ID == userId)?.Languages.DotNetCulture;
+                
             }
             catch (Exception ex)
             {
@@ -306,14 +272,12 @@ namespace UserManager.Gateway.Concrete
             }
         }
 
-        public static bool CheckIfUsernameAlreadyExist(string username)
+        public bool CheckIfUsernameAlreadyExist(string username)
         {
             try
             {
-                using (var fomMonitoringEntities = new FomMonitoringEntities())
-                {
-                    return fomMonitoringEntities.Users.Any(w => w.Username.ToLower() == username.ToLower());
-                }
+                    return _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>().Any(w => string.Equals(w.Username, username, StringComparison.CurrentCultureIgnoreCase));
+                
             }
             catch (Exception ex)
             {
@@ -325,12 +289,10 @@ namespace UserManager.Gateway.Concrete
         /// Crea un nuovo utente nel database
         /// </summary>
         /// <param name="user"></param>
-        public static void CreateUser(FomMonitoringCore.SqlServer.Users user)
+        public void CreateUser(FomMonitoringCore.SqlServer.Users user)
         {
             try
             {
-                using (var fomMonitoringEntities = new FomMonitoringEntities())
-                {
                     //Verifico che la username non sia già presente
                     if (CheckIfUsernameAlreadyExist(user.Username))
                     {
@@ -338,10 +300,10 @@ namespace UserManager.Gateway.Concrete
                         throw new Exception("Error username already exists: {0}");
                     }
 
-                    // Aggiungo l'utente a DB
-                    fomMonitoringEntities.Users.Add(user);
-                    fomMonitoringEntities.SaveChanges();
-                }
+                // Aggiungo l'utente a DB
+                _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>().Add(user);
+                    _fomMonitoringEntities.SaveChanges();
+                
             }
             catch (Exception ex)
             {
@@ -353,34 +315,32 @@ namespace UserManager.Gateway.Concrete
         /// Modifica alcune proprietà dell'utente
         /// </summary>
         /// <param name="user"></param>
-        public static void ModifyUser(FomMonitoringCore.SqlServer.Users user)
+        public void ModifyUser(FomMonitoringCore.SqlServer.Users user)
         {
             try
             {
-                using (var fomMonitoringEntities = new FomMonitoringEntities())
+                // Verifico che l'utente esista nel db
+                if (!_fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>().Any(w => string.Equals(w.Username, user.Username, StringComparison.CurrentCultureIgnoreCase)))
                 {
-                    // Verifico che l'utente esista nel db
-                    if (!fomMonitoringEntities.Users.Any(w => w.Username.ToLower() == user.Username.ToLower()))
-                    {
-                        // Errore - utente non trovato
-                        throw new Exception("Error user not found: {0}");
-                    }
-
-                    // Recupero lo user FomMonitoringCore.SqlServer db
-                    var userToModify = fomMonitoringEntities.Users.FirstOrDefault(w => w.Username.ToLower() == user.Username.ToLower());
-
-                    // Aggiorno l'utente con le nuove informazioni (solo alcuni campi vengono aggiornati)
-                    userToModify.FirstName = user.FirstName;
-                    userToModify.LastName = user.LastName;
-                    userToModify.Email = user.Email;
-                    userToModify.Domain = user.Domain;
-                    userToModify.DefaultHomePage = user.DefaultHomePage;
-                    userToModify.Status = user.Status;
-                    userToModify.LanguageID = user.LanguageID;
-
-                    // Persisto le modifiche nel DB
-                    fomMonitoringEntities.SaveChanges();
+                    // Errore - utente non trovato
+                    throw new Exception("Error user not found: {0}");
                 }
+
+                // Recupero lo user FomMonitoringCore.SqlServer db
+                var userToModify = _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>().First(w => string.Equals(w.Username, user.Username, StringComparison.CurrentCultureIgnoreCase));
+
+                // Aggiorno l'utente con le nuove informazioni (solo alcuni campi vengono aggiornati)
+                userToModify.FirstName = user.FirstName;
+                userToModify.LastName = user.LastName;
+                userToModify.Email = user.Email;
+                userToModify.Domain = user.Domain;
+                userToModify.DefaultHomePage = user.DefaultHomePage;
+                userToModify.Status = user.Status;
+                userToModify.LanguageID = user.LanguageID;
+
+                // Persisto le modifiche nel DB
+                _fomMonitoringEntities.SaveChanges();
+                
             }
             catch (Exception ex)
             {
@@ -392,21 +352,19 @@ namespace UserManager.Gateway.Concrete
         /// Disabilita un utente
         /// </summary>
         /// <param name="userId"></param>
-        public static void DeleteUser(Guid userId)
+        public void DeleteUser(Guid userId)
         {
             try
             {
-                using (var fomMonitoringEntities = new FomMonitoringEntities())
-                {
                     // Verifico che l'utente esista nel db
-                    if (!fomMonitoringEntities.Users.Any(w => w.ID == userId))
+                    if (!_fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>().Any(w => w.ID == userId))
                     {
                         // Errore - utente non trovato
                         throw new Exception("Error user not found: {0}");
                     }
 
                     // Recupero lo user FomMonitoringCore.SqlServer db
-                    var userToDelete = fomMonitoringEntities.Users.FirstOrDefault(w => w.ID == userId);
+                    var userToDelete = _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>().First(w => w.ID == userId);
 
                     // disabilito l'utente
                     userToDelete.Enabled = false;
@@ -415,8 +373,8 @@ namespace UserManager.Gateway.Concrete
                     userToDelete.DeletedDate = DateTime.Now;
 
                     // Persisto le modifiche nel DB
-                    fomMonitoringEntities.SaveChanges();
-                }
+                    _fomMonitoringEntities.SaveChanges();
+                
             }
             catch (Exception ex)
             {
@@ -430,29 +388,28 @@ namespace UserManager.Gateway.Concrete
         /// Disabilita un utente
         /// </summary>
         /// <param name="user"></param>
-        public static void DeleteUser(FomMonitoringCore.SqlServer.Users user)
+        public void DeleteUser(FomMonitoringCore.SqlServer.Users user)
         {
             try
             {
-                using (var fomMonitoringEntities = new FomMonitoringEntities())
-                {
+
                     // Verifico che l'utente esista nel db
-                    if (!fomMonitoringEntities.Users.Any(w => w.Username.ToLower() == user.Username.ToLower()))
-                    {
-                        // Errore - utente non trovato
-                        throw new Exception("Error user not found: {0}");
-                    }
-
-                    // Recupero lo user FomMonitoringCore.SqlServer db
-                    var userToDelete = fomMonitoringEntities.Users.FirstOrDefault(w => w.Username.ToLower() == user.Username.ToLower());
-
-                    // disabilito l'utente
-                    userToDelete.Enabled = false;
-                    userToDelete.DeletedDate = DateTime.Now;
-
-                    // Persisto le modifiche nel DB
-                    fomMonitoringEntities.SaveChanges();
+                if (!_fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>().Any(w => string.Equals(w.Username, user.Username, StringComparison.CurrentCultureIgnoreCase)))
+                {
+                    // Errore - utente non trovato
+                    throw new Exception("Error user not found: {0}");
                 }
+
+                // Recupero lo user FomMonitoringCore.SqlServer db
+                var userToDelete = _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>().First(w => string.Equals(w.Username, user.Username, StringComparison.CurrentCultureIgnoreCase));
+
+                // disabilito l'utente
+                userToDelete.Enabled = false;
+                userToDelete.DeletedDate = DateTime.Now;
+
+                // Persisto le modifiche nel DB
+                _fomMonitoringEntities.SaveChanges();
+                
             }
             catch (Exception ex)
             {

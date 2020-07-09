@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Text;
-using FomMonitoringCore.Mongo;
 using FomMonitoringCore.Mongo.Repository;
 using FomMonitoringCore.Queue.Connection;
 using FomMonitoringCore.Queue.Events;
@@ -14,13 +13,12 @@ using Tool = FomMonitoringCore.Queue.Dto.Tool;
 
 namespace FomMonitoringCore.Queue.QueueConsumer
 {
-    public class ToolConsumer : IConsumer<Dto.Tool>
+    public class ToolConsumer : IConsumer<Tool>
     {
         private readonly IProcessor<Tool> _processor;
         private readonly IQueueConnection _queueConnection;
-        private IMongoDbContext _mongoContext;
         private readonly IGenericRepository<Mongo.Dto.Tool> _toolGenericRepository;
-        private EventingBasicConsumer consumer;
+        private EventingBasicConsumer _consumer;
 
         public ToolConsumer(IProcessor<Tool> processor, IQueueConnection queueConnection,
             IGenericRepository<Mongo.Dto.Tool> toolGenericRepository)
@@ -34,10 +32,10 @@ namespace FomMonitoringCore.Queue.QueueConsumer
 
         public void Init()
         {
-            consumer = new EventingBasicConsumer(_queueConnection.ChannelState);
-            consumer.Received += ConsumerOnReceived();
+            _consumer = new EventingBasicConsumer(_queueConnection.ChannelState);
+            _consumer.Received += ConsumerOnReceived();
 
-            _queueConnection.ChannelTool.BasicConsume("Tool", false, consumer);
+            _queueConnection.ChannelTool.BasicConsume("Tool", false, _consumer);
         }
 
         private EventHandler<BasicDeliverEventArgs> ConsumerOnReceived()
@@ -100,7 +98,7 @@ namespace FomMonitoringCore.Queue.QueueConsumer
 
         public void Dispose()
         {
-            consumer.Received -= ConsumerOnReceived();
+            _consumer.Received -= ConsumerOnReceived();
             _processor?.Dispose();
         }
     }

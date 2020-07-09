@@ -10,10 +10,12 @@ namespace FomMonitoringBLL.ViewServices
     public class MaintenanceViewService : IMaintenanceViewService
     {
         private readonly IMessageService _messageService;
+        private readonly IUserManagerViewService _userManagerViewService;
 
-        public MaintenanceViewService(IMessageService messageService)
+        public MaintenanceViewService(IMessageService messageService, IUserManagerViewService userManagerViewService)
         {
             _messageService = messageService;
+            _userManagerViewService = userManagerViewService;
         }
 
         public MaintenanceViewModel GetMessages(ContextModel context)
@@ -45,7 +47,7 @@ namespace FomMonitoringBLL.ViewServices
                     utc = machine.UTC,
                     expiredSpan = CommonViewService.getTimeViewModel(_messageService.GetExpiredSpan(a)),
                     description = a.Description,
-                    user = UserManagerViewService.GetUser(a.UserId)
+                    user = _userManagerViewService.GetUser(a.UserId)
 
                 }).ToList();
 

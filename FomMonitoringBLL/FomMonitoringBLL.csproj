@@ -106,6 +106,7 @@
     <Compile Include="ViewServices\IPlantMessagesViewService.cs" />
     <Compile Include="ViewServices\IProductivityViewService.cs" />
     <Compile Include="ViewServices\IToolsViewService.cs" />
+    <Compile Include="ViewServices\IUserManagerViewService.cs" />
     <Compile Include="ViewServices\IXToolsViewService.cs" />
     <Compile Include="ViewServices\MachineViewService.cs" />
     <Compile Include="ViewServices\MaintenanceViewService.cs" />

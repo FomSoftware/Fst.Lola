@@ -17,14 +17,16 @@ namespace FomMonitoring.Controllers
     public class AccountController : Controller
     {
         private readonly IContextService _contextService;
-        private readonly IMesService _mesService;
         private readonly IFomMonitoringEntities _dbContext;
+        private readonly IAccountService _accountService;
+        private readonly IJsonAPIClientService _jsonApiClientService;
 
-        public AccountController(IContextService contextService, IMesService mesService, IFomMonitoringEntities dbContext)
+        public AccountController(IContextService contextService, IFomMonitoringEntities dbContext, IAccountService accountService, IJsonAPIClientService jsonApiClientService)
         {
             _contextService = contextService;
-            _mesService = mesService;
             _dbContext = dbContext;
+            _accountService = accountService;
+            _jsonApiClientService = jsonApiClientService;
         }
 
         [HttpGet]
@@ -94,15 +96,15 @@ namespace FomMonitoring.Controllers
             switch (exception)
             {
                 case 0:
-                    redirect = RedirectToAction("Login", new { returnUrl = returnUrl });
+                    redirect = RedirectToAction("Login", new {returnUrl });
                     break;
                 case 1:
                 case 3:
                 case 4:
-                    redirect = RedirectToAction("Login", new { returnUrl = string.Empty, exception = exception });
+                    redirect = RedirectToAction("Login", new { returnUrl = string.Empty, exception });
                     break;
                 case 2:
-                    redirect = RedirectToAction("Login", new { returnUrl = returnUrl, exception = exception });
+                    redirect = RedirectToAction("Login", new {returnUrl, exception });
                     break;
             }
 
@@ -114,8 +116,7 @@ namespace FomMonitoring.Controllers
         private void Disconnect()
         {
             FormsAuthentication.SignOut();
-            AccountService accountService = new AccountService();
-            accountService.Logout();
+            _accountService.Logout();
             CacheService.CleanAllCache();
 
             List<HttpCookie> cookies = new List<HttpCookie>();
@@ -136,22 +137,20 @@ namespace FomMonitoring.Controllers
         {
             if (ModelState.IsValid)
             {
-                AccountService accountService = new AccountService();
                 enLoginResult remoteLoginResult = enLoginResult.NotExists;
 
                 /* REMOTE LOGIN */
                 var remoteLogin = bool.Parse(ApplicationSettingService.GetWebConfigKey("RemoteLogin"));
                 if (remoteLogin)
                 {
-                    IJsonAPIClientService jsonAPIClientService = new JsonAPIClientService(_dbContext, _mesService);
-                    remoteLoginResult = jsonAPIClientService.ValidateCredentialsViaRemoteApi(model.Username, model.Password);
+                    remoteLoginResult = _jsonApiClientService.ValidateCredentialsViaRemoteApi(model.Username, model.Password);
                 }
 
                 switch (remoteLoginResult)
                 {
                     case enLoginResult.Ok:
                     case enLoginResult.NotExists:
-                        var localLoginResult = accountService.Login(model.Username, model.Password, true, (remoteLoginResult == enLoginResult.Ok));
+                        var localLoginResult = _accountService.Login(model.Username, model.Password, true, (remoteLoginResult == enLoginResult.Ok));
                         if (localLoginResult.Result)
                         {
                             FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
@@ -204,7 +203,7 @@ namespace FomMonitoring.Controllers
 
         private void ClearNotificationTable()
         {
-            var user = AccountService.Init().GetLoggedUser();
+            var user = _accountService.GetLoggedUser();
             var toRemove = _dbContext.Set<MessageMachineNotification>().Where(m => m.UserId == user.ID.ToString());
             if (toRemove.Any())
             {

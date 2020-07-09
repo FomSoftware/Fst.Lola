@@ -17,11 +17,13 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
     {
         private readonly IFomMonitoringEntities _context;
         private readonly IMesService _mesService;
+        private readonly IUserManagerService _userManagerService;
 
-        public JsonAPIClientService(IFomMonitoringEntities context, IMesService mesService)
+        public JsonAPIClientService(IFomMonitoringEntities context, IMesService mesService, IUserManagerService userManagerService)
         {
             _context = context;
             _mesService = mesService;
+            _userManagerService = userManagerService;
         }
 
         public enLoginResult ValidateCredentialsViaRemoteApi(string username, string password)
@@ -121,7 +123,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
 
                     //elimino i customer non più presenti nella vip area
 
-                    var dbCustomers =UserManagerService.GetAllCustomers();
+                    var dbCustomers = _userManagerService.GetAllCustomers();
                     var customerNames = customers.customers.Select(j => j.username).Distinct();
                     var custmerToRemove = dbCustomers.Where(e => !customerNames.Contains(e.Username)).ToList();
 
@@ -136,7 +138,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                         var usCust = new List<UserModel>();
                         foreach (var item in us)
                         {
-                            usCust.AddRange(UserManagerService.GetUsers(item.CustomerName));
+                            usCust.AddRange(_userManagerService.GetUsers(item.CustomerName));
                         }
 
                         if (us.Any())
@@ -155,7 +157,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                         usCust.AddRange(custmerToRemove);
                         using (var transactionSuppress = new TransactionScope(TransactionScopeOption.Suppress))
                         {
-                            UserManagerService.RemoveUsers(usCust);
+                            _userManagerService.RemoveUsers(usCust);
                             transactionSuppress.Complete();
                         }
                     }
@@ -169,7 +171,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             var user = new UserModel();
                             using (var transactionSuppress = new TransactionScope(TransactionScopeOption.Suppress))
                             {
-                                user = UserManagerService.GetUser(customer.username);
+                                user = _userManagerService.GetUser(customer.username);
                                 if (user == null)
                                 {
                                     user = new UserModel
@@ -181,7 +183,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                                         Role = enRole.Customer,
                                         CustomerName = customer.username
                                     };
-                                    user.ID = UserManagerService.CreateUser(user);
+                                    user.ID = _userManagerService.CreateUser(user);
                                 }
                                 transactionSuppress.Complete();
                             }

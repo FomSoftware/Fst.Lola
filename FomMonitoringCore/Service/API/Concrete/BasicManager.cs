@@ -4,9 +4,16 @@ namespace FomMonitoringCore.Service.API.Concrete
 {
     public class BasicManager : IBasicManager
     {
+        private readonly IAccountService _accountService;
+
+        public BasicManager(IAccountService accountService)
+        {
+            _accountService = accountService;
+        }
+
         public bool ValidateCredentials(LoginModel login)
         {
-            return AccountService.LoginApi(login.Username, login.Password);
+            return _accountService.LoginApi(login.Username, login.Password);
         }
     }
 }

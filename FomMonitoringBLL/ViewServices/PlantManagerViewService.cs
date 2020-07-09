@@ -10,11 +10,15 @@ namespace FomMonitoringBLL.ViewServices
 {
     public class PlantManagerViewService : IPlantManagerViewService
     {
-        readonly IPlantManagerService _plantManagerService;
+        private readonly IPlantManagerService _plantManagerService;
+        private readonly IUserManagerService _userManagerService;
+        private readonly IUserManagerViewService _userManagerViewService;
 
-        public PlantManagerViewService(IPlantManagerService plantManagerService)
+        public PlantManagerViewService(IPlantManagerService plantManagerService, IUserManagerService userManagerService, IUserManagerViewService userManagerViewService)
         {
             _plantManagerService = plantManagerService;
+            _userManagerService = userManagerService;
+            _userManagerViewService = userManagerViewService;
         }
 
         public PlantManagerViewModel GetPlants(ContextModel context)
@@ -40,7 +44,7 @@ namespace FomMonitoringBLL.ViewServices
                 }).ToList()
             }).ToList();
 
-            plantManager.Customers = UserManagerService.GetCustomerNames();
+            plantManager.Customers = _userManagerService.GetCustomerNames();
 
             return plantManager;
         }
@@ -87,7 +91,7 @@ namespace FomMonitoringBLL.ViewServices
 
             result.Plant = plant;
 
-            result.Machines = UserManagerViewService.GetMachinesByCustomer(plantModel.CustomerName, false);
+            result.Machines = _userManagerViewService.GetMachinesByCustomer(plantModel.CustomerName, false);
             return result;
 
         }
@@ -114,7 +118,7 @@ namespace FomMonitoringBLL.ViewServices
 
             result.Plant = plant;
 
-            result.Machines = UserManagerViewService.GetMachinesByCustomer(plantModel.CustomerName, false);
+            result.Machines = _userManagerViewService.GetMachinesByCustomer(plantModel.CustomerName, false);
             return result;
 
         }

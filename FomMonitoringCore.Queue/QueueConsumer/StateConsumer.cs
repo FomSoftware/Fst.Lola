@@ -18,9 +18,8 @@ namespace FomMonitoringCore.Queue.QueueConsumer
     {
         private readonly IProcessor<State> _processor;
         private readonly IQueueConnection _queueConnection;
-        private IMongoDbContext _mongoContext;
         private readonly IGenericRepository<Mongo.Dto.State> _stateGenericRepository;
-        private EventingBasicConsumer consumer;
+        private EventingBasicConsumer _consumer;
 
         public StateConsumer(IProcessor<State> processor, IQueueConnection queueConnection,
             IGenericRepository<Mongo.Dto.State> stateGenericRepository)
@@ -34,15 +33,15 @@ namespace FomMonitoringCore.Queue.QueueConsumer
 
         public void Init()
         {
-            consumer = new EventingBasicConsumer(_queueConnection.ChannelState);
-            consumer.Received += ConsumerOnReceived();
+            _consumer = new EventingBasicConsumer(_queueConnection.ChannelState);
+            _consumer.Received += ConsumerOnReceived();
 
-            _queueConnection.ChannelState.BasicConsume("State", false, consumer);
+            _queueConnection.ChannelState.BasicConsume("State", false, _consumer);
         }
 
         public void Dispose()
         {
-            consumer.Received -= ConsumerOnReceived();
+            _consumer.Received -= ConsumerOnReceived();
             _processor?.Dispose();
         }
 

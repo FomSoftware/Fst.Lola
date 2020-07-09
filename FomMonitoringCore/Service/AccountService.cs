@@ -6,15 +6,20 @@ using System;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using UserManager.Service;
 using UserManager.Service.Concrete;
 
 namespace FomMonitoringCore.Service
 {
-    public class AccountService
+    public class AccountService : IAccountService
     {
-        public static AccountService Init()
+        private readonly ILoginServices _loginServices;
+        private readonly IUserServices _userServices;
+
+        public AccountService(ILoginServices loginServices, IUserServices userServices)
         {
-            return new AccountService();
+            _loginServices = loginServices;
+            _userServices = userServices;
         }
 
         /// <summary>
@@ -62,15 +67,14 @@ namespace FomMonitoringCore.Service
             var result = false;
 
             // Controllo delle credenziali
-            var loginServices = new LoginServices();
             if (remoteAuthentication)
-                result = loginServices.ManageLoginUserWithoutPassword(username, out message, true);
+                result = _loginServices.ManageLoginUserWithoutPassword(username, out message, true);
             else
-                result = loginServices.LoginUserWithEncryptedPassword(username, password, out message, true);
+                result = _loginServices.LoginUserWithEncryptedPassword(username, password, out message, true);
 
             if (result)
             {
-                var User = new AccountService().GetLoggedUser();                
+                var User = GetLoggedUser();                
                 var userId = User.ID.Adapt<string>();
                 var serializedUser = JsonConvert.SerializeObject(User, Formatting.Indented, 
                     new JsonSerializerSettings {
@@ -103,18 +107,9 @@ namespace FomMonitoringCore.Service
             return response;
         }
 
-        public static bool LoginApi(string username, string password)
+        public bool LoginApi(string username, string password)
         {
-            string message;
-
-            var loginServices = new LoginServices();
-            if (loginServices.LoginUserWithEncryptedPassword(username, password, out message, false))
-            {
-                var userServices = new UserServices();
-                return userServices.GetUser(username).Roles_Users.Any(a => a.Roles.IdRole == (int)enRole.UserApi);
-            }
-
-            return false;
+            return _loginServices.LoginUserWithEncryptedPassword(username, password, out _, false) && _userServices.GetUser(username).Roles_Users.Any(a => a.Roles.IdRole == (int)enRole.UserApi);
         }
 
         /// <summary>
@@ -122,8 +117,7 @@ namespace FomMonitoringCore.Service
         /// </summary>
         public void Logout()
         {
-            var loginServices = new LoginServices();
-            loginServices.LogoutUser(string.Empty, false);
+            _loginServices.LogoutUser(string.Empty, false);
         }
     }
 }

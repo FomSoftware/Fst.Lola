@@ -40,30 +40,6 @@ namespace UserManager.Framework.Util
             }
         }
 
-        //public Expression Eval(object root, string propertyString)
-        //{
-        //    var propertyNames = propertyString.Split('.');
-        //    ParameterExpression param = Expression.Parameter(root.GetType(), "_");
-        //    Expression property = param;
-        //    foreach (var prop in propertyNames)
-        //    {
-        //        property = Expression.PropertyOrField(property, prop);
-        //    }
-
-        //    return Expression.Lambda(property, param);
-        //}
-
-        //public static Expression Eval(Expression expression, string property)
-        //{
-        //    if (property.IndexOf('.') > 0)
-        //    {
-        //        return Expression.PropertyOrField(expression, property);
-        //    }
-        //    else
-        //    {
-        //        return Eval(Expression.PropertyOrField(expression, property.Substring(0, property.IndexOf('.'))), property.Replace(property.Substring(0, property.IndexOf('.')) + ".", ""));
-        //    }
-        //}
 
     }
 }

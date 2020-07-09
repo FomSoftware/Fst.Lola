@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Http;
+using UserManager.Service;
 using UserManager.Service.Concrete;
 
 namespace FomMonitoring.Controllers
@@ -16,11 +17,15 @@ namespace FomMonitoring.Controllers
     
     public class UserManagerApiController : ApiController
     {
-        private IContextService _contextService;
+        private readonly IContextService _contextService;
+        private readonly IUserManagerViewService _userManagerViewService;
+        private readonly ILoginServices _loginServices;
 
-        public UserManagerApiController(IContextService contextService)
+        public UserManagerApiController(IContextService contextService, IUserManagerViewService userManagerViewService, ILoginServices loginServices)
         {
             _contextService = contextService;
+            _userManagerViewService = userManagerViewService;
+            _loginServices = loginServices;
         }
 
         [HttpGet]
@@ -28,9 +33,9 @@ namespace FomMonitoring.Controllers
         [Route("ajax/UserManagerApi/GetUsers")]
         public HttpResponseMessage GetUsers()
         {
-            ContextModel context = _contextService.GetContext();
-            UserManagerViewModel userManager = new UserManagerViewModel();
-            userManager = UserManagerViewService.GetUsers(context);
+            var context = _contextService.GetContext();
+            var userManager = new UserManagerViewModel();
+            userManager = _userManagerViewService.GetUsers(context);
             return Request.CreateResponse(HttpStatusCode.OK, userManager, MediaTypeHeaderValue.Parse("application/json"));
         }
 
@@ -39,8 +44,8 @@ namespace FomMonitoring.Controllers
         [Route("ajax/UserManagerApi/GetUser/{id}")]
         public HttpResponseMessage GetUser(string id)
         {
-            UserManagerViewModel user = new UserManagerViewModel();
-            user = UserManagerViewService.GetUser(id);
+            var user = new UserManagerViewModel();
+            user = _userManagerViewService.GetUser(id);
             return Request.CreateResponse(HttpStatusCode.OK, user, MediaTypeHeaderValue.Parse("application/json"));
         }
 
@@ -49,8 +54,8 @@ namespace FomMonitoring.Controllers
         [Route("ajax/UserManagerApi/GetCustomers")]
         public HttpResponseMessage GetCustomers()
         {
-            ContextModel context = _contextService.GetContext();
-            List<string> customers = new List<string>();
+            var context = _contextService.GetContext();
+            var customers = new List<string>();
             return Request.CreateResponse(HttpStatusCode.OK, customers, MediaTypeHeaderValue.Parse("application/json"));
         }
 
@@ -61,8 +66,8 @@ namespace FomMonitoring.Controllers
         {
             try
             {
-                ContextModel context = _contextService.GetContext();
-                var result = UserManagerViewService.CreateUser(user, context);
+                var context = _contextService.GetContext();
+                var result = _userManagerViewService.CreateUser(user, context);
                 return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
             }
             catch (System.InvalidOperationException ex)
@@ -76,7 +81,7 @@ namespace FomMonitoring.Controllers
         [Route("ajax/UserManagerApi/GetMachinesByCustomer/{id}")]
         public HttpResponseMessage GetMachinesByCustomer(string id)
         {
-            var result = UserManagerViewService.GetMachinesByCustomer(id);
+            var result = _userManagerViewService.GetMachinesByCustomer(id);
             return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
         }
 
@@ -85,8 +90,8 @@ namespace FomMonitoring.Controllers
         [Route("ajax/UserManagerApi/EditUser")]
         public HttpResponseMessage EditUser(UserViewModel user)
         {
-            ContextModel context = _contextService.GetContext();
-            var result = UserManagerViewService.EditUser(user, context);
+            var context = _contextService.GetContext();
+            var result = _userManagerViewService.EditUser(user, context);
             return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
         }
 
@@ -95,8 +100,8 @@ namespace FomMonitoring.Controllers
         [Route("ajax/UserManagerApi/ChangePassword")]
         public HttpResponseMessage ChangePassword(ChangePasswordViewModel changePasswordInfo)
         {
-            ContextModel context = _contextService.GetContext();
-            var result = UserManagerViewService.ChangePassword(context, changePasswordInfo);
+            var context = _contextService.GetContext();
+            var result = _userManagerViewService.ChangePassword(context, changePasswordInfo);
             return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
         }
 
@@ -105,12 +110,11 @@ namespace FomMonitoring.Controllers
         [Route("ajax/UserManagerApi/CheckFirstLogin")]
         public HttpResponseMessage CheckFirstLogin()
         {
-            ContextModel context = _contextService.GetContext();
+            var context = _contextService.GetContext();
             var result = false;
             if (context.User.Role == enRole.Operator || context.User.Role == enRole.HeadWorkshop)
             {
-                LoginServices ls = new LoginServices();
-                result = ls.IsFirstLogin();
+                result = _loginServices.IsFirstLogin();
             }
             
             return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
@@ -121,7 +125,7 @@ namespace FomMonitoring.Controllers
         [Route("ajax/UserManagerApi/ResetUserPassword/{id}")]
         public HttpResponseMessage ResetUserPassword(string id)
         {
-            var result = UserManagerViewService.ResetUserPassword(id);
+            var result = _userManagerViewService.ResetUserPassword(id);
             return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
         }
 
@@ -130,7 +134,7 @@ namespace FomMonitoring.Controllers
         [Route("ajax/UserManagerApi/DeleteUser/{id}")]
         public HttpResponseMessage DeleteUser(string id)
         {
-            var result = UserManagerViewService.DeleteUser(id);
+            var result = _userManagerViewService.DeleteUser(id);
             return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
         }
     }

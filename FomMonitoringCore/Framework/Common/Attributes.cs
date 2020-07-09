@@ -30,30 +30,21 @@ namespace FomMonitoringCore.Framework.Common
 
     public class SessionApiAttribute : Attribute, IAuthenticationFilter
     {
-        public bool AllowMultiple
-        {
-            get
-            {
-                return false;
-            }
-        }
+        public bool AllowMultiple => false;
 
         public async Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
             var requestScope = context.Request.GetDependencyScope();
 
             // Resolve the service you want to use.
-            var contextService = requestScope.GetService(typeof(IContextService)) as IContextService;
-            if (contextService.GetContext() == null)
+            if (requestScope.GetService(typeof(IContextService)) is IContextService contextService && contextService.GetContext() == null)
             {
                 context.ErrorResult = new AuthenticationFailureResult("Unauthorized", context.Request);
-                return;
             }
         }
 
         public async Task ChallengeAsync(HttpAuthenticationChallengeContext context, CancellationToken cancellationToken)
         {
-            return;
         }
     }
 
@@ -235,26 +226,26 @@ namespace FomMonitoringCore.Framework.Common
 
         private static bool ValidateToken(string token, out string machineSerial)
         {
-            string password = null;
-            string username = null;
             machineSerial = null;
 
-            bool result = true;
+            bool result;
 
-            Encoding encoding = Encoding.GetEncoding(0);
-            string credentials = encoding.GetString(Convert.FromBase64String(token));
-            string[] parameters = credentials.Split(new char[] { ':' });
+            var encoding = Encoding.GetEncoding(0);
+            var credentials = encoding.GetString(Convert.FromBase64String(token));
+            var parameters = credentials.Split(':');
             if (parameters.Length == 3)
             {
-                username = parameters[0];                
+                var username = parameters[0];                
                 machineSerial = parameters[1];
-                password = parameters[2];
+                var password = parameters[2];
 
-                LoginModel login = new LoginModel();
-                login.Username = username;
-                login.Password = password;
+                var login = new LoginModel
+                {
+                    Username = username,
+                    Password = password
+                };
 
-                BasicManager basicManager = new BasicManager();
+                var basicManager = DependencyResolver.Current.GetService<IBasicManager>();
                 result = basicManager.ValidateCredentials(login);
             }
             else
@@ -267,24 +258,21 @@ namespace FomMonitoringCore.Framework.Common
 
         protected Task<IPrincipal> AuthenticateBasicToken(string token)
         {
-            string machineSerial;
+            if (!ValidateToken(token, out var machineSerial))
+                return Task.FromResult<IPrincipal>(null);
 
-            if (ValidateToken(token, out machineSerial))
+            // based on machineSerial to get more information from database in order to build local identity
+            var claims = new List<Claim>
             {
-                // based on machineSerial to get more information from database in order to build local identity
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, machineSerial)
-                    // Add more claims if needed: Roles, ...
-                };
+                new Claim(ClaimTypes.Name, machineSerial)
+                // Add more claims if needed: Roles, ...
+            };
 
-                var identity = new ClaimsIdentity(claims, "Basic");
-                IPrincipal user = new ClaimsPrincipal(identity);
+            var identity = new ClaimsIdentity(claims, "Basic");
+            IPrincipal user = new ClaimsPrincipal(identity);
 
-                return Task.FromResult(user);
-            }
+            return Task.FromResult(user);
 
-            return Task.FromResult<IPrincipal>(null);
         }
 
         public Task ChallengeAsync(HttpAuthenticationChallengeContext context, CancellationToken cancellationToken)

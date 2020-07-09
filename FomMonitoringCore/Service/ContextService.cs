@@ -13,30 +13,34 @@ namespace FomMonitoringCore.Service
     {
         private readonly IMachineService _machineService;
         private readonly IMesService _mesService;
+        private readonly IAccountService _accountService;
+        private readonly IUserManagerService _userManagerService;
 
-        public ContextService(IMachineService machineService, IMesService mesService)
+        public ContextService(IMachineService machineService, IMesService mesService, IAccountService accountService, IUserManagerService userManagerService)
         {
             _machineService = machineService;
             _mesService = mesService;
+            _accountService = accountService;
+            _userManagerService = userManagerService;
         }
 
         public bool InitializeContext()
         {
             try
             {
-                var actualUser = AccountService.Init().GetLoggedUser();
+                var actualUser = _accountService.GetLoggedUser();
 
                 if (actualUser == null)
                     return false;
 
-                var context = new ContextModel();
-                context.User = actualUser;
-
-                context.AllLanguages = UserManagerService.GetLanguages().OrderBy(o => o.IdLanguage).ToList();
-
+                var context = new ContextModel
+                {
+                    User = actualUser,
+                    AllLanguages = _userManagerService.GetLanguages().OrderBy(o => o.IdLanguage).ToList()
+                };
                 
                 context.ActualLanguage = context.User.Language == null ? context.AllLanguages.FirstOrDefault() :
-                    UserManagerService.GetLanguages().FirstOrDefault(lan => lan.ID == context.User.Language.ID);
+                    _userManagerService.GetLanguages().FirstOrDefault(lan => lan.ID == context.User.Language.ID);
 
                 SetContext(context);
 

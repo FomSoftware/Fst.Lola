@@ -36,6 +36,7 @@ namespace FomMonitoring
             builder.RegisterType<PlantManagerViewService> ().As<IPlantManagerViewService> ().InstancePerRequest();
             builder.RegisterType<MesViewService>().As<IMesViewService>().InstancePerRequest();
             builder.RegisterType<NotificationViewService>().As<INotificationViewService>().InstancePerRequest();
+            builder.RegisterType<UserManagerViewService>().As<IUserManagerViewService>().InstancePerRequest();
 
             var container = builder.Build();
 

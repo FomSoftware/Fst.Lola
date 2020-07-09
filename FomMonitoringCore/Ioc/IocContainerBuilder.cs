@@ -11,6 +11,8 @@ using FomMonitoringCore.Uow;
 using System.Collections.Generic;
 using FomMonitoringCore.SqlServer.Repository;
 using FomMonitoringCore.Mongo;
+using UserManager.Service;
+using UserManager.Service.Concrete;
 
 namespace FomMonitoringCore.Ioc
 {
@@ -57,6 +59,13 @@ namespace FomMonitoringCore.Ioc
                 builder.RegisterType<PlantManagerService>().As<IPlantManagerService>(),
                 builder.RegisterType<ToolService>().As<IToolService>(),
                 builder.RegisterType<MongoDbContext>().As<IMongoDbContext>(),
+                builder.RegisterType<BasicManager>().As<IBasicManager>(),
+                builder.RegisterType<JsonAPIClientService>().As<IJsonAPIClientService>(),
+                builder.RegisterType<UserManagerService>().As<IUserManagerService>(),
+                builder.RegisterType<AccountService>().As<IAccountService>(),
+                builder.RegisterType<LoginServices>().As<ILoginServices>(),
+                builder.RegisterType<UserServices>().As<IUserServices>(),
+                builder.RegisterType<UserManager.Gateway.Concrete.Users>().As<UserManager.Gateway.Concrete.IUsers>(),
                 builder.RegisterGeneric(typeof(Mongo.Repository.GenericRepository<>)).As(typeof(Mongo.Repository.IGenericRepository<>))
             };
 

@@ -18,6 +18,7 @@ namespace FomMonitoringCore.Service
         private readonly IMachineRepository _machineRepository;
         private readonly IMessageMachineRepository _messageMachineRepository;
         private readonly IMessagesIndexRepository _messagesIndexRepository;
+        private readonly IAccountService _accountService;
 
         public MessageService(
             IMessageMachineRepository messageMachineRepository,
@@ -25,7 +26,7 @@ namespace FomMonitoringCore.Service
             IMessagesIndexRepository messagesIndexRepository,
             IFomMonitoringEntities context,
             IHistoryMessageRepository historyMessageRepository,
-            ILanguageService languageService)
+            ILanguageService languageService, IAccountService accountService)
         {
             _messageMachineRepository = messageMachineRepository;
             _machineRepository = machineRepository;
@@ -33,6 +34,7 @@ namespace FomMonitoringCore.Service
             _context = context;
             _historyMessageRepository = historyMessageRepository;
             _languageService = languageService;
+            _accountService = accountService;
         }
 
         #region SP AGGREGATION
@@ -452,7 +454,7 @@ namespace FomMonitoringCore.Service
             {
                 MessageMachine cur = _context.Set<MessageMachine>().Find(messageId);
                 cur.IgnoreDate = DateTime.UtcNow;
-                cur.UserId = AccountService.Init().GetLoggedUser().ID.ToString();
+                cur.UserId = _accountService.GetLoggedUser().ID.ToString();
                 _context.SaveChanges();
                 return true;
             }

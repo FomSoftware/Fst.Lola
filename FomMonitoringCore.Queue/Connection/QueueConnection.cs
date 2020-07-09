@@ -163,8 +163,9 @@ namespace FomMonitoringCore.Queue.Connection
                     
                     mres.Set(); // state set to true - breaks out of loop
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
+                    // ignored
                 }
             }
         }

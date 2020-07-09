@@ -9,6 +9,15 @@ namespace UserManager.Service.Concrete
 {
     public class LoginServices : ILoginServices
     {
+        private readonly IUserServices _userService;
+        private readonly IUsers _usersGateway;
+
+        public LoginServices(IUserServices userServices, IUsers usersGateway)
+        {
+            _userService = userServices;
+            _usersGateway = usersGateway;
+        }
+
         #region Private Variables
         private const string EncryptKey = "RedWhiteBlueGreenYellow";
         #endregion
@@ -30,13 +39,12 @@ namespace UserManager.Service.Concrete
             message = string.Empty;
 
             //Controllo che non siano vuote username e password
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-            {
-                message = "Username o Password sono stati inseriti vuoti. Si prega di controllare";
-                return false;
-            }
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                return ManageLoginUser(username, password, domain, out message, persistUserObject);
 
-            return ManageLoginUser(username, password, domain, out message, persistUserObject);
+            message = "Username o Password sono stati inseriti vuoti. Si prega di controllare";
+            return false;
+
         }
 
         /**
@@ -71,7 +79,7 @@ namespace UserManager.Service.Concrete
          */
         public bool ManageLoginUserWithoutPassword(string username, out string message, bool persistUserObject)
         {
-            if (Users.LoginUserWithoutPassword(username, out message, out var user))
+            if (_usersGateway.LoginUserWithoutPassword(username, out message, out var user))
             {
                 if (persistUserObject) { SessionsVariables.SetLoggedUser(user); }
                 InsertLogAuditRecord(true, user.Username, user, message);
@@ -83,7 +91,7 @@ namespace UserManager.Service.Concrete
         }
         public bool ManageLoginUserWithoutPassword(string username, string domain, out string message, bool persistUserObject)
         {
-            if (Users.LoginUserWithoutPassword(username, domain, out message, out var user))
+            if (_usersGateway.LoginUserWithoutPassword(username, domain, out message, out var user))
             {
                 if (persistUserObject) { SessionsVariables.SetLoggedUser(user); }
                 InsertLogAuditRecord(true, user.Username, user, message);
@@ -95,7 +103,7 @@ namespace UserManager.Service.Concrete
         }
         public bool ManageLoginUserWithoutPassword(Guid userId, out string message, bool persistUserObject)
         {
-            if (Users.LoginUserWithoutPassword(userId, out message, out var user))
+            if (_usersGateway.LoginUserWithoutPassword(userId, out message, out var user))
             {
                 if (persistUserObject) { SessionsVariables.SetLoggedUser(user); }
                 InsertLogAuditRecord(true, user.Username, user, message);
@@ -152,15 +160,14 @@ namespace UserManager.Service.Concrete
             {
                 return false;
             }
+            
 
-            ILoginServices myLoginServices = new LoginServices();
-
-            if (myLoginServices.UserObjectIsInSession())
+            if (UserObjectIsInSession())
                 return true;
 
             var sUserId = HttpContext.Current.User.Identity.Name;
 
-            return Guid.TryParse(sUserId, out var gUserId) && myLoginServices.ManageLoginUserWithoutPassword(gUserId, out _, true);
+            return Guid.TryParse(sUserId, out var gUserId) && ManageLoginUserWithoutPassword(gUserId, out _, true);
 
         }
 
@@ -201,7 +208,7 @@ namespace UserManager.Service.Concrete
 
         public bool CheckIfUsernameAlreadyExist(string username)
         {
-            return Users.CheckIfUsernameAlreadyExist(username);
+            return _usersGateway.CheckIfUsernameAlreadyExist(username);
         }
 
         public string EncryptPassword(string psw)
@@ -236,54 +243,31 @@ namespace UserManager.Service.Concrete
 
         public bool IsFirstLogin()
         {
-            try
-            {
                 var service = new LoggedUserServices();
                 var user = service.GetLoggedUser();
-                var realUser = new UserServices().GetUser(user.Username);
+                var realUser = _userService.GetUser(user.Username);
 
-                if (realUser.LastDateUpdatePassword == null) return true;
-                return false;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+                return realUser.LastDateUpdatePassword == null;
         }
 
         public bool IsPasswordExpired()
         {
-            try
-            {
-                var service = new LoggedUserServices();
-                var user = service.GetLoggedUser();
+            var service = new LoggedUserServices();
+            var user = service.GetLoggedUser();
 
-                if (user.LastDateUpdatePassword == null) return false;
+            if (user.LastDateUpdatePassword == null) return false;
 
-                var days = (DateTime.Now - (DateTime)user.LastDateUpdatePassword).Days;
+            var days = (DateTime.Now - (DateTime)user.LastDateUpdatePassword).Days;
 
-                return days >= 90 ? true : false;
-
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-
+            return days >= 90;
         }
 
         #region Private Methods
-        /**
-         * Funzione privata common che esegue il login
-         */
-        private bool ManageLoginUser(string username, string password, out string message, bool persistUserObject)
-        {
-            return ManageLoginUser(username, password, "", out message, persistUserObject);
-        }
+ 
 
         private bool ManageLoginUser(string username, string password, string domain, out string message, bool persistUserObject)
         {
-            if (Users.LoginUser(username, password, domain, out message, out var user))
+            if (_usersGateway.LoginUser(username, password, domain, out message, out var user))
             {
                 if (persistUserObject) { SessionsVariables.SetLoggedUser(user); }
                 InsertLogAuditRecord(true, user.Username, user, message);
