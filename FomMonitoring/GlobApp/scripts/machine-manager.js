@@ -115,12 +115,14 @@
 
             var hh = 244;
 
-            
-
             // se sono in una tabella con il titolo fisso lo slimscroll contiene solo il tbody e non il theader
             var tableContainer = $(this).closest('.table-container');
-            if (tableContainer.length > 0) {             
-                hh = hh - tableContainer.first().children('.table-header').height();
+            if (tableContainer.length > 0) {
+                //se sono in mobile o ipad le card sono visualizzate dopo (es. quando scelgo un gruppo) per cui devo tenere conto
+                // di una minima altezza degli header fissi nelle tabelle (es. jobs e messaggi)
+                var headerHeight = tableContainer.first().children('.table-header').height();
+                if (headerHeight === 0) headerHeight = 27;
+                hh = hh - headerHeight;
             }
 
             if ($(this).attr('id') == "maintenanceSlimscroll" || $(this).attr('id') == "maintenanceSlimscroll2"  )

@@ -322,7 +322,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A new &lt;span  style=&quot;color: #6f1130;&quot;&gt;[TIPO_USER]&lt;/span&gt; type user has been generated with the following credentials:.
+        ///   Looks up a localized string similar to A new &lt;span  style=&quot;color: #6f1130;&quot;&gt; [TIPO_USER] &lt;/span&gt; type user has been generated with the following credentials:.
         /// </summary>
         public static string CreateUserEmailBody_FirstPart {
             get {

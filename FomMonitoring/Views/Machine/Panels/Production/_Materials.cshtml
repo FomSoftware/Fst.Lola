@@ -31,7 +31,7 @@
             <td>{{ material.bar.perc | round }}<em>%</em></td>
             <td>{{ material.bar.number |  roundDecimal(1) }}<em>m</em></td>
         </tr>
-        <tr>
+        <tr v-if="idType != 1">
             <td>
                 <div class="square bg-broken-line"></div>
                 @LocalizationService.GetResource("Cutoff")
@@ -83,7 +83,7 @@
             <td>0<em>%</em></td>
             <td>0<em>m</em></td>
         </tr>
-        <tr>
+        <tr v-if="idType != 1">
             <td>
                 <div class="square bg-broken-line"></div>
                 @LocalizationService.GetResource("Cutoff")

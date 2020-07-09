@@ -122,10 +122,11 @@ namespace FomMonitoringBLL.ViewServices
 
                 Guid id = UserManagerService.CreateUser(user);
                 // se sono customer invio la mail con la password del nuovo utente
-                if(context.User.Role == enRole.Customer && context.User.Email != null)
+                //rileggo le info dello user
+                context.User = UserManagerService.GetUser(context.User.ID);
+                if (context.User.Role == enRole.Customer && context.User.Email != null)
                 {
                     UserManagerService.SendPassword(context.User.Email, id, "CreateUserEmailSubject", "CreateUserEmailBody");
-
                 }
               
                 return true;
