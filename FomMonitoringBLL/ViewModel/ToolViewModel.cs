@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Web;
-
-namespace FomMonitoringBLL.ViewModel
+﻿namespace FomMonitoringBLL.ViewModel
 {
 
     public class ToolViewModel

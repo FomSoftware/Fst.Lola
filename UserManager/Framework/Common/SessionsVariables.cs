@@ -8,7 +8,7 @@ namespace UserManager.Framework.Common
 
         public static bool UseCacheInsteadOfSession()
         {
-            bool result = false;
+            var result = false;
             var cacheKeyValue = ApplicationSettingsService.GetWebConfigKey("UseCacheInsteadOfSession");
 
             if (bool.TryParse(cacheKeyValue, out result))
@@ -19,25 +19,25 @@ namespace UserManager.Framework.Common
 
         #region LoggedUser
 
-        public static DAL.Users GetLoggedUser()
+        public static FomMonitoringCore.SqlServer.Users GetLoggedUser()
         {
-            if (SessionsVariables.UseCacheInsteadOfSession())
-                return CacheService.GetValue<DAL.Users>("LoggedUser");
+            if (UseCacheInsteadOfSession())
+                return CacheService.GetValue<FomMonitoringCore.SqlServer.Users>("LoggedUser");
             else
-                return SessionServices.GetValue<DAL.Users>("LoggedUser");
+                return SessionServices.GetValue<FomMonitoringCore.SqlServer.Users>("LoggedUser");
         }
 
-        public static void SetLoggedUser(DAL.Users User)
+        public static void SetLoggedUser(FomMonitoringCore.SqlServer.Users user)
         {
-            if (SessionsVariables.UseCacheInsteadOfSession())
-                CacheService.SetValue<DAL.Users>("LoggedUser", User);
+            if (UseCacheInsteadOfSession())
+                CacheService.SetValue("LoggedUser", user);
             else
-                SessionServices.SetValue<DAL.Users>("LoggedUser", User);
+                SessionServices.SetValue("LoggedUser", user);
         }
 
         public static void RemoveLoggedUser()
         {
-            if (SessionsVariables.UseCacheInsteadOfSession())
+            if (UseCacheInsteadOfSession())
                 CacheService.RemoveValue("LoggedUser");
             else
                 SessionServices.RemoveValue("LoggedUser");
@@ -45,7 +45,7 @@ namespace UserManager.Framework.Common
 
         public static void ClearSession()
         {
-            if (SessionsVariables.UseCacheInsteadOfSession())
+            if (UseCacheInsteadOfSession())
                 CacheService.Clear();
             else
                 SessionServices.Clear();
@@ -55,25 +55,25 @@ namespace UserManager.Framework.Common
 
         #region SAML Session ID
 
-        public static string GetSAMLSessionID()
+        public static string GetSamlSessionId()
         {
-            if (SessionsVariables.UseCacheInsteadOfSession())
+            if (UseCacheInsteadOfSession())
                 return CacheService.GetValue<string>("SAMLSessionID");
             else
                 return SessionServices.GetValue<string>("SAMLSessionID");
         }
 
-        public static void SetSAMLSessionID(string SAMLSessionID)
+        public static void SetSamlSessionId(string samlSessionId)
         {
-            if (SessionsVariables.UseCacheInsteadOfSession())
-                CacheService.SetValue<string>("SAMLSessionID", SAMLSessionID);
+            if (UseCacheInsteadOfSession())
+                CacheService.SetValue("SAMLSessionID", samlSessionId);
             else
-                SessionServices.SetValue<string>("SAMLSessionID", SAMLSessionID);
+                SessionServices.SetValue("SAMLSessionID", samlSessionId);
         }
 
-        public static void RemoveSAMLSessionID()
+        public static void RemoveSamlSessionId()
         {
-            if (SessionsVariables.UseCacheInsteadOfSession())
+            if (UseCacheInsteadOfSession())
                 CacheService.RemoveValue("SAMLSessionID");
             else
                 SessionServices.RemoveValue("SAMLSessionID");

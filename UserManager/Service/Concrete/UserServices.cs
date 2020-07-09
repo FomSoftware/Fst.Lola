@@ -1,82 +1,83 @@
 ﻿using System;
 using System.Collections.Generic;
+using FomMonitoringCore.SqlServer;
 
 namespace UserManager.Service.Concrete
 {
     public class UserServices : IUserServices
     {
 
-        public bool ChangePassword(Guid UserID, string NewPassword, string OldPassword, out string Message)
+        public bool ChangePassword(Guid userId, string newPassword, string oldPassword, out string message)
         {
-            if (UserID == Guid.Empty)
+            if (userId == Guid.Empty)
             {
-                Message = "Utente non loggato correttamente! Provare ad eseguire il logout e rientrare nell'applicazione!";
+                message = "Utente non loggato correttamente! Provare ad eseguire il logout e rientrare nell'applicazione!";
                 return false;
             }
 
-            return DAL.Gateway.Concrete.Users.ChangePassword(UserID, NewPassword, OldPassword, out Message);
+            return Gateway.Concrete.Users.ChangePassword(userId, newPassword, oldPassword, out message);
         }
 
-        public DAL.Users GetUser(Guid UserID)
+        public Users GetUser(Guid userId)
         {
-            return DAL.Gateway.Concrete.Users.GetUser(UserID);
+            return Gateway.Concrete.Users.GetUser(userId);
         }
 
-        public DAL.Users GetUser(string Username)
+        public Users GetUser(string username)
         {
-            return DAL.Gateway.Concrete.Users.GetUser(Username);
+            return Gateway.Concrete.Users.GetUser(username);
         }
 
-        public DAL.Users GetUser(string Username, string Password)
+        public Users GetUser(string username, string password)
         {
-            return DAL.Gateway.Concrete.Users.GetUser(Username, Password);
+            return Gateway.Concrete.Users.GetUser(username, password);
         }
 
-        public List<DAL.Users> GetAllUsers()
+        public List<Users> GetAllUsers()
         {
-            return DAL.Gateway.Concrete.Users.GetAllUsers();
+            return Gateway.Concrete.Users.GetAllUsers();
         }
 
-        public List<DAL.Users> GetListOfNonDeletedUsers(DAL.UserManagerEntities ModelloEntity)
+        public List<Users> GetListOfNonDeletedUsers(FomMonitoringEntities modelloEntity)
         {
-            return DAL.Gateway.Concrete.Users.GetListOfNonDeletedUsers(ModelloEntity);
+            return Gateway.Concrete.Users.GetListOfNonDeletedUsers(modelloEntity);
         }
        
   
-        public List<DAL.Users> GetAllUsers(UserManager.Framework.Common.Enumerators.UserRole UserRole)
+        public List<Users> GetAllUsers(Framework.Common.Enumerators.UserRole userRole)
         {
-            return DAL.Gateway.Concrete.Users.GetAllUsers(UserRole);
+            return Gateway.Concrete.Users.GetAllUsers(userRole);
         }
 
-        public List<DAL.Users> GetAllUsers(string UserRoleName)
+        public List<Users> GetAllUsers(string userRoleName)
         {
-            return DAL.Gateway.Concrete.Users.GetAllUsers(UserRoleName);
+            return Gateway.Concrete.Users.GetAllUsers(userRoleName);
         }
 
 
-        public string GetDotNetCultureFromUserID(Guid UserID)
+        public string GetDotNetCultureFromUserID(Guid userId)
         {
-            return DAL.Gateway.Concrete.Users.GetDotNetCultureFromUserID(UserID);
+            return Gateway.Concrete.Users.GetDotNetCultureFromUserId(userId);
         }
 
-        public void CreateUser(DAL.Users User)
+        public void CreateUser(Users user)
         {
-            DAL.Gateway.Concrete.Users.CreateUser(User);
+            Gateway.Concrete.Users.CreateUser(user);
         }
 
-        public void ModifyUser(DAL.Users User)
+        public void ModifyUser(Users user)
         {
-            DAL.Gateway.Concrete.Users.ModifyUser(User);
+            Gateway.Concrete.Users.ModifyUser(user);
         }
 
-        public void DeleteUser(DAL.Users User)
+        public void DeleteUser(Users user)
         {
-            DAL.Gateway.Concrete.Users.DeleteUser(User);
+            Gateway.Concrete.Users.DeleteUser(user);
         }
 
-        public void DeleteUser(Guid UserID)
+        public void DeleteUser(Guid userId)
         {
-            DAL.Gateway.Concrete.Users.DeleteUser(UserID);
+            Gateway.Concrete.Users.DeleteUser(userId);
         }
 
  

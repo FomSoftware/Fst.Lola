@@ -6,7 +6,6 @@ using System;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
-using UserManager.DAL;
 using UserManager.Service.Concrete;
 
 namespace FomMonitoringCore.Service
@@ -24,10 +23,10 @@ namespace FomMonitoringCore.Service
         /// <returns></returns>
         public UserModel GetLoggedUser()
         {
-            UserModel LoggedUser = new UserModel();
+            var LoggedUser = new UserModel();
 
             var loggedUserServices = new LoggedUserServices();
-            Users User = loggedUserServices.GetLoggedUser();
+            var User = loggedUserServices.GetLoggedUser();
 
             if (!User.Enabled)
                 return null;
@@ -60,7 +59,7 @@ namespace FomMonitoringCore.Service
         public ResponseModel Login(string username, string password, bool rememberMe, bool remoteAuthentication = false)
         {
             string message;
-            bool result = false;
+            var result = false;
 
             // Controllo delle credenziali
             var loginServices = new LoginServices();
@@ -71,9 +70,9 @@ namespace FomMonitoringCore.Service
 
             if (result)
             {
-                UserModel User = new AccountService().GetLoggedUser();                
-                string userId = User.ID.Adapt<string>();
-                string serializedUser = JsonConvert.SerializeObject(User, Formatting.Indented, 
+                var User = new AccountService().GetLoggedUser();                
+                var userId = User.ID.Adapt<string>();
+                var serializedUser = JsonConvert.SerializeObject(User, Formatting.Indented, 
                     new JsonSerializerSettings {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                     MaxDepth = 1
@@ -95,7 +94,7 @@ namespace FomMonitoringCore.Service
                 HttpContext.Current.Response.Cookies.Add(authCookie);
             }
 
-            ResponseModel response = new ResponseModel
+            var response = new ResponseModel
             {
                 Result = result,
                 Message = message    

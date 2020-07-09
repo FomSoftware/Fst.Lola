@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -83,24 +84,21 @@
     <Reference Include="Crc32C.NET, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Crc32C.NET.1.0.5.0\lib\net20\Crc32C.NET.dll</HintPath>
     </Reference>
-    <Reference Include="DnsClient, Version=1.2.0.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
-      <HintPath>..\packages\DnsClient.1.2.0\lib\net45\DnsClient.dll</HintPath>
+    <Reference Include="DnsClient, Version=1.3.1.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
+      <HintPath>..\packages\DnsClient.1.3.1\lib\net45\DnsClient.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Mapster, Version=3.1.8.0, Culture=neutral, PublicKeyToken=2f39883af23c29a8, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mapster.3.1.8\lib\net45\Mapster.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Mapster, Version=5.3.2.0, Culture=neutral, PublicKeyToken=2f39883af23c29a8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mapster.5.3.2\lib\net45\Mapster.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.5\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
@@ -114,21 +112,20 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MongoDB.Bson, Version=2.10.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Bson.2.10.2\lib\net452\MongoDB.Bson.dll</HintPath>
+    <Reference Include="MongoDB.Bson, Version=2.10.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.10.4\lib\net452\MongoDB.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver, Version=2.10.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Driver.2.10.2\lib\net452\MongoDB.Driver.dll</HintPath>
+    <Reference Include="MongoDB.Driver, Version=2.10.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.10.4\lib\net452\MongoDB.Driver.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver.Core, Version=2.10.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Driver.Core.2.10.2\lib\net452\MongoDB.Driver.Core.dll</HintPath>
+    <Reference Include="MongoDB.Driver.Core, Version=2.10.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.10.4\lib\net452\MongoDB.Driver.Core.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Libmongocrypt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MongoDB.Libmongocrypt.1.0.0\lib\net452\MongoDB.Libmongocrypt.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RazorEngine, Version=3.10.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
       <HintPath>..\packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
@@ -202,167 +199,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DalMongoDb\IMongoDbContext.cs" />
-    <Compile Include="DalMongoDb\MongoDbContext.cs" />
-    <Compile Include="DAL\Bar.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\CurrentState.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\FomMonitoring.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\FomMonitoringApi.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\FomMonitoringDatabaseMapping.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\FomMonitoringModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FomMonitoringModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\FomMonitoringModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\FomMonitoringModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\FomMonitoringModel1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\FomMonitoringUpdateUsers.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\HistoryBar.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\HistoryJob.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\HistoryMessage.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\HistoryPiece.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\HistoryState.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Interceptor\IsolationLevelInterceptor.cs" />
-    <Compile Include="DAL\Machine.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\MachineGroup.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\MachineModel.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\MachineType.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\MessageCategory.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\MessageLanguages.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\MessageMachine.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\MessageMachineNotification.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\MessagesIndex.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\MessageTranslation.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\MessageType.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Panel.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\ParameterMachine.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\ParameterMachineThreshold.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\ParameterMachineValue.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\ParameterResetValue.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Partials\FST_FomMonitoringEntities.cs" />
-    <Compile Include="DAL\Partials\HistoryMessage.cs" />
-    <Compile Include="DAL\Partials\IDbContext.cs" />
-    <Compile Include="DAL\Partials\IFomMonitoringEntities.cs" />
-    <Compile Include="DAL\Partials\ToolMachine.cs" />
-    <Compile Include="DAL\Piece.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Plant.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\State.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\StateMachine.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\ToolMachine.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\UserCustomerMapping.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\UserMachineMapping.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\usp_AggregationBar_Result.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\usp_AggregationJob_Result.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\usp_AggregationMessage_Result.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\usp_AggregationPiece_Result.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\usp_AggregationState_Result.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Partials\MessageMachine.cs" />
-    <Compile Include="DataProcessing\Dto\HistoryJob.cs" />
-    <Compile Include="DataProcessing\Dto\InfoMachine.cs" />
-    <Compile Include="DataProcessing\Dto\Message.cs" />
-    <Compile Include="DataProcessing\Dto\Mongo\BaseModel.cs" />
-    <Compile Include="DataProcessing\Dto\Mongo\HistoryJobPieceBar.cs" />
-    <Compile Include="DataProcessing\Dto\Mongo\Info.cs" />
-    <Compile Include="DataProcessing\Dto\Mongo\Message.cs" />
-    <Compile Include="DataProcessing\Dto\Mongo\State.cs" />
-    <Compile Include="DataProcessing\Dto\Mongo\Tool.cs" />
-    <Compile Include="DataProcessing\Dto\Mongo\Unknown.cs" />
-    <Compile Include="DataProcessing\Dto\Mongo\VariablesList.cs" />
-    <Compile Include="DataProcessing\Dto\StateMachine.cs" />
-    <Compile Include="DataProcessing\Dto\Tool.cs" />
-    <Compile Include="DataProcessing\Dto\Value.cs" />
-    <Compile Include="DataProcessing\Dto\VariablesList.cs" />
     <Compile Include="Framework\Common\Attributes.cs" />
     <Compile Include="Framework\Common\Common.cs" />
     <Compile Include="Framework\Common\EmailSender.cs" />
@@ -413,39 +249,6 @@
     <Compile Include="Ioc\IocContainerBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderer\Renderer.cs" />
-    <Compile Include="Repository\MongoDb\GenericRepository.cs" />
-    <Compile Include="Repository\MongoDb\IGenericRepository.cs" />
-    <Compile Include="Repository\SQL\GenericRepository.cs" />
-    <Compile Include="Repository\SQL\HistoryJobRepository.cs" />
-    <Compile Include="Repository\SQL\HistoryMessageRepository.cs" />
-    <Compile Include="Repository\SQL\HistoryPieceRepository.cs" />
-    <Compile Include="Repository\SQL\HistoryStateRepository.cs" />
-    <Compile Include="Repository\SQL\IGenericRepository.cs" />
-    <Compile Include="Repository\SQL\IHistoryJobRepository.cs" />
-    <Compile Include="Repository\SQL\IHistoryPieceRepository.cs" />
-    <Compile Include="Repository\SQL\IHistoryStateRepository.cs" />
-    <Compile Include="Repository\SQL\IMachineGroupRepository.cs" />
-    <Compile Include="Repository\SQL\IMachineModelRepository.cs" />
-    <Compile Include="Repository\SQL\IMachineRepository.cs" />
-    <Compile Include="Repository\SQL\IMachineTypeRepository.cs" />
-    <Compile Include="Repository\SQL\IMessageLanguagesRepository.cs" />
-    <Compile Include="Repository\SQL\IMessageMachineRepository.cs" />
-    <Compile Include="Repository\SQL\IMessagesIndexRepository.cs" />
-    <Compile Include="Repository\SQL\IMessageTranslationRepository.cs" />
-    <Compile Include="Repository\SQL\IPanelRepository.cs" />
-    <Compile Include="Repository\SQL\IParameterMachineRepository.cs" />
-    <Compile Include="Repository\SQL\IParameterMachineValueRepository.cs" />
-    <Compile Include="Repository\SQL\MachineGroupRepository.cs" />
-    <Compile Include="Repository\SQL\MachineModelRepository.cs" />
-    <Compile Include="Repository\SQL\MachineRepository.cs" />
-    <Compile Include="Repository\SQL\MachineTypeRepository.cs" />
-    <Compile Include="Repository\SQL\MessageLanguagesRepository.cs" />
-    <Compile Include="Repository\SQL\MessageMachineRepository.cs" />
-    <Compile Include="Repository\SQL\MessagesIndexRepository.cs" />
-    <Compile Include="Repository\SQL\MessageTranslationRepository.cs" />
-    <Compile Include="Repository\SQL\PanelRepository.cs" />
-    <Compile Include="Repository\SQL\ParameterMachineRepository.cs" />
-    <Compile Include="Repository\SQL\ParameterMachineValueRepository.cs" />
     <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\API\Concrete\JsonDataService.cs" />
     <Compile Include="Service\API\Concrete\XmlDataService.cs" />
@@ -497,16 +300,21 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="DAL\FomMonitoringModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FomMonitoringModel1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="DAL\FomMonitoringModel.edmx.diagram">
-      <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FomMonitoringCore.DataProcessing.Dto\FomMonitoringCore.DataProcessing.Dto.csproj">
+      <Project>{f36b3458-26de-4cf6-8616-bf2194078cb9}</Project>
+      <Name>FomMonitoringCore.DataProcessing.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FomMonitoringCore.Mongo\FomMonitoringCore.Mongo.csproj">
+      <Project>{2d74150b-02cf-40e7-9946-255d2956d160}</Project>
+      <Name>FomMonitoringCore.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FomMonitoringCore.SqlServer\FomMonitoringCore.SqlServer.csproj">
+      <Project>{814936aa-1607-4a90-bcf5-b13ab3af8f98}</Project>
+      <Name>FomMonitoringCore.SqlServer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FomMonitoringResources\FomMonitoringResources.csproj">
       <Project>{D55F7E93-771C-4180-83DE-353B98DAA2B5}</Project>
       <Name>FomMonitoringResources</Name>
@@ -515,18 +323,6 @@
       <Project>{62f6ce7e-300e-4117-bde1-cb422f8379c5}</Project>
       <Name>UserManager</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DAL\FomMonitoringModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
-      <LastGenOutput>FomMonitoringModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DAL\FomMonitoringModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
-      <LastGenOutput>FomMonitoringModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -568,5 +364,8 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

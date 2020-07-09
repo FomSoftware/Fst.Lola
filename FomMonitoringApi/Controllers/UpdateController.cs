@@ -4,7 +4,7 @@ using FomMonitoringCore.Service.API;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Web.Http;
-using FomMonitoringCoreQueue.Forwarder;
+using FomMonitoringCore.Queue.Forwarder;
 
 namespace FomMonitoringApi.Controllers
 {
@@ -57,20 +57,6 @@ namespace FomMonitoringApi.Controllers
             return Json(json);
         }
 
-        [HttpPost]
-        public object MachineReset(object data)
-        {
-            var result = false;
-            var json = new JObject();
-            if (data != null)
-            {
-                var jsonSerialized = JsonConvert.SerializeObject(data);
-                result = _jsonDataService.ResetMachineData(jsonSerialized);
-                json = JObject.Parse(jsonSerialized);
-            }
-            json.AddFirst(new JProperty("isReset", result));
-            return Json(json);
-        }
 
 
     }

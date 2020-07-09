@@ -1,6 +1,6 @@
 ﻿using FomMonitoringCore.Framework.Common;
 using System.Collections.Generic;
-using UserManager.DAL;
+using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoringCore.Framework.Model
 {

@@ -1,34 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using UserManager.DAL;
 
 namespace UserManager.Service
 {
-  public interface IRolesService
+    public interface IRolesService
     {
-            List<UserManager.DAL.Roles> GetListOfNonDeletedRoles(DAL.UserManagerEntities ModelloEntity);
+            List<FomMonitoringCore.SqlServer.Roles> GetListOfNonDeletedRoles(FomMonitoringCore.SqlServer.FomMonitoringEntities modelloEntity);
 
-            List<DAL.Roles> GetRoles();
+            List<FomMonitoringCore.SqlServer.Roles> GetRoles();
 
-            void ModifyRole(UserManager.DAL.Roles role);
+            void ModifyRole(FomMonitoringCore.SqlServer.Roles role);
 
-            void DeleteRole(Guid RoleID);
+            void DeleteRole(Guid roleId);
 
-            DAL.Roles GetRole(Guid RoleID);
+            FomMonitoringCore.SqlServer.Roles GetRole(Guid roleId);
 
-            bool CheckUserRoles(Guid UserID, int IdRole);
+            bool CheckUserRoles(Guid userId, int idRole);
 
-            bool CheckUserRoles(Guid UserID, Roles role);
+            bool CheckUserRoles(Guid userId, FomMonitoringCore.SqlServer.Roles role);
         
-            List<DAL.Roles> GetUserRoles(Guid UserID);
+            List<FomMonitoringCore.SqlServer.Roles> GetUserRoles(Guid userId);
 
-            List<DAL.Roles> GetUserRoles(UserManagerEntities userManagerEntities, Guid UserID);
+            List<FomMonitoringCore.SqlServer.Roles> GetUserRoles(FomMonitoringCore.SqlServer.FomMonitoringEntities userManagerEntities, Guid userId);
 
-            void AddGroupToUser(Guid UserID, Guid RoleID);
+            void AddGroupToUser(Guid userId, Guid roleId);
 
-            void AddGroupsToUser(Guid UserID, List<Guid> RolesID);
+            void AddGroupsToUser(Guid userId, List<Guid> rolesId);
 
-            void DeleteRoles(Guid UserID);
+            void DeleteRoles(Guid userId);
      }
 }
 

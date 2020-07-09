@@ -2,8 +2,8 @@
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Threading.Tasks;
-using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Model.Xml;
+using FomMonitoringCore.SqlServer;
 using Mapster;
 
 namespace FomMonitoringCore.Service.API.Concrete

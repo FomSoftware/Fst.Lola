@@ -1,11 +1,11 @@
-﻿using FomMonitoringCore.DAL;
+﻿
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UserManager.DAL;
+using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoringCore.Service
 {
@@ -31,18 +31,17 @@ namespace FomMonitoringCore.Service
 
         public int? GetOrSetPlantDefaultByUser(Guid userId)
         {            
-            using (UserManagerEntities uent = new UserManagerEntities())
-            {
+
                 var userM = _context.Set<UserCustomerMapping>().FirstOrDefault(m => m.UserId == userId);
                 var plant = _context.Set<Plant>().FirstOrDefault(p => userId == p.UserId);
 
                 if(plant == null)
                 {
-                    var user = uent.Users.FirstOrDefault(u => u.ID == userM.UserId);
+                    var user = _context.Set<Users>().FirstOrDefault(u => u.ID == userM.UserId);
                     plant = AddPlant(user);
                 }
                 return plant?.Id;
-            }
+            
             
         }
 
@@ -51,21 +50,19 @@ namespace FomMonitoringCore.Service
             int? result = null;
             try
             {                
-                Machine machine = _context.Set<Machine>().FirstOrDefault(m => m.Serial == machineSerial);
-                UserManager.DAL.Users user;
+                var machine = _context.Set<Machine>().FirstOrDefault(m => m.Serial == machineSerial);
+                Users user;
                 Plant plant = null;
                 IEnumerable<Guid> userIds;
                 userIds = _context.Set<Machine>().Where(m => m.Serial == machineSerial).SelectMany(n => n.UserMachineMapping).Select(um => um.UserId).ToList();
-              
-                using (UserManager.DAL.UserManagerEntities uent = new UserManager.DAL.UserManagerEntities())
-                {
+
                     //l'utente a cui appartiene il plant tra tutti quelli 
                     //a cui la macchina è associata sarà sempre il customer
                     //e ve ne sarà sempre e solo uno
-                    user = uent.Users.FirstOrDefault(u => userIds.Any(us => us == u.ID) && u.Roles_Users.Any(ur => ur.Roles.IdRole == (int)UserManager.Framework.Common.Enumerators.UserRole.Customer));
-                }                
+                    user = _context.Set<Users>().FirstOrDefault(u => userIds.Any(us => us == u.ID) && u.Roles_Users.Any(ur => ur.Roles.IdRole == (int)UserManager.Framework.Common.Enumerators.UserRole.Customer));
+                               
 
-                if (machine != null && machine.Plant != null && machine.Plant.UserId == user?.ID)
+                if (machine?.Plant != null && machine.Plant.UserId == user?.ID)
                 {                        
                     return machine.Plant.Id;
                 }                   
@@ -104,7 +101,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), plantName, plantAddress);
+                var errMessage = string.Format(ex.GetStringLog(), plantName, plantAddress);
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -121,7 +118,7 @@ namespace FomMonitoringCore.Service
 
             try
             {                
-                Plant plant = new Plant();
+                var plant = new Plant();
                 plant.Name = plantName;
                 plant.Address = plantAddress;
                 plant.UserId = user?.ID;
@@ -132,7 +129,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), plantName, plantAddress);
+                var errMessage = string.Format(ex.GetStringLog(), plantName, plantAddress);
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
@@ -142,18 +139,18 @@ namespace FomMonitoringCore.Service
 
         #region APP WEB
 
-        public List<PlantModel> GetUserPlants(Guid UserID)
+        public List<PlantModel> GetUserPlants(Guid userId)
         {
-            List<PlantModel> result = new List<PlantModel>();
+            var result = new List<PlantModel>();
 
             try
             {               
-                var query = _context.Set<UserMachineMapping>().Where(w => w.UserId == UserID && w.Machine.PlantId != null).Select(s => s.Machine.Plant).Distinct().ToList();
+                var query = _context.Set<UserMachineMapping>().Where(w => w.UserId == userId && w.Machine.PlantId != null).Select(s => s.Machine.Plant).Distinct().ToList();
                 result = query.Adapt<List<PlantModel>>();                
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), UserID.ToString());
+                var errMessage = string.Format(ex.GetStringLog(), userId.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -197,10 +194,12 @@ namespace FomMonitoringCore.Service
             var stateMachine = machine.StateMachine.Where(cs => cs.Day.HasValue && cs.Day.Value.Date == date)
                 .OrderByDescending(s => s.StartTime).FirstOrDefault();
 
-            var m = new MachineMesDataModel();
-            m.Id = machine.Id;
-            m.MachineId = machine.Id;
-            m.ExpirationDate = machine.ExpirationDate;
+            var m = new MachineMesDataModel
+            {
+                Id = machine.Id,
+                MachineId = machine.Id,
+                ExpirationDate = machine.ExpirationDate
+            };
             if (currentState != null)
             {
                 m.ActualJobCode = currentState.JobCode;
@@ -269,7 +268,7 @@ namespace FomMonitoringCore.Service
 
         public List<PlantModel> GetAllPlantsMachines()
         {
-            List<PlantModel> result = new List<PlantModel>();
+            var result = new List<PlantModel>();
 
             try
             {               
@@ -278,7 +277,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog());
+                var errMessage = string.Format(ex.GetStringLog());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -293,13 +292,13 @@ namespace FomMonitoringCore.Service
             string MachinId = null;
             try
             {
-                List<Machine> machines = _context.Set<Machine>().Where(m => m.CurrentState.FirstOrDefault() != null && 
+                var machines = _context.Set<Machine>().Where(m => m.CurrentState.FirstOrDefault() != null && 
                                                             m.CurrentState.FirstOrDefault().StateId != (int)enState.Offline).ToList();
 
-                foreach (Machine machine in machines)
+                foreach (var machine in machines)
                 {
-                    CurrentState st = machine.CurrentState.FirstOrDefault();
-                    int interval = Int32.Parse(System.Configuration.ConfigurationManager.AppSettings.Get("CheckOfflineInterval"));
+                    var st = machine.CurrentState.FirstOrDefault();
+                    var interval = Int32.Parse(System.Configuration.ConfigurationManager.AppSettings.Get("CheckOfflineInterval"));
                     if (st.LastUpdated < DateTime.UtcNow.AddSeconds(interval * -1))
                     {
                         st.LastUpdated = DateTime.UtcNow;
@@ -311,7 +310,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(),
+                var errMessage = string.Format(ex.GetStringLog(),
                     MachinId, "");
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }

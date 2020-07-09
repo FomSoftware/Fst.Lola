@@ -1,8 +1,8 @@
-﻿using FomMonitoringCore.DAL;
+﻿
 using FomMonitoringCore.Framework.Model;
 using System;
 using System.Collections.Generic;
-using UserManager.DAL;
+using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoringCore.Service
 {

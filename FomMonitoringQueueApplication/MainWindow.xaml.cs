@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Threading;
+using FomMonitoringCore.Queue.Events;
+using FomMonitoringCore.Queue.QueueConsumer;
 using FomMonitoringCore.Service;
-using FomMonitoringCoreQueue.Events;
-using FomMonitoringCoreQueue.QueueConsumer;
 using Mapster;
 
 namespace FomMonitoringQueueApplication

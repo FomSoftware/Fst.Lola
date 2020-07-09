@@ -2,22 +2,10 @@
 using System.Diagnostics;
 using System.Linq;
 using Autofac;
-using FomMonitoringCore.DAL;
-using FomMonitoringCore.DalMongoDb;
-using FomMonitoringCore.DataProcessing.Dto.Mongo;
-using FomMonitoringCore.Repository.MongoDb;
-using FomMonitoringCoreQueue.Connection;
-using FomMonitoringCoreQueue.Dto;
-using FomMonitoringCoreQueue.Forwarder;
-using FomMonitoringCoreQueue.ProcessData;
-using FomMonitoringCoreQueue.QueueConsumer;
-using FomMonitoringCoreQueue.QueueProducer;
+using FomMonitoringCore.Mongo.Dto;
+using FomMonitoringCore.Mongo.Repository;
+using FomMonitoringCore.Queue.Forwarder;
 using Newtonsoft.Json;
-using HistoryJobPieceBar = FomMonitoringCore.DataProcessing.Dto.Mongo.HistoryJobPieceBar;
-using Info = FomMonitoringCore.DataProcessing.Dto.Mongo.Info;
-using Message = FomMonitoringCore.DataProcessing.Dto.Mongo.Message;
-using State = FomMonitoringCore.DataProcessing.Dto.Mongo.State;
-using VariablesList = FomMonitoringCore.DataProcessing.Dto.Mongo.VariablesList;
 
 namespace VariableListLoadTest
 {
@@ -28,7 +16,7 @@ namespace VariableListLoadTest
             var builder = new ContainerBuilder();
 
             FomMonitoringCore.Ioc.IocContainerBuilder.BuildCore(builder, false);
-            FomMonitoringCoreQueue.Ioc.IocContainerBuilder.BuildCore(builder, false);
+            FomMonitoringCore.Queue.Ioc.IocContainerBuilder.BuildCore(builder, false);
             
             var container = builder.Build();
 

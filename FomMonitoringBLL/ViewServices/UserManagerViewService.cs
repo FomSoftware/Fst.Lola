@@ -5,6 +5,7 @@ using FomMonitoringCore.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoringBLL.ViewServices
 {
@@ -57,7 +58,7 @@ namespace FomMonitoringBLL.ViewServices
             }
 
             //languages
-            List<UserManager.DAL.Languages> languagesModel = UserManagerService.GetLanguages();
+            List<Languages> languagesModel = UserManagerService.GetLanguages();
             userManager.languages = languagesModel.Select(s => new UserLanguageViewModel { Id = s.ID, Name = s.Name }).ToList();
 
             return userManager;

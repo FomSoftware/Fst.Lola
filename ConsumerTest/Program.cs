@@ -1,16 +1,7 @@
-﻿using FomMonitoringCoreQueue.ProcessData;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using Autofac;
-using FomMonitoringCoreQueue.Connection;
-using FomMonitoringCoreQueue.Dto;
-using FomMonitoringCoreQueue.Forwarder;
-using FomMonitoringCoreQueue.QueueConsumer;
-using FomMonitoringCoreQueue.QueueProducer;
+using FomMonitoringCore.Queue.Dto;
+using FomMonitoringCore.Queue.QueueConsumer;
 using Mapster;
 
 namespace ConsumerTest
@@ -33,7 +24,7 @@ namespace ConsumerTest
             var builder = new ContainerBuilder();
 
             FomMonitoringCore.Ioc.IocContainerBuilder.BuildCore(builder, false);
-            FomMonitoringCoreQueue.Ioc.IocContainerBuilder.BuildCore(builder, false);
+            FomMonitoringCore.Queue.Ioc.IocContainerBuilder.BuildCore(builder, false);
 
             var container = builder.Build();
 

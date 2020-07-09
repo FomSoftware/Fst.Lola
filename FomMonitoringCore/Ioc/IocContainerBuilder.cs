@@ -1,8 +1,7 @@
 ﻿using Autofac;
 using Autofac.Builder;
-using FomMonitoringCore.DAL;
+using FomMonitoringCore.SqlServer;
 using FomMonitoringCore.Framework.Common;
-using FomMonitoringCore.Repository.SQL;
 using FomMonitoringCore.Service;
 using FomMonitoringCore.Service.API;
 using FomMonitoringCore.Service.API.Concrete;
@@ -10,7 +9,8 @@ using FomMonitoringCore.Service.APIClient;
 using FomMonitoringCore.Service.APIClient.Concrete;
 using FomMonitoringCore.Uow;
 using System.Collections.Generic;
-using FomMonitoringCore.DalMongoDb;
+using FomMonitoringCore.SqlServer.Repository;
+using FomMonitoringCore.Mongo;
 
 namespace FomMonitoringCore.Ioc
 {
@@ -57,10 +57,10 @@ namespace FomMonitoringCore.Ioc
                 builder.RegisterType<PlantManagerService>().As<IPlantManagerService>(),
                 builder.RegisterType<ToolService>().As<IToolService>(),
                 builder.RegisterType<MongoDbContext>().As<IMongoDbContext>(),
-                builder.RegisterGeneric(typeof(Repository.MongoDb.GenericRepository<>)).As(typeof(Repository.MongoDb.IGenericRepository<>))
+                builder.RegisterGeneric(typeof(Mongo.Repository.GenericRepository<>)).As(typeof(Mongo.Repository.IGenericRepository<>))
             };
 
-            var dbContext = builder.RegisterType<FST_FomMonitoringEntities>().As<IFomMonitoringEntities>();
+            var dbContext = builder.RegisterType<FomMonitoringEntities>().As<IFomMonitoringEntities>();
 
             if (instancePerRequest)
             {

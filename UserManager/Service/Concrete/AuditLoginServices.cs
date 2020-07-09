@@ -1,23 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using FomMonitoringCore.SqlServer;
+using AuditLogin = UserManager.Gateway.Concrete.AuditLogin;
 
 namespace UserManager.Service.Concrete
 {
   public  class AuditLoginServices : IAuditLoginServices
     {
-      public List<DAL.AuditLogin> GetAuditLogin()
+      public List<FomMonitoringCore.SqlServer.AuditLogin> GetAuditLogin()
       {
-          return DAL.Gateway.Concrete.AuditLogin.GetAuditLogin();
+          return AuditLogin.GetAuditLogin();
       }
 
-      public List<UserManager.DAL.AuditLogin> GetListOfAuditLogin(DAL.UserManagerEntities ModelloEntity)
+      public List<FomMonitoringCore.SqlServer.AuditLogin> GetListOfAuditLogin(FomMonitoringEntities ModelloEntity)
       {
-          return DAL.Gateway.Concrete.AuditLogin.GetListOfAuditLogin(ModelloEntity);
+          return AuditLogin.GetListOfAuditLogin(ModelloEntity);
 
       }
       public DateTime GetUserLastAccessedDateAndTime(Guid UserID)
       {
-          return DAL.Gateway.Concrete.AuditLogin.GetUserLastAccessedDateAndTime(UserID);
+          return AuditLogin.GetUserLastAccessedDateAndTime(UserID);
       }
     }
 }

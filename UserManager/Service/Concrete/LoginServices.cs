@@ -3,139 +3,131 @@ using System.Web;
 using System.Web.Security;
 using UserManager.Framework.Common;
 using UserManager.Framework.Model;
+using UserManager.Gateway.Concrete;
 
 namespace UserManager.Service.Concrete
 {
     public class LoginServices : ILoginServices
     {
         #region Private Variables
-        private const string _EncryptKey = "RedWhiteBlueGreenYellow";
+        private const string EncryptKey = "RedWhiteBlueGreenYellow";
         #endregion
 
         #region Public Methods
         /**
          * Funzione per effettuare il login dell'utente
          */
-        public bool LoginUser(string Username, string Password, out string Message)
+        public bool LoginUser(string username, string password, out string message)
         {
-            return LoginUser(Username, Password, out Message, true);
+            return LoginUser(username, password, out message, true);
         }
-        public bool LoginUser(string Username, string Password, out string Message, bool PersistUserObject)
+        public bool LoginUser(string username, string password, out string message, bool persistUserObject)
         {
-            return LoginUser(Username, Password, "", out Message, PersistUserObject);
+            return LoginUser(username, password, "", out message, persistUserObject);
         }
-        public bool LoginUser(string Username, string Password, string Domain, out string Message, bool PersistUserObject)
+        public bool LoginUser(string username, string password, string domain, out string message, bool persistUserObject)
         {
-            Message = string.Empty;
+            message = string.Empty;
 
             //Controllo che non siano vuote username e password
-            if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                Message = "Username o Password sono stati inseriti vuoti. Si prega di controllare";
+                message = "Username o Password sono stati inseriti vuoti. Si prega di controllare";
                 return false;
             }
 
-            return ManageLoginUser(Username, Password, Domain, out Message, PersistUserObject);
+            return ManageLoginUser(username, password, domain, out message, persistUserObject);
         }
 
         /**
          * Funzione per effettuare il login dell'utente criptando la password
          */
-        public bool LoginUserWithEncryptedPassword(string Username, string Password, out string Message)
+        public bool LoginUserWithEncryptedPassword(string username, string password, out string message)
         {
-            return LoginUserWithEncryptedPassword(Username, Password, out Message, true);
+            return LoginUserWithEncryptedPassword(username, password, out message, true);
         }
-        public bool LoginUserWithEncryptedPassword(string Username, string Password, out string Message, bool PersistUserObject)
+        public bool LoginUserWithEncryptedPassword(string username, string password, out string message, bool persistUserObject)
         {
-            return LoginUserWithEncryptedPassword(Username, Password, "", out Message, PersistUserObject);
+            return LoginUserWithEncryptedPassword(username, password, "", out message, persistUserObject);
         }
-        public bool LoginUserWithEncryptedPassword(string Username, string Password, string Domain, out string Message, bool PersistUserObject)
+        public bool LoginUserWithEncryptedPassword(string username, string password, string domain, out string message, bool persistUserObject)
         {
-            Message = string.Empty;
+            message = string.Empty;
 
             //Controllo che non siano vuote username e password
-            if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                Message = "Username o Password sono stati inseriti vuoti. Si prega di controllare";
+                message = "Username o Password sono stati inseriti vuoti. Si prega di controllare";
                 return false;
             }
 
             // Crypt password and perform authentication
             //return ManageLoginUser(Username, DecryptPassword(Password), Domain, out Message, PersistUserObject);
-            return ManageLoginUser(Username, EncryptPassword(Password), Domain, out Message, PersistUserObject);
+            return ManageLoginUser(username, EncryptPassword(password), domain, out message, persistUserObject);
         }
 
         /**
          * Effettua il login dell'utente senza passargli la password
          */
-        public bool ManageLoginUserWithoutPassword(string Username, out string Message, bool PersistUserObject)
+        public bool ManageLoginUserWithoutPassword(string username, out string message, bool persistUserObject)
         {
-            DAL.Users User;
-            if (DAL.Gateway.Concrete.Users.LoginUserWithoutPassword(Username, out Message, out User))
+            if (Users.LoginUserWithoutPassword(username, out message, out var user))
             {
-                if (PersistUserObject) { Framework.Common.SessionsVariables.SetLoggedUser(User); }
-                InsertLogAuditRecord(true, User.Username, User, Message);
+                if (persistUserObject) { SessionsVariables.SetLoggedUser(user); }
+                InsertLogAuditRecord(true, user.Username, user, message);
                 return true;
             }
-            else
-            {
-                InsertLogAuditRecord(false, Username, User, Message);
-                return false;
-            }
+
+            InsertLogAuditRecord(false, username, user, message);
+            return false;
         }
-        public bool ManageLoginUserWithoutPassword(string Username, string Domain, out string Message, bool PersistUserObject)
+        public bool ManageLoginUserWithoutPassword(string username, string domain, out string message, bool persistUserObject)
         {
-            DAL.Users User;
-            if (DAL.Gateway.Concrete.Users.LoginUserWithoutPassword(Username, Domain, out Message, out User))
+            if (Users.LoginUserWithoutPassword(username, domain, out message, out var user))
             {
-                if (PersistUserObject) { Framework.Common.SessionsVariables.SetLoggedUser(User); }
-                InsertLogAuditRecord(true, User.Username, User, Message);
+                if (persistUserObject) { SessionsVariables.SetLoggedUser(user); }
+                InsertLogAuditRecord(true, user.Username, user, message);
                 return true;
             }
-            else
-            {
-                InsertLogAuditRecord(false, Username, User, Message);
-                return false;
-            }
+
+            InsertLogAuditRecord(false, username, user, message);
+            return false;
         }
-        public bool ManageLoginUserWithoutPassword(Guid UserID, out string Message, bool PersistUserObject)
+        public bool ManageLoginUserWithoutPassword(Guid userId, out string message, bool persistUserObject)
         {
-            DAL.Users User;
-            if (DAL.Gateway.Concrete.Users.LoginUserWithoutPassword(UserID, out Message, out User))
+            if (Users.LoginUserWithoutPassword(userId, out message, out var user))
             {
-                if (PersistUserObject) { Framework.Common.SessionsVariables.SetLoggedUser(User); }
-                InsertLogAuditRecord(true, User.Username, User, Message);
+                if (persistUserObject) { SessionsVariables.SetLoggedUser(user); }
+                InsertLogAuditRecord(true, user.Username, user, message);
                 return true;
             }
-            else
-            {
-                InsertLogAuditRecord(false, UserID.ToString(), User, Message);
-                return false;
-            }
+
+            InsertLogAuditRecord(false, userId.ToString(), user, message);
+            return false;
         }
 
         /**
          * Inserisce il record di audit login
          */
-        private void InsertLogAuditRecord(bool Accessed, string Username, DAL.Users User, string Message)
+        private void InsertLogAuditRecord(bool accessed, string username, FomMonitoringCore.SqlServer.Users user, string message)
         {
-            Guid UserID = Guid.Empty;
-            if (null != User) { UserID = User.ID; }
-            DAL.Gateway.Concrete.AuditLogin.InsertAuditLogin(Accessed, Username, UserID, Message);
+            var userId = Guid.Empty;
+            if (null != user) { userId = user.ID; }
+            AuditLogin.InsertAuditLogin(accessed, username, userId, message);
         }
 
         public string GetUserDefaultHomePage()
         {
-            ILoggedUserServices MyLoggedUserServices = new LoggedUserServices();
-            return MyLoggedUserServices.GetLoggedUserDefualtHomePage();
+            ILoggedUserServices myLoggedUserServices = new LoggedUserServices();
+            return myLoggedUserServices.GetLoggedUserDefualtHomePage();
         }
 
         public void RedirectUserToDefaultHomePage()
         {
-            string HomePage = GetUserDefaultHomePage();
-            if (!string.IsNullOrEmpty(HomePage))
+            var homePage = GetUserDefaultHomePage();
+            if (!string.IsNullOrEmpty(homePage))
             {
-                System.Web.HttpContext.Current.Response.Redirect(HomePage);
+                HttpContext.Current.Response.Redirect(homePage);
             }
         }
 
@@ -146,93 +138,53 @@ namespace UserManager.Service.Concrete
 
         public bool UserObjectIsInSession()
         {
-            DAL.Users User = Framework.Common.SessionsVariables.GetLoggedUser();
-            if (null == User) { return false; }
-            return true;
+            var user = SessionsVariables.GetLoggedUser();
+            return null != user;
         }
 
-        public bool ManageLoginUserOnRedirectAccessRequests(Guid RequestID, bool PersistUserObject)
-        {
-            DAL.Users User;
-            string Message;
-
-            if (DAL.Gateway.Concrete.Users.LoginUserWithRedirectAccessRequestID(RequestID, out Message, out User))
-            {
-                if (PersistUserObject) { Framework.Common.SessionsVariables.SetLoggedUser(User); }
-                InsertLogAuditRecord(true, User.Username, User, Message);
-                return true;
-            }
-            else
-            {
-                InsertLogAuditRecord(false, String.Format(RequestID.ToString()), User, Message);
-                return false;
-            }
-        }
 
         public bool CheckUserAuthentication()
         {
-            string Message;
-
             //Controllo se l'utente è autenticato
-            bool IsAuthenticated = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            var isAuthenticated = HttpContext.Current.User != null && HttpContext.Current.User.Identity.IsAuthenticated;
 
-            if (!IsAuthenticated)
+            if (!isAuthenticated)
             {
                 return false;
             }
-            else
-            {
-                ILoginServices myLoginServices = new LoginServices();
 
-                if (!myLoginServices.UserObjectIsInSession())
-                {
-                    string sUserID = System.Web.HttpContext.Current.User.Identity.Name;
-                    Guid gUserID = Guid.Empty;
+            ILoginServices myLoginServices = new LoginServices();
 
-                    if (Guid.TryParse(sUserID, out gUserID))
-                    {
-                        if (!myLoginServices.ManageLoginUserWithoutPassword(gUserID, out Message, true))
-                        {
-                            return false;
-                        }
-                        else
-                        {
-                            return true;
-                        }
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    return true;
-                }
-            }
+            if (myLoginServices.UserObjectIsInSession())
+                return true;
+
+            var sUserId = HttpContext.Current.User.Identity.Name;
+
+            return Guid.TryParse(sUserId, out var gUserId) && myLoginServices.ManageLoginUserWithoutPassword(gUserId, out _, true);
+
         }
 
-        public void LogoutUser(string FromToken, bool PerformRedirectToLoginPage = true)
+        public void LogoutUser(string fromToken, bool performRedirectToLoginPage = true)
         {
-            DAL.Users User = new DAL.Users();
+            var user = new FomMonitoringCore.SqlServer.Users();
 
             //Esce dalla forms authentication
             try
             {
-                User = SessionsVariables.GetLoggedUser();
+                user = SessionsVariables.GetLoggedUser();
 
                 //Esce dalla forms authentication
                 FormsAuthentication.SignOut();
-                if (User != null && User.Username != null)
+                if (user?.Username != null)
                 {
-                    InsertLogAuditRecord(true, User.Username, User, "Logout done succesfully");
+                    InsertLogAuditRecord(true, user.Username, user, "Logout done succesfully");
                 }
             }
             catch (Exception ex)
             {
-                if (User != null && User.Username != null)
+                if (user?.Username != null)
                 {
-                    InsertLogAuditRecord(true, User.Username, User, "Logout error");
+                    InsertLogAuditRecord(true, user.Username, user, "Logout error");
                 }
             }
 
@@ -244,40 +196,40 @@ namespace UserManager.Service.Concrete
 
             //Gestione Redirect
             //ExtensionMethods.CheckQueryStringAndRedirect(FromToken);
-            if (PerformRedirectToLoginPage) FormsAuthentication.RedirectToLoginPage(FromToken);
+            if (performRedirectToLoginPage) FormsAuthentication.RedirectToLoginPage(fromToken);
         }
 
-        public bool CheckIfUsernameAlreadyExist(string Username)
+        public bool CheckIfUsernameAlreadyExist(string username)
         {
-            return DAL.Gateway.Concrete.Users.CheckIfUsernameAlreadyExist(Username);
+            return Users.CheckIfUsernameAlreadyExist(username);
         }
 
         public string EncryptPassword(string psw)
         {
             try
             {
-                Encrypter wrapper = new Encrypter(_EncryptKey);
-                string cipherText = wrapper.EncryptData(psw);
+                var wrapper = new Encrypter(EncryptKey);
+                var cipherText = wrapper.EncryptData(psw);
                 return cipherText;
             }
             catch (Exception ex)
             {
-                throw new Exception(String.Format("Error during the encryption: {0}", ex.Message));
+                throw new Exception($"Error during the encryption: {ex.Message}");
             }
         }
 
-        public string DecryptPassword(string EncryptedPsw)
+        public string DecryptPassword(string encryptedPsw)
         {
             //DecryptData throws if the wrong password is used.
-            Encrypter wrapper = new Encrypter(_EncryptKey);
+            var wrapper = new Encrypter(EncryptKey);
             try
             {
-                string plainPsw = wrapper.DecryptData(EncryptedPsw);
+                var plainPsw = wrapper.DecryptData(encryptedPsw);
                 return plainPsw;
             }
             catch (Exception ex)
             {
-                throw new Exception(String.Format("Error during the decryption: {0}", ex.Message));
+                throw new Exception($"Error during the decryption: {ex.Message}");
             }
         }
         #endregion
@@ -286,12 +238,12 @@ namespace UserManager.Service.Concrete
         {
             try
             {
-                LoggedUserServices service = new LoggedUserServices();
-                DAL.Users User = service.GetLoggedUser();
-                var realUser = new UserServices().GetUser(User.Username);
+                var service = new LoggedUserServices();
+                var user = service.GetLoggedUser();
+                var realUser = new UserServices().GetUser(user.Username);
 
                 if (realUser.LastDateUpdatePassword == null) return true;
-                else return false;
+                return false;
             }
             catch (Exception e)
             {
@@ -303,14 +255,14 @@ namespace UserManager.Service.Concrete
         {
             try
             {
-                LoggedUserServices service = new LoggedUserServices();
-                DAL.Users User = service.GetLoggedUser();
+                var service = new LoggedUserServices();
+                var user = service.GetLoggedUser();
 
-                if (User.LastDateUpdatePassword == null) return false;
+                if (user.LastDateUpdatePassword == null) return false;
 
-                int days = (DateTime.Now - (DateTime)User.LastDateUpdatePassword).Days;
+                var days = (DateTime.Now - (DateTime)user.LastDateUpdatePassword).Days;
 
-                return (days >= 90) ? true : false;
+                return days >= 90 ? true : false;
 
             }
             catch (Exception e)
@@ -324,25 +276,22 @@ namespace UserManager.Service.Concrete
         /**
          * Funzione privata common che esegue il login
          */
-        private bool ManageLoginUser(string Username, string Password, out string Message, bool PersistUserObject)
+        private bool ManageLoginUser(string username, string password, out string message, bool persistUserObject)
         {
-            return ManageLoginUser(Username, Password, "", out Message, PersistUserObject);
+            return ManageLoginUser(username, password, "", out message, persistUserObject);
         }
 
-        private bool ManageLoginUser(string Username, string Password, string Domain, out string Message, bool PersistUserObject)
+        private bool ManageLoginUser(string username, string password, string domain, out string message, bool persistUserObject)
         {
-            DAL.Users User;
-            if (DAL.Gateway.Concrete.Users.LoginUser(Username, Password, Domain, out Message, out User))
+            if (Users.LoginUser(username, password, domain, out message, out var user))
             {
-                if (PersistUserObject) { Framework.Common.SessionsVariables.SetLoggedUser(User); }
-                InsertLogAuditRecord(true, User.Username, User, Message);
+                if (persistUserObject) { SessionsVariables.SetLoggedUser(user); }
+                InsertLogAuditRecord(true, user.Username, user, message);
                 return true;
             }
-            else
-            {
-                InsertLogAuditRecord(false, Username, User, Message);
-                return false;
-            }
+
+            InsertLogAuditRecord(false, username, user, message);
+            return false;
         }
         #endregion
     }

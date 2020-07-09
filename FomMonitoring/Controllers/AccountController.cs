@@ -1,5 +1,4 @@
-﻿using FomMonitoringCore.DAL;
-using FomMonitoringCore.Framework.Common;
+﻿using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using FomMonitoringCore.Service.APIClient;
@@ -10,8 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 using System.Web.Security;
+using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoring.Controllers
 {

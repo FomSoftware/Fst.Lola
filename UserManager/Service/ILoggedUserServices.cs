@@ -7,7 +7,7 @@ namespace UserManager.Service
         Guid GetLoggedUserID();
         string GetLoggedUserName();
 
-        UserManager.DAL.Users GetLoggedUser();
+        FomMonitoringCore.SqlServer.Users GetLoggedUser();
 
         string GetLoggedUserDefualtHomePage();
 
@@ -24,33 +24,21 @@ namespace UserManager.Service
             /// </summary>
             /// <param name="role">Role object</param>
             /// <returns></returns>
-            bool CheckUserRole(DAL.Roles role);
+            bool CheckUserRole(FomMonitoringCore.SqlServer.Roles role);
 
             /// <summary>
             /// Recupera i ruoli associati all'utente loggato
             /// </summary>
             /// <returns></returns>
-            List<DAL.Roles> GetLoggedUserRoles();
+            List<FomMonitoringCore.SqlServer.Roles> GetLoggedUserRoles();
 
             string GetLoggedUserRolesString();
         #endregion
 
         #region User Groups
 
-        /// <summary>
-        /// Recupera i gruppi associati all'utente loggato
-        /// </summary>
-        /// <returns></returns>
-        List<DAL.Groups> GetLoggedUserGroups();
-
         #endregion
 
-        /// <summary>
-        /// Salva nella tabella RedirectAccessRequests il Guid della richiesta e il Guid dell'utente per potere
-        /// effettuare l'accesso in differita
-        /// </summary>
-        /// <returns>il Guid della richiesta da poter passare alla pagina di dettaglio che dovrebbe passarlo alla pagina che effettua il 
-        /// login in differita</returns>
-        Guid SetUserRedirectAccessRequestsAndGetGuidRequest();
+
     }
 }

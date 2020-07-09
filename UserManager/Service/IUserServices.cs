@@ -18,25 +18,25 @@ namespace UserManager.Service
         /// Get a collection of DAL.Users take from database
         /// </summary>
         /// <returns>Return DAL.Users collection</returns>
-        System.Collections.Generic.List<UserManager.DAL.Users> GetAllUsers();
+        System.Collections.Generic.List<FomMonitoringCore.SqlServer.Users> GetAllUsers();
 
         /// <summary>
         /// Get a collection of DAL.Users take from database
         /// </summary>
         /// <returns>Return DAL.Users collection</returns>
-        System.Collections.Generic.List<UserManager.DAL.Users> GetListOfNonDeletedUsers(DAL.UserManagerEntities ModelloEntity);
+        System.Collections.Generic.List<FomMonitoringCore.SqlServer.Users> GetListOfNonDeletedUsers(FomMonitoringCore.SqlServer.FomMonitoringEntities ModelloEntity);
 
         /// <summary>
         /// Get a collection of DAL.Users take from database specifyng the roles
         /// </summary>
         /// <returns>Return DAL.Users collection</returns>
-        System.Collections.Generic.List<UserManager.DAL.Users> GetAllUsers(UserManager.Framework.Common.Enumerators.UserRole UserRole);
+        System.Collections.Generic.List<FomMonitoringCore.SqlServer.Users> GetAllUsers(UserManager.Framework.Common.Enumerators.UserRole UserRole);
 
         /// <summary>
         /// Get a collection of DAL.Users take from database specifyng the roles
         /// </summary>
         /// <returns>Return DAL.Users collection</returns>
-        System.Collections.Generic.List<UserManager.DAL.Users> GetAllUsers(string UserRoleName);
+        System.Collections.Generic.List<FomMonitoringCore.SqlServer.Users> GetAllUsers(string UserRoleName);
 
         /// <summary>
         /// Get dot.net culture string from user id
@@ -49,44 +49,44 @@ namespace UserManager.Service
         /// Permette di aggiungere un utente nel database
         /// </summary>
         /// <param name="User"></param>
-        void CreateUser(UserManager.DAL.Users User);
+        void CreateUser(FomMonitoringCore.SqlServer.Users User);
 
         /// <summary>
         /// Permette di aggiornare i dati di un utente presente nel database
         /// </summary>
         /// <param name="User"></param>
-        void ModifyUser(UserManager.DAL.Users User);
+        void ModifyUser(FomMonitoringCore.SqlServer.Users User);
 
 
          ///<summary>
          ///Permette di cancellare un utente dal database
          ///</summary>
          ///<param name="User"></param>
-        void DeleteUser(UserManager.DAL.Users User);
+        void DeleteUser(FomMonitoringCore.SqlServer.Users User);
 
         ///<summary>
         ///Permette di cancellare un utente dal database
         ///</summary>
         ///<param name="User"></param>
         void DeleteUser(Guid UserID);
-       
-        /// <summary>
-        /// Restituisce il modello Users salvato a database
-        /// </summary>
-        /// <returns>User</returns>
-        DAL.Users GetUser(Guid UserID);
 
         /// <summary>
         /// Restituisce il modello Users salvato a database
         /// </summary>
         /// <returns>User</returns>
-        DAL.Users GetUser(string Username);
+        FomMonitoringCore.SqlServer.Users GetUser(Guid UserID);
 
         /// <summary>
         /// Restituisce il modello Users salvato a database
         /// </summary>
         /// <returns>User</returns>
-        DAL.Users GetUser(string Username, string Password);
+        FomMonitoringCore.SqlServer.Users GetUser(string Username);
+
+        /// <summary>
+        /// Restituisce il modello Users salvato a database
+        /// </summary>
+        /// <returns>User</returns>
+        FomMonitoringCore.SqlServer.Users GetUser(string Username, string Password);
 
     }
 }

@@ -1,33 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using FomMonitoringCore.SqlServer;
 
 namespace UserManager.Service.Concrete
 {
     public class LanguageServices : ILanguageServives
     {
-        public void ModifyLanguage(DAL.Languages Language)
+        public void ModifyLanguage(Languages language)
         {
-            DAL.Gateway.Concrete.Languages.ModifyLanguage(Language);
+            Gateway.Concrete.Languages.ModifyLanguage(language);
         }
 
-        public void DeleteLanguage(Guid LanguageID)
+        public void DeleteLanguage(Guid languageId)
         {
-            DAL.Gateway.Concrete.Languages.DeleteLanguage(LanguageID);
+            Gateway.Concrete.Languages.DeleteLanguage(languageId);
         }
 
-        public List<UserManager.DAL.Languages> GetListOfLanguage(DAL.UserManagerEntities ModelloEntity)
+        public List<Languages> GetListOfLanguage(FomMonitoringEntities modelloEntity)
         {
-            return DAL.Gateway.Concrete.Languages.GetListOflanguage(ModelloEntity);
-
+            return Gateway.Concrete.Languages.GetListOflanguage(modelloEntity);
         }
-        public DAL.Languages GetLanguage(Guid LanguagesID)
+        
+        public Languages GetLanguage(Guid languagesId)
         {
-            return DAL.Gateway.Concrete.Languages.GetLanguages(LanguagesID);
+            return Gateway.Concrete.Languages.GetLanguages(languagesId);
         }
 
-        public List<DAL.Languages> GetLanguages()
+        public List<Languages> GetLanguages()
         {
-            return DAL.Gateway.Concrete.Languages.GetLanguages();
+            return Gateway.Concrete.Languages.GetLanguages();
         }
     }
 }

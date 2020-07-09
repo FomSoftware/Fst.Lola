@@ -1,5 +1,5 @@
-﻿using FomMonitoringCore.DAL;
-using System;
+﻿using System;
+using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoringCore.Uow
 {

@@ -1,8 +1,6 @@
 ﻿using System.Globalization;
 using System.Web;
-using System.Web.Mvc;
 using FomMonitoringResources;
-using HtmlHelper = System.Web.WebPages.Html.HtmlHelper;
 
 namespace FomMonitoringCore.Service
 {

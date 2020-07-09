@@ -1,5 +1,4 @@
 ﻿using FomMonitoringResources;
-using System.ComponentModel.DataAnnotations;
 
 namespace FomMonitoringBLL.ViewModel
 {

@@ -1,8 +1,5 @@
 ﻿using FomMonitoringCore.Framework.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace FomMonitoringBLL.ViewModel
 {

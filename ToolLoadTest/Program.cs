@@ -1,12 +1,7 @@
-﻿using FomMonitoringCore.DAL;
-using FomMonitoringCoreQueue.Forwarder;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Autofac;
+using FomMonitoringCore.SqlServer;
+using FomMonitoringCore.Queue.Forwarder;
 
 namespace ToolLoadTest
 {
@@ -17,7 +12,7 @@ namespace ToolLoadTest
             var builder = new ContainerBuilder();
 
             FomMonitoringCore.Ioc.IocContainerBuilder.BuildCore(builder, false);
-            FomMonitoringCoreQueue.Ioc.IocContainerBuilder.BuildCore(builder, false);
+            FomMonitoringCore.Queue.Ioc.IocContainerBuilder.BuildCore(builder, false);
 
             var container = builder.Build();
 

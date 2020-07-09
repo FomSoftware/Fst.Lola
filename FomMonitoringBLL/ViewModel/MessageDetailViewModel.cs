@@ -1,5 +1,4 @@
-﻿using FomMonitoringCore.Framework.Common;
-using System;
+﻿using System;
 using System.Globalization;
 
 namespace FomMonitoringBLL.ViewModel

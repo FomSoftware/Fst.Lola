@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{814936AA-1607-4A90-BCF5-B13AB3AF8F98}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FomMonitoringCore.SqlServer</RootNamespace>
+    <AssemblyName>FomMonitoringCore.SqlServer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AuditLogin.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bar.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CurrentState.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FomMonitoringModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FomMonitoringModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FomMonitoringModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FomMonitoringModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryBar.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryJob.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryMessage.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryPiece.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryState.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Languages.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Machine.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MachineGroup.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MachineModel.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MachineType.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MessageCategory.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MessageLanguages.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MessageMachine.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MessageMachineNotification.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MessagesIndex.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MessageTranslation.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MessageType.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Panel.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ParameterMachine.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ParameterMachineThreshold.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ParameterMachineValue.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ParameterResetValue.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Partials\FomMonitoringEntities.cs" />
+    <Compile Include="Partials\HistoryMessage.cs" />
+    <Compile Include="Partials\IDbContext.cs" />
+    <Compile Include="Partials\IFomMonitoringEntities.cs" />
+    <Compile Include="Partials\MessageMachine.cs" />
+    <Compile Include="Partials\ToolMachine.cs" />
+    <Compile Include="Piece.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Plant.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\HistoryJobRepository.cs" />
+    <Compile Include="Repository\HistoryMessageRepository.cs" />
+    <Compile Include="Repository\HistoryPieceRepository.cs" />
+    <Compile Include="Repository\HistoryStateRepository.cs" />
+    <Compile Include="Repository\IGenericRepository.cs" />
+    <Compile Include="Repository\IHistoryJobRepository.cs" />
+    <Compile Include="Repository\IHistoryPieceRepository.cs" />
+    <Compile Include="Repository\IHistoryStateRepository.cs" />
+    <Compile Include="Repository\IMachineGroupRepository.cs" />
+    <Compile Include="Repository\IMachineModelRepository.cs" />
+    <Compile Include="Repository\IMachineRepository.cs" />
+    <Compile Include="Repository\IMachineTypeRepository.cs" />
+    <Compile Include="Repository\IMessageLanguagesRepository.cs" />
+    <Compile Include="Repository\IMessageMachineRepository.cs" />
+    <Compile Include="Repository\IMessagesIndexRepository.cs" />
+    <Compile Include="Repository\IMessageTranslationRepository.cs" />
+    <Compile Include="Repository\IPanelRepository.cs" />
+    <Compile Include="Repository\IParameterMachineRepository.cs" />
+    <Compile Include="Repository\IParameterMachineValueRepository.cs" />
+    <Compile Include="Repository\MachineGroupRepository.cs" />
+    <Compile Include="Repository\MachineModelRepository.cs" />
+    <Compile Include="Repository\MachineRepository.cs" />
+    <Compile Include="Repository\MachineTypeRepository.cs" />
+    <Compile Include="Repository\MessageLanguagesRepository.cs" />
+    <Compile Include="Repository\MessageMachineRepository.cs" />
+    <Compile Include="Repository\MessagesIndexRepository.cs" />
+    <Compile Include="Repository\MessageTranslationRepository.cs" />
+    <Compile Include="Repository\PanelRepository.cs" />
+    <Compile Include="Repository\ParameterMachineRepository.cs" />
+    <Compile Include="Repository\ParameterMachineValueRepository.cs" />
+    <Compile Include="Roles.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Roles_Users.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="State.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StateMachine.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ToolMachine.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserCustomerMapping.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserMachineMapping.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_AggregationBar_Result.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_AggregationJob_Result.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_AggregationPiece_Result.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_AggregationState_Result.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="FomMonitoringModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FomMonitoringModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="FomMonitoringModel.edmx.diagram">
+      <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FomMonitoringModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FomMonitoringModel.Context.cs</LastGenOutput>
+      <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="FomMonitoringModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
+      <LastGenOutput>FomMonitoringModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

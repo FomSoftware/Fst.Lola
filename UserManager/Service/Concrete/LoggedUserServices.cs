@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using UserManager.DAL;
 using UserManager.Framework.Common;
-using RedirectAccessRequests = UserManager.DAL.Gateway.Concrete.RedirectAccessRequests;
 
 namespace UserManager.Service.Concrete
 {
@@ -14,7 +12,7 @@ namespace UserManager.Service.Concrete
         public Guid GetLoggedUserID()
         {
             var user = GetLoggedUser();
-            return null == user ? Guid.Empty : user.ID;
+            return user?.ID ?? Guid.Empty;
         }
 
         public string GetLoggedUserName()
@@ -43,7 +41,7 @@ namespace UserManager.Service.Concrete
                 : userHomePage;
         }
 
-        public Users GetLoggedUser()
+        public FomMonitoringCore.SqlServer.Users GetLoggedUser()
         {
             var user = SessionsVariables.GetLoggedUser();
             return user;
@@ -57,13 +55,13 @@ namespace UserManager.Service.Concrete
             return rol.CheckUserRoles(GetLoggedUserID(), idRole);
         }
 
-        public bool CheckUserRole(Roles role)
+        public bool CheckUserRole(FomMonitoringCore.SqlServer.Roles role)
         {
             IRolesService rol = new RoleService();
             return rol.CheckUserRoles(GetLoggedUserID(), role);
         }
 
-        public List<Roles> GetLoggedUserRoles()
+        public List<FomMonitoringCore.SqlServer.Roles> GetLoggedUserRoles()
         {
             IRolesService rol = new RoleService();
             return rol.GetUserRoles(GetLoggedUserID());
@@ -77,23 +75,6 @@ namespace UserManager.Service.Concrete
 
         //--------END ROLE SECTION ---------
 
-        //-------- GROUP SECTION -----------
-
-        public List<Groups> GetLoggedUserGroups()
-        {
-            return GroupService.GetUserGroups(GetLoggedUserID());
-        }
-
-        //------- END GROUP SECTION --------
-
-        public Guid SetUserRedirectAccessRequestsAndGetGuidRequest()
-        {
-            var user = GetLoggedUser();
-            var requestId = Guid.NewGuid();
-            if (null == user) { throw new Exception("Error: User is null! Error (#111006)"); }
-            RedirectAccessRequests.InsertRedirectAccessRequests(requestId, user.ID);
-            return requestId;
-        }
 
         #endregion
 

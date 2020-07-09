@@ -1,5 +1,4 @@
-﻿using FomMonitoringCore.DAL;
-using FomMonitoringCore.Framework.Common;
+﻿using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using FomMonitoringResources;
@@ -7,10 +6,10 @@ using Mapster;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
-using UserManager.DAL;
-using HistoryMessage = FomMonitoringCore.DAL.HistoryMessage;
-using MessageMachine = FomMonitoringCore.DAL.MessageMachine;
-using ToolMachine = FomMonitoringCore.DAL.ToolMachine;
+using FomMonitoringCore.SqlServer;
+using HistoryMessage = FomMonitoringCore.SqlServer.HistoryMessage;
+using MessageMachine = FomMonitoringCore.SqlServer.MessageMachine;
+using ToolMachine = FomMonitoringCore.SqlServer.ToolMachine;
 
 namespace FomMonitoringCore.Framework.Config
 {

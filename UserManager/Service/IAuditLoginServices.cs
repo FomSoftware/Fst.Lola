@@ -5,8 +5,8 @@ namespace UserManager.Service
 {
    public interface IAuditLoginServices
     {
-        List<DAL.AuditLogin> GetAuditLogin();
-        List<UserManager.DAL.AuditLogin> GetListOfAuditLogin(DAL.UserManagerEntities ModelloEntity);
-        DateTime GetUserLastAccessedDateAndTime(Guid UserID);
+        List<FomMonitoringCore.SqlServer.AuditLogin> GetAuditLogin();
+        List<FomMonitoringCore.SqlServer.AuditLogin> GetListOfAuditLogin(FomMonitoringCore.SqlServer.FomMonitoringEntities modelloEntity);
+        DateTime GetUserLastAccessedDateAndTime(Guid userId);
     }
 }

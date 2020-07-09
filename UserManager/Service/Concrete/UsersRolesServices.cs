@@ -1,29 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using UserManager.DAL;
+using UserManager.Gateway.Concrete;
 
 namespace UserManager.Service.Concrete
 {
     public class UsersRolesServices : IUsersRoles
     {
-        public List<DAL.Roles_Users> GetUsersRoles(Guid UserID)
+        public List<FomMonitoringCore.SqlServer.Roles_Users> GetUsersRoles(Guid userId)
         {
-            return DAL.Gateway.Concrete.UsersRoles.GetUsersRoles(UserID);
+            return UsersRoles.GetUsersRoles(userId);
         }
 
-        public List<DAL.Roles_Users> GetUsersRoles()
+        public List<FomMonitoringCore.SqlServer.Roles_Users> GetUsersRoles()
         {
-            return DAL.Gateway.Concrete.UsersRoles.GetUsersRoles();
+            return UsersRoles.GetUsersRoles();
         }
 
-        public List<DAL.Roles_Users> GetUsersRoles(UserManagerEntities userManagerEntities, Guid UserID)
+        public List<FomMonitoringCore.SqlServer.Roles_Users> GetUsersRoles(FomMonitoringCore.SqlServer.FomMonitoringEntities userManagerEntities, Guid userId)
         {
-            return DAL.Gateway.Concrete.UsersRoles.GetUsersRoles(userManagerEntities, UserID);
+            return UsersRoles.GetUsersRoles(userManagerEntities, userId);
         }
 
         public void DeleteUserRoles(Guid ID)
         {
-            DAL.Gateway.Concrete.UsersRoles.DeleteUserRoles(ID);
+            UsersRoles.DeleteUserRoles(ID);
         }
 
     }

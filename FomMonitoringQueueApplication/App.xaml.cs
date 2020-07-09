@@ -1,14 +1,5 @@
-﻿using FomMonitoringCoreQueue.Events;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows;
-using FomMonitoringCore.Service;
-using FomMonitoringCoreQueue.QueueConsumer;
 
 namespace FomMonitoringQueueApplication
 {

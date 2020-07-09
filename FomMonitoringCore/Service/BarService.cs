@@ -1,10 +1,10 @@
-﻿using FomMonitoringCore.DAL;
-using FomMonitoringCore.Framework.Common;
+﻿using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoringCore.Service
 {
@@ -94,8 +94,8 @@ namespace FomMonitoringCore.Service
             {                                
                     if (barIdOld.HasValue)
                     {
-                        Bar bar = _context.Set<Bar>().FirstOrDefault(f => f.IdOld == barIdOld.Value && f.MachineId == machineId);
-                        result = bar == null ? (int?)null : bar.Id;
+                        var bar = _context.Set<Bar>().FirstOrDefault(f => f.IdOld == barIdOld.Value && f.MachineId == machineId);
+                        result = bar?.Id;
                     }                                              
             }
             catch (Exception ex)

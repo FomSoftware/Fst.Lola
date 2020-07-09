@@ -5,15 +5,15 @@ namespace UserManager.Service
 {
     public interface ILanguageServives
     {
-        List<DAL.Languages> GetLanguages();
+        List<FomMonitoringCore.SqlServer.Languages> GetLanguages();
 
-        void ModifyLanguage(UserManager.DAL.Languages language);
+        void ModifyLanguage(FomMonitoringCore.SqlServer.Languages language);
 
-        void DeleteLanguage(Guid LanguageID);
+        void DeleteLanguage(Guid languageId);
 
-        DAL.Languages GetLanguage(Guid LanguageID);
+        FomMonitoringCore.SqlServer.Languages GetLanguage(Guid languageId);
 
-        List<UserManager.DAL.Languages> GetListOfLanguage(DAL.UserManagerEntities ModelloEntity);
+        List<FomMonitoringCore.SqlServer.Languages> GetListOfLanguage(FomMonitoringCore.SqlServer.FomMonitoringEntities modelloEntity);
 
 
     }

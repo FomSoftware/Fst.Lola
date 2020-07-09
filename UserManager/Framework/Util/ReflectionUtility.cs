@@ -22,7 +22,7 @@ namespace UserManager.Framework.Util
             var propertyNames = propertyString.Split('.');
             foreach (var prop in propertyNames)
             {
-                PropertyInfo property = root.GetType().GetProperty(prop);
+                var property = root.GetType().GetProperty(prop);
                 if (null == property) { continue; }
 
                 property.SetValue(root, ConvertToPropertyType(property, propertyValue), null);

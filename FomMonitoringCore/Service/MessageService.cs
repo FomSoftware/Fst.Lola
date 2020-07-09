@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Core.Objects;
 using System.Linq;
-using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
-using FomMonitoringCore.Repository.SQL;
+using FomMonitoringCore.SqlServer;
+using FomMonitoringCore.SqlServer.Repository;
 using Mapster;
 
 namespace FomMonitoringCore.Service

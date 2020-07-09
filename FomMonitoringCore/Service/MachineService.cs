@@ -1,13 +1,13 @@
-﻿using FomMonitoringCore.DAL;
+﻿
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
-using FomMonitoringCore.Uow;
 using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Linq;
-using FomMonitoringCore.Repository.SQL;
+using FomMonitoringCore.SqlServer;
+using FomMonitoringCore.SqlServer.Repository;
 
 namespace FomMonitoringCore.Service
 {
@@ -46,7 +46,7 @@ namespace FomMonitoringCore.Service
                 {                
                     if (modelCode != null)
                     {
-                        MachineModel machineModel = _machineModelRepository.Get(f => f.ModelCodev997 == modelCode).FirstOrDefault();
+                        var machineModel = _machineModelRepository.Get(f => f.ModelCodev997 == modelCode).FirstOrDefault();
                         result = machineModel != null ? machineModel.Id : (int?)null;
                     }
                               
@@ -70,7 +70,7 @@ namespace FomMonitoringCore.Service
             {
                 if (modelCode != null)
                 {
-                    MachineModel machineModel = _machineModelRepository.Get(f => f.ModelCodev997 == modelCode).FirstOrDefault();
+                    var machineModel = _machineModelRepository.Get(f => f.ModelCodev997 == modelCode).FirstOrDefault();
                     result = machineModel != null ? machineModel.MachineTypeId : (int?)null;
                 }
 

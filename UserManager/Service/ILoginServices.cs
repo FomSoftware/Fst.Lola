@@ -19,14 +19,7 @@ namespace UserManager.Service
         bool ManageLoginUserWithoutPassword(Guid UserID, out string Message, bool PersistUserObject);
         bool IsFirstLogin();
         bool IsPasswordExpired();
-        /// <summary>
-        /// Passandoglio il guid della richiesta effettuta da un lato dell'applicazione cerca di eseguire il login dell'utente.
-        /// La richiesta viene cancellata dal database se l'accesso ha avuto successo.
-        /// </summary>
-        /// <param name="RequestID">Il Guid della richiesta</param>
-        /// <param name="PersistUserObject">true se l'utente deve essere salvato in sessione, false se l'utente non deve essere salvato</param>
-        /// <returns>true l'utente è loggato e false se l'utente non è stato loggato</returns>
-        bool ManageLoginUserOnRedirectAccessRequests(Guid RequestID, bool PersistUserObject);
+
         
         /// <summary>
         /// Questo metodo esegue il logout dell'utente dall'applicazione ripulendo la sessione, la cache e tutte le

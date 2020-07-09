@@ -1,72 +1,72 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using UserManager.DAL;
+using FomMonitoringCore.SqlServer;
 
 namespace UserManager.Service.Concrete
 {
     public class RoleService : IRolesService
     {
-        public List<UserManager.DAL.Roles> GetListOfNonDeletedRoles(DAL.UserManagerEntities ModelloEntity)
+        public List<Roles> GetListOfNonDeletedRoles(FomMonitoringEntities modelloEntity)
         {
-            return DAL.Gateway.Concrete.Roles.GetListOfNonDeletedRoles(ModelloEntity);
+            return Gateway.Concrete.Roles.GetListOfNonDeletedRoles(modelloEntity);
 
         }
 
-        public void ModifyRole(DAL.Roles Role)
+        public void ModifyRole(Roles role)
         {
-            DAL.Gateway.Concrete.Roles.ModifyRole(Role);
+            Gateway.Concrete.Roles.ModifyRole(role);
         }
 
-        public void DeleteRole(Guid RoleID)
+        public void DeleteRole(Guid roleId)
         {
-            DAL.Gateway.Concrete.Roles.DeleteRole(RoleID);
+            Gateway.Concrete.Roles.DeleteRole(roleId);
         }
 
-        public List<DAL.Roles> GetRoles()
+        public List<Roles> GetRoles()
         {
-            return DAL.Gateway.Concrete.Roles.GetRoles();
+            return Gateway.Concrete.Roles.GetRoles();
         }
 
-        public DAL.Roles GetRole(Guid RolesID)
+        public Roles GetRole(Guid rolesId)
         {
-            return DAL.Gateway.Concrete.Roles.GetRoles(RolesID);
+            return Gateway.Concrete.Roles.GetRoles(rolesId);
         }
 
-        public bool CheckUserRoles(Guid UserID, int IdRole)
+        public bool CheckUserRoles(Guid userId, int idRole)
         {
-            List<Roles> userRoles = GetUserRoles(UserID);
-            return userRoles.Where(w => w.IdRole == IdRole).Any();
+            var userRoles = GetUserRoles(userId);
+            return userRoles.Any(w => w.IdRole == idRole);
         }
 
-        public bool CheckUserRoles(Guid UserID, Roles role)
+        public bool CheckUserRoles(Guid userId, Roles role)
         {
-            List<Roles> userRoles = GetUserRoles(UserID);
+            var userRoles = GetUserRoles(userId);
             return (userRoles.Contains(role)) ? true : false;
         }
 
-        public List<Roles> GetUserRoles(Guid UserID)
+        public List<Roles> GetUserRoles(Guid userId)
         {
-            return DAL.Gateway.Concrete.Roles.GetRolesFromUserID(UserID);
+            return Gateway.Concrete.Roles.GetRolesFromUserId(userId);
         }
 
-        public List<Roles> GetUserRoles(UserManagerEntities userManagerEntities, Guid UserID)
+        public List<Roles> GetUserRoles(FomMonitoringEntities userManagerEntities, Guid userId)
         {
-            return DAL.Gateway.Concrete.Roles.GetRolesFromUserID(userManagerEntities, UserID);
+            return Gateway.Concrete.Roles.GetRolesFromUserId(userManagerEntities, userId);
         }
 
-        public void AddGroupToUser(Guid UserID, Guid RoleID)
+        public void AddGroupToUser(Guid userId, Guid roleId)
         {
-            DAL.Gateway.Concrete.Roles.AddRolesToUser(UserID, new List<Guid>() { RoleID });
+            Gateway.Concrete.Roles.AddRolesToUser(userId, new List<Guid>() { roleId });
         }
-        public void DeleteRoles(Guid UserID)
+        public void DeleteRoles(Guid userId)
         {
-            DAL.Gateway.Concrete.Roles.DeleteRoles(UserID);
+            Gateway.Concrete.Roles.DeleteRoles(userId);
         }
 
-        public void AddGroupsToUser(Guid UserID, List<Guid> RolesID)
+        public void AddGroupsToUser(Guid userId, List<Guid> rolesId)
         {
-            DAL.Gateway.Concrete.Roles.AddRolesToUser(UserID, RolesID);
+            Gateway.Concrete.Roles.AddRolesToUser(userId, rolesId);
         }
     }
 }

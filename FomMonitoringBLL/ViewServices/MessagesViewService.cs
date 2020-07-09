@@ -1,12 +1,10 @@
 ﻿using FomMonitoringBLL.ViewModel;
-using FomMonitoringCore.DAL;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using FomMonitoringResources;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
 namespace FomMonitoringBLL.ViewServices

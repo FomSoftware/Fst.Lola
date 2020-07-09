@@ -9,7 +9,7 @@ namespace UserManager.Service.Concrete
 
         private static string ReorganizeKey(string key)
         {
-            string machineName = System.Web.HttpContext.Current.Server.MachineName;
+            var machineName = System.Web.HttpContext.Current.Server.MachineName;
             machineName = machineName.Trim();
             return string.Format("{0}_{1}", machineName, key);
         }

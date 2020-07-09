@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
-using FomMonitoringCore.Ioc;
 using System.Web.Http;
+using IocContainerBuilder = FomMonitoringCore.Queue.Ioc.IocContainerBuilder;
 
 namespace FomMonitoringApi
 {
@@ -12,7 +12,7 @@ namespace FomMonitoringApi
             var builder = new ContainerBuilder();
             var config = GlobalConfiguration.Configuration;
             builder.RegisterApiControllers(typeof(WebApiApplication).Assembly);
-            FomMonitoringCoreQueue.Ioc.IocContainerBuilder.BuildCore(builder);
+            IocContainerBuilder.BuildCore(builder);
 
             builder.RegisterWebApiFilterProvider(config);
             builder.RegisterWebApiModelBinderProvider();

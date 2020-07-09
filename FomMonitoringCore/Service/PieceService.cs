@@ -1,11 +1,11 @@
-﻿using FomMonitoringCore.DAL;
+﻿using FomMonitoringCore.SqlServer;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using FomMonitoringCore.Repository.SQL;
+using FomMonitoringCore.SqlServer.Repository;
 
 namespace FomMonitoringCore.Service
 {

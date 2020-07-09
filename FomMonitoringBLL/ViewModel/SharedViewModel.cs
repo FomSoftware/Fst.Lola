@@ -1,12 +1,9 @@
-﻿using FomMonitoringCore.DAL;
+﻿
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UserManager.DAL;
+using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoringBLL.ViewModel
 {

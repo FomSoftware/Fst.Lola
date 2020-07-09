@@ -1,10 +1,4 @@
-﻿using FomMonitoringApi.Controllers;
-using FomMonitoringCore.Service.API;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Web.Http.Results;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TokenController.Tests
 {

@@ -1,10 +1,10 @@
-﻿using FomMonitoringCore.DAL;
-using FomMonitoringCore.Framework.Common;
+﻿using FomMonitoringCore.Framework.Common;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoringCore.Service.API.Concrete
 {
@@ -66,37 +66,5 @@ namespace FomMonitoringCore.Service.API.Concrete
             return result;
         }
 
-        public bool ResetMachineData(string json)
-        {
-            var result = false;
-            try
-            {
-
-                    var jObject = JsonConvert.DeserializeObject<JObject>(json);
-                    var token = jObject.Root.First;
-                    if (token.Path.ToLower() == "machinereset")
-                    {
-                        var currentStateDynamic = JsonConvert.DeserializeObject<List<dynamic>>(JsonConvert.SerializeObject(token.First)).First();
-                        string machineSerial = currentStateDynamic.MachineSerial;
-                        var machine = _context.Set<Machine>().FirstOrDefault(f => f.Serial == machineSerial);
-                        if (machine != null)
-                        {
-                            result = _context.usp_CleanMachineData(machine.Id).Select(s => s.Value).FirstOrDefault() == 1;
-                            _context.SaveChanges();
-                        }
-                        else
-                        {
-                            result = true;
-                        }
-                    }
-                
-            }
-            catch (Exception ex)
-            {
-                var errMessage = string.Format(ex.GetStringLog(), json);
-                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-            }
-            return result;
-        }
     }
 }

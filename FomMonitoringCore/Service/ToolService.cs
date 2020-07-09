@@ -1,4 +1,4 @@
-﻿using FomMonitoringCore.DAL;
+﻿using FomMonitoringCore.SqlServer;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using Mapster;
@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using ToolMachine = FomMonitoringCore.DAL.ToolMachine;
+using ToolMachine = FomMonitoringCore.SqlServer.ToolMachine;
 
 namespace FomMonitoringCore.Service
 {

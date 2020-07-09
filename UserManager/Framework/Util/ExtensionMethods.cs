@@ -27,7 +27,7 @@ namespace UserManager.Framework.Util
         /// <returns>True se il GUID è valido, restituisce False se il GUID non è valido</returns>
         public static bool CheckGuidIsValid(string candidate, out Nullable<Guid> output)
         {
-            bool isValid = false;
+            var isValid = false;
             output = Guid.Empty;
             if (candidate != null)
             {
@@ -48,7 +48,7 @@ namespace UserManager.Framework.Util
         /// <returns>True se il GUID è valido, restituisce False se il GUID non è valido avendo cura anche del controllo dell'empty</returns>
         public static bool CheckGuidIsValidAndNotEmpty(string candidate, out Nullable<Guid> output)
         {
-            bool isValid = CheckGuidIsValid(candidate, out output);
+            var isValid = CheckGuidIsValid(candidate, out output);
             if (Guid.Equals(output, Guid.Empty)) { output = null; isValid = false; }
             return isValid;
         }

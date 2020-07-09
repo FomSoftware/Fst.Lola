@@ -125,54 +125,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connection\IQueueConnection.cs" />
-    <Compile Include="Connection\QueueConnection.cs" />
-    <Compile Include="Dto\Info.cs" />
-    <Compile Include="Events\LoggerEvents.cs" />
-    <Compile Include="Forwarder\QueueForwarder.cs" />
-    <Compile Include="Forwarder\UnknownForwarder.cs" />
-    <Compile Include="Ioc\IocContainerBuilder.cs" />
-    <Compile Include="ProcessData\HistoryJobPieceBarProcessor.cs" />
-    <Compile Include="ProcessData\InfoProcessor.cs" />
-    <Compile Include="ProcessData\IProcessor.cs" />
-    <Compile Include="ProcessData\MessageProcessor.cs" />
-    <Compile Include="ProcessData\StateProcessor.cs" />
-    <Compile Include="ProcessData\ToolProcessor.cs" />
-    <Compile Include="ProcessData\VariableListProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Dto\BaseModel.cs" />
-    <Compile Include="Dto\HistoryJobPieceBar.cs" />
-    <Compile Include="Dto\Message.cs" />
-    <Compile Include="Dto\State.cs" />
-    <Compile Include="Dto\Tool.cs" />
-    <Compile Include="Dto\Value.cs" />
-    <Compile Include="Dto\VariablesList.cs" />
-    <Compile Include="QueueConsumer\ConsumerInitializer.cs" />
-    <Compile Include="QueueConsumer\HistoryJobPieceBarConsumer.cs" />
-    <Compile Include="QueueConsumer\IConsumer.cs" />
-    <Compile Include="QueueConsumer\InfoConsumer.cs" />
-    <Compile Include="QueueConsumer\MessageConsumer.cs" />
-    <Compile Include="QueueConsumer\StateConsumer.cs" />
-    <Compile Include="QueueConsumer\ToolConsumer.cs" />
-    <Compile Include="QueueConsumer\VariableListConsumer.cs" />
-    <Compile Include="QueueProducer\HistoryJobPieceBarProducer.cs" />
-    <Compile Include="QueueProducer\InfoProducer.cs" />
-    <Compile Include="QueueProducer\IProducer.cs" />
-    <Compile Include="QueueProducer\MessageProducer.cs" />
-    <Compile Include="QueueProducer\StateProducer.cs" />
-    <Compile Include="QueueProducer\ToolProducer.cs" />
-    <Compile Include="QueueProducer\VariableListProducer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="JsonSchemas\historyJobPieceBar.json" />
-    <None Include="JsonSchemas\messages.json" />
-    <None Include="JsonSchemas\state.json" />
-    <None Include="JsonSchemas\tool.json" />
-    <None Include="JsonSchemas\variablesList.json" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Connection\" />
+    <Folder Include="Dto\" />
+    <Folder Include="Events\" />
+    <Folder Include="Forwarder\" />
+    <Folder Include="Ioc\" />
+    <Folder Include="JsonSchemas\" />
+    <Folder Include="ProcessData\" />
+    <Folder Include="QueueConsumer\" />
+    <Folder Include="QueueProducer\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FomMonitoringCore\FomMonitoringCore.csproj">
       <Project>{e28ab72b-8e73-4a94-94b4-85c23498dda0}</Project>

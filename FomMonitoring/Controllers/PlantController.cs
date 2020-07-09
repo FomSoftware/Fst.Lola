@@ -3,11 +3,7 @@ using FomMonitoringBLL.ViewServices;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace FomMonitoring.Controllers

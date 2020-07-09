@@ -3,7 +3,6 @@ using System.Diagnostics;
 using FomMonitoringBLL.ViewModel;
 using FomMonitoringBLL.ViewServices;
 using FomMonitoringCore.Framework.Common;
-using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using System.Net;
 using System.Net.Http;

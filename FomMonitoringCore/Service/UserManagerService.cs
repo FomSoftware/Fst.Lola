@@ -1,5 +1,4 @@
-﻿using FomMonitoringCore.DAL;
-using FomMonitoringCore.Framework.Common;
+﻿using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringResources;
 using Mapster;
@@ -8,9 +7,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net.Mail;
-using UserManager.DAL;
+using FomMonitoringCore.SqlServer;
 using UserManager.Service.Concrete;
-using FST_FomMonitoringEntities = FomMonitoringCore.DAL.FST_FomMonitoringEntities;
+using FST_FomMonitoringEntities = FomMonitoringCore.SqlServer.FomMonitoringEntities;
 
 namespace FomMonitoringCore.Service
 {
@@ -27,12 +26,12 @@ namespace FomMonitoringCore.Service
 
             try
             {
-                using (var entUM = new UserManagerEntities())
+                using (var entUm = new FST_FomMonitoringEntities())
                 {
-                    entUM.Configuration.LazyLoadingEnabled = false;
+                    entUm.Configuration.LazyLoadingEnabled = false;
 
                     // Recupero l'utente dallo user manager
-                    var user = entUM.Users
+                    var user = entUm.Users
                         .Include("Roles_Users")
                         .Include("Roles_Users.Roles")
                         .Include("Languages").FirstOrDefault(f => f.ID == userId);
@@ -73,9 +72,9 @@ namespace FomMonitoringCore.Service
 
             try
             {
-                using (var entUM = new UserManagerEntities())
+                using (var entUm = new FST_FomMonitoringEntities())
                 {
-                    var user = entUM.Users.FirstOrDefault(f => f.Username == username);
+                    var user = entUm.Users.FirstOrDefault(f => f.Username == username);
                     if (user == null) return result;
                     result = user.Adapt<Users, UserModel>();
                 }
@@ -94,12 +93,12 @@ namespace FomMonitoringCore.Service
             List<UserModel> result = null;
             try
             {
-                using (var entUM = new UserManagerEntities())
+                using (var entUm = new FST_FomMonitoringEntities())
                 {
-                    entUM.Configuration.LazyLoadingEnabled = false;
+                    entUm.Configuration.LazyLoadingEnabled = false;
 
                     // Recupero i dati base degli utenti
-                    var userQuery = entUM.Users
+                    var userQuery = entUm.Users
                         .Include("Roles_Users")
                         .Include("Roles_Users.Roles").AsQueryable()
                         .Where(w => w.Roles_Users.Any(a => a.Roles.IdRole == (int)enRole.Customer)).AsQueryable();
@@ -123,14 +122,14 @@ namespace FomMonitoringCore.Service
             if (users == null || users.Count == 0) return;
             try
             {
-                using (var entUM = new UserManagerEntities())
+                using (var entUm = new FST_FomMonitoringEntities())
                 {                    
                     var ids = users.Select(a => a.ID).ToList();
-                    var rem = entUM.Users.Where(y => ids.Contains(y.ID)).ToList();
+                    var rem = entUm.Users.Where(y => ids.Contains(y.ID)).ToList();
  
-                    entUM.Users.RemoveRange(rem);
+                    entUm.Users.RemoveRange(rem);
 
-                    entUM.SaveChanges();
+                    entUm.SaveChanges();
                 }
             }
             catch (Exception ex)
@@ -164,12 +163,12 @@ namespace FomMonitoringCore.Service
                         if (customerUsers.Count == 0) return result;
                     }
 
-                    using (var entUM = new UserManagerEntities())
+                    using (var entUm = new FST_FomMonitoringEntities())
                     {
-                        entUM.Configuration.LazyLoadingEnabled = false;
+                        entUm.Configuration.LazyLoadingEnabled = false;
 
                         // Recupero i dati base degli utenti
-                        var userQuery = entUM.Users
+                        var userQuery = entUm.Users
                             .Include("Roles_Users")
                             .Include("Roles_Users.Roles")
                             .Include("Languages").AsQueryable()
@@ -245,11 +244,11 @@ namespace FomMonitoringCore.Service
 
             try
             {
-                using (var entUM = new UserManagerEntities())
+                using (var entUm = new FST_FomMonitoringEntities())
                 {
-                    entUM.Configuration.LazyLoadingEnabled = false;
+                    entUm.Configuration.LazyLoadingEnabled = false;
 
-                    var roles = entUM.Roles.ToList();
+                    var roles = entUm.Roles.ToList();
                     result = roles.Adapt<List<RoleModel>>();
                 }
             }
@@ -283,12 +282,12 @@ namespace FomMonitoringCore.Service
 
                     // Recupero l'utente con ruolo cliente
                     Guid customerUser;
-                    using (var entUM = new UserManagerEntities())
+                    using (var entUm = new FST_FomMonitoringEntities())
                     {
-                        entUM.Configuration.LazyLoadingEnabled = false;
+                        entUm.Configuration.LazyLoadingEnabled = false;
 
                         // Recupero l'utente con ruolo cliente
-                        customerUser = entUM.Users
+                        customerUser = entUm.Users
                             .Include("Roles_Users")
                             .Include("Roles_Users.Roles")
                             .Where(w => users.Contains(w.ID) && w.Roles_Users.Any(a => a.Roles.IdRole == (int)enRole.Customer))
@@ -319,10 +318,10 @@ namespace FomMonitoringCore.Service
 
             try
             {
-                using (var entUM = new UserManagerEntities())
+                using (var entUm = new FST_FomMonitoringEntities())
                 {
-                    entUM.Configuration.LazyLoadingEnabled = false;
-                    result = entUM.Languages.ToList();
+                    entUm.Configuration.LazyLoadingEnabled = false;
+                    result = entUm.Languages.ToList();
                 }
             }
             catch (Exception ex)
@@ -343,12 +342,12 @@ namespace FomMonitoringCore.Service
         {
             try
             {
-                using (var entUM = new UserManagerEntities())
+                using (var entUm = new FST_FomMonitoringEntities())
                 {
 
                     var ls = new LoginServices();
 
-                    var usernameUser = entUM.Users.Where(w => w.Username == user.Username).FirstOrDefault();
+                    var usernameUser = entUm.Users.FirstOrDefault(w => w.Username == user.Username);
                     if (usernameUser != null)
                         throw new InvalidOperationException(Resource.UsernameExists);
 
@@ -377,11 +376,11 @@ namespace FomMonitoringCore.Service
                         addUser.LanguageID = Guid.Parse(defaultLanguage);
                     }
 
-                    entUM.Users.Add(addUser);
-                    entUM.SaveChanges();
+                    entUm.Users.Add(addUser);
+                    entUm.SaveChanges();
 
                     // Add user role
-                    var newRole = entUM.Roles.FirstOrDefault(f => f.IdRole == (int)user.Role);
+                    var newRole = entUm.Roles.FirstOrDefault(f => f.IdRole == (int)user.Role);
                     if (newRole != null)
                         addUser.Roles_Users.Add(new Roles_Users() { ID = Guid.NewGuid(), UserID = addUser.ID, RoleID = newRole.ID });
 
@@ -391,7 +390,7 @@ namespace FomMonitoringCore.Service
                         ent.UserCustomerMapping.Add(new UserCustomerMapping() { UserId = addUser.ID, CustomerName = user.CustomerName });
 
                         // Add user machines
-                        if (user.Machines != null && user.Machines.Count() > 0)
+                        if (user.Machines != null && user.Machines.Any())
                         {
                             foreach (var machine in user.Machines)
                                 ent.UserMachineMapping.Add(new UserMachineMapping() { UserId = addUser.ID, MachineId = machine.Id });
@@ -400,7 +399,7 @@ namespace FomMonitoringCore.Service
 
                     }
 
-                    entUM.SaveChanges();
+                    entUm.SaveChanges();
                     return addUser.ID;
                 }
             }
@@ -421,9 +420,9 @@ namespace FomMonitoringCore.Service
             var result = true;
             try
             {
-                using (var entUM = new UserManagerEntities())
+                using (var entUm = new FST_FomMonitoringEntities())
                 {
-                    var user = entUM.Users.Find(id);
+                    var user = entUm.Users.Find(id);
                     if (user == null) return false;
                     var subject = LocalizationService.GetResource(keySubject, new CultureInfo(user.Languages.DotNetCulture)) + " " + user.Username;
                     var ls = new LoginServices();
@@ -434,16 +433,7 @@ namespace FomMonitoringCore.Service
                         ruolo = LocalizationService.GetResource($"Operator", new CultureInfo(user.Languages.DotNetCulture));
                     else if (idRuolo == 2)
                         ruolo = LocalizationService.GetResource($"HeadWorkshop", new CultureInfo(user.Languages.DotNetCulture)); 
-
-                    //var body = LocalizationService.GetResource(keyObject, new CultureInfo(user.Languages.DotNetCulture))
-                    //    .Replace("[TIPO_USER]", ruolo )
-                    //    .Replace("[USERNAME]", user.Username)
-                    //    .Replace("[PASSWORD]", ls.DecryptPassword(user.Password));
-
-                    //var message = new MailMessage(ApplicationSettingService.GetWebConfigKey("EmailFromAddress"), 
-                    //                                       email, subject, body);
-                    //message.IsBodyHtml = true;
-                    //EmailSender.SendEmail(message);
+                    
 
 
                     var firstPart = LocalizationService.GetResource($"{keyObject}_FirstPart", new CultureInfo(user.Languages.DotNetCulture))
@@ -497,10 +487,10 @@ namespace FomMonitoringCore.Service
         {
             try
             {
-                using (var entUM = new UserManagerEntities())
+                using (var entUm = new FST_FomMonitoringEntities())
                 {
                     // recupero l'utente
-                    var updUser = entUM.Users
+                    var updUser = entUm.Users
                         .Include("Roles_Users")
                         .Include("Roles_Users.Roles")
                         .Include("Languages")
@@ -529,15 +519,16 @@ namespace FomMonitoringCore.Service
                         }
                     }
 
-                    if (updUser.Roles_Users.Count > 0 && ((enRole)updUser.Roles_Users.First().Roles.IdRole) != user.Role)
+                    var rolesIdRole = updUser.Roles_Users.First().Roles.IdRole;
+                    if (rolesIdRole != null && (updUser.Roles_Users.Count > 0 && ((enRole)rolesIdRole) != user.Role))
                     {
                         // Elimino il ruolo assocciato
-                        var roloToDelete = entUM.Roles_Users.Where(w => w.UserID == updUser.ID).FirstOrDefault();
-                        entUM.Roles_Users.Remove(roloToDelete);
+                        var roloToDelete = entUm.Roles_Users.FirstOrDefault(w => w.UserID == updUser.ID);
+                        entUm.Roles_Users.Remove(roloToDelete);
                         updUser.Roles_Users.Clear();
                         //entUM.SaveChanges();
 
-                        var newRole = entUM.Roles.FirstOrDefault(f => f.IdRole == (int)user.Role);
+                        var newRole = entUm.Roles.FirstOrDefault(f => f.IdRole == (int)user.Role);
                         if (newRole != null)
                             updUser.Roles_Users.Add(new Roles_Users() { ID = Guid.NewGuid(), UserID = user.ID, RoleID = newRole.ID });
                         //updUser.Roles_Users.FirstOrDefault(f => f.RoleID == (int)user.Role).RoleID = newRole.ID;
@@ -566,14 +557,14 @@ namespace FomMonitoringCore.Service
                             // Aggiungo le macchine mancanti
                             foreach (var machine in user.Machines)
                             {
-                                if (!userMachines.Any(a => a.MachineId == machine.Id))
+                                if (userMachines.All(a => a.MachineId != machine.Id))
                                     ent.UserMachineMapping.Add(new UserMachineMapping() { UserId = user.ID, MachineId = machine.Id});
                             }
                         }
 
                         ent.SaveChanges();
                     }
-                    entUM.SaveChanges();
+                    entUm.SaveChanges();
 
                     if (modifiedPsw && email != null)
                         SendPassword(email, updUser.ID, "ModifyUserEmailSubject", "ModifyUserEmailBody");
@@ -623,10 +614,10 @@ namespace FomMonitoringCore.Service
         {
             try
             {
-                using (var entUM = new UserManagerEntities())
+                using (var entUm = new FST_FomMonitoringEntities())
                 {
                     // recupero l'utente
-                    var updUser = entUM.Users.SingleOrDefault(s => s.ID == userId);
+                    var updUser = entUm.Users.SingleOrDefault(s => s.ID == userId);
 
                     if (updUser == null)
                         return false; // not found
@@ -637,7 +628,7 @@ namespace FomMonitoringCore.Service
                     var defaultPassword = ApplicationSettingService.GetWebConfigKey("DefaultPassword");
                     updUser.Password = ls.EncryptPassword(defaultPassword);
 
-                    entUM.SaveChanges();
+                    entUm.SaveChanges();
                     return true;
                 }
             }
@@ -658,31 +649,31 @@ namespace FomMonitoringCore.Service
         {
             try
             {
-                using (var entUM = new UserManagerEntities())
+                using (var entUm = new FST_FomMonitoringEntities())
                 {
                     // recupero l'utente dal customers mapping
-                    var user = entUM.Users.Where(s => s.ID == userId).SingleOrDefault();
+                    var user = entUm.Users.SingleOrDefault(s => s.ID == userId);
 
                     if (user == null)
                         return false; // not found
-                    entUM.Users.Remove(user);
+                    entUm.Users.Remove(user);
 
-                    var userRole = entUM.Roles_Users.Where(s => s.UserID == userId).SingleOrDefault();
+                    var userRole = entUm.Roles_Users.SingleOrDefault(s => s.UserID == userId);
 
                     if (userRole == null)
                     {
                         //se sono qui l'utente è sbagliato perchè non ha un ruolo, vado avanti e lo cancello...?
                         return false; // not found
                     }     
-                    entUM.Roles_Users.Remove(userRole);
+                    entUm.Roles_Users.Remove(userRole);
 
-                    entUM.SaveChanges();
+                    entUm.SaveChanges();
                 }
 
                 using (var ent = new FST_FomMonitoringEntities())
                 {
                     // recupero l'utente dal customers mapping
-                   var userCustomer = ent.UserCustomerMapping.Where(s => s.UserId == userId).SingleOrDefault();
+                   var userCustomer = ent.UserCustomerMapping.SingleOrDefault(s => s.UserId == userId);
 
                     if (userCustomer == null)
                         return false; // not found
@@ -690,7 +681,7 @@ namespace FomMonitoringCore.Service
 
                     var userMachines = ent.UserMachineMapping.Where(s => s.UserId == userId).ToList();
 
-                    if (userMachines.Count() == 0)
+                    if (!userMachines.Any())
                         return false; // not found
                     ent.UserMachineMapping.RemoveRange(userMachines);
 

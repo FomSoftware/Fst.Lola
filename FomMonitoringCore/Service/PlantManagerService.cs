@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using FomMonitoringCore.DAL;
+using FomMonitoringCore.SqlServer;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using Mapster;
-using UserManager.DAL;
 
 namespace FomMonitoringCore.Service
 {
@@ -24,7 +23,7 @@ namespace FomMonitoringCore.Service
             List<PlantModel> result = null;
             try
             {                
-                using (UserManagerEntities entUM = new UserManagerEntities())
+                using (FomMonitoringEntities entUM = new FomMonitoringEntities())
                 {
                     //ent.Configuration.LazyLoadingEnabled = false;
                     // Recupero la lista degli utenti associati al cliente
@@ -78,7 +77,7 @@ namespace FomMonitoringCore.Service
                 result = plant.Adapt<Plant, PlantModel>();
 
                 // Recupero le sue macchine ed il customer associato
-                using (UserManagerEntities entUM = new UserManagerEntities())
+                using (FomMonitoringEntities entUM = new FomMonitoringEntities())
                 {
                     entUM.Configuration.LazyLoadingEnabled = false;
                     var customerName = entUM.Users.FirstOrDefault(f => f.ID == plant.UserId)?.Username;
@@ -109,7 +108,7 @@ namespace FomMonitoringCore.Service
                 result.Machines = result.Machines
                     .Where(d => d.ExpirationDate == null || d.ExpirationDate > DateTime.UtcNow).ToList();
                 // Recupero le sue macchine ed il customer associato
-                using (UserManagerEntities entUM = new UserManagerEntities())
+                using (FomMonitoringEntities entUM = new FomMonitoringEntities())
                 {
                     entUM.Configuration.LazyLoadingEnabled = false;
                     var customerName = entUM.Users.FirstOrDefault(f => f.ID == plant.UserId)?.Username;
@@ -169,7 +168,7 @@ namespace FomMonitoringCore.Service
             try
             {
                 Guid? customerId = null;
-                using (UserManagerEntities entUM = new UserManagerEntities())
+                using (FomMonitoringEntities entUM = new FomMonitoringEntities())
                 {
                     entUM.Configuration.LazyLoadingEnabled = false;
                     customerId = entUM.Users.FirstOrDefault(f => f.Username == plant.CustomerName)?.ID;
@@ -213,7 +212,7 @@ namespace FomMonitoringCore.Service
             try
             {
                 Guid? customerId;
-                using (var entUm = new UserManagerEntities())
+                using (var entUm = new FomMonitoringEntities())
                 {
                     entUm.Configuration.LazyLoadingEnabled = false;
                     customerId = entUm.Users.FirstOrDefault(f => f.Username == plant.CustomerName)?.ID;

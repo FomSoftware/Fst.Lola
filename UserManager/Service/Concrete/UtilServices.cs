@@ -9,9 +9,9 @@ namespace UserManager.Service.Concrete
     {
         public static string RenderControl(Table table)
         {
-            StringBuilder sb = new StringBuilder();
-            StringWriter tw = new StringWriter(sb);
-            HtmlTextWriter hw = new HtmlTextWriter(tw, string.Empty);
+            var sb = new StringBuilder();
+            var tw = new StringWriter(sb);
+            var hw = new HtmlTextWriter(tw, string.Empty);
             hw.NewLine = string.Empty;
 
             table.RenderControl(hw);

@@ -1,4 +1,4 @@
-﻿using FomMonitoringCore.DAL;
+﻿using FomMonitoringCore.SqlServer;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using Newtonsoft.Json;
