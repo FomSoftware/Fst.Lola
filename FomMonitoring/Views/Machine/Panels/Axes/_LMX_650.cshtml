@@ -18,18 +18,34 @@
     </div>
     <div class="portlet-body text-center" style="height: 244px">
         <div class="card-portlet">
-            <div v-if="axes != null && axes.length > 0" style="height: 242px" class="slimscroll">
+            <div v-if="axes != null && axes.length > 0" style="height: 242px" class="slimscroll gradient-table-33">
                 <hr style="background-color: #0c3817; height: 2px; border: none"/>
                 <div style="cursor: auto; height: 100%">
-                    <table class="table-tools-fmc" style="height: 100%; background-color: #bebebe;">
+                    <table class="table-tools-fmc" style="height: 100%">
                         <tr>
-                            <td class="td-axes" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index) in firstRow">
+                            <td v-for="(axes, index) in firstRow">
                                 <label style="font-size: 0.7rem;"><i class="fa icofom-assekm fa-2x" aria-hidden="true"></i></label>
                                 <label v-if="axes != null && axes.Description != null" class="label-electrospindle-title" v-html="axes.Description"></label>
                             </td>
                         </tr>
                         <tr>
-                            <td class="td-axes no-padding" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index) in firstRow">
+                            <td class="no-padding" v-for="(axes, index) in firstRow">
+                                <label v-if="axes != null && axes.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.ConvertedValue"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="no-padding" colspan="3">
+                                <hr width="88%" align="center" class="tools" style="background-color: #d2d2d2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td v-for="(axes, index) in secondRow">
+                                <label style="font-size: 0.7rem;"><i class="fa icofom-assekm fa-2x" aria-hidden="true"></i></label>
+                                <label v-if="axes != null && axes.Description != null" class="label-electrospindle-title" v-html="axes.Description"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="no-padding" v-for="(axes, index) in secondRow">
                                 <label v-if="axes != null && axes.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.ConvertedValue"></label>
                             </td>
                         </tr>
@@ -39,13 +55,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="td-axes" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index) in secondRow">
+                            <td v-for="(axes, index) in thirtRow">
                                 <label style="font-size: 0.7rem;"><i class="fa icofom-assekm fa-2x" aria-hidden="true"></i></label>
                                 <label v-if="axes != null && axes.Description != null" class="label-electrospindle-title" v-html="axes.Description"></label>
                             </td>
                         </tr>
                         <tr>
-                            <td class="td-axes no-padding" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index) in secondRow">
+                            <td class="no-padding" v-for="(axes, index) in thirtRow">
                                 <label v-if="axes != null && axes.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.ConvertedValue"></label>
                             </td>
                         </tr>
@@ -55,13 +71,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="td-axes" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index) in thirtRow">
+                            <td v-for="(axes, index) in fourthRow">
                                 <label style="font-size: 0.7rem;"><i class="fa icofom-assekm fa-2x" aria-hidden="true"></i></label>
                                 <label v-if="axes != null && axes.Description != null" class="label-electrospindle-title" v-html="axes.Description"></label>
                             </td>
                         </tr>
                         <tr>
-                            <td class="td-axes no-padding" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index) in thirtRow">
+                            <td class="no-padding" v-for="(axes, index)  in fourthRow">
                                 <label v-if="axes != null && axes.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.ConvertedValue"></label>
                             </td>
                         </tr>
@@ -71,29 +87,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="td-axes" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index) in fourthRow">
+                            <td v-for="(axes, index) in fifthRow">
                                 <label style="font-size: 0.7rem;"><i class="fa icofom-assekm fa-2x" aria-hidden="true"></i></label>
                                 <label v-if="axes != null && axes.Description != null" class="label-electrospindle-title" v-html="axes.Description"></label>
                             </td>
                         </tr>
                         <tr>
-                            <td class="td-axes no-padding" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index)  in fourthRow">
-                                <label v-if="axes != null && axes.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.ConvertedValue"></label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0; background-color: #bebebe" colspan="3">
-                                <hr width="88%" align="center" class="tools" style="background-color: #d2d2d2">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td-axes" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index) in fifthRow">
-                                <label style="font-size: 0.7rem;"><i class="fa icofom-assekm fa-2x" aria-hidden="true"></i></label>
-                                <label v-if="axes != null && axes.Description != null" class="label-electrospindle-title" v-html="axes.Description"></label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td-axes no-padding" v-bind:class="{ 'td-tools-dark': index % 2 != 0, 'td-tools-light': index % 2 == 0 }" v-for="(axes, index)  in fifthRow">
+                            <td class="no-padding" v-for="(axes, index)  in fifthRow">
                                 <label v-if="axes != null && axes.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.ConvertedValue"></label>
                             </td>
                         </tr>

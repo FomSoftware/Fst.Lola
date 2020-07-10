@@ -1290,21 +1290,8 @@ hr.tools {
     height: 2px;
 }
 
-td.td-tools-dark {
+.row-tools-fmc td, .table-tools-fmc td {
     width: 33.33%;
-    background-color: #b4b4b4;
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-bottom: 8px;
-}
-
-td.td-tools-dark-life {
-    width: 33.33%;
-}
-
-td.td-tools-light {
-    width: 33.33%;
-    background-color: #bebebe;
     padding-left: 10px;
     padding-top: 10px;
     padding-bottom: 8px;
@@ -1951,5 +1938,10 @@ td.td-axes {
 
 
 
-
+.gradient-table-33 {
+    background: #b4b4b4; /* Old browsers */
+    background: -moz-linear-gradient(left, #b4b4b4 0, #b4b4b4 33%, #BEBEBE 33%, #BEBEBE 66%, #b4b4b4 66%, #b4b4b4 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #b4b4b4 0, #b4b4b4 33%, #BEBEBE 33%, #BEBEBE 66%, #b4b4b4 66%, #b4b4b4 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #b4b4b4 0, #b4b4b4 33%, #BEBEBE 33%, #BEBEBE 66%, #b4b4b4 66%, #b4b4b4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
 

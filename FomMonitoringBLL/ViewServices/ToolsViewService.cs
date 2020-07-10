@@ -25,7 +25,7 @@ namespace FomMonitoringBLL.ViewServices
         }
             public ToolViewModel GetTools(ContextModel context)
             {
-                ToolViewModel result = new ToolViewModel();
+                var result = new ToolViewModel();
                 if(_machineService.GetMachinePanels(context).Contains((int)enPanel.ToolsBlitz))
                     result.vm_tools_blitz = GetVueModelBlitz(context.ActualMachine, true);
                 else
@@ -38,17 +38,17 @@ namespace FomMonitoringBLL.ViewServices
 
             private ToolVueModel GetVueModel(MachineInfoModel machine, bool xmodule = false)
             {
-                ToolVueModel result = new ToolVueModel();
+                var result = new ToolVueModel();
 
-                List<ToolMachineModel> data = _toolService.GetTools(machine, xmodule);
+                var data = _toolService.GetTools(machine, xmodule).ToList();
 
-                List<ToolMachineModel> dataTools = data.Where(w => w.IsActive == true).ToList();
-                List<ToolMachineModel> dataHistorical = data.Where(w => w.IsActive == false).ToList();
+                var dataTools = data.Where(w => w.IsActive == true).ToList();
+                var dataHistorical = data.Where(w => w.IsActive == false).ToList();
 
                 if (dataTools.Count == 0)
                     return result;
 
-                List<ToolDataModel> tools = dataTools.Select(t => new ToolDataModel()
+                var tools = dataTools.Select(t => new ToolDataModel()
                 {
                     code = t.Code,
                     description = t.Description,
@@ -71,7 +71,7 @@ namespace FomMonitoringBLL.ViewServices
 
                 tools = tools.OrderByDescending(o => o.perc).ToList();
 
-                SortingViewModel sorting = new SortingViewModel();
+                var sorting = new SortingViewModel();
                 sorting.time = enSorting.Descending.GetDescription();
 
                 result.tools = tools;
