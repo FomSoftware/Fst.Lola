@@ -105,7 +105,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Connection\IQueueConnection.cs" />
     <Compile Include="Connection\QueueConnection.cs" />
     <Compile Include="Dto\BaseModel.cs" />
