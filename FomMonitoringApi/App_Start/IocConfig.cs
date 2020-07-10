@@ -17,6 +17,7 @@ namespace FomMonitoringApi
             builder.RegisterWebApiFilterProvider(config);
             builder.RegisterWebApiModelBinderProvider();
             IContainer container = builder.Build();
+            
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }
         

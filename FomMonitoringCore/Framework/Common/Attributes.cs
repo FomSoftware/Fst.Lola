@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Http;
+using System.Web.Http.Dependencies;
 using System.Web.Http.Filters;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -188,12 +190,17 @@ namespace FomMonitoringCore.Framework.Common
 
     public class BasicAuthenticationAttribute : Attribute, IAuthenticationFilter
     {
+        private IBasicManager _basicmanager;
         public string Realm { get; set; }
         public bool AllowMultiple => false;
-
+        
         public async Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
             var request = context.Request;
+
+            var requestScope = context.Request.GetDependencyScope();
+            _basicmanager = requestScope.GetService(typeof(IBasicManager)) as IBasicManager;
+
             var authorization = request.Headers.Authorization;
 
             if (authorization == null)
@@ -224,7 +231,7 @@ namespace FomMonitoringCore.Framework.Common
                 context.Principal = principal;
         }
 
-        private static bool ValidateToken(string token, out string machineSerial)
+        private bool ValidateToken(string token, out string machineSerial)
         {
             machineSerial = null;
 
@@ -245,8 +252,7 @@ namespace FomMonitoringCore.Framework.Common
                     Password = password
                 };
 
-                var basicManager = DependencyResolver.Current.GetService<IBasicManager>();
-                result = basicManager.ValidateCredentials(login);
+                result = _basicmanager.ValidateCredentials(login);
             }
             else
             {
