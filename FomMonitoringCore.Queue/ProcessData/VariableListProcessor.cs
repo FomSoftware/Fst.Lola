@@ -75,7 +75,7 @@ namespace FomMonitoringCore.Queue.ProcessData
                                     //dayValue.UtcDateTime = var.UtcDateTime;
                                     if (lastReset != null)
                                     {
-                                        AddResetValue(pm, (DateTime)lastReset, value.VariableValue, dayValue.VarValue);
+                                        AddResetValue(pm, (DateTime)lastReset, value.VariableValue, dayValue.VarValue, mac.Id);
                                     }
                                     dayValue.UtcDateTime = var.UtcDateTime;
                                     dayValue.VarValue = value.VariableValue;
@@ -95,7 +95,7 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                                     if (lastReset != null)
                                     {
-                                        AddResetValue(pm, (DateTime)lastReset, value.VariableValue, previousValue);
+                                        AddResetValue(pm, (DateTime)lastReset, value.VariableValue, previousValue, mac.Id);
                                         _context.SaveChanges();
                                     }
                                 }
@@ -120,7 +120,7 @@ namespace FomMonitoringCore.Queue.ProcessData
                                     if (lastReset != null)
                                     {
                                         pmv.UtcDateTime = (DateTime)lastReset;
-                                        AddResetValue(pm, (DateTime)lastReset, value.VariableValue, pmv.VarValue);
+                                        AddResetValue(pm, (DateTime)lastReset, value.VariableValue, pmv.VarValue, mac.Id);
                                     }
                                     pmv.VarValue = value.VariableValue;
                                 }
@@ -139,7 +139,7 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                                     if (lastReset != null)
                                     {
-                                        AddResetValue(pm, (DateTime) lastReset, value.VariableValue, null);
+                                        AddResetValue(pm, (DateTime) lastReset, value.VariableValue, null, mac.Id);
                                         _context.SaveChanges();
                                     }
                                     
@@ -167,7 +167,7 @@ namespace FomMonitoringCore.Queue.ProcessData
 
         }
 
-        private void AddResetValue(ParameterMachine parameterMachine, DateTime lastReset, decimal? variableValue, decimal? valueBeforeReset)
+        private void AddResetValue(ParameterMachine parameterMachine, DateTime lastReset, decimal? variableValue, decimal? valueBeforeReset, int idMachine)
         {
             if(parameterMachine.ParameterResetValue.All(pm => pm.ResetDate != lastReset))
                 _context.Set<ParameterResetValue>().Add(
@@ -176,7 +176,8 @@ namespace FomMonitoringCore.Queue.ProcessData
                         ParameterMachineId = parameterMachine.Id,
                         ResetDate = (DateTime)lastReset,
                         ResetValue = variableValue,
-                        ValueBeforeReset = valueBeforeReset
+                        ValueBeforeReset = valueBeforeReset,
+                        MachineId = idMachine
                     });
         }
 

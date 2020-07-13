@@ -230,7 +230,6 @@
   <ItemGroup>
     <EntityDeploy Include="FomMonitoringModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FomMonitoringModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>

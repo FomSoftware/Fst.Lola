@@ -19,7 +19,9 @@ namespace FomMonitoringCore.SqlServer
         public System.DateTime ResetDate { get; set; }
         public Nullable<decimal> ResetValue { get; set; }
         public Nullable<decimal> ValueBeforeReset { get; set; }
+        public Nullable<int> MachineId { get; set; }
     
         public virtual ParameterMachine ParameterMachine { get; set; }
+        public virtual Machine Machine { get; set; }
     }
 }

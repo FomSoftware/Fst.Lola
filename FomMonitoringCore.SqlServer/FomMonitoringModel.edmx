@@ -337,6 +337,7 @@
           <Property Name="ResetDate" Type="datetime" Nullable="false" />
           <Property Name="ResetValue" Type="decimal" Precision="18" Scale="5" />
           <Property Name="ValueBeforeReset" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="MachineId" Type="int" />
         </EntityType>
         <EntityType Name="Piece">
           <Key>
@@ -825,6 +826,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ParameterResetValue_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
+          <End Role="ParameterResetValue" Type="Self.ParameterResetValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParameterResetValue">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ParameterResetValue_ParameterMachineValue">
           <End Role="ParameterMachine" Type="Self.ParameterMachine" Multiplicity="1" />
           <End Role="ParameterResetValue" Type="Self.ParameterResetValue" Multiplicity="*" />
@@ -1172,6 +1185,10 @@
             <End Role="ParameterMachine" EntitySet="ParameterMachine" />
             <End Role="ParameterMachineValue" EntitySet="ParameterMachineValue" />
           </AssociationSet>
+          <AssociationSet Name="FK_ParameterResetValue_Machine" Association="Self.FK_ParameterResetValue_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="ParameterResetValue" EntitySet="ParameterResetValue" />
+          </AssociationSet>
           <AssociationSet Name="FK_ParameterResetValue_ParameterMachineValue" Association="Self.FK_ParameterResetValue_ParameterMachineValue">
             <End Role="ParameterMachine" EntitySet="ParameterMachine" />
             <End Role="ParameterResetValue" EntitySet="ParameterResetValue" />
@@ -1421,6 +1438,7 @@
           <NavigationProperty Name="StateMachine" Relationship="Self.FK_StateMachine_Machine" FromRole="Machine" ToRole="StateMachine" />
           <NavigationProperty Name="ToolMachine" Relationship="Self.FK_ToolMachine_Machine" FromRole="Machine" ToRole="ToolMachine" />
           <NavigationProperty Name="UserMachineMapping" Relationship="Self.FK_UserMachineMapping_Machine" FromRole="Machine" ToRole="UserMachineMapping" />
+          <NavigationProperty Name="ParameterResetValue" Relationship="FomMonitoringModel.FK_ParameterResetValue_Machine" FromRole="Machine" ToRole="ParameterResetValue" />
         </EntityType>
         <EntityType Name="MachineGroup">
           <Key>
@@ -1619,6 +1637,8 @@
           <Property Name="ResetValue" Type="Decimal" Precision="18" Scale="5" />
           <Property Name="ValueBeforeReset" Type="Decimal" Precision="18" Scale="5" />
           <NavigationProperty Name="ParameterMachine" Relationship="Self.FK_ParameterResetValue_ParameterMachineValue" FromRole="ParameterResetValue" ToRole="ParameterMachine" />
+          <Property Name="MachineId" Type="Int32" />
+          <NavigationProperty Name="Machine" Relationship="FomMonitoringModel.FK_ParameterResetValue_Machine" FromRole="ParameterResetValue" ToRole="Machine" />
         </EntityType>
         <EntityType Name="Piece">
           <Key>
@@ -2522,6 +2542,10 @@
           <FunctionImport Name="usp_CleanMachineData">
           <Parameter Name="machineId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <AssociationSet Name="FK_ParameterResetValue_Machine" Association="FomMonitoringModel.FK_ParameterResetValue_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="ParameterResetValue" EntitySet="ParameterResetValue" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="usp_AggregationBar_Result">
           <Property Type="Int32" Name="Id" Nullable="true" />
@@ -2577,6 +2601,18 @@
           <Property Type="Int32" Name="StateId" Nullable="true" />
           <Property Type="String" Name="TypeHistory" Nullable="false" MaxLength="1" />
         </ComplexType>
+        <Association Name="FK_ParameterResetValue_Machine">
+          <End Type="FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
+          <End Type="FomMonitoringModel.ParameterResetValue" Role="ParameterResetValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParameterResetValue">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2932,6 +2968,7 @@
           <EntitySetMapping Name="ParameterResetValue">
             <EntityTypeMapping TypeName="FomMonitoringModel.ParameterResetValue">
               <MappingFragment StoreEntitySet="ParameterResetValue">
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ParameterMachineId" ColumnName="ParameterMachineId" />
                 <ScalarProperty Name="ResetDate" ColumnName="ResetDate" />

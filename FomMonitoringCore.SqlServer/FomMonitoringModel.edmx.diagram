@@ -32,7 +32,7 @@
         <EntityTypeShape EntityType="FomMonitoringModel.ParameterResetValue" Width="1.75" PointX="11.125" PointY="36.375" IsExpanded="true" />
         <EntityTypeShape EntityType="FomMonitoringModel.Piece" Width="1.5" PointX="10.75" PointY="27.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FomMonitoringModel.Plant" Width="1.5" PointX="3" PointY="39.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FomMonitoringModel.Roles" Width="1.5" PointX="11.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="FomMonitoringModel.Roles" Width="1.5" PointX="11.5" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="FomMonitoringModel.Roles_Users" Width="1.5" PointX="13.5" PointY="18.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FomMonitoringModel.State" Width="1.5" PointX="11.25" PointY="21.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FomMonitoringModel.StateMachine" Width="1.5" PointX="10.5" PointY="39" IsExpanded="true" />
@@ -81,6 +81,7 @@
         <AssociationConnector Association="FomMonitoringModel.FK_StateMachine_State" ManuallyRouted="false" />
         <AssociationConnector Association="FomMonitoringModel.FK_UserCustomerMapping_Users" ManuallyRouted="false" />
         <AssociationConnector Association="FomMonitoringModel.FK_UserMachineMapping_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="FomMonitoringModel.FK_ParameterResetValue_Machine" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

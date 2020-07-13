@@ -30,6 +30,7 @@ namespace FomMonitoringCore.SqlServer
             this.StateMachine = new HashSet<StateMachine>();
             this.ToolMachine = new HashSet<ToolMachine>();
             this.UserMachineMapping = new HashSet<UserMachineMapping>();
+            this.ParameterResetValue = new HashSet<ParameterResetValue>();
         }
     
         public int Id { get; set; }
@@ -92,5 +93,7 @@ namespace FomMonitoringCore.SqlServer
         public virtual ICollection<ToolMachine> ToolMachine { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserMachineMapping> UserMachineMapping { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ParameterResetValue> ParameterResetValue { get; set; }
     }
 }
