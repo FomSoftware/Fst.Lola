@@ -62,12 +62,12 @@
         $("g[data-mmspindle-index = '" + selectedPosition + "'] circle").attr("r", "11");
 
         $("g[data-mmspindle-index]").click(function (e) {
-            console.log(e.target.textContent);
+            console.log($(e.currentTarget).data("mmspindle-index"));
             //chiamata ajax per caricare le variabili della posizione selezionata
-            if (selectedPosition !== parseInt(e.target.textContent))
+            if (selectedPosition !== parseInt($(e.currentTarget).data("mmspindle-index")))
             {
                 //qui va la chiamata ajax per caricare le variabili della posizione selezionata
-                cp(selectedPosition, e.target.textContent);
+                cp(selectedPosition, $(e.currentTarget).data("mmspindle-index"));
             }
             
         });
