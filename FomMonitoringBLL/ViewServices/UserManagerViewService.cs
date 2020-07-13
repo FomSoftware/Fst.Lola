@@ -127,13 +127,13 @@ namespace FomMonitoringBLL.ViewServices
                 if (context.User.Role != enRole.Customer)
                     user.LastDateUpdatePassword = DateTime.Now;
 
-                Guid id = _userManagerService.CreateUser(user);
+                var id = _userManagerService.CreateUser(user);
                 // se sono customer invio la mail con la password del nuovo utente
                 //rileggo le info dello user
-                context.User = _userManagerService.GetUser(context.User.ID);
-                if (context.User.Role == enRole.Customer && context.User.Email != null)
+                var u = _userManagerService.GetUser(context.User.ID);
+                if (context.User.Role == enRole.Customer && u.Email != null)
                 {
-                    _userManagerService.SendPassword(context.User.Email, id, "CreateUserEmailSubject", "CreateUserEmailBody");
+                    _userManagerService.SendPassword(u.Email, id, "CreateUserEmailSubject", "CreateUserEmailBody");
                 }
               
                 return true;
@@ -190,9 +190,11 @@ namespace FomMonitoringBLL.ViewServices
                 };
 
                 string email = null;
+
+                var usrdb = _userManagerService.GetUser(context.User.ID);
                 if (context.User.Role == enRole.Customer && context.User.Email != null)
                 {
-                    email = context.User.Email;
+                    email = usrdb.Email;
                     user.Password = userModel.Password;
                 }
 

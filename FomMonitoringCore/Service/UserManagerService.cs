@@ -44,7 +44,6 @@ namespace FomMonitoringCore.Service
 
                     result = user.Adapt<Users, UserModel>();
 
-
                     // Recupero le sue macchine ed il customer associato
                         var customerName = _fomMonitoringEntities.Set<UserCustomerMapping>().FirstOrDefault(f => f.UserId == userId)?.CustomerName;
                         result.CustomerName = customerName;
@@ -376,7 +375,7 @@ namespace FomMonitoringCore.Service
             var result = true;
             try
             {
-                    var user = _fomMonitoringEntities.Set<Users>().Find(id);
+                    var user = _fomMonitoringEntities.Set<Users>().AsNoTracking().FirstOrDefault(u => u.ID == id);
                     if (user == null) return false;
                     var subject = LocalizationService.GetResource(keySubject, new CultureInfo(user.Languages.DotNetCulture)) + " " + user.Username;
                     var ruolo = _fomMonitoringEntities.Set<Roles_Users>().FirstOrDefault()?.Roles.Description;
@@ -598,8 +597,24 @@ namespace FomMonitoringCore.Service
         {
             try
             {
-                    // recupero l'utente dal customers mapping
-                    var user = _fomMonitoringEntities.Set<Users>().SingleOrDefault(s => s.ID == userId);
+
+                // recupero l'utente dal customers mapping
+                var userCustomer = _fomMonitoringEntities.Set<UserCustomerMapping>().SingleOrDefault(s => s.UserId == userId);
+
+                if (userCustomer == null)
+                    return false; // not found
+                _fomMonitoringEntities.Set<UserCustomerMapping>().Remove(userCustomer);
+
+                var userMachines = _fomMonitoringEntities.Set<UserMachineMapping>().Where(s => s.UserId == userId).ToList();
+
+                if (!userMachines.Any())
+                    return false; // not found
+                _fomMonitoringEntities.Set<UserMachineMapping>().RemoveRange(userMachines);
+
+                _fomMonitoringEntities.SaveChanges();
+
+                // recupero l'utente dal customers mapping
+                var user = _fomMonitoringEntities.Set<Users>().SingleOrDefault(s => s.ID == userId);
 
                     if (user == null)
                         return false; // not found
@@ -616,20 +631,7 @@ namespace FomMonitoringCore.Service
 
                     _fomMonitoringEntities.SaveChanges();
                 
-                    // recupero l'utente dal customers mapping
-                   var userCustomer = _fomMonitoringEntities.Set<UserCustomerMapping>().SingleOrDefault(s => s.UserId == userId);
 
-                    if (userCustomer == null)
-                        return false; // not found
-                    _fomMonitoringEntities.Set<UserCustomerMapping>().Remove(userCustomer);
-
-                    var userMachines =_fomMonitoringEntities.Set<UserMachineMapping>().Where(s => s.UserId == userId).ToList();
-
-                    if (!userMachines.Any())
-                        return false; // not found
-                    _fomMonitoringEntities.Set<UserMachineMapping>().RemoveRange(userMachines);
-
-                    _fomMonitoringEntities.SaveChanges();
                 
 
                 return true;

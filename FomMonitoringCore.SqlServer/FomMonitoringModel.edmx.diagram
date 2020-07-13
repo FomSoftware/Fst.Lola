@@ -26,10 +26,10 @@
         <EntityTypeShape EntityType="FomMonitoringModel.MessageTranslation" Width="1.5" PointX="5.25" PointY="25.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FomMonitoringModel.MessageType" Width="1.5" PointX="0.75" PointY="29.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FomMonitoringModel.Panel" Width="1.5" PointX="6" PointY="16" IsExpanded="true" />
-        <EntityTypeShape EntityType="FomMonitoringModel.ParameterMachine" Width="1.5" PointX="8.25" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FomMonitoringModel.ParameterMachine" Width="2.125" PointX="8.25" PointY="30.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FomMonitoringModel.ParameterMachineThreshold" Width="1.5" PointX="16.5" PointY="28.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FomMonitoringModel.ParameterMachineValue" Width="1.5" PointX="16.5" PointY="32.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FomMonitoringModel.ParameterResetValue" Width="1.5" PointX="10.5" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FomMonitoringModel.ParameterMachineValue" Width="2.625" PointX="16.5" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FomMonitoringModel.ParameterResetValue" Width="1.75" PointX="11.125" PointY="36.375" IsExpanded="true" />
         <EntityTypeShape EntityType="FomMonitoringModel.Piece" Width="1.5" PointX="10.75" PointY="27.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FomMonitoringModel.Plant" Width="1.5" PointX="3" PointY="39.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FomMonitoringModel.Roles" Width="1.5" PointX="11.25" PointY="9" IsExpanded="true" />
