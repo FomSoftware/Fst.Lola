@@ -145,6 +145,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FomMonitoringCore.DataProcessing.Dto\FomMonitoringCore.DataProcessing.Dto.csproj">
+      <Project>{F36B3458-26DE-4CF6-8616-BF2194078CB9}</Project>
+      <Name>FomMonitoringCore.DataProcessing.Dto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FomMonitoringCore.Mongo\FomMonitoringCore.Mongo.csproj">
       <Project>{2D74150B-02CF-40E7-9946-255D2956D160}</Project>
       <Name>FomMonitoringCore.Mongo</Name>

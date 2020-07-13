@@ -169,7 +169,7 @@ namespace FomMonitoringCore.Queue.ProcessData
 
         private void AddResetValue(ParameterMachine parameterMachine, DateTime lastReset, decimal? variableValue, decimal? valueBeforeReset, int idMachine)
         {
-            if(parameterMachine.ParameterResetValue.All(pm => pm.ResetDate != lastReset))
+            if(!parameterMachine.ParameterResetValue.Any(pm => pm.ResetDate == lastReset && pm.MachineId == idMachine))
                 _context.Set<ParameterResetValue>().Add(
                     new ParameterResetValue()
                     {
