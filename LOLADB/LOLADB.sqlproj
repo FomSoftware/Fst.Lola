@@ -62,5 +62,7 @@
     <None Include="LOLATEST_2020_02_27.sql" />
     <None Include="LOLATEST_2020_03_12.sql" />
     <None Include="LOLATEST_2020_03_12_1.sql" />
+    <None Include="UserManager_Porting_Schema_2020_07_13.sql" />
+    <None Include="UserManager_Porting_Data_2020_07_13.sql" />
   </ItemGroup>
 </Project>
