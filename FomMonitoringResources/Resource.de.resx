@@ -1194,6 +1194,6 @@ Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt
     <value>Benutzer, geordnet nach der an der Maschine verbrachten Zeit</value>
   </data>
   <data name="Production_Tooltip_BackOperators" xml:space="preserve">
-    <value>Benutzer geordnet nach Effizienzzuständen der Maschine (Produktivität)</value>
+    <value>Bediener geordnet nach Anzahl der Werkstücke, die im Verlauf der an der Maschine erklärten Arbeitszeit erzeugt worden sind</value>
   </data>
 </root>

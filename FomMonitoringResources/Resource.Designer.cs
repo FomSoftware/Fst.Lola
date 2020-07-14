@@ -2389,7 +2389,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Users ordered based on the machine efficiency status (production).
+        ///   Looks up a localized string similar to Users ordered based on the number of pieces produced in the time indicated on the machine.
         /// </summary>
         public static string Production_Tooltip_BackOperators {
             get {
