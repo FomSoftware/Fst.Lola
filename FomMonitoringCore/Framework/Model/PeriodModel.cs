@@ -30,7 +30,7 @@ namespace FomMonitoringCore.Framework.Model
         {
             get
             {
-                return DateTime.ToLocalTime().ToString("T");
+                return DateTime.ToLocalTime().ToString("HH:mm:ss");
             }
         }
     }
