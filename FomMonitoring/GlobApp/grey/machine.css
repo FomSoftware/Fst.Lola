@@ -1063,6 +1063,7 @@ a.click-more {
     .label-tools-value.fmc {
         font-size: 19px;
         padding-left: 27px;
+        width: 150px;
     }
 
         .label-tools-value.fmc.center {
@@ -1295,6 +1296,7 @@ hr.tools {
     padding-left: 10px;
     padding-top: 10px;
     padding-bottom: 8px;
+    vertical-align: top;
 }
 
 .label-tools-value {
