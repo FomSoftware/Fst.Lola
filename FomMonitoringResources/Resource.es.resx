@@ -1195,6 +1195,6 @@ La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;
     <value>Usuarios ordenados por tiempo transcurrido en la máquina</value>
   </data>
   <data name="Production_Tooltip_BackOperators" xml:space="preserve">
-    <value>Usuarios ordenados por estados de eficiencia máquina (productivos)</value>
+    <value>Usuarios ordenados por número de piezas producidas en el tiempo declarado en la máquina</value>
   </data>
 </root>
