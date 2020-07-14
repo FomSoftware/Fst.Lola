@@ -133,7 +133,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatico.
+        ///   Looks up a localized string similar to Automatic production.
         /// </summary>
         public static string Automatico {
             get {
@@ -1071,6 +1071,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Users ordered based on the machine efficiency status (production).
+        /// </summary>
+        public static string Efficiency_Tooltip_Operators {
+            get {
+                return ResourceManager.GetString("Efficiency_Tooltip_Operators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Elapsed time.
         /// </summary>
         public static string ElapsedTime {
@@ -1593,7 +1602,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manual.
+        ///   Looks up a localized string similar to Manual production.
         /// </summary>
         public static string Manual {
             get {
@@ -2376,6 +2385,24 @@ namespace FomMonitoringResources {
         public static string Production {
             get {
                 return ResourceManager.GetString("Production", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users ordered based on the machine efficiency status (production).
+        /// </summary>
+        public static string Production_Tooltip_BackOperators {
+            get {
+                return ResourceManager.GetString("Production_Tooltip_BackOperators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users ordered based on the time passed at the machine.
+        /// </summary>
+        public static string Production_Tooltip_Operators {
+            get {
+                return ResourceManager.GetString("Production_Tooltip_Operators", resourceCulture);
             }
         }
         

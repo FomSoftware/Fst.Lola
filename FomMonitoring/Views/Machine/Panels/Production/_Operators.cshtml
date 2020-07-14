@@ -7,10 +7,10 @@
             @LocalizationService.GetResource("Operators")
         </div>
     </div>
-    <div class="progress prod">
+    <div class="progress prod" data-toggle="tooltip" data-placement="top" title="@LocalizationService.GetResource("Production_Tooltip_Operators")">
         <div v-for="(operator, i) in operators" class="progress-bar" v-bind:class="bgOperator(i)" v-bind:aria-valuenow="operator.perc"></div>
     </div>
-    <table class="table-legend">
+    <table class="table-legend" data-toggle="tooltip" data-placement="top" title="@LocalizationService.GetResource("Production_Tooltip_Operators")">
         <tr v-for="(operator, i) in operators">
             <td><div class="square bg-first-oper" v-bind:class="bgOperator(i)"></div>{{ operator.text }}</td>
             <td>{{ operator.perc | round }}<em>%</em></td>

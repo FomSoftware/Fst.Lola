@@ -325,7 +325,7 @@
     <value>Erreur</value>
   </data>
   <data name="Manual" xml:space="preserve">
-    <value>Manuel</value>
+    <value>Production manuelle</value>
   </data>
   <data name="Working" xml:space="preserve">
     <value>Traitement</value>
@@ -1153,7 +1153,7 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
     <value>Attention: le nouveau mot de passe doit être différent du précédent.</value>
   </data>
   <data name="Automatico" xml:space="preserve">
-    <value>Automatique</value>
+    <value>Production automatique</value>
   </data>
   <data name="DoppieTeste" xml:space="preserve">
     <value>Doubles têtes</value>
@@ -1187,5 +1187,14 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
   </data>
   <data name="ModifyUserEmailBody_PasswordLabel" xml:space="preserve">
     <value>Mot de passe provisoire généré:</value>
+  </data>
+  <data name="Efficiency_Tooltip_Operators" xml:space="preserve">
+    <value>Utilisateurs classés en fonction des états d’efficacité de la machine (productifs)</value>
+  </data>
+  <data name="Production_Tooltip_Operators" xml:space="preserve">
+    <value>Utilisateurs classés selon le temps passé sur la machine</value>
+  </data>
+  <data name="Production_Tooltip_BackOperators" xml:space="preserve">
+    <value>Utilisateurs classés en fonction des états d’efficacité de la machine (productifs)</value>
   </data>
 </root>

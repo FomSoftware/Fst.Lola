@@ -325,7 +325,7 @@
     <value>Error</value>
   </data>
   <data name="Manual" xml:space="preserve">
-    <value>Manual</value>
+    <value>Manual production</value>
   </data>
   <data name="Working" xml:space="preserve">
     <value>Working</value>
@@ -1159,7 +1159,7 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
     <value>Assistance</value>
   </data>
   <data name="Automatico" xml:space="preserve">
-    <value>Automatic</value>
+    <value>Automatic production</value>
   </data>
   <data name="DoppieTeste" xml:space="preserve">
     <value>Doble heads</value>
@@ -1193,5 +1193,14 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   </data>
   <data name="ModifyUserEmailBody_PasswordLabel" xml:space="preserve">
     <value>Provisional password generated:</value>
+  </data>
+  <data name="Efficiency_Tooltip_Operators" xml:space="preserve">
+    <value>Users ordered based on the machine efficiency status (production)</value>
+  </data>
+  <data name="Production_Tooltip_Operators" xml:space="preserve">
+    <value>Users ordered based on the time passed at the machine</value>
+  </data>
+  <data name="Production_Tooltip_BackOperators" xml:space="preserve">
+    <value>Users ordered based on the machine efficiency status (production)</value>
   </data>
 </root>

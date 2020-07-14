@@ -328,7 +328,7 @@
     <value>Errore</value>
   </data>
   <data name="Manual" xml:space="preserve">
-    <value>Manuale</value>
+    <value>Produzione manuale</value>
   </data>
   <data name="Working" xml:space="preserve">
     <value>Lavorazione</value>
@@ -1142,7 +1142,7 @@ Utente: [USERNAME]&lt;br /&gt;
 Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resettata obbligatoriamente al primo accesso in LOLA.&lt;br /&gt;&lt;a href="https://lola.fomindustrie.com"&gt;Clicca qui per accedere. &lt;/a&gt;</value>
   </data>
   <data name="ModifyUserEmailSubject" xml:space="preserve">
-    <value>LOLA - Credenziali utente:</value>
+    <value>LOLA - Credenziali utente: </value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
@@ -1157,7 +1157,7 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
     <value>Assistenza</value>
   </data>
   <data name="Automatico" xml:space="preserve">
-    <value>Automatico</value>
+    <value>Produzione automatica</value>
   </data>
   <data name="DoppieTeste" xml:space="preserve">
     <value>Doppie Teste</value>
@@ -1191,5 +1191,14 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
   </data>
   <data name="ModifyUserEmailBody_PasswordLabel" xml:space="preserve">
     <value>Password provvisoria generata:</value>
+  </data>
+  <data name="Efficiency_Tooltip_Operators" xml:space="preserve">
+    <value>Utenti ordinati in base a stati di efficienza macchina (produttivi)</value>
+  </data>
+  <data name="Production_Tooltip_Operators" xml:space="preserve">
+    <value>Utenti ordinati in base a tempo trascorso sulla macchina</value>
+  </data>
+  <data name="Production_Tooltip_BackOperators" xml:space="preserve">
+    <value>Utenti ordinati in base a stati di efficienza macchina (produttivi)</value>
   </data>
 </root>
