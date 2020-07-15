@@ -853,10 +853,9 @@
                 }
             });
         }
-
-        if (user.Role == enRoles.Customer) {
+        
             UserManager.checkSettingTimeZone();
-        }
+        
     };
 
 
