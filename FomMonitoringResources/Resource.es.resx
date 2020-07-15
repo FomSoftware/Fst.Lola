@@ -1203,4 +1203,7 @@ La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;
   <data name="Header_TimeZone_Setting" xml:space="preserve">
     <value>Configuraciones de zona horaria</value>
   </data>
+  <data name="Modal_TimeZone_Advertise" xml:space="preserve">
+    <value>Bienvenido a LOLA, configure su zona horaria de referencia</value>
+  </data>
 </root>

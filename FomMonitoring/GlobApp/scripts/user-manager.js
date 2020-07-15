@@ -689,9 +689,11 @@
         });
 
         request.done(function (data) {
+            if (data != null) {
 
-            var dropdown = $('#timezone-modal-input');
-            dropdown.val(data);
+                var dropdown = $('#timezone-modal-input');
+                dropdown.val(data);
+            }
         });
 
         request.fail(function (jqXHR, textStatus, errorThrown) {
@@ -703,10 +705,12 @@
     var openChangeTimeZoneModal = function (mustChange) {
 
         if (mustChange) {
+            $('#change-timezone-modal #modal-timezone-advertise').removeClass("display-none");
             $('#change-timezone-modal #close').addClass("display-none");
             $('#change-timezone-modal .modal-footer .btn-annulla').addClass('display-none');
         }
         else {
+            $('#change-timezone-modal #modal-timezone-advertise').addClass("display-none");
             $('#change-timezone-modal #close').removeClass("display-none");
             $('#change-timezone-modal .modal-footer .btn-annulla').removeClass('display-none');
         }
@@ -743,21 +747,24 @@
 
     var changeTimeZoneClick = function () {
         var timezone = $('#timezone-modal-input').children("option:selected").val();
-        var request = $.ajax({
-            type: 'POST',
-            contentType: 'application/json',
-            url: baseApiUrl + "/ChangeTimeZone",
-            data: JSON.stringify(timezone)
-        });
+        if (timezone != null && timezone.length > 0) {
+            var request = $.ajax({
+                type: 'POST',
+                contentType: 'application/json',
+                url: baseApiUrl + "/ChangeTimeZone",
+                data: JSON.stringify(timezone)
+            });
 
-        request.done(function (data) {
-            successSwal();
-            $('#change-timezone-modal').modal('hide');
-        });
+            request.done(function (data) {
+                successSwal();
+                $('#change-timezone-modal').modal('hide');
+            });
 
-        request.fail(function (jqXHR, textStatus, errorThrown) {
-            errorSwal(resourceChangePassword.ErrorOccurred);
-        });
+            request.fail(function (jqXHR, textStatus, errorThrown) {
+                errorSwal(resourceChangePassword.ErrorOccurred);
+            });
+        }
+
     }
 
 
@@ -788,6 +795,24 @@
         else
             errorSwal(resourceChangePassword.EnterPassword);
     };
+
+    var checkSettingTimeZone = function() {
+        var request = $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: baseApiUrl + "/GetCurrentTimeZone"
+        });
+        
+        request.done(function (data) {
+            if (data == null) 
+                UserManager.openChangeTimeZoneModal(true);
+
+        });
+
+        request.fail(function (jqXHR, textStatus, errorThrown) {
+            errorSwal(resourceChangePassword.ErrorOccurred);
+        });
+    }
 
     var changePassword = function (data) {
         var request = $.ajax({
@@ -828,6 +853,10 @@
                 }
             });
         }
+
+        if (user.Role == enRoles.Customer) {
+            UserManager.checkSettingTimeZone();
+        }
     };
 
 
@@ -853,6 +882,7 @@
         openDisclamerModal: openDisclamerModal,
         openChangeTimeZoneModal: openChangeTimeZoneModal,
         changeTimeZoneClick: changeTimeZoneClick,
-        checkFirstLogin: checkFirstLogin
+        checkFirstLogin: checkFirstLogin,
+        checkSettingTimeZone: checkSettingTimeZone
     };
 }()

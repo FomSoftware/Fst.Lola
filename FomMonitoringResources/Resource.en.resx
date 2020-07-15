@@ -1209,4 +1209,7 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   <data name="Header_TimeZone_Setting" xml:space="preserve">
     <value>Timezone Settings</value>
   </data>
+  <data name="Modal_TimeZone_Advertise" xml:space="preserve">
+    <value>Welcome to LOLA, please set your reference Time Zone</value>
+  </data>
 </root>

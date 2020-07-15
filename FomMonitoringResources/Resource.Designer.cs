@@ -1647,6 +1647,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Welcome to LOLA, please set your reference Time Zone.
+        /// </summary>
+        public static string Modal_TimeZone_Advertise {
+            get {
+                return ResourceManager.GetString("Modal_TimeZone_Advertise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Model.
         /// </summary>
         public static string Model {

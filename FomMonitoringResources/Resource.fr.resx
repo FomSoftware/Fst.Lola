@@ -1203,4 +1203,7 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
   <data name="Header_TimeZone_Setting" xml:space="preserve">
     <value>Paramètres de fuseau horaire</value>
   </data>
+  <data name="Modal_TimeZone_Advertise" xml:space="preserve">
+    <value>Bienvenue chez LOLA, veuillez définir votre fuseau horaire de référence</value>
+  </data>
 </root>
