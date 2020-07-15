@@ -1196,4 +1196,7 @@ Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt
   <data name="Production_Tooltip_BackOperators" xml:space="preserve">
     <value>Bediener geordnet nach Anzahl der Werkstücke, die im Verlauf der an der Maschine erklärten Arbeitszeit erzeugt worden sind</value>
   </data>
+  <data name="Header_TimeZone_Setting" xml:space="preserve">
+    <value>Zeitzoneneinstellungen</value>
+  </data>
 </root>

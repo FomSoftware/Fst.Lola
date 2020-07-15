@@ -158,6 +158,17 @@ namespace FomMonitoring.Controllers
                 .ToDictionary(x => x.Key, x => $"{x.First().Country} - {x.First().TimeZoneName}"), MediaTypeHeaderValue.Parse("application/json"));
         }
 
+        [HttpGet]
+        [Authorize]
+        [Route("ajax/UserManagerApi/GetCurrentTimeZone")]
+        public HttpResponseMessage GetCurrentTimeZone()
+        {
+            var languageCode = CultureInfo.CurrentUICulture.Name;
+
+            var context = _contextService.GetContext();
+            return Request.CreateResponse(HttpStatusCode.OK, new {
+            }, MediaTypeHeaderValue.Parse("application/json"));
+        }
 
         private static IDictionary<string, string> GetTimeZonesForCountry(string country, DateTimeOffset? threshold, string languageCode)
         {

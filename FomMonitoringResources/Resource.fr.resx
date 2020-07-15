@@ -1197,4 +1197,7 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
   <data name="Production_Tooltip_BackOperators" xml:space="preserve">
     <value>Utilisateurs classés selon le nombre de pièces produites dans le temps déclaré sur la machine</value>
   </data>
+  <data name="Header_TimeZone_Setting" xml:space="preserve">
+    <value>Paramètres de fuseau horaire</value>
+  </data>
 </root>

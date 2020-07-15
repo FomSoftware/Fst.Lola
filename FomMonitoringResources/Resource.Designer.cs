@@ -1206,6 +1206,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Timezone Settings.
+        /// </summary>
+        public static string Header_TimeZone_Setting {
+            get {
+                return ResourceManager.GetString("Header_TimeZone_Setting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HeadWorkshop.
         /// </summary>
         public static string HeadWorkshop {
