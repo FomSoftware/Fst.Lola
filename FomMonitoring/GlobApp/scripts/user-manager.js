@@ -69,7 +69,11 @@
                     Password: false,
                     ConfirmPassword: false
                 },
-                enRoles: enRoles
+                enRoles: enRoles,
+                timeZones: {
+                    active: '',
+                    all: []
+                }
             },
             methods: {
                 formValidation: function() {
@@ -261,11 +265,27 @@
                 $("[data-id='machines-input']").addClass('background-disabled');
             });
         }
-
+        getTimeZones();
         $('#user-modal').modal('show');
         $('#user-modal .js-modify').hide();
         $('#user-modal .js-add').show();
     };
+
+    var getTimeZones = function() {
+        $.get({
+            url: baseApiUrl + '/GetTimeZones',
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                if (result != null) {
+                    vmUsers.timeZones.all = Object.entries(result);
+                } else
+                    errorSwal(resource.ErrorOccurred);
+            },
+            error: function (xhr, status, error) {
+                errorSwal(resource.ErrorOccurred);
+            }
+        });
+    }
 
     var addUser = function () {
         vmUsers.formValidation();
@@ -286,7 +306,8 @@
                 LanguageId: vmUsers.languages.active,
                 Machines: machines,
                 Enabled: true,
-                Password: vmUsers.actual.Password
+                Password: vmUsers.actual.Password,
+                TimeZone: vmUsers.timeZones.active
             };
 
             $.post({
@@ -327,7 +348,10 @@
                     vmUsers.languages.active = result.user.LanguageId;
                     vmUsers.customers.active = result.user.CustomerName;
                     vmUsers.machines.active = _.pluck(result.user.Machines, 'Id');
-
+                    getTimeZones();
+                    vmUsers.$nextTick(function() {
+                        vmUsers.timeZones.active = result.user.TimeZone;
+                    });
                     $('#user-modal .modal-title').html(resource.ModifyUser);
                     $('#user-modal').modal('show');
                     $('#user-modal .js-add').hide();
@@ -384,7 +408,8 @@
                 LanguageId: vmUsers.languages.active,
                 Machines: machines,
                 Enabled: vmUsers.actual.Enabled,
-                Password: vmUsers.actual.Password
+                Password: vmUsers.actual.Password,
+                TimeZone: vmUsers.timeZones.active
             };
 
             $.ajax({

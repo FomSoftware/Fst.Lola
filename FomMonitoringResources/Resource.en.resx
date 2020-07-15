@@ -1203,6 +1203,9 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   <data name="Production_Tooltip_BackOperators" xml:space="preserve">
     <value>Users ordered based on the number of pieces produced in the time indicated on the machine</value>
   </data>
+  <data name="Timezone" xml:space="preserve">
+    <value>Time Zone</value>
+  </data>
   <data name="Header_TimeZone_Setting" xml:space="preserve">
     <value>Timezone Settings</value>
   </data>

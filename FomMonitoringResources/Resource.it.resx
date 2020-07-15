@@ -1201,6 +1201,9 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
   <data name="Production_Tooltip_BackOperators" xml:space="preserve">
     <value>Utenti ordinati in base al numero pezzi prodotti nel tempo dichiarato sulla macchina</value>
   </data>
+  <data name="Timezone" xml:space="preserve">
+    <value>Time Zone</value>
+  </data>
   <data name="Header_TimeZone_Setting" xml:space="preserve">
     <value>Impostazioni Timezone</value>
   </data>
