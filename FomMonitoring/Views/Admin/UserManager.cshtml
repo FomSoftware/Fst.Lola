@@ -129,6 +129,17 @@
                             </div>
                         </div>
 
+                        <!-- Select Basic -->
+                        <div class="form-group row">
+                            <label class="col-4 control-label" for="role-input">@Resource.Timezone: *</label>
+                            <div class="col-7">
+                                <select v-model="timeZones.active" class="form-control input-md modal-input" id="timeZones-input" title="@Resource.NothingSelected" type="text" required>
+                                    <option v-for="tz in timeZones.all" v-bind:value="tz[0]">{{tz[1]}}</option>
+                                </select>
+                                <div v-show="missing.Languages" class="validation">@Resource.FieldRequired.</div>
+                            </div>
+                        </div>
+
                         @if (Model.User.Role == enRole.Customer)
                         {
                             <div class="form-group row" id="form-group-password">

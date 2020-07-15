@@ -29,5 +29,7 @@ namespace FomMonitoringCore.Framework.Model
         public string Password { get; set; }
 
         public Nullable<DateTime> LastDateUpdatePassword { get; set; }
+
+        public string TimeZone { get; set; }
     }
 }

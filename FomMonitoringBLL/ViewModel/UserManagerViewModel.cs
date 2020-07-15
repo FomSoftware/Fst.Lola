@@ -47,6 +47,8 @@ namespace FomMonitoringBLL.ViewModel
         public bool Enabled { get; set; }
 
         public string Password { get; set; }
+
+        public string TimeZone { get; set; }
     }
 
     public class UserMachineViewModel

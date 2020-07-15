@@ -460,6 +460,7 @@ namespace FomMonitoringCore.Service
                     updUser.Email = user.Email;
                     updUser.LanguageID = user.Language.ID;
                     updUser.Enabled = user.Enabled;
+                    updUser.TimeZone = user.TimeZone;
 
                     var modifiedPsw = false;
                     if (user.Password != null && !string.IsNullOrEmpty(user.Password.Trim()))

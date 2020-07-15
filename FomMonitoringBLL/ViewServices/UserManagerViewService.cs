@@ -41,7 +41,8 @@ namespace FomMonitoringBLL.ViewServices
                 LanguageId = s.Language.ID,
                 LanguageName = s.Language.Name,
                 Enabled = s.Enabled,
-                MachineSerials = s.Machines.Select(sel => sel.Serial).ToList()
+                MachineSerials = s.Machines.Select(sel => sel.Serial).ToList(),
+                TimeZone = s.TimeZone
             }).ToList();
 
             //roles
@@ -94,6 +95,7 @@ namespace FomMonitoringBLL.ViewServices
                 user.LanguageName = userModel.Language.Name;
                 user.Enabled = userModel.Enabled;
                 user.Machines = userModel.Machines.Select(s => new UserMachineViewModel { Id = s.Id, Serial = s.Serial }).ToList();
+                user.TimeZone = userModel.TimeZone;
                 result.user = user;
 
                 //machines for customer       
@@ -186,7 +188,8 @@ namespace FomMonitoringBLL.ViewServices
                     Role = (enRole)userModel.RoleCode,
                     Language = new LanguagesModel { ID = userModel.LanguageId },
                     Machines = userModel.Machines.Select(s => new MachineInfoModel { Id = s.Id }).ToList(),
-                    Enabled = userModel.Enabled
+                    Enabled = userModel.Enabled,
+                    TimeZone = userModel.TimeZone
                 };
 
                 string email = null;
