@@ -41,6 +41,7 @@ namespace FomMonitoringCore.SqlServer
         public Nullable<int> Status { get; set; }
         public string Domain { get; set; }
         public Nullable<System.DateTime> LastDateUpdatePassword { get; set; }
+        public string TimeZone { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AuditLogin> AuditLogin { get; set; }

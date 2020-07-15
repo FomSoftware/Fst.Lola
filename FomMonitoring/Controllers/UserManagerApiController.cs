@@ -1,15 +1,19 @@
-﻿using FomMonitoringBLL.ViewModel;
+﻿using System;
+using FomMonitoringBLL.ViewModel;
 using FomMonitoringBLL.ViewServices;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Http;
+using TimeZoneNames;
 using UserManager.Service;
 using UserManager.Service.Concrete;
+using System.Linq;
 
 namespace FomMonitoring.Controllers
 {
@@ -136,6 +140,30 @@ namespace FomMonitoring.Controllers
         {
             var result = _userManagerViewService.DeleteUser(id);
             return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json"));
+        }
+
+
+        [HttpGet]
+        [Authorize]
+        [Route("ajax/UserManagerApi/GetTimeZones")]
+        public HttpResponseMessage GetTimeZones()
+        {
+            var languageCode = CultureInfo.CurrentUICulture.Name;
+
+
+            return Request.CreateResponse(HttpStatusCode.OK, TZNames.GetCountryNames(languageCode)
+                .SelectMany(x => GetTimeZonesForCountry(x.Key, DateTimeOffset.UtcNow, languageCode)
+                    .Select(y => new { CountryCode = x.Key, Country = x.Value, TimeZoneId = y.Key, TimeZoneName = y.Value }))
+                .GroupBy(x => x.TimeZoneId)
+                .ToDictionary(x => x.Key, x => $"{x.First().Country} - {x.First().TimeZoneName}"), MediaTypeHeaderValue.Parse("application/json"));
+        }
+
+
+        private static IDictionary<string, string> GetTimeZonesForCountry(string country, DateTimeOffset? threshold, string languageCode)
+        {
+            return threshold == null
+                ? TZNames.GetTimeZonesForCountry(country, languageCode)
+                : TZNames.GetTimeZonesForCountry(country, languageCode, threshold.Value);
         }
     }
 }

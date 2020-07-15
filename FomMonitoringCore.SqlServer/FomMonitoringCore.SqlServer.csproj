@@ -80,6 +80,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="FomMonitoringModel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FomMonitoringModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="HistoryBar.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
@@ -230,6 +235,7 @@
   <ItemGroup>
     <EntityDeploy Include="FomMonitoringModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FomMonitoringModel1.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
