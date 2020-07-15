@@ -1198,6 +1198,6 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
     <value>Utilisateurs classés selon le nombre de pièces produites dans le temps déclaré sur la machine</value>
   </data>
   <data name="Timezone" xml:space="preserve">
-    <value>Fuseau horaire</value>
+    <value>Fuseau Horaire</value>
   </data>
 </root>

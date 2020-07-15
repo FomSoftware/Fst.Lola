@@ -123,7 +123,8 @@ namespace FomMonitoringBLL.ViewServices
                     Language = new LanguagesModel { ID = userModel.LanguageId },
                     Machines = userModel.Machines.Select(s => new MachineInfoModel { Id = s.Id }).ToList(),
                     Enabled = userModel.Enabled,
-                    Password = userModel.Password
+                    Password = userModel.Password,
+                    TimeZone = userModel.TimeZone
                 };
 
                 if (context.User.Role != enRole.Customer)

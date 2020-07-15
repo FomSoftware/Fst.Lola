@@ -1202,6 +1202,6 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
     <value>Utenti ordinati in base al numero pezzi prodotti nel tempo dichiarato sulla macchina</value>
   </data>
   <data name="Timezone" xml:space="preserve">
-    <value>Timezone</value>
+    <value>Time Zone</value>
   </data>
 </root>

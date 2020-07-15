@@ -328,7 +328,8 @@ namespace FomMonitoringCore.Service
                     LanguageID = user.Language?.ID,
                     Enabled = user.Enabled,
                     Password = _loginServices.EncryptPassword(defaultPassword),
-                    LastDateUpdatePassword = user.LastDateUpdatePassword
+                    LastDateUpdatePassword = user.LastDateUpdatePassword,
+                    TimeZone = user.TimeZone
                 };
 
                 // user language
