@@ -163,11 +163,20 @@ namespace FomMonitoring.Controllers
         [Route("ajax/UserManagerApi/GetCurrentTimeZone")]
         public HttpResponseMessage GetCurrentTimeZone()
         {
-            var languageCode = CultureInfo.CurrentUICulture.Name;
-
             var context = _contextService.GetContext();
-            return Request.CreateResponse(HttpStatusCode.OK, new {
-            }, MediaTypeHeaderValue.Parse("application/json"));
+            
+            return Request.CreateResponse(HttpStatusCode.OK, context.User.TimeZone, MediaTypeHeaderValue.Parse("application/json"));
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("ajax/UserManagerApi/ChangeTimeZone")]
+        public HttpResponseMessage ChangeTimeZone([FromBody] string timezone)
+        {
+            var context = _contextService.GetContext();
+            _userManagerViewService.ChangeTimeZone(context, timezone);
+            _contextService.SetActualTimeZone(timezone);
+            return Request.CreateResponse(HttpStatusCode.OK, new{}, MediaTypeHeaderValue.Parse("application/json"));
         }
 
         private static IDictionary<string, string> GetTimeZonesForCountry(string country, DateTimeOffset? threshold, string languageCode)

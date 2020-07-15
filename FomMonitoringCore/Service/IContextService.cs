@@ -16,6 +16,7 @@ namespace FomMonitoringCore.Service
         bool InitializeMessagesMachineLevel();
         bool InitializePlantManagerLevel();
         void SetActualLanguage(string LanguageNameISO);
+        void SetActualTimeZone(string timezone);
         void SetActualMachine(int id);
         void SetActualPage(enPage Page);
         void SetActualPeriod(DateTime start, DateTime end);

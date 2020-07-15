@@ -242,6 +242,16 @@ namespace FomMonitoringCore.Service
             SetContext(context);
         }
 
+        public void SetActualTimeZone(string timezone)
+        {
+            var context = GetContext();
+
+            context.User.TimeZone = timezone;
+
+            SetContext(context);
+        }
+
+
         public void SetActualPlant(int id)
         {
             var context = GetContext();

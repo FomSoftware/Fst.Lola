@@ -646,5 +646,12 @@ namespace FomMonitoringCore.Service
             }
         }
 
+        public void ChangeTimeZone(Guid id, string timezone)
+        {
+            var user = _fomMonitoringEntities.Set<Users>().SingleOrDefault(s => s.ID == id);
+            if (user != null)
+                user.TimeZone = timezone;
+            _fomMonitoringEntities.SaveChanges();
+        }
     }
 }

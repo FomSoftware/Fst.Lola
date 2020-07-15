@@ -51,7 +51,7 @@ namespace FomMonitoringCore.Service
                 Name = User.Languages.Name
             } : null;
             LoggedUser.LastDateUpdatePassword = User.LastDateUpdatePassword;
-
+            LoggedUser.TimeZone = User.TimeZone;
             return LoggedUser;
         }
 

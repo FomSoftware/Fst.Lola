@@ -701,6 +701,7 @@
 
 
     var openChangeTimeZoneModal = function (mustChange) {
+
         if (mustChange) {
             $('#change-timezone-modal #close').addClass("display-none");
             $('#change-timezone-modal .modal-footer .btn-annulla').addClass('display-none');
@@ -709,6 +710,7 @@
             $('#change-timezone-modal #close').removeClass("display-none");
             $('#change-timezone-modal .modal-footer .btn-annulla').removeClass('display-none');
         }
+
         $('#change-timezone-modal').modal('show');
 
 
@@ -716,8 +718,6 @@
 
         dropdown.empty();
         
-        dropdown.prop('selectedIndex', 0);
-        $("#mydropdownlist").val("thevalue");
         var request = $.ajax({
             type: 'GET',
             contentType: 'application/json',
@@ -747,19 +747,12 @@
             type: 'POST',
             contentType: 'application/json',
             url: baseApiUrl + "/ChangeTimeZone",
-            data: JSON.stringify({
-                timezone: timezone
-            })
+            data: JSON.stringify(timezone)
         });
 
         request.done(function (data) {
-            if (data == true) {
-                successSwal();
-                $('#change-timezone-modal').modal('hide');
-            }
-            else
-                errorSwal();
-
+            successSwal();
+            $('#change-timezone-modal').modal('hide');
         });
 
         request.fail(function (jqXHR, textStatus, errorThrown) {
