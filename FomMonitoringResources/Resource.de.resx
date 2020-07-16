@@ -1199,4 +1199,10 @@ Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt
   <data name="Timezone" xml:space="preserve">
     <value>Zeitzonen</value>
   </data>
+  <data name="Header_TimeZone_Setting" xml:space="preserve">
+    <value>Zeitzoneneinstellungen</value>
+  </data>
+  <data name="Modal_TimeZone_Advertise" xml:space="preserve">
+    <value>Wilkommen bei LOLA, bitte stellen Sie Ihre Referenzzeitzone ein</value>
+  </data>
 </root>

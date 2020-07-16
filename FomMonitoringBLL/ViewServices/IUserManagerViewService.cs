@@ -14,5 +14,6 @@ namespace FomMonitoringBLL.ViewServices
         bool ChangePassword(ContextModel context, ChangePasswordViewModel changePasswordInfo);
         bool ResetUserPassword(string userId);
         bool DeleteUser(string userId);
+        void ChangeTimeZone(ContextModel context, string timezone);
     }
 }

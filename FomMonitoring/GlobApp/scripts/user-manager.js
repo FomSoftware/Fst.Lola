@@ -681,6 +681,93 @@
       
     };
 
+    var setCurrentTimeZoneDropwdown = function () {
+        var request = $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: baseApiUrl + "/GetCurrentTimeZone"
+        });
+
+        request.done(function (data) {
+            if (data != null) {
+
+                var dropdown = $('#timezone-modal-input');
+                dropdown.val(data);
+            }
+        });
+
+        request.fail(function (jqXHR, textStatus, errorThrown) {
+            errorSwal(resourceChangePassword.ErrorOccurred);
+        });
+    }
+
+
+    var openChangeTimeZoneModal = function (mustChange) {
+
+        if (mustChange) {
+            $('#change-timezone-modal #modal-timezone-advertise').removeClass("display-none");
+            $('#change-timezone-modal #close').addClass("display-none");
+            $('#change-timezone-modal .modal-footer .btn-annulla').addClass('display-none');
+        }
+        else {
+            $('#change-timezone-modal #modal-timezone-advertise').addClass("display-none");
+            $('#change-timezone-modal #close').removeClass("display-none");
+            $('#change-timezone-modal .modal-footer .btn-annulla').removeClass('display-none');
+        }
+
+        $('#change-timezone-modal').modal('show');
+
+
+        var dropdown = $('#timezone-modal-input');
+
+        dropdown.empty();
+        
+        var request = $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: baseApiUrl + "/GetTimeZones",
+        });
+
+        request.done(function (data) {
+            $.each(data,
+                function (key, entry) {
+                    dropdown.append($('<option></option>').attr('value', key).text(entry));
+                });
+            setCurrentTimeZoneDropwdown();
+        });
+
+        request.fail(function (jqXHR, textStatus, errorThrown) {
+            errorSwal(resourceChangePassword.ErrorOccurred);
+        });
+
+
+
+    };
+
+
+    var changeTimeZoneClick = function () {
+        var timezone = $('#timezone-modal-input').children("option:selected").val();
+        if (timezone != null && timezone.length > 0) {
+            var request = $.ajax({
+                type: 'POST',
+                contentType: 'application/json',
+                url: baseApiUrl + "/ChangeTimeZone",
+                data: JSON.stringify(timezone)
+            });
+
+            request.done(function (data) {
+                successSwal();
+                $('#change-timezone-modal').modal('hide');
+            });
+
+            request.fail(function (jqXHR, textStatus, errorThrown) {
+                errorSwal(resourceChangePassword.ErrorOccurred);
+            });
+        }
+
+    }
+
+
 
     var changePasswordClick = function () {
         var oldPassword = $('#last-password').val();
@@ -708,6 +795,24 @@
         else
             errorSwal(resourceChangePassword.EnterPassword);
     };
+
+    var checkSettingTimeZone = function() {
+        var request = $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: baseApiUrl + "/GetCurrentTimeZone"
+        });
+        
+        request.done(function (data) {
+            if (data == null) 
+                UserManager.openChangeTimeZoneModal(true);
+
+        });
+
+        request.fail(function (jqXHR, textStatus, errorThrown) {
+            errorSwal(resourceChangePassword.ErrorOccurred);
+        });
+    }
 
     var changePassword = function (data) {
         var request = $.ajax({
@@ -748,6 +853,9 @@
                 }
             });
         }
+        
+            UserManager.checkSettingTimeZone();
+        
     };
 
 
@@ -771,6 +879,9 @@
         changePasswordClick: changePasswordClick,
         openChangePasswordModal: openChangePasswordModal,
         openDisclamerModal: openDisclamerModal,
-        checkFirstLogin: checkFirstLogin
+        openChangeTimeZoneModal: openChangeTimeZoneModal,
+        changeTimeZoneClick: changeTimeZoneClick,
+        checkFirstLogin: checkFirstLogin,
+        checkSettingTimeZone: checkSettingTimeZone
     };
 }()

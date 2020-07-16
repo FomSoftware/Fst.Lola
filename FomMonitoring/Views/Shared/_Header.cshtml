@@ -107,6 +107,11 @@
                                 <div><span>Plant Manager</span></div>
                             </a>
                         }
+                        <div class="dd-item" data-toggle="modal" onclick="UserManager.openChangeTimeZoneModal()">
+                            <i class="fa fa-clock-o fa-lg color-corporate"></i>
+                            <div><span>@Resource.Header_TimeZone_Setting</span></div>
+                        </div>
+
                         @if (Model.User.Role != enRole.Customer)
                         {
                             <div class="dd-item" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">

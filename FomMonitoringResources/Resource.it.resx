@@ -1204,4 +1204,10 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
   <data name="Timezone" xml:space="preserve">
     <value>Time Zone</value>
   </data>
+  <data name="Header_TimeZone_Setting" xml:space="preserve">
+    <value>Impostazioni Timezone</value>
+  </data>
+  <data name="Modal_TimeZone_Advertise" xml:space="preserve">
+    <value>Benvenuto, si prega di settare la propria Time Zone di riferimento</value>
+  </data>
 </root>

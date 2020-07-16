@@ -228,5 +228,10 @@ namespace FomMonitoringBLL.ViewServices
             Guid id = Guid.Parse(userId);
             return _userManagerService.DeleteUser(id);
         }
+
+        public void ChangeTimeZone(ContextModel context, string timezone)
+        {
+            _userManagerService.ChangeTimeZone(context.User.ID, timezone);
+        }
     }
 }
