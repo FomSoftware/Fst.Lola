@@ -508,14 +508,15 @@
         getData();
     };
 
-    var successSwal = function (text) {
-        swal({
+    var successSwal = function (text, func) {
+        var msg = swal({
             title: "",
             text: text,
             icon: "success",
             allowOutsideClick: true,
             closeModal: true
         });
+        return msg;
     };
 
     var alertSwal = function (text) {
@@ -756,8 +757,12 @@
             });
 
             request.done(function (data) {
-                successSwal();
                 $('#change-timezone-modal').modal('hide');
+                var msg = successSwal("");
+                msg.then(
+                    (result) => {
+                        window.location.reload();
+                    });
             });
 
             request.fail(function (jqXHR, textStatus, errorThrown) {
