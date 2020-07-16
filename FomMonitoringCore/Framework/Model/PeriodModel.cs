@@ -26,12 +26,7 @@ namespace FomMonitoringCore.Framework.Model
             }
         }
 
-        public string Time
-        {
-            get
-            {
-                return DateTime.ToLocalTime().ToString("HH:mm:ss");
-            }
-        }
+        public string TimeZone { get; set; }
+       
     }
 }

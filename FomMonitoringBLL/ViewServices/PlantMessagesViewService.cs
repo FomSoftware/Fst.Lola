@@ -43,6 +43,10 @@ namespace FomMonitoringBLL.ViewServices
                                        .FirstOrDefault(
                                            w => w.Id == (result.messages?.FirstOrDefault()?.machine.id ?? 0))?.UTC ?? 0;
             }
+            if (context.User.TimeZone != null)
+            {
+                result.timeZone = context.User.TimeZone;
+            }
 
             return result;
         }

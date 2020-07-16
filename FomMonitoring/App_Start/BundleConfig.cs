@@ -44,6 +44,7 @@ namespace FomMonitoring.App_Start
                         "~/Scripts/DataTables/responsive.bootstrap4.js",
                         "~/Scripts/moment.js",
                         "~/Scripts/moment-with-locales.js",
+                        "~/Scripts/moment-timezone-with-data.js",
                         "~/Scripts/daterangepicker.js",
                         "~/Scripts/underscore.js",
                         "~/Scripts/toastr.js"

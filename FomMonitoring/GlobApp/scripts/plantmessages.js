@@ -22,7 +22,8 @@
             el: '#CardPlantMessages',
             data: {
                 messages: data.messages,          
-                sorting: data.sorting
+                sorting: data.sorting,
+                timeZone: data.timeZone
             },
             computed: {
                 colorAlarms: function ()
@@ -50,8 +51,12 @@
             },
             methods: {
                 convert_timestamp: function (timestamp, utc) {
-                    var m = moment.utc(timestamp).add(utc, 'hour');
-                    var str = m.format('L') + " " + m.format('hh:mm:ss') + " " + m.format('A');
+                    var m = moment.utc(timestamp);
+                    if (this.timeZone && this.timeZone !== "")
+                        m = m.tz(this.timeZone);
+                    else
+                        m = m.add(utc, 'hour');
+                    var str = m.format('L') + " " + m.format('HH:mm:ss');
                     return str;
                 },
                 colorClass: function (type)
@@ -190,7 +195,7 @@
         // update vue model
         vmMessages.messages = data.messages;
         vmMessages.sorting = data.sorting;
-       
+        vmMessages.timeZone = data.timeZone;
         
         UtcOffset = data.UtcOffset;
        

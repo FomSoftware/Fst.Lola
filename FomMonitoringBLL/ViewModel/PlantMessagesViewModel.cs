@@ -9,6 +9,7 @@ namespace FomMonitoringBLL.ViewModel
 
         public SortingViewModel sorting { get; set; }
         public double UtcOffset { get; set; }
+        public string timeZone { get; set; }
     }
 
 

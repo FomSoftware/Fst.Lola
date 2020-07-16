@@ -27,6 +27,7 @@
                 details: data.vm_details.messages,
                 sortingDet: data.vm_details.sorting,
                 sorting: data.vm_messages.sorting,
+                timeZone: data.timeZone,
                 show: {
                     historical: false
                 }
@@ -57,8 +58,12 @@
             },
             methods: {
                 convert_timestamp: function (timestamp, utc) {
-                    var m = moment.utc(timestamp).add(utc, 'hour');
-                    var str = m.format('L') + " " + m.format('hh:mm:ss') + " " + m.format('A');
+                    var m = moment.utc(timestamp);
+                    if (this.timeZone && this.timeZone !== "")
+                        m = m.tz(this.timeZone);
+                    else
+                        m = m.add(utc, 'hour');
+                    var str = m.format('L') + " " + m.format('HH:mm:ss');
                     return str;
                 },
                 colorClass: function (type)
@@ -179,7 +184,7 @@
         }
         vmMessages.details = data.vm_details.messages;
         vmMessages.sortingDet = data.vm_details.sorting;
-
+        vmMessages.timeZone = data.timeZone;
         // update historical chart
         if (data.opt_historical != null)
         {

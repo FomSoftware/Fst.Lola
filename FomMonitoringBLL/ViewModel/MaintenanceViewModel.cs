@@ -10,6 +10,8 @@ namespace FomMonitoringBLL.ViewModel
 
         public MaintenceVueModel ignored_messages { get; set; }
 
+        public string timeZone { get; set; }
+
     }
 
     public class MaintenceVueModel

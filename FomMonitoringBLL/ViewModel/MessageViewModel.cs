@@ -9,6 +9,8 @@ namespace FomMonitoringBLL.ViewModel
         public MessageDetailsVueModel vm_details { get; set; }
 
         public ChartViewModel opt_historical { get; set; }
+
+        public string timeZone { get; set; }
     }
     public class MessageVueModel
     {

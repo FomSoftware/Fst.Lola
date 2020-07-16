@@ -1,4 +1,5 @@
 ﻿using FomMonitoringBLL.ViewModel;
+using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using System;
@@ -44,8 +45,13 @@ namespace FomMonitoringBLL.ViewServices
             MachineViewModel machine = new MachineViewModel();
             machine.MachinePanels = _messagesService.GetMachinePanels(context);
 
-            machine.LastUpdate = new DataUpdateModel() { DateTime = (DateTime)context.ActualMachine.LastUpdate };
+            machine.LastUpdate = new DataUpdateModel()
+            {
+                DateTime = (DateTime)context.ActualMachine.LastUpdate,
+                TimeZone = context.User.TimeZone
+            };
             context.ActualPeriod.LastUpdate.DateTime = machine.LastUpdate.DateTime;
+            context.ActualPeriod.LastUpdate.TimeZone = machine.LastUpdate.TimeZone;
             machine.Efficiency = _efficiencyViewService.GetEfficiency(context);
             machine.Productivity = _productivityViewService.GetProductivity(context);
             machine.Messages = _messagesViewService.GetMessages(context);
@@ -57,11 +63,13 @@ namespace FomMonitoringBLL.ViewServices
                 model = context.ActualMachine.Model.Name,
                 mtype = context.ActualMachine.Type.Name,
                 id_mtype = context.ActualMachine.Type.Id,
-                machineName = context.ActualMachine.MachineName
+                machineName = context.ActualMachine.MachineName,
+                timeZone = context.ActualMachine.TimeZone
             };
             
             machine.XTools = _xToolsViewService.GetXTools(context);
-            machine.Maintenance = _maintenanceViewService.GetMessages(context);           
+            machine.Maintenance = _maintenanceViewService.GetMessages(context);
+
             return machine;
         }
     }

@@ -110,7 +110,8 @@ namespace FomMonitoringCore.Service
             {
                 LastUpdate = new DataUpdateModel()
                 {
-                    DateTime = DateTime.UtcNow
+                    DateTime = DateTime.UtcNow,
+                    TimeZone = context.User.TimeZone
                 }
             };
 

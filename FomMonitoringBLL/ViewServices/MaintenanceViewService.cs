@@ -25,6 +25,14 @@ namespace FomMonitoringBLL.ViewServices
             result.vm_messages = GetVueModel(context.ActualMachine, context.ActualPeriod);
             result.ignored_messages = GetIgnoredVueModel(context.ActualMachine, context.ActualPeriod);
 
+            if (context.User.Role == enRole.Customer && context.ActualMachine.TimeZone != null)
+            {
+                result.timeZone = context.ActualMachine.TimeZone;
+            }
+            else if (context.User.TimeZone != null)
+            {
+               result.timeZone = context.User.TimeZone;
+            }
             return result;
         }
 

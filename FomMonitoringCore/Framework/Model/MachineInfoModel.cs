@@ -37,5 +37,6 @@ namespace FomMonitoringCore.Framework.Model
         public string MachineName { get; set; }
         public DateTime? ExpirationDate { get; set; }
         public DateTime? ActivationDate { get; set; }
+        public string TimeZone { get; set; }
     }
 }

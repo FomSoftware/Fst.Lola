@@ -21,13 +21,20 @@
                 show: {
                     historical: (data.ignored_messages.messages != null)
                 },
+                timeZone: data.timeZone,
                 showed: true
             },
             computed: {                
             },
             methods: {       
                 convert_timestamp: function (timestamp, utc) {
-                    return moment.utc(timestamp).add(utc, 'hour').format('L LTS');
+                    var m = moment.utc(timestamp);
+                    if (this.timeZone && this.timeZone !== "")
+                        m = m.tz(this.timeZone);
+                    else
+                        m = m.add(utc, 'hour');
+                    var str = m.format('L') + " " + m.format('HH:mm:ss');
+                    return str;
                 },
                 sortTimestamp: function () {
                     console.log(this.$data);
@@ -141,6 +148,7 @@
         // update vue model
         var vm_messages = data.vm_messages;
         var vm_ignored_messages = data.ignored_messages;
+        vmMessages.timeZone = data.timeZone;
         if (vm_messages) {
             vmMessages.messages = vm_messages.messages;
             vmMessages.sorting = vm_messages.sorting;

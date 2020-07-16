@@ -23,10 +23,19 @@ namespace FomMonitoringBLL.ViewServices
         public MessageViewModel GetMessages(ContextModel context)
         {
             var result = new MessageViewModel();
-
             result.vm_messages = GetVueModel(context.ActualMachine, context.ActualPeriod, context.ActualMachineGroup);
             result.opt_historical = GetHistoricalOptions(context.ActualMachine, context.ActualPeriod, context.ActualMachineGroup);
             result.vm_details = GetMessageDetails(context.ActualMachine, context.ActualPeriod, context.ActualMachineGroup);
+
+            if (context.User.Role == enRole.Customer && context.ActualMachine.TimeZone != null)
+            {
+                result.timeZone = context.ActualMachine.TimeZone;
+            }
+            else if (context.User.TimeZone != null)
+            {
+                result.timeZone = context.User.TimeZone;
+            }
+
             return result;
         }
 

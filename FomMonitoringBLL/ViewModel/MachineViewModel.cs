@@ -28,5 +28,7 @@ namespace FomMonitoringBLL.ViewModel
         public MaintenanceViewModel Maintenance { get; set; }
 
         public List<int> MachinePanels { get; set; }
+
+        public string TimeZone { get; set; }
     }
 }

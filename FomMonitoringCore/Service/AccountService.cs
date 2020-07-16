@@ -42,6 +42,7 @@ namespace FomMonitoringCore.Service
             LoggedUser.FirstName = User.FirstName;
             LoggedUser.LastName = User.LastName;
             LoggedUser.Email = User.Email;
+            LoggedUser.TimeZone = User.TimeZone;
             LoggedUser.Role = User.Roles_Users.Select(s => (enRole)s.Roles.IdRole).FirstOrDefault();
             LoggedUser.Language = User.Languages != null ? new LanguagesModel {
                 DotNetCulture = User.Languages.DotNetCulture,
