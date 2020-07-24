@@ -18,6 +18,11 @@ namespace FomMonitoringCore.Framework.Model
     {
         public DateTime DateTime { get; set; }
 
+        public string DateTimeStr
+        {
+            get { return DateTime.ToString("u"); }
+        }
+
         public string Date
         {
             get
