@@ -21,7 +21,7 @@
             el: '#last-update',
             data: {
                 date: data.Date, //moment.utc(data.DateTime).local().format('L'),
-                time: moment.utc(data.DateTimeStr).tz(data.TimeZone).format('HH:mm:ss') 
+                time: (data.TimeZone && data.TimeZone != "") ? moment.utc(data.DateTimeStr).tz(data.TimeZone).format('HH:mm:ss') : moment.utc(data.DateTime).format('HH:mm:ss') 
     }
         });
     }
