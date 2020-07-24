@@ -107,27 +107,27 @@
                                 <div><span>Plant Manager</span></div>
                             </a>
                         }
-                        <div class="dd-item" data-toggle="modal" onclick="UserManager.openChangeTimeZoneModal()">
-                            <i class="fa fa-clock-o fa-lg color-corporate"></i>
-                            <div><span>@Resource.Header_TimeZone_Setting</span></div>
-                        </div>
+                        <a class="dd-item dd-item-longtext" href="@Url.Action("Index", "UserSetting")">
+                                <i class="fa fa-clock-o fa-lg color-corporate"></i>
+                                <div><span>@Resource.Header_TimeZone_Setting</span></div>
+                            </a>
 
-                        @if (Model.User.Role != enRole.Customer)
-                        {
-                            <div class="dd-item" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
-                                <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
-                                <div><span>@Resource.ChangePassword</span></div>
+                                @if (Model.User.Role != enRole.Customer)
+                                {
+                                    <div class="dd-item" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
+                                        <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
+                                        <div><span>@Resource.ChangePassword</span></div>
+                                    </div>
+                                }
+                                <div class="dd-item dd-item-longtext" data-toggle="modal" onclick="UserManager.openDisclamerModal()">
+                                    <i class="fa fa-handshake-o color-corporate fa-sm"></i>
+                                    <div><span>@Resource.Disclamer</span></div>
+                                </div>
+                                <a class="dd-item" href="@Url.Action("Logout", "Account")">
+                                    <i class="fa fa-power-off color-corporate fa-lg"></i>
+                                    <div><span>@Resource.Logout</span></div>
+                                </a>
                             </div>
-                        }
-                        <div class="dd-item dd-item-longtext" data-toggle="modal" onclick="UserManager.openDisclamerModal()">
-                            <i class="fa fa-handshake-o color-corporate fa-sm"></i>
-                            <div><span>@Resource.Disclamer</span></div>
-                        </div>
-                        <a class="dd-item" href="@Url.Action("Logout", "Account")">
-                            <i class="fa fa-power-off color-corporate fa-lg"></i>
-                            <div><span>@Resource.Logout</span></div>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>

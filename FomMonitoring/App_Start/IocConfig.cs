@@ -37,6 +37,7 @@ namespace FomMonitoring
             builder.RegisterType<MesViewService>().As<IMesViewService>().InstancePerRequest();
             builder.RegisterType<NotificationViewService>().As<INotificationViewService>().InstancePerRequest();
             builder.RegisterType<UserManagerViewService>().As<IUserManagerViewService>().InstancePerRequest();
+            builder.RegisterType<UserSettingViewService>().As<IUserSettingViewService>().InstancePerRequest();
 
             var container = builder.Build();
 

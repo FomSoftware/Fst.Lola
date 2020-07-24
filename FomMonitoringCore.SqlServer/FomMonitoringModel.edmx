@@ -452,6 +452,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="MachineId" Type="int" Nullable="false" />
+          <Property Name="TimeZone" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -1769,6 +1770,7 @@
           <Property Name="MachineId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Machine" Relationship="Self.FK_UserMachineMapping_Machine" FromRole="UserMachineMapping" ToRole="Machine" />
           <NavigationProperty Name="Users" Relationship="Self.FK_UserMachineMapping_Users" FromRole="UserMachineMapping" ToRole="Users" />
+          <Property Name="TimeZone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -3096,6 +3098,7 @@
           <EntitySetMapping Name="UserMachineMapping">
             <EntityTypeMapping TypeName="FomMonitoringModel.UserMachineMapping">
               <MappingFragment StoreEntitySet="UserMachineMapping">
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="MachineId" ColumnName="MachineId" />

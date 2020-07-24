@@ -57,7 +57,8 @@ namespace FomMonitoringCore.Ioc
                 builder.RegisterType<StateService>().As<IStateService>(),
                 builder.RegisterType<MessageService>().As<IMessageService>(),
                 builder.RegisterType<UnitOfWork>().As<IUnitOfWork>(),
-                
+
+                builder.RegisterType<TimeZoneService>().As<ITimeZoneService>(),
                 builder.RegisterType<BarService>().As<IBarService>(),
                 builder.RegisterType<MesService>().As<IMesService>(),
                 builder.RegisterType<PlantManagerService>().As<IPlantManagerService>(),

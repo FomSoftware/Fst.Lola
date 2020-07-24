@@ -197,18 +197,22 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        public List<MachineInfoModel> GetUserMachines(Guid UserID)
+        public List<MachineInfoModel> GetUserMachines(ContextModel ctx)
         {
             List<MachineInfoModel> result = new List<MachineInfoModel>();
 
             try
             {                
-                    var query = _context.Set<UserMachineMapping>().Where(w => w.UserId == UserID).Select(s => s.Machine).ToList();
-                    result = query.Where(w => w.LastUpdate != null).Adapt<List<MachineInfoModel>>();           
+                    var query = _context.Set<UserMachineMapping>().Where(w => w.UserId == ctx.User.ID).Select(s => s.Machine).ToList();
+                    result = query.Where(w => w.LastUpdate != null).Adapt<List<MachineInfoModel>>();
+                    if (ctx.User.Role == enRole.Customer)
+                    {
+                        result.ForEach(mim => mim.TimeZone = _context.Set<UserMachineMapping>().FirstOrDefault(w => w.UserId == ctx.User.ID && w.MachineId == mim.Id)?.TimeZone);
+                    }
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), UserID.ToString());
+                string errMessage = string.Format(ex.GetStringLog(), ctx.User.ID.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 

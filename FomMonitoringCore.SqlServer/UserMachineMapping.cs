@@ -17,6 +17,7 @@ namespace FomMonitoringCore.SqlServer
         public int Id { get; set; }
         public System.Guid UserId { get; set; }
         public int MachineId { get; set; }
+        public string TimeZone { get; set; }
     
         public virtual Machine Machine { get; set; }
         public virtual Users Users { get; set; }

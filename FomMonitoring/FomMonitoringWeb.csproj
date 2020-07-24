@@ -458,6 +458,7 @@
     <Content Include="GlobApp\scripts\machine\productivity.js" />
     <Content Include="GlobApp\scripts\machine\efficiency.js" />
     <Content Include="GlobApp\scripts\user-manager.js" />
+    <Content Include="GlobApp\scripts\user-setting.js" />
     <Content Include="GlobApp\scripts\vue-manager.js" />
     <Content Include="GlobApp\scripts\waitme-manager.js" />
     <Content Include="Images\email\background-min.jpg" />
@@ -1080,10 +1081,13 @@
     <Compile Include="Controllers\PlantManagerApiController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\UserManagerApiController.cs" />
+    <Compile Include="Controllers\UserSettingApiController.cs" />
+    <Compile Include="Controllers\UserSettingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestDto\MachineTimezoneRequestDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -1154,6 +1158,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\Modals\_ChangeTimeZone.cshtml" />
+    <Content Include="Views\UserSetting\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1166,6 +1171,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\UserSettingApi\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FomMonitoringBLL\FomMonitoringBLL.csproj">

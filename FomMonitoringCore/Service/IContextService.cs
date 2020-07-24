@@ -13,6 +13,7 @@ namespace FomMonitoringCore.Service
         bool InitializeContext();
         bool InitializeMachineLevel(int? MachineID = null);
         bool InitializeMesLevel();
+        bool InitializeUserSettingLevel();
         bool InitializeMessagesMachineLevel();
         bool InitializePlantManagerLevel();
         void SetActualLanguage(string LanguageNameISO);

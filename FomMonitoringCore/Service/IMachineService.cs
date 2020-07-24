@@ -17,7 +17,7 @@ namespace FomMonitoringCore.Service
         int? GetMachineTypeIdByTypeName(string typeName);
         int? GetMachineTypeIdByModelCode(int? modelCode);
         int? GetShiftByStartTime(int machineId, DateTime? startTime);
-        List<MachineInfoModel> GetUserMachines(Guid UserID);
+        List<MachineInfoModel> GetUserMachines(ContextModel user);
 
         List<int> GetMachinePanels(int? MachineModelId);
         ParameterMachineValueModel GetProductionValueModel(MachineInfoModel context, enPanel pp);

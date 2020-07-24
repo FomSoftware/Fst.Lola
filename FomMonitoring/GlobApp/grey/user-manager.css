@@ -38,24 +38,27 @@
     padding: 12px 22px !important;
 }
 
-.users-table tbody tr th{
-   background-color: rgba(221, 221, 221, 0.5);
+.users-table tbody tr th {
+    background-color: #dddddd;
+    background-color: rgba(221, 221, 221, 0.5);
 }
 
 .users-table>tbody>tr>td{
    border-top: solid 1px #ddd;
 }
 
-#users-table_filter label input{
+#users-table_filter label input, #users-setting-table_filter label input {
     color: #676767 !important;
     background-color: #ddd;
 }
 
-#users-table_filter label input:focus{
+#users-table_filter label input:focus, #users-setting-table_filter label input:focus {
     border-color: #b33157;
     outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px #000000, 0 0 8px #b33157;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(179, 49, 87, 0.65);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px  rgba(179, 49, 87, 0.65);
+    box-shadow: inset 0 1px 1px #000000, 0 0 8px #b33157;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(179, 49, 87, 0.65);
 }
 
 /*#endregion*/
@@ -304,6 +307,17 @@
 .fontawesome-question-sign:before {
     content: "\f059";
     font-family: 'FontAwesome';
+}
+
+.control-label-user-timezone {
+    border-bottom: solid 1px #b33157 !important;
+    color: #b33157;
+    text-transform: uppercase;
+    border-bottom: 0 solid;
+    letter-spacing: 1px;
+    font-weight: 500;
+    font-size: 15px;
+    padding-top: 10px;
 }
 
 /*#endregion*/

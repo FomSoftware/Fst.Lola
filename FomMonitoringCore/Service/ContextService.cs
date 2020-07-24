@@ -123,7 +123,7 @@ namespace FomMonitoringCore.Service
                 if (context.User.Role == enRole.Administrator)
                     context.AllMachines = _machineService.GetAllMachines();
                 else
-                    context.AllMachines = _machineService.GetUserMachines(context.User.ID);
+                    context.AllMachines = _machineService.GetUserMachines(context);
 
                 SetContext(context);
             }
@@ -156,7 +156,7 @@ namespace FomMonitoringCore.Service
                     if (context.User.Role == enRole.Administrator)
                         context.AllMachines = _machineService.GetAllMachines();
                     else
-                        context.AllMachines = _machineService.GetUserMachines(context.User.ID);
+                        context.AllMachines = _machineService.GetUserMachines(context);
 
                     if (context.AllMachines.Count == 0)
                         return false;
@@ -171,7 +171,7 @@ namespace FomMonitoringCore.Service
                     if (context.User.Role == enRole.Administrator)
                         context.AllMachines = _machineService.GetAllMachines();
                     else
-                        context.AllMachines = _machineService.GetUserMachines(context.User.ID);
+                        context.AllMachines = _machineService.GetUserMachines(context);
 
                     if (context.AllMachines.Count == 0)
                         return false;
@@ -182,7 +182,7 @@ namespace FomMonitoringCore.Service
             }
             else
             {
-                context.AllMachines = _machineService.GetUserMachines(context.User.ID);
+                context.AllMachines = _machineService.GetUserMachines(context);
 
                 if (context.AllMachines.Count == 0)
                     return false;
@@ -209,6 +209,17 @@ namespace FomMonitoringCore.Service
             var context = GetContext();
             context.ActualPage = enPage.PlantManager;
             
+            SetContext(context);
+
+            return true;
+        }
+
+        public bool InitializeUserSettingLevel()
+        {
+
+            var context = GetContext();
+            context.ActualPage = enPage.UserSetting;
+
             SetContext(context);
 
             return true;
@@ -264,7 +275,7 @@ namespace FomMonitoringCore.Service
                 if (context.User.Role == enRole.Administrator)
                     context.AllMachines = _machineService.GetAllMachines();
                 else
-                    context.AllMachines = _machineService.GetUserMachines(context.User.ID);
+                    context.AllMachines = _machineService.GetUserMachines(context);
             }
 
             SetContext(context);

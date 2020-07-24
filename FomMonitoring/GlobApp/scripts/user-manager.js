@@ -694,7 +694,33 @@
 
                 var dropdown = $('#timezone-modal-input');
                 dropdown.val(data);
+                
             }
+        });
+
+        request.fail(function (jqXHR, textStatus, errorThrown) {
+            errorSwal(resourceChangePassword.ErrorOccurred);
+        });
+    }
+
+    var loadTimeZone = function() {
+        var dropdown = $('#timezone-modal-input');
+        dropdown.empty();
+
+
+
+        var request = $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: baseApiUrl + "/GetTimeZones",
+        });
+
+        request.done(function (data) {
+            $.each(data,
+                function (key, entry) {
+                    dropdown.append($('<option></option>').attr('value', key).text(entry));
+                });
+            setCurrentTimeZoneDropwdown();
         });
 
         request.fail(function (jqXHR, textStatus, errorThrown) {
@@ -719,28 +745,7 @@
         $('#change-timezone-modal').modal('show');
 
 
-        var dropdown = $('#timezone-modal-input');
-
-        dropdown.empty();
-        
-        var request = $.ajax({
-            type: 'GET',
-            contentType: 'application/json',
-            url: baseApiUrl + "/GetTimeZones",
-        });
-
-        request.done(function (data) {
-            $.each(data,
-                function (key, entry) {
-                    dropdown.append($('<option></option>').attr('value', key).text(entry));
-                });
-            setCurrentTimeZoneDropwdown();
-        });
-
-        request.fail(function (jqXHR, textStatus, errorThrown) {
-            errorSwal(resourceChangePassword.ErrorOccurred);
-        });
-
+        loadTimeZone();
 
 
     };
@@ -887,6 +892,8 @@
         openChangeTimeZoneModal: openChangeTimeZoneModal,
         changeTimeZoneClick: changeTimeZoneClick,
         checkFirstLogin: checkFirstLogin,
-        checkSettingTimeZone: checkSettingTimeZone
+        checkSettingTimeZone: checkSettingTimeZone,
+        setCurrentTimeZoneDropwdown: setCurrentTimeZoneDropwdown,
+        loadTimeZone: loadTimeZone
     };
 }()

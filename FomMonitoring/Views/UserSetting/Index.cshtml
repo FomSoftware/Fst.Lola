@@ -1,0 +1,110 @@
+﻿@model FomMonitoringBLL.ViewModel.HeaderViewModel
+@using FomMonitoringCore.Service
+@using FomMonitoringResources
+
+@{
+    Layout = "~/Views/Shared/_LayoutApp.cshtml";
+    var baseUrl = $"{Request.Url?.Scheme}://{Request.Url?.Authority}{Url.Content("~")}";
+
+}
+
+<div class="row justify-content-center" style="padding-top: 30px;padding-bottom: 30px; min-height: 100px;">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
+        <label class="control-label-user-timezone">@LocalizationService.GetResourceForJs("TimezoneUser")</label>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10">
+        <select class="form-control modal-input" id="timezone-input" title="Timezone" onchange="UserSetting.changeTimeZoneClick()" style="color: black;"></select>
+    </div>
+
+</div>
+@if (Model.User.Role == enRole.Customer)
+{
+
+
+    <div class="row">
+
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+            <div class="button-adduser testo-abbreviato" onclick="UserSetting.addClickEvent()" style="margin-left: 0;">
+                <i class="icon-plus"></i>@LocalizationService.GetResourceForJs("AddException")
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12 container-machine-timezone-setting">
+            <table class="table data-table users-table dt-responsive" id="users-setting-table"></table>
+        </div>
+    </div>
+
+
+    <div class="modal fade machine-timezone-modal" id="machine-timezone-modal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left margin-top-5"></h4>
+                    <button type="button" class="close" onClick="UserSetting.clearActualException()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="machine-modal-form">
+                        <fieldset>
+                            <!-- Text input-->
+                            <div class="form-group row">
+                                <label class="col-4 control-label" for="role-input">@Resource.Timezone: *</label>
+                                <div class="col-7">
+                                    <select v-model="timeZones.active" class="form-control input-md modal-input" id="timezone-modal-exception-input" title="Timezone">
+                                        <option v-for="timeZone in timeZones.all" v-bind:value="timeZone.Code">{{timeZone.Description}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Select Basic -->
+                            <div class="form-group row" id="machine-form">
+                                <label class="col-4 control-label" for="role-input">@Resource.Machine: *</label>
+                                <div class="col-7">
+                                    <select v-model="machines.active" class="form-control input-md modal-input" id="machines-modal-exception-input" title="@Resource.NothingSelected">
+                                        <option v-for="machine in machines.all" v-bind:value="machine.Id">({{machine.Serial}}) - {{machine.MachineName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-annulla" onclick="UserSetting.clearActualException()">@Resource.Cancel</button>
+                    <button type="button" onClick="UserSetting.editException();" class="btn btn-confirm js-add">@Resource.Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+
+        var resource = {
+            Username: '@LocalizationService.GetResourceForJs("Username")',
+            Machine: '@LocalizationService.GetResourceForJs("Machine")',
+            
+            Serial: '@LocalizationService.GetResourceForJs("Serial")',
+            
+            Timezone: '@LocalizationService.GetResourceForJs("Timezone")',
+            ManageException: '@LocalizationService.GetResourceForJs("ManageException")',
+            DeleteException: '@LocalizationService.GetResourceForJs("DeleteException")',
+            Delete: '@LocalizationService.GetResourceForJs("Delete")',
+            Search: '@LocalizationService.GetResourceForJs("Search")',
+            ComeBack: '@LocalizationService.GetResourceForJs("ComeBack")',
+            Continue: '@LocalizationService.GetResourceForJs("Continue")',
+            Modify: '@LocalizationService.GetResourceForJs("Modify")'
+         };
+
+                var data = @Html.Raw(Json.Encode(Model.User));
+                UserSetting.init(data, "@ViewBag.BaseUrl", resource);
+    });
+</script>
