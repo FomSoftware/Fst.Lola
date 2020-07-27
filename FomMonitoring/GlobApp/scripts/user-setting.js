@@ -283,7 +283,7 @@
         getDataModal();
     }
 
-    var successSwal = function (text) {
+    /*var successSwal = function (text) {
         swal({
             title: "",
             text: text,
@@ -291,7 +291,19 @@
             allowOutsideClick: true,
             closeModal: true
         });
-    }
+    }*/
+
+    var successSwal = function (text, func) {
+        var msg = swal({
+            title: "",
+            text: text,
+            icon: "success",
+            allowOutsideClick: true,
+            closeModal: true
+        });
+        return msg;
+    };
+
     var alertSwal = function (text) {
         var alert = swal({
             title: "",
