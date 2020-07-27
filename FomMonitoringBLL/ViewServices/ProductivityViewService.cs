@@ -287,7 +287,7 @@ namespace FomMonitoringBLL.ViewServices
             states = states.OrderByDescending(s => Common.GetRatioProductivity(s.CompletedCount, s.TotalTime)).ToList();
             
             var operators = states.Select(s => s.Operator).Take(4).ToList();
-            operators.Add("Others");
+            operators.Add(Resource.Others);
             options.categories = operators;
             options.yTitle = $"{Resource.Efficiency} (%)";
             options.yTitle2 = $"{Resource.Productivity} (pz/h)";
