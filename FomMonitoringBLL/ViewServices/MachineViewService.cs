@@ -52,11 +52,11 @@ namespace FomMonitoringBLL.ViewServices
             }
 
             //prendo come data di lastupdate quella del currentstate
-            var lastState = _messagesService.GetCurrentStateModel(context.ActualMachine.Id);
+            /*var lastState = _messagesService.GetCurrentStateModel(context.ActualMachine.Id);
             if (lastState != null)
             {
                 context.ActualMachine.LastUpdate = lastState.LastUpdated;
-            }
+            }*/
             
             machine.LastUpdate = new DataUpdateModel()
             {
