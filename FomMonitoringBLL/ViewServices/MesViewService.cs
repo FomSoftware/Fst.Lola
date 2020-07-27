@@ -73,7 +73,7 @@ namespace FomMonitoringBLL.ViewServices
                     mes.state = new StateViewModel
                     {
                         code = data.enActualState.GetDescription(),
-                        text = data.enActualState.ToString()
+                        text = LocalizationService.GetResource(data.enActualState.ToString())
                     };
 
                     mes.error = data.ActualStateCode;

@@ -5,6 +5,7 @@ using FomMonitoringCore.Framework.Common;
 using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
+using FomMonitoringCore.Service;
 
 namespace FomMonitoringBLL.ViewServices
 {
@@ -81,7 +82,7 @@ namespace FomMonitoringBLL.ViewServices
                     id = m.Id,
                     serial = m.Serial,
                     icon = m.Type?.Image,
-                    mtype = m.Type?.Name,
+                    mtype = LocalizationService.GetResource(m.Type?.Name?.ToLower()),
                     model = m.Model?.Name,
                     description = m.Description,
                     product_type = m.Product,

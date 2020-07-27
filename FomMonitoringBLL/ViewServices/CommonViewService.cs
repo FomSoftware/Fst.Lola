@@ -123,7 +123,7 @@ namespace FomMonitoringBLL.ViewServices
 
             switch (state)
             {
-                case enState.Automatico:
+                case enState.Production:
                     Color = "#A5CC48";
                     break;
                 case enState.Pause:
