@@ -283,16 +283,6 @@
         getDataModal();
     }
 
-    /*var successSwal = function (text) {
-        swal({
-            title: "",
-            text: text,
-            icon: "success",
-            allowOutsideClick: true,
-            closeModal: true
-        });
-    }*/
-
     var successSwal = function (text, func) {
         var msg = swal({
             title: "",
