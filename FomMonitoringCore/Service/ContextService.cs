@@ -192,7 +192,13 @@ namespace FomMonitoringCore.Service
                 else
                     context.ActualMachine = context.AllMachines.FirstOrDefault();
             }
-
+            //prendo come data di lastupdate quella del current state
+            if (context.ActualMachine != null && machineId != null)
+            {
+                var lastState = _machineService.GetCurrentStateModel(machineId.Value);
+                if (lastState != null)
+                    context.ActualMachine.LastUpdate = lastState.LastUpdated;
+            }
             if (context.ActualMachine?.LastUpdate != null)
             {
                 context.ActualPeriod = PeriodService.GetPeriodModel(context.ActualMachine?.LastUpdate?.Date ?? DateTime.UtcNow.Date, context.ActualMachine?.LastUpdate?.Date.AddDays(1).AddTicks(-1) ?? DateTime.UtcNow.Date.AddDays(1).AddTicks(-1), enAggregation.Day);
