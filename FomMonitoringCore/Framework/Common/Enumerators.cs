@@ -248,4 +248,10 @@ namespace FomMonitoringCore.Framework.Common
         H = 1  
     }
 
+    public enum enMachineGroup
+    {
+        [Description("Machine")]
+        Machine = 6
+    }
+
 }
