@@ -124,13 +124,13 @@
     <value>Nombre</value>
   </data>
   <data name="Efficiency" xml:space="preserve">
-    <value>Efficienza</value>
+    <value>Eficiencia</value>
   </data>
   <data name="Alarms" xml:space="preserve">
     <value>Mensajes</value>
   </data>
   <data name="MachineStates" xml:space="preserve">
-    <value>estados máquina</value>
+    <value>Estados máquina</value>
   </data>
   <data name="TimeOn" xml:space="preserve">
     <value>T. on tot</value>
