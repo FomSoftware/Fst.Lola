@@ -52,6 +52,8 @@ namespace FomMonitoringCore.Service.API.Concrete
                             {
                                 _context.Set<CurrentState>().Add(currentState);
                             }
+
+                            machine.LastUpdate = currentState.LastUpdated;
                             _context.SaveChanges();
                             result = true;
                         }
