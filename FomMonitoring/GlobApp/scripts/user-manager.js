@@ -56,7 +56,11 @@
                 },
                 languages: {
                     active: '',
-                    all: [],
+                    all: []
+                },
+                timeZones: {
+                    active: '',
+                    all: []
                 },
                 missing: {
                     Username: false,
@@ -67,13 +71,10 @@
                     Machines: false,
                     Languages: false,
                     Password: false,
-                    ConfirmPassword: false
+                    ConfirmPassword: false,
+                    TimeZone: false
                 },
-                enRoles: enRoles,
-                timeZones: {
-                    active: '',
-                    all: []
-                }
+                enRoles: enRoles
             },
             methods: {
                 formValidation: function() {
@@ -98,6 +99,7 @@
                         : this.missing.Customer = false;
                     this.machines.active.length === 0 ? this.missing.Machines = true : this.missing.Machines = false;
                     this.languages.active === "" ? this.missing.Languages = true : this.missing.Languages = false;
+                    (this.timeZones.active == undefined || this.timeZones.active == null || this.timeZones.active === "") ? this.missing.TimeZone = true : this.missing.TimeZone = false;
                 },
                 selectOptionClass: function(val) {
                     if (!val.status || !val.enabled)
@@ -113,6 +115,7 @@
                 $('#machines-input').selectpicker();
                 $('#plants-input').selectpicker();
                 $('#languages-input').selectpicker();
+                $('#timezones-input').selectpicker();
             },
             updated: function() {
                 vmUsers.$nextTick(function() {
@@ -120,6 +123,7 @@
                     $('#customer-input').selectpicker('refresh');
                     $('#machines-input').selectpicker('refresh');
                     $('#languages-input').selectpicker('refresh');
+                    $('#timezones-input').selectpicker('refresh');
                 });
 
             },
@@ -561,6 +565,7 @@
         vmUsers.missing.Languages = false;
         vmUsers.missing.Password = false;
         vmUsers.missing.ConfirmPassword = false;
+        vmUsers.missing.TimeZone = false;
 
         $('#machines-input').selectpicker('destroy');
         $('#customer-input').selectpicker('destroy');
@@ -590,7 +595,8 @@
             vmUsers.missing.Machines === false &&
             vmUsers.missing.Languages === false &&
             vmUsers.missing.Password === false &&
-            vmUsers.missing.ConfirmPassword === false) {
+            vmUsers.missing.ConfirmPassword === false &&
+            vmUsers.missing.TimeZone === false) {
 
             if (vmUsers.actual.Email === "") {
                 vmUsers.actual.Email = null;
