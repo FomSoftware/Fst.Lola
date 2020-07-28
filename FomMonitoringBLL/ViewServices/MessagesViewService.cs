@@ -23,6 +23,9 @@ namespace FomMonitoringBLL.ViewServices
         public MessageViewModel GetMessages(ContextModel context)
         {
             var result = new MessageViewModel();
+            if (context.ActualMachineGroup == null)
+                context.ActualMachineGroup = enMachineGroup.Machine.ToString();
+
             result.vm_messages = GetVueModel(context.ActualMachine, context.ActualPeriod, context.ActualMachineGroup);
             result.opt_historical = GetHistoricalOptions(context.ActualMachine, context.ActualPeriod, context.ActualMachineGroup);
             result.vm_details = GetMessageDetails(context.ActualMachine, context.ActualPeriod, context.ActualMachineGroup);
