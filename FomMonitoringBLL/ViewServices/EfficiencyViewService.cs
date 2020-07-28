@@ -73,6 +73,7 @@ namespace FomMonitoringBLL.ViewServices
             prod.text = enState.Production.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             prod.perc = percProd;
             prod.time = CommonViewService.getTimeViewModel(totalProd);
+            prod.orderView = _stateService.GetOrderViewState(enState.Production.GetDescription());
             states.Add(prod);
 
             // state pause
@@ -88,6 +89,7 @@ namespace FomMonitoringBLL.ViewServices
                 pause.perc = Common.GetPercentage(totalPause, totalOn);
                 pause.time = CommonViewService.getTimeViewModel(totalPause);
             }
+            pause.orderView = _stateService.GetOrderViewState(enState.Pause.GetDescription());
             states.Add(pause);
 
             // state manual
@@ -103,6 +105,7 @@ namespace FomMonitoringBLL.ViewServices
                 manual.perc = Common.GetPercentage(totalManual, totalOn);
                 manual.time = CommonViewService.getTimeViewModel(totalManual);
             }
+            manual.orderView = _stateService.GetOrderViewState(enState.Manual.GetDescription());
             states.Add(manual);
 
             // state error
@@ -118,9 +121,10 @@ namespace FomMonitoringBLL.ViewServices
                 error.perc = Common.GetPercentage(totalError, totalOn);
                 error.time = CommonViewService.getTimeViewModel(totalError);
             }
+            error.orderView = _stateService.GetOrderViewState(enState.Error.GetDescription());
             states.Add(error);
 
-            result.states = states.OrderByDescending(o => o.perc).ToList();
+            result.states = states.OrderBy(o => o.orderView).ToList();
 
 
             var overfeed = stateProd?.OverfeedAvg;
@@ -177,17 +181,17 @@ namespace FomMonitoringBLL.ViewServices
             serieProd.data = Common.ConvertElapsedByMeasurement(data.Where(w => w.enState == enState.Production).Select(s => s.ElapsedTime ?? 0).ToList(), measurement);
             series.Add(serieProd);
 
-            var seriePause = new SerieViewModel();
-            seriePause.name = enState.Pause.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
-            seriePause.color = CommonViewService.GetColorState(enState.Pause);
-            seriePause.data = Common.ConvertElapsedByMeasurement(data.Where(w => w.enState == enState.Pause).Select(s => s.ElapsedTime ?? 0).ToList(), measurement);
-            series.Add(seriePause);
-
             var serieManual = new SerieViewModel();
             serieManual.name = enState.Manual.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieManual.color = CommonViewService.GetColorState(enState.Manual);
             serieManual.data = Common.ConvertElapsedByMeasurement(data.Where(w => w.enState == enState.Manual).Select(s => s.ElapsedTime ?? 0).ToList(), measurement);
             series.Add(serieManual);
+
+            var seriePause = new SerieViewModel();
+            seriePause.name = enState.Pause.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
+            seriePause.color = CommonViewService.GetColorState(enState.Pause);
+            seriePause.data = Common.ConvertElapsedByMeasurement(data.Where(w => w.enState == enState.Pause).Select(s => s.ElapsedTime ?? 0).ToList(), measurement);
+            series.Add(seriePause);
 
             var serieError = new SerieViewModel();
             serieError.name = enState.Error.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
@@ -410,17 +414,6 @@ namespace FomMonitoringBLL.ViewServices
                 else
                     serieProd.data.Add(0);
 
-                var statePause = dataCategorie.Where(w => w.enState == enState.Pause).FirstOrDefault();
-
-                if (statePause != null)
-                {
-                    var totalPause = statePause.ElapsedTime;
-                    decimal? percPause = Common.GetPercentage(totalPause, totalOn);
-                    seriePause.data.Add((percPause ?? 0).RoundToInt());
-                }
-                else
-                    seriePause.data.Add(0);
-
                 var stateManual = dataCategorie.Where(w => w.enState == enState.Manual).FirstOrDefault();
 
                 if (stateManual != null)
@@ -431,6 +424,17 @@ namespace FomMonitoringBLL.ViewServices
                 }
                 else
                     serieManual.data.Add(0);
+
+                var statePause = dataCategorie.Where(w => w.enState == enState.Pause).FirstOrDefault();
+
+                if (statePause != null)
+                {
+                    var totalPause = statePause.ElapsedTime;
+                    decimal? percPause = Common.GetPercentage(totalPause, totalOn);
+                    seriePause.data.Add((percPause ?? 0).RoundToInt());
+                }
+                else
+                    seriePause.data.Add(0);
 
                 var stateError = dataCategorie.Where(w => w.enState == enState.Error).FirstOrDefault();
 
@@ -445,8 +449,8 @@ namespace FomMonitoringBLL.ViewServices
             }
 
             series.Add(serieError);
-            series.Add(serieManual);
             series.Add(seriePause);
+            series.Add(serieManual);
             series.Add(serieProd);
 
             return series;

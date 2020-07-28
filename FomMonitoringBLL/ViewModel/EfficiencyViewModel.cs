@@ -32,6 +32,9 @@ namespace FomMonitoringBLL.ViewModel
         public decimal? perc { get; set; }
         public TimeViewModel time { get; set; }
         public bool active { get; set; }
+
+        public int? orderView { get; set; }
+        
     }
 
     public class TotalTimeModel

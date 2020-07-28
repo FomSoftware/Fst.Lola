@@ -404,6 +404,7 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Description" Type="varchar(max)" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrderView" Type="int" />
         </EntityType>
         <EntityType Name="StateMachine">
           <Key>
@@ -1716,6 +1717,7 @@
           <NavigationProperty Name="CurrentState" Relationship="Self.FK_CurrentState_State" FromRole="State" ToRole="CurrentState" />
           <NavigationProperty Name="HistoryState" Relationship="Self.FK_HistoryState_State" FromRole="State" ToRole="HistoryState" />
           <NavigationProperty Name="StateMachine" Relationship="Self.FK_StateMachine_State" FromRole="State" ToRole="StateMachine" />
+          <Property Name="OrderView" Type="Int32" />
         </EntityType>
         <EntityType Name="StateMachine">
           <Key>
@@ -3046,6 +3048,7 @@
           <EntitySetMapping Name="State">
             <EntityTypeMapping TypeName="FomMonitoringModel.State">
               <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="OrderView" ColumnName="OrderView" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
