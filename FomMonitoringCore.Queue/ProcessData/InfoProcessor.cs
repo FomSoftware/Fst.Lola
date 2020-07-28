@@ -28,12 +28,11 @@ namespace FomMonitoringCore.Queue.ProcessData
                     foreach (var machineData in data.InfoMachine)
                     {
                         var machineActual = context.Set<Machine>()
-                                                .FirstOrDefault(m => m.Serial == machineData.MachineSerial) ?? context.Set<Machine>().Add(new Machine()
-                                            {
-                                                Serial = machineData.MachineSerial,
-                                                LastUpdate = DateTime.UtcNow
-                                            });
-                        var lastState = context.Set<HistoryState>().Where(w => w.MachineId == machineActual.Id).OrderByDescending(o => o.Day).FirstOrDefault();
+                                                .FirstOrDefault(m => m.Serial == machineData.MachineSerial) ?? context.Set<Machine>().Add(new Machine
+                                                {
+                                                    Serial = machineData.MachineSerial,
+                                                    LastUpdate = DateTime.UtcNow
+                                                });
 
 
                         machineData.LoginDate =
@@ -93,7 +92,6 @@ namespace FomMonitoringCore.Queue.ProcessData
                         machineActual.StateProductivityYellowThreshold =
                             machineData.StateProductivityYellowThreshold;
                         machineActual.UTC = machineData.UTC;
-                        machineActual.LastUpdate = machineData.LastUpdate ?? lastState?.Day ?? machineActual.LastUpdate;
                     }
 
 
