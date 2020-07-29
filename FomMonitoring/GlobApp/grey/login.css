@@ -168,9 +168,9 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     color: #403d3d;
 }
 
-.container-login .content {
-    padding: 0 25px;
-}
+    .container-login .content {
+        padding: 0 25px;
+    }
 
 .header, .content {
     max-width: 100%;
@@ -182,7 +182,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
 
 
 @media(min-width:992px) {
-    
+
     .header {
         margin-bottom: 30px;
         margin-top: 0;
@@ -191,6 +191,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     .container-login {
         height: 655px !important;
     }
+
     .logo-login {
         width: 215px !important;
         padding: 0;
@@ -200,20 +201,21 @@ input:-webkit-autofill:focus input:-webkit-autofill {
         padding-top: 20px;
         font-size: 14px;
     }
-    
 }
 
 @media(max-width:991px) {
     .container-login {
-        width: 650px ;
+        width: 650px;
         height: 284px;
-        padding: 10px 20px ;
+        padding: 10px 20px;
         max-width: 650px;
         margin-top: 20px;
     }
-    .container-login .content {
-        padding: 30px 25px 0;
-    }
+
+        .container-login .content {
+            padding: 30px 25px 0;
+        }
+
     .header, .content {
         max-width: unset;
     }
@@ -224,9 +226,9 @@ input:-webkit-autofill:focus input:-webkit-autofill {
         margin-top: 0;
     }
 
-    .header img.logo {
-        height: 83px;
-    }
+        .header img.logo {
+            height: 83px;
+        }
 
     .logo-login {
         padding: 0;
@@ -235,6 +237,7 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     .header img.logo2 {
         width: 260px;
     }
+
     #disclamerTextLink {
         font-size: 10px;
         padding: 0;
@@ -247,196 +250,92 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     }
 }
 
-/*
-@media(max-height:768px) {
+
+@media (max-width: 576px) {
+    .header {
+        font-size: 30px;
+        margin-bottom: 5px;
+        margin-top: 0;
+    }
+
+        .header img.logo {
+            height: 83px;
+        }
+
+        .header img.logo2 {
+            width: 260px;
+        }
+
+    .container-login .content {
+        padding: 0 !important;
+    }
+
+    .logo-login {
+        padding: 0;
+        top: -10px;
+    }
+
+        .logo-login .img-fluid {
+            width: 146px;
+        }
+
+    .form-actions {
+        padding: 0;
+        text-align: left;
+    }
+
+        .form-actions button {
+            font-size: 14px;
+            padding: 9px 27px;
+        }
 
     .container-login {
         width: 315px;
         height: 458px !important;
         padding: 10px 20px !important;
     }
+
     .row {
-        margin-top: 20px;
-    }
-    .header {
-        font-size: 30px;
-        margin-bottom: 20px;
+        margin-top: 10px;
     }
 
-    .header img.logo {
-         height: 83px;
+
+    #disclamerTextLink {
+        padding-top: 0;
+        font-size: 10px;
+        margin-top: 0;
     }
 
-    .header img.logo2 {
-        width: 260px;
+    .form-group {
+        margin-bottom: 5px;
     }
-    .container-login .content {
-        padding: 0 !important;
-    }
-    .logo-login .img-fluid {
-        width: 146px !important;
-        height: 65px;
-    }
-    .form-actions button {
-        padding: 8px 26px;
+}
+
+@media(max-width: 1023px) {
+    .form-group i {
+        top: 8px;
     }
 
     .form-group .form-control {
-         padding: 3px 3px 3px 35px;
-    }
-
-    #disclamerTextLink {
-        padding-top: 10px;
-        font-size: 10px;
-    }
-   
-}
-
-@media(max-width:768px) {
-
-    .container-login {
-        height: 655px !important;
-    }
-
-    .container-login {
-        padding: 20px;
-    }
-
-    .row {
-        margin-top: 30px;
-    }
-
-    .header {
-        margin-top: 0;
-        margin-bottom: 35px;
-    }
-
-    .logo-login .img-fluid {
-        width: 215px;
-        height: 96px;
-    }
-
-    .form-actions button {
-        font-size: 20px;
-        padding: 12px 39px;
-    }
-}
-    */
-
-    @media (max-width: 576px) {
-        .header {
-            font-size: 30px;
-            margin-bottom: 5px;
-            margin-top: 0;
-        }
-
-            .header img.logo {
-                height: 83px;
-            }
-
-            .header img.logo2 {
-                width: 260px;
-            }
-
-        .container-login .content {
-            padding: 0 !important;
-        }
-
-        .logo-login {
-            padding: 0;
-            top: -10px;
-        }
-
-            .logo-login .img-fluid {
-                width: 146px;
-            }
-
-        .form-actions {
-            padding: 0;
-            text-align: left;
-        }
-
-            .form-actions button {
-                font-size: 14px;
-                padding: 9px 27px;
-            }
-
-        .container-login {
-            width: 315px;
-            height: 458px !important;
-            padding: 10px 20px !important;
-        }
-
-        .row {
-            margin-top: 10px;
-        }
-
-
-        #disclamerTextLink {
-            padding-top: 0;
-            font-size: 10px;
-            margin-top: 0;
-        }
-        .form-group {
-            margin-bottom: 5px;
-        }
-    }
-
-    /*
-
-@media (max-height: 420px) {
-    .container-login {
-        width: 650px !important;
-        height: 284px !important;
-        padding: 10px 20px !important;
-        max-width: 650px;
-    }
-
-    .header, .content {
-        max-width: 50%;
-    }
-
-    .header {
-        margin-top: 15px;
-    }
-
-    #disclamerTextLink {
-         padding-top: 0;
-    }
-
-    .content {
-        margin-top: 15vh;
-    }
-
-    .form-actions button {
+        height: 32px;
         font-size: 14px;
-        padding: 8px 22px;
-    }
-
-    .logo-login .img-fluid {
-        height: 65px;
-        width: 146px;
-    }
-
-    .row {
-        margin-top: 20px;
     }
 }
-    */
-    /* Small devices (tablets, 768px and up) */
+/* Small devices (tablets, 768px and up) */
 
 
-    /* Medium devices (desktops, 992px and up) */
-
-
+/* Medium devices (desktops, 992px and up) */
 
 
 
-    /*#region alert validation */
+
+
+/*#region alert validation */
 
 .alert {
     padding: 0 1.25rem 0.6rem;
 }
+
     .alert.validation {
         border: 1px solid transparent;
         border-radius: 4px;
@@ -471,55 +370,55 @@ input:-webkit-autofill:focus input:-webkit-autofill {
 
 
 
-    /*#endregion */
+/*#endregion */
 
 
-    .modal-dialog {
-        background-color: #eee;
+.modal-dialog {
+    background-color: #eee;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #eee;
+    box-shadow: none;
+    border: none;
+}
+
+.modal-footer {
+    border: none;
+    padding: 20px;
+    padding-top: 0px;
+}
+
+    .modal-footer button {
+        height: 36px;
+        /* border: solid 1px #fff; */
+        background-color: #ddd;
+        border-radius: 5px;
+        font-weight: 300;
+        font-family: 'Lato';
     }
 
-    .modal-content {
-        position: relative;
-        background-color: #eee;
-        box-shadow: none;
-        border: none;
-    }
-
-    .modal-footer {
-        border: none;
-        padding: 20px;
-        padding-top: 0px;
-    }
-
-        .modal-footer button {
-            height: 36px;
-            /* border: solid 1px #fff; */
-            background-color: #ddd;
-            border-radius: 5px;
-            font-weight: 300;
-            font-family: 'Lato';
-        }
-
-            .modal-footer button:hover {
-                outline-offset: 15px;
-                border: solid 1px #fff;
-            }
-
-        .modal-footer .btn-confirm:focus {
-            background-color: #ddd;
+        .modal-footer button:hover {
+            outline-offset: 15px;
             border: solid 1px #fff;
-            outline: none;
-            border-color: #fff;
         }
 
-        .modal-footer .btn-annulla:focus {
-            color: #fff;
-            background-color: #ddd;
-            border: solid 1px #fff;
-            outline: none;
-            border-color: #fff;
-        }
+    .modal-footer .btn-confirm:focus {
+        background-color: #ddd;
+        border: solid 1px #fff;
+        outline: none;
+        border-color: #fff;
+    }
 
-#alert-refresh-page  {
+    .modal-footer .btn-annulla:focus {
+        color: #fff;
+        background-color: #ddd;
+        border: solid 1px #fff;
+        outline: none;
+        border-color: #fff;
+    }
+
+#alert-refresh-page {
     cursor: pointer;
 }

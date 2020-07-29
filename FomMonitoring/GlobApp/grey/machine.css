@@ -1753,7 +1753,7 @@ td.td-axes {
     }
 }
 /* S7*/
-@media(max-width: 370px) {
+@media(max-width: 420px) {
     div.title-kpi span.testo-abbreviato {
         width: 250px;
         display: block;
