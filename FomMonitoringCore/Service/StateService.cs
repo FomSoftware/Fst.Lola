@@ -238,7 +238,12 @@ namespace FomMonitoringCore.Service
             return res;
         }
 
+        public int? GetOrderViewState(string stateCode)
+        {
+            return _context.Set<State>().FirstOrDefault(s => s.Description == stateCode)?.OrderView;
+        }
+
         #endregion
 
-    }
+        }
 }

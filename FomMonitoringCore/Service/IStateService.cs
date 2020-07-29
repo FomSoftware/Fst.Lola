@@ -14,5 +14,6 @@ namespace FomMonitoringCore.Service
         DateTime? GetOldestDateByMachineIdTypePeriod(int machineId, enAggregation typePeriod);
         List<EfficiencyStateMachineModel> GetOperatorsActivity(MachineInfoModel machineId, DateTime dateFrom, DateTime dateTo);
         List<EfficiencyStateMachineModel> GetDayActivity(MachineInfoModel machine, List<DateTime> days);
+        int? GetOrderViewState(string stateCode);
     }
 }
