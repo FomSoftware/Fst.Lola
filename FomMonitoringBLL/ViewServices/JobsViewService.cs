@@ -10,10 +10,12 @@ namespace FomMonitoringBLL.ViewServices
     public class JobsViewService : IJobsViewService
     {
         private readonly IJobService _jobService;
+        private readonly IMachineService _machineService;
 
-        public JobsViewService(IJobService jobService)
+        public JobsViewService(IJobService jobService, IMachineService machineService)
         {
             _jobService = jobService;
+            _machineService = machineService;
         }
 
         public JobViewModel GetJobs(ContextModel context)
@@ -53,7 +55,21 @@ namespace FomMonitoringBLL.ViewServices
             result.jobs = jobs;
             result.sorting = sorting;
 
+            if (machine.Model.Name.ToUpper().Contains("FMC") ||
+                (machine.Model.Name.ToUpper().Contains("LMX")))
+            {
+                result.currentState = GetCurrentState(machine.Id);
+            }
             return result;
         }
+        private CurrentStateModel GetCurrentState(int machineId)
+        {
+            CurrentStateModel result = null;
+            //solo in questo caso (FMC) il dato lo devo leggere dal currentState
+            result = _machineService.GetCurrentStateModel(machineId);
+
+            return result;
+        }
+
     }
 }

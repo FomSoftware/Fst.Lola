@@ -77,8 +77,8 @@
                                     <span>{{job.formatted_day}}</span>
                                 </td>
                                 <td style="width:17%">
-                                    <span>
-                                        0 min 0 s
+                                    <span v-if="currentState.JobCode == job.code"> {{currentState.ResidueWorkingTimeJobMin}}min 
+                                        {{currentState.ResidueWorkingTimeJobSec}}s
                                     </span>
                                 </td>
                                 <td style="width:16%">

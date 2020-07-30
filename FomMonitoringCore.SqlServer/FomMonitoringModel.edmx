@@ -48,6 +48,8 @@
           <Property Name="StateId" Type="int" />
           <Property Name="StateTransitionCode" Type="varchar" MaxLength="100" />
           <Property Name="ResidueWorkingTime" Type="bigint" />
+          <Property Name="ResidueWorkingTimeJob" Type="bigint" />
+          <Property Name="ResidueWorkingTimeBar" Type="bigint" />
         </EntityType>
         <EntityType Name="HistoryBar">
           <Key>
@@ -1293,6 +1295,8 @@
           <Property Name="ResidueWorkingTime" Type="Int64" />
           <NavigationProperty Name="Machine" Relationship="Self.FK_CurrentState_Machine" FromRole="CurrentState" ToRole="Machine" />
           <NavigationProperty Name="State" Relationship="Self.FK_CurrentState_State" FromRole="CurrentState" ToRole="State" />
+          <Property Name="ResidueWorkingTimeJob" Type="Int64" />
+          <Property Name="ResidueWorkingTimeBar" Type="Int64" />
         </EntityType>
         <EntityType Name="HistoryBar">
           <Key>
@@ -2659,6 +2663,8 @@
           <EntitySetMapping Name="CurrentState">
             <EntityTypeMapping TypeName="FomMonitoringModel.CurrentState">
               <MappingFragment StoreEntitySet="CurrentState">
+                <ScalarProperty Name="ResidueWorkingTimeBar" ColumnName="ResidueWorkingTimeBar" />
+                <ScalarProperty Name="ResidueWorkingTimeJob" ColumnName="ResidueWorkingTimeJob" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="JobCode" ColumnName="JobCode" />
                 <ScalarProperty Name="JobProducedPieces" ColumnName="JobProducedPieces" />

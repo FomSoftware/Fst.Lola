@@ -1,5 +1,6 @@
 ﻿@model FomMonitoringBLL.ViewModel.ProductivityViewModel
 @using FomMonitoringCore.Service
+@using FomMonitoringResources
 
 <div v-if="material != null">
     <div class="item clearfix">
@@ -39,16 +40,16 @@
             <td>{{ material.cutoff.perc | round }}<em>%</em></td>
             <td>{{ material.cutoff.number | roundDecimal(1) }}<em>m</em></td>
         </tr>
-        <tr v-if="productionVariables != null && machineModel.toLocaleUpperCase().includes('LMX')">
+        <tr v-if="currentState != null && machineModel.toLocaleUpperCase().includes('LMX')">
             <td style="padding:0" class="testo-abbreviato">
                 <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
-                {{productionVariables.Description}}:
+                @LocalizationService.GetResource("TabTempoResiduoBarra"):
             </td>
             <td>
-                <span> {{productionVariables.ConvertedMinValue}}m</span>
+                <span> {{currentState.ResidueWorkingTimeBarMin}}m</span>
             </td>
             <td>
-                <span> {{productionVariables.ConvertedSecValue}}s</span>
+                <span> {{currentState.ResidueWorkingTimeBarSec}}s</span>
             </td>
         </tr>
     </table>

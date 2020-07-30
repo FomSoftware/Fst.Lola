@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using FomMonitoringCore.Framework.Model;
 
 namespace FomMonitoringBLL.ViewModel
 {
@@ -13,6 +14,7 @@ namespace FomMonitoringBLL.ViewModel
     {
         public List<JobDataModel> jobs { get; set; }
         public SortingViewModel sorting { get; set; }
+        public CurrentStateModel currentState { get; set; }
     }
 
     public class JobDataModel
