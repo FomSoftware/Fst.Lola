@@ -1206,4 +1206,13 @@ La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;
   <data name="Modal_TimeZone_Advertise" xml:space="preserve">
     <value>Bienvenido a LOLA, configure su zona horaria de referencia</value>
   </data>
+  <data name="TimezoneUser" xml:space="preserve">
+    <value>Zona horaria del usuario</value>
+  </data>
+  <data name="AddException" xml:space="preserve">
+    <value>Agregar Eceptiones</value>
+  </data>
+  <data name="ManageException" xml:space="preserve">
+    <value>Excepciones de zona horaria</value>
+  </data>
 </root>

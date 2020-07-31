@@ -61,6 +61,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Exceptions.
+        /// </summary>
+        public static string AddException {
+            get {
+                return ResourceManager.GetString("AddException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add plant.
         /// </summary>
         public static string AddPlant {
@@ -1611,6 +1620,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Timezone exceptions.
+        /// </summary>
+        public static string ManageException {
+            get {
+                return ResourceManager.GetString("ManageException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manual production.
         /// </summary>
         public static string Manual {
@@ -3087,6 +3105,15 @@ namespace FomMonitoringResources {
         public static string Timezone {
             get {
                 return ResourceManager.GetString("Timezone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Timezone.
+        /// </summary>
+        public static string TimezoneUser {
+            get {
+                return ResourceManager.GetString("TimezoneUser", resourceCulture);
             }
         }
         
