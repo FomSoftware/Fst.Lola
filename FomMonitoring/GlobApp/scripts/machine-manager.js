@@ -126,7 +126,7 @@
             }
 
             if ($(this).attr('id') == "maintenanceSlimscroll" || $(this).attr('id') == "maintenanceSlimscroll2"  )
-                hh = '95%';
+                hh = '100%';
             else if ($(this).attr('id') == "sensorSlimscroll")
                 hh = '100%';
             else

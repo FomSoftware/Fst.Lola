@@ -19,8 +19,7 @@ namespace FomMonitoringBLL.ViewServices
         public JobViewModel GetJobs(ContextModel context)
         {
             JobViewModel result = new JobViewModel();
-
-            List<HistoryJobModel> jobsData = _jobService.GetAllHistoryJobs(context.ActualMachine, context.ActualPeriod);
+            
             result.vm_jobs = GetVueModel(context.ActualMachine, context.ActualPeriod);
 
             return result;
