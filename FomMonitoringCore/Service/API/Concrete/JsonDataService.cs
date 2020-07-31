@@ -48,7 +48,9 @@ namespace FomMonitoringCore.Service.API.Concrete
                             currentState.StateId = (int?)currentStateDynamic.State;
                             currentState.StateTransitionCode = currentStateDynamic.StateTransitionCode;
                             currentState.ResidueWorkingTime = currentStateDynamic.ResidueWorkingTime;
-                            if (!currentStateExists)
+                            currentState.ResidueWorkingTimeJob = currentStateDynamic.ResidueWorkingTimeJob;
+                            currentState.ResidueWorkingTimeBar = currentStateDynamic.ResidueWorkingTimeBar;
+                        if (!currentStateExists)
                             {
                                 _context.Set<CurrentState>().Add(currentState);
                             }

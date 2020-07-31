@@ -28,7 +28,8 @@
             data: {
                 jobs: data.jobs,
                 sorting: data.sorting,
-                showed: true
+                showed: true,
+                currentState: data.currentState
             },
             computed: {
                 colorOrders: function ()
@@ -259,6 +260,7 @@
         if (vmJobs) {
             vmJobs.jobs = vm_jobs.jobs;
             vmJobs.sorting = vm_jobs.sorting;
+            vmJobs.currentState = vm_jobs.currentState;
         }
        
     }

@@ -24,6 +24,8 @@ namespace FomMonitoringCore.SqlServer
         public Nullable<int> StateId { get; set; }
         public string StateTransitionCode { get; set; }
         public Nullable<long> ResidueWorkingTime { get; set; }
+        public Nullable<long> ResidueWorkingTimeJob { get; set; }
+        public Nullable<long> ResidueWorkingTimeBar { get; set; }
     
         public virtual Machine Machine { get; set; }
         public virtual State State { get; set; }

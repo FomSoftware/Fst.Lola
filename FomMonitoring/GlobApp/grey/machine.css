@@ -1757,6 +1757,8 @@ td.td-axes {
     div.title-kpi span.testo-abbreviato {
         width: 250px;
         display: block;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 }
 

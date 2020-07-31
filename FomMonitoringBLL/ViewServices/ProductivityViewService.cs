@@ -48,7 +48,7 @@ namespace FomMonitoringBLL.ViewServices
             return result;
         }
 
-        private ParameterMachineValueModel GetVariables(MachineInfoModel machine)
+        /*private ParameterMachineValueModel GetVariables(MachineInfoModel machine)
         {
             ParameterMachineValueModel result = null;
             List<int> panels = _machineService.GetMachinePanels(machine.MachineModelId);
@@ -60,7 +60,7 @@ namespace FomMonitoringBLL.ViewServices
                 }
         }
         return result;
-        }
+        }*/
 
         private CurrentStateModel GetCurrentState(int machineId)
         {
@@ -233,8 +233,8 @@ namespace FomMonitoringBLL.ViewServices
             // gross time
             result.time = CommonViewService.getTimeViewModel(grossTime);
 
-            result.productionVariables = GetVariables(machine);
-            if (machine.Model.Name.ToUpper().Contains("FMC"))
+            if (machine.Model.Name.ToUpper().Contains("FMC") ||
+                (machine.Model.Name.ToUpper().Contains("LMX")))
             {
                 result.currentState = GetCurrentState(machine.Id);
             }
