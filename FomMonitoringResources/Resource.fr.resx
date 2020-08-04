@@ -1215,4 +1215,7 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
   <data name="ManageException" xml:space="preserve">
     <value>Exceptions de fuseau horaire</value>
   </data>
+  <data name="troncatrice" xml:space="preserve">
+    <value>Tronċonneuses</value>
+  </data>
 </root>

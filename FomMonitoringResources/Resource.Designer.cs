@@ -3154,6 +3154,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sawing Machines.
+        /// </summary>
+        public static string troncatrice {
+            get {
+                return ResourceManager.GetString("troncatrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type.
         /// </summary>
         public static string Type {

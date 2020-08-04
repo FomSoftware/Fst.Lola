@@ -1219,4 +1219,7 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
   <data name="ManageException" xml:space="preserve">
     <value>Eccezioni Timezone</value>
   </data>
+  <data name="troncatrice" xml:space="preserve">
+    <value>Troncatrice</value>
+  </data>
 </root>

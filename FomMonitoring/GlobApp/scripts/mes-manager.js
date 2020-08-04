@@ -298,14 +298,14 @@
                 {
                     return {
                         'color-progress': perc < 100,
-                        'color-green': perc == 100,
+                        'color-green': perc >= 100,
                     }
                 },
                 iconJob: function (perc)
                 {
                     return {
                         'icofom-jobs': perc < 100,
-                        'fa-check': perc == 100,
+                        'fa-check': perc >= 100,
                     }
                 },
                 colorKPI: function (kpi)

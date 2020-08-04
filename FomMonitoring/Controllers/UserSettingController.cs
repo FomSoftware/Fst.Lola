@@ -6,10 +6,12 @@ using System.Web;
 using System.Web.Mvc;
 using FomMonitoringBLL.ViewModel;
 using FomMonitoringBLL.ViewServices;
+using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Service;
 
 namespace FomMonitoring.Controllers
 {
+    [SessionWeb]
     public class UserSettingController : Controller
     {
         private readonly IContextService _contextService;

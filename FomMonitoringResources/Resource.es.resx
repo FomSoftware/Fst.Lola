@@ -1215,4 +1215,7 @@ La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;
   <data name="ManageException" xml:space="preserve">
     <value>Excepciones de zona horaria</value>
   </data>
+  <data name="troncatrice" xml:space="preserve">
+    <value>Tronzadoras</value>
+  </data>
 </root>

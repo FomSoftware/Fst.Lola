@@ -1221,4 +1221,7 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   <data name="ManageException" xml:space="preserve">
     <value>Timezone exceptions</value>
   </data>
+  <data name="troncatrice" xml:space="preserve">
+    <value>Sawing Machines</value>
+  </data>
 </root>

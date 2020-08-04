@@ -105,7 +105,7 @@ namespace FomMonitoringBLL.ViewServices
                                                                 machine.PiecesProductivityYellowThreshold);
                     mes.productivity.piece = new PieceViewModel()
                     {
-                        total = data.PieceCompletedCount ?? 0
+                        total = (data.PieceCompletedCount ?? 0) + (data.PieceRedoneCount ?? 0)
                     };
                 }
 

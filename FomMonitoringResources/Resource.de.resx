@@ -1214,4 +1214,7 @@ Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt
   <data name="ManageException" xml:space="preserve">
     <value>Zeitzonenausnahmen hinzufügen</value>
   </data>
+  <data name="troncatrice" xml:space="preserve">
+    <value>Gehrungsmaschinen</value>
+  </data>
 </root>
