@@ -65,7 +65,10 @@
                 showDashboard: function ()
                 {
                     if (this.piece == null && this.material == null
-                        && this.phases == null && this.operators == null)
+                        && this.phases == null && this.operators == null &&
+                        (this.currentState == null ||(
+                        this.currentState.ResidueWorkingTime == null &&
+                        this.currentState.ResidueWorkingTimeBar == null)))
                         return false;
                     else
                         return true;
