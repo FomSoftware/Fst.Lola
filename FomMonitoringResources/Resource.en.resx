@@ -1224,4 +1224,13 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   <data name="troncatrice" xml:space="preserve">
     <value>Sawing Machines</value>
   </data>
+  <data name="centro_di_lavoro" xml:space="preserve">
+    <value>CNC machining centres</value>
+  </data>
+  <data name="linea_di_taglio" xml:space="preserve">
+    <value>Cutting lines</value>
+  </data>
+  <data name="linea_taglio_e_lavoro" xml:space="preserve">
+    <value>Machining and cutting lines</value>
+  </data>
 </root>

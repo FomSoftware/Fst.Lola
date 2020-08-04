@@ -232,6 +232,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CNC machining centres.
+        /// </summary>
+        public static string centro_di_lavoro {
+            get {
+                return ResourceManager.GetString("centro_di_lavoro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change.
         /// </summary>
         public static string Change {
@@ -1310,6 +1319,24 @@ namespace FomMonitoringResources {
         public static string LastUpdate {
             get {
                 return ResourceManager.GetString("LastUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cutting lines.
+        /// </summary>
+        public static string linea_di_taglio {
+            get {
+                return ResourceManager.GetString("linea_di_taglio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Machining and cutting lines.
+        /// </summary>
+        public static string linea_taglio_e_lavoro {
+            get {
+                return ResourceManager.GetString("linea_taglio_e_lavoro", resourceCulture);
             }
         }
         

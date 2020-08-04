@@ -1217,4 +1217,13 @@ Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt
   <data name="troncatrice" xml:space="preserve">
     <value>Gehrungsmaschinen</value>
   </data>
+  <data name="centro_di_lavoro" xml:space="preserve">
+    <value>CNC Bearbeitungszentren</value>
+  </data>
+  <data name="linea_di_taglio" xml:space="preserve">
+    <value>Schneidelinien</value>
+  </data>
+  <data name="linea_taglio_e_lavoro" xml:space="preserve">
+    <value>Bearbeitungs und Schneidelinien</value>
+  </data>
 </root>

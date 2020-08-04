@@ -82,7 +82,7 @@ namespace FomMonitoringBLL.ViewServices
                     id = m.Id,
                     serial = m.Serial,
                     icon = m.Type?.Image,
-                    mtype = LocalizationService.GetResource(m.Type?.Name?.ToLower()),
+                    mtype = LocalizationService.GetResource(m.Type?.Name?.ToLower().Replace(' ', '_')),
                     model = m.Model?.Name,
                     description = m.Description,
                     product_type = m.Product,

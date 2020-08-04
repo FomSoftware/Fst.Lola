@@ -1218,4 +1218,13 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
   <data name="troncatrice" xml:space="preserve">
     <value>Tronċonneuses</value>
   </data>
+  <data name="centro_di_lavoro" xml:space="preserve">
+    <value>Centres d’usinage</value>
+  </data>
+  <data name="linea_di_taglio" xml:space="preserve">
+    <value>Lignes de débit</value>
+  </data>
+  <data name="linea_taglio_e_lavoro" xml:space="preserve">
+    <value>Lignes de débit et de usinage</value>
+  </data>
 </root>

@@ -1218,4 +1218,13 @@ La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;
   <data name="troncatrice" xml:space="preserve">
     <value>Tronzadoras</value>
   </data>
+  <data name="centro_di_lavoro" xml:space="preserve">
+    <value>Centros de mecanizado</value>
+  </data>
+  <data name="linea_di_taglio" xml:space="preserve">
+    <value>Lìneas de corte</value>
+  </data>
+  <data name="linea_taglio_e_lavoro" xml:space="preserve">
+    <value>Lìneas de mecanizato y corte</value>
+  </data>
 </root>

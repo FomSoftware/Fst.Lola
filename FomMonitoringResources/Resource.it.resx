@@ -1222,4 +1222,13 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
   <data name="troncatrice" xml:space="preserve">
     <value>Troncatrice</value>
   </data>
+  <data name="centro_di_lavoro" xml:space="preserve">
+    <value>Centro di lavoro</value>
+  </data>
+  <data name="linea_di_taglio" xml:space="preserve">
+    <value>Linea di taglio</value>
+  </data>
+  <data name="linea_taglio_e_lavoro" xml:space="preserve">
+    <value>Linea di taglio e lavoro</value>
+  </data>
 </root>
