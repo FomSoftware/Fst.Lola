@@ -253,6 +253,7 @@ namespace FomMonitoringCore.Service
             if (historyPiece.Any())
             {
                 m.PieceCompletedCount = historyPiece.Sum(hm => hm.CompletedCount ?? 0);
+                m.PieceRedoneCount = historyPiece.Sum(hm => hm.RedoneCount ?? 0);
                 //m.PieceElapsedTime = historyPiece.Sum(hm => hm.ElapsedTime ?? 0);
                 //m.PieceElapsedTimeProducing = historyPiece.Sum(hm => hm.ElapsedTimeProducing ?? 0);
                 m.PieceElapsedTime = totalElapsed ;
