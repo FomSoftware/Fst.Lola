@@ -3,6 +3,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using FomMonitoringCore.SqlServer;
 
@@ -50,7 +52,7 @@ namespace FomMonitoringCore.Service.API.Concrete
                             currentState.ResidueWorkingTime = currentStateDynamic.ResidueWorkingTime;
                             currentState.ResidueWorkingTimeJob = currentStateDynamic.ResidueWorkingTimeJob;
                             currentState.ResidueWorkingTimeBar = currentStateDynamic.ResidueWorkingTimeBar;
-                        if (!currentStateExists)
+                            if (!currentStateExists)
                             {
                                 _context.Set<CurrentState>().Add(currentState);
                             }
@@ -58,9 +60,30 @@ namespace FomMonitoringCore.Service.API.Concrete
                             machine.LastUpdate = currentState.LastUpdated;
                             _context.SaveChanges();
                             result = true;
+
+                            var historyJobExist = _context.Set<HistoryJob>().Any(h =>
+                                h.Code == currentState.JobCode && h.MachineId == machine.Id && h.Day != null &&
+                                DbFunctions.TruncateTime(h.Day.Value) == DbFunctions.TruncateTime(currentState.LastUpdated));
+                            if (!historyJobExist)
+                            {
+                                var newJob = new HistoryJob
+                                {
+                                    Day = DateTime.UtcNow.Date,
+                                    Code = currentState.JobCode,
+                                    ElapsedTime = 0,
+                                    MachineId = machine.Id,
+                                    Period = (DateTime.UtcNow.Year * 10000) + (DateTime.UtcNow.Month * 100) + (DateTime.UtcNow.Day),
+                                    PiecesProduced = currentState.JobProducedPieces,
+                                    TotalPieces = currentState.JobTotalPieces,
+                                    TypeHistory = "d"
+                                };
+                                _context.Set<HistoryJob>().Add(newJob);
+                                _context.SaveChanges();
+                            }
+
                         }
                     
-                }
+                    }
             }
             catch (Exception ex)
             {
