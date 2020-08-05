@@ -51,3 +51,55 @@
         </tr>
     </table>
 </div>
+<div v-else>
+    <div class="item clearfix">
+        <div class="item-title">
+            @LocalizationService.GetResource("Pieces")
+        </div>
+        <div class="item-label">
+            <div class="icon fa fa-puzzle-piece"></div>
+            <div>
+                <span class="value-title">
+                    @LocalizationService.GetResource("Made")
+                </span>
+                <span class="value">
+                    0<em>pz</em>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="progress prod">
+        <div class="progress-bar bg-max-piece" v-bind:aria-valuenow="0"></div>
+        <div class="progress-bar bg-min-piece" v-bind:aria-valuenow="0"></div>
+    </div>
+    <table class="table-legend">
+        <tr>
+            <td>
+                <div class="square bg-max-piece"></div>
+                @LocalizationService.GetResource("Done")
+            </td>
+            <td>0<em>%</em></td>
+            <td>0<em>pz</em></td>
+        </tr>
+        <tr v-if="type != '@enMachineType.Troncatrice.GetDescription()'">
+            <td>
+                <div class="square bg-min-piece"></div>
+                @LocalizationService.GetResource("Redone")
+            </td>
+            <td>0<em>%</em></td>
+            <td>0<em>pz</em></td>
+        </tr>
+        <tr v-if="currentState != null && machineModel.toLocaleUpperCase().includes('FMC')">
+            <td style="padding:0" class="testo-abbreviato">
+                <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
+                @LocalizationService.GetResource("tempoAttualeProgramma"):
+            </td>
+            <td>
+                <span> {{currentState.ResidueWorkingTimeMin}}m</span>
+            </td>
+            <td>
+                <span> {{currentState.ResidueWorkingTimeSec}}s</span>
+            </td>
+        </tr>
+    </table>
+</div>

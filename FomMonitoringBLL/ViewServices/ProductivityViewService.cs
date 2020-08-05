@@ -75,6 +75,12 @@ namespace FomMonitoringBLL.ViewServices
         {
              var result = new ProductivityVueModel();
 
+             if (machine.Model.Name.ToUpper().Contains("FMC") ||
+                 (machine.Model.Name.ToUpper().Contains("LMX")))
+             {
+                 result.currentState = GetCurrentState(machine.Id);
+             }
+
             var data = _pieceService.GetAggregationPieces(machine, period, enDataType.Dashboard);
             //var operatorActivities =_stateService.GetOperatorsActivity(machine, period.StartDate, period.EndDate);
             if (data.Count == 0)
@@ -233,11 +239,6 @@ namespace FomMonitoringBLL.ViewServices
             // gross time
             result.time = CommonViewService.getTimeViewModel(grossTime);
 
-            if (machine.Model.Name.ToUpper().Contains("FMC") ||
-                (machine.Model.Name.ToUpper().Contains("LMX")))
-            {
-                result.currentState = GetCurrentState(machine.Id);
-            }
             return result;
         }
 

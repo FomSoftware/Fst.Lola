@@ -92,16 +92,17 @@
             <td>0<em>%</em></td>
             <td>0<em>m</em></td>
         </tr>
-        <tr v-if="productionVariables != null && machineModel.toLocaleUpperCase().includes('LMX')">
-            <td style="padding:0">
+        <tr v-else><td colspan="3">&nbsp;</td></tr>
+        <tr v-if="currentState != null">
+            <td style="padding:0" class="testo-abbreviato">
                 <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
-                {{productionVariables.Description}}:
+                @LocalizationService.GetResource("TabTempoResiduoBarra"):
             </td>
             <td>
-                <span> {{productionVariables.ConvertedMinValue}}m</span>
+                <span> {{currentState.ResidueWorkingTimeBarMin}}m</span>
             </td>
             <td>
-                <span> {{productionVariables.ConvertedSecValue}}s</span>
+                <span> {{currentState.ResidueWorkingTimeBarSec}}s</span>
             </td>
         </tr>
     </table>
