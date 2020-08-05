@@ -40,7 +40,7 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                         var.Values.ToList().ForEach(value =>
                         {
-                            var pm = pms.FirstOrDefault(p => p.VarNumber == value.VariableNumber);
+                            var pm = pms.SingleOrDefault(p => p.VarNumber == value.VariableNumber && p.MachineModelId == mac.MachineModelId);
                             if (pm == null)
                                 return;
 
