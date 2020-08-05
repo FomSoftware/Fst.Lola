@@ -30,7 +30,7 @@ namespace FomMonitoringCore.Framework.Common
         PlantMessages = 4,
         [Description(""), Controller("PlantManager")]
         PlantManager = 5,
-        [Description(""), Controller("UserSetting")]
+        [Description("Index"), Controller("UserSetting")]
         UserSetting = 6
     }
 
