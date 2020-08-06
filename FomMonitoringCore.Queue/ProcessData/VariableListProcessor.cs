@@ -49,8 +49,6 @@ namespace FomMonitoringCore.Queue.ProcessData
                             var previousValue = _context.Set<ParameterMachineValue>().Where(p =>
                                     p.MachineId == mac.Id && p.VarNumber == value.VariableNumber).OrderByDescending(p => p.UtcDateTime).FirstOrDefault(p => p.VarNumber == value.VariableNumber)
                                 ?.VarValue;
-                            //var exists = oldValues.Any(p =>
-                            //    p.VarNumber == value.VariableNumber && p.UtcDateTime == var.UtcDateTime);
 
                             if (pm.Historicized == null || pm.Historicized == "1")
                             {
@@ -79,6 +77,8 @@ namespace FomMonitoringCore.Queue.ProcessData
                                     }
                                     dayValue.UtcDateTime = var.UtcDateTime;
                                     dayValue.VarValue = value.VariableValue;
+                                    dayValue.ParameterMachineId = pm.Id;
+                                    dayValue.ParameterMachine = pm;
                                 }
                                 else
                                 {
@@ -123,6 +123,8 @@ namespace FomMonitoringCore.Queue.ProcessData
                                         AddResetValue(pm, (DateTime)lastReset, value.VariableValue, pmv.VarValue, mac.Id);
                                     }
                                     pmv.VarValue = value.VariableValue;
+                                    pmv.ParameterMachineId = pm.Id;
+                                    pmv.ParameterMachine = pm;
                                 }
                                 else
                                 {
