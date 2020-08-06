@@ -212,9 +212,15 @@
                             <div>Plant Manager</div>
                         </a>
                     </li>
-                 }
-                @if (Model.User.Role != enRole.Customer)
-                {
+                }
+                <li>
+                <a class="dd-item dd-item-longtext" href="@Url.Action("Index", "UserSetting")">
+                    <i class="fa fa-clock-o fa-lg color-corporate"></i>
+                    <div><span>@Resource.Header_TimeZone_Setting</span></div>
+                </a>
+                </li>
+                    @if (Model.User.Role != enRole.Customer)
+                    {
                     <li>
                         <a class="dd-item" href="#" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
                             <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
@@ -234,7 +240,7 @@
                             <div>@Resource.Logout</div>
                         </a>
                     </li>
-            </ul>
+                </ul>
         </nav>
         <!-- #endregion -->
     </div>
