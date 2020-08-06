@@ -475,6 +475,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure to delete this exception?.
+        /// </summary>
+        public static string DeleteException {
+            get {
+                return ResourceManager.GetString("DeleteException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure to delete this user?.
         /// </summary>
         public static string DeleteUser {
@@ -1175,6 +1184,24 @@ namespace FomMonitoringResources {
         public static string ErrorStates {
             get {
                 return ResourceManager.GetString("ErrorStates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exception successfully deleted.
+        /// </summary>
+        public static string ExceptionSuccessfullyDeleted {
+            get {
+                return ResourceManager.GetString("ExceptionSuccessfullyDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exception  successfully modified.
+        /// </summary>
+        public static string ExceptionSuccessfullyModify {
+            get {
+                return ResourceManager.GetString("ExceptionSuccessfullyModify", resourceCulture);
             }
         }
         
@@ -3136,6 +3163,15 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Timezone  successfully modified.
+        /// </summary>
+        public static string TimezoneSuccessfullyModify {
+            get {
+                return ResourceManager.GetString("TimezoneSuccessfullyModify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Timezone.
         /// </summary>
         public static string TimezoneUser {
@@ -3312,6 +3348,15 @@ namespace FomMonitoringResources {
         public static string UserSuccessfullyDeleted {
             get {
                 return ResourceManager.GetString("UserSuccessfullyDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exception successfully deleted.
+        /// </summary>
+        public static string UserSuccessfullyException {
+            get {
+                return ResourceManager.GetString("UserSuccessfullyException", resourceCulture);
             }
         }
         

@@ -1233,4 +1233,19 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   <data name="linea_taglio_e_lavoro" xml:space="preserve">
     <value>Machining and cutting lines</value>
   </data>
+  <data name="ExceptionSuccessfullyModify" xml:space="preserve">
+    <value>Exception successfully saved</value>
+  </data>
+  <data name="DeleteException" xml:space="preserve">
+    <value>Are you sure to delete this user?</value>
+  </data>
+  <data name="UserSuccessfullyException" xml:space="preserve">
+    <value>User successfully deleted</value>
+  </data>
+  <data name="ExceptionSuccessfullyDeleted" xml:space="preserve">
+    <value>Exception successfully deleted</value>
+  </data>
+  <data name="TimezoneSuccessfullyModify" xml:space="preserve">
+    <value>Timezone  successfully modified</value>
+  </data>
 </root>

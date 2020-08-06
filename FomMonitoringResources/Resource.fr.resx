@@ -1227,4 +1227,19 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
   <data name="linea_taglio_e_lavoro" xml:space="preserve">
     <value>Lignes de débit et de usinage</value>
   </data>
+  <data name="ExceptionSuccessfullyModify" xml:space="preserve">
+    <value>L'exceptions a été mis à jour avec succès</value>
+  </data>
+  <data name="DeleteException" xml:space="preserve">
+    <value>Voulez-vous vraiment supprimer cet exceptions?</value>
+  </data>
+  <data name="UserSuccessfullyException" xml:space="preserve">
+    <value>L'exceptions a bien été supprimé</value>
+  </data>
+  <data name="ExceptionSuccessfullyDeleted" xml:space="preserve">
+    <value>L'exceptions a bien été supprimé</value>
+  </data>
+  <data name="TimezoneSuccessfullyModify" xml:space="preserve">
+    <value>Le Fuseau Horaire a été mis à jour avec succès</value>
+  </data>
 </root>

@@ -1227,4 +1227,19 @@ La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;
   <data name="linea_taglio_e_lavoro" xml:space="preserve">
     <value>Lìneas de mecanizato y corte</value>
   </data>
+  <data name="ExceptionSuccessfullyModify" xml:space="preserve">
+    <value>Eceptiones actualizado con éxito</value>
+  </data>
+  <data name="DeleteException" xml:space="preserve">
+    <value>¿Estás seguro de que deseas eliminar a este Eceptiones?</value>
+  </data>
+  <data name="UserSuccessfullyException" xml:space="preserve">
+    <value>Eceptiones eliminado con éxito</value>
+  </data>
+  <data name="ExceptionSuccessfullyDeleted" xml:space="preserve">
+    <value>Eceptiones eliminado con éxito</value>
+  </data>
+  <data name="TimezoneSuccessfullyModify" xml:space="preserve">
+    <value> Zona Horaria actualizada con éxito</value>
+  </data>
 </root>

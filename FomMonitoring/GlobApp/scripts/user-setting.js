@@ -24,7 +24,7 @@
             request.done(function (data) {
                 $('#change-timezone-modal').modal('hide');
                 refreshTable();
-                var msg = successSwal("");
+                var msg = successSwal(resource.SuccessModifyExecpion);
                 msg.then(
                     () => {
                         window.location.reload();
@@ -163,7 +163,7 @@
                 vmSettings.machines.active = {};
                 vmSettings.timeZones.active = {};
                 
-                var msg = successSwal("");
+                var msg = successSwal(resource.TimezoneSuccessfullyModify);
                 msg.then(
                     () => {
                         window.location.reload();
@@ -192,7 +192,7 @@
         });
 
         request.done(function (data) {
-            var msg = successSwal("");
+            var msg = successSwal(resource.ExceptionSuccessfullyDeleted);
             refreshTable();
             msg.then(
                 () => {

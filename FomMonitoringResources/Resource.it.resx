@@ -1231,4 +1231,19 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
   <data name="linea_taglio_e_lavoro" xml:space="preserve">
     <value>Linea di taglio e lavoro</value>
   </data>
+  <data name="ExceptionSuccessfullyModify" xml:space="preserve">
+    <value>Eccezione salvata correttamente</value>
+  </data>
+  <data name="DeleteException" xml:space="preserve">
+    <value>Sei sicuro di voler eliminare questa eccezione?</value>
+  </data>
+  <data name="UserSuccessfullyException" xml:space="preserve">
+    <value>Eccezione eliminata con successo</value>
+  </data>
+  <data name="ExceptionSuccessfullyDeleted" xml:space="preserve">
+    <value>Eccezione eliminata con successo</value>
+  </data>
+  <data name="TimezoneSuccessfullyModify" xml:space="preserve">
+    <value>Timezone aggiornata con successo</value>
+  </data>
 </root>

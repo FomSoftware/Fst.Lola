@@ -1226,4 +1226,19 @@ Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt
   <data name="linea_taglio_e_lavoro" xml:space="preserve">
     <value>Bearbeitungs und Schneidelinien</value>
   </data>
+  <data name="ExceptionSuccessfullyModify" xml:space="preserve">
+    <value>Hinzufügen korrekt aktualisiert</value>
+  </data>
+  <data name="DeleteException" xml:space="preserve">
+    <value>Soll dieser hinzufügen wirklich gelöscht werden?</value>
+  </data>
+  <data name="UserSuccessfullyException" xml:space="preserve">
+    <value>Hinzufügen erfolgreich gelöscht</value>
+  </data>
+  <data name="ExceptionSuccessfullyDeleted" xml:space="preserve">
+    <value>Hinzufügen erfolgreich gelöscht</value>
+  </data>
+  <data name="TimezoneSuccessfullyModify" xml:space="preserve">
+    <value>Zeitzonen korrekt aktualisiert</value>
+  </data>
 </root>

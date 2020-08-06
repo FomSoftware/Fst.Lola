@@ -12,9 +12,10 @@
     <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
         <label class="control-label-user-timezone">@LocalizationService.GetResourceForJs("TimezoneUser")</label>
     </div>
-    <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6">
         <select class="form-control modal-input" id="timezone-input" title="Timezone" onchange="UserSetting.changeTimeZoneClick()" style="color: black;"></select>
     </div>
+    <div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-4"></div>
 
 </div>
 @if (Model.User.Role == enRole.Customer)
@@ -101,7 +102,11 @@
             Search: '@LocalizationService.GetResourceForJs("Search")',
             ComeBack: '@LocalizationService.GetResourceForJs("ComeBack")',
             Continue: '@LocalizationService.GetResourceForJs("Continue")',
-            Modify: '@LocalizationService.GetResourceForJs("Modify")'
+            Modify: '@LocalizationService.GetResourceForJs("Modify")',
+            SuccessModifyExecpion: '@LocalizationService.GetResourceForJs("ExceptionSuccessfullyModify")',
+            ExceptionSuccessfullyDeleted: '@LocalizationService.GetResourceForJs("ExceptionSuccessfullyDeleted")',
+            TimezoneSuccessfullyModify:'@LocalizationService.GetResourceForJs("TimezoneSuccessfullyModify")'
+
          };
 
                 var data = @Html.Raw(Json.Encode(Model.User));
