@@ -133,12 +133,13 @@
             contentType: "application/json; charset=utf-8",
             success: function (result) {
                 if (result != null) {
-                    vmSettings.timeZones.all = result;
                     $.each(result,
                         function (index, entry) {
+                            entry.Description += ' (GMT ' + moment().tz(entry.Code).format('Z') + ')';
                             dropdownUs.append($('<option></option>').attr('value', entry.Code).text(entry.Description));
                         });
                     setCurrentTimeZoneDropdown();
+                    vmSettings.timeZones.all = result;
                 } else
                     errorSwal(resource.ErrorOccurred);
             },

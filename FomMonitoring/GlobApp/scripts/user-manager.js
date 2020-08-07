@@ -281,6 +281,10 @@
             contentType: "application/json; charset=utf-8",
             success: function (result) {
                 if (result != null) {
+                    $.each(result,
+                        function (index, entry) {
+                            result[index] = entry += ' (GMT ' + moment().tz(index).format('Z') + ')';
+                        });
                     vmUsers.timeZones.all = Object.entries(result);
                 } else
                     errorSwal(resource.ErrorOccurred);
