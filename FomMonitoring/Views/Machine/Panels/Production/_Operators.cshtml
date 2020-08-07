@@ -17,3 +17,13 @@
         </tr>
     </table>
 </div>
+<div v-else>
+    <div class="item clearfix">
+        <div class="item-title" style="margin: 0 0 5px;">
+            @LocalizationService.GetResource("Operators")
+        </div>
+    </div>
+    <div class="progress prod" data-toggle="tooltip" data-placement="top" title="@LocalizationService.GetResource("Production_Tooltip_Operators")">
+        <div v-for="(operator, i) in operators" class="progress-bar" v-bind:class="bgOperator(i)" v-bind:aria-valuenow="0"></div>
+    </div>
+</div>

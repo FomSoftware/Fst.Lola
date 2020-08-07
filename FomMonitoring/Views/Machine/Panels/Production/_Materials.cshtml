@@ -93,7 +93,7 @@
             <td>0<em>m</em></td>
         </tr>
         <tr v-else><td colspan="3">&nbsp;</td></tr>
-        <tr v-if="currentState != null">
+        <tr v-if="currentState != null && machineModel.toLocaleUpperCase().includes('LMX')">
             <td style="padding:0" class="testo-abbreviato">
                 <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
                 @LocalizationService.GetResource("TabTempoResiduoBarra"):

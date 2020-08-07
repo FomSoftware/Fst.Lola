@@ -18,3 +18,13 @@
         </tr>
     </table>
 </div>
+<div v-else>
+    <div class="item clearfix">
+        <div class="item-title" style="margin: 0 0 5px;">
+            @LocalizationService.GetResource("Phases")
+        </div>
+    </div>
+    <div class="progress prod">
+        <div v-for="(phase, i) in phases" class="progress-bar" v-bind:class="bgPhase(i)" v-bind:aria-valuenow="0"></div>
+    </div>
+</div>
