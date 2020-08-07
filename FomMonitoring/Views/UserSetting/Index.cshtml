@@ -50,8 +50,8 @@
                         <fieldset>
                             <!-- Text input-->
                             <div class="form-group row">
-                                <label class="col-4 control-label" for="role-input">@Resource.Timezone: *</label>
-                                <div class="col-7">
+                                <label class="col-3 control-label" for="role-input">@Resource.Timezone: *</label>
+                                <div class="col-8">
                                     <select v-model="timeZones.active" class="form-control input-md modal-input" id="timezone-modal-exception-input" title="Timezone">
                                         <option v-for="timeZone in timeZones.all" v-bind:value="timeZone.Code">{{timeZone.Description}}</option>
                                     </select>
@@ -60,8 +60,8 @@
 
                             <!-- Select Basic -->
                             <div class="form-group row" id="machine-form">
-                                <label class="col-4 control-label" for="role-input">@Resource.Machine: *</label>
-                                <div class="col-7">
+                                <label class="col-3 control-label" for="role-input">@Resource.Machine: *</label>
+                                <div class="col-8">
                                     <select v-model="machines.active" class="form-control input-md modal-input" id="machines-modal-exception-input" title="@Resource.NothingSelected">
                                         <option v-for="machine in machines.all" v-bind:value="machine.Id">({{machine.Serial}}) - {{machine.MachineName}}</option>
                                     </select>
