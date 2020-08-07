@@ -232,7 +232,7 @@ namespace FomMonitoringBLL.ViewServices
         {
             var options = new ChartViewModel();
 
-            var data = _stateService.GetAggregationStates(machine, period, enDataType.Operators).Where(w => w.enState != enState.Offline).OrderBy(o => o.Day).ToList();
+            var data = _stateService.GetAggregationStates(machine, period, enDataType.Operators).Where(w => w.enState != enState.Offline && w.Operator != "Other").OrderBy(o => o.Day).ToList();
 
             if (data.Count == 0)
                 return null;

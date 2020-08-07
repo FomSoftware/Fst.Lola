@@ -169,7 +169,7 @@ namespace FomMonitoringCore.Service
         {
             var tmp =  _context.Set<HistoryState>()
                  .Where(w => w.MachineId == machine.Id && w.Day >= dateFrom && w.Day <= dateTo && w.Operator != null 
-                             && w.StateId != (int?)enState.Offline && w.Shift == null)
+                             && w.Operator != "Other" && w.StateId != (int?)enState.Offline && w.Shift == null)
                  .GroupBy(g => g.Operator).ToList();
 
             List<EfficiencyStateMachineModel> totTime = tmp.Select(s => new EfficiencyStateMachineModel
