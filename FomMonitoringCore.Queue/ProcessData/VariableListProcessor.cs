@@ -29,7 +29,7 @@ namespace FomMonitoringCore.Queue.ProcessData
                     if (mac == null)
                         return false;
 
-                    var pms = _context.Set<ParameterMachine>().AsNoTracking().Where(p =>
+                    var pms = _context.Set<ParameterMachine>().Where(p =>
                         p.MachineModelId == mac.MachineModelId).ToList();
 
                     foreach (var var in data.VariablesListMachine)
@@ -121,6 +121,10 @@ namespace FomMonitoringCore.Queue.ProcessData
                                     {
                                         pmv.UtcDateTime = (DateTime)lastReset;
                                         AddResetValue(pm, (DateTime)lastReset, value.VariableValue, pmv.VarValue, mac.Id);
+                                    }
+                                    else
+                                    {
+                                        pmv.UtcDateTime = var.UtcDateTime;
                                     }
                                     pmv.VarValue = value.VariableValue;
                                     pmv.ParameterMachineId = pm.Id;

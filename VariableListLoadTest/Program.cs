@@ -33,16 +33,17 @@ namespace VariableListLoadTest
             var repositoryMessage = container.Resolve<IGenericRepository<Message>>();
             var repositoryVariablesList = container.Resolve<IGenericRepository<VariablesList>>();
             var forwarder = container.Resolve<IQueueForwarder>();
+            //var reforwarder = container.Resolve<IUnknownForwarder>();
+            //reforwarder.ReForward();
 
-
-            var jsonsMessage = repositoryVariablesList.Query(v => v.info[0].MachineSerial == "C0800290").ToList();
+            var jsonsMessage = repositoryVariablesList.Query(v => (v.info[0].MachineSerial == "A1300001" || v.info[0].MachineSerial == "A1400001") && v.DateReceived > new DateTime(2020, 07, 30)).ToList().OrderBy(n => n.DateReceived);
 
 
             foreach (var data in jsonsMessage)
             {
                 forwarder.Forward(JsonConvert.SerializeObject(data));
             }
-
+            //var x = new TimeSpan(13400000000);
             Console.ReadKey();
             
         }
