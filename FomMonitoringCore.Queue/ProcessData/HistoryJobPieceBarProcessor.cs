@@ -55,25 +55,40 @@ namespace FomMonitoringCore.Queue.ProcessData
                         var historyJob = data.HistoryJobMachine.BuildAdapter().AddParameters("machineId", mac.Id)
                             .AdaptToType<List<HistoryJob>>();
 
-                        //var minDateHistoryJob = Enumerable.Any(historyJob, a => a.Day.HasValue) ? Enumerable.Where(historyJob, w => w.Day.HasValue && w.MachineId == mac.Id).Select(s => s.Day).Min() : new DateTime();
-                        //var removeHistoryJob = context.Set<HistoryJob>().Where(w => w.Day.HasValue && w.Day.Value >= minDateHistoryJob && w.MachineId == mac.Id).ToList();
-                        //context.Set<HistoryJob>().RemoveRange(removeHistoryJob);
-                        context.Set<HistoryJob>().AddRange(historyJob);
+
+                        foreach (var jj in historyJob)
+                        {
+
+
+                            var trovato = context.Set<HistoryJob>().FirstOrDefault(m =>
+                                m.Code == jj.Code && m.Day == jj.Day && jj.MachineId == m.MachineId);
+
+                            if (trovato != null)
+                                continue;
+                            context.Set<HistoryJob>().Add(jj);
+                        }
+                    
 
                         context.SaveChanges();
 
-                        //var piece = data.PieceMachine.BuildAdapter().AddParameters("machineId", mac.Id).AddParameters("barService", barService).AddParameters("jobService", jobService).AddParameters("machineService", machineService)
-                        //    .AdaptToType<List<Piece>>();
+                        var piece = data.PieceMachine.BuildAdapter().AddParameters("machineId", mac.Id).AddParameters("barService", barService).AddParameters("jobService", jobService).AddParameters("machineService", machineService)
+                            .AdaptToType<List<Piece>>();
 
-                        
-                        //context.Set<Piece>().AddRange(piece);
-                        //context.SaveChanges();
+                        foreach (var pp in piece)
+                        {
+                            var trovato = context.Set<Piece>().FirstOrDefault(m => pp.MachineId == m.MachineId && pp.BarId == m.BarId && pp.Day == m.Day && pp.JobId == m.JobId);
+
+                            if (trovato != null)
+                                continue;
+                            context.Set<Piece>().Add(pp);
+                        }
+                        context.SaveChanges();
 
 
-                        //context.usp_HistoricizingPieces(mac.Id);
-                        //context.usp_HistoricizingBars(mac.Id);
+                        context.usp_HistoricizingPieces(mac.Id);
+                        context.usp_HistoricizingBars(mac.Id);
 
-                        //context.SaveChanges();
+                        context.SaveChanges();
 
                         return true;
 

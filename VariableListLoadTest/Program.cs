@@ -31,12 +31,12 @@ namespace VariableListLoadTest
             var repositoryInfo = container.Resolve<IGenericRepository<Info>>();
             var repositoryHistoryJobPieceBar = container.Resolve<IGenericRepository<HistoryJobPieceBar>>();
             var repositoryMessage = container.Resolve<IGenericRepository<Message>>();
-            var repositoryVariablesList = container.Resolve<IGenericRepository<VariablesList>>();
+            //var repositoryVariablesList = container.Resolve<IGenericRepository<VariablesList>>();
             var forwarder = container.Resolve<IQueueForwarder>();
             //var reforwarder = container.Resolve<IUnknownForwarder>();
             //reforwarder.ReForward();
 
-            var jsonsMessage = repositoryVariablesList.Query(v => (v.info[0].MachineSerial == "A1300001" || v.info[0].MachineSerial == "A1400001") && v.DateReceived > new DateTime(2020, 07, 30)).ToList().OrderBy(n => n.DateReceived);
+            var jsonsMessage = repositoryHistoryJobPieceBar.Query().ToList().OrderBy(n => n.DateReceived);
 
 
             foreach (var data in jsonsMessage)
