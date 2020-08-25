@@ -51,6 +51,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringCore.DataProce
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FomMonitoringCore.Queue", "FomMonitoringCore.Queue\FomMonitoringCore.Queue.csproj", "{6FDE2173-288E-4350-B557-BE81B0FF3E11}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LolaXml", "LolaXml", "{C3A82133-1042-47DD-B491-5F7C1B8F92E6}"
+	ProjectSection(SolutionItems) = preProject
+		LolaXml\211_Lola.xml = LolaXml\211_Lola.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
