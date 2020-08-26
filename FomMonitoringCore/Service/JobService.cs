@@ -4,6 +4,7 @@ using FomMonitoringCore.Framework.Model;
 using Mapster;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using FomMonitoringCore.SqlServer.Repository;
 
@@ -35,18 +36,18 @@ namespace FomMonitoringCore.Service
         /// <returns>Lista dei dettagli degli stati</returns>
         public List<HistoryJobModel> GetAggregationJobs(MachineInfoModel machine, PeriodModel period)
         {
-            List<HistoryJobModel> result = new List<HistoryJobModel>();
+            var result = new List<HistoryJobModel>();
 
             try
             {
 
-                    List<usp_AggregationJob_Result> query = _context.usp_AggregationJob(machine.Id, period.StartDate, period.EndDate, (int)period.Aggregation).ToList();
+                    var query = _context.usp_AggregationJob(machine.Id, period.StartDate, period.EndDate, (int)period.Aggregation).ToList();
                     result = query.Adapt<List<HistoryJobModel>>();
                 
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(),
+                var errMessage = string.Format(ex.GetStringLog(),
                     machine.Id.ToString(),
                     string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString()));
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
@@ -60,13 +61,13 @@ namespace FomMonitoringCore.Service
 
         public List<HistoryJobModel> GetAllHistoryJobs(MachineInfoModel machine, PeriodModel period)
         {
-            List<HistoryJobModel> result = new List<HistoryJobModel>();
+            var result = new List<HistoryJobModel>();
 
             try
             {
-                    string aggType = period.Aggregation.GetDescription();
+                    var aggType = period.Aggregation.GetDescription();
 
-                    List<HistoryJob> query = _historyJobRepository.Get(hs => hs.MachineId == machine.Id
+                    var query = _historyJobRepository.Get(hs => hs.MachineId == machine.Id
                                               && hs.Day >= period.StartDate && hs.Day <= period.EndDate
                                               && hs.TypeHistory == aggType, tracked: false).ToList();
 
@@ -75,9 +76,9 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(),
+                var errMessage = string.Format(ex.GetStringLog(),
                     machine.Id.ToString(),
-                    string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString()));
+                    string.Concat(period.StartDate.ToString(CultureInfo.InvariantCulture), " - ", period.EndDate.ToString(CultureInfo.InvariantCulture), " - ", period.Aggregation.ToString()));
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -92,15 +93,15 @@ namespace FomMonitoringCore.Service
             {                
                 if (!string.IsNullOrEmpty(jobCode))
                 {
-                    HistoryJob historyJob = _historyJobRepository.Get(f => f.Code == jobCode && f.MachineId == machineId, o => o.OrderByDescending(i => i.Id), tracked: false).FirstOrDefault();
+                    var historyJob = _historyJobRepository.Get(f => f.Code == jobCode && f.MachineId == machineId, o => o.OrderByDescending(i => i.Id), tracked: false).FirstOrDefault();
 
                     //HistoryJob historyJob = ent.HistoryJob.OrderByDescending(o => o.Id).FirstOrDefault(f => f.Code == jobCode && f.MachineId == machineId);
-                    result = historyJob != null ? historyJob.Id : (int?)null;
+                    result = historyJob?.Id;
                 }     
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), jobCode.ToString(), machineId.ToString());
+                var errMessage = string.Format(ex.GetStringLog(), jobCode.ToString(), machineId.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;

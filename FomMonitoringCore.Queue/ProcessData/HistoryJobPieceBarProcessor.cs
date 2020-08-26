@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using Autofac;
 using FomMonitoringCore.Queue.Dto;
@@ -43,12 +44,16 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                         foreach (var bb in bar)
                         {
+                            if (!(bb.StartTime > DateTime.MinValue)) continue;
                             var trovato = context.Set<Bar>().FirstOrDefault(m =>
                                 m.Index == bb.Index && m.JobCode == bb.JobCode && bb.MachineId == m.MachineId);
 
                             if (trovato?.JobCode != null)
-                                continue;
-                            context.Set<Bar>().Add(bb);
+                            {
+                                bb.Id = trovato.Id;
+                            }
+                            context.Set<Bar>().AddOrUpdate(bb);
+
                         }
                         context.SaveChanges();
 
@@ -58,14 +63,16 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                         foreach (var jj in historyJob)
                         {
-
-
+                            if (!(jj.Day > DateTime.MinValue)) continue;
                             var trovato = context.Set<HistoryJob>().FirstOrDefault(m =>
                                 m.Code == jj.Code && m.Day == jj.Day && jj.MachineId == m.MachineId);
 
                             if (trovato != null)
-                                continue;
-                            context.Set<HistoryJob>().Add(jj);
+                            {
+                                jj.Id = trovato.Id;
+                            }
+
+                            context.Set<HistoryJob>().AddOrUpdate(jj);
                         }
                     
 
@@ -76,15 +83,21 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                         foreach (var pp in piece)
                         {
-                            var trovato = context.Set<Piece>().FirstOrDefault(m => pp.MachineId == m.MachineId && pp.BarId == m.BarId && pp.Day == m.Day && pp.JobId == m.JobId);
+                            if (!(pp.Day > DateTime.MinValue)) continue;
+                            var trovato = context.Set<Piece>().FirstOrDefault(m =>
+                                pp.MachineId == m.MachineId && pp.BarId == m.BarId && pp.Day == m.Day &&
+                                pp.JobId == m.JobId);
 
                             if (trovato != null)
-                                continue;
-                            context.Set<Piece>().Add(pp);
+                            {
+                                pp.Id = trovato.Id;
+                            }
+
+                            context.Set<Piece>().AddOrUpdate(pp);
                         }
+
                         context.SaveChanges();
-
-
+                        
                         context.usp_HistoricizingPieces(mac.Id);
                         context.usp_HistoricizingBars(mac.Id);
 
