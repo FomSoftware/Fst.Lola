@@ -44,15 +44,16 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                         foreach (var bb in bar)
                         {
-                            if (!(bb.StartTime > DateTime.MinValue)) continue;
+                            if (!(bb.StartTime > DateTime.MinValue))
+                                continue;
+
                             var trovato = context.Set<Bar>().FirstOrDefault(m =>
                                 m.Index == bb.Index && m.JobCode == bb.JobCode && bb.MachineId == m.MachineId);
 
                             if (trovato?.JobCode != null)
-                            {
-                                bb.Id = trovato.Id;
-                            }
-                            context.Set<Bar>().AddOrUpdate(bb);
+                                continue;
+
+                            context.Set<Bar>().Add(bb);
 
                         }
                         context.SaveChanges();
@@ -63,16 +64,16 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                         foreach (var jj in historyJob)
                         {
-                            if (!(jj.Day > DateTime.MinValue)) continue;
+                            if (!(jj.Day > DateTime.MinValue))
+                                continue;
+
                             var trovato = context.Set<HistoryJob>().FirstOrDefault(m =>
                                 m.Code == jj.Code && m.Day == jj.Day && jj.MachineId == m.MachineId);
 
                             if (trovato != null)
-                            {
-                                jj.Id = trovato.Id;
-                            }
+                                continue;
 
-                            context.Set<HistoryJob>().AddOrUpdate(jj);
+                            context.Set<HistoryJob>().Add(jj);
                         }
                     
 
@@ -83,17 +84,17 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                         foreach (var pp in piece)
                         {
-                            if (!(pp.Day > DateTime.MinValue)) continue;
+                            if (!(pp.Day > DateTime.MinValue))
+                                continue;
+
                             var trovato = context.Set<Piece>().FirstOrDefault(m =>
                                 pp.MachineId == m.MachineId && pp.BarId == m.BarId && pp.Day == m.Day &&
                                 pp.JobId == m.JobId);
 
                             if (trovato != null)
-                            {
-                                pp.Id = trovato.Id;
-                            }
+                                continue;
 
-                            context.Set<Piece>().AddOrUpdate(pp);
+                            context.Set<Piece>().Add(pp);
                         }
 
                         context.SaveChanges();
