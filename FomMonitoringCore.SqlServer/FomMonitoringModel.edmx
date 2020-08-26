@@ -1596,8 +1596,6 @@
           <Property Name="RLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HmiSection" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LolaLabel" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="ThresholdMin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ThresholdMax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ThresholdLabel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PanelId" Type="Int32" />
           <Property Name="Cluster" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -2944,8 +2942,6 @@
                 <ScalarProperty Name="RLevel" ColumnName="RLevel" />
                 <ScalarProperty Name="HmiSection" ColumnName="HmiSection" />
                 <ScalarProperty Name="LolaLabel" ColumnName="LolaLabel" />
-                <ScalarProperty Name="ThresholdMin" ColumnName="ThresholdMin" />
-                <ScalarProperty Name="ThresholdMax" ColumnName="ThresholdMax" />
                 <ScalarProperty Name="ThresholdLabel" ColumnName="ThresholdLabel" />
                 <ScalarProperty Name="PanelId" ColumnName="PanelId" />
                 <ScalarProperty Name="Cluster" ColumnName="Cluster" />
