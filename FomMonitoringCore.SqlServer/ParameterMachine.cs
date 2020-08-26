@@ -37,8 +37,6 @@ namespace FomMonitoringCore.SqlServer
         public string RLevel { get; set; }
         public string HmiSection { get; set; }
         public string LolaLabel { get; set; }
-        public string ThresholdMin { get; set; }
-        public string ThresholdMax { get; set; }
         public string ThresholdLabel { get; set; }
         public Nullable<int> PanelId { get; set; }
         public string Cluster { get; set; }
