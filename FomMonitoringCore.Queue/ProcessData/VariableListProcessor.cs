@@ -155,8 +155,7 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                             foreach (var threshold in pm.ParameterMachineThreshold)
                             {
-                                if (!string.IsNullOrEmpty(pm.ThresholdMax) && pm.ThresholdMax != "0" ||
-                                    !string.IsNullOrEmpty(pm.ThresholdMin) && pm.ThresholdMin != "0")
+                                if (threshold.ThresholdMax != 0 || threshold.ThresholdMin != 0)
                                     CheckVariableTresholds(mac, threshold, value, previousValue, var.UtcDateTime);
                             }
 
