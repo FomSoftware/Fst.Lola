@@ -64,7 +64,7 @@ namespace FomMonitoringCore.Service.API.Concrete
                             var historyJobExist = _context.Set<HistoryJob>().Any(h =>
                                 h.Code == currentState.JobCode && h.MachineId == machine.Id && h.Day != null &&
                                 DbFunctions.TruncateTime(h.Day.Value) == DbFunctions.TruncateTime(currentState.LastUpdated));
-                            if (!historyJobExist)
+                            if (!historyJobExist && currentState.JobCode?.Trim().Length > 0 && currentState.JobTotalPieces > 0)
                             {
                                 var newJob = new HistoryJob
                                 {
