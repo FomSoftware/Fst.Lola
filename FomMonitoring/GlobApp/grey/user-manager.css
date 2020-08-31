@@ -310,13 +310,12 @@
 }
 
 .control-label-user-timezone {
-    border-bottom: solid 1px #b33157 !important;
-    color: #b33157;
+    border-bottom: solid 1px #D1839A !important;
+    color: #D1839A;
     text-transform: uppercase;
     border-bottom: 0 solid;
     letter-spacing: 1px;
-    font-weight: 500;
-    font-size: 15px;
+    font-size: 20px;
     padding-top: 10px;
 }
 
