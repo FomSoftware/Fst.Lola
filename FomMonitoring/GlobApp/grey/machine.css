@@ -902,11 +902,15 @@ a.click-more {
         content: "\f160";
     }
 
+
+
     .table.table-alerts thead .sorting.desc:after {
         content: "\f161";
     }
 
-
+#tblCommessePerc, #tblCommessePiece {
+    font-size: 1px;
+}
 /*#endregion */
 
 

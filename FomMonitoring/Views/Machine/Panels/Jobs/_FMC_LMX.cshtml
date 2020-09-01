@@ -25,7 +25,7 @@
                                 <span class="value-title" style="margin-left: 10px;">
                                     @LocalizationService.GetResource("Code")</span>
                             </th>
-                            <th width="7%" class="th-duration sorting" v-bind:class="sortingProgress" v-on:click="sortProgress()">
+                            <th width="7%" id="tblCommessePerc" class="th-duration sorting" v-bind:class="sortingProgress" v-on:click="sortProgress()">
                                 <span class="value-title" style="font-size: 14px;font-weight: bold">%</span>
                             </th>
                             <th style="width:18%;padding-left:10px" class="th-duration sorting job-header testo-abbreviato" v-bind:class="sorting.day" v-on:click="sortDay()">
@@ -43,7 +43,7 @@
                                     @LocalizationService.GetResource("TimeTot")
                                 </span>
                             </th>
-                            <th style="width: 10%;padding: 0;" class="th-duration sorting testo-abbreviato job-header" v-bind:class="sorting.quantity" v-on:click="sortQuantity()">
+                            <th id="tblCommessePiece" style="width: 10%;padding: 0;" class="th-duration sorting testo-abbreviato job-header" v-bind:class="sorting.quantity" v-on:click="sortQuantity()">
                                 <i class="fa fa-puzzle-piece color-aaa"></i>
                                 <span class="value-title">
                                     @LocalizationService.GetResource("Pieces")
