@@ -1237,7 +1237,7 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
     <value>Exception successfully saved</value>
   </data>
   <data name="DeleteException" xml:space="preserve">
-    <value>Are you sure to delete this user?</value>
+    <value>Are you sure to delete this exception?</value>
   </data>
   <data name="UserSuccessfullyException" xml:space="preserve">
     <value>User successfully deleted</value>

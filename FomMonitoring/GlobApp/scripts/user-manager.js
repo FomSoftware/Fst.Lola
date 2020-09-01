@@ -773,7 +773,7 @@
 
             request.done(function (data) {
                 $('#change-timezone-modal').modal('hide');
-                var msg = successSwal("");
+                var msg = successSwal(resourceChangePassword.TimezoneSuccessfullyModify);
                 msg.then(
                     (result) => {
                         window.location.reload();
