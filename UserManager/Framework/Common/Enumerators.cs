@@ -15,14 +15,6 @@
             UserApi = 5
         }
 
-        public enum UserGroup
-        {    
-            NA = -1,
-            Admin = 0,
-            User = 1,
-            Guest = 2
-        }
-
         //--------------------
     }
 }

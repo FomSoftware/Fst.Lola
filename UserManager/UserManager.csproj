@@ -85,9 +85,7 @@
   <ItemGroup>
     <Compile Include="Gateway\AuditLogin.cs" />
     <Compile Include="Gateway\IAuditLogin.cs" />
-    <Compile Include="Gateway\IRoles.cs" />
     <Compile Include="Gateway\IUsers.cs" />
-    <Compile Include="Gateway\Roles.cs" />
     <Compile Include="Gateway\Users.cs" />
     <Compile Include="Framework\Common\Enumerators.cs" />
     <Compile Include="Framework\Common\SessionsVariables.cs" />
@@ -96,11 +94,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Concrete\ApplicationSettingsService.cs" />
     <Compile Include="Service\Concrete\CacheService.cs" />
-    <Compile Include="Service\Concrete\RoleService.cs" />
     <Compile Include="Service\Concrete\SessionServices.cs" />
     <Compile Include="Service\ILoggedUserServices.cs" />
     <Compile Include="Service\Concrete\LoggedUserServices.cs" />
-    <Compile Include="Service\IRolesService.cs" />
     <Compile Include="Service\IUserServices.cs" />
     <Compile Include="Service\Concrete\UserServices.cs" />
     <Compile Include="Service\ILoginServices.cs" />

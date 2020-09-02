@@ -28,14 +28,6 @@ namespace UserManager.Framework.Common
                 SessionServices.SetValue("LoggedUser", user);
         }
 
-        public static void RemoveLoggedUser()
-        {
-            if (UseCacheInsteadOfSession())
-                CacheService.RemoveValue("LoggedUser");
-            else
-                SessionServices.RemoveValue("LoggedUser");
-        }
-
         public static void ClearSession()
         {
             if (UseCacheInsteadOfSession())
@@ -46,30 +38,6 @@ namespace UserManager.Framework.Common
 
         #endregion
 
-        #region SAML Session ID
-
-        public static string GetSamlSessionId()
-        {
-            return UseCacheInsteadOfSession() ? CacheService.GetValue<string>("SAMLSessionID") : SessionServices.GetValue<string>("SAMLSessionID");
-        }
-
-        public static void SetSamlSessionId(string samlSessionId)
-        {
-            if (UseCacheInsteadOfSession())
-                CacheService.SetValue("SAMLSessionID", samlSessionId);
-            else
-                SessionServices.SetValue("SAMLSessionID", samlSessionId);
-        }
-
-        public static void RemoveSamlSessionId()
-        {
-            if (UseCacheInsteadOfSession())
-                CacheService.RemoveValue("SAMLSessionID");
-            else
-                SessionServices.RemoveValue("SAMLSessionID");
-        }
-
-        #endregion
 
         #endregion
     }

@@ -15,7 +15,6 @@ using UserManager.Gateway;
 using UserManager.Service;
 using UserManager.Service.Concrete;
 using AuditLogin = UserManager.Gateway.AuditLogin;
-using Roles = UserManager.Gateway.Roles;
 using Users = UserManager.Gateway.Users;
 
 namespace FomMonitoringCore.Ioc
@@ -73,8 +72,6 @@ namespace FomMonitoringCore.Ioc
                 builder.RegisterType<UserServices>().As<IUserServices>(),
                 builder.RegisterType<LoggedUserServices>().As<ILoggedUserServices>(),
                 builder.RegisterType<Users>().As<IUsers>(),
-                builder.RegisterType<Roles>().As<IRoles>(),
-                builder.RegisterType<RoleService>().As<IRolesService>(),
                 builder.RegisterGeneric(typeof(Mongo.Repository.GenericRepository<>)).As(typeof(Mongo.Repository.IGenericRepository<>))
             };
 
