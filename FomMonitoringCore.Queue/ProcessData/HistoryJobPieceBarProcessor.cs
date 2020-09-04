@@ -66,13 +66,24 @@ namespace FomMonitoringCore.Queue.ProcessData
                         {
                             if (!(jj.Day > DateTime.MinValue))
                                 continue;
-
+                            var giorno = jj.Day != null
+                                ? ((jj.Day.Value.Year * 10000) + (jj.Day.Value.Month * 100) + (jj.Day.Value.Day))
+                                : (int?) null;
                             var trovato = context.Set<HistoryJob>().FirstOrDefault(m =>
-                                m.Code == jj.Code && m.Day == jj.Day && jj.MachineId == m.MachineId);
+                                m.Code == jj.Code && m.Period == giorno && jj.MachineId == m.MachineId
+                                && m.TotalPieces == jj.TotalPieces);
 
                             if (trovato != null)
+                            {
+                                //aggiorno i valori che sono incrementali
+                                trovato.Day = jj.Day;
+                                trovato.ElapsedTime = jj.ElapsedTime;
+                                trovato.PiecesProduced = jj.PiecesProduced;
+                                
+                                context.Set<HistoryJob>().AddOrUpdate(trovato);
                                 continue;
-
+                            }
+                            
                             context.Set<HistoryJob>().Add(jj);
                         }
                     
