@@ -14,32 +14,7 @@ namespace UserManager.Gateway
         {
             _fomMonitoringEntities = fomMonitoringEntities;
         }
-        public List<FomMonitoringCore.SqlServer.AuditLogin> GetListOfAuditLogin()
-        {
-            try
-            {
-                return _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.AuditLogin>()
-                    .OrderByDescending(n => n.DateAndTime).ToList();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error while getting audit login: {ex.Message}");
-            }
-        }
-
-        public List<FomMonitoringCore.SqlServer.AuditLogin> GetAuditLogin()
-        {
-            try
-            {
-                return _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.AuditLogin>().ToList();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error while getting audit login: {ex.Message}");
-            }
-
-        }
-        
+       
 
         public void InsertAuditLogin(bool accessed, string username, Guid? userId, string message)
         {
@@ -58,13 +33,6 @@ namespace UserManager.Gateway
 
                     _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.AuditLogin>().Add(al);
                     _fomMonitoringEntities.SaveChanges();
-                
-        }
-
-        public DateTime? GetUserLastAccessedDateAndTime(Guid userId)
-        {
-            return _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.AuditLogin>().OrderByDescending(al => al.DateAndTime)
-                .FirstOrDefault(al => al.UserID == userId)?.DateAndTime;
                 
         }
 

@@ -27,37 +27,14 @@ namespace UserManager.Service.Concrete
         #endregion
 
         #region Public Methods
-        /**
-         * Funzione per effettuare il login dell'utente
-         */
-        public bool LoginUser(string username, string password, out string message)
-        {
-            return LoginUser(username, password, out message, true);
-        }
-        public bool LoginUser(string username, string password, out string message, bool persistUserObject)
-        {
-            return LoginUser(username, password, "", out message, persistUserObject);
-        }
-        public bool LoginUser(string username, string password, string domain, out string message, bool persistUserObject)
-        {
-            message = string.Empty;
 
-            //Controllo che non siano vuote username e password
-            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
-                return ManageLoginUser(username, password, domain, out message, persistUserObject);
+         
 
-            message = "Username o Password sono stati inseriti vuoti. Si prega di controllare";
-            return false;
-
-        }
 
         /**
          * Funzione per effettuare il login dell'utente criptando la password
          */
-        public bool LoginUserWithEncryptedPassword(string username, string password, out string message)
-        {
-            return LoginUserWithEncryptedPassword(username, password, out message, true);
-        }
+
         public bool LoginUserWithEncryptedPassword(string username, string password, out string message, bool persistUserObject)
         {
             return LoginUserWithEncryptedPassword(username, password, "", out message, persistUserObject);
@@ -93,30 +70,7 @@ namespace UserManager.Service.Concrete
             InsertLogAuditRecord(false, username, user, message);
             return false;
         }
-        public bool ManageLoginUserWithoutPassword(string username, string domain, out string message, bool persistUserObject)
-        {
-            if (_usersGateway.LoginUserWithoutPassword(username, domain, out message, out var user))
-            {
-                if (persistUserObject) { SessionsVariables.SetLoggedUser(user); }
-                InsertLogAuditRecord(true, user.Username, user, message);
-                return true;
-            }
 
-            InsertLogAuditRecord(false, username, user, message);
-            return false;
-        }
-        public bool ManageLoginUserWithoutPassword(Guid userId, out string message, bool persistUserObject)
-        {
-            if (_usersGateway.LoginUserWithoutPassword(userId, out message, out var user))
-            {
-                if (persistUserObject) { SessionsVariables.SetLoggedUser(user); }
-                InsertLogAuditRecord(true, user.Username, user, message);
-                return true;
-            }
-
-            InsertLogAuditRecord(false, userId.ToString(), user, message);
-            return false;
-        }
 
         /**
          * Inserisce il record di audit login
@@ -128,51 +82,7 @@ namespace UserManager.Service.Concrete
             _auditLogin.InsertAuditLogin(accessed, username, userId, message);
         }
 
-        public string GetUserDefaultHomePage()
-        {
-            return _loggedUserServices.GetLoggedUserDefualtHomePage();
-        }
 
-        public void RedirectUserToDefaultHomePage()
-        {
-            var homePage = GetUserDefaultHomePage();
-            if (!string.IsNullOrEmpty(homePage))
-            {
-                HttpContext.Current.Response.Redirect(homePage);
-            }
-        }
-
-        public void RedirectUserToLoginPage()
-        {
-            FormsAuthentication.RedirectToLoginPage();
-        }
-
-        public bool UserObjectIsInSession()
-        {
-            var user = SessionsVariables.GetLoggedUser();
-            return null != user;
-        }
-
-
-        public bool CheckUserAuthentication()
-        {
-            //Controllo se l'utente è autenticato
-            var isAuthenticated = HttpContext.Current.User != null && HttpContext.Current.User.Identity.IsAuthenticated;
-
-            if (!isAuthenticated)
-            {
-                return false;
-            }
-            
-
-            if (UserObjectIsInSession())
-                return true;
-
-            var sUserId = HttpContext.Current.User.Identity.Name;
-
-            return Guid.TryParse(sUserId, out var gUserId) && ManageLoginUserWithoutPassword(gUserId, out _, true);
-
-        }
 
         public void LogoutUser(string fromToken, bool performRedirectToLoginPage = true)
         {
@@ -209,10 +119,6 @@ namespace UserManager.Service.Concrete
             if (performRedirectToLoginPage) FormsAuthentication.RedirectToLoginPage(fromToken);
         }
 
-        public bool CheckIfUsernameAlreadyExist(string username)
-        {
-            return _usersGateway.CheckIfUsernameAlreadyExist(username);
-        }
 
         public string EncryptPassword(string psw)
         {
@@ -252,16 +158,6 @@ namespace UserManager.Service.Concrete
                 return realUser.LastDateUpdatePassword == null;
         }
 
-        public bool IsPasswordExpired()
-        {
-            var user = _loggedUserServices.GetLoggedUser();
-
-            if (user.LastDateUpdatePassword == null) return false;
-
-            var days = (DateTime.Now - (DateTime)user.LastDateUpdatePassword).Days;
-
-            return days >= 90;
-        }
 
         #region Private Methods
  

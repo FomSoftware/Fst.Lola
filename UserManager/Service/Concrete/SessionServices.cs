@@ -9,10 +9,6 @@
             System.Web.HttpContext.Current.Session[key] = value;
         }
 
-        public static void RemoveValue(string key)
-        {
-            System.Web.HttpContext.Current.Session.Remove(key);
-        }
 
         public static T GetValue<T>(string key)
         {

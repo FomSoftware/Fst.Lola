@@ -36,7 +36,7 @@ namespace VariableListLoadTest
             //var reforwarder = container.Resolve<IUnknownForwarder>();
             //reforwarder.ReForward();
 
-            var jsonsMessage = repositoryHistoryJobPieceBar.Query().ToList().OrderBy(n => n.DateReceived);
+            var jsonsMessage = repositoryHistoryJobPieceBar.Query().ToList().OrderByDescending(n => n.DateReceived).Take(10);
 
 
             foreach (var data in jsonsMessage)

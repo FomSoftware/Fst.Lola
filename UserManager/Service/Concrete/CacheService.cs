@@ -19,10 +19,6 @@ namespace UserManager.Service.Concrete
             System.Web.HttpContext.Current.Cache.Insert(ReorganizeKey(key), value, null, System.Web.Caching.Cache.NoAbsoluteExpiration, TimeSpan.FromHours(1));
         }
 
-        public static void RemoveValue(string key)
-        {
-            System.Web.HttpContext.Current.Cache.Remove(ReorganizeKey(key));
-        }
 
         public static T GetValue<T>(string key)
         {
