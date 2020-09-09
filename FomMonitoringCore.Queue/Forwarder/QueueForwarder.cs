@@ -18,7 +18,7 @@ namespace FomMonitoringCore.Queue.Forwarder
 {
     public interface IQueueForwarder
     {
-        void Forward(string json);
+        bool Forward(string json);
     }
 
     public class QueueForwarder : IQueueForwarder
@@ -80,21 +80,27 @@ namespace FomMonitoringCore.Queue.Forwarder
             _infoGenericRepository = infoGenericRepository;
         }
 
-        public void Forward(string json)
+        public bool Forward(string json)
         {
             var pathSchemas = ConfigurationManager.AppSettings["PathSchemaLOLA"];
-
-
             var schemaDataVariablesList =
                 JsonSchema.FromFileAsync(Path.Combine(pathSchemas, "variablesList.json")).Result;
             var errorDataVariablesList = schemaDataVariablesList.Validate(json);
-
 
             if (!errorDataVariablesList.Any())
             {
                 var data = JsonConvert
                     .DeserializeObject<Mongo.Dto.VariablesList>(json);
 
+                //controllo delle date obbligatorie
+                if (data.info[0].LoginDate <= DateTime.MinValue)
+                {
+                    return false;
+                }
+                if (data.variablesList!= null && data.variablesList.Any(v => v.UtcDateTime <= DateTime.MinValue))
+                {
+                    return false;
+                }
                 data.DateSendedQueue = DateTime.UtcNow;
                 data.DateReceived = DateTime.UtcNow;
                 var infoMongo = new Mongo.Dto.Info
@@ -123,8 +129,7 @@ namespace FomMonitoringCore.Queue.Forwarder
                     VariablesListMachine = data.variablesList
                 });
 
-                
-                return;
+                return true;
             }
 
 
@@ -135,7 +140,16 @@ namespace FomMonitoringCore.Queue.Forwarder
             if (!errorMessages.Any())
             {
                 var data = JsonConvert.DeserializeObject<Mongo.Dto.Message>(json);
+                //controllo delle date obbligatorie
+                if (data.info[0].LoginDate <= DateTime.MinValue)
+                {
+                    return false;
+                }
 
+                if(data.message != null && data.message.Any(m => m.Time <= DateTime.MinValue))
+                {
+                    return false;
+                }
                 data.DateSendedQueue = DateTime.UtcNow;
                 data.DateReceived = DateTime.UtcNow;
                 var infoMongo = new Mongo.Dto.Info
@@ -163,7 +177,7 @@ namespace FomMonitoringCore.Queue.Forwarder
                     MessageMachine = data.message
                 });
 
-                return;
+                return true;
             }
 
 
@@ -174,7 +188,17 @@ namespace FomMonitoringCore.Queue.Forwarder
             if (!errorStates.Any())
             {
                 var data = JsonConvert.DeserializeObject<Mongo.Dto.State>(json);
+                //controllo delle date obbligatorie
+                if (data.info[0].LoginDate <= DateTime.MinValue)
+                {
+                    return false;
+                }
 
+                if (data.state != null && data.state.Any(m => m.StartTime <= DateTime.MinValue ||
+                                                              m.EndTime <= DateTime.MinValue))
+                {
+                    return false;
+                }
                 data.DateSendedQueue = DateTime.UtcNow;
                 data.DateReceived = DateTime.UtcNow;
                 var infoMongo = new Mongo.Dto.Info
@@ -203,7 +227,7 @@ namespace FomMonitoringCore.Queue.Forwarder
                     StateMachine = data.state
                 });
 
-                return;
+                return true;
             }
 
 
@@ -214,7 +238,16 @@ namespace FomMonitoringCore.Queue.Forwarder
             if (!errorTool.Any())
             {
                 var data = JsonConvert.DeserializeObject<Mongo.Dto.Tool>(json);
+                if (data.info[0].LoginDate <= DateTime.MinValue)
+                {
+                    return false;
+                }
 
+                if (data.tool != null && data.tool.Any(m => m.DateLoaded <= DateTime.MinValue ||
+                                                            m.DateReplaced <= DateTime.MinValue))
+                {
+                    return false;
+                }
 
                 data.DateSendedQueue = DateTime.UtcNow;
                 data.DateReceived = DateTime.UtcNow;
@@ -245,7 +278,7 @@ namespace FomMonitoringCore.Queue.Forwarder
                     ToolMachine = data.tool
                 });
                 
-                return;
+                return true;
             }
 
 
@@ -258,7 +291,25 @@ namespace FomMonitoringCore.Queue.Forwarder
             {
                 var data = JsonConvert
                     .DeserializeObject<Mongo.Dto.HistoryJobPieceBar>(json);
+                if (data.info[0].LoginDate <= DateTime.MinValue)
+                {
+                    return false;
+                }
+                if (data.bar != null && data.bar.Any(m => m.StartTime <= DateTime.MinValue))
+                {
+                    return false;
+                }
 
+                if (data.piece != null && data.piece.Any(m => m.StartTime <= DateTime.MinValue ||
+                                                          m.EndTime <= DateTime.MinValue))
+                {
+                    return false;
+                }
+
+                if (data.historyjob != null && data.historyjob.Any(m => m.Day <= DateTime.MinValue))
+                {
+                    return false;
+                }
 
                 data.DateSendedQueue = DateTime.UtcNow;
                 data.DateReceived = DateTime.UtcNow;
@@ -289,7 +340,7 @@ namespace FomMonitoringCore.Queue.Forwarder
                     BarMachine = data.bar
                 });
                 
-                return;
+                return true;
             }
 
             var dataUnknown = JsonConvert.DeserializeObject<BaseModel>(json);
@@ -313,6 +364,8 @@ namespace FomMonitoringCore.Queue.Forwarder
                     StringComparer.OrdinalIgnoreCase)
             };
             _unknownGenericRepository.Create(en);
+            return true;
         }
+         
     }
 }

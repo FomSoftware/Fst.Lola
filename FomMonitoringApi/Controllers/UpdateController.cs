@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Service.API;
 using Newtonsoft.Json;
@@ -30,7 +31,9 @@ namespace FomMonitoringApi.Controllers
                 if (data != null)
                 {
                     var jsonSerialized = JsonConvert.SerializeObject(data);
-                    _queueForwarder.Forward(jsonSerialized);
+                    bool valid = _queueForwarder.Forward(jsonSerialized);
+                    if(!valid)
+                        return StatusCode(HttpStatusCode.PreconditionFailed);
                 }
 
                 json.AddFirst(new JProperty("imported", true));
