@@ -43,6 +43,5 @@ namespace FomMonitoringCore.DataProcessing.Dto
         public long? TimeSpanCutting { get; set; }
         public long? TimeSpanWorking { get; set; }
         public long? TimeSpanTrim { get; set; }
-        public long? TimeSpanAnuba { get; set; }
     }
 }

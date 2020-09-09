@@ -178,17 +178,6 @@ namespace FomMonitoringBLL.ViewServices
 
                     break;
             }
-         
-
-            var timeAnuba = data.Select(s => s.ElapsedTimeAnuba ?? 0).Sum();
-
-            if (timeAnuba > 0)
-            {
-                var anuba = new ProdDataModel();
-                anuba.text = "Anuba";
-                anuba.perc = Common.GetPercentage(timeAnuba, grossTime);
-                phases.Add(anuba);
-            }
 
             result.phases = phases.OrderByDescending(o => o.perc).ToList();
 

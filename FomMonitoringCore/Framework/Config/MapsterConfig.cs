@@ -186,7 +186,6 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.ElapsedTimeCut, src => src.TimeSpanCutting)
                 .Map(dest => dest.ElapsedTimeWorking, src => src.TimeSpanWorking)
                 .Map(dest => dest.ElapsedTimeTrim, src => src.TimeSpanTrim)
-                .Map(dest => dest.ElapsedTimeAnuba, src => src.TimeSpanAnuba)
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
 
             config.NewConfig<DAL_SQLite.state, StateMachine>()
@@ -273,7 +272,6 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.ElapsedTimeCut, src => src.TimeSpanCutting)
                 .Map(dest => dest.ElapsedTimeWorking, src => src.TimeSpanWorking)
                 .Map(dest => dest.ElapsedTimeTrim, src => src.TimeSpanTrim)
-                .Map(dest => dest.ElapsedTimeAnuba, src => src.TimeSpanAnuba)
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
 
             config.NewConfig<DataProcessing.Dto.HistoryJobMachine, HistoryJob>()

@@ -21,6 +21,5 @@ namespace FomMonitoringCore.Framework.Model
         public long? ElapsedTimeCut { get; set; }
         public long? ElapsedTimeWorking { get; set; }
         public long? ElapsedTimeTrim { get; set; }
-        public long? ElapsedTimeAnuba { get; set; }
     }
 }

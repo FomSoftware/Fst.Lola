@@ -21,7 +21,6 @@ namespace FomMonitoringCore.SqlServer
         public Nullable<long> ElapsedTimeCut { get; set; }
         public Nullable<long> ElapsedTimeWorking { get; set; }
         public Nullable<long> ElapsedTimeTrim { get; set; }
-        public Nullable<long> ElapsedTimeAnuba { get; set; }
         public Nullable<int> MachineId { get; set; }
         public string Operator { get; set; }
         public Nullable<int> Period { get; set; }

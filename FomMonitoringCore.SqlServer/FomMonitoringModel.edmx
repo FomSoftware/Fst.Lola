@@ -105,7 +105,6 @@
           <Property Name="ElapsedTimeCut" Type="bigint" />
           <Property Name="ElapsedTimeWorking" Type="bigint" />
           <Property Name="ElapsedTimeTrim" Type="bigint" />
-          <Property Name="ElapsedTimeAnuba" Type="bigint" />
           <Property Name="MachineId" Type="int" />
           <Property Name="Operator" Type="varchar" MaxLength="100" />
           <Property Name="Period" Type="int" />
@@ -362,7 +361,6 @@
           <Property Name="ElapsedTimeCut" Type="bigint" />
           <Property Name="ElapsedTimeWorking" Type="bigint" />
           <Property Name="ElapsedTimeTrim" Type="bigint" />
-          <Property Name="ElapsedTimeAnuba" Type="bigint" />
         </EntityType>
         <EntityType Name="Plant">
           <Key>
@@ -1356,7 +1354,6 @@
           <Property Name="ElapsedTimeCut" Type="Int64" />
           <Property Name="ElapsedTimeWorking" Type="Int64" />
           <Property Name="ElapsedTimeTrim" Type="Int64" />
-          <Property Name="ElapsedTimeAnuba" Type="Int64" />
           <Property Name="MachineId" Type="Int32" />
           <Property Name="Operator" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Period" Type="Int32" />
@@ -1666,7 +1663,6 @@
           <Property Name="ElapsedTimeCut" Type="Int64" />
           <Property Name="ElapsedTimeWorking" Type="Int64" />
           <Property Name="ElapsedTimeTrim" Type="Int64" />
-          <Property Name="ElapsedTimeAnuba" Type="Int64" />
           <NavigationProperty Name="Bar" Relationship="Self.FK_Piece_Bar" FromRole="Piece" ToRole="Bar" />
           <NavigationProperty Name="Machine" Relationship="Self.FK_Piece_Machine" FromRole="Piece" ToRole="Machine" />
         </EntityType>
@@ -2587,7 +2583,6 @@
           <Property Type="Int64" Name="ElapsedTimeCut" Nullable="true" />
           <Property Type="Int64" Name="ElapsedTimeWorking" Nullable="true" />
           <Property Type="Int64" Name="ElapsedTimeTrim" Nullable="true" />
-          <Property Type="Int64" Name="ElapsedTimeAnuba" Nullable="true" />
           <Property Type="Int32" Name="MachineId" Nullable="true" />
           <Property Type="String" Name="Operator" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="Period" Nullable="true" />
@@ -2732,7 +2727,6 @@
                 <ScalarProperty Name="ElapsedTimeCut" ColumnName="ElapsedTimeCut" />
                 <ScalarProperty Name="ElapsedTimeWorking" ColumnName="ElapsedTimeWorking" />
                 <ScalarProperty Name="ElapsedTimeTrim" ColumnName="ElapsedTimeTrim" />
-                <ScalarProperty Name="ElapsedTimeAnuba" ColumnName="ElapsedTimeAnuba" />
                 <ScalarProperty Name="MachineId" ColumnName="MachineId" />
                 <ScalarProperty Name="Operator" ColumnName="Operator" />
                 <ScalarProperty Name="Period" ColumnName="Period" />
@@ -3005,7 +2999,6 @@
                 <ScalarProperty Name="ElapsedTimeCut" ColumnName="ElapsedTimeCut" />
                 <ScalarProperty Name="ElapsedTimeWorking" ColumnName="ElapsedTimeWorking" />
                 <ScalarProperty Name="ElapsedTimeTrim" ColumnName="ElapsedTimeTrim" />
-                <ScalarProperty Name="ElapsedTimeAnuba" ColumnName="ElapsedTimeAnuba" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3183,7 +3176,6 @@
                 <ScalarProperty Name="ElapsedTimeCut" ColumnName="ElapsedTimeCut" />
                 <ScalarProperty Name="ElapsedTimeWorking" ColumnName="ElapsedTimeWorking" />
                 <ScalarProperty Name="ElapsedTimeTrim" ColumnName="ElapsedTimeTrim" />
-                <ScalarProperty Name="ElapsedTimeAnuba" ColumnName="ElapsedTimeAnuba" />
                 <ScalarProperty Name="MachineId" ColumnName="MachineId" />
                 <ScalarProperty Name="Operator" ColumnName="Operator" />
                 <ScalarProperty Name="Period" ColumnName="Period" />
