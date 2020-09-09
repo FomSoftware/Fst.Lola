@@ -27,7 +27,6 @@ namespace FomMonitoringCore.SqlServer
         public Nullable<System.DateTime> StartTime { get; set; }
         public string Params { get; set; }
         public Nullable<System.DateTime> IgnoreDate { get; set; }
-        public Nullable<bool> IsPeriodicMsg { get; set; }
         public Nullable<int> MessagesIndexId { get; set; }
         public string UserId { get; set; }
     

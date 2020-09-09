@@ -1507,7 +1507,6 @@
           <Property Name="StartTime" Type="DateTime" Precision="3" />
           <Property Name="Params" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IgnoreDate" Type="DateTime" Precision="3" />
-          <Property Name="IsPeriodicMsg" Type="Boolean" />
           <Property Name="MessagesIndexId" Type="Int32" />
           <Property Name="UserId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Machine" Relationship="Self.FK_MessageMachine_Machine" FromRole="MessageMachine" ToRole="Machine" />
@@ -2860,7 +2859,6 @@
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="Params" ColumnName="Params" />
                 <ScalarProperty Name="IgnoreDate" ColumnName="IgnoreDate" />
-                <ScalarProperty Name="IsPeriodicMsg" ColumnName="IsPeriodicMsg" />
                 <ScalarProperty Name="MessagesIndexId" ColumnName="MessagesIndexId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>

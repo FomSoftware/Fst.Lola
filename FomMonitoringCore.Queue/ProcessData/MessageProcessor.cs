@@ -36,11 +36,6 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                     var cat = _context.Set<MachineModel>().Find(mac.MachineModelId)?.MessageCategoryId;
 
-                    //var maxDate = _context.Set<MessageMachine>()
-                    //    .Any(m => m.MachineId == mac.Id && m.Day != null && m.IsPeriodicMsg != true) ? _context.Set<MessageMachine>().Where(m => m.MachineId == mac.Id && m.Day != null && m.IsPeriodicMsg != true).Max(et => et.Day ?? DateTime.MinValue) : DateTime.MinValue;
-
-                    //var messages = data.MessageMachine.Where(w => w.Time > maxDate).ToList();
-
                     //devo eliminare quei messaggi che hanno isLolaVisible = 0 da mdb
                     var messageMachine = new List<MessageMachine>();
 
