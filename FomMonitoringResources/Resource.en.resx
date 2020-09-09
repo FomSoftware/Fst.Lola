@@ -1162,7 +1162,7 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
     <value>Automatic production</value>
   </data>
   <data name="DoppieTeste" xml:space="preserve">
-    <value>Doble heads</value>
+    <value>Double heads</value>
   </data>
   <data name="CreateUserEmailBody_FirstPart" xml:space="preserve">
     <value>A new &lt;span  style="color: #6f1130;"&gt; [TIPO_USER] &lt;/span&gt; type user has been generated with the following credentials:</value>

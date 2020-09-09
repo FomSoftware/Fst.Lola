@@ -569,7 +569,7 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
     <value>LOLA wurde für die Mobilfunknutzung optimiert. &lt;br /&gt;Für die Liste den Abschnitt &lt;br /&gt;„Terms &amp; Conditions“ konsultieren</value>
   </data>
   <data name="DisclaimerMobileDevices" xml:space="preserve">
-    <value>LOLA wurde für die Mobilfunknutzung auf folgenden Geräten optimiert: Samsung S10, Apple IPhone X, Samsung Galaxy S7, Apple IPhone 8, Apple IPad PRO, Apple IPad 2. Mit Webbrowser Google Chrome auf Windows und Safari auf MAC.</value>
+    <value>LOLA wurde für die Mobilfunknutzung auf folgenden Geräten optimiert: Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px), iPad2 (768x1024 px). Mit Webbrowser Google Chrome auf Windows und Safari auf iOS.</value>
   </data>
   <data name="AxisMotors" xml:space="preserve">
     <value>Motoren/Achsen</value>
