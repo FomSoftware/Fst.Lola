@@ -909,13 +909,11 @@ a.click-more {
     }
 
 #tblCommessePerc, #tblCommessePiece {
-    font-size: 1px;
+    padding-left: 8px;
 }
 /*#endregion */
 
-
 /*#region mandrini */
-
 .el-state {
     line-height: 1;
     white-space: nowrap;

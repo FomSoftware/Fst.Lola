@@ -88,39 +88,6 @@
                     $('.progress-job .progress-bar').css("width",
                           function () { return $(this).attr("aria-valuenow") + "%"; });
                 },
-                sortQuantity: function ()
-                {
-                    this.sorting.duration = null;
-                    this.sorting.code = null;
-                    this.sorting.progress = null;
-                    this.sorting.day = null;
-
-                    if (this.sorting.quantity == 'desc')
-                    {
-                        this.jobs = _.sortBy(this.jobs, 'quantity');
-                        this.sorting.quantity = 'asc';
-
-                        this.$nextTick(function ()
-                        {
-                            this.refreshProgress();
-                        });
-
-                        return;
-                    }
-
-                    if (this.sorting.quantity == 'asc' || this.sorting.quantity == null)
-                    {
-                        this.jobs = _.sortBy(this.jobs, 'quantity').reverse();
-                        this.sorting.quantity = 'desc';
-
-                        this.$nextTick(function ()
-                        {
-                            this.refreshProgress();
-                        });
-
-                        return;
-                    }
-                },
                 sortDuration: function ()
                 {
                     this.sorting.quantity = null;
@@ -206,39 +173,6 @@
                     {
                         this.jobs = _.sortBy(this.jobs, 'code').reverse();
                         this.sorting.code = 'desc';
-
-                        this.$nextTick(function ()
-                        {
-                            this.refreshProgress();
-                        });
-
-                        return;
-                    }
-                },
-                sortProgress: function ()
-                {
-                    this.sorting.quantity = null;
-                    this.sorting.duration = null;
-                    this.sorting.code = null;
-                    this.sorting.day = null;
-
-                    if (this.sorting.progress == 'desc')
-                    {
-                        this.jobs = _.sortBy(this.jobs, 'perc');
-                        this.sorting.progress = 'asc';
-
-                        this.$nextTick(function ()
-                        {
-                            this.refreshProgress();
-                        });
-
-                        return;
-                    }
-
-                    if (this.sorting.progress == 'asc' || this.sorting.progress == null)
-                    {
-                        this.jobs = _.sortBy(this.jobs, 'perc').reverse();
-                        this.sorting.progress = 'desc';
 
                         this.$nextTick(function ()
                         {
