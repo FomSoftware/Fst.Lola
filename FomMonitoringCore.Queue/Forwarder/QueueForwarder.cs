@@ -93,11 +93,11 @@ namespace FomMonitoringCore.Queue.Forwarder
                     .DeserializeObject<Mongo.Dto.VariablesList>(json);
 
                 //controllo delle date obbligatorie
-                if (data.info[0].LoginDate <= DateTime.MinValue)
+                if (!DateTimeLolaValid(data.info[0].LoginDate))
                 {
                     return false;
                 }
-                if (data.variablesList!= null && data.variablesList.Any(v => v.UtcDateTime <= DateTime.MinValue))
+                if (data.variablesList!= null && data.variablesList.Any(v => !DateTimeLolaValid(v.UtcDateTime)))
                 {
                     return false;
                 }
@@ -141,12 +141,12 @@ namespace FomMonitoringCore.Queue.Forwarder
             {
                 var data = JsonConvert.DeserializeObject<Mongo.Dto.Message>(json);
                 //controllo delle date obbligatorie
-                if (data.info[0].LoginDate <= DateTime.MinValue)
+                if (!DateTimeLolaValid(data.info[0].LoginDate))
                 {
                     return false;
                 }
 
-                if(data.message != null && data.message.Any(m => m.Time <= DateTime.MinValue))
+                if(data.message != null && data.message.Any(m => !DateTimeLolaValid(m.Time)))
                 {
                     return false;
                 }
@@ -189,13 +189,13 @@ namespace FomMonitoringCore.Queue.Forwarder
             {
                 var data = JsonConvert.DeserializeObject<Mongo.Dto.State>(json);
                 //controllo delle date obbligatorie
-                if (data.info[0].LoginDate <= DateTime.MinValue)
+                if (!DateTimeLolaValid(data.info[0].LoginDate))
                 {
                     return false;
                 }
 
-                if (data.state != null && data.state.Any(m => m.StartTime <= DateTime.MinValue ||
-                                                              m.EndTime <= DateTime.MinValue))
+                if (data.state != null && data.state.Any(m => !DateTimeLolaValid(m.StartTime) ||
+                                                                                !DateTimeLolaValid(m.EndTime)))
                 {
                     return false;
                 }
@@ -238,13 +238,13 @@ namespace FomMonitoringCore.Queue.Forwarder
             if (!errorTool.Any())
             {
                 var data = JsonConvert.DeserializeObject<Mongo.Dto.Tool>(json);
-                if (data.info[0].LoginDate <= DateTime.MinValue)
+                if (!DateTimeLolaValid(data.info[0].LoginDate))
                 {
                     return false;
                 }
 
-                if (data.tool != null && data.tool.Any(m => m.DateLoaded <= DateTime.MinValue ||
-                                                            m.DateReplaced <= DateTime.MinValue))
+                if (data.tool != null && data.tool.Any(m => !DateTimeLolaValid(m.DateLoaded) ||
+                                                            !DateTimeLolaValid(m.DateReplaced)))
                 {
                     return false;
                 }
@@ -291,22 +291,22 @@ namespace FomMonitoringCore.Queue.Forwarder
             {
                 var data = JsonConvert
                     .DeserializeObject<Mongo.Dto.HistoryJobPieceBar>(json);
-                if (data.info[0].LoginDate <= DateTime.MinValue)
+                if (!DateTimeLolaValid(data.info[0].LoginDate))
                 {
                     return false;
                 }
-                if (data.bar != null && data.bar.Any(m => m.StartTime <= DateTime.MinValue))
-                {
-                    return false;
-                }
-
-                if (data.piece != null && data.piece.Any(m => m.StartTime <= DateTime.MinValue ||
-                                                          m.EndTime <= DateTime.MinValue))
+                if (data.bar != null && data.bar.Any(m => !DateTimeLolaValid(m.StartTime)))
                 {
                     return false;
                 }
 
-                if (data.historyjob != null && data.historyjob.Any(m => m.Day <= DateTime.MinValue))
+                if (data.piece != null && data.piece.Any(m => !DateTimeLolaValid(m.StartTime) ||
+                                                              !DateTimeLolaValid(m.EndTime)))
+                {
+                    return false;
+                }
+
+                if (data.historyjob != null && data.historyjob.Any(m => !DateTimeLolaValid(m.Day)))
                 {
                     return false;
                 }
@@ -366,6 +366,11 @@ namespace FomMonitoringCore.Queue.Forwarder
             _unknownGenericRepository.Create(en);
             return true;
         }
-         
+
+        private static bool DateTimeLolaValid(DateTime? date)
+        {
+            return date > DateTime.MinValue;
+        }
+
     }
 }
