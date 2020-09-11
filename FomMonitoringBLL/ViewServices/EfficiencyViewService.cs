@@ -156,7 +156,7 @@ namespace FomMonitoringBLL.ViewServices
 
             var periodTrend = new PeriodModel();
             periodTrend.StartDate = startDateTrend.ToUniversalTime().Date;
-            periodTrend.EndDate = period.EndDate.ToUniversalTime().Date.AddDays(1).AddTicks(-1);
+            periodTrend.EndDate = period.EndDate.ToUniversalTime().Date.AddDays(1).AddMinutes(-1);
             periodTrend.Aggregation = granularity;
 
             var data = _stateService.GetAggregationStates(machine, periodTrend, enDataType.Historical).Where(w => w.enState != enState.Offline).OrderBy(o => o.Day).ToList();
