@@ -229,7 +229,6 @@
           <Property Name="StartTime" Type="datetime" />
           <Property Name="Params" Type="nvarchar(max)" />
           <Property Name="IgnoreDate" Type="datetime" />
-          <Property Name="IsPeriodicMsg" Type="bit" />
           <Property Name="MessagesIndexId" Type="int" />
           <Property Name="UserId" Type="nvarchar" MaxLength="200" />
         </EntityType>
@@ -300,8 +299,6 @@
           <Property Name="RLevel" Type="nvarchar" MaxLength="50" />
           <Property Name="HmiSection" Type="nvarchar" MaxLength="50" />
           <Property Name="LolaLabel" Type="nvarchar" MaxLength="250" />
-          <Property Name="ThresholdMin" Type="nvarchar" MaxLength="50" />
-          <Property Name="ThresholdMax" Type="nvarchar" MaxLength="50" />
           <Property Name="ThresholdLabel" Type="nvarchar" MaxLength="50" />
           <Property Name="PanelId" Type="int" />
           <Property Name="Cluster" Type="nvarchar" MaxLength="50" />
