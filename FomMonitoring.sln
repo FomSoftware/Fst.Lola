@@ -21,6 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{08
 	ProjectSection(SolutionItems) = preProject
 		001_UserPlantMapping.sql = 001_UserPlantMapping.sql
 		002_Machine.sql = 002_Machine.sql
+		AggiornamentoPieceMessageMachine_2020_09_15.sql = AggiornamentoPieceMessageMachine_2020_09_15.sql
 		SpindleTableDeleted.sql = SpindleTableDeleted.sql
 	EndProjectSection
 EndProject
@@ -123,7 +124,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_PrefixTranslations = False
 		SolutionGuid = {A47B5DB1-473C-4389-B640-2496BC32A8E9}
+		RESX_PrefixTranslations = False
 	EndGlobalSection
 EndGlobal

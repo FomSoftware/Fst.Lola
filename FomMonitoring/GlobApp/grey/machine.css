@@ -568,14 +568,10 @@ body {
 }
 
 .bg-line {
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAJUlEQVQYV2NkQAP/////z4gsBhYAAZggTADEBwsiC4AF0QVAggAaRhQC9fJaWAAAAABJRU5ErkJggg==) repeat;
     background-color: #FFC040;
 }
 
 .bg-broken-line {
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAHElEQVQYV2P8////f0ZGRkYGKIAzMARgKjFUAABk3QgFeD0pTAAAAABJRU5ErkJggg==) repeat;
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAP0lEQVQoU2NkQAP/////z8jIyIgujiIAU4RNMVwhuiQ6H6wQl3XI4oy4FMHcCJPHcDS6J+A2YpPAJkaUiSCNAA8KKAUC14DBAAAAAElFTkSuQmCC) repeat;
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAJUlEQVQYV2NkQAP/////z4gsBhYAAXSVID5YEKYCpoARXQAkAQBIRxACG2oenwAAAABJRU5ErkJggg==) repeat;
     background-color: #FF8000;
 }
 
