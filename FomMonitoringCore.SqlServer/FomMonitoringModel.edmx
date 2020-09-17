@@ -1010,13 +1010,7 @@
           <Parameter Name="endDate" Type="datetime" Mode="In" />
           <Parameter Name="aggregation" Type="int" Mode="In" />
         </Function>
-        <Function Name="usp_AggregationJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="machineId" Type="int" Mode="In" />
-          <Parameter Name="startDate" Type="datetime" Mode="In" />
-          <Parameter Name="endDate" Type="datetime" Mode="In" />
-          <Parameter Name="aggregation" Type="int" Mode="In" />
-        </Function>
-        <Function Name="usp_AggregationPiece" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+      <Function Name="usp_AggregationPiece" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="machineId" Type="int" Mode="In" />
           <Parameter Name="startDate" Type="datetime" Mode="In" />
           <Parameter Name="endDate" Type="datetime" Mode="In" />
@@ -2519,12 +2513,6 @@
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
             <Parameter Name="aggregation" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="usp_AggregationJob" ReturnType="Collection(FomMonitoringModel.usp_AggregationJob_Result)">
-            <Parameter Name="machineId" Mode="In" Type="Int32" />
-            <Parameter Name="startDate" Mode="In" Type="DateTime" />
-            <Parameter Name="endDate" Mode="In" Type="DateTime" />
-            <Parameter Name="aggregation" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="usp_AggregationPiece" ReturnType="Collection(FomMonitoringModel.usp_AggregationPiece_Result)">
             <Parameter Name="machineId" Mode="In" Type="Int32" />
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
@@ -2557,17 +2545,6 @@
           <Property Type="Int32" Name="OffcutLength" Nullable="true" />
           <Property Type="Int32" Name="Period" Nullable="true" />
           <Property Type="Int32" Name="System" Nullable="true" />
-          <Property Type="String" Name="TypeHistory" Nullable="false" MaxLength="1" />
-        </ComplexType>
-        <ComplexType Name="usp_AggregationJob_Result">
-          <Property Type="Int32" Name="Id" Nullable="true" />
-          <Property Type="String" Name="Code" Nullable="true" MaxLength="100" />
-          <Property Type="DateTime" Name="DAY" Nullable="true" Precision="23" />
-          <Property Type="Int64" Name="ElapsedTime" Nullable="true" />
-          <Property Type="Int32" Name="MachineId" Nullable="true" />
-          <Property Type="Int32" Name="Period" Nullable="true" />
-          <Property Type="Int32" Name="PiecesProduced" Nullable="true" />
-          <Property Type="Int32" Name="TotalPieces" Nullable="true" />
           <Property Type="String" Name="TypeHistory" Nullable="false" MaxLength="1" />
         </ComplexType>
         <ComplexType Name="usp_AggregationPiece_Result">
@@ -3141,21 +3118,6 @@
                 <ScalarProperty Name="OffcutLength" ColumnName="OffcutLength" />
                 <ScalarProperty Name="Period" ColumnName="Period" />
                 <ScalarProperty Name="System" ColumnName="System" />
-                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_AggregationJob" FunctionName="FomMonitoringModel.Store.usp_AggregationJob">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FomMonitoringModel.usp_AggregationJob_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="DAY" ColumnName="DAY" />
-                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
-                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
-                <ScalarProperty Name="Period" ColumnName="Period" />
-                <ScalarProperty Name="PiecesProduced" ColumnName="PiecesProduced" />
-                <ScalarProperty Name="TotalPieces" ColumnName="TotalPieces" />
                 <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
               </ComplexTypeMapping>
             </ResultMapping>
