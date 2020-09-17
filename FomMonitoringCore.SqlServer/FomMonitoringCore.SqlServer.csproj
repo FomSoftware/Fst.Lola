@@ -222,9 +222,6 @@
     <Compile Include="usp_AggregationBar_Result.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="usp_AggregationJob_Result.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="usp_AggregationPiece_Result.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>

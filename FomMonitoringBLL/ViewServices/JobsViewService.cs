@@ -36,6 +36,13 @@ namespace FomMonitoringBLL.ViewServices
             if (data.Count == 0)
                 return result;
 
+            CurrentStateModel currentState = null;
+            if (machine.Model.Name.ToUpper().Contains("FMC") ||
+                (machine.Model.Name.ToUpper().Contains("LMX")))
+            {
+                currentState = GetCurrentState(machine.Id);
+            }
+
             List<JobDataModel> jobs = data.Select(j => new JobDataModel()
             {
                 code = j.Code,
@@ -43,7 +50,8 @@ namespace FomMonitoringBLL.ViewServices
                 time = CommonViewService.getTimeViewModel(j.ElapsedTime),
                 quantity = j.PiecesProduced ?? 0,
                 pieces = j.TotalPieces ?? 0,
-                day = j.Day.GetValueOrDefault()
+                day = j.Day.GetValueOrDefault(),
+                ResidueWorkingTimeJob = getResTime(currentState, j)
             }).ToList();
 
             jobs = jobs.OrderBy(o => o.perc).ToList();
@@ -54,13 +62,21 @@ namespace FomMonitoringBLL.ViewServices
             result.jobs = jobs;
             result.sorting = sorting;
 
-            if (machine.Model.Name.ToUpper().Contains("FMC") ||
-                (machine.Model.Name.ToUpper().Contains("LMX")))
-            {
-                result.currentState = GetCurrentState(machine.Id);
-            }
+            
             return result;
         }
+
+        private long? getResTime(CurrentStateModel currentState, HistoryJobModel job)
+        {
+            if (currentState == null) return null;
+            if (job.Day == null || currentState.LastUpdated == null) return null;
+            if (job.Code == currentState.JobCode &&
+                job.TotalPieces == currentState.JobTotalPieces &&
+                job.Day.Value.Date == currentState.LastUpdated.Value.Date)
+                return currentState.ResidueWorkingTimeJob;
+            return null;
+        }
+
         private CurrentStateModel GetCurrentState(int machineId)
         {
             CurrentStateModel result = null;

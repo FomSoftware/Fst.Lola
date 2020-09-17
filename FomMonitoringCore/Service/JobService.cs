@@ -40,10 +40,20 @@ namespace FomMonitoringCore.Service
 
             try
             {
-
-                    var query = _context.usp_AggregationJob(machine.Id, period.StartDate, period.EndDate, (int)period.Aggregation).ToList();
-                    result = query.Adapt<List<HistoryJobModel>>();
-                
+                result = _context.Set<HistoryJob>().Where(hb =>
+                        hb.MachineId == machine.Id && hb.Day >= period.StartDate && hb.Day <= period.EndDate).ToList()
+                    .GroupBy(g => new {g.MachineId, g.Code, g.TotalPieces, g.Day})
+                    .Select(n => new HistoryJobModel
+                    {
+                        Id = n.Max(i => i.Id),
+                        Code = n.Key.Code,
+                        Day = n.Key.Day,
+                        MachineId = n.Key.MachineId,
+                        TotalPieces = n.Key.TotalPieces,
+                        ElapsedTime = n.Max(i => i.ElapsedTime),
+                        PiecesProduced = n.Max(i => i.PiecesProduced),
+                        Period = null
+                    }).ToList();
             }
             catch (Exception ex)
             {
