@@ -7,6 +7,7 @@ using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.SqlServer;
 using FomMonitoringCore.SqlServer.Repository;
 using Mapster;
+using FomMonitoringCore.Extensions;
 
 namespace FomMonitoringCore.Service
 {

@@ -131,6 +131,10 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FomMonitoringCore.Extensions\FomMonitoringCore.Extensions.csproj">
+      <Project>{1a540aa3-9b76-49f9-b7da-8548ca9448ae}</Project>
+      <Name>FomMonitoringCore.Extensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FomMonitoringCore.SqlServer\FomMonitoringCore.SqlServer.csproj">
       <Project>{814936aa-1607-4a90-bcf5-b13ab3af8f98}</Project>
       <Name>FomMonitoringCore.SqlServer</Name>

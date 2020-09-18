@@ -310,6 +310,10 @@
       <Project>{f36b3458-26de-4cf6-8616-bf2194078cb9}</Project>
       <Name>FomMonitoringCore.DataProcessing.Dto</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FomMonitoringCore.Extensions\FomMonitoringCore.Extensions.csproj">
+      <Project>{1A540AA3-9B76-49F9-B7DA-8548CA9448AE}</Project>
+      <Name>FomMonitoringCore.Extensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FomMonitoringCore.Mongo\FomMonitoringCore.Mongo.csproj">
       <Project>{2d74150b-02cf-40e7-9946-255d2956d160}</Project>
       <Name>FomMonitoringCore.Mongo</Name>

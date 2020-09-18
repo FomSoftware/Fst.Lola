@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-
+using FomMonitoringCore.Extensions;
 namespace FomMonitoringBLL.ViewServices
 {
     public class CommonViewService
