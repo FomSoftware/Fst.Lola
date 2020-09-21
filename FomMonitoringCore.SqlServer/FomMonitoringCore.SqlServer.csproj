@@ -156,6 +156,7 @@
     <Compile Include="Partials\IDbContext.cs" />
     <Compile Include="Partials\IFomMonitoringEntities.cs" />
     <Compile Include="Partials\MessageMachine.cs" />
+    <Compile Include="Partials\HistoryPiece.cs" />
     <Compile Include="Partials\ToolMachine.cs" />
     <Compile Include="Piece.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
@@ -254,7 +255,12 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\FomMonitoringCore.Extensions\FomMonitoringCore.Extensions.csproj">
+      <Project>{1a540aa3-9b76-49f9-b7da-8548ca9448ae}</Project>
+      <Name>FomMonitoringCore.Extensions</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

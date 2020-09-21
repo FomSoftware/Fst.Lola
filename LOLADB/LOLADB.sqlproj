@@ -66,5 +66,6 @@
     <None Include="UserManager_Porting_Data_2020_07_13.sql" />
     <None Include="LOLATEST_usp_AggregationJob.sql" />
     <None Include="LOLATEST_usp_AggregationBar.sql" />
+    <None Include="LOLATEST_usp_AggregationPiece.sql" />
   </ItemGroup>
 </Project>
