@@ -63,15 +63,6 @@ namespace FomMonitoringCore.SqlServer
         public virtual DbSet<UserMachineMapping> UserMachineMapping { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     
-        public virtual int usp_HistoricizingAlarms(Nullable<int> machineId)
-        {
-            var machineIdParameter = machineId.HasValue ?
-                new ObjectParameter("machineId", machineId) :
-                new ObjectParameter("machineId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_HistoricizingAlarms", machineIdParameter);
-        }
-    
         public virtual int usp_HistoricizingAll(Nullable<int> machineId)
         {
             var machineIdParameter = machineId.HasValue ?

@@ -986,10 +986,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="usp_HistoricizingAlarms" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
-          <Parameter Name="machineId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="usp_HistoricizingAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
+      <Function Name="usp_HistoricizingAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
           <Parameter Name="machineId" Type="int" Mode="In" />
         </Function>
         <Function Name="usp_HistoricizingBars" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
@@ -2483,9 +2480,6 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="UserMachineMapping" EntitySet="UserMachineMapping" />
           </AssociationSet>
-          <FunctionImport Name="usp_HistoricizingAlarms">
-          <Parameter Name="machineId" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="usp_HistoricizingAll">
           <Parameter Name="machineId" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -3051,7 +3045,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="usp_HistoricizingAlarms" FunctionName="FomMonitoringModel.Store.usp_HistoricizingAlarms" />
           <FunctionImportMapping FunctionImportName="usp_HistoricizingAll" FunctionName="FomMonitoringModel.Store.usp_HistoricizingAll" />
           <FunctionImportMapping FunctionImportName="usp_HistoricizingBars" FunctionName="FomMonitoringModel.Store.usp_HistoricizingBars" />
           <FunctionImportMapping FunctionImportName="usp_HistoricizingMessages" FunctionName="FomMonitoringModel.Store.usp_HistoricizingMessages" />
