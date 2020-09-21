@@ -24,26 +24,6 @@ namespace FomMonitoringCore.Service
 
 
         #region AGGREGATION
-        public List<HistoryPieceModel> GetAggregationPiecesSP(MachineInfoModel machine, PeriodModel period, enDataType dataType)
-        {
-            List<HistoryPieceModel> result = new List<HistoryPieceModel>();
-
-            try
-            {
-                List<usp_AggregationPiece_Result> query = _context.usp_AggregationPiece(machine.Id, period.StartDate, period.EndDate, (int)period.Aggregation, (int)dataType).ToList();
-                result = query.Adapt<List<HistoryPieceModel>>();
-            }
-            catch (Exception ex)
-            {
-                string errMessage = string.Format(ex.GetStringLog(),
-                    machine.Id.ToString(),
-                    string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString(),
-                        dataType.ToString()));
-                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-            }
-
-            return result;
-        }
         /// <summary>
         /// Ritorna gli aggregati pieces in base al tipo di aggregazione
         /// </summary>

@@ -2501,13 +2501,6 @@
           <FunctionImport Name="usp_HistoricizingStates">
           <Parameter Name="machineId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="usp_AggregationPiece" ReturnType="Collection(FomMonitoringModel.usp_AggregationPiece_Result)">
-            <Parameter Name="machineId" Mode="In" Type="Int32" />
-            <Parameter Name="startDate" Mode="In" Type="DateTime" />
-            <Parameter Name="endDate" Mode="In" Type="DateTime" />
-            <Parameter Name="aggregation" Mode="In" Type="Int32" />
-            <Parameter Name="dataType" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="usp_AggregationState" ReturnType="Collection(FomMonitoringModel.usp_AggregationState_Result)">
             <Parameter Name="machineId" Mode="In" Type="Int32" />
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
@@ -2523,24 +2516,6 @@
             <End Role="ParameterResetValue" EntitySet="ParameterResetValue" />
           </AssociationSet>
         </EntityContainer>
-        <ComplexType Name="usp_AggregationPiece_Result">
-          <Property Type="Int32" Name="Id" Nullable="true" />
-          <Property Type="Int32" Name="CompletedCount" Nullable="true" />
-          <Property Type="DateTime" Name="Day" Nullable="true" Precision="23" />
-          <Property Type="Int64" Name="ElapsedTime" Nullable="true" />
-          <Property Type="Int64" Name="ElapsedTimeProducing" Nullable="true" />
-          <Property Type="Int64" Name="ElapsedTimeCut" Nullable="true" />
-          <Property Type="Int64" Name="ElapsedTimeWorking" Nullable="true" />
-          <Property Type="Int64" Name="ElapsedTimeTrim" Nullable="true" />
-          <Property Type="Int32" Name="MachineId" Nullable="true" />
-          <Property Type="String" Name="Operator" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="Period" Nullable="true" />
-          <Property Type="Int32" Name="PieceLengthSum" Nullable="true" />
-          <Property Type="Int32" Name="RedoneCount" Nullable="true" />
-          <Property Type="Int32" Name="Shift" Nullable="true" />
-          <Property Type="String" Name="System" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="TypeHistory" Nullable="false" MaxLength="1" />
-        </ComplexType>
         <ComplexType Name="usp_AggregationState_Result">
           <Property Type="Int32" Name="Id" Nullable="true" />
           <Property Type="DateTime" Name="Day" Nullable="true" Precision="23" />
@@ -3082,28 +3057,6 @@
           <FunctionImportMapping FunctionImportName="usp_HistoricizingMessages" FunctionName="FomMonitoringModel.Store.usp_HistoricizingMessages" />
           <FunctionImportMapping FunctionImportName="usp_HistoricizingPieces" FunctionName="FomMonitoringModel.Store.usp_HistoricizingPieces" />
           <FunctionImportMapping FunctionImportName="usp_HistoricizingStates" FunctionName="FomMonitoringModel.Store.usp_HistoricizingStates" />
-          <FunctionImportMapping FunctionImportName="usp_AggregationPiece" FunctionName="FomMonitoringModel.Store.usp_AggregationPiece">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FomMonitoringModel.usp_AggregationPiece_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CompletedCount" ColumnName="CompletedCount" />
-                <ScalarProperty Name="Day" ColumnName="Day" />
-                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
-                <ScalarProperty Name="ElapsedTimeProducing" ColumnName="ElapsedTimeProducing" />
-                <ScalarProperty Name="ElapsedTimeCut" ColumnName="ElapsedTimeCut" />
-                <ScalarProperty Name="ElapsedTimeWorking" ColumnName="ElapsedTimeWorking" />
-                <ScalarProperty Name="ElapsedTimeTrim" ColumnName="ElapsedTimeTrim" />
-                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
-                <ScalarProperty Name="Operator" ColumnName="Operator" />
-                <ScalarProperty Name="Period" ColumnName="Period" />
-                <ScalarProperty Name="PieceLengthSum" ColumnName="PieceLengthSum" />
-                <ScalarProperty Name="RedoneCount" ColumnName="RedoneCount" />
-                <ScalarProperty Name="Shift" ColumnName="Shift" />
-                <ScalarProperty Name="System" ColumnName="System" />
-                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_AggregationState" FunctionName="FomMonitoringModel.Store.usp_AggregationState">
             <ResultMapping>
               <ComplexTypeMapping TypeName="FomMonitoringModel.usp_AggregationState_Result">
