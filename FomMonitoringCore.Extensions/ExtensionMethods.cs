@@ -8,6 +8,9 @@ namespace FomMonitoringCore.Extensions
 {
     public static class ExtensionMethods
     {
+
+
+
         /// <summary>
         /// Get the startOfWeek date of the specified date
         /// </summary>

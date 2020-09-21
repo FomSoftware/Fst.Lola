@@ -5,6 +5,7 @@ using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FomMonitoringCore.Extensions;
 using FomMonitoringCore.SqlServer.Repository;
 
 namespace FomMonitoringCore.Service
@@ -66,13 +67,185 @@ namespace FomMonitoringCore.Service
         /// <returns>Lista dei dettagli degli stati</returns>
         public List<HistoryStateModel> GetAggregationStates(MachineInfoModel machine, PeriodModel period, enDataType dataType)
         {
-            List<HistoryStateModel> result = new List<HistoryStateModel>();
 
             try
             {
-                List<usp_AggregationState_Result> query = _context.usp_AggregationState(machine.Id, period.StartDate, period.EndDate, (int)period.Aggregation, (int)dataType).ToList();
-                result = query.Adapt<List<HistoryStateModel>>();
-                
+                IEnumerable<HistoryState> queryResult;
+                if (dataType == enDataType.Dashboard)
+                {
+                    queryResult = _historyStateRepository.Get(hs => hs.Day <= period.EndDate
+                                                                        && hs.Day >= period.StartDate
+                                                                        && hs.MachineId == machine.Id
+                                                                        && hs.Shift == null
+                                                                        && hs.Operator == null);
+                    return BuildHistoryStateModelsOperatorDashboard(queryResult);
+                }
+
+                if (dataType == enDataType.Operators)
+                {
+                    queryResult = _historyStateRepository.Get(hs => hs.Day <= period.EndDate
+                                                                    && hs.Day >= period.StartDate
+                                                                    && hs.MachineId == machine.Id
+                                                                    && hs.Shift == null
+                                                                    && hs.Operator != null);
+                    return BuildHistoryStateModelsOperatorDashboard(queryResult);
+                }
+
+                if (dataType == enDataType.Historical)
+                {
+                    queryResult = _historyStateRepository.Get(hs => hs.Day <= period.EndDate
+                                                                    && hs.Day >= period.StartDate
+                                                                    && hs.MachineId == machine.Id
+                                                                    && hs.Shift == null
+                                                                    && hs.Operator == null, null, "State");
+                    if (period.Aggregation == enAggregation.Day)
+                    {
+                        var result = queryResult.Select(g => new HistoryStateModel
+                        {
+                            Id = g.Id,
+                            Day = g.Day,
+                            ElapsedTime = g.ElapsedTime,
+                            MachineId = g.MachineId,
+                            StateId = g.StateId,
+                            Operator = g.Operator,
+                            Shift = g.Shift,
+                            OverfeedAvg = (decimal?)g.OverfeedAvg,
+                            Period = g.Period,
+                            TypeHistory = g.TypeHistory,
+                            enState = (enState)g.StateId,
+                            State = new StateModel()
+                            {
+                                Id = g.StateId ?? 0,
+                                Code = g.State.Description,
+                                Description = g.State.Description
+                            }
+                        }).ToList();
+
+                        return result;
+                    }
+
+                    if (period.Aggregation == enAggregation.Week)
+                    {
+
+                        var groups = queryResult.GroupBy(hs => new { hs.MachineId, hs.Operator, hs.Shift, hs.StateId, Period = hs.Day.Value.Year * 100 +  hs.Day.Value.GetWeekNumber() });
+
+                        var result = groups.Select(g => new HistoryStateModel
+                        {
+                            Id = g.Max(n => n.Id),
+                            Day = g.Max(n => n.Day),
+                            ElapsedTime = g.Sum(n => n.ElapsedTime),
+                            MachineId = g.Key.MachineId,
+                            StateId = g.Key.StateId,
+                            Operator = g.Key.Operator,
+                            Shift = g.Key.Shift,
+                            OverfeedAvg = g.Key.StateId == 1
+                                ? g.Sum(i => i.ElapsedTime) > 0 ? g.Sum(i => (decimal?)((decimal)(i.OverfeedAvg ?? 0) * (i.ElapsedTime ?? 0))) / g.Sum(i => i.ElapsedTime) : 0
+                                : null,
+                            Period = g.Key.Period,
+                            TypeHistory = "w",
+                            enState = (enState)g.Key.StateId,
+                            State = new StateModel()
+                            {
+                                Id = g.Key.StateId ?? 0,
+                                Code = g.FirstOrDefault()?.State.Description,
+                                Description = g.FirstOrDefault()?.State.Description
+                            }
+                        }).ToList();
+                        return result.ToList();
+                    }
+
+                    if (period.Aggregation == enAggregation.Month)
+                    {
+                        var groups = queryResult.GroupBy(hs => new { hs.MachineId, hs.Operator, hs.Shift, hs.StateId, Period = hs.Day.Value.Year * 100 + hs.Day.Value.Month });
+
+                        var result = groups.Select(g => new HistoryStateModel
+                        {
+                            Id = g.Max(n => n.Id),
+                            Day = g.Max(n => n.Day),
+                            ElapsedTime = g.Sum(n => n.ElapsedTime),
+                            MachineId = g.Key.MachineId,
+                            StateId = g.Key.StateId,
+                            Operator = g.Key.Operator,
+                            Shift = g.Key.Shift,
+                            OverfeedAvg = g.Key.StateId == 1
+                                ? g.Sum(i => i.ElapsedTime) > 0 ? g.Sum(i => (decimal?)((decimal)(i.OverfeedAvg ?? 0) * (i.ElapsedTime ?? 0))) / g.Sum(i => i.ElapsedTime) : 0
+                                : null,
+                            Period = g.Key.Period,
+                            TypeHistory = "m",
+                            enState = (enState)g.Key.StateId,
+                            State = new StateModel()
+                            {
+                                Id = g.Key.StateId ?? 0,
+                                Code = g.FirstOrDefault()?.State.Description,
+                                Description = g.FirstOrDefault()?.State.Description
+                            }
+                        }).ToList();
+                        return result.ToList();
+                    }
+
+                    if (period.Aggregation == enAggregation.Quarter)
+                    {
+                        var groups = queryResult.GroupBy(hs => new { hs.MachineId, hs.Operator, hs.Shift, hs.StateId, Period = hs.Day.Value.Year * 100 + hs.Day.Value.GetQuarter() });
+
+                        var result = groups.Select(g => new HistoryStateModel
+                        {
+                            Id = g.Max(n => n.Id),
+                            Day = g.Max(n => n.Day),
+                            ElapsedTime = g.Sum(n => n.ElapsedTime),
+                            MachineId = g.Key.MachineId,
+                            StateId = g.Key.StateId,
+                            Operator = g.Key.Operator,
+                            Shift = g.Key.Shift,
+                            OverfeedAvg = g.Key.StateId == 1
+                                ? g.Sum(i => i.ElapsedTime) > 0 ? g.Sum(i => (decimal?)((decimal)(i.OverfeedAvg ?? 0) * (i.ElapsedTime ?? 0))) / g.Sum(i => i.ElapsedTime) : 0
+                                : null,
+                            Period = g.Key.Period,
+                            TypeHistory = "q",
+                            enState = (enState)g.Key.StateId,
+                            State = new StateModel()
+                            {
+                                Id = g.Key.StateId ?? 0,
+                                Code = g.FirstOrDefault()?.State.Description,
+                                Description = g.FirstOrDefault()?.State.Description
+                            }
+                        }).ToList();
+                        return result.ToList();
+                    }
+
+                    if (period.Aggregation == enAggregation.Year)
+                    {
+                        var groups = queryResult.GroupBy(hs => new { hs.MachineId, hs.Operator, hs.Shift, hs.StateId, Period = hs.Day.Value.Year * 100 + hs.Day.Value.Year });
+
+                        var result = groups.Select(g => new HistoryStateModel
+                        {
+                            Id = g.Max(n => n.Id),
+                            Day = g.Max(n => n.Day),
+                            ElapsedTime = g.Sum(n => n.ElapsedTime),
+                            MachineId = g.Key.MachineId,
+                            StateId = g.Key.StateId,
+                            Operator = g.Key.Operator,
+                            Shift = g.Key.Shift,
+                            OverfeedAvg = g.Key.StateId == 1
+                                ? g.Sum(i => i.ElapsedTime) > 0 ? g.Sum(i => (decimal?)((decimal)(i.OverfeedAvg ?? 0) * (i.ElapsedTime ?? 0))) / g.Sum(i => i.ElapsedTime) : 0
+                                : null,
+                            Period = g.Key.Period,
+                            TypeHistory = "y",
+                            enState = (enState)g.Key.StateId,
+                            State = new StateModel()
+                            {
+                                Id = g.Key.StateId ?? 0,
+                                Code = g.FirstOrDefault()?.State.Description,
+                                Description = g.FirstOrDefault()?.State.Description
+                            }
+                        }).ToList();
+                        return result.ToList();
+                    }
+                }
+
+
+                //List<usp_AggregationState_Result> query = _context.usp_AggregationState(machine.Id, period.StartDate, period.EndDate, (int)period.Aggregation, (int)dataType).ToList();
+                //result = query.Adapt<List<HistoryStateModel>>();
+
             }
             catch (Exception ex)
             {
@@ -83,8 +256,38 @@ namespace FomMonitoringCore.Service
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
-            return result;
+            return null;
+
         }
+
+        private List<HistoryStateModel> BuildHistoryStateModelsOperatorDashboard(IEnumerable<HistoryState> queryResult)
+        {
+            var groups = queryResult.GroupBy(hs => new {hs.MachineId, hs.Operator, hs.Shift, hs.StateId});
+            var result = groups.Select(g => new HistoryStateModel
+            {
+                Id = g.Max(n => n.Id),
+                Day = g.Max(n => n.Day),
+                ElapsedTime = g.Sum(n => n.ElapsedTime),
+                MachineId = g.Key.MachineId,
+                StateId = g.Key.StateId,
+                Operator = g.Key.Operator,
+                Shift = g.Key.Shift,
+                OverfeedAvg = g.Key.StateId == 1
+                    ? g.Sum(i => i.ElapsedTime) > 0 ? g.Sum(i => (decimal?)((decimal)(i.OverfeedAvg ?? 0) * (i.ElapsedTime ?? 0))) / g.Sum(i => i.ElapsedTime) : 0
+                    : null,
+                Period = null,
+                TypeHistory = "d",
+                enState = (enState) g.Key.StateId,
+                State = new StateModel()
+                {
+                    Id = g.Key.StateId ?? 0,
+                    Code = g.FirstOrDefault()?.State.Description,
+                    Description = g.FirstOrDefault()?.State.Description
+                }
+            }).ToList();
+            return result.ToList();
+        }
+
 
         /// <summary>
         /// Ritorna i dettagli degli stati dato l'ID della macchina
