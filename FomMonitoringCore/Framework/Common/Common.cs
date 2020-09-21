@@ -138,7 +138,7 @@ namespace FomMonitoringCore.Framework.Common
                 granularity = enAggregation.Week;
             else if (diffMonth > 1 && diffMonth < 7)
                 granularity = enAggregation.Month;
-            else if (diffMonth >= 7 && diffYear == 1)
+            else if (diffMonth >= 7)
                 granularity = enAggregation.Quarter;
             else if (diffYear > 1)
                 granularity = enAggregation.Year;
