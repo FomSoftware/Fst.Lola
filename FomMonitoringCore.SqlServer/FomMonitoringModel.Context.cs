@@ -107,7 +107,7 @@ namespace FomMonitoringCore.SqlServer
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_HistoricizingStates", machineIdParameter);
         }
-
+    
         public virtual ObjectResult<usp_AggregationState_Result> usp_AggregationState(Nullable<int> machineId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<int> aggregation, Nullable<int> dataType)
         {
             var machineIdParameter = machineId.HasValue ?

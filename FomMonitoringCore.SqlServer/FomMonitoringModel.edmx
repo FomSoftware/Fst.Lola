@@ -1001,23 +1001,6 @@
         <Function Name="usp_HistoricizingStates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
           <Parameter Name="machineId" Type="int" Mode="In" />
         </Function>
-      <Function Name="usp_AggregationPiece" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="machineId" Type="int" Mode="In" />
-          <Parameter Name="startDate" Type="datetime" Mode="In" />
-          <Parameter Name="endDate" Type="datetime" Mode="In" />
-          <Parameter Name="aggregation" Type="int" Mode="In" />
-          <Parameter Name="dataType" Type="int" Mode="In" />
-        </Function>
-        <Function Name="usp_AggregationState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="machineId" Type="int" Mode="In" />
-          <Parameter Name="startDate" Type="datetime" Mode="In" />
-          <Parameter Name="endDate" Type="datetime" Mode="In" />
-          <Parameter Name="aggregation" Type="int" Mode="In" />
-          <Parameter Name="dataType" Type="int" Mode="In" />
-        </Function>
-        <Function Name="usp_CleanMachineData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="machineId" Type="int" Mode="In" />
-        </Function>
         <EntityContainer Name="FomMonitoringModelStoreContainer">
           <EntitySet Name="AuditLogin" EntityType="Self.AuditLogin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bar" EntityType="Self.Bar" Schema="dbo" store:Type="Tables" />
@@ -3050,23 +3033,6 @@
           <FunctionImportMapping FunctionImportName="usp_HistoricizingMessages" FunctionName="FomMonitoringModel.Store.usp_HistoricizingMessages" />
           <FunctionImportMapping FunctionImportName="usp_HistoricizingPieces" FunctionName="FomMonitoringModel.Store.usp_HistoricizingPieces" />
           <FunctionImportMapping FunctionImportName="usp_HistoricizingStates" FunctionName="FomMonitoringModel.Store.usp_HistoricizingStates" />
-          <FunctionImportMapping FunctionImportName="usp_AggregationState" FunctionName="FomMonitoringModel.Store.usp_AggregationState">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FomMonitoringModel.usp_AggregationState_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Day" ColumnName="Day" />
-                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
-                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
-                <ScalarProperty Name="Operator" ColumnName="Operator" />
-                <ScalarProperty Name="OverfeedAvg" ColumnName="OverfeedAvg" />
-                <ScalarProperty Name="Period" ColumnName="Period" />
-                <ScalarProperty Name="Shift" ColumnName="Shift" />
-                <ScalarProperty Name="StateId" ColumnName="StateId" />
-                <ScalarProperty Name="TypeHistory" ColumnName="TypeHistory" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_CleanMachineData" FunctionName="FomMonitoringModel.Store.usp_CleanMachineData" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
