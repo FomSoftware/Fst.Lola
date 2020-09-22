@@ -134,17 +134,13 @@ namespace FomMonitoringCore.Queue.ProcessData
 
         public void HistoricizingPieces(IFomMonitoringEntities context, int idMachine)
         {
-            DateTime? maxHPDate = context.Set<HistoryPiece>().Where(hp => hp.MachineId == idMachine)
+            var maxHpDate = context.Set<HistoryPiece>().Where(hp => hp.MachineId == idMachine)
                 .OrderByDescending(a => a.Day).FirstOrDefault()?.Day;
-            if(maxHPDate == null)
-                maxHPDate = DateTime.MinValue;
-            else
-            {
-                maxHPDate = maxHPDate.Value.Date;
-            }
 
-            List<HistoryPiece> historyPieces = context.Set<Piece>()
-                .Where(p => p.Day >= maxHPDate && p.MachineId == idMachine).ToList()
+            maxHpDate = maxHpDate?.Date ?? DateTime.MinValue;
+
+            var historyPieces = context.Set<Piece>()
+                .Where(p => p.Day >= maxHpDate && p.MachineId == idMachine).ToList()
                 .GroupBy(g => new {g.Day.Value.Date, g.Operator})
                 .Select(n => new HistoryPiece
                 {
@@ -182,10 +178,8 @@ namespace FomMonitoringCore.Queue.ProcessData
                 TypeHistory = "d"
             }).ToList();
 
-            if(aggregato != null)
-                historyPieces.AddRange(aggregato);
-
-            historyPieces.OrderBy(i => i.Day);
+            historyPieces.AddRange(aggregato);
+            
 
             foreach (var cur in historyPieces)
             {
@@ -206,11 +200,10 @@ namespace FomMonitoringCore.Queue.ProcessData
                 }
                 else
                 {
-                    context.Set<HistoryPiece>().Add(row);
+                    context.Set<HistoryPiece>().Add(cur);
                 }
-                context.SaveChanges();
             }
-
+            
         }
 
         public void Dispose()
