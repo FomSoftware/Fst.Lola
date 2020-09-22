@@ -69,4 +69,7 @@
     <None Include="LOLATEST_usp_AggregationPiece.sql" />
     <None Include="LOLATEST_usp_HistoricizingPieces.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="LOLATEST_usp_HistoricizingPieces.sql" />
+  </ItemGroup>
 </Project>
