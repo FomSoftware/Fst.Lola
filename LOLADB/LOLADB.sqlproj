@@ -67,5 +67,6 @@
     <None Include="LOLATEST_usp_AggregationJob.sql" />
     <None Include="LOLATEST_usp_AggregationBar.sql" />
     <None Include="LOLATEST_usp_AggregationPiece.sql" />
+    <None Include="LOLATEST_usp_HistoricizingPieces.sql" />
   </ItemGroup>
 </Project>
