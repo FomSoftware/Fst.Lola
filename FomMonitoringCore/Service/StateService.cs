@@ -1,24 +1,22 @@
-﻿using FomMonitoringCore.SqlServer;
-using FomMonitoringCore.Framework.Common;
-using FomMonitoringCore.Framework.Model;
-using Mapster;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using FomMonitoringCore.Extensions;
+using FomMonitoringCore.Framework.Common;
+using FomMonitoringCore.Framework.Model;
+using FomMonitoringCore.SqlServer;
 using FomMonitoringCore.SqlServer.Repository;
+using Mapster;
 
 namespace FomMonitoringCore.Service
 {
     /// <summary>
-    /// 
     /// </summary>
     public class StateService : IStateService
     {
-        private readonly IHistoryStateRepository _historyStateRepository;
         private readonly IFomMonitoringEntities _context;
-
+        private readonly IHistoryStateRepository _historyStateRepository;
 
 
         public StateService(IHistoryStateRepository historyStateRepository, IFomMonitoringEntities context)
@@ -31,30 +29,31 @@ namespace FomMonitoringCore.Service
         #region HISTORY 
 
         /// <summary>
-        /// Ritorna i dettagli degli stati in base a macchina e periodo
+        ///     Ritorna i dettagli degli stati in base a macchina e periodo
         /// </summary>
         /// <param name="machine"></param>
         /// <param name="period"></param>
         /// <returns>Lista dei dettagli degli stati</returns>
         public List<HistoryStateModel> GetAllHistoryStates(MachineInfoModel machine, PeriodModel period)
         {
-            List<HistoryStateModel> result = new List<HistoryStateModel>();
+            var result = new List<HistoryStateModel>();
 
             try
-            {                
-                string aggType = period.Aggregation.GetDescription();
+            {
+                var aggType = period.Aggregation.GetDescription();
 
-                List<HistoryState> query = _historyStateRepository.Get(hs => hs.MachineId == machine.Id
-                                            && hs.Day >= period.StartDate && hs.Day <= period.EndDate
-                                            && hs.TypeHistory == aggType).ToList();
+                var query = _historyStateRepository.Get(hs => hs.MachineId == machine.Id
+                                                              && hs.Day >= period.StartDate && hs.Day <= period.EndDate
+                                                              && hs.TypeHistory == aggType).ToList();
 
-                result = query.Adapt<List<HistoryStateModel>>();                
+                result = query.Adapt<List<HistoryStateModel>>();
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(),
+                var errMessage = string.Format(ex.GetStringLog(),
                     machine.Id.ToString(),
-                    string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ", period.Aggregation.ToString()));
+                    string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ",
+                        period.Aggregation.ToString()));
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -63,126 +62,129 @@ namespace FomMonitoringCore.Service
 
 
         /// <summary>
-        /// Ritorna gli aggregati degli stati in mase al tipo di aggregazione
+        ///     Ritorna gli aggregati degli stati in mase al tipo di aggregazione
         /// </summary>
         /// <param name="machine"></param>
         /// <param name="period"></param>
+        /// <param name="dataType"></param>
         /// <returns>Lista dei dettagli degli stati</returns>
-        public List<HistoryStateModel> GetAggregationStates(MachineInfoModel machine, PeriodModel period, enDataType dataType)
+        public List<HistoryStateModel> GetAggregationStates(MachineInfoModel machine, PeriodModel period,
+            enDataType dataType)
         {
-
             try
             {
                 IEnumerable<HistoryState> queryResult;
-                if (dataType == enDataType.Dashboard)
+                switch (dataType)
                 {
-                    queryResult = _historyStateRepository.Get(hs => hs.Day <= period.EndDate
+                    case enDataType.Dashboard:
+                        queryResult = _historyStateRepository.Get(hs => hs.Day <= period.EndDate
                                                                         && hs.Day >= period.StartDate
                                                                         && hs.MachineId == machine.Id
                                                                         && hs.Shift == null
                                                                         && hs.Operator == null);
-                    return BuildHistoryStateModelsOperatorDashboard(queryResult);
-                }
-
-                if (dataType == enDataType.Operators)
-                {
-                    queryResult = _historyStateRepository.Get(hs => hs.Day <= period.EndDate
-                                                                    && hs.Day >= period.StartDate
-                                                                    && hs.MachineId == machine.Id
-                                                                    && hs.Shift == null
-                                                                    && hs.Operator != null);
-                    return BuildHistoryStateModelsOperatorDashboard(queryResult);
-                }
-
-                if (dataType == enDataType.Historical)
-                {
-                    queryResult = _historyStateRepository.Get(hs => hs.Day <= period.EndDate
-                                                                    && hs.Day >= period.StartDate
-                                                                    && hs.MachineId == machine.Id
-                                                                    && hs.Shift == null
-                                                                    && hs.Operator == null, null, "State");
-                    if (period.Aggregation == enAggregation.Day)
+                        return BuildHistoryStateModelsOperatorDashboard(queryResult);
+                    case enDataType.Operators:
+                        queryResult = _historyStateRepository.Get(hs => hs.Day <= period.EndDate
+                                                                        && hs.Day >= period.StartDate
+                                                                        && hs.MachineId == machine.Id
+                                                                        && hs.Shift == null
+                                                                        && hs.Operator != null);
+                        return BuildHistoryStateModelsOperatorDashboard(queryResult);
+                    case enDataType.Historical:
                     {
-                        var result = queryResult.Select(g => new HistoryStateModel
+                        queryResult = _historyStateRepository.Get(hs => hs.Day <= period.EndDate
+                                                                        && hs.Day >= period.StartDate
+                                                                        && hs.MachineId == machine.Id
+                                                                        && hs.Shift == null
+                                                                        && hs.Operator == null, null, "State");
+                        switch (period.Aggregation)
                         {
-                            Id = g.Id,
-                            Day = g.Day,
-                            ElapsedTime = g.ElapsedTime,
-                            MachineId = g.MachineId,
-                            StateId = g.StateId,
-                            Operator = g.Operator,
-                            Shift = g.Shift,
-                            OverfeedAvg = (decimal?)g.OverfeedAvg,
-                            Period = g.Period,
-                            TypeHistory = g.TypeHistory,
-                            enState = (enState)g.StateId,
-                            State = new StateModel()
+                            case enAggregation.Day:
                             {
-                                Id = g.StateId ?? 0,
-                                Code = g.State.Description,
-                                Description = g.State.Description
+                                int? Func(HistoryState hs)
+                                {
+                                    return hs.Period;
+                                }
+
+                                const string typeHistory = "d";
+                                var result = BuildAggregationList(queryResult, typeHistory, Func);
+                                return result.ToList();
                             }
-                        }).ToList();
+                            case enAggregation.Week:
+                            {
+                                int? Func(HistoryState hs)
+                                {
+                                    if (hs.Day != null)
+                                        return hs.Day.Value.Year * 100 + hs.Day.Value.GetWeekNumber();
+                                    return null;
+                                }
 
-                        return result;
-                    }
+                                const string typeHistory = "w";
+                                var result = BuildAggregationList(queryResult, typeHistory, Func);
+                                return result.ToList();
+                            }
+                            case enAggregation.Month:
+                            {
+                                int? Func(HistoryState hs)
+                                {
+                                    if (hs.Day != null)
+                                        return hs.Day.Value.Year * 100 + hs.Day.Value.Month;
+                                    return null;
+                                }
 
-                    if (period.Aggregation == enAggregation.Week)
-                    {
+                                const string typeHistory = "m";
+                                var result = BuildAggregationList(queryResult, typeHistory, Func);
+                                return result.ToList();
+                            }
+                            case enAggregation.Quarter:
+                            {
+                                int? Func(HistoryState hs)
+                                {
+                                    if (hs.Day != null)
+                                        return hs.Day.Value.Year * 100 + hs.Day.Value.GetQuarter();
+                                    return null;
+                                }
 
-                        int Func(HistoryState hs) => hs.Day.Value.Year * 100 + hs.Day.Value.GetWeekNumber();
+                                const string typeHistory = "q";
+                                var result = BuildAggregationList(queryResult, typeHistory, Func);
+                                return result.ToList();
+                            }
+                            case enAggregation.Year:
+                            {
+                                int? Func(HistoryState hs)
+                                {
+                                    if (hs.Day != null)
+                                        return hs.Day.Value.Year * 100 + hs.Day.Value.Year;
+                                    return null;
+                                }
 
-                        const string typeHistory = "w";
-                        var result = BuildAggregationList(queryResult, typeHistory, Func);
-                        return result.ToList();
-                    }
+                                const string typeHistory = "y";
+                                var result = BuildAggregationList(queryResult, typeHistory, Func);
+                                return result.ToList();
+                            }
+                        }
 
-                    if (period.Aggregation == enAggregation.Month)
-                    {
-
-                        int Func(HistoryState hs) => hs.Day.Value.Year * 100 + hs.Day.Value.Month;
-                        const string typeHistory = "m";
-                        var result = BuildAggregationList(queryResult, typeHistory, Func);
-                        return result.ToList();
-                    }
-
-                    if (period.Aggregation == enAggregation.Quarter)
-                    {
-                        int Func(HistoryState hs) => hs.Day.Value.Year * 100 + hs.Day.Value.GetQuarter();
-
-                        const string typeHistory = "q";
-                        var result = BuildAggregationList(queryResult, typeHistory, Func);
-                        return result.ToList();
-                    }
-
-                    if (period.Aggregation == enAggregation.Year)
-                    {
-                        int Func(HistoryState hs) => hs.Day.Value.Year * 100 + hs.Day.Value.Year;
-                        const string typeHistory = "y";
-                        var result = BuildAggregationList(queryResult, typeHistory, Func);
-                        return result.ToList();
+                        break;
                     }
                 }
-
-
             }
             catch (Exception ex)
             {
                 var errMessage = string.Format(ex.GetStringLog(),
                     machine.Id.ToString(),
-                    string.Concat(period.StartDate.ToString(CultureInfo.InvariantCulture), " - ", period.EndDate.ToString(CultureInfo.InvariantCulture), " - ", period.Aggregation.ToString()),
+                    string.Concat(period.StartDate.ToString(CultureInfo.InvariantCulture), " - ",
+                        period.EndDate.ToString(CultureInfo.InvariantCulture), " - ", period.Aggregation.ToString()),
                     dataType.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
             return null;
-
         }
 
-        private List<HistoryStateModel> BuildAggregationList(IEnumerable<HistoryState> queryResult, string typeHistory, Func<HistoryState, int> periodFunc)
+        private IEnumerable<HistoryStateModel> BuildAggregationList(IEnumerable<HistoryState> queryResult,
+            string typeHistory, Func<HistoryState, int?> periodFunc)
         {
-            
-            var groups =  queryResult.GroupBy(hs => new
+            var groups = queryResult.GroupBy(hs => new
             {
                 hs.MachineId,
                 hs.StateId,
@@ -200,15 +202,14 @@ namespace FomMonitoringCore.Service
                 Shift = null,
                 OverfeedAvg = g.Key.StateId == 1
                     ? g.Sum(i => i.ElapsedTime) > 0
-                        ?
-                        g.Sum(i => (decimal?) ((decimal) (i.OverfeedAvg ?? 0) * (i.ElapsedTime ?? 0))) /
-                        g.Sum(i => i.ElapsedTime)
+                        ? g.Sum(i => (decimal?) ((decimal) (i.OverfeedAvg ?? 0) * (i.ElapsedTime ?? 0))) /
+                          g.Sum(i => i.ElapsedTime)
                         : 0
                     : null,
                 Period = g.Key.Period,
                 TypeHistory = typeHistory,
                 enState = (enState) g.Key.StateId,
-                State = new StateModel()
+                State = new StateModel
                 {
                     Id = g.Key.StateId ?? 0,
                     Code = g.FirstOrDefault()?.State.Description,
@@ -218,7 +219,8 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        private List<HistoryStateModel> BuildHistoryStateModelsOperatorDashboard(IEnumerable<HistoryState> queryResult)
+        private List<HistoryStateModel> BuildHistoryStateModelsOperatorDashboard(
+            IEnumerable<HistoryState> queryResult)
         {
             var groups = queryResult.GroupBy(hs => new {hs.MachineId, hs.Operator, hs.Shift, hs.StateId});
             var result = groups.Select(g => new HistoryStateModel
@@ -231,12 +233,16 @@ namespace FomMonitoringCore.Service
                 Operator = g.Key.Operator,
                 Shift = g.Key.Shift,
                 OverfeedAvg = g.Key.StateId == 1
-                    ? g.Sum(i => i.ElapsedTime) > 0 ? g.Sum(i => (decimal?)((decimal)(i.OverfeedAvg ?? 0) * (i.ElapsedTime ?? 0))) / g.Sum(i => i.ElapsedTime) : 0
+                    ? g.Sum(i => i.ElapsedTime) > 0
+                        ?
+                        g.Sum(i => (decimal?) ((decimal) (i.OverfeedAvg ?? 0) * (i.ElapsedTime ?? 0))) /
+                        g.Sum(i => i.ElapsedTime)
+                        : 0
                     : null,
                 Period = null,
                 TypeHistory = "d",
                 enState = (enState) g.Key.StateId,
-                State = new StateModel()
+                State = new StateModel
                 {
                     Id = g.Key.StateId ?? 0,
                     Code = g.FirstOrDefault()?.State.Description,
@@ -248,35 +254,39 @@ namespace FomMonitoringCore.Service
 
 
         /// <summary>
-        /// Ritorna i dettagli degli stati dato l'ID della macchina
+        ///     Ritorna i dettagli degli stati dato l'ID della macchina
         /// </summary>
         /// <param name="machineId"></param>
         /// <param name="dateFrom"></param>
         /// <param name="dateTo"></param>
         /// <param name="typePeriod"></param>
         /// <returns>Lista dei dettagli degli stati</returns>
-        public List<HistoryStateModel> GetAllHistoryStatesByMachineId(int machineId, DateTime dateFrom, DateTime dateTo, enAggregation typePeriod)
+        public List<HistoryStateModel> GetAllHistoryStatesByMachineId(int machineId, DateTime dateFrom, DateTime dateTo,
+            enAggregation typePeriod)
         {
-            List<HistoryStateModel> result = new List<HistoryStateModel>();
+            var result = new List<HistoryStateModel>();
             try
             {
-
-                    List<HistoryState> historyStateList = _historyStateRepository.Get(w => w.MachineId == machineId &&
-                        w.Period.Value.PeriodToDate(typePeriod) >= dateFrom &&
-                        w.Period.Value.PeriodToDate(typePeriod) <= dateTo).ToList();
-                    result = historyStateList.Adapt<List<HistoryStateModel>>();
-                
+                var historyStateList = _historyStateRepository.Get(w => w.MachineId == machineId &&
+                                                                        w.Period.Value.PeriodToDate(typePeriod) >=
+                                                                        dateFrom &&
+                                                                        w.Period.Value.PeriodToDate(typePeriod) <=
+                                                                        dateTo).ToList();
+                result = historyStateList.Adapt<List<HistoryStateModel>>();
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), machineId.ToString(), dateFrom.ToString(), dateTo.ToString(), typePeriod.ToString());
+                var errMessage = string.Format(ex.GetStringLog(), machineId.ToString(),
+                    dateFrom.ToString(CultureInfo.InvariantCulture), dateTo.ToString(CultureInfo.InvariantCulture),
+                    typePeriod.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
+
             return result;
         }
 
         /// <summary>
-        /// Ritorna i dettagli dello stato specificato dato l'ID della macchina
+        ///     Ritorna i dettagli dello stato specificato dato l'ID della macchina
         /// </summary>
         /// <param name="machineId"></param>
         /// <param name="stateId"></param>
@@ -284,27 +294,32 @@ namespace FomMonitoringCore.Service
         /// <param name="dateTo"></param>
         /// <param name="typePeriod"></param>
         /// <returns>Lista dei dettagli degli stati</returns>
-        public List<HistoryStateModel> GetHistoryStateByMachineIdStateId(int machineId, int stateId, DateTime dateFrom, DateTime dateTo, enAggregation typePeriod)
+        public List<HistoryStateModel> GetHistoryStateByMachineIdStateId(int machineId, int stateId, DateTime dateFrom,
+            DateTime dateTo, enAggregation typePeriod)
         {
-            List<HistoryStateModel> result = new List<HistoryStateModel>();
+            var result = new List<HistoryStateModel>();
 
             try
             {
-                List<HistoryState> historyStateList = _historyStateRepository.Get(w => w.MachineId == machineId && w.StateId == stateId && w.Period != null &&
-                    w.Period.Value.PeriodToDate(typePeriod) >= dateFrom && w.Period.Value.PeriodToDate(typePeriod) <= dateTo).ToList();
+                var historyStateList = _historyStateRepository.Get(w =>
+                    w.MachineId == machineId && w.StateId == stateId && w.Period != null &&
+                    w.Period.Value.PeriodToDate(typePeriod) >= dateFrom &&
+                    w.Period.Value.PeriodToDate(typePeriod) <= dateTo).ToList();
                 result = historyStateList.Adapt<List<HistoryStateModel>>();
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), machineId.ToString(), stateId.ToString(), dateFrom.ToString(), dateTo.ToString(), typePeriod.ToString());
+                var errMessage = string.Format(ex.GetStringLog(), machineId.ToString(), stateId.ToString(),
+                    dateFrom.ToString(), dateTo.ToString(), typePeriod.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
+
             return result;
         }
 
 
         /// <summary>
-        /// Ritorna la data più vecchia dei dati di una certa macchina
+        ///     Ritorna la data più vecchia dei dati di una certa macchina
         /// </summary>
         /// <param name="machineId"></param>
         /// <param name="typePeriod"></param>
@@ -314,34 +329,36 @@ namespace FomMonitoringCore.Service
             DateTime? result = null;
             try
             {
-                int? period = _historyStateRepository.Get(w => w.MachineId == machineId && w.TypeHistory == typePeriod.GetDescription()).Min(m => (int?)m.Period);
-                result = period == null ? null : ((int)period).PeriodToDate(typePeriod);
-                
+                var period = _historyStateRepository
+                    .Get(w => w.MachineId == machineId && w.TypeHistory == typePeriod.GetDescription())
+                    .Min(m => m.Period);
+                result = period == null ? null : ((int) period).PeriodToDate(typePeriod);
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), machineId.ToString(), typePeriod.ToString());
+                var errMessage = string.Format(ex.GetStringLog(), machineId.ToString(), typePeriod.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
+
             return result;
         }
 
-        public List<EfficiencyStateMachineModel> GetOperatorsActivity(MachineInfoModel machine, DateTime dateFrom, DateTime dateTo)
+        public List<EfficiencyStateMachineModel> GetOperatorsActivity(MachineInfoModel machine, DateTime dateFrom,
+            DateTime dateTo)
         {
-            var tmp =  _context.Set<HistoryState>()
-                 .Where(w => w.MachineId == machine.Id && w.Day >= dateFrom && w.Day <= dateTo && w.Operator != null 
-                             && w.Operator != "Other" && w.StateId != (int?)enState.Offline && w.Shift == null)
-                 .GroupBy(g => g.Operator).ToList();
+            var tmp = _context.Set<HistoryState>()
+                .Where(w => w.MachineId == machine.Id && w.Day >= dateFrom && w.Day <= dateTo && w.Operator != null
+                            && w.Operator != "Other" && w.StateId != (int?) enState.Offline && w.Shift == null)
+                .GroupBy(g => g.Operator).ToList();
 
-            List<EfficiencyStateMachineModel> totTime = tmp.Select(s => new EfficiencyStateMachineModel
+            var totTime = tmp.Select(s => new EfficiencyStateMachineModel
             {
-                     TotalTime = s.Sum(x => x.ElapsedTime),
-                     Operator = s.Key,
-                     machineType = machine.MachineTypeId
-                 }).ToList();
+                TotalTime = s.Sum(x => x.ElapsedTime),
+                Operator = s.Key,
+                machineType = machine.MachineTypeId
+            }).ToList();
 
             if (totTime.Count > 0)
-            {
                 foreach (var item in totTime)
                 {
                     //tot. pezzi prodotti
@@ -354,36 +371,34 @@ namespace FomMonitoringCore.Service
 
                     //tempo netto
                     var tmp3 = _context.Set<HistoryState>()
-                        .Where(w => w.MachineId == machine.Id && w.Day >= dateFrom && w.Day <= dateTo 
-                                    && w.Operator == item.Operator &&  w.Shift == null && w.Operator != null &&
-                                    (w.StateId == (int)enState.Production || w.StateId == (int) enState.Manual)).ToList();
+                        .Where(w => w.MachineId == machine.Id && w.Day >= dateFrom && w.Day <= dateTo
+                                    && w.Operator == item.Operator && w.Shift == null && w.Operator != null &&
+                                    (w.StateId == (int) enState.Production || w.StateId == (int) enState.Manual))
+                        .ToList();
 
-                    item.StatesTime = tmp3.GroupBy(g => g.StateId )
+                    item.StatesTime = tmp3.GroupBy(g => g.StateId)
                         .ToDictionary(s => s.Key, s => s.Sum(x => x.ElapsedTime));
                 }
-            }
 
             return totTime;
-
         }
 
         public List<EfficiencyStateMachineModel> GetDayActivity(MachineInfoModel machine, List<DateTime> days)
         {
-            List<EfficiencyStateMachineModel> res = new List<EfficiencyStateMachineModel>();
+            var res = new List<EfficiencyStateMachineModel>();
             foreach (var day in days)
             {
-                EfficiencyStateMachineModel result = new EfficiencyStateMachineModel();
-                DateTime dateTo = day.AddDays(1);
+                var result = new EfficiencyStateMachineModel();
+                var dateTo = day.AddDays(1);
                 result.StatesTime = _context.Set<HistoryState>()
-                    .Where(w => w.MachineId == machine.Id && w.Day >= day && w.Day <= dateTo && w.StateId != (int?)enState.Offline
+                    .Where(w => w.MachineId == machine.Id && w.Day >= day && w.Day <= dateTo &&
+                                w.StateId != (int?) enState.Offline
                                 && w.Operator != null && w.Shift == null)
                     .GroupBy(g => g.StateId).ToDictionary(s => s.Key, s => s.Sum(x => x.ElapsedTime));
 
                 result.TotalTime = 0;
                 if (result.StatesTime != null && result.StatesTime.Count > 0)
-                {
                     result.TotalTime = result.StatesTime.Values.Sum();
-                }
 
                 result.machineType = machine.MachineTypeId;
                 result.Day = day;
@@ -395,7 +410,7 @@ namespace FomMonitoringCore.Service
                 result.CompletedCount = tmp2.Sum(x => x.CompletedCount);
                 res.Add(result);
             }
-            
+
             return res;
         }
 
@@ -405,6 +420,5 @@ namespace FomMonitoringCore.Service
         }
 
         #endregion
-
-        }
+    }
 }

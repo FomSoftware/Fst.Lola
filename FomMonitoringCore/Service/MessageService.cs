@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using FomMonitoringCore.Extensions;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.SqlServer;
 using FomMonitoringCore.SqlServer.Repository;
 using Mapster;
-using FomMonitoringCore.Extensions;
 
 namespace FomMonitoringCore.Service
 {
     public class MessageService : IMessageService
     {
+        private readonly IAccountService _accountService;
         private readonly IFomMonitoringEntities _context;
         private readonly IHistoryMessageRepository _historyMessageRepository;
         private readonly ILanguageService _languageService;
         private readonly IMachineRepository _machineRepository;
         private readonly IMessageMachineRepository _messageMachineRepository;
         private readonly IMessagesIndexRepository _messagesIndexRepository;
-        private readonly IAccountService _accountService;
 
         public MessageService(
             IMessageMachineRepository messageMachineRepository,
@@ -57,133 +57,73 @@ namespace FomMonitoringCore.Service
 
                 var machineGroup = _context.Set<MachineGroup>()
                     .FirstOrDefault(n => n.MachineGroupName == actualMachineGroup)?.Id;
+
+                var queryResult = _historyMessageRepository
+                    .GetHistoryMessage(machine.Id, period.StartDate, period.EndDate, machineGroup);
                 switch (dataType)
                 {
                     case enDataType.Historical:
-                        if (period.Aggregation == enAggregation.Day)
+                        switch (period.Aggregation)
                         {
-                            var historyMessages = _historyMessageRepository
-                                .GetHistoryMessage(machine.Id, period.StartDate, period.EndDate, machineGroup)
-                                .GroupBy(g => new
+                            case enAggregation.Day:
+                            {
+                                int? Func(HistoryMessage hs)
                                 {
-                                    Year = g.Day.HasValue ? (int?) g.Day.Value.Year : null,
-                                    Day = g.Day.Value.DayOfYear,
-                                    g.MachineId,
-                                    TypeId = g.MessagesIndex?.MessageType.Id,
-                                    g.Period
-                                }).ToList()
-                                .Select(s => new AggregationMessageModel
-                                {
-                                    Count = s.Sum(x => x.Count),
-                                    Day = s.Max(i => i.Day),
-                                    MachineId = s.Key.MachineId,
-                                    Period = s.Key.Period,
-                                    TypeHistory = "d",
-                                    Type = s.Key.TypeId
-                                }).ToList();
+                                    return hs.Period;
+                                }
 
-                            return historyMessages.BuildAdapter().AdaptToType<List<HistoryMessageModel>>();
-                        }
-
-                        if (period.Aggregation == enAggregation.Week)
-                        {
-                            var historyMessagesWeek = _historyMessageRepository
-                                .GetHistoryMessage(machine.Id, period.StartDate, period.EndDate, machineGroup)
-                                .GroupBy(g => new
+                                const string typeHistory = "d";
+                                var result = BuildAggregationList(queryResult, typeHistory, Func);
+                                return result.ToList();
+                            }
+                            case enAggregation.Week:
+                            {
+                                int? Func(HistoryMessage hs)
                                 {
-                                    Year = g.Day.HasValue ? (int?) g.Day.Value.Year : null,
-                                    Week = g.Day.Value.GetWeekNumber(),
-                                    g.MachineId,
-                                    TypeId = g.MessagesIndex?.MessageType.Id,
-                                    Period = g.Day.HasValue
-                                        ? (int?) g.Day.Value.Year * 100 + g.Day.Value.GetWeekNumber()
-                                        : null
-                                }).ToList().Select(s => new AggregationMessageModel
-                                {
-                                    Count = s.Sum(x => x.Count),
-                                    Day = s.Max(i => i.Day),
-                                    Type = s.Key.TypeId,
-                                    MachineId = s.Key.MachineId,
-                                    Period = s.Key.Period,
-                                    TypeHistory = "w"
-                                }).ToList();
+                                    return hs.Day.HasValue
+                                        ? (int?) hs.Day.Value.Year * 100 + hs.Day.Value.GetWeekNumber()
+                                        : null;
+                                }
 
-                            return historyMessagesWeek.BuildAdapter().AdaptToType<List<HistoryMessageModel>>();
-                        }
-
-                        if (period.Aggregation == enAggregation.Month)
-                        {
-                            var historyMessagesMonth = _historyMessageRepository
-                                .GetHistoryMessage(machine.Id, period.StartDate, period.EndDate, machineGroup)
-                                .GroupBy(g => new
+                                const string typeHistory = "w";
+                                var result = BuildAggregationList(queryResult, typeHistory, Func);
+                                return result.ToList();
+                            }
+                            case enAggregation.Month:
+                            {
+                                int? Func(HistoryMessage hs)
                                 {
-                                    Year = g.Day.HasValue ? (int?) g.Day.Value.Year : null,
-                                    Week = g.Day.Value.Month,
-                                    g.MachineId,
-                                    Type = g.MessagesIndex?.MessageTypeId,
-                                    Period = g.Day.HasValue ? (int?) g.Day.Value.Year * 100 + g.Day.Value.Month : null
-                                }).ToList().Select(s => new AggregationMessageModel
-                                {
-                                    Type = s.Key.Type,
-                                    Count = s.Sum(x => x.Count),
-                                    Day = s.Max(i => i.Day),
-                                    MachineId = s.Key.MachineId,
-                                    Period = s.Key.Period,
-                                    TypeHistory = "m"
-                                }).ToList();
+                                    return hs.Day.HasValue ? (int?) hs.Day.Value.Year * 100 + hs.Day.Value.Month : null;
+                                }
 
-                            return historyMessagesMonth.BuildAdapter().AdaptToType<List<HistoryMessageModel>>();
-                        }
-
-                        if (period.Aggregation == enAggregation.Quarter)
-                        {
-                            var historyMessagesQuarter = _historyMessageRepository
-                                .GetHistoryMessage(machine.Id, period.StartDate, period.EndDate, machineGroup)
-                                .GroupBy(g => new
+                                const string typeHistory = "m";
+                                var result = BuildAggregationList(queryResult, typeHistory, Func);
+                                return result.ToList();
+                            }
+                            case enAggregation.Quarter:
+                            {
+                                int? Func(HistoryMessage hs)
                                 {
-                                    Year = g.Day.HasValue ? (int?) g.Day.Value.Year : null,
-                                    Week = g.Day.Value.Month,
-                                    g.MachineId,
-                                    TypeId = g.MessagesIndex?.MessageType.Id,
-                                    Period = g.Day.HasValue
-                                        ? (int?) g.Day.Value.Year * 100 + GetQuarter(g.Day ?? DateTime.UtcNow)
-                                        : null
-                                }).ToList().Select(s => new AggregationMessageModel
-                                {
-                                    Count = s.Sum(x => x.Count),
-                                    Day = s.Max(i => i.Day),
-                                    MachineId = s.Key.MachineId,
-                                    Period = s.Key.Period,
-                                    TypeHistory = "q",
-                                    Type = s.Key.TypeId
-                                }).ToList();
+                                    return hs.Day.HasValue
+                                        ? (int?) hs.Day.Value.Year * 100 + GetQuarter(hs.Day ?? DateTime.UtcNow)
+                                        : null;
+                                }
 
-                            return historyMessagesQuarter.BuildAdapter().AdaptToType<List<HistoryMessageModel>>();
-                        }
-
-                        if (period.Aggregation == enAggregation.Year)
-                        {
-                            var historyMessagesYear = _historyMessageRepository
-                                .GetHistoryMessage(machine.Id, period.StartDate, period.EndDate, machineGroup)
-                                .GroupBy(g => new
+                                const string typeHistory = "q";
+                                var result = BuildAggregationList(queryResult, typeHistory, Func);
+                                return result.ToList();
+                            }
+                            case enAggregation.Year:
+                            {
+                                int? Func(HistoryMessage hs)
                                 {
-                                    Year = g.Day.HasValue ? (int?) g.Day.Value.Year : null,
-                                    Week = g.Day.Value.Month,
-                                    g.MachineId,
-                                    TypeId = g.MessagesIndex?.MessageType.Id,
-                                    Period = g.Day.HasValue ? (int?) g.Day.Value.Year : null
-                                }).ToList().Select(s => new AggregationMessageModel
-                                {
-                                    Count = s.Sum(x => x.Count),
-                                    Day = s.Max(i => i.Day),
-                                    //ElapsedTime = s.Sum(i => i.ElapsedTime),
-                                    MachineId = s.Key.MachineId,
-                                    Period = s.Key.Period,
-                                    TypeHistory = "y",
-                                    Type = s.Key.TypeId
-                                }).ToList();
+                                    return hs.Day.HasValue ? (int?) hs.Day.Value.Year * 100 + hs.Day.Value.Year : null;
+                                }
 
-                            return historyMessagesYear.BuildAdapter().AdaptToType<List<HistoryMessageModel>>();
+                                const string typeHistory = "y";
+                                var result = BuildAggregationList(queryResult, typeHistory, Func);
+                                return result.ToList();
+                            }
                         }
 
                         break;
@@ -194,19 +134,14 @@ namespace FomMonitoringCore.Service
                             {
                                 g.MachineId,
                                 Description = g.GetDescription(cl),
-                                //g.Group,
-                                //g.StateId,
                                 g.MessagesIndex.MessageCode,
                                 g.MessagesIndex?.MessageTypeId
                             }).ToList().Select(s => new AggregationMessageModel
                             {
                                 Id = s.Max(m => m.Id),
                                 Code = s.Key.MessageCode,
-                                //StateId = s.Key.StateId,
                                 Count = s.Sum(i => i.Count),
                                 Day = s.Max(i => i.Day),
-                                //ElapsedTime = s.Sum(i => i.ElapsedTime),
-                                //Group = s.Key.Group,
                                 MachineId = s.Key.MachineId,
                                 TypeHistory = "y",
                                 Description = s.Key.Description,
@@ -226,10 +161,11 @@ namespace FomMonitoringCore.Service
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
-            return null;
+            return new List<HistoryMessageModel>();
         }
 
         #endregion
+
 
         /// <summary>
         ///     Ritorna i dettagli degli allarmi in base a macchina e periodo
@@ -382,7 +318,7 @@ namespace FomMonitoringCore.Service
                         IgnoreDate = s.OrderByDescending(i => i.Day).FirstOrDefault().IgnoreDate,
                         MachineId = machine.Id,
                         Machine = _context.Set<Machine>().Find(machine.Id)
-            }).ToList()
+                    }).ToList()
                     .OrderByDescending(o => o.Day).ToList();
 
                 query = query.Where(m =>
@@ -396,7 +332,7 @@ namespace FomMonitoringCore.Service
                            m.IgnoreDate != null && span > 0 && m.IgnoreDate < m.GetInitialSpanDate(span) ||
                            m.IgnoreDate == null && span == 0;
                 }).ToList();
-               
+
                 var cl = _languageService.GetCurrentLanguage() ?? 0;
                 result = query.BuildAdapter().AddParameters("idLanguage", cl).AdaptToType<List<MessageMachineModel>>();
             }
@@ -418,7 +354,8 @@ namespace FomMonitoringCore.Service
             var notificationsUser = GetMaintenanceMessages(machine, period);
             var notificationsRead = _context.Set<MessageMachineNotification>().Where(n => n.UserId == userId)
                 .Select(nu => nu.IdMessageMachine).ToList();
-            notificationsUser = notificationsUser.Where(o => notificationsRead.All(i => i != o.Id)).OrderBy(n => n.Day).ToList();
+            notificationsUser = notificationsUser.Where(o => notificationsRead.All(i => i != o.Id)).OrderBy(n => n.Day)
+                .ToList();
 
             return notificationsUser;
         }
@@ -453,7 +390,7 @@ namespace FomMonitoringCore.Service
         {
             try
             {
-                MessageMachine cur = _context.Set<MessageMachine>().Find(messageId);
+                var cur = _context.Set<MessageMachine>().Find(messageId);
                 cur.IgnoreDate = DateTime.UtcNow;
                 cur.UserId = _accountService.GetLoggedUser().ID.ToString();
                 _context.SaveChanges();
@@ -472,7 +409,8 @@ namespace FomMonitoringCore.Service
         public void SetNotificationAsRead(int id, string userId)
         {
             if (_context.Set<MessageMachineNotification>()
-                .Any(m => m.IdMessageMachine == id && DbFunctions.TruncateTime(m.ReadingDate) == DbFunctions.TruncateTime(DateTime.UtcNow))) return;
+                .Any(m => m.IdMessageMachine == id &&
+                          DbFunctions.TruncateTime(m.ReadingDate) == DbFunctions.TruncateTime(DateTime.UtcNow))) return;
 
             _context.Set<MessageMachineNotification>().Add(new MessageMachineNotification
             {
@@ -482,7 +420,6 @@ namespace FomMonitoringCore.Service
             });
 
             _context.SaveChanges();
-
         }
 
         /// Per ogni macchina non scaduta e con data di attivazione valida estrae i messaggi periodici da controllare 
@@ -518,14 +455,10 @@ namespace FomMonitoringCore.Service
                         data = (DateTime) machine.ActivationDate?.AddHours((long) messaggio.PeriodicSpan);
 
                         if (mess == null)
-                        {
                             InsertMessageMachine(machine, messaggio.MessageCode, data);
-                        }
                         else if (mess.IgnoreDate != null)
-                        {
                             // aggiorno la data di scadenza all'intervallo 
                             mess.Day = (DateTime) mess.IgnoreDate?.AddHours((long) messaggio.PeriodicSpan);
-                        }
                         _context.SaveChanges();
                     }
                 }
@@ -554,16 +487,40 @@ namespace FomMonitoringCore.Service
             _context.Set<MessageMachine>().Add(msg);
         }
 
+        public void Dispose()
+        {
+            _context?.Dispose();
+        }
+
+        private List<HistoryMessageModel> BuildAggregationList(IEnumerable<HistoryMessage> queryResult,
+            string typeHistory,
+            Func<HistoryMessage, int?> periodFunc)
+        {
+            var groups = queryResult.GroupBy(hs => new
+            {
+                hs.MachineId,
+                hs.MessagesIndex?.MessageTypeId,
+                Period = periodFunc.Invoke(hs)
+            });
+
+            var result = groups.Select(s => new HistoryMessageModel
+            {
+                Type = s.Key.MessageTypeId,
+                Count = s.Sum(x => x.Count),
+                Day = s.Max(i => i.Day),
+                MachineId = s.Key.MachineId,
+                Period = s.Key.Period,
+                TypeHistory = typeHistory
+            }).ToList();
+
+            return result;
+        }
+
         private static int GetQuarter(DateTime fromDate)
         {
             var month = fromDate.Month - 1;
             var month2 = Math.Abs(month / 3) + 1;
             return month2;
-        }
-
-        public void Dispose()
-        {
-            _context?.Dispose();
         }
     }
 }

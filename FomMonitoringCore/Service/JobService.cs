@@ -42,7 +42,7 @@ namespace FomMonitoringCore.Service
             {
                 result = _context.Set<HistoryJob>().Where(hb =>
                         hb.MachineId == machine.Id && hb.Day >= period.StartDate && hb.Day <= period.EndDate).ToList()
-                    .GroupBy(g => new {g.MachineId, g.Code, g.TotalPieces, g.Day})
+                    .GroupBy(g => new {g.MachineId, g.Code, g.TotalPieces, Day = g.Day.Value.Date})
                     .Select(n => new HistoryJobModel
                     {
                         Id = n.Max(i => i.Id),
