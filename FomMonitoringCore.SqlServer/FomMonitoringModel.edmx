@@ -995,9 +995,6 @@
         <Function Name="usp_HistoricizingMessages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
           <Parameter Name="machineId" Type="int" Mode="In" />
         </Function>
-        <Function Name="usp_HistoricizingPieces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
-          <Parameter Name="machineId" Type="int" Mode="In" />
-        </Function>
         <Function Name="usp_HistoricizingStates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
           <Parameter Name="machineId" Type="int" Mode="In" />
         </Function>
@@ -3031,7 +3028,6 @@
           <FunctionImportMapping FunctionImportName="usp_HistoricizingAll" FunctionName="FomMonitoringModel.Store.usp_HistoricizingAll" />
           <FunctionImportMapping FunctionImportName="usp_HistoricizingBars" FunctionName="FomMonitoringModel.Store.usp_HistoricizingBars" />
           <FunctionImportMapping FunctionImportName="usp_HistoricizingMessages" FunctionName="FomMonitoringModel.Store.usp_HistoricizingMessages" />
-          <FunctionImportMapping FunctionImportName="usp_HistoricizingPieces" FunctionName="FomMonitoringModel.Store.usp_HistoricizingPieces" />
           <FunctionImportMapping FunctionImportName="usp_HistoricizingStates" FunctionName="FomMonitoringModel.Store.usp_HistoricizingStates" />
         </EntityContainerMapping>
       </Mapping>
