@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using Autofac;
+using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Queue.Dto;
 using FomMonitoringCore.Service;
 using FomMonitoringCore.SqlServer;
@@ -109,8 +110,9 @@ namespace FomMonitoringCore.Queue.ProcessData
                         }
 
                         context.SaveChanges();
-                        
-                        context.usp_HistoricizingPieces(mac.Id);
+
+                        //context.usp_HistoricizingPieces(mac.Id);
+                        HistoricizingPieces(context, mac.Id);
                         context.usp_HistoricizingBars(mac.Id);
 
                         context.SaveChanges();
@@ -128,6 +130,87 @@ namespace FomMonitoringCore.Queue.ProcessData
             }
 
             return true;
+        }
+
+        public void HistoricizingPieces(IFomMonitoringEntities context, int idMachine)
+        {
+            DateTime? maxHPDate = context.Set<HistoryPiece>().Where(hp => hp.MachineId == idMachine)
+                .OrderByDescending(a => a.Day).FirstOrDefault()?.Day;
+            if(maxHPDate == null)
+                maxHPDate = DateTime.MinValue;
+            else
+            {
+                maxHPDate = maxHPDate.Value.Date;
+            }
+
+            List<HistoryPiece> historyPieces = context.Set<Piece>()
+                .Where(p => p.Day >= maxHPDate && p.MachineId == idMachine).ToList()
+                .GroupBy(g => new {g.Day.Value.Date, g.Operator})
+                .Select(n => new HistoryPiece
+                {
+                    Id =  0,
+                    Day = n.Key.Date,
+                    MachineId = idMachine,
+                    Operator = n.Key.Operator,
+                    CompletedCount = n.Count(i => i.IsRedone == false),
+                    Period = n.Key.Date.Year * 10000 + n.Key.Date.Month * 100 + n.Key.Date.Day,
+                    ElapsedTime = n.Sum(i => i.ElapsedTime),
+                    ElapsedTimeCut = n.Sum(i => i.ElapsedTimeCut),
+                    ElapsedTimeProducing = n.Sum(i => i.ElapsedTimeProducing),
+                    ElapsedTimeTrim = n.Sum(i => i.ElapsedTimeTrim),
+                    ElapsedTimeWorking = n.Sum(i => i.ElapsedTimeWorking),
+                    PieceLengthSum = (int)n.Sum(i => i.IsRedone == true ? 0 : i.Length),
+                    RedoneCount = n.Count(i => i.IsRedone == true),
+                    TypeHistory = "d"
+                }).ToList();
+
+            var aggregato = historyPieces.GroupBy(c => c.Day).Select(n => new HistoryPiece
+            {
+                Id = 0,
+                Day = n.Key.Value,
+                MachineId = idMachine,
+                Operator = null,
+                Period = n.Key.Value.Year * 10000 + n.Key.Value.Month * 100 + n.Key.Value.Day,
+                CompletedCount = n.Sum(i => i.CompletedCount),
+                ElapsedTime = n.Sum(i => i.ElapsedTime),
+                ElapsedTimeCut = n.Sum(i => i.ElapsedTimeCut),
+                ElapsedTimeProducing = n.Sum(i => i.ElapsedTimeProducing),
+                ElapsedTimeTrim = n.Sum(i => i.ElapsedTimeTrim),
+                ElapsedTimeWorking = n.Sum(i => i.ElapsedTimeWorking),
+                PieceLengthSum = n.Sum(i => i.PieceLengthSum),
+                RedoneCount = n.Sum(i => i.RedoneCount),
+                TypeHistory = "d"
+            }).ToList();
+
+            if(aggregato != null)
+                historyPieces.AddRange(aggregato);
+
+            historyPieces.OrderBy(i => i.Day);
+
+            foreach (var cur in historyPieces)
+            {
+                var row = context.Set<HistoryPiece>().FirstOrDefault(hp => hp.MachineId == idMachine &&
+                                                                 hp.Day == cur.Day &&
+                                                                 (hp.Operator == cur.Operator ||
+                                                                  hp.Operator == null && cur.Operator == null));
+                if (row != null)
+                {
+                    row.CompletedCount = cur.CompletedCount;
+                    row.ElapsedTime = cur.ElapsedTime;
+                    row.ElapsedTimeProducing = cur.ElapsedTimeProducing;
+                    row.ElapsedTimeCut = cur.ElapsedTimeCut;
+                    row.ElapsedTimeWorking = cur.ElapsedTimeWorking;
+                    row.ElapsedTimeTrim = cur.ElapsedTimeTrim;
+                    row.PieceLengthSum = cur.PieceLengthSum;
+                    row.RedoneCount = cur.RedoneCount;
+                }
+                else
+                {
+                    context.Set<HistoryPiece>().Add(row);
+                }
+                context.SaveChanges();
+            }
+
         }
 
         public void Dispose()
