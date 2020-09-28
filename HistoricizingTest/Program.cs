@@ -23,8 +23,8 @@ namespace HistoricizingTest
             var container = builder.Build();
             _scopeHistoryJob = container.BeginLifetimeScope();
             var context = container.Resolve<IFomMonitoringEntities>();
-            HistoryJobPieceBarProcessor pp = new HistoryJobPieceBarProcessor(_scopeHistoryJob);
-            pp.HistoricizingPieces(context, 1523);
+            var pp = new StateProcessor(_scopeHistoryJob);
+            pp.HistoricizingStates(context, 1523);
         }
 
         private static void Inizialization()
