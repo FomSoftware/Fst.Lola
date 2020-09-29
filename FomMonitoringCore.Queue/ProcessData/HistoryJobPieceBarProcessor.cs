@@ -227,7 +227,8 @@ namespace FomMonitoringCore.Queue.ProcessData
                     Period = n.Key.Year * 10000 + n.Key.Month * 100 + n.Key.Day,
                     Length = n.Sum(i => i.IsOffcut == false ? i.Length : 0),
                     OffcutCount = n.Count(i => i.IsOffcut == true),
-                    OffcutLength = n.Sum(i => i.IsOffcut == true ? (int) i.Length : 0)
+                    OffcutLength = n.Sum(i => i.IsOffcut == true ? (int) i.Length : 0),
+                    Count = n.Count()
                 }).ToList();
 
             foreach (var cur in historyBars)
