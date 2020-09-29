@@ -97,9 +97,7 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(d => d.VARCOMPONENT, src => src.VarComponent);
 
 
-            // SP to Model
-            config.NewConfig<usp_AggregationState_Result, HistoryStateModel>()
-                .Map(dest => dest.enState, src => (enState?)src.StateId);
+    
             config.NewConfig<MachineMesDataModel, MesUserMachinesModel>()
                 .Map(dest => dest.enActualState, src => (enState?)src.ActualStateId)
                 .Map(dest => dest.Expired, src => src.ExpirationDate < DateTime.UtcNow);

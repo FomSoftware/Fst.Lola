@@ -78,7 +78,6 @@ namespace FomMonitoringCore.Queue.ProcessData
                     
 
                     _context.SaveChanges();
-                    //_context.usp_HistoricizingMessages(mac.Id);
                     HistoricizingMessages(_context, mac.Id);
 
                     _context.SaveChanges();

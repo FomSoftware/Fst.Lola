@@ -111,9 +111,7 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                         context.SaveChanges();
 
-                        //context.usp_HistoricizingPieces(mac.Id);
                         HistoricizingPieces(context, mac.Id);
-                        //context.usp_HistoricizingBars(mac.Id);
                         HistoricizingBars(context, mac.Id);
 
                         context.SaveChanges();

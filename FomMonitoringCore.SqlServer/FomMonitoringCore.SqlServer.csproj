@@ -220,9 +220,6 @@
     <Compile Include="Users.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="usp_AggregationState_Result.cs">
-      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="FomMonitoringModel.edmx">
