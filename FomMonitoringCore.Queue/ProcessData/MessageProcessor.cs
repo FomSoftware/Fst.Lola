@@ -79,7 +79,7 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                     _context.SaveChanges();
                     _context.usp_HistoricizingMessages(mac.Id);
-
+                    //HistoricizingMessages(_context, mac.Id);
 
                     _context.SaveChanges();
 
@@ -90,6 +90,25 @@ namespace FomMonitoringCore.Queue.ProcessData
             {
                 throw ex;
             }
+        }
+
+        private void HistoricizingMessages(IFomMonitoringEntities context, int idMachine)
+        {
+            var maxHpDate = context.Set<HistoryMessage>().Where(hp => hp.MachineId == idMachine)
+                .OrderByDescending(a => a.Day).FirstOrDefault()?.Day;
+
+            maxHpDate = maxHpDate?.Date ?? DateTime.MinValue;
+
+            var historyMessages = context.Set<MessageMachine>()
+                .Where(p => p.Day >= maxHpDate && p.MachineId == idMachine &&
+                            (p.MessagesIndex.MessageTypeId == 11 ||
+                             p.MessagesIndex.MessageTypeId == 12)).ToList()
+                .GroupBy(g => new{ g.Day.Value.Date, g.Params, g.MessagesIndexId})
+                .Select(n => new HistoryMessage
+                    { }).ToList();
+
+
+
         }
 
         public void Dispose()

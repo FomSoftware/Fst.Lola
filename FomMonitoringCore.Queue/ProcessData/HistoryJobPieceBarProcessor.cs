@@ -113,7 +113,8 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                         //context.usp_HistoricizingPieces(mac.Id);
                         HistoricizingPieces(context, mac.Id);
-                        context.usp_HistoricizingBars(mac.Id);
+                        //context.usp_HistoricizingBars(mac.Id);
+                        HistoricizingBars(context, mac.Id);
 
                         context.SaveChanges();
 
@@ -204,6 +205,47 @@ namespace FomMonitoringCore.Queue.ProcessData
                 }
             }
             
+        }
+
+        public void HistoricizingBars(IFomMonitoringEntities context, int idMachine)
+        {
+            var maxHpDate = context.Set<HistoryBar>().Where(hp => hp.MachineId == idMachine)
+                .OrderByDescending(a => a.Day).FirstOrDefault()?.Day;
+
+            maxHpDate = maxHpDate?.Date ?? DateTime.MinValue;
+
+            var historyBars = context.Set<Bar>()
+                .Where(p => p.StartTime >= maxHpDate && p.MachineId == idMachine).ToList()
+                .GroupBy(g => g.StartTime.Value.Date)
+                .Select(n => new HistoryBar
+                {
+                    Id = 0,
+                    Day = n.Key,
+                    MachineId = idMachine,
+                    TypeHistory = "d",
+                    System = null,
+                    Period = n.Key.Year * 10000 + n.Key.Month * 100 + n.Key.Day,
+                    Length = n.Sum(i => i.IsOffcut == false ? i.Length : 0),
+                    OffcutCount = n.Count(i => i.IsOffcut == true),
+                    OffcutLength = n.Sum(i => i.IsOffcut == true ? (int) i.Length : 0)
+                }).ToList();
+
+            foreach (var cur in historyBars)
+            {
+                var row = context.Set<HistoryBar>().FirstOrDefault(hp => hp.MachineId == idMachine &&
+                                                                         hp.Day == cur.Day);
+                if (row != null)
+                {
+                    row.Count = cur.Count;
+                    row.Length = cur.Length;
+                    row.OffcutCount = cur.OffcutCount;
+                    row.OffcutLength = cur.OffcutLength;
+                }
+                else
+                {
+                    context.Set<HistoryBar>().Add(cur);
+                }
+            }
         }
 
         public void Dispose()

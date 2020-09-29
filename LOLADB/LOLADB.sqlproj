@@ -68,6 +68,9 @@
     <None Include="LOLATEST_usp_AggregationBar.sql" />
     <None Include="LOLATEST_usp_AggregationPiece.sql" />
     <None Include="LOLATEST_usp_HistoricizingPieces.sql" />
+    <None Include="LOLATEST_usp_HistoricizingBars.sql" />
+    <None Include="LOLATEST_usp_HistoricizingMessages.sql" />
+    <None Include="LOLATEST_usp_HistoricizingStates.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="LOLATEST_usp_HistoricizingPieces.sql" />
