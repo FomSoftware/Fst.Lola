@@ -25,8 +25,8 @@ namespace HistoricizingTest
             var context = container.Resolve<IFomMonitoringEntities>();
             //var pp = new StateProcessor(_scopeHistoryJob);
             //pp.HistoricizingStates(context, 1523);
-            var pp = new HistoryJobPieceBarProcessor(_scopeHistoryJob);
-            pp.HistoricizingBars(context, 1523);
+            var pp = new MessageProcessor(_scopeHistoryJob);
+            pp.HistoricizingMessages(context, 1523);
         }
 
         private static void Inizialization()

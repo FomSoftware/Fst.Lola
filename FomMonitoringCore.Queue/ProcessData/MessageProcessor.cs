@@ -92,7 +92,7 @@ namespace FomMonitoringCore.Queue.ProcessData
             }
         }
 
-        private void HistoricizingMessages(IFomMonitoringEntities context, int idMachine)
+        public void HistoricizingMessages(IFomMonitoringEntities context, int idMachine)
         {
             var maxHpDate = context.Set<HistoryMessage>().Where(hp => hp.MachineId == idMachine)
                 .OrderByDescending(a => a.Day).FirstOrDefault()?.Day;
@@ -131,6 +131,8 @@ namespace FomMonitoringCore.Queue.ProcessData
                     context.Set<HistoryMessage>().Add(cur);
                 }
             }
+
+            context.SaveChanges();
 
         }
 
