@@ -78,8 +78,8 @@ namespace FomMonitoringCore.Queue.ProcessData
                     
 
                     _context.SaveChanges();
-                    _context.usp_HistoricizingMessages(mac.Id);
-                    //HistoricizingMessages(_context, mac.Id);
+                    //_context.usp_HistoricizingMessages(mac.Id);
+                    HistoricizingMessages(_context, mac.Id);
 
                     _context.SaveChanges();
 
@@ -105,13 +105,36 @@ namespace FomMonitoringCore.Queue.ProcessData
                              p.MessagesIndex.MessageTypeId == 12)).ToList()
                 .GroupBy(g => new{ g.Day.Value.Date, g.Params, g.MessagesIndexId})
                 .Select(n => new HistoryMessage
-                    { }).ToList();
+                {
+                    Day = n.Key.Date,
+                    Params = n.Key.Params,
+                    MessagesIndexId = n.Key.MessagesIndexId,
+                    MachineId = idMachine,
+                    Period = n.Key.Date.Year * 10000 + n.Key.Date.Month * 100 + n.Key.Date.Day,
+                    Count = n.Count(),
+                    TypeHistory = "d"
+                }).ToList();
 
-
+            foreach (var cur in historyMessages)
+            {
+                var row = context.Set<HistoryMessage>().FirstOrDefault(hp => hp.MachineId == idMachine &&
+                                                                           hp.Day == cur.Day &&
+                                                                           hp.TypeHistory == cur.TypeHistory &&
+                                                                           hp.MessagesIndexId == cur.MessagesIndexId &&
+                                                                           hp.Params == cur.Params);
+                if (row != null)
+                {
+                    row.Count = cur.Count;
+                }
+                else
+                {
+                    context.Set<HistoryMessage>().Add(cur);
+                }
+            }
 
         }
 
-        public void Dispose()
+            public void Dispose()
         {
             _parentScope?.Dispose();
         }
