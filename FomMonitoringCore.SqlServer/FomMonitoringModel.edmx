@@ -986,19 +986,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      <Function Name="usp_HistoricizingAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
-          <Parameter Name="machineId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="usp_HistoricizingBars" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
-          <Parameter Name="machineId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="usp_HistoricizingMessages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
-          <Parameter Name="machineId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="usp_HistoricizingStates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="api">
-          <Parameter Name="machineId" Type="int" Mode="In" />
-        </Function>
-        <EntityContainer Name="FomMonitoringModelStoreContainer">
+      <EntityContainer Name="FomMonitoringModelStoreContainer">
           <EntitySet Name="AuditLogin" EntityType="Self.AuditLogin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bar" EntityType="Self.Bar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CurrentState" EntityType="Self.CurrentState" Schema="dbo" store:Type="Tables" />
@@ -2460,28 +2448,6 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="UserMachineMapping" EntitySet="UserMachineMapping" />
           </AssociationSet>
-          <FunctionImport Name="usp_HistoricizingAll">
-          <Parameter Name="machineId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="usp_HistoricizingBars">
-          <Parameter Name="machineId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="usp_HistoricizingMessages">
-          <Parameter Name="machineId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="usp_HistoricizingPieces">
-          <Parameter Name="machineId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="usp_HistoricizingStates">
-          <Parameter Name="machineId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="usp_AggregationState" ReturnType="Collection(FomMonitoringModel.usp_AggregationState_Result)">
-            <Parameter Name="machineId" Mode="In" Type="Int32" />
-            <Parameter Name="startDate" Mode="In" Type="DateTime" />
-            <Parameter Name="endDate" Mode="In" Type="DateTime" />
-            <Parameter Name="aggregation" Mode="In" Type="Int32" />
-            <Parameter Name="dataType" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="usp_CleanMachineData">
           <Parameter Name="machineId" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -2490,18 +2456,6 @@
             <End Role="ParameterResetValue" EntitySet="ParameterResetValue" />
           </AssociationSet>
         </EntityContainer>
-        <ComplexType Name="usp_AggregationState_Result">
-          <Property Type="Int32" Name="Id" Nullable="true" />
-          <Property Type="DateTime" Name="Day" Nullable="true" Precision="23" />
-          <Property Type="Int64" Name="ElapsedTime" Nullable="true" />
-          <Property Type="Int32" Name="MachineId" Nullable="true" />
-          <Property Type="String" Name="Operator" Nullable="true" MaxLength="100" />
-          <Property Type="Double" Name="OverfeedAvg" Nullable="true" />
-          <Property Type="Int32" Name="Period" Nullable="true" />
-          <Property Type="Int32" Name="Shift" Nullable="true" />
-          <Property Type="Int32" Name="StateId" Nullable="true" />
-          <Property Type="String" Name="TypeHistory" Nullable="false" MaxLength="1" />
-        </ComplexType>
         <Association Name="FK_ParameterResetValue_Machine">
           <End Type="FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
           <End Type="FomMonitoringModel.ParameterResetValue" Role="ParameterResetValue" Multiplicity="*" />
@@ -3025,10 +2979,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="usp_HistoricizingAll" FunctionName="FomMonitoringModel.Store.usp_HistoricizingAll" />
-          <FunctionImportMapping FunctionImportName="usp_HistoricizingBars" FunctionName="FomMonitoringModel.Store.usp_HistoricizingBars" />
-          <FunctionImportMapping FunctionImportName="usp_HistoricizingMessages" FunctionName="FomMonitoringModel.Store.usp_HistoricizingMessages" />
-          <FunctionImportMapping FunctionImportName="usp_HistoricizingStates" FunctionName="FomMonitoringModel.Store.usp_HistoricizingStates" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
