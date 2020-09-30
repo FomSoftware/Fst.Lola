@@ -217,8 +217,9 @@ namespace FomMonitoringCore.Framework.Common
                 default:
                     break;
             }
-
-            return result.Select(s => s.RoundToInt()).ToList();
+            //return result.Select(s => s.RoundToInt()).ToList();
+            //is-1254
+            return result.Select(s => (int)Math.Floor(s)).ToList();
         }
     }
 }
