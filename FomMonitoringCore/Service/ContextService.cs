@@ -203,6 +203,17 @@ namespace FomMonitoringCore.Service
             return true;
         }
 
+        public bool InitializeUploadConfigurationLevel()
+        {
+
+            var context = GetContext();
+            context.ActualPage = enPage.UploadConfiguration;
+
+            SetContext(context);
+
+            return true;
+        }
+
         public bool InitializePlantManagerLevel()
         {
 

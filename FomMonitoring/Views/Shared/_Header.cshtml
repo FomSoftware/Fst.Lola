@@ -107,6 +107,13 @@
                                 <div><span>Plant Manager</span></div>
                             </a>
                         }
+                        @if (Model.User.Role == enRole.Administrator)
+                        {
+                            <a class="dd-item dd-item-longtext" href="@Url.Action("Index", "UploadConfiguration")">
+                                <i class="fa fa-upload fa-lg color-corporate"></i>
+                                <div><span>Upload configuration</span></div>
+                            </a>
+                        }
                         <a class="dd-item dd-item-longtext" href="@Url.Action("Index", "UserSetting")">
                                 <i class="fa fa-clock-o fa-lg color-corporate"></i>
                                 <div><span>@Resource.Header_TimeZone_Setting</span></div>

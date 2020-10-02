@@ -121,21 +121,13 @@ namespace FomMonitoring.Controllers
         [Route("ajax/AppApi/SetNotificationRead")]
         public HttpResponseMessage SetNotificationRead([FromBody]int idNotification)
         {
-            try
-            {
 
                 var context = _contextService.GetContext();
                 _notificationManagerViewService.SetNotificationAsRead(idNotification, context);
 
                 return Request.CreateResponse(HttpStatusCode.OK, new { },
                     MediaTypeHeaderValue.Parse("application/json"));
-            }
-            catch (Exception ex)
-            {
-                Debugger.Break();
-            }
 
-            return null;
         }
 
 

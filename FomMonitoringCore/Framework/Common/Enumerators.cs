@@ -31,7 +31,9 @@ namespace FomMonitoringCore.Framework.Common
         [Description(""), Controller("PlantManager")]
         PlantManager = 5,
         [Description("Index"), Controller("UserSetting")]
-        UserSetting = 6
+        UserSetting = 6,
+        [Description("Index"), Controller("UploadConfiguration")]
+        UploadConfiguration = 7
     }
 
     

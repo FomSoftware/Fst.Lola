@@ -125,25 +125,25 @@
         {
             if (Model.role != enRole.Operator)
             {
-            <div class="col-10 col-md-8 col-sm-8 col-lg-8 col-xl-8">
-                <div id="plants-filter" class="toolbar-filter" v-cloak>
-                    <div style="display: inline-flex">
-                        <a class="btn btn-toolbar" href="@Url.Action("Index", "Mes")" style="padding: 2px 10px 10px 10px;">
-                            <i class="fa icofom-productivity fa-stack-1x fa-inverse" style="position:inherit"></i>
-                        </a>
-                        <span class="title" v-cloak>
-                            @Resource.Plant {{selected.plant.name}}
-                        </span>
+                <div class="col-10 col-md-8 col-sm-8 col-lg-8 col-xl-8">
+                    <div id="plants-filter" class="toolbar-filter" v-cloak>
+                        <div style="display: inline-flex">
+                            <a class="btn btn-toolbar" href="@Url.Action("Index", "Mes")" style="padding: 2px 10px 10px 10px;">
+                                <i class="fa icofom-productivity fa-stack-1x fa-inverse" style="position:inherit"></i>
+                            </a>
+                            <span class="title" v-cloak>
+                                @Resource.Plant {{selected.plant.name}}
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
             }
         }
-        else if (Model.page == enPage.UserManager || Model.page == enPage.UserSetting || Model.page == enPage.PlantManager)
+        else if (Model.page == enPage.UserManager || Model.page == enPage.UserSetting || Model.page == enPage.PlantManager || Model.page == enPage.UploadConfiguration)
         {
-        <a class="btn btn-toolbar" href="@Url.Action("Index", "Mes")">
-            <i class="fa fa-arrow-circle-left color-corporate fa-lg"></i>
-        </a>
+            <a class="btn btn-toolbar" href="@Url.Action("Index", "Mes")">
+                <i class="fa fa-arrow-circle-left color-corporate fa-lg"></i>
+            </a>
         }
         @if (Model.page == enPage.Machine || Model.page == enPage.PlantMessages)
         {

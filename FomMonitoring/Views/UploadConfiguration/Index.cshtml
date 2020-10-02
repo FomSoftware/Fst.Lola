@@ -1,0 +1,57 @@
+﻿@model bool?
+@{
+    ViewBag.Title = "Upload Configuration";
+    Layout = "~/Views/Shared/_LayoutApp.cshtml";
+}
+
+
+<div class="row justify-content-center" style="padding-top: 30px; padding-bottom: 30px; min-height: 100px;">
+    
+
+    @using (Html.BeginForm("SaveConfiguration",
+        "UploadConfiguration",
+        FormMethod.Post,
+        new {enctype = "multipart/form-data"}))
+    {
+        <div class="form-group col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6">
+            <label for="file" class="control-label-user-timezone">Upload Lola.xml file:</label>
+            <input type="file" name="file" id="file"/>
+        </div>
+        <button type="submit" class="button-adduser">
+            <i class="fa fa-upload fa-lg color-corporate"></i>Upload File
+        </button>
+    }
+</div>
+
+<script>
+    $(document).ready(function() {
+        @if (Model == true)
+        {
+            <text>
+            swal(
+            {
+                title: "",
+                text: "import succed",
+                icon:"success",
+                allowOutsideClick: true,
+                closeModal: true
+            });
+
+            </text>
+        }
+        @if (Model == false)
+        {
+            <text>
+                swal(
+                    {
+                        title: "",
+                        text: "import failed",
+                        icon:"error",
+                        allowOutsideClick: true,
+                        closeModal: true
+                    });
+
+            </text>
+        }
+    });
+</script>
