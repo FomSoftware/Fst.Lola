@@ -313,9 +313,9 @@ namespace FomMonitoringCore.Service
                     {
                         Day = s.Max(i => i.Day),
                         MessagesIndexId = s.Key,
-                        Operator = s.OrderByDescending(i => i.Day).FirstOrDefault().Operator,
-                        Id = s.OrderByDescending(i => i.Day).FirstOrDefault().Id,
-                        IgnoreDate = s.OrderByDescending(i => i.Day).FirstOrDefault().IgnoreDate,
+                        Operator = s.OrderByDescending(i => i.Day).FirstOrDefault()?.Operator,
+                        Id = s.OrderByDescending(i => i.Day).FirstOrDefault()?.Id ?? 0,
+                        IgnoreDate = s.OrderByDescending(i => i.Day).FirstOrDefault()?.IgnoreDate,
                         MachineId = machine.Id,
                         Machine = _context.Set<Machine>().Find(machine.Id)
                     }).ToList()

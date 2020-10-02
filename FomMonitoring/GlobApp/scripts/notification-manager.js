@@ -7,44 +7,10 @@
     var currentNotification;
     var context = this;
 
-    context.buildDuration = function (expiredSpan) {
-        var res = "";
-        if (expiredSpan.days != null) {
-            res = `${expiredSpan.days}<em>d</em>`;
-        }
-        if (expiredSpan.hours != null) {
 
-            res = `${res} ${expiredSpan.hours}<em>h</em>`;
-        }
-        if (expiredSpan.minutes != null && context.showMinutes(expiredSpan)) {
-
-            res = `${res} ${expiredSpan.minutes}<em>min</em>`;
-        }
-        if (expiredSpan.seconds != null && context.showMinutes(expiredSpan)) {
-
-            res = `${res} ${expiredSpan.seconds}<em>s</em>`;
-        }
-
-        return res;
-    }
-
-    context.showSeconds = function (duration) {
-        if ((duration.days != null && duration.hours != null) ||
-            (duration.hours != null && duration.minutes != null))
-            return false;
-        else
-            return true;
-    }
-
-    context.showMinutes = function (duration) {
-        if (duration.days != null && duration.hours != null)
-            return false;
-        else
-            return true;
-    }
 
     context.buildToast = function (notification) {
-        return toastr.info(`<div><h4>${notification.panelName}</h4><h6>(${notification.machineSerial}) - ${notification.machineName}</h6><hr /><br /><p>${notification.description}</p> <hr /> <br />${context.buildDuration(notification.expiredSpan)}</div>`);
+        return toastr.info(`<div><h4>${notification.panelName}</h4><h6>(${notification.machineSerial}) - ${notification.machineName}</h6><hr /><br /><p>${notification.description}</p></div>`);
     }
 
     context.setNotificationRead = function () {
