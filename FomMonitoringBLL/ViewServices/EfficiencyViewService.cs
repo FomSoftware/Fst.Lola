@@ -326,7 +326,7 @@ namespace FomMonitoringBLL.ViewServices
             decimal? percError = Common.GetPercentage(totalError, totalOn);
             decimal? percManual = Common.GetPercentage(totalManual, totalOn);
 
-            var overfeed = stateProd.OverfeedAvg;
+            var overfeed = stateProd?.OverfeedAvg;
 
             var states = new List<StateViewModel>();
 
