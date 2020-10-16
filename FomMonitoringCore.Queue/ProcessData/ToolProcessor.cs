@@ -30,21 +30,26 @@ namespace FomMonitoringCore.Queue.ProcessData
                     var mac = _context.Set<Machine>().AsNoTracking().FirstOrDefault(m => m.Serial == serial);
                     if (mac == null)
                         return false;
-
-                    foreach (var tool in data.ToolMachine)
-                    {
-                        tool.DateLoaded = tool.DateLoaded.HasValue && tool.DateLoaded.Value.Year < 1900 ? null : tool.DateLoaded;
-                        tool.DateReplaced = tool.DateReplaced.HasValue && tool.DateReplaced.Value.Year < 1900 ? null : tool.DateReplaced;
-                    }
-                    var tools = data.ToolMachine.BuildAdapter().AddParameters("machineId", mac.Id).AdaptToType<List<ToolMachine>>();
-
                     //richiesta di Romina: non svuotare mai i tools se non arrivano tenere quelli vecchi
-                    if (tools != null && tools.Any())
+                    if (data.ToolMachine != null && data.ToolMachine.Any())
                     {
-                        var removeTools = data.ToolMachine.Join(_context.Set<ToolMachine>(), to => to.Code, from => from.Code, (to, from) => new { From = from, To = to })
-                            .Where(w => w.From.MachineId == mac.Id && w.From.Code == w.To.Code && w.From.DateLoaded == w.To.DateLoaded).Select(s => s.From).ToList();
-                        _context.Set<ToolMachine>().RemoveRange(removeTools);
-                        _context.SaveChanges();
+                        foreach (var tool in data.ToolMachine)
+                        {
+                            tool.DateLoaded = tool.DateLoaded.HasValue && tool.DateLoaded.Value.Year < 1900 ? null : tool.DateLoaded;
+                            tool.DateReplaced = tool.DateReplaced.HasValue && tool.DateReplaced.Value.Year < 1900 ? null : tool.DateReplaced;
+
+                            var toolToRemove = _context.Set<ToolMachine>().FirstOrDefault(t =>
+                                t.MachineId == mac.Id && tool.Code == t.Code && tool.DateLoaded == t.DateLoaded);
+                            //var removeTools = data.ToolMachine.Join(_context.Set<ToolMachine>(), to => to.Code, from => from.Code, (to, from) => new { From = from, To = to })
+                            //    .Where(w => w.From.MachineId == mac.Id && w.From.Code == w.To.Code && w.From.DateLoaded == w.To.DateLoaded).Select(s => s.From).ToList();
+                            if (toolToRemove == null)
+                                continue;
+                            _context.Set<ToolMachine>().Remove(toolToRemove);
+                            _context.SaveChanges();
+                        }
+
+                        var tools = data.ToolMachine.BuildAdapter().AddParameters("machineId", mac.Id).AdaptToType<List<ToolMachine>>();
+
                         var modifyTools = _context.Set<ToolMachine>().Where(w => w.MachineId == mac.Id && w.IsActive).ToList();
                         foreach (var modifyTool in modifyTools)
                         {

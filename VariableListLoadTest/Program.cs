@@ -29,7 +29,7 @@ namespace VariableListLoadTest
 
             var repository = container.Resolve<IGenericRepository<State>>();
             var repositoryInfo = container.Resolve<IGenericRepository<Info>>();
-            var repositoryHistoryJobPieceBar = container.Resolve<IGenericRepository<HistoryJobPieceBar>>();
+            var repositoryHistoryJobPieceBar = container.Resolve<IGenericRepository<Tool>>();
             var repositoryMessage = container.Resolve<IGenericRepository<Message>>();
             //var repositoryVariablesList = container.Resolve<IGenericRepository<VariablesList>>();
             var forwarder = container.Resolve<IQueueForwarder>();
