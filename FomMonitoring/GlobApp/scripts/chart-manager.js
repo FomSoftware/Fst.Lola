@@ -36,7 +36,7 @@
             crosshairs: true
         },
         legend: {
-            verticalAlign: 'top',
+            verticalAlign: 'bottom',
             itemMarginTop: 0,
             itemMarginBottom: 0,
             itemMarginRight: 1,

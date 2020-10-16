@@ -567,10 +567,10 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
     <value>Messaggi stabilimento</value>
   </data>
   <data name="DisclaimerLogin" xml:space="preserve">
-    <value>LOLA è stato ottimizzato per la fruibilità mobile.&lt;br /&gt; Per la lista, consultare la sezione &lt;br /&gt;"Terms &amp; Conditions</value>
+    <value>LOLA è stato ottimizzato per la fruibilità mobile.&lt;br /&gt; Per la lista dei dispositivi, consultare la sezione &lt;br /&gt;"Terms &amp; Conditions</value>
   </data>
   <data name="DisclaimerMobileDevices" xml:space="preserve">
-    <value>LOLA è stato ottimizzato per la fruibilità mobile sui seguenti dispositivi: Samsung S10, Apple IPhone X, Samsung Galaxy S7, Apple IPhone 8, Apple IPad PRO, Apple IPad 2. Su web per browser Google Chrome su Windows e Safari su MAC.</value>
+    <value>LOLA è stato ottimizzato per la fruibilità mobile sui seguenti dispositivi: Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px), iPad2 (768x1024 px). Browser: Google Chrome su Windows e Safari su iOS.</value>
   </data>
   <data name="AxisMotors" xml:space="preserve">
     <value>Motori/Assi</value>

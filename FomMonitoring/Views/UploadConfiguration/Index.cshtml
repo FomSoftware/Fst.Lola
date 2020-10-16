@@ -5,25 +5,40 @@
 }
 
 
-<div class="row justify-content-center" style="padding-top: 30px; padding-bottom: 30px; min-height: 100px;">
-    
 
-    @using (Html.BeginForm("SaveConfiguration",
-        "UploadConfiguration",
-        FormMethod.Post,
-        new {enctype = "multipart/form-data"}))
+
+
+@using (Html.BeginForm("SaveConfiguration",
+    "UploadConfiguration",
+    FormMethod.Post,
+    new
     {
-        <div class="form-group col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6">
+        enctype = "multipart/form-data",
+        style = "width:100%;display:flex"
+    }))
+{
+    <div class="row" style="padding-top: 30px; padding-bottom: 30px; min-height: 100px;width: 100%;">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
             <label for="file" class="control-label-user-timezone">Upload Lola.xml file:</label>
-            <input type="file" name="file" id="file"/>
         </div>
-        <button type="submit" class="button-adduser">
-            <i class="fa fa-upload fa-lg color-corporate"></i>Upload File
-        </button>
-    }
-</div>
-
-<script>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 color-corporate">
+            <input class="form-control modal-input" style="color:#676767" type="file" name="file" id="file" />
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2" style="padding-top: 5px;">
+            <button type="submit" class="button-adduser">
+                <i class="fa fa-upload fa-lg color-corporate"></i>Upload File
+            </button>
+        </div>
+    </div>
+}
+   
+    <style>
+        #file-upload-button {
+            color: #b33157;
+            text-transform: uppercase;
+        }
+    </style>
+    <script>
     $(document).ready(function() {
         @if (Model == true)
         {
@@ -54,4 +69,4 @@
             </text>
         }
     });
-</script>
+    </script>
