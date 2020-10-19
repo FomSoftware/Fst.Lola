@@ -90,7 +90,7 @@
                         {
                             <a class="dd-item" href="@Url.Action("Index", "Mes")">
                                 <i class="fa fa-home fa-lg color-corporate"></i>
-                                <span>Home</span>
+                                <span>@Resource.Home</span>
                             </a>
                         }
                         @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer)
@@ -104,7 +104,7 @@
                         {
                             <a class="dd-item dd-item-longtext" href="@Url.Action("PlantManager", "Plant")">
                                 <i class="fa fa-industry fa-lg color-corporate"></i>
-                                <div><span>Plant Manager</span></div>
+                                <div><span>@Resource.PlantManager</span></div>
                             </a>
                         }
                         @if (Model.User.Role == enRole.Administrator)
@@ -198,7 +198,7 @@
                     <li>
                         <a class="dd-item" href="@Url.Action("Index", "Mes")">
                             <i class="fa fa-home fa-lg color-corporate"></i>
-                            <div>Home</div>
+                            <div>@Resource.Home</div>
                         </a>
                     </li>
                 }
@@ -216,7 +216,7 @@
                     <li>
                         <a class="dd-item dd-item-longtext" href="@Url.Action("PlantManager", "Plant")">
                             <i class="fa fa-industry fa-lg color-corporate"></i>
-                            <div>Plant Manager</div>
+                            <div>@Resource.PlantManager</div>
                         </a>
                     </li>
                 }

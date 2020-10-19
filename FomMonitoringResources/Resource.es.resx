@@ -184,7 +184,7 @@
     <value>Apellido</value>
   </data>
   <data name="Role" xml:space="preserve">
-    <value>Papel</value>
+    <value>Rol</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Usuario</value>
@@ -1241,5 +1241,11 @@ La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;
   </data>
   <data name="TimezoneSuccessfullyModify" xml:space="preserve">
     <value> Zona Horaria actualizada con éxito</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="PlantManager" xml:space="preserve">
+    <value>Administrador de plant</value>
   </data>
 </root>

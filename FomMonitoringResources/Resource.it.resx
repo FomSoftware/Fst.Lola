@@ -187,7 +187,7 @@
     <value>Ruolo</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Nome Utente</value>
+    <value>Utente</value>
   </data>
   <data name="UserManager" xml:space="preserve">
     <value>Gestione Utente</value>
@@ -1245,5 +1245,11 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
   </data>
   <data name="TimezoneSuccessfullyModify" xml:space="preserve">
     <value>Timezone aggiornata con successo</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="PlantManager" xml:space="preserve">
+    <value>Gestione Plant</value>
   </data>
 </root>

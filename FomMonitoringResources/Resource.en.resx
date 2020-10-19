@@ -1248,4 +1248,10 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   <data name="TimezoneSuccessfullyModify" xml:space="preserve">
     <value>Timezone  successfully modified</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="PlantManager" xml:space="preserve">
+    <value>Plant Manager</value>
+  </data>
 </root>

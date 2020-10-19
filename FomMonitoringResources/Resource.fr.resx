@@ -181,22 +181,22 @@
     <value>Ordres</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>Nom de famille</value>
+    <value>Nom</value>
   </data>
   <data name="Role" xml:space="preserve">
     <value>Rôle</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Nom d'utilisateur</value>
+    <value>Utilisateur</value>
   </data>
   <data name="UserManager" xml:space="preserve">
-    <value>Gestionnaire d'utilisateurs</value>
+    <value>Gestion Utilisateur</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Changer Password</value>
   </data>
   <data name="Logout" xml:space="preserve">
-    <value>Connectez Out</value>
+    <value>Quitter</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>Utilisateur</value>
@@ -1201,7 +1201,7 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
     <value>Fuseau Horaire</value>
   </data>
   <data name="Header_TimeZone_Setting" xml:space="preserve">
-    <value>Paramètres de fuseau horaire</value>
+    <value>Paramétrage fuseau horaire</value>
   </data>
   <data name="Modal_TimeZone_Advertise" xml:space="preserve">
     <value>Bienvenue chez LOLA, veuillez définir votre fuseau horaire de référence</value>
@@ -1241,5 +1241,11 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
   </data>
   <data name="TimezoneSuccessfullyModify" xml:space="preserve">
     <value>Le Fuseau Horaire a été mis à jour avec succès</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="PlantManager" xml:space="preserve">
+    <value>Gestion Plant</value>
   </data>
 </root>

@@ -187,7 +187,7 @@
     <value>Rolle</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Benutzername</value>
+    <value>Benutzer</value>
   </data>
   <data name="UserManager" xml:space="preserve">
     <value>Benutzerverwaltung</value>
@@ -1240,5 +1240,11 @@ Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt
   </data>
   <data name="TimezoneSuccessfullyModify" xml:space="preserve">
     <value>Zeitzonen korrekt aktualisiert</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="PlantManager" xml:space="preserve">
+    <value> Verwaltung Produktionsanlage</value>
   </data>
 </root>

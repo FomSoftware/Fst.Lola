@@ -529,7 +529,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LOLA has been optimised for mobile usage on the following devices: Samsung S10, Apple IPhone X, Samsung Galaxy S7, Apple IPhone 8, Apple IPad PRO, Apple IPad 2. Web browsers: Google Chrome for Windows and Safari for MAC.&quot;.
+        ///   Looks up a localized string similar to LOLA has been optimised for mobile usage on the following devices: Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px), iPad2 (768x1024 px). Web browsers: Google Chrome for Windows and Safari for iOS.
         /// </summary>
         public static string DisclaimerMobileDevices {
             get {
@@ -1197,7 +1197,7 @@ namespace FomMonitoringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exception  successfully modified.
+        ///   Looks up a localized string similar to Exception  successfully saved.
         /// </summary>
         public static string ExceptionSuccessfullyModify {
             get {
@@ -1274,6 +1274,15 @@ namespace FomMonitoringResources {
         public static string Historical {
             get {
                 return ResourceManager.GetString("Historical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string Home {
+            get {
+                return ResourceManager.GetString("Home", resourceCulture);
             }
         }
         
@@ -2421,6 +2430,15 @@ namespace FomMonitoringResources {
         public static string PlantMachines {
             get {
                 return ResourceManager.GetString("PlantMachines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plant Manager.
+        /// </summary>
+        public static string PlantManager {
+            get {
+                return ResourceManager.GetString("PlantManager", resourceCulture);
             }
         }
         
