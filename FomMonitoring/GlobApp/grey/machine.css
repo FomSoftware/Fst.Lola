@@ -1536,6 +1536,10 @@ td.td-axes {
     color: #07FF07;
 }
 
+.use-states-div {
+    padding: 0;
+    padding-right: 15px;
+}
 
 @media (max-width: 1396px) {
 
@@ -1705,7 +1709,6 @@ td.td-axes {
 
     .use-states-div {
         min-width: 92vw;
-        padding-right: 0;
     }
 }
 
@@ -1743,7 +1746,9 @@ td.td-axes {
     #efc_pie_chart_container {
         max-height: 220px;
     }
-
+    .use-states-div {
+        padding-left: 10px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -1757,7 +1762,10 @@ td.td-axes {
         min-height: 180px;
     }
 
-    .use-states { padding: 0; }
+    .use-states {
+        padding: 0;
+        padding-left: 5px;
+    }
 
     #charts-efficiency .row { margin-top: 0; }
 
@@ -1889,8 +1897,6 @@ td.td-axes {
 
     .use-states-div {
          min-width: 45%;
-        padding: 0;
-        padding-right: 4px
     }
 }
 
@@ -1942,10 +1948,6 @@ td.td-axes {
         padding: 0 15px 0 15px;
     }
 
-    .use-states-div {
-        padding: 0;
-        padding-right: 4px;
-    }
 }
 
 #CardJobs div.slimScrollBar {
