@@ -41,21 +41,20 @@
                 <div class="swiper-container efficiency">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <div class="row" v-if="states != null">
-                                <div class="col-12 col-sm-12 col-md-5 col-lg-4" id="charts-efficiency" >
-                                    <div class="row">
-                                        <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12 order-1 order-sm-2 order-md-1 order-lg-1 order-xl-1 chart-container">
+                            <div class="row" style="height: 100%;margin-bottom: 0" v-if="states != null">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6" id="charts-efficiency" >
+                                    <div class="row" style="height: 100%;margin-bottom: 0">
+                                        <div class="col-12 col-sm-6 col-md-7 col-lg-7 col-xl-7 order-1 order-md-1 order-lg-1 order-xl-1 chart-container">
                                             <div id="efc_kpi_chart">
                                             </div>
                                         </div>
-
-                                        <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12 order-2 order-sm-1 order-md-2 order-lg-2 order-xl-2 chart-container">
+                                        <div id="efc_pie_chart_container" class="col-12 col-sm-6 col-md-5 col-lg-5 col-xl-5 order-2 order-md-2 order-lg-2 order-xl-2 chart-container">
                                             <div id="efc_pie_chart">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div v-bind:class="getCol">
+                                <div class="use-states-div" style="height: 50%;" v-bind:class="getCol">
                                     <!-- MACHINE STATES -->
                                     <div class="use-states">
                                         <div class="progress-label clearfix">
@@ -99,12 +98,12 @@
 
                                     </div>
                                 </div>
-                                <div class="col-1 no-padding-left text-center" v-show="type != '@enMachineType.Troncatrice.GetDescription()'">
+                                <div class="col-auto p-1 no-padding-left text-right" style="top:20px" v-show="type != '@enMachineType.Troncatrice.GetDescription()'">
                                     <!-- OVERFEED -->
                                     <div class="overfeed">
                                         <div class="overfeed-progress">
                                             <div class="overfeed-title">
-                                                overfeed <b>{{ overfeed.value | round }}<em>%</em></b>
+                                                OVERFEED {{ overfeed.value | round }}%
                                             </div>
                                             <div class="overfeed-bar" v-bind:class="bgOverfeed" v-bind:aria-valuenow="overfeed.value"></div>
                                             <div class="overfeed-threshold" v-bind:style="{ bottom: overfeed.threshold.green + '%'}"></div>
