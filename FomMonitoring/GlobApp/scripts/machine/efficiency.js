@@ -100,9 +100,9 @@
                 },
                 getCol: function () {
                     if (this.type != 'Troncatrice')
-                        return "col-11 col-sm-11 col-md-6 col-lg-7";
+                        return "col-11 col-sm-11 col-md-5 col-lg-5";
                     else
-                        return "col-12 col-sm-12 col-md-7 col-lg-8";
+                        return "col-12 col-sm-12 col-md-6 col-lg-6";
                 }
             },
             methods: {

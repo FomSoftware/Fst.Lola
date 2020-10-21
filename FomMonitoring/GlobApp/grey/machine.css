@@ -314,8 +314,7 @@ body {
 /*#region overfeed */
 
 .overfeed .overfeed-title {
-    font-size: 12px;
-    line-height: 2em;
+    font-size: 11px;
     line-height: 1;
     -moz-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
@@ -329,24 +328,23 @@ body {
     transform-origin: 51px 50px;
     text-transform: capitalize;
     position: absolute;
-    bottom: 92px;
-    left: 1px;
+    bottom: 100px;
     z-index: 1;
     white-space: nowrap;
     color: #000;
 }
 
-    .overfeed .overfeed-title em {
+.overfeed .overfeed-title em {
         color: #000;
     }
 
     .overfeed .overfeed-title > b {
-        font-size: 14px;
+        font-size: 11px;
     }
 
 .overfeed .overfeed-progress {
-    height: 235px;
-    width: 20px;
+    height: 190px;
+    width: 11px;
     display: inline-block;
     position: relative;
     border-radius: 4px;
@@ -357,7 +355,7 @@ body {
 
 .overfeed .overfeed-bar {
     height: 0;
-    width: 20px;
+    width: 11px;
     position: absolute;
     bottom: 0;
     border-radius: 4px;
@@ -366,7 +364,7 @@ body {
 
 .overfeed .overfeed-threshold {
     position: absolute;
-    width: 20px;
+    width: 11px;
     height: 3px;
     background-color: #eee;
     border-radius: 20px;
@@ -378,15 +376,17 @@ body {
 /*#region use states */
 
 .use-states .progress-label .progress-title {
-    margin-top: 10px;
-    font-size: 12px;
+    margin-top: 40px;
+    font-size: 16px;
     float: left;
+    margin-bottom: 5px;
 }
 
 
 .use-states .progress-label .progress-time {
     float: right;
-    margin-bottom: 3px;
+    margin-top: 30px;
+    margin-left: 20px;
     font-size: 12px;
 }
 
@@ -411,7 +411,7 @@ body {
     }
 
     .use-states .progress-label .progress-time .value-time {
-        font-size: 16px;
+        font-size: 12px;
         text-align: right;
     }
 
@@ -521,7 +521,7 @@ body {
 
 .table-legend {
     width: 100%;
-    font-size: 13px;
+    font-size: 12px;
     margin-bottom: 5px;
     border-collapse: separate;
 }
@@ -540,7 +540,7 @@ body {
 
         .table-legend td:not(:first-child) {
             text-align: right;
-            font-size: 15px;
+            font-size: 12px;
         }
 
 
@@ -661,12 +661,12 @@ body {
         text-align: right;
     }
 
-
+.chart-container {
+    padding: 0;
+    margin: 0;
+}
 /*#endregion */
-
-
 /*#region highcharts */
-
 #chartdiv {
     width: 85px;
     height: 85px;
@@ -1536,6 +1536,10 @@ td.td-axes {
     color: #07FF07;
 }
 
+.use-states-div {
+    padding: 0;
+    padding-right: 15px;
+}
 
 @media (max-width: 1396px) {
 
@@ -1555,6 +1559,11 @@ td.td-axes {
 
     .code-header {
         width: 11%;
+    }
+
+    #efc_pie_chart_container {
+        max-height: 200px;
+        top: 20px;
     }
 }
 
@@ -1694,9 +1703,16 @@ td.td-axes {
         font-size: 14px;
     }
 
+    .overfeed .overfeed-progress {
+        height: 160px;
+    }
+
+    .use-states-div {
+        min-width: 92vw;
+    }
 }
 
-@media (max-width: 755px) {
+@media (max-width: 767px) {
 
     .icon-message-header {
         width: 3%;
@@ -1705,13 +1721,57 @@ td.td-axes {
     th.sorting {
         padding-left: 0 !important;
     }
+
+    .use-states {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    #CardEfficiency {
+        min-height: 570px;
+    }
+
+    .card-efficiency {
+        min-height: 500px;
+    }
+
+    #charts-efficiency {
+        height: 60%;
+    }
+
+    #charts-efficiency .row {
+        margin-top: 40px;
+    }
+
+    #efc_pie_chart_container {
+        max-height: 220px;
+    }
+    .use-states-div {
+        padding-left: 10px;
+    }
 }
 
 @media (max-width: 576px) {
-
     .label-other-data-value, .label-electrospindle-data-value,
-    .label-motor-blade-data-value, #CardSensorSpindles .label-other-data-value {
-        font-size: 17px;
+    .label-motor-blade-data-value, #CardSensorSpindles .label-other-data-value { font-size: 17px; }
+
+    #efc_kpi_chart { min-height: 235px; }
+
+    #efc_pie_chart_container {
+        top: -75px;
+        min-height: 180px;
+    }
+
+    .use-states {
+        padding: 0;
+        padding-left: 5px;
+    }
+
+    #charts-efficiency .row { margin-top: 0; }
+
+    .use-states-div {
+        min-width: 85vw;
+
     }
 }
 
@@ -1792,6 +1852,7 @@ td.td-axes {
     .table-xmu-electrospindle table {
         min-height: 78px;
     }
+
 }
 
 
@@ -1817,9 +1878,9 @@ td.td-axes {
         height: 244px;
     }
 
-    #charts-efficiency {
+    /*#charts-efficiency {
         min-height: calc(40vh);
-    }
+    }*/
 
     #CardProductivity .portlet {
         height: 288px;
@@ -1833,11 +1894,19 @@ td.td-axes {
     .table-xmu-electrospindle table {
         min-height: 106px;
     }
+
+    .use-states-div {
+         min-width: 45%;
+    }
 }
 
 @media (min-width: 992px) {
     .table-xmu-electrospindle table {
         min-height: 79px;
+    }
+
+    .overfeed-title {
+
     }
 
     [data-panel] {
@@ -1878,6 +1947,7 @@ td.td-axes {
     .lmx-button-group {
         padding: 0 15px 0 15px;
     }
+
 }
 
 #CardJobs div.slimScrollBar {

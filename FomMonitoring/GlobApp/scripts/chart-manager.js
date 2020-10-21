@@ -499,7 +499,7 @@
                 plotBorderWidth: null,
                 plotShadow: false,
                 type: 'pie',
-                height: 140,
+                height: 130,
                 spacingBottom: 0,
                 spacingTop: 0,
                 spacingLeft: 0,
@@ -517,6 +517,8 @@
                 pie: {
                     allowPointSelect: true,
                     cursor: 'pointer',
+                    size: '100%',
+                    center: ['50%', '40%'],
                     dataLabels: {
                         enabled: false,
                         format: '<b>{point.name}</b>: {point.percentage:.1f} %',
@@ -582,6 +584,7 @@
                     y: 16,
                     x: 0
                 },
+                tickColor: 'none',
                 lineWidth: 0,
                 minorTickInterval: null,
                 tickAmount: 2,
@@ -598,15 +601,15 @@
                 }
             },
             chart: {
-                height: 140,
-                type: 'solidgauge'
+                type: 'solidgauge',
+                marginBottom: 0
             },
             //tooltip: {
             //    pointFormat: '{series.name}: <b>{point.y:.1f} %</b>'
             //},
             series: [{
                 name: localizations.efficiency.trim(),
-                data: _.map(options.series, function (opt) { return Math.round(opt.y); }),
+                data: _.map(options.series, function (opt) { return {innerRadius: 40, radius: 65, y: Math.round(opt.y) };}),
 
                 dataLabels: {
                     format: '<div style="text-align:center"><span style="font-size:8px;color:' +
@@ -620,14 +623,14 @@
                 enableMouseTracking: false
             }],
             pane: {
-                center: ['50%', '100%'],
-                size: '150%',
+                center: ['51%', '50%'],
+                size: '130%',
                 startAngle: -90,
                 endAngle: 90,
                 background: {
                     backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                    innerRadius: '60%',
-                    outerRadius: '100%',
+                    innerRadius: '40%',
+                    outerRadius: '65%',
                     shape: 'arc'
                 }
             },
@@ -664,7 +667,7 @@
             var containerWidth = $('#' + chartID).parent().width();
             var containerHeight = $('#' + chartID).parent().height();
             if (containerHeight > 0 && containerWidth > 0) {
-                chart.setSize(containerWidth + 30, Math.max(containerHeight - 15, 120));
+                chart.setSize(containerWidth, Math.max(containerHeight - 3, 120));
             }
         }, 250);
     }
