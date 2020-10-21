@@ -11,7 +11,7 @@
                 </span>
             </div>
             <div class="title-kpi">
-                <span class="testo-abbreviato">@LocalizationService.GetResource("Production")</span>
+                <span>@LocalizationService.GetResource("Production")</span>
                 <span v-if="kpi != null" class="value-kpi" v-bind:class="colorKPI" v-cloak>
                     {{ kpi.value }}<small>pz/h</small>
                 </span>
