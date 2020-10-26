@@ -178,25 +178,35 @@ namespace FomMonitoringBLL.ViewServices
             var serieProd = new SerieViewModel();
             serieProd.name = enState.Production.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieProd.color = CommonViewService.GetColorState(enState.Production);
-            serieProd.data = Common.ConvertElapsedByMeasurement(data.Where(w => w.enState == enState.Production).Select(s => s.ElapsedTime ?? 0).ToList(), measurement);
+            serieProd.data = Common.ConvertElapsedByMeasurement(days.Select(d =>
+                data.Where(w => w.enState == enState.Production && w.Day.Value == d)
+                    .Select(s => s.ElapsedTime ?? 0).DefaultIfEmpty(0).First()).ToList(), measurement);
             series.Add(serieProd);
+
 
             var serieManual = new SerieViewModel();
             serieManual.name = enState.Manual.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieManual.color = CommonViewService.GetColorState(enState.Manual);
-            serieManual.data = Common.ConvertElapsedByMeasurement(data.Where(w => w.enState == enState.Manual).Select(s => s.ElapsedTime ?? 0).ToList(), measurement);
+            serieManual.data = Common.ConvertElapsedByMeasurement(days.Select(d =>
+                data.Where(w => w.enState == enState.Manual && w.Day.Value == d)
+                    .Select(s => s.ElapsedTime ?? 0).DefaultIfEmpty(0).First()).ToList(), measurement);
             series.Add(serieManual);
 
             var seriePause = new SerieViewModel();
             seriePause.name = enState.Pause.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             seriePause.color = CommonViewService.GetColorState(enState.Pause);
-            seriePause.data = Common.ConvertElapsedByMeasurement(data.Where(w => w.enState == enState.Pause).Select(s => s.ElapsedTime ?? 0).ToList(), measurement);
+            seriePause.data = Common.ConvertElapsedByMeasurement(days.Select(d =>
+                data.Where(w => w.enState == enState.Pause && w.Day.Value == d)
+                    .Select(s => s.ElapsedTime ?? 0).DefaultIfEmpty(0).First()).ToList(), measurement);
             series.Add(seriePause);
 
             var serieError = new SerieViewModel();
             serieError.name = enState.Error.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieError.color = CommonViewService.GetColorState(enState.Error);
-            serieError.data = Common.ConvertElapsedByMeasurement(data.Where(w => w.enState == enState.Error).Select(s => s.ElapsedTime ?? 0).ToList(), measurement);
+            
+            serieError.data = Common.ConvertElapsedByMeasurement(days.Select(d => 
+                data.Where(w => w.enState == enState.Error && w.Day.Value == d)
+                .Select(s => s.ElapsedTime ?? 0).DefaultIfEmpty(0).First()).ToList(), measurement);
             series.Add(serieError);
 
             options.series = series;
