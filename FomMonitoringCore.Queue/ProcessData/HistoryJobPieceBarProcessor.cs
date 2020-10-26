@@ -65,14 +65,13 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                         foreach (var jj in historyJob)
                         {
-                            if (!(jj.Day > DateTime.MinValue))
+                            if (!(jj.Day > DateTime.MinValue) || !(jj.PiecesProduced > 0))
                                 continue;
                             var giorno = jj.Day != null
-                                ? ((jj.Day.Value.Year * 10000) + (jj.Day.Value.Month * 100) + (jj.Day.Value.Day))
+                                ? jj.Day.Value.Year * 10000 + jj.Day.Value.Month * 100 + jj.Day.Value.Day
                                 : (int?) null;
                             var trovato = context.Set<HistoryJob>().FirstOrDefault(m =>
-                                m.Code == jj.Code && m.Period == giorno && jj.MachineId == m.MachineId
-                                && m.TotalPieces == jj.TotalPieces);
+                                m.Code == jj.Code && m.Period == giorno && jj.MachineId == m.MachineId);
 
                             if (trovato != null)
                             {
@@ -80,7 +79,7 @@ namespace FomMonitoringCore.Queue.ProcessData
                                 trovato.Day = jj.Day;
                                 trovato.ElapsedTime = jj.ElapsedTime;
                                 trovato.PiecesProduced = jj.PiecesProduced;
-                                
+                                trovato.TotalPieces = jj.TotalPieces;
                                 context.Set<HistoryJob>().AddOrUpdate(trovato);
                                 continue;
                             }

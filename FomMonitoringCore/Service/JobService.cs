@@ -4,6 +4,7 @@ using FomMonitoringCore.Framework.Model;
 using Mapster;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using FomMonitoringCore.SqlServer.Repository;
@@ -96,22 +97,22 @@ namespace FomMonitoringCore.Service
         }
 
 
-        public int? GetJobIdByJobCode(string jobCode, int machineId)
+        public int? GetJobIdByJobCode(string jobCode, int machineId, DateTime? endDateTime)
         {
             int? result = null;
             try
             {                
                 if (!string.IsNullOrEmpty(jobCode))
                 {
-                    var historyJob = _historyJobRepository.Get(f => f.Code == jobCode && f.MachineId == machineId, o => o.OrderByDescending(i => i.Id), tracked: false).FirstOrDefault();
+                    var date = endDateTime?.Date;
+                    var historyJob = _historyJobRepository.Get(f => f.Code == jobCode && f.MachineId == machineId && DbFunctions.TruncateTime(f.Day) == date, o => o.OrderByDescending(i => i.Id), tracked: false).FirstOrDefault();
 
-                    //HistoryJob historyJob = ent.HistoryJob.OrderByDescending(o => o.Id).FirstOrDefault(f => f.Code == jobCode && f.MachineId == machineId);
                     result = historyJob?.Id;
                 }     
             }
             catch (Exception ex)
             {
-                var errMessage = string.Format(ex.GetStringLog(), jobCode.ToString(), machineId.ToString());
+                var errMessage = string.Format(ex.GetStringLog(), jobCode, machineId.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;

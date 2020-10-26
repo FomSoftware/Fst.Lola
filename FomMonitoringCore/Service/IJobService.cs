@@ -8,6 +8,6 @@ namespace FomMonitoringCore.Service
     {
         List<HistoryJobModel> GetAggregationJobs(MachineInfoModel machine, PeriodModel period);
         List<HistoryJobModel> GetAllHistoryJobs(MachineInfoModel machine, PeriodModel period);
-        int? GetJobIdByJobCode(string jobCode, int machineId);
+        int? GetJobIdByJobCode(string jobCode, int machineId, DateTime? endDateTime);
     }
 }
