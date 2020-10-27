@@ -388,7 +388,7 @@
     <value>La session est terminée ou a été interrompue</value>
   </data>
   <data name="NoPlant" xml:space="preserve">
-    <value>Vous n'êtes associé à aucune plante</value>
+    <value>Vous n'êtes associé à aucune «Plant»</value>
   </data>
   <data name="NoMachine" xml:space="preserve">
     <value>Vous n'êtes associé à aucune machine</value>
@@ -654,7 +654,7 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
     <value>Moteur lame tête mobile</value>
   </data>
   <data name="AddPlant" xml:space="preserve">
-    <value>Ajouter une plante</value>
+    <value>Ajouter un «Plant»</value>
   </data>
   <data name="PlantAddress" xml:space="preserve">
     <value>Adresse</value>
