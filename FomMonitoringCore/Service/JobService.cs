@@ -43,16 +43,16 @@ namespace FomMonitoringCore.Service
             {
                 result = _context.Set<HistoryJob>().Where(hb =>
                         hb.MachineId == machine.Id && hb.Day >= period.StartDate && hb.Day <= period.EndDate).ToList()
-                    .GroupBy(g => new {g.MachineId, g.Code, g.TotalPieces, Day = g.Day.Value.Date})
+                    .GroupBy(g => new {g.MachineId, g.Code, Day = g.Day.Value.Date})
                     .Select(n => new HistoryJobModel
                     {
                         Id = n.Max(i => i.Id),
                         Code = n.Key.Code,
                         Day = n.Key.Day,
                         MachineId = n.Key.MachineId,
-                        TotalPieces = n.Key.TotalPieces,
+                        TotalPieces = n.OrderByDescending(i => i.Id).FirstOrDefault()?.TotalPieces,
                         ElapsedTime = n.Max(i => i.ElapsedTime),
-                        PiecesProduced = n.Max(i => i.PiecesProduced),
+                        PiecesProduced = GetProdPieces(n.Max(i => i.Id), n.Key.Day),
                         Period = null
                     }).ToList();
             }
@@ -65,6 +65,12 @@ namespace FomMonitoringCore.Service
             }
 
             return result;
+        }
+
+        private int? GetProdPieces(int? jobId, DateTime day)
+        {
+            return _context.Set<Piece>().Count(p => DbFunctions.TruncateTime(p.Day.Value) == day.Date
+                                                    && p.JobId == jobId);
         }
 
         #endregion
