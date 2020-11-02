@@ -59,9 +59,9 @@ namespace FomMonitoringCore.Service.API.Concrete
 
                             machine.LastUpdate = currentState.LastUpdated;
                             _context.SaveChanges();
-                            result = true;
+                            result = true; 
 
-                            var historyJobExist = _context.Set<HistoryJob>().Any(h =>
+                            /*var historyJobExist = _context.Set<HistoryJob>().Any(h =>
                                 h.Code == currentState.JobCode && h.MachineId == machine.Id && h.Day != null &&
                                 DbFunctions.TruncateTime(h.Day.Value) == DbFunctions.TruncateTime(currentState.LastUpdated));
                             if (!historyJobExist && currentState.JobCode?.Trim().Length > 0 && currentState.JobProducedPieces > 0)
@@ -79,7 +79,7 @@ namespace FomMonitoringCore.Service.API.Concrete
                                 };
                                 _context.Set<HistoryJob>().Add(newJob);
                                 _context.SaveChanges();
-                            }
+                            }*/
 
                         }
                     
