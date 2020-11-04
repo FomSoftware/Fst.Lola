@@ -82,6 +82,8 @@ namespace FomMonitoringBLL.ViewModel
 
         public string timeZone { get; set; }
 
+        public int modelCode { get; set; }
+
     }
 
 

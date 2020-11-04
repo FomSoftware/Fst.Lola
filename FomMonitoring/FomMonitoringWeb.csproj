@@ -18,8 +18,8 @@
     <RootNamespace>FomMonitoring</RootNamespace>
     <AssemblyName>FomMonitoring</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
-    <IISExpressSSLPort>62186</IISExpressSSLPort>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44391</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
@@ -484,6 +484,16 @@
     <Content Include="Images\panels\CARD_SPINDLE_220X220px.svg" />
     <Content Include="Images\panels\FMC-immagine_macchina_CORTA_2.svg" />
     <Content Include="Images\panels\FMC-immagine_macchina_LUNGA.svg" />
+    <Content Include="Images\panels\FMC120-CARD-AXES_220x220px.svg" />
+    <Content Include="Images\panels\FMC120-CARD-TOOLS_220x220px.svg" />
+    <Content Include="Images\panels\FMC120-CARD_SPINDLE_220X220px.svg" />
+    <Content Include="Images\panels\FMC230-CARD-AXES_220x220px.svg" />
+    <Content Include="Images\panels\FMC230-CARD-TOOLS_220x220px.svg" />
+    <Content Include="Images\panels\FMC230-CARD_SPINDLE_220X220px.svg" />
+    <Content Include="Images\panels\FMC_120-immagine_macchina_corta-5.svg" />
+    <Content Include="Images\panels\FMC_120-immagine_macchina_lunga-5.svg" />
+    <Content Include="Images\panels\FMC_230-immagine_macchina_corta_11.svg" />
+    <Content Include="Images\panels\FMC_230-immagine_macchina_lunga_12.svg" />
     <Content Include="Images\panels\LMX-immagine_macchina_CORTA.svg" />
     <Content Include="Images\panels\LMX-immagine_macchina_LUNGA.svg" />
     <Content Include="Images\panels\LMX_650-MM-CARD_MOBILE.svg" />
@@ -1372,7 +1382,7 @@
     <Content Include="Views\Machine\Panels\Production\_Operators.cshtml" />
     <Content Include="Views\Machine\Panels\Production\_Phases.cshtml" />
     <Content Include="Views\Machine\Panels\MultiSpindles\_MultiSpindle.cshtml" />
-    <Content Include="Views\Machine\Model\_FMC_3_4.cshtml" />
+    <Content Include="Views\Machine\Model\_FMC.cshtml" />
     <Content Include="Views\Machine\Model\_Default.cshtml" />
     <Content Include="Views\Machine\Model\_LMX_650.cshtml" />
     <Content Include="Views\Machine\Panels\Axes\_LMX_650.cshtml" />

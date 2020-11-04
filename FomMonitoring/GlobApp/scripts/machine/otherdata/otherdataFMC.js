@@ -32,7 +32,8 @@
             },
             methods: {
                 noData: function () {
-                    if (this.values.CycleCountXFlow == null ||
+                    if (this.values == null ||
+                        this.values.CycleCountXFlow == null ||
                         this.values.OreVitaMacchina == null ||
                         this.values.OreParzialiDaIngrassaggio == null ||
                         this.values.AsseXKm == null ||

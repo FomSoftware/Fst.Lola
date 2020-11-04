@@ -34,11 +34,12 @@
             },
             methods: {
                 noData: function() {
-                    if (this.values.RpmRange1500 == null &&
+                    if (this.values == null || (
+                        this.values.RpmRange1500 == null &&
                         this.values.RpmRange8000 == null &&
                         this.values.RpmRange11500 == null &&
                         this.values.RpmRange14500 == null &&
-                        this.values.RpmRange20000 == null) {
+                        this.values.RpmRange20000 == null)) {
                         return true;
                     } else {
                         return false;

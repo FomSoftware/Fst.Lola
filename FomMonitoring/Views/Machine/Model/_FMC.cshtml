@@ -32,32 +32,85 @@
     </div>
     <div class="row justify-content-center machine-image-wrapper" id="image-machine-sm">
         <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-9">
-            <div style="height: 65%; padding-bottom: 13px;text-align: center">
-                @Html.Action("GetHtmlPage", "Shared", new { path = "~/images/panels/FMC-immagine_macchina_CORTA_2.svg" })
+            <div style="height: 65%; padding-bottom: 13px; text-align: center">
+                @if (Model.MachineInfo.modelCode == 507)
+                {
+                    @Html.Action("GetHtmlPage", "Shared", new { path = "~/images/panels/FMC_230-immagine_macchina_corta_11.svg" })
+                }
+                else if (Model.MachineInfo.modelCode == 570)
+                {
+                    @Html.Action("GetHtmlPage", "Shared", new { path = "~/images/panels/FMC_120-immagine_macchina_corta-5.svg" })
+                }
+                else
+                {
+                    @Html.Action("GetHtmlPage", "Shared", new { path = "~/images/panels/FMC-immagine_macchina_CORTA_2.svg" })
+                }
+
             </div>
         </div>
     </div>
     <div class="row justify-content-center machine-image-wrapper" id="image-machine-lg">
         <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-9">
-            <div style="height: 65%; padding-bottom: 13px;text-align: center">
-                @Html.Action("GetHtmlPage", "Shared", new { path = "~/images/panels/FMC-immagine_macchina_LUNGA.svg" })
+            <div style="height: 65%; padding-bottom: 13px; text-align: center">
+                @if (Model.MachineInfo.modelCode == 507)
+                {
+                    @Html.Action("GetHtmlPage", "Shared", new { path = "~/images/panels/FMC_230-immagine_macchina_lunga_12.svg" })
+                }
+                else if (Model.MachineInfo.modelCode == 570)
+                {
+                    @Html.Action("GetHtmlPage", "Shared", new { path = "~/images/panels/FMC_120-immagine_macchina_lunga-5.svg" })
+                }
+                else
+                {
+                    @Html.Action("GetHtmlPage", "Shared", new { path = "~/images/panels/FMC-immagine_macchina_lunga.svg" })
+                }
+
             </div>
         </div>
     </div>
+
     <div class="row justify-content-center">
         <div class="col-12" style="background-color: rgb(203, 202, 202);">
-            <div class="row justify-content-center">        
+            <div class="row justify-content-center">
                 <div id="panels-box" class="col-10 col-sm-10 col-md-8" style="background-color: #cbcaca; padding-top: 30px; padding-bottom: 30px; width: 100%; height: calc(70vh);" v-show="machineGroupSelected == null && machinePanelSelected == null && (isMobile() || isTablet())">
                     <div class="btn-group machine-group-selection" style="width: 100%; background-color: #cbcaca">
-                        <button type="button" data-group="FMC3-4_axes" class="no-borders" style="width: 220px; background-color: #cbcaca">
-                            <img class="img-button-group" src="~/Images/panels/CARD-AXES_220X220px.svg"/>
-                        </button>
-                        <button type="button" data-group="FMC3-4_tools" class="no-borders" style="width: 220px; background-color: #cbcaca">
-                            <img class="img-button-group" src="~/Images/panels/CARD-TOOLS_220X220px.svg"/>
-                        </button>
-                        <button type="button" data-group="FMC3-4_spindles" class="no-borders" style="width: 220px; background-color: #cbcaca">
-                            <img class="img-button-group" src="~/Images/panels/CARD_SPINDLE_220X220px.svg"/>
-                        </button>
+                        @if (Model.MachineInfo.modelCode == 507)
+                        {
+                            <button type="button" data-group="FMC2_axes" class="no-borders" style="width: 220px; background-color: #cbcaca">
+                                <img class="img-button-group" src="~/Images/panels/FMC230-CARD-AXES_220X220px.svg" />
+                            </button>
+                            <button type="button" data-group="FMC2_tools" class="no-borders" style="width: 220px; background-color: #cbcaca">
+                                <img class="img-button-group" src="~/Images/panels/FMC230-CARD-TOOLS_220X220px.svg" />
+                            </button>
+                            <button type="button" data-group="FMC2_spindles" class="no-borders" style="width: 220px; background-color: #cbcaca">
+                                <img class="img-button-group" src="~/Images/panels/FMC230-CARD_SPINDLE_220X220px.svg" />
+                            </button>
+                        }
+                        else if (Model.MachineInfo.modelCode == 570)
+                        {
+                            <button type="button" data-group="FMC1_axes" class="no-borders" style="width: 220px; background-color: #cbcaca">
+                                <img class="img-button-group" src="~/Images/panels/FMC120-CARD-AXES_220X220px.svg" />
+                            </button>
+                            <button type="button" data-group="FMC1_tools" class="no-borders" style="width: 220px; background-color: #cbcaca">
+                                <img class="img-button-group" src="~/Images/panels/FMC120-CARD-TOOLS_220X220px.svg" />
+                            </button>
+                            <button type="button" data-group="FMC1_spindles" class="no-borders" style="width: 220px; background-color: #cbcaca">
+                                <img class="img-button-group" src="~/Images/panels/FMC120-CARD_SPINDLE_220X220px.svg" />
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button" data-group="FMC3-4_axes" class="no-borders" style="width: 220px; background-color: #cbcaca">
+                                <img class="img-button-group" src="~/Images/panels/CARD-AXES_220X220px.svg" />
+                            </button>
+                            <button type="button" data-group="FMC3-4_tools" class="no-borders" style="width: 220px; background-color: #cbcaca">
+                                <img class="img-button-group" src="~/Images/panels/CARD-TOOLS_220X220px.svg" />
+                            </button>
+                            <button type="button" data-group="FMC3-4_spindles" class="no-borders" style="width: 220px; background-color: #cbcaca">
+                                <img class="img-button-group" src="~/Images/panels/CARD_SPINDLE_220X220px.svg" />
+                            </button>
+                        }
+
                     </div>
                 </div>
             </div>
@@ -78,8 +131,8 @@
                     {"Classes", "col-xxl-4 col-xl-6  col-lg-6 col-md-12 col-sm-12 col-12"}
                 })
                 @*<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-show="machinePanelSelected != null && machinePanelSelected != 'maintenance' && isMobile()">
-            <div class="empty-area" style="height: 100%"></div>
-        </div>*@
+                        <div class="empty-area" style="height: 100%"></div>
+                    </div>*@
                 @Html.Partial("Panels/OtherMachineData/_FMC34", Model.PanelParameter, new ViewDataDictionary
                 {
                     {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}

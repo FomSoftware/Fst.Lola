@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="FMC2_axes" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 220 220" style="enable-background:new 0 0 220 220;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#005140;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:#215F46;}
+	.st3{fill:#497D68;}
+	.st4{fill:#4A7E68;}
+	.st5{fill:#676767;}
+</style>
+<g id="FMC2_axes">
+	<g id="Group_384" transform="translate(3.982 101.82)">
+		<path id="Path_1916" class="st0" d="M-0.7,107c0,4.8,3.9,8.7,8.7,8.7h196.8c4.8,0,8.7-3.9,8.7-8.7l0-34.5L-0.7,73.9L-0.7,107z"/>
+		<path id="Path_1917" class="st0" d="M189.3,45.5v20.2h-74.5l-8.6-20.2H45.9l0-53.8h68.2v-18.6H27.2l0.1,72.3h-28v30h214.2v-30
+			H189.3z"/>
+	</g>
+	<path id="Path_1918" class="st1" d="M52.3,73.6L51.1,75h15.4l1.1-1.3l7.1-8.3l7.1,8.4l1.1,1.3h15.4l-1-1.2L82.3,56.4l16-18.7H82.9
+		l-8.3,9.7l-8.3-9.7H51l16,18.7L52.3,73.6z"/>
+	<g id="Group_385" transform="translate(90.085 50.898)">
+		<path id="Path_1919" class="st2" d="M88,84H19v9.8l1.1,2.6l8.6,20.2h74.5V84H88z"/>
+		<path id="Path_1920" class="st2" d="M88,79.4v-7.4H28.8v7.4L88,79.4L88,79.4z"/>
+		<path id="Path_1921" class="st2" d="M-15.5,14.5l-7.1,8.3l-1.1,1.3h16.4l-1.1-1.3L-15.5,14.5z"/>
+		<path id="Path_1922" class="st2" d="M28.1-13.2H8.2l-16,18.7L7.1,23l1,1.2h19.9V-13.2z"/>
+	</g>
+	<g id="Group_386" transform="translate(3.982 50.898)">
+		<path id="Path_1923" class="st3" d="M174.1,71.9L174.1,71.9v7.4l0,0V84h15.2V71.9H184v-20h-34.8v9.9h24.9L174.1,71.9z"/>
+		<path id="Path_1924" class="st3" d="M114.9,61.8h7.6v-9.9h-17.4V84h9.8L114.9,61.8z"/>
+		<path id="Path_1925" class="st3" d="M48.3,22.7L63,5.5L47-13.2H27.2v37.3h19.8L48.3,22.7z"/>
+		<path id="Path_1926" class="st3" d="M78.9-13.2H62.4l8.3,9.7L78.9-13.2z"/>
+	</g>
+	<g>
+		<rect x="3.3" y="182.4" class="st4" width="214.2" height="24.8"/>
+		<rect x="3.3" y="176.2" class="st1" width="214.2" height="6.2"/>
+	</g>
+	<path id="Path_1927" class="st5" d="M208.8,3.3c4.8,0,8.7,3.9,8.7,8.7v196.8c0,4.8-3.9,8.7-8.7,8.7H11.9c-4.8,0-8.7-3.9-8.7-8.7
+		V11.9c0-4.8,3.9-8.7,8.7-8.7v0H208.8 M208.8,0.4H11.9C5.6,0.4,0.4,5.6,0.4,11.9v196.8c0,6.4,5.2,11.6,11.6,11.6h196.8
+		c6.4,0,11.6-5.2,11.6-11.6V11.9C220.4,5.6,215.2,0.4,208.8,0.4z"/>
+</g>
+</svg>

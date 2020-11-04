@@ -22,8 +22,8 @@
         vmTools = new Vue({
             el: '#CardToolsFmcLmx',
             data: {
-                tools: data.ToolsInfo,
-                panel: data.PanelId,
+                tools: data != null ? data.ToolsInfo : null,
+                panel: data != null ? data.PanelId : null,
                 showed: true
             },
             computed: {

@@ -10,7 +10,7 @@
 
     @if (Model.MachineInfo.model.Contains("FMC"))
     {
-        @Html.Partial("Model/_FMC_3_4", Model);
+        @Html.Partial("Model/_FMC", Model);
     }
     else if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)
     {

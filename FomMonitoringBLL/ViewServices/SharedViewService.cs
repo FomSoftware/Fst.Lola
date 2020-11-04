@@ -88,6 +88,7 @@ namespace FomMonitoringBLL.ViewServices
                     product_type = m.Product,
                     product_version = m.ProductVersion,
                     machineName = m.MachineName,
+                    modelCode = m.Model != null ? m.Model.ModelCodev997 : 0,
                     activation = m.ActivationDate?.ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern) ?? string.Empty
                 }).ToList();
 

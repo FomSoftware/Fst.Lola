@@ -77,7 +77,8 @@ namespace FomMonitoringBLL.ViewServices
                 mtype = context.ActualMachine.Type.Name,
                 id_mtype = context.ActualMachine.Type.Id,
                 machineName = context.ActualMachine.MachineName,
-                timeZone = context.ActualMachine.TimeZone
+                timeZone = context.ActualMachine.TimeZone,
+                modelCode = context.ActualMachine.Model.ModelCodev997
             };
             
             machine.XTools = _xToolsViewService.GetXTools(context);

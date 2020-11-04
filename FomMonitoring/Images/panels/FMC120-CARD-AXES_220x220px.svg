@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="FMC1_axes" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 220 220" style="enable-background:new 0 0 220 220;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#005140;}
+	.st1{fill:#4A7E68;}
+	.st2{fill:#215F46;}
+	.st3{fill:#497D68;}
+	.st4{fill:#676767;}
+</style>
+<g id="FMC1_axes">
+	<path class="st0" d="M217.4,174.3v-27H3.2v28.4v1.6v31.5c0,4.8,3.9,8.7,8.7,8.7h196.8c4.8,0,8.7-3.9,8.7-8.7V174.3L217.4,174.3z"/>
+	<g>
+		<g>
+			<polygon class="st1" points="217.4,185.9 3.3,185.9 3.3,206.6 217.4,206.6 217.4,206.6 			"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g id="Group_385" transform="translate(90.085 50.898)">
+				<path id="Path_1919" class="st2" d="M101.3,63.8H32.2v9.8l1.1,2.6l8.6,20.2h74.5V63.8H101.3z"/>
+				<path id="Path_1920" class="st2" d="M101.3,59.2v-7.4H42v7.4H101.3L101.3,59.2z"/>
+			</g>
+			<g id="Group_386" transform="translate(3.982 50.898)">
+				<path id="Path_1923" class="st3" d="M187.4,51.7L187.4,51.7v7.4l0,0v4.7h15.2V51.7h-5.4v-20h-34.8v9.9h24.9L187.4,51.7z"/>
+				<path id="Path_1924" class="st3" d="M128.1,41.6h7.6v-9.9h-17.4v32.1h9.8V41.6z"/>
+			</g>
+		</g>
+		<g>
+			<g id="Group_385_1_" transform="translate(90.085 50.898)">
+				<path id="Path_1919_1_" class="st2" d="M-7.6,63.8h-69.1v9.8l1.1,2.6l8.6,20.2H7.6V63.8H-7.6z"/>
+				<path id="Path_1920_1_" class="st2" d="M-7.6,59.2v-7.4h-59.2v7.4H-7.6L-7.6,59.2z"/>
+			</g>
+			<g id="Group_386_1_" transform="translate(3.982 50.898)">
+				<path id="Path_1923_1_" class="st3" d="M78.5,51.7L78.5,51.7v7.4l0,0v4.7h15.2V51.7h-5.4v-20H53.6v9.9h24.9V51.7z"/>
+				<path id="Path_1924_1_" class="st3" d="M19.3,41.6h7.6v-9.9H9.4v32.1h9.8L19.3,41.6z"/>
+			</g>
+		</g>
+	</g>
+	<path id="Path_1927" class="st4" d="M208.8,3.3c4.8,0,8.7,3.9,8.7,8.7v196.8c0,4.8-3.9,8.7-8.7,8.7H11.9c-4.8,0-8.7-3.9-8.7-8.7
+		V11.9c0-4.8,3.9-8.7,8.7-8.7l0,0h196.9 M208.8,0.4H11.9C5.6,0.4,0.4,5.6,0.4,11.9v196.8c0,6.4,5.2,11.6,11.6,11.6h196.8
+		c6.4,0,11.6-5.2,11.6-11.6V11.9C220.4,5.6,215.2,0.4,208.8,0.4z"/>
+</g>
+</svg>
