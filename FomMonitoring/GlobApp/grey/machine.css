@@ -377,7 +377,7 @@ body {
 
 .use-states .progress-label .progress-title {
     margin-top: 40px;
-    font-size: 16px;
+    font-size: 15px;
     float: left;
     margin-bottom: 5px;
 }
@@ -1538,7 +1538,7 @@ td.td-axes {
 
 .use-states-div {
     padding: 0;
-    padding-right: 15px;
+    padding-right: 5px;
 }
 
 @media (max-width: 1396px) {
@@ -2001,10 +2001,30 @@ td.td-axes {
         order: 12;
     }
 }
+@media (min-width:1200px) {
+    #efc_pie_chart {
+        margin-left: -15px;
+    }
+    .use-states-div {
+        margin-left: -15px;
+        margin-right: 15px;
+    }
+    .use-states {
+        width: 107%;
+        margin-top: -20px;
+    }
+
+}
 
 @media (min-width:1200px) and (max-width: 1480px) {
     .card-wrap-2 {
         width: 50%;
+    }
+}
+
+@media (min-width:1400px) and (max-width: 1685px) {
+    .progress-title {
+        font-size: 9px !important;
     }
 }
 

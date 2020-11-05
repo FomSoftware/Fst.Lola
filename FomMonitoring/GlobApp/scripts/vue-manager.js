@@ -25,7 +25,30 @@
         });
     }
 
+    var initTimeSpanEfficiencyComponent = function () {
+        Vue.component('time-span-efficiency', {
+            props: ['duration'],
+            template: '#time-span-efficiency',
+            computed: {
+                showSeconds: function () {
+                    if ((this.duration.days != null && this.duration.hours != null) ||
+                        (this.duration.hours != null && this.duration.minutes != null))
+                        return false;
+                    else
+                        return true;
+                },
+                showMinutes: function () {
+                    if (this.duration.days != null && this.duration.hours != null)
+                        return false;
+                    else
+                        return true;
+                }
+            }
+        });
+    }
+
     return {
-        initTimeSpanComponent: initTimeSpanComponent
+        initTimeSpanComponent: initTimeSpanComponent,
+        initTimeSpanEfficiencyComponent: initTimeSpanEfficiencyComponent
     }
 }();

@@ -627,6 +627,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Content\bootstrap-select.css.map" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\lola_dev.pubxml" />
     <None Include="Properties\PublishProfiles\lola_test.pubxml" />
     <Content Include="Scripts\highcharts\7.1.2\css\annotations\popup.css" />

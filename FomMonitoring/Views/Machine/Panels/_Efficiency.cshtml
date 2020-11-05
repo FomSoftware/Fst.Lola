@@ -67,7 +67,7 @@
                                                     <div class="title-time">
                                                         @LocalizationService.GetResource("TimeOn")</div>
                                                     <div class="value-time">
-                                                        <time-span v-bind:duration="total.on"></time-span>
+                                                        <time-span-efficiency v-bind:duration="total.on"></time-span-efficiency>
                                                     </div>
                                                 </div>
                                             </div>
@@ -90,7 +90,7 @@
                                                         {{ state.perc | round }}<em>%</em>
                                                     </td>
                                                     <td>
-                                                        <time-span v-bind:duration="state.time"></time-span>
+                                                        <time-span-efficiency v-bind:duration="state.time"></time-span-efficiency>
                                                     </td>
                                                 </tr>
                                             </tbody>
