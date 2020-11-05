@@ -490,8 +490,7 @@
     <Content Include="Images\panels\FMC230-CARD-AXES_220x220px.svg" />
     <Content Include="Images\panels\FMC230-CARD-TOOLS_220x220px.svg" />
     <Content Include="Images\panels\FMC230-CARD_SPINDLE_220X220px.svg" />
-    <Content Include="Images\panels\FMC_120-immagine_macchina_corta-5.svg" />
-    <Content Include="Images\panels\FMC_120-immagine_macchina_lunga-5.svg" />
+    <Content Include="Images\panels\FMC_120-immagine_macchina-5.svg" />
     <Content Include="Images\panels\FMC_230-immagine_macchina_corta_11.svg" />
     <Content Include="Images\panels\FMC_230-immagine_macchina_lunga_12.svg" />
     <Content Include="Images\panels\LMX-immagine_macchina_CORTA.svg" />
