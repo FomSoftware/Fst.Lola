@@ -521,7 +521,7 @@ body {
 
 .table-legend {
     width: 100%;
-    font-size: 12px;
+    font-size: 15px;
     margin-bottom: 5px;
     border-collapse: separate;
 }
@@ -1059,7 +1059,7 @@ a.click-more {
 }
 
     .label-tools-value.fmc {
-        font-size: 19px;
+        font-size: 16px;
         padding-left: 27px;
         width: 150px;
     }
@@ -1570,14 +1570,6 @@ td.td-axes {
 
 @media (max-width: 1096px) {
 
-    .table-legend {
-        font-size: 12px;
-    }
-
-        .table-legend td:not(:first-child) {
-            font-size: 12px;
-        }
-
     .icon-message-header {
         width: 3%;
     }
@@ -1695,10 +1687,6 @@ td.td-axes {
         font-size: 14px;
     }
 
-    .table-legend {
-        font-size: 12px;
-    }
-
     .el-state.el-code > div {
         font-size: 14px;
     }
@@ -1772,6 +1760,13 @@ td.td-axes {
     .use-states-div {
         min-width: 85vw;
 
+    }
+    .table-legend {
+        font-size: 12px;
+    }
+
+    .table-legend td:not(:first-child) {
+        font-size: 12px;
     }
 }
 
