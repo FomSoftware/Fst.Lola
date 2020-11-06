@@ -86,7 +86,7 @@
                                     </span>
                                 </td>
                                 <td style="width:12%">
-                                    <span>{{ job.quantity }}/{{job.pieces == 0 ? '*' : job.pieces }}</span>
+                                    <span>{{ job.quantity }}/{{(job.pieces == 0 && job.code.startsWith('M#2')) ? '*' : job.pieces }}</span>
                                 </td>
                             </tr>
 

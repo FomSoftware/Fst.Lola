@@ -46,7 +46,7 @@ namespace FomMonitoringBLL.ViewServices
             List<JobDataModel> jobs = data.Select(j => new JobDataModel()
             {
                 code = j.Code,
-                perc = Common.GetPercentage(j.PiecesProduced ?? 0, j.TotalPieces ?? 0).RoundToInt() > 100 ? 100 : Common.GetPercentage(j.PiecesProduced ?? 0, j.TotalPieces ?? 0).RoundToInt(),
+                perc = getPercent(j),
                 time = CommonViewService.getTimeViewModel(j.ElapsedTime),
                 quantity = j.PiecesProduced ?? 0,
                 pieces = j.TotalPieces ?? 0,
@@ -64,6 +64,15 @@ namespace FomMonitoringBLL.ViewServices
 
             
             return result;
+        }
+
+        private int getPercent(HistoryJobModel j)
+        {
+            if ((j.TotalPieces == null || j.TotalPieces == 0) && j.Code.ToUpper().StartsWith("M#2"))
+                return 100;
+            return Common.GetPercentage(j.PiecesProduced ?? 0, j.TotalPieces ?? 0).RoundToInt() > 100
+                ? 100
+                : Common.GetPercentage(j.PiecesProduced ?? 0, j.TotalPieces ?? 0).RoundToInt();
         }
 
         private long? getResTime(CurrentStateModel currentState, HistoryJobModel job)
