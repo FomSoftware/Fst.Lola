@@ -49,7 +49,7 @@ namespace FomMonitoringBLL.ViewServices
                 perc = getPercent(j),
                 time = CommonViewService.getTimeViewModel(j.ElapsedTime),
                 quantity = j.PiecesProduced ?? 0,
-                pieces = j.TotalPieces ?? 0,
+                pieces = ((int)j.TotalPieces > 0 && !j.Code.ToUpper().StartsWith("M#2")) ? (int)j.TotalPieces : (int)j.PiecesProduced,
                 day = j.Day.GetValueOrDefault(),
                 ResidueWorkingTimeJob = getResTime(currentState, j)
             }).ToList();
