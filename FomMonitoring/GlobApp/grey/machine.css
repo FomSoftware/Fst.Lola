@@ -343,7 +343,7 @@ body {
     }
 
 .overfeed .overfeed-progress {
-    height: 190px;
+    height: 210px;
     width: 11px;
     display: inline-block;
     position: relative;
@@ -369,12 +369,13 @@ body {
     background-color: #eee;
     border-radius: 20px;
 }
+.overfeed-div {
+    top: 20px;
+    left: 10px;
+}
 
 /*#endregion */
-
-
 /*#region use states */
-
 .use-states .progress-label .progress-title {
     margin-top: 40px;
     font-size: 15px;
@@ -1553,6 +1554,10 @@ td.td-axes {
     .code-header {
         width: 8%;
     }
+
+    .use-states-div {
+        padding-right: 15px;
+    }
 }
 
 @media (max-width: 1196px) {
@@ -1586,6 +1591,9 @@ td.td-axes {
     .background-machine {
         background-size: 48.1% 285px;
         background-position-x: 39px;
+    }
+    .overfeed-div {
+        left: 0;
     }
 }
 
@@ -1689,10 +1697,6 @@ td.td-axes {
 
     .el-state.el-code > div {
         font-size: 14px;
-    }
-
-    .overfeed .overfeed-progress {
-        height: 160px;
     }
 
     .use-states-div {
@@ -1813,6 +1817,10 @@ td.td-axes {
         text-overflow: ellipsis;
         overflow: hidden;
     }
+    .overfeed .overfeed-progress {
+        height: 170px;
+    }
+
 }
 
 @media (max-height: 767px) {
@@ -1998,15 +2006,17 @@ td.td-axes {
 }
 @media (min-width:1200px) {
     #efc_pie_chart {
-        margin-left: -15px;
+        margin-left: -20px;
     }
     .use-states-div {
-        margin-left: -20px;
+        margin-left: -22px;
         margin-right: 15px;
     }
     .use-states {
-        width: 105%;
         margin-top: -20px;
+    }
+    .larger div.use-states {
+        width: 111%;
     }
 
 }
@@ -2022,13 +2032,19 @@ td.td-axes {
         font-size: 9px !important;
     }
 }
-
-
-
-.gradient-table-33 {
-    background: #b4b4b4; /* Old browsers */
-    background: -moz-linear-gradient(left, #b4b4b4 0, #b4b4b4 33%, #BEBEBE 33%, #BEBEBE 66%, #b4b4b4 66%, #b4b4b4 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(left, #b4b4b4 0, #b4b4b4 33%, #BEBEBE 33%, #BEBEBE 66%, #b4b4b4 66%, #b4b4b4 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to right, #b4b4b4 0, #b4b4b4 33%, #BEBEBE 33%, #BEBEBE 66%, #b4b4b4 66%, #b4b4b4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+@media (max-height:500px) and (max-width: 767px) {
+    .overfeed .overfeed-progress {
+        height: 170px;
+    }
+    .use-states-div {
+        margin-top: -20px;
+    }
 }
+
+    .gradient-table-33 {
+        background: #b4b4b4; /* Old browsers */
+        background: -moz-linear-gradient(left, #b4b4b4 0, #b4b4b4 33%, #BEBEBE 33%, #BEBEBE 66%, #b4b4b4 66%, #b4b4b4 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left, #b4b4b4 0, #b4b4b4 33%, #BEBEBE 33%, #BEBEBE 66%, #b4b4b4 66%, #b4b4b4 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, #b4b4b4 0, #b4b4b4 33%, #BEBEBE 33%, #BEBEBE 66%, #b4b4b4 66%, #b4b4b4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
 

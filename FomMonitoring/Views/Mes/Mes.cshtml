@@ -84,7 +84,7 @@
                                     <div class="pull-left">
                                         <div>{{ machine.job.code }}</div>
                                     </div>
-                                    <div class="pull-right text-right">
+                                    <div v-if="!machine.job.code.startsWith('M#2')" class="pull-right text-right">
                                         <div>{{ machine.job.perc }}<em>%</em></div>
                                     </div>
                                 </div>
