@@ -70,7 +70,7 @@
                                     <span>{{job.formatted_day}}</span>
                                 </td>
                                 <td style="width:16%">
-                                    <span v-if="job.pieces > 0">
+                                    <span v-if="!job.code.toUpperCase().startsWith('M#2')">
                                         <time-span v-bind:duration="job.time"></time-span>
                                     </span>
                                 </td>
