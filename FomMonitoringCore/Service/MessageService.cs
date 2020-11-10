@@ -439,7 +439,10 @@ namespace FomMonitoringCore.Service
                     var cat = _machineRepository.GetByID(machine.Id).MachineModel.MessageCategoryId;
 
                     var messaggi = _messagesIndexRepository
-                        .Get(mi => mi.MessageCategoryId == cat && mi.IsPeriodicM && mi.PeriodicSpan != null).ToList();
+                        .Get(mi => mi.MessageCategoryId == cat && 
+                                   mi.IsPeriodicM && mi.PeriodicSpan != null &&
+                                   mi.IsDisabled == false &&
+                                   mi.IsVisibleLOLA == true).ToList();
 
                     foreach (var messaggio in messaggi)
                     {
@@ -457,8 +460,13 @@ namespace FomMonitoringCore.Service
                         if (mess == null)
                             InsertMessageMachine(machine, messaggio.MessageCode, data);
                         else if (mess.IgnoreDate != null)
-                            // aggiorno la data di scadenza all'intervallo 
-                            mess.Day = (DateTime) mess.IgnoreDate?.AddHours((long) messaggio.PeriodicSpan);
+                        {
+                            DateTime nd = (DateTime) mess.IgnoreDate?.AddHours((long) messaggio.PeriodicSpan);
+                            if (DateTime.UtcNow > nd)
+                            {
+                                InsertMessageMachine(machine, messaggio.MessageCode, nd);
+                            }
+                        }
                         _context.SaveChanges();
                     }
                 }
