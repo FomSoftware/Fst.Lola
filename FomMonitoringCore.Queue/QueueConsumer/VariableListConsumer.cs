@@ -79,6 +79,7 @@ namespace FomMonitoringCore.Queue.QueueConsumer
                     }
                     else
                     {
+                        _queueConnection.ChannelVariableList.BasicNack(ea.DeliveryTag, false, true);
                         throw new Exception("Errore elaborazione json senza eccezioni");
                     }
                 }
@@ -88,6 +89,7 @@ namespace FomMonitoringCore.Queue.QueueConsumer
                     data.DateEndElaboration = DateTime.UtcNow;
                     data.ElaborationSuccesfull = false;
 
+                    _queueConnection.ChannelVariableList.BasicNack(ea.DeliveryTag, false, true);
 
                     Log?.Invoke(this, new LoggerEventsQueue
                     {

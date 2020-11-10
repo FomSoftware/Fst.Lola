@@ -77,6 +77,7 @@ namespace FomMonitoringCore.Queue.QueueConsumer
                     }
                     else
                     {
+                        _queueConnection.ChannelTool.BasicNack(ea.DeliveryTag, false, true);
                         throw new Exception("Errore elaborazione json senza eccezioni");
                     }
                 }
@@ -85,6 +86,7 @@ namespace FomMonitoringCore.Queue.QueueConsumer
                     data.DateEndElaboration = DateTime.UtcNow;
                     data.ElaborationSuccesfull = false;
 
+                    _queueConnection.ChannelTool.BasicNack(ea.DeliveryTag, false, true);
                     LogService.WriteLog(
                         $"Finita elaborazione con errori json tool {DateTime.UtcNow:O} tempo trascorso {elapsedTime} ", LogService.TypeLevel.Error, ex);
 

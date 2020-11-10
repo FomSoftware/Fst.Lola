@@ -82,14 +82,16 @@ namespace FomMonitoringCore.Queue.QueueConsumer
                     }
                     else
                     {
+                        _queueConnection.ChannelInfo.BasicNack(ea.DeliveryTag, false, true);
                         throw new Exception("Errore elaborazione json senza eccezioni");
                     }
-            }
+                }
                 catch (Exception ex)
                 {
                     data.DateEndElaboration = DateTime.UtcNow;
                     data.ElaborationSuccesfull = false;
 
+                    _queueConnection.ChannelInfo.BasicNack(ea.DeliveryTag, false, true);
                     Log?.Invoke(this, new LoggerEventsQueue
                     {
                         Message = $"Finita elaborazione Info {data.Id.ToString()} con errori - {DateTime.UtcNow:O} tempo trascorso {elapsedTime}",
