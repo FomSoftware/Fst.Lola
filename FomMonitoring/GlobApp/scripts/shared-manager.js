@@ -123,7 +123,10 @@
                 filters.machine = machine;
                               
                 var url = machineID;
-                location.href = url;
+                if (location.href.endsWith("/Index"))
+                    location.href = "Index/" + url;
+                else
+                    location.href = url;
                 //MachineManager.callAjaxMachineViewModelData(filters);
             }
             
