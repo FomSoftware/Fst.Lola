@@ -269,18 +269,18 @@ namespace FomMonitoringCore.Service
                                                                       m.Machine.ActivationDate != null &&
                                                                       m.MessagesIndex.IsPeriodicM &&
                                                                       m.IgnoreDate != null)
-                    .ToList().GroupBy(g => g.MessagesIndexId)
+                    .ToList()
                     .Select(s => new MessageMachine
                     {
-                        Day = s.Max(i => i.Day),
-                        MessagesIndexId = s.Key,
-                        Operator = s.OrderByDescending(i => i.Day).FirstOrDefault().Operator,
-                        Id = s.OrderByDescending(i => i.Day).FirstOrDefault().Id,
-                        IgnoreDate = s.OrderByDescending(i => i.Day).FirstOrDefault().IgnoreDate,
+                        Day = s.Day,
+                        MessagesIndexId = s.MessagesIndexId,
+                        Operator = s.Operator,
+                        Id = s.Id,
+                        IgnoreDate = s.IgnoreDate,
                         MachineId = machine.Id,
                         Machine = _context.Set<Machine>().Find(machine.Id),
-                        MessagesIndex = _context.Set<MessagesIndex>().Find(s.Key),
-                        UserId = s.OrderByDescending(i => i.Day).FirstOrDefault().UserId
+                        MessagesIndex = _context.Set<MessagesIndex>().Find(s.MessagesIndexId),
+                        UserId = s.UserId
                     }).ToList()
                     .OrderByDescending(o => o.Day).ToList();
 
@@ -307,8 +307,8 @@ namespace FomMonitoringCore.Service
             {
                 var query = _context.Set<MessageMachine>().Where(m => m.MachineId == machine.Id &&
                                                                       m.Machine.ActivationDate != null &&
-                                                                      m.MessagesIndex.IsPeriodicM)
-                    .ToList().GroupBy(g => g.MessagesIndexId)
+                                                                      m.MessagesIndex.IsPeriodicM )
+                .ToList().GroupBy(g => g.MessagesIndexId)
                     .Select(s => new MessageMachine
                     {
                         Day = s.Max(i => i.Day),
@@ -320,7 +320,7 @@ namespace FomMonitoringCore.Service
                         Machine = _context.Set<Machine>().Find(machine.Id)
                     }).ToList()
                     .OrderByDescending(o => o.Day).ToList();
-
+                
                 query = query.Where(m =>
                 {
                     var msg = _context.Set<MessagesIndex>().Find(m.MessagesIndexId);
@@ -329,7 +329,6 @@ namespace FomMonitoringCore.Service
                     m.MessagesIndex = msg;
                     return m.IgnoreDate == null && span > 0 &&
                            m.Machine.ActivationDate?.AddHours(span) <= DateTime.UtcNow ||
-                           m.IgnoreDate != null && span > 0 && m.IgnoreDate < m.GetInitialSpanDate(span) ||
                            m.IgnoreDate == null && span == 0;
                 }).ToList();
 
@@ -447,9 +446,9 @@ namespace FomMonitoringCore.Service
                     foreach (var messaggio in messaggi)
                     {
                         //messaggi periodici in base alla data di attivazione e allo span specificato nel messageIndex
-                        var mess = _messageMachineRepository.GetFirstOrDefault(mm =>
+                        var mess = _messageMachineRepository.Get(mm =>
                             mm.MachineId == machine.Id && mm.MessagesIndex.IsPeriodicM &&
-                            mm.MessagesIndex.MessageCode == messaggio.MessageCode);
+                            mm.MessagesIndex.MessageCode == messaggio.MessageCode, o => o.OrderByDescending(i => i.Id)).FirstOrDefault();
 
                         // i messaggi delle macchine al cui modello è associato un messaggio di default 
                         // hanno come data la data di attivazione della macchina
@@ -467,6 +466,16 @@ namespace FomMonitoringCore.Service
                                 InsertMessageMachine(machine, messaggio.MessageCode, nd);
                             }
                         }
+                        else if (messaggio.PeriodicSpan > 0)
+                        {
+                            DateTime next = (DateTime)mess.Day?.AddHours((long)messaggio.PeriodicSpan);
+                            if (DateTime.UtcNow > next)
+                            {
+                                InsertMessageMachine(machine, messaggio.MessageCode, next);
+                            }
+                            
+                        }
+
                         _context.SaveChanges();
                     }
                 }
