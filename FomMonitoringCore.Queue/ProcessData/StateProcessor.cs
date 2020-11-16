@@ -3,13 +3,14 @@ using System.Linq;
 using Autofac;
 using FomMonitoringCore.Service;
 using FomMonitoringCore.SqlServer;
+using FomMonitoringCore.Uow;
 using Mapster;
 using State = FomMonitoringCore.Queue.Dto.State;
 using StateMachine = FomMonitoringCore.SqlServer.StateMachine;
 
 namespace FomMonitoringCore.Queue.ProcessData
 {
-    public class StateProcessor : IProcessor<Dto.State>
+    public class StateProcessor : IProcessor<State>
     {
         private readonly ILifetimeScope _parentScope;
 
@@ -20,20 +21,22 @@ namespace FomMonitoringCore.Queue.ProcessData
         }
         public bool ProcessData(State state)
         {
-            try
+
+            using (var scope = _parentScope.BeginLifetimeScope())
+            using (var context = scope.Resolve<IFomMonitoringEntities>())
+            using (var unitOfWork = new UnitOfWork())
             {
-                using (var threadLifetime = _parentScope.BeginLifetimeScope())
-                using (var _context = threadLifetime.Resolve<IFomMonitoringEntities>())
-                using (var machineService = threadLifetime.Resolve<IMachineService>())
+                try
                 {
+                    unitOfWork.StartTransaction(context);
 
-
+                    var machineService = scope.Resolve<IMachineService>();
                     var serial = state.InfoMachine.First().MachineSerial;
-                    var mac = _context.Set<Machine>().AsNoTracking().FirstOrDefault(m => m.Serial == serial);
+                    var mac = context.Set<Machine>().AsNoTracking().FirstOrDefault(m => m.Serial == serial);
                     if (mac == null)
                         return false;
 
-                    var maxDate = _context.Set<StateMachine>()
+                    var maxDate = context.Set<StateMachine>()
                         .Where(m => m.MachineId == mac.Id && m.EndTime != null).Max(et => et.EndTime) ?? new DateTime();
 
                     foreach (var var in state.StateMachine)
@@ -51,20 +54,25 @@ namespace FomMonitoringCore.Queue.ProcessData
                             .AddParameters("machineId", mac.Id).AdaptToType<StateMachine>();
 
                         if(stateM.EndTime > maxDate)
-                            _context.Set<StateMachine>().Add(stateM);
+                            context.Set<StateMachine>().Add(stateM);
  
 
                     }
 
-                    HistoricizingStates(_context, mac.Id);
-                    _context.SaveChanges();
+                    context.SaveChanges();
+
+                    HistoricizingStates(context, mac.Id);
+                    context.SaveChanges();
+                    unitOfWork.CommitTransaction();
                     return true;
                 }
+                catch (Exception ex)
+                {
+                    unitOfWork.CommitTransaction();
+                    throw ex;
+                }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+
         }
 
 

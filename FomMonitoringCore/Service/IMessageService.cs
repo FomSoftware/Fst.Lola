@@ -6,7 +6,7 @@ using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoringCore.Service
 {
-    public interface IMessageService : IDisposable
+    public interface IMessageService
     {
         List<MessageMachineModel> GetMessageDetails(MachineInfoModel machine, PeriodModel period, string actualMachineGroup = null);
         void CheckMaintenance();

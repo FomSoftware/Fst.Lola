@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoringCore.Uow
@@ -7,6 +8,6 @@ namespace FomMonitoringCore.Uow
     {
         void CommitTransaction();
         void RollbackTransaction();
-        void StartTransaction(IDbContext dbContext);
+        void StartTransaction(IDbContext dbContext, IsolationLevel isolationLevel = IsolationLevel.ReadCommitted);
     }
 }

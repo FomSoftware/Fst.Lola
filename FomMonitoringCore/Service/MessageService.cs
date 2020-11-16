@@ -504,10 +504,6 @@ namespace FomMonitoringCore.Service
             _context.Set<MessageMachine>().Add(msg);
         }
 
-        public void Dispose()
-        {
-            _context?.Dispose();
-        }
 
         private List<HistoryMessageModel> BuildAggregationList(IEnumerable<HistoryMessage> queryResult,
             string typeHistory,

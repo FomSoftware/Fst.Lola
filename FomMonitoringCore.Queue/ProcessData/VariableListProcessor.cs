@@ -5,6 +5,7 @@ using Autofac;
 using FomMonitoringCore.Queue.Dto;
 using FomMonitoringCore.Service;
 using FomMonitoringCore.SqlServer;
+using FomMonitoringCore.Uow;
 using MessageMachine = FomMonitoringCore.SqlServer.MessageMachine;
 
 namespace FomMonitoringCore.Queue.ProcessData
@@ -12,24 +13,30 @@ namespace FomMonitoringCore.Queue.ProcessData
     public class VariableListProcessor : IProcessor<VariablesList>
     {
         private readonly ILifetimeScope _parentScope;
-        private IFomMonitoringEntities _context;
-        private IMessageService _messageService;
 
 
         public VariableListProcessor(ILifetimeScope parentScope)
         {
-            _parentScope = parentScope;
-            _context = parentScope.Resolve<IFomMonitoringEntities>();
-            _messageService = parentScope.Resolve<IMessageService>();
+            _parentScope = parentScope.BeginLifetimeScope();
         }
+
         public bool ProcessData(VariablesList data)
         {
-                var serial = data.InfoMachine.FirstOrDefault()?.MachineSerial;
-                    var mac = _context.Set<Machine>().AsNoTracking().FirstOrDefault(m => m.Serial == serial);
+
+            using (var scope = _parentScope.BeginLifetimeScope())
+            using (var context = scope.Resolve<IFomMonitoringEntities>())
+            using (var unitOfWork = new UnitOfWork())
+            {
+                try
+                {
+                    unitOfWork.StartTransaction(context);
+                    var messageService = scope.Resolve<IMessageService>();
+                    var serial = data.InfoMachine.FirstOrDefault()?.MachineSerial;
+                    var mac = context.Set<Machine>().AsNoTracking().FirstOrDefault(m => m.Serial == serial);
                     if (mac == null)
                         return false;
 
-                    var pms = _context.Set<ParameterMachine>().Where(p =>
+                    var pms = context.Set<ParameterMachine>().Where(p =>
                         p.MachineModelId == mac.MachineModelId).ToList();
 
                     foreach (var var in data.VariablesListMachine)
@@ -40,20 +47,26 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                         var.Values.ToList().ForEach(value =>
                         {
-                            var pm = pms.SingleOrDefault(p => p.VarNumber == value.VariableNumber && p.MachineModelId == mac.MachineModelId);
+                            var pm = pms.SingleOrDefault(p =>
+                                p.VarNumber == value.VariableNumber && p.MachineModelId == mac.MachineModelId);
                             if (pm == null)
                                 return;
 
-                            DateTime? lastReset = value.VariableResetDate.HasValue && value.VariableResetDate.Value.Year < 1900 ? null : value.VariableResetDate;
+                            DateTime? lastReset =
+                                value.VariableResetDate.HasValue && value.VariableResetDate.Value.Year < 1900
+                                    ? null
+                                    : value.VariableResetDate;
 
-                            var previousValue = _context.Set<ParameterMachineValue>().Where(p =>
-                                    p.MachineId == mac.Id && p.VarNumber == value.VariableNumber).OrderByDescending(p => p.UtcDateTime).FirstOrDefault(p => p.VarNumber == value.VariableNumber)
+                            var previousValue = context.Set<ParameterMachineValue>().Where(p =>
+                                    p.MachineId == mac.Id && p.VarNumber == value.VariableNumber)
+                                .OrderByDescending(p => p.UtcDateTime)
+                                .FirstOrDefault(p => p.VarNumber == value.VariableNumber)
                                 ?.VarValue;
 
                             if (pm.Historicized == null || pm.Historicized == "1")
                             {
                                 var day = var.UtcDateTime.Date;
-                                var values = _context.Set<ParameterMachineValue>().Where(p =>
+                                var values = context.Set<ParameterMachineValue>().Where(p =>
                                     p.MachineId == mac.Id && p.ParameterMachineId == pm.Id);
 
                                 var dayValues = values.Where(p =>
@@ -62,19 +75,22 @@ namespace FomMonitoringCore.Queue.ProcessData
                                 ParameterMachineValue dayValue = null;
                                 if (dayValues.Any())
                                 {
-                                    dayValue = _context.Set<ParameterMachineValue>().Find(dayValues.Max(n => n.Id));
+                                    dayValue = context.Set<ParameterMachineValue>().Find(dayValues.Max(n => n.Id));
                                 }
-                                
+
                                 if (dayValue != null)
                                 {
-                                    if(dayValues.Any(dv => dv.Id != dayValues.Max(n => n.Id)))
-                                        _context.Set<ParameterMachineValue>().RemoveRange(dayValues.Where(dv => dv.Id != dayValues.Max(n => n.Id)));
+                                    if (dayValues.Any(dv => dv.Id != dayValues.Max(n => n.Id)))
+                                        context.Set<ParameterMachineValue>()
+                                            .RemoveRange(dayValues.Where(dv => dv.Id != dayValues.Max(n => n.Id)));
 
                                     //dayValue.UtcDateTime = var.UtcDateTime;
                                     if (lastReset != null)
                                     {
-                                        AddResetValue(pm, (DateTime)lastReset, value.VariableValue, dayValue.VarValue, mac.Id);
+                                        AddResetValue(context, pm, (DateTime) lastReset, value.VariableValue,
+                                            dayValue.VarValue, mac.Id);
                                     }
+
                                     dayValue.UtcDateTime = var.UtcDateTime;
                                     dayValue.VarValue = value.VariableValue;
                                     dayValue.ParameterMachineId = pm.Id;
@@ -82,7 +98,7 @@ namespace FomMonitoringCore.Queue.ProcessData
                                 }
                                 else
                                 {
-                                    _context.Set<ParameterMachineValue>().Add(
+                                    context.Set<ParameterMachineValue>().Add(
                                         new ParameterMachineValue
                                         {
                                             MachineId = mac.Id,
@@ -91,48 +107,51 @@ namespace FomMonitoringCore.Queue.ProcessData
                                             VarNumber = value.VariableNumber,
                                             VarValue = value.VariableValue
                                         });
-                                    _context.SaveChanges();
+                                    context.SaveChanges();
 
                                     if (lastReset != null)
                                     {
-                                        AddResetValue(pm, (DateTime)lastReset, value.VariableValue, previousValue, mac.Id);
-                                        _context.SaveChanges();
+                                        AddResetValue(context, pm, (DateTime) lastReset, value.VariableValue,
+                                            previousValue, mac.Id);
+                                        context.SaveChanges();
                                     }
                                 }
                             }
                             else
                             {
-                                var values = _context.Set<ParameterMachineValue>().Where(p =>
+                                var values = context.Set<ParameterMachineValue>().Where(p =>
                                     p.MachineId == mac.Id && p.ParameterMachineId == pm.Id).ToList();
 
                                 ParameterMachineValue pmv = null;
                                 if (values.Any())
                                 {
-                                    pmv = _context.Set<ParameterMachineValue>().Find(values.Max(n => n.Id));
+                                    pmv = context.Set<ParameterMachineValue>().Find(values.Max(n => n.Id));
                                     var valuesToRemove = values.Where(dv => dv.Id != values.Max(n => n.Id)).ToList();
                                     if (valuesToRemove.Any())
-                                        _context.Set<ParameterMachineValue>().RemoveRange(valuesToRemove);
+                                        context.Set<ParameterMachineValue>().RemoveRange(valuesToRemove);
                                 }
-                                
+
                                 if (pmv != null)
                                 {
-                                        //pmv.UtcDateTime = var.UtcDateTime;
+                                    //pmv.UtcDateTime = var.UtcDateTime;
                                     if (lastReset != null)
                                     {
-                                        pmv.UtcDateTime = (DateTime)lastReset;
-                                        AddResetValue(pm, (DateTime)lastReset, value.VariableValue, pmv.VarValue, mac.Id);
+                                        pmv.UtcDateTime = (DateTime) lastReset;
+                                        AddResetValue(context, pm, (DateTime) lastReset, value.VariableValue,
+                                            pmv.VarValue, mac.Id);
                                     }
                                     else
                                     {
                                         pmv.UtcDateTime = var.UtcDateTime;
                                     }
+
                                     pmv.VarValue = value.VariableValue;
                                     pmv.ParameterMachineId = pm.Id;
                                     pmv.ParameterMachine = pm;
                                 }
                                 else
                                 {
-                                    _context.Set<ParameterMachineValue>().Add(
+                                    context.Set<ParameterMachineValue>().Add(
                                         new ParameterMachineValue
                                         {
                                             MachineId = mac.Id,
@@ -141,14 +160,15 @@ namespace FomMonitoringCore.Queue.ProcessData
                                             VarNumber = value.VariableNumber,
                                             VarValue = value.VariableValue
                                         });
-                                    _context.SaveChanges();
+                                    context.SaveChanges();
 
                                     if (lastReset != null)
                                     {
-                                        AddResetValue(pm, (DateTime) lastReset, value.VariableValue, null, mac.Id);
-                                        _context.SaveChanges();
+                                        AddResetValue(context, pm, (DateTime) lastReset, value.VariableValue, null,
+                                            mac.Id);
+                                        context.SaveChanges();
                                     }
-                                    
+
 
                                 }
                             }
@@ -156,26 +176,34 @@ namespace FomMonitoringCore.Queue.ProcessData
                             foreach (var threshold in pm.ParameterMachineThreshold)
                             {
                                 if (threshold.ThresholdMax != 0 || threshold.ThresholdMin != 0)
-                                    CheckVariableTresholds(mac, threshold, value, previousValue, var.UtcDateTime);
+                                    CheckVariableTresholds(context, messageService, mac, threshold, value,
+                                        previousValue, var.UtcDateTime);
                             }
 
-                            _context.SaveChanges();
-                        }) ;
+                            context.SaveChanges();
+                        });
 
                     }
-                    _context.SaveChanges();
 
+                    context.SaveChanges();
+
+                    unitOfWork.CommitTransaction();
 
                     return true;
-                
-            
+                }
 
+                catch (Exception ex)
+                {
+                    unitOfWork.RollbackTransaction();
+                    throw ex;
+                }
+            }
         }
 
-        private void AddResetValue(ParameterMachine parameterMachine, DateTime lastReset, decimal? variableValue, decimal? valueBeforeReset, int idMachine)
+        private void AddResetValue(IFomMonitoringEntities context,  ParameterMachine parameterMachine, DateTime lastReset, decimal? variableValue, decimal? valueBeforeReset, int idMachine)
         {
             if(!parameterMachine.ParameterResetValue.Any(pm => pm.ResetDate == lastReset && pm.MachineId == idMachine))
-                _context.Set<ParameterResetValue>().Add(
+                context.Set<ParameterResetValue>().Add(
                     new ParameterResetValue()
                     {
                         ParameterMachineId = parameterMachine.Id,
@@ -186,8 +214,8 @@ namespace FomMonitoringCore.Queue.ProcessData
                     });
         }
 
-        public void CheckVariableTresholds(Machine machine,
-            ParameterMachineThreshold par, FomMonitoringCore.DataProcessing.Dto.Value value, decimal? oldValue, DateTime utcDatetime)
+        public void CheckVariableTresholds(IFomMonitoringEntities context, IMessageService messageService, Machine machine,
+            ParameterMachineThreshold par, DataProcessing.Dto.Value value, decimal? oldValue, DateTime utcDatetime)
         {
             if (machine == null || par == null || value == null)
                 return;
@@ -200,18 +228,18 @@ namespace FomMonitoringCore.Queue.ProcessData
 
             if (value.VariableValue < min || value.VariableValue > max)
             {
-                var mes = _context.Set<MessageMachine>().AsNoTracking().FirstOrDefault(mm =>
+                var mes = context.Set<MessageMachine>().AsNoTracking().FirstOrDefault(mm =>
                     mm.MachineId == machine.Id && mm.MessagesIndex != null &&
                     mm.MessagesIndex.Id == par.MessagesIndex.Id);
                 if (mes == null)
-                    _messageService.InsertMessageMachine(machine, par.MessagesIndex.MessageCode, utcDatetime);
+                    messageService.InsertMessageMachine(machine, par.MessagesIndex.MessageCode, utcDatetime);
                 else if (oldValue != null)
                     if (mes.Day < utcDatetime)
                     {
                         //verifico se il precedente valore era sotto la soglia inserisco un nuovo messaggio
                         if (oldValue >= min && oldValue <= max)
                         {
-                            _messageService.InsertMessageMachine(machine, par.MessagesIndex.MessageCode, utcDatetime);
+                            messageService.InsertMessageMachine(machine, par.MessagesIndex.MessageCode, utcDatetime);
                         }
                         //in questo caso ero sopra la soglia e continuo ad essere sopra la soglia
                         // controllo se il valore del parametro ha superato il prossimo multiplo del valore max
@@ -224,7 +252,7 @@ namespace FomMonitoringCore.Queue.ProcessData
                                 var multiploOld = Math.Floor(valOld / max);
                                 var multiploNew = Math.Floor((valNew ?? 0) / max);
                                 if (multiploNew > multiploOld)
-                                    _messageService.InsertMessageMachine(machine, par.MessagesIndex.MessageCode, utcDatetime);
+                                    messageService.InsertMessageMachine(machine, par.MessagesIndex.MessageCode, utcDatetime);
                             }
                         }
                     }

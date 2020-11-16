@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data;
 using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoringCore.Uow
@@ -7,9 +8,9 @@ namespace FomMonitoringCore.Uow
     {
         public DbContextTransaction Transaction { get; private set; }
 
-        public void StartTransaction(IDbContext dbContext)
+        public void StartTransaction(IDbContext dbContext, IsolationLevel isolationLevel = IsolationLevel.ReadCommitted)
         {
-            Transaction = dbContext.Database.BeginTransaction();
+            Transaction = dbContext.Database.BeginTransaction(isolationLevel);
         }
 
         public void CommitTransaction()

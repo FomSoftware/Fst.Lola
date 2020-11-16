@@ -31,15 +31,21 @@ namespace VariableListLoadTest
             var repositoryInfo = container.Resolve<IGenericRepository<Info>>();
             var repositoryHistoryJobPieceBar = container.Resolve<IGenericRepository<Tool>>();
             var repositoryMessage = container.Resolve<IGenericRepository<Message>>();
-            //var repositoryVariablesList = container.Resolve<IGenericRepository<VariablesList>>();
+            var repositoryVariablesList = container.Resolve<IGenericRepository<VariablesList>>();
             var forwarder = container.Resolve<IQueueForwarder>();
             //var reforwarder = container.Resolve<IUnknownForwarder>();
             //reforwarder.ReForward();
 
-            var jsonsMessage = repositoryHistoryJobPieceBar.Query().ToList().OrderByDescending(n => n.DateReceived).Take(10);
+            var jsonsMessage = repositoryMessage.Query().ToList().OrderByDescending(n => n.DateReceived).Take(1000).ToList();
+            var jsonsMessagevar = repositoryVariablesList.Query().ToList().OrderByDescending(n => n.DateReceived).Take(1000).ToList();
 
 
             foreach (var data in jsonsMessage)
+            {
+                forwarder.Forward(JsonConvert.SerializeObject(data));
+            }
+
+            foreach (var data in jsonsMessagevar)
             {
                 forwarder.Forward(JsonConvert.SerializeObject(data));
             }

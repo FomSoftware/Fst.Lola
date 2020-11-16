@@ -4,6 +4,7 @@ using System.Linq;
 using Autofac;
 using FomMonitoringCore.Queue.Dto;
 using FomMonitoringCore.SqlServer;
+using FomMonitoringCore.Uow;
 using Mapster;
 using MessageMachine = FomMonitoringCore.SqlServer.MessageMachine;
 
@@ -21,38 +22,38 @@ namespace FomMonitoringCore.Queue.ProcessData
 
         public bool ProcessData(Message data)
         {
-
-            try
+            using (var scope = _parentScope.BeginLifetimeScope())
+            using (var context = scope.Resolve<IFomMonitoringEntities>())
+            using (var unitOfWork = new UnitOfWork())
             {
-                using (var threadLifetime = _parentScope.BeginLifetimeScope())
-                using (var _context = threadLifetime.Resolve<IFomMonitoringEntities>())
+                try
                 {
-
+                    unitOfWork.StartTransaction(context);
                     var serial = data.InfoMachine.FirstOrDefault()?.MachineSerial;
-                    var mac = _context.Set<Machine>().AsNoTracking().FirstOrDefault(m => m.Serial == serial);
+                    var mac = context.Set<Machine>().AsNoTracking().FirstOrDefault(m => m.Serial == serial);
 
                     if (mac == null)
                         return false;
 
-                    var cat = _context.Set<MachineModel>().Find(mac.MachineModelId)?.MessageCategoryId;
+                    var cat = context.Set<MachineModel>().Find(mac.MachineModelId)?.MessageCategoryId;
 
                     //devo eliminare quei messaggi che hanno isLolaVisible = 0 da mdb
                     var messageMachine = new List<MessageMachine>();
 
                     foreach (var mm in data.MessageMachine)
                     {
-                        if (_context.Set<MessageMachine>().Any(msg =>
+                        if (context.Set<MessageMachine>().Any(msg =>
                             msg.MessagesIndex.MessageCode == mm.Code && msg.Operator == mm.Operator &&
                             msg.Day == mm.Time)) continue;
 
                         var message = mm.BuildAdapter().AddParameters("machineId", mac.Id)
                             .AdaptToType<MessageMachine>();
-                        var msgIndex = _context.Set<MessagesIndex>()
+                        var msgIndex = context.Set<MessagesIndex>()
                             .FirstOrDefault(f => f.MessageCode == mm.Code && f.MessageCategoryId == cat);
                         message.Id = 0;
                         if (msgIndex == null)
                             continue;
-                        var old = _context.Set<MessageMachine>().Count(a => a.MessagesIndexId == msgIndex.Id &&
+                        var old = context.Set<MessageMachine>().Count(a => a.MessagesIndexId == msgIndex.Id &&
                                                                             a.MachineId == message.MachineId &&
                                                                             a.StartTime.Value.CompareTo(
                                                                                 message.StartTime.Value) == 0);
@@ -72,23 +73,25 @@ namespace FomMonitoringCore.Queue.ProcessData
                                                                    f.MessagesIndex.MessageType.Id == 12)).ToList();
                     if (messageMachine.Any())
                     {
-                        _context.Set<MessageMachine>().AddRange(messageMachine);
+                        context.Set<MessageMachine>().AddRange(messageMachine);
 
                     }
                     
 
-                    _context.SaveChanges();
-                    HistoricizingMessages(_context, mac.Id);
+                    context.SaveChanges();
+                    HistoricizingMessages(context, mac.Id);
 
-                    _context.SaveChanges();
-
+                    context.SaveChanges();
+                    unitOfWork.CommitTransaction();
                     return true;
                 }
+                catch (Exception ex)
+                {
+                    unitOfWork.RollbackTransaction();
+                    throw ex;
+                }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+
         }
 
         public void HistoricizingMessages(IFomMonitoringEntities context, int idMachine)

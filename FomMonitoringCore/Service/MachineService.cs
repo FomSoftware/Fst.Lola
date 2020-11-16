@@ -301,13 +301,6 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        public void Dispose()
-        {
-            _context?.Dispose();
-        }
-
-
-
         #endregion
     }
 }
