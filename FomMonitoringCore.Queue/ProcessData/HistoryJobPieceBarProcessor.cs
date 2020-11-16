@@ -133,7 +133,7 @@ namespace FomMonitoringCore.Queue.ProcessData
         public void HistoricizingPieces(IFomMonitoringEntities context, int idMachine)
         {
             var maxHpDate = context.Set<HistoryPiece>().Where(hp => hp.MachineId == idMachine)
-                .OrderByDescending(a => a.Day).FirstOrDefault()?.Day;
+                .Max(a => a.Day);
 
             maxHpDate = maxHpDate?.Date ?? DateTime.MinValue;
 
@@ -161,10 +161,10 @@ namespace FomMonitoringCore.Queue.ProcessData
             var aggregato = historyPieces.GroupBy(c => c.Day).Select(n => new HistoryPiece
             {
                 Id = 0,
-                Day = n.Key.Value,
+                Day = n.Key,
                 MachineId = idMachine,
                 Operator = null,
-                Period = n.Key.Value.Year * 10000 + n.Key.Value.Month * 100 + n.Key.Value.Day,
+                Period = n.Key.Year * 10000 + n.Key.Month * 100 + n.Key.Day,
                 CompletedCount = n.Sum(i => i.CompletedCount),
                 ElapsedTime = n.Sum(i => i.ElapsedTime),
                 ElapsedTimeCut = n.Sum(i => i.ElapsedTimeCut),
@@ -207,7 +207,7 @@ namespace FomMonitoringCore.Queue.ProcessData
         public void HistoricizingBars(IFomMonitoringEntities context, int idMachine)
         {
             var maxHpDate = context.Set<HistoryBar>().Where(hp => hp.MachineId == idMachine)
-                .OrderByDescending(a => a.Day).FirstOrDefault()?.Day;
+                .Max(a => a.Day);
 
             maxHpDate = maxHpDate?.Date ?? DateTime.MinValue;
 

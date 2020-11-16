@@ -274,13 +274,13 @@ namespace FomMonitoringCore.Service
                     {
                         Day = s.Max(i => i.Day),
                         MessagesIndexId = s.Key,
-                        Operator = s.OrderByDescending(i => i.Day).FirstOrDefault().Operator,
-                        Id = s.OrderByDescending(i => i.Day).FirstOrDefault().Id,
-                        IgnoreDate = s.OrderByDescending(i => i.Day).FirstOrDefault().IgnoreDate,
+                        Operator = s.OrderByDescending(i => i.Day).First().Operator,
+                        Id = s.OrderByDescending(i => i.Day).First().Id,
+                        IgnoreDate = s.OrderByDescending(i => i.Day).First().IgnoreDate,
                         MachineId = machine.Id,
                         Machine = _context.Set<Machine>().Find(machine.Id),
                         MessagesIndex = _context.Set<MessagesIndex>().Find(s.Key),
-                        UserId = s.OrderByDescending(i => i.Day).FirstOrDefault().UserId
+                        UserId = s.OrderByDescending(i => i.Day).First().UserId
                     }).ToList()
                     .OrderByDescending(o => o.Day).ToList();
 

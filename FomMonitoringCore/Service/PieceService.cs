@@ -48,7 +48,7 @@ namespace FomMonitoringCore.Service
                             {
                                 Id = n.Max(i => i.Id),
                                 CompletedCount = n.Sum(i => i.CompletedCount),
-                                Day = n.Max(i => i.Day ?? DateTime.MinValue),
+                                Day = n.Max(i => i.Day),
                                 ElapsedTime = n.Sum(i => i.ElapsedTime),
                                 ElapsedTimeProducing = n.Sum(i => i.ElapsedTimeProducing),
                                 ElapsedTimeCut = n.Sum(i => i.ElapsedTimeCut),
@@ -95,7 +95,7 @@ namespace FomMonitoringCore.Service
                             {
                                 int? Func(HistoryPiece hs)
                                 {
-                                    return hs.Day?.Month;
+                                    return hs.Day.Month;
                                 }
 
                                 const string typeHistory = "m";
@@ -117,7 +117,7 @@ namespace FomMonitoringCore.Service
                             {
                                 int? Func(HistoryPiece hs)
                                 {
-                                    return hs.Day?.Year;
+                                    return hs.Day.Year;
                                 }
 
                                 const string typeHistory = "y";
@@ -135,7 +135,7 @@ namespace FomMonitoringCore.Service
                             {
                                 Id = n.Max(i => i.Id),
                                 CompletedCount = n.Sum(i => i.CompletedCount),
-                                Day = n.Max(i => i.Day ?? DateTime.MinValue),
+                                Day = n.Max(i => i.Day),
                                 ElapsedTime = n.Sum(i => i.ElapsedTime),
                                 ElapsedTimeProducing = n.Sum(i => i.ElapsedTimeProducing),
                                 ElapsedTimeCut = n.Sum(i => i.ElapsedTimeCut),
@@ -180,7 +180,7 @@ namespace FomMonitoringCore.Service
             {
                 Id = n.Max(i => i.Id),
                 CompletedCount = n.Sum(i => i.CompletedCount),
-                Day = n.Max(i => i.Day ?? DateTime.MinValue),
+                Day = n.Max(i => i.Day),
                 ElapsedTime = n.Sum(i => i.ElapsedTime),
                 ElapsedTimeProducing = n.Sum(i => i.ElapsedTimeProducing),
                 ElapsedTimeCut = n.Sum(i => i.ElapsedTimeCut),

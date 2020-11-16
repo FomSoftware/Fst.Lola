@@ -189,7 +189,7 @@ namespace FomMonitoringCore.Service
             var date = DateTime.UtcNow.Date;
             var currentState = machine.CurrentState.FirstOrDefault(cs => cs.LastUpdated.HasValue && cs.LastUpdated.Value.Date == date);
             var historyMessage = machine.HistoryMessage.Where(cs => cs.Day.HasValue && cs.Day.Value.Date == date && cs.MessagesIndex?.MessageTypeId == 11).ToList();
-            var historyPiece = machine.HistoryPiece.Where(cs => cs.Day.HasValue && cs.Day.Value.Date == date && cs.Shift == null && cs.Operator == null).ToList();
+            var historyPiece = machine.HistoryPiece.Where(cs => cs.Day.Date == date && cs.Shift == null && cs.Operator == null).ToList();
             var historyEfficiency = machine.HistoryState.Where(cs => cs.Day.HasValue && cs.Day.Value.Date == date && cs.Shift == null && cs.Operator == null).ToList();
             var stateMachine = machine.StateMachine.Where(cs => cs.Day.HasValue && cs.Day.Value.Date == date)
                 .OrderByDescending(s => s.StartTime).FirstOrDefault();

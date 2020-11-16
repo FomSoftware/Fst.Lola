@@ -71,7 +71,7 @@ namespace FomMonitoringCore.Queue.ProcessData
         public void HistoricizingStates(IFomMonitoringEntities context, int idMachine)
         {
             var maxHpDate = context.Set<HistoryState>().Where(historyState => historyState.MachineId == idMachine)
-                .OrderByDescending(a => a.Day).FirstOrDefault()?.Day;
+                .Max(a => a.Day);
 
             maxHpDate = maxHpDate?.Date ?? DateTime.MinValue;
 

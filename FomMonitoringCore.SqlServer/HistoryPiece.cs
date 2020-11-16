@@ -16,13 +16,13 @@ namespace FomMonitoringCore.SqlServer
     {
         public int Id { get; set; }
         public Nullable<int> CompletedCount { get; set; }
-        public Nullable<System.DateTime> Day { get; set; }
+        public System.DateTime Day { get; set; }
         public Nullable<long> ElapsedTime { get; set; }
         public Nullable<long> ElapsedTimeProducing { get; set; }
         public Nullable<long> ElapsedTimeCut { get; set; }
         public Nullable<long> ElapsedTimeWorking { get; set; }
         public Nullable<long> ElapsedTimeTrim { get; set; }
-        public Nullable<int> MachineId { get; set; }
+        public int MachineId { get; set; }
         public string Operator { get; set; }
         public Nullable<int> Period { get; set; }
         public Nullable<int> PieceLengthSum { get; set; }

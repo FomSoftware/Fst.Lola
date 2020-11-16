@@ -32,7 +32,7 @@
           <Property Name="ProfileCode" Type="varchar" MaxLength="100" />
           <Property Name="StartTime" Type="datetime" />
           <Property Name="System" Type="varchar" MaxLength="100" />
-          <Property Name="JobCode" Type="varchar(max)" />
+          <Property Name="JobCode" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="CurrentState">
           <Key>
@@ -87,7 +87,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Count" Type="int" />
           <Property Name="Day" Type="datetime" />
-          <Property Name="Params" Type="varchar(max)" />
+          <Property Name="Params" Type="varchar" MaxLength="258" />
           <Property Name="MachineId" Type="int" />
           <Property Name="Period" Type="int" />
           <Property Name="TypeHistory" Type="char" MaxLength="1" />
@@ -99,13 +99,13 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CompletedCount" Type="int" />
-          <Property Name="Day" Type="datetime" />
+          <Property Name="Day" Type="datetime" Nullable="false" />
           <Property Name="ElapsedTime" Type="bigint" />
           <Property Name="ElapsedTimeProducing" Type="bigint" />
           <Property Name="ElapsedTimeCut" Type="bigint" />
           <Property Name="ElapsedTimeWorking" Type="bigint" />
           <Property Name="ElapsedTimeTrim" Type="bigint" />
-          <Property Name="MachineId" Type="int" />
+          <Property Name="MachineId" Type="int" Nullable="false" />
           <Property Name="Operator" Type="varchar" MaxLength="100" />
           <Property Name="Period" Type="int" />
           <Property Name="PieceLengthSum" Type="int" />
@@ -575,7 +575,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_HistoryPiece_Machine">
-          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
+          <End Role="Machine" Type="Self.Machine" Multiplicity="1" />
           <End Role="HistoryPiece" Type="Self.HistoryPiece" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Machine">
@@ -986,7 +986,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      <EntityContainer Name="FomMonitoringModelStoreContainer">
+        <EntityContainer Name="FomMonitoringModelStoreContainer">
           <EntitySet Name="AuditLogin" EntityType="Self.AuditLogin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bar" EntityType="Self.Bar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CurrentState" EntityType="Self.CurrentState" Schema="dbo" store:Type="Tables" />
@@ -1223,7 +1223,7 @@
           <Property Name="ProfileCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="StartTime" Type="DateTime" Precision="3" />
           <Property Name="System" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="JobCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="JobCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Machine" Relationship="Self.FK_Bar_Machine" FromRole="Bar" ToRole="Machine" />
           <NavigationProperty Name="Piece" Relationship="Self.FK_Piece_Bar" FromRole="Bar" ToRole="Piece" />
         </EntityType>
@@ -1284,7 +1284,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Count" Type="Int32" />
           <Property Name="Day" Type="DateTime" Precision="3" />
-          <Property Name="Params" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Params" Type="String" MaxLength="258" FixedLength="false" Unicode="false" />
           <Property Name="MachineId" Type="Int32" />
           <Property Name="Period" Type="Int32" />
           <Property Name="TypeHistory" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
@@ -1298,13 +1298,13 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CompletedCount" Type="Int32" />
-          <Property Name="Day" Type="DateTime" Precision="3" />
+          <Property Name="Day" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="ElapsedTime" Type="Int64" />
           <Property Name="ElapsedTimeProducing" Type="Int64" />
           <Property Name="ElapsedTimeCut" Type="Int64" />
           <Property Name="ElapsedTimeWorking" Type="Int64" />
           <Property Name="ElapsedTimeTrim" Type="Int64" />
-          <Property Name="MachineId" Type="Int32" />
+          <Property Name="MachineId" Type="Int32" Nullable="false" />
           <Property Name="Operator" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Period" Type="Int32" />
           <Property Name="PieceLengthSum" Type="Int32" />
@@ -1861,7 +1861,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_HistoryPiece_Machine">
-          <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
+          <End Role="Machine" Type="Self.Machine" Multiplicity="1" />
           <End Role="HistoryPiece" Type="Self.HistoryPiece" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Machine">
