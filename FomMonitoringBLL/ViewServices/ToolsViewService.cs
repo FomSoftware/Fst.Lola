@@ -2,7 +2,6 @@
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace FomMonitoringBLL.ViewServices
@@ -27,7 +26,7 @@ namespace FomMonitoringBLL.ViewServices
             {
                 var result = new ToolViewModel();
                 if(_machineService.GetMachinePanels(context).Contains((int)enPanel.ToolsBlitz))
-                    result.vm_tools_blitz = GetVueModelBlitz(context.ActualMachine, true);
+                    result.vm_tools_blitz = GetVueModelBlitz(context.ActualMachine);
                 else
                     result.vm_tools = GetVueModel(context.ActualMachine, true);
                 
@@ -42,7 +41,7 @@ namespace FomMonitoringBLL.ViewServices
 
                 var data = _toolService.GetTools(machine, xmodule).ToList();
 
-                var dataTools = data.Where(w => w.IsActive == true).ToList();
+                var dataTools = data.Where(w => w.IsActive).ToList();
                 var dataHistorical = data.Where(w => w.IsActive == false).ToList();
 
                 if (dataTools.Count == 0)
@@ -80,7 +79,7 @@ namespace FomMonitoringBLL.ViewServices
                 return result;
             }
 
-            private ToolParameterVueModel GetVueModelBlitz(MachineInfoModel machine, bool xmodule = false)
+            private ToolParameterVueModel GetVueModelBlitz(MachineInfoModel machine)
             {
                 
                 var par = _parameterMachineService.GetParameters(machine, (int)enPanel.ToolsBlitz);

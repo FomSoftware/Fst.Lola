@@ -2,7 +2,6 @@
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace FomMonitoringBLL.ViewServices
@@ -20,18 +19,20 @@ namespace FomMonitoringBLL.ViewServices
 
         public JobViewModel GetJobs(ContextModel context)
         {
-            JobViewModel result = new JobViewModel();
-            
-            result.vm_jobs = GetVueModel(context.ActualMachine, context.ActualPeriod);
+            var result = new JobViewModel
+            {
+                vm_jobs = GetVueModel(context.ActualMachine, context.ActualPeriod)
+            };
+
 
             return result;
         }
 
         private JobVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
         {
-            JobVueModel result = new JobVueModel();
+            var result = new JobVueModel();
 
-            List<HistoryJobModel> data = _jobService.GetAggregationJobs(machine, period);
+            var data = _jobService.GetAggregationJobs(machine, period);
 
             if (data.Count == 0)
                 return result;
@@ -43,21 +44,23 @@ namespace FomMonitoringBLL.ViewServices
                 currentState = GetCurrentState(machine.Id);
             }
 
-            List<JobDataModel> jobs = data.Select(j => new JobDataModel()
+            var jobs = data.Select(j => new JobDataModel()
             {
                 code = j.Code,
                 perc = getPercent(j),
                 time = CommonViewService.getTimeViewModel(j.ElapsedTime),
                 quantity = j.PiecesProduced ?? 0,
-                pieces = ((int)j.TotalPieces > 0 && !j.Code.ToUpper().StartsWith("M#2")) ? (int)j.TotalPieces : (int)j.PiecesProduced,
+                pieces = j.TotalPieces != null && (j.TotalPieces > 0 && !j.Code.ToUpper().StartsWith("M#2")) ? (int)j.TotalPieces : (int)j.PiecesProduced,
                 day = j.Day.GetValueOrDefault(),
                 ResidueWorkingTimeJob = getResTime(currentState, j)
             }).ToList();
 
             jobs = jobs.OrderBy(o => o.perc).ToList();
 
-            SortingViewModel sorting = new SortingViewModel();
-            sorting.progress = enSorting.Ascending.GetDescription();
+            var sorting = new SortingViewModel
+            {
+                progress = enSorting.Ascending.GetDescription()
+            };
 
             result.jobs = jobs;
             result.sorting = sorting;
@@ -88,9 +91,8 @@ namespace FomMonitoringBLL.ViewServices
 
         private CurrentStateModel GetCurrentState(int machineId)
         {
-            CurrentStateModel result = null;
             //solo in questo caso (FMC) il dato lo devo leggere dal currentState
-            result = _machineService.GetCurrentStateModel(machineId);
+            var result = _machineService.GetCurrentStateModel(machineId);
 
             return result;
         }

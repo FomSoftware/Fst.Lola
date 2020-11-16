@@ -104,9 +104,9 @@ namespace FomMonitoringBLL.ViewServices
             return result;
         }
 
-        public bool IgnoreMessage(int MessageId)
+        public bool IgnoreMessage(int messageId)
         {
-            return _messageService.IgnoreMessage(MessageId);
+            return _messageService.IgnoreMessage(messageId);
         }
 
 

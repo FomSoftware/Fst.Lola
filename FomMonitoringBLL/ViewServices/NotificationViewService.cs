@@ -9,13 +9,6 @@ using FomMonitoringResources;
 
 namespace FomMonitoringBLL.ViewServices
 {
-
-    public interface INotificationViewService
-    {
-        List<ManteinanceDataModel> GetNotification(ContextModel context);
-        void SetNotificationAsRead(int id, ContextModel context);
-    }
-
     public class NotificationViewService: INotificationViewService
     {
         private readonly IMessageService _messageService;

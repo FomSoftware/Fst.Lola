@@ -45,10 +45,10 @@ namespace FomMonitoringBLL.ViewServices
             MachineViewModel machine = new MachineViewModel();
             machine.MachinePanels = _messagesService.GetMachinePanels(context);
 
-            var TimeZone = context.User.TimeZone;
+            var timeZone = context.User.TimeZone;
             if (context.User.Role == enRole.Customer && context.ActualMachine.TimeZone != null)
             {
-                TimeZone = context.ActualMachine.TimeZone;
+                timeZone = context.ActualMachine.TimeZone;
             }
 
             //prendo come data di lastupdate quella del currentstate
@@ -61,7 +61,7 @@ namespace FomMonitoringBLL.ViewServices
             machine.LastUpdate = new DataUpdateModel()
             {
                 DateTime = (DateTime)context.ActualMachine.LastUpdate,
-                TimeZone = TimeZone
+                TimeZone = timeZone
             };
             context.ActualPeriod.LastUpdate.DateTime = machine.LastUpdate.DateTime;
             context.ActualPeriod.LastUpdate.TimeZone = machine.LastUpdate.TimeZone;

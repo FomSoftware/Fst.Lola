@@ -21,7 +21,7 @@ namespace FomMonitoringBLL.ViewServices
 
         public PlantMessagesViewModel GetPlantMessages(ContextModel context)
         {
-            PlantMessagesViewModel result = new PlantMessagesViewModel();           
+            var result = new PlantMessagesViewModel();           
             result.messages = GetVueModel(context.ActualPlant, context.AllMachines, context.ActualPeriod);
             if (context.ActualPlant != null)
             {
@@ -32,7 +32,7 @@ namespace FomMonitoringBLL.ViewServices
                 };
 
 
-                SortingViewModel sorting = new SortingViewModel
+                var sorting = new SortingViewModel
                 {
                     timestamp = enSorting.Descending.GetDescription()
                 };
@@ -54,21 +54,21 @@ namespace FomMonitoringBLL.ViewServices
 
         public List<MachineMessagesDataViewModel> GetVueModel(PlantModel plant, List<MachineInfoModel> allMachines, PeriodModel period)
         {
-            List<MachineMessagesDataViewModel> result = new List<MachineMessagesDataViewModel>();
+            var result = new List<MachineMessagesDataViewModel>();
 
-            List<MesUserMachinesModel> dataAllMachines = _mesService.GetPlantData(plant);
+            var dataAllMachines = _mesService.GetPlantData(plant);
 
-            foreach (MesUserMachinesModel dataMachine in dataAllMachines)
+            foreach (var dataMachine in dataAllMachines)
             {
 
-                MachineInfoModel machine = allMachines.FirstOrDefault(w => w.Id == dataMachine.MachineId);
+                var machine = allMachines.FirstOrDefault(w => w.Id == dataMachine.MachineId);
 
                 if (machine == null)
                 {
                     continue;
                 }
 
-                MachineInfoViewModel machineInfo = new MachineInfoViewModel()
+                var machineInfo = new MachineInfoViewModel()
                 {
                     id = machine.Id,
                     description = machine.Description == string.Empty ? null : machine.Description,
@@ -79,12 +79,12 @@ namespace FomMonitoringBLL.ViewServices
                 };
 
                
-                List<MessageMachineModel> data = _messageService.GetMessageDetails(machine, period);
+                var data = _messageService.GetMessageDetails(machine, period);
 
                 if (data.Count == 0)
                     continue;
 
-                List<MessageDetailViewModel> msgDet = data.Select(a => new MessageDetailViewModel()
+                var msgDet = data.Select(a => new MessageDetailViewModel()
                 {
                     code = a.Code,
                     parameters = a.Params,
@@ -98,9 +98,9 @@ namespace FomMonitoringBLL.ViewServices
 
                 }).ToList();
 
-                foreach(MessageDetailViewModel det in msgDet)
+                foreach(var det in msgDet)
                 {
-                    MachineMessagesDataViewModel msg = new MachineMessagesDataViewModel();
+                    var msg = new MachineMessagesDataViewModel();
                     msg.message = det;
                     msg.machine = machineInfo;
                     result.Add(msg);

@@ -13,27 +13,21 @@ namespace FomMonitoringCore.Service
 {
     public class MachineService : IMachineService
     {
-        private readonly IMachineTypeRepository _machineTypeRepository;
         private readonly IMachineModelRepository _machineModelRepository;
         private readonly IPanelRepository _panelRepository;
         private readonly IMachineRepository _machineRepository;
         private readonly IFomMonitoringEntities _context;
-        private readonly IParameterMachineService _parameterMachineService;
 
         public MachineService(
-            IMachineTypeRepository machineTypeRepository,
             IMachineModelRepository machineModelRepository,
             IPanelRepository panelRepository,
             IFomMonitoringEntities context,
-            IMachineRepository machineRepository,
-            IParameterMachineService parameterMachineService)
+            IMachineRepository machineRepository)
         {
             _machineRepository = machineRepository;
-            _machineTypeRepository = machineTypeRepository;
             _machineModelRepository = machineModelRepository;
             _panelRepository = panelRepository;
             _context = context;
-            _parameterMachineService = parameterMachineService;
         }
         #region API
 
@@ -47,13 +41,13 @@ namespace FomMonitoringCore.Service
                     if (modelCode != null)
                     {
                         var machineModel = _machineModelRepository.Get(f => f.ModelCodev997 == modelCode).FirstOrDefault();
-                        result = machineModel != null ? machineModel.Id : (int?)null;
+                        result = machineModel?.Id;
                     }
                               
                 }
                 catch (Exception ex)
                 {
-                    string errMessage = string.Format(ex.GetStringLog());
+                    var errMessage = string.Format(ex.GetStringLog());
                     LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);                
                 }
 
@@ -71,57 +65,35 @@ namespace FomMonitoringCore.Service
                 if (modelCode != null)
                 {
                     var machineModel = _machineModelRepository.Get(f => f.ModelCodev997 == modelCode).FirstOrDefault();
-                    result = machineModel != null ? machineModel.MachineTypeId : (int?)null;
+                    result = machineModel?.MachineTypeId;
                 }
 
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog());
+                var errMessage = string.Format(ex.GetStringLog());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
 
-            return result;
-        }
-
-        public int? GetMachineTypeIdByTypeName(string typeName)
-        {
-            int? result = null;
-
-            try
-            {
-
-                if (!string.IsNullOrEmpty(typeName))
-                {
-                    MachineType machineType = _machineTypeRepository.Get(f => f.Name == typeName).FirstOrDefault();
-                    result = machineType != null ? machineType.Id : (int?)null;
-                }
-            }
-            catch (Exception ex)
-            {
-                string errMessage = string.Format(ex.GetStringLog(), typeName.ToString());
-                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-            }
-            
             return result;
         }
 
         public DateTime GetLastUpdateByMachineSerial(string machineSerial)
         {
-            DateTime result = SqlDateTime.MinValue.Value;
+            var result = SqlDateTime.MinValue.Value;
 
                 try
                 {
-                    Machine machine = _machineRepository.Get(f => f.Serial == machineSerial).FirstOrDefault();
-                if (machine != null && machine.LastUpdate != null)
-                    {
-                        result = machine.LastUpdate.Value;
-                    }
+                    var machine = _machineRepository.Get(f => f.Serial == machineSerial).FirstOrDefault();
+                if (machine?.LastUpdate != null)
+                {
+                    result = machine.LastUpdate.Value;
+                }
                 }
                 catch (Exception ex)
                 {
-                    string errMessage = string.Format(ex.GetStringLog(), machineSerial);
+                    var errMessage = string.Format(ex.GetStringLog(), machineSerial);
                     LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
                 }
             
@@ -135,10 +107,10 @@ namespace FomMonitoringCore.Service
             {
                 if (startTime != null)
                 {
-                    Machine machine = _machineRepository.GetByID(machineId);
+                    var machine = _machineRepository.GetByID(machineId);
                     if (machine != null)
                     {
-                        result = machine.Shift1 != null && startTime.Value.TimeOfDay > machine.Shift1.Value ? 1 : result;
+                        result = machine.Shift1 != null && startTime.Value.TimeOfDay > machine.Shift1.Value ? 1 : (int?)null;
                         result = machine.Shift2 != null && startTime.Value.TimeOfDay > machine.Shift2.Value ? 2 : result;
                         result = machine.Shift3 != null && startTime.Value.TimeOfDay > machine.Shift3.Value ? 3 : result;
                     }
@@ -146,32 +118,9 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), machineId.ToString(), Convert.ToString(startTime));
+                var errMessage = string.Format(ex.GetStringLog(), machineId.ToString(), Convert.ToString(startTime));
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
-            return result;
-        }
-
-        public bool AddMachineModel(string modelName, int modelCode)
-        {
-            bool result = false;
-
-                try
-                {                    
-                    MachineModel machineModel = new MachineModel();
-                    machineModel.Name = modelName;
-                    machineModel.ModelCodev997 = modelCode;
-                    _machineModelRepository.Insert(machineModel);
-                    _context.SaveChanges();                   
-                    result = true;
-                }
-            
-                catch (Exception ex)
-                {
-                    string errMessage = string.Format(ex.GetStringLog(), modelName.ToString());
-                    LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-                }
-            
             return result;
         }
 
@@ -179,27 +128,9 @@ namespace FomMonitoringCore.Service
 
         #region APP WEB
 
-        public List<MachineInfoModel> GetAllMachinesByPlantID(int PlantID)
-        {
-            List<MachineInfoModel> result = new List<MachineInfoModel>();
-
-            try
-            {
-                var query = _machineRepository.Get(w => w.PlantId == PlantID && w.LastUpdate != null).ToList();
-                result = query.Adapt<List<MachineInfoModel>>();
-            }
-            catch (Exception ex)
-            {
-                string errMessage = string.Format(ex.GetStringLog(), PlantID.ToString());
-                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-            }
-
-            return result;
-        }
-
         public List<MachineInfoModel> GetUserMachines(ContextModel ctx)
         {
-            List<MachineInfoModel> result = new List<MachineInfoModel>();
+            var result = new List<MachineInfoModel>();
 
             try
             {                
@@ -212,7 +143,7 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), ctx.User.ID.ToString());
+                var errMessage = string.Format(ex.GetStringLog(), ctx.User.ID.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -221,7 +152,7 @@ namespace FomMonitoringCore.Service
 
         public List<MachineInfoModel> GetAllMachines()
         {
-            List<MachineInfoModel> result = new List<MachineInfoModel>();
+            var result = new List<MachineInfoModel>();
 
             try
             {
@@ -231,26 +162,26 @@ namespace FomMonitoringCore.Service
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog());
+                var errMessage = string.Format(ex.GetStringLog());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
             return result;
         }
 
-        public MachineInfoModel GetMachineInfo(int MachineID)
+        public MachineInfoModel GetMachineInfo(int machineId)
         {
-            MachineInfoModel result = new MachineInfoModel();
+            var result = new MachineInfoModel();
 
             try
             {
-                var query = _machineRepository.GetByID(MachineID);
+                var query = _machineRepository.GetByID(machineId);
                 result = query.Adapt<MachineInfoModel>();
                 
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), MachineID.ToString());
+                var errMessage = string.Format(ex.GetStringLog(), machineId.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 
@@ -262,39 +193,33 @@ namespace FomMonitoringCore.Service
             return GetMachinePanels(context.ActualMachine.MachineModelId);
         }
 
-        public List<int> GetMachinePanels(int? MachineModelId)
+        public List<int> GetMachinePanels(int? machineModelId)
         {
-            List<int> result = new List<int>();
+            var result = new List<int>();
             try
             {
-                result = _panelRepository.Get(p => p.ParameterMachine.Any(f => f.MachineModelId == MachineModelId)).Select(a => a.Id).Distinct().ToList();
+                result = _panelRepository.Get(p => p.ParameterMachine.Any(f => f.MachineModelId == machineModelId)).Select(a => a.Id).Distinct().ToList();
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), MachineModelId.ToString());
+                var errMessage = string.Format(ex.GetStringLog(), machineModelId.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
         }
 
-        public ParameterMachineValueModel GetProductionValueModel(MachineInfoModel context, enPanel pp)
+        public CurrentStateModel GetCurrentStateModel(int machineId)
         {
-            var par = _parameterMachineService.GetParameters(context, (int)pp).FirstOrDefault();
-            return par;
-        }
-
-        public CurrentStateModel GetCurrentStateModel(int MachineID)
-        {
-            CurrentStateModel result = new CurrentStateModel();
+            var result = new CurrentStateModel();
 
             try
             {
-                var query = _context.Set<CurrentState>().FirstOrDefault(w => w.MachineId == MachineID);
-                result = query.Adapt<CurrentStateModel>();
+                var query = _context.Set<CurrentState>().FirstOrDefault(w => w.MachineId == machineId);
+                result = query?.Adapt<CurrentStateModel>();
             }
             catch (Exception ex)
             {
-                string errMessage = string.Format(ex.GetStringLog(), MachineID.ToString());
+                var errMessage = string.Format(ex.GetStringLog(), machineId.ToString());
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
 

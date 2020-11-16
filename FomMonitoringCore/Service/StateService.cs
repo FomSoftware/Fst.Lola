@@ -7,7 +7,6 @@ using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.SqlServer;
 using FomMonitoringCore.SqlServer.Repository;
-using Mapster;
 
 namespace FomMonitoringCore.Service
 {
@@ -26,40 +25,7 @@ namespace FomMonitoringCore.Service
         }
 
 
-        #region HISTORY 
-
-        /// <summary>
-        ///     Ritorna i dettagli degli stati in base a macchina e periodo
-        /// </summary>
-        /// <param name="machine"></param>
-        /// <param name="period"></param>
-        /// <returns>Lista dei dettagli degli stati</returns>
-        public List<HistoryStateModel> GetAllHistoryStates(MachineInfoModel machine, PeriodModel period)
-        {
-            var result = new List<HistoryStateModel>();
-
-            try
-            {
-                var aggType = period.Aggregation.GetDescription();
-
-                var query = _historyStateRepository.Get(hs => hs.MachineId == machine.Id
-                                                              && hs.Day >= period.StartDate && hs.Day <= period.EndDate
-                                                              && hs.TypeHistory == aggType).ToList();
-
-                result = query.Adapt<List<HistoryStateModel>>();
-            }
-            catch (Exception ex)
-            {
-                var errMessage = string.Format(ex.GetStringLog(),
-                    machine.Id.ToString(),
-                    string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ",
-                        period.Aggregation.ToString()));
-                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-            }
-
-            return result;
-        }
-
+        #region HISTORY
 
         /// <summary>
         ///     Ritorna gli aggregati degli stati in mase al tipo di aggregazione
@@ -252,96 +218,6 @@ namespace FomMonitoringCore.Service
             return result.ToList();
         }
 
-
-        /// <summary>
-        ///     Ritorna i dettagli degli stati dato l'ID della macchina
-        /// </summary>
-        /// <param name="machineId"></param>
-        /// <param name="dateFrom"></param>
-        /// <param name="dateTo"></param>
-        /// <param name="typePeriod"></param>
-        /// <returns>Lista dei dettagli degli stati</returns>
-        public List<HistoryStateModel> GetAllHistoryStatesByMachineId(int machineId, DateTime dateFrom, DateTime dateTo,
-            enAggregation typePeriod)
-        {
-            var result = new List<HistoryStateModel>();
-            try
-            {
-                var historyStateList = _historyStateRepository.Get(w => w.MachineId == machineId &&
-                                                                        w.Period.Value.PeriodToDate(typePeriod) >=
-                                                                        dateFrom &&
-                                                                        w.Period.Value.PeriodToDate(typePeriod) <=
-                                                                        dateTo).ToList();
-                result = historyStateList.Adapt<List<HistoryStateModel>>();
-            }
-            catch (Exception ex)
-            {
-                var errMessage = string.Format(ex.GetStringLog(), machineId.ToString(),
-                    dateFrom.ToString(CultureInfo.InvariantCulture), dateTo.ToString(CultureInfo.InvariantCulture),
-                    typePeriod.ToString());
-                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        ///     Ritorna i dettagli dello stato specificato dato l'ID della macchina
-        /// </summary>
-        /// <param name="machineId"></param>
-        /// <param name="stateId"></param>
-        /// <param name="dateFrom"></param>
-        /// <param name="dateTo"></param>
-        /// <param name="typePeriod"></param>
-        /// <returns>Lista dei dettagli degli stati</returns>
-        public List<HistoryStateModel> GetHistoryStateByMachineIdStateId(int machineId, int stateId, DateTime dateFrom,
-            DateTime dateTo, enAggregation typePeriod)
-        {
-            var result = new List<HistoryStateModel>();
-
-            try
-            {
-                var historyStateList = _historyStateRepository.Get(w =>
-                    w.MachineId == machineId && w.StateId == stateId && w.Period != null &&
-                    w.Period.Value.PeriodToDate(typePeriod) >= dateFrom &&
-                    w.Period.Value.PeriodToDate(typePeriod) <= dateTo).ToList();
-                result = historyStateList.Adapt<List<HistoryStateModel>>();
-            }
-            catch (Exception ex)
-            {
-                var errMessage = string.Format(ex.GetStringLog(), machineId.ToString(), stateId.ToString(),
-                    dateFrom.ToString(), dateTo.ToString(), typePeriod.ToString());
-                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-            }
-
-            return result;
-        }
-
-
-        /// <summary>
-        ///     Ritorna la data più vecchia dei dati di una certa macchina
-        /// </summary>
-        /// <param name="machineId"></param>
-        /// <param name="typePeriod"></param>
-        /// <returns>Data</returns>
-        public DateTime? GetOldestDateByMachineIdTypePeriod(int machineId, enAggregation typePeriod)
-        {
-            DateTime? result = null;
-            try
-            {
-                var period = _historyStateRepository
-                    .Get(w => w.MachineId == machineId && w.TypeHistory == typePeriod.GetDescription())
-                    .Min(m => m.Period);
-                result = period == null ? null : ((int) period).PeriodToDate(typePeriod);
-            }
-            catch (Exception ex)
-            {
-                var errMessage = string.Format(ex.GetStringLog(), machineId.ToString(), typePeriod.ToString());
-                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-            }
-
-            return result;
-        }
 
         public List<EfficiencyStateMachineModel> GetOperatorsActivity(MachineInfoModel machine, DateTime dateFrom,
             DateTime dateTo)

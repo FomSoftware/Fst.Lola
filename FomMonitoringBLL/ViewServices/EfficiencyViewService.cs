@@ -39,7 +39,7 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        public EfficiencyVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
+        private EfficiencyVueModel GetVueModel(MachineInfoModel machine, PeriodModel period)
         {
             var result = new EfficiencyVueModel();
 
@@ -132,11 +132,11 @@ namespace FomMonitoringBLL.ViewServices
             decimal percKpi;
             if (machine.MachineTypeId == (int)enMachineType.Troncatrice || machine.MachineTypeId == (int)enMachineType.CentroLavoro)
             {
-                percKpi = (percProd ?? 0) + (manual.perc ?? 0);
+                percKpi = (decimal) percProd + (manual.perc ?? 0);
             }
             else
             {
-                percKpi = (percProd ?? 0);
+                percKpi = (decimal) percProd;
             }
 
             result.kpi = CommonViewService.getKpiViewModel(percKpi, machine.StateProductivityGreenThreshold, machine.StateProductivityYellowThreshold);
@@ -154,10 +154,12 @@ namespace FomMonitoringBLL.ViewServices
             var granularity = Common.GetAggregationType(period.StartDate, period.EndDate);
             var startDateTrend = Common.GetStartDateTrend(period.EndDate, period.StartDate, granularity);
 
-            var periodTrend = new PeriodModel();
-            periodTrend.StartDate = startDateTrend.ToUniversalTime().Date;
-            periodTrend.EndDate = period.EndDate.ToUniversalTime().Date.AddDays(1).AddMinutes(-1);
-            periodTrend.Aggregation = granularity;
+            var periodTrend = new PeriodModel
+            {
+                StartDate = startDateTrend.ToUniversalTime().Date,
+                EndDate = period.EndDate.ToUniversalTime().Date.AddDays(1).AddMinutes(-1),
+                Aggregation = granularity
+            };
 
             var data = _stateService.GetAggregationStates(machine, periodTrend, enDataType.Historical).Where(w => w.enState != enState.Offline).OrderBy(o => o.Day).ToList();
 
@@ -230,12 +232,12 @@ namespace FomMonitoringBLL.ViewServices
                 efficiency = states
                     .Where(w => (w.enState == enState.Manual || w.enState == enState.Production) &&
                                 w.Operator == operatorName).Sum(w => w.ElapsedTime ?? 0);
-                return (efficiency * 100) / totalTime;
+                return efficiency * 100 / totalTime;
             }
             efficiency = states
                 .Where(w => w.enState == enState.Production &&
                             w.Operator == operatorName).Sum(w => w.ElapsedTime ?? 0);
-            return (efficiency * 100) / totalTime;
+            return efficiency * 100 / totalTime;
         }
 
         private ChartViewModel GetOperatorsOptions(MachineInfoModel machine, PeriodModel period)
@@ -272,7 +274,7 @@ namespace FomMonitoringBLL.ViewServices
             var stateManual = data.FirstOrDefault(w => w.enState == enState.Manual);
             
 
-            var totalValue = (machine.MachineTypeId == (int)enMachineType.Troncatrice || machine.MachineTypeId == (int)enMachineType.CentroLavoro) ?
+            var totalValue = machine.MachineTypeId == (int)enMachineType.Troncatrice || machine.MachineTypeId == (int)enMachineType.CentroLavoro ?
                 stateProd?.ElapsedTime + stateManual?.ElapsedTime : stateProd?.ElapsedTime;
             var totalOn = data.Where(w => w.enState != enState.Offline).Select(s => s.ElapsedTime).Sum();
 
@@ -287,24 +289,7 @@ namespace FomMonitoringBLL.ViewServices
             };
             return options;
         }
-
-        //obsoleto rimosso dalla card
-        private ChartViewModel GetShiftsOptions(MachineInfoModel machine, PeriodModel period)
-        {
-            var options = new ChartViewModel();
-
-            var data = _stateService.GetAggregationStates(machine, period, enDataType.Shifts).Where(w => w.enState != enState.Offline).OrderBy(o => o.Day).ToList();
-
-            if (data.Count == 0)
-                return null;
-
-            var shifts = data.Select(s => s.Shift.ToString()).Distinct().ToList();
-            options.categories = shifts.Select(s => $"{s}° {Resource.Shift}").ToList();
-            options.yTitle = $"{Resource.TimeOn} (%)";
-            options.series = GetSeriesStackedBarChart(data, shifts, enDataType.Shifts);
-
-            return options;
-        }
+        
 
         private ChartViewModel GetStatesOptions(MachineInfoModel machine, PeriodModel period)
         {
@@ -336,9 +321,6 @@ namespace FomMonitoringBLL.ViewServices
             decimal? percError = Common.GetPercentage(totalError, totalOn);
             decimal? percManual = Common.GetPercentage(totalManual, totalOn);
 
-            var overfeed = stateProd?.OverfeedAvg;
-
-            var states = new List<StateViewModel>();
 
             // state prod
             var prod = new SerieViewModel();
@@ -413,46 +395,46 @@ namespace FomMonitoringBLL.ViewServices
 
                 var totalOn = dataCategorie.Where(w => w.enState != enState.Offline).Select(s => s.ElapsedTime).Sum();
 
-                var stateProd = dataCategorie.Where(w => w.enState == enState.Production).FirstOrDefault();
+                var stateProd = dataCategorie.FirstOrDefault(w => w.enState == enState.Production);
 
                 if (stateProd != null)
                 {
                     var totalProd = stateProd.ElapsedTime;
                     decimal? percProd = Common.GetPercentage(totalProd, totalOn);
-                    serieProd.data.Add((percProd ?? 0).RoundToInt());
+                    serieProd.data.Add(((decimal) percProd).RoundToInt());
                 }
                 else
                     serieProd.data.Add(0);
 
-                var stateManual = dataCategorie.Where(w => w.enState == enState.Manual).FirstOrDefault();
+                var stateManual = dataCategorie.FirstOrDefault(w => w.enState == enState.Manual);
 
                 if (stateManual != null)
                 {
                     var totalManual = stateManual.ElapsedTime;
                     decimal? percManual = Common.GetPercentage(totalManual, totalOn);
-                    serieManual.data.Add((percManual ?? 0).RoundToInt());
+                    serieManual.data.Add(((decimal) percManual).RoundToInt());
                 }
                 else
                     serieManual.data.Add(0);
 
-                var statePause = dataCategorie.Where(w => w.enState == enState.Pause).FirstOrDefault();
+                var statePause = dataCategorie.FirstOrDefault(w => w.enState == enState.Pause);
 
                 if (statePause != null)
                 {
                     var totalPause = statePause.ElapsedTime;
                     decimal? percPause = Common.GetPercentage(totalPause, totalOn);
-                    seriePause.data.Add((percPause ?? 0).RoundToInt());
+                    seriePause.data.Add(((decimal) percPause).RoundToInt());
                 }
                 else
                     seriePause.data.Add(0);
 
-                var stateError = dataCategorie.Where(w => w.enState == enState.Error).FirstOrDefault();
+                var stateError = dataCategorie.FirstOrDefault(w => w.enState == enState.Error);
 
                 if (stateError != null)
                 {
                     var totalError = stateError.ElapsedTime;
                     decimal? percError = Common.GetPercentage(totalError, totalOn);
-                    serieError.data.Add((percError ?? 0).RoundToInt());
+                    serieError.data.Add(((decimal) percError).RoundToInt());
                 }
                 else
                     serieError.data.Add(0);

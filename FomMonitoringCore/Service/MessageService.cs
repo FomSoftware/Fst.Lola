@@ -167,39 +167,6 @@ namespace FomMonitoringCore.Service
         #endregion
 
 
-        /// <summary>
-        ///     Ritorna i dettagli degli allarmi in base a macchina e periodo
-        /// </summary>
-        /// <param name="machine"></param>
-        /// <param name="period"></param>
-        /// <returns>Lista dei dettagli degli stati</returns>
-        public List<HistoryMessageModel> GetAllHistoryMessages(MachineInfoModel machine, PeriodModel period)
-        {
-            var result = new List<HistoryMessageModel>();
-
-            try
-            {
-                var aggType = period.Aggregation.GetDescription();
-
-                var query = (from hs in _context.Set<HistoryMessage>()
-                    where hs.MachineId == machine.Id
-                          && hs.Day >= period.StartDate && hs.Day <= period.EndDate
-                          && hs.TypeHistory == aggType
-                    select hs).ToList();
-
-                result = query.Adapt<List<HistoryMessageModel>>();
-            }
-            catch (Exception ex)
-            {
-                var errMessage = string.Format(ex.GetStringLog(),
-                    machine.Id.ToString(),
-                    string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ",
-                        period.Aggregation.ToString()));
-                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-            }
-
-            return result;
-        }
 
         public List<MessageMachineModel> GetMessageDetails(MachineInfoModel machine, PeriodModel period,
             string actualMachineGroup = null)
@@ -359,31 +326,6 @@ namespace FomMonitoringCore.Service
             return notificationsUser;
         }
 
-
-        public List<MessageMachineModel> GetAllCurrentMessages(MachineInfoModel machine, PeriodModel period)
-        {
-            var result = new List<MessageMachineModel>();
-
-            try
-            {
-                var query = (from hs in _context.Set<MessageMachine>()
-                    where hs.MachineId == machine.Id
-                          && hs.Day >= period.StartDate && hs.Day <= period.EndDate
-                    select hs).ToList();
-
-                result = query.Adapt<List<MessageMachineModel>>();
-            }
-            catch (Exception ex)
-            {
-                var errMessage = string.Format(ex.GetStringLog(),
-                    machine.Id.ToString(),
-                    string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ",
-                        period.Aggregation.ToString()));
-                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-            }
-
-            return result;
-        }
 
         public bool IgnoreMessage(int messageId)
         {

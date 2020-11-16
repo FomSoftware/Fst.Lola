@@ -21,14 +21,6 @@ namespace FomMonitoringCore.Service
         }
 
 
-        public int? GetPlantDefaultByMachine(string machineSerial)
-        {                          
-            var userIds = _context.Set<Machine>().Where(m => m.Serial == machineSerial).SelectMany(n => n.UserMachineMapping).Select(um => um.UserId).ToList();
-            var plant = _context.Set<Plant>().FirstOrDefault(p => userIds.Any(g => g == p.UserId));
-            return plant?.Id;                
-            
-        }
-
         public int? GetOrSetPlantDefaultByUser(Guid userId)
         {            
 
@@ -43,68 +35,6 @@ namespace FomMonitoringCore.Service
                 return plant?.Id;
             
             
-        }
-
-        public int? GetOrSetPlantIdByPlantName(string plantName, string plantAddress, string machineSerial)
-        {
-            int? result = null;
-            try
-            {                
-                var machine = _context.Set<Machine>().FirstOrDefault(m => m.Serial == machineSerial);
-                Users user;
-                Plant plant = null;
-                IEnumerable<Guid> userIds;
-                userIds = _context.Set<Machine>().Where(m => m.Serial == machineSerial).SelectMany(n => n.UserMachineMapping).Select(um => um.UserId).ToList();
-
-                    //l'utente a cui appartiene il plant tra tutti quelli 
-                    //a cui la macchina è associata sarà sempre il customer
-                    //e ve ne sarà sempre e solo uno
-                    user = _context.Set<Users>().FirstOrDefault(u => userIds.Any(us => us == u.ID) && u.Roles_Users.Any(ur => ur.Roles.IdRole == (int)UserManager.Framework.Common.Enumerators.UserRole.Customer));
-                               
-
-                if (machine?.Plant != null && machine.Plant.UserId == user?.ID)
-                {                        
-                    return machine.Plant.Id;
-                }                   
-                //se c'è il pant con il nome inviato dalla macchina lo associo
-                if (!string.IsNullOrWhiteSpace(plantName))
-                {
-                    plant = _context.Set<Plant>().FirstOrDefault(f => f.Name == plantName && f.Address == plantAddress);
-                }
-                //se non c'è cerco il primo plant associato all'utente della macchina,
-                //N.B. quando non ci sarà più solo il plant di default modificare
-                    
-                if (plant == null && user != null)
-                {
-                    plant = _context.Set<Plant>().FirstOrDefault(f => f.UserId == user.ID);
-                }
-                if (plant != null && user != null)
-                {
-                    plant.UserId = user.ID;
-                }
-                //se non c'è creo il plant di default per l'utente, 
-                // precondizione: il record dalla VIP area che associa la macchina ad un utente deve esistere
-                //altrimenti non si saprebbe a chi associare il plant, la macchina viene inserita con plantid null
-                if (plant == null && user != null)
-                {
-                    plant = AddPlant(user, plantName, plantAddress);
-                }
-
-                if (plant != null)
-                {
-                    result = plant.Id;
-
-                    _context.SaveChanges();
-                }
-                
-                
-            }
-            catch (Exception ex)
-            {
-                var errMessage = string.Format(ex.GetStringLog(), plantName, plantAddress);
-                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-            }
-            return result;
         }
 
         public Plant AddPlant(Users user, string plantName = null, string plantAddress = null)
@@ -273,8 +203,8 @@ namespace FomMonitoringCore.Service
 
             try
             {               
-                    var query = _context.Set<Machine>().Where(w => w.Plant != null).Select(s => s.Plant).Distinct().ToList();
-                    result = query.Adapt<List<PlantModel>>();                
+                var query = _context.Set<Machine>().Where(w => w.Plant != null).Select(s => s.Plant).Distinct().ToList();
+                result = query.Adapt<List<PlantModel>>();                
             }
             catch (Exception ex)
             {
@@ -290,7 +220,6 @@ namespace FomMonitoringCore.Service
 
         public void CheckOfflineMachines()
         {
-            string MachinId = null;
             try
             {
                 var machines = _context.Set<Machine>().Where(m => m.CurrentState.FirstOrDefault() != null && 
@@ -299,12 +228,10 @@ namespace FomMonitoringCore.Service
                 foreach (var machine in machines)
                 {
                     var st = machine.CurrentState.FirstOrDefault();
-                    var interval = Int32.Parse(System.Configuration.ConfigurationManager.AppSettings.Get("CheckOfflineInterval"));
-                    if (st.LastUpdated < DateTime.UtcNow.AddSeconds(interval * -1))
-                    {
-                        st.LastUpdated = DateTime.UtcNow;
-                        st.StateId = (int)enState.Offline;
-                    }                   
+                    var interval = int.Parse(System.Configuration.ConfigurationManager.AppSettings.Get("CheckOfflineInterval"));
+                    if (st == null || !(st.LastUpdated < DateTime.UtcNow.AddSeconds(interval * -1))) continue;
+                    st.LastUpdated = DateTime.UtcNow;
+                    st.StateId = (int)enState.Offline;
                 }
                 _context.SaveChanges();
                 
@@ -312,7 +239,7 @@ namespace FomMonitoringCore.Service
             catch (Exception ex)
             {
                 var errMessage = string.Format(ex.GetStringLog(),
-                    MachinId, "");
+                    null, "");
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
         }

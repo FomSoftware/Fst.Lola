@@ -25,22 +25,22 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        public List<MesDataViewModel> GetVueModel(PlantModel plant, List<MachineInfoModel> allMachines, bool onlyActive)
+        private List<MesDataViewModel> GetVueModel(PlantModel plant, List<MachineInfoModel> allMachines, bool onlyActive)
         {
-            List<MesDataViewModel> result = new List<MesDataViewModel>();
+            var result = new List<MesDataViewModel>();
 
-            List<MesUserMachinesModel> dataAllMachines = _mesService.GetPlantData(plant);
+            var dataAllMachines = _mesService.GetPlantData(plant);
             if (onlyActive)
             {
                 dataAllMachines = dataAllMachines.Where(m => m.Expired == false).ToList();
             }
 
 
-            foreach (MesUserMachinesModel dataMachine in dataAllMachines)
+            foreach (var dataMachine in dataAllMachines)
             {
-                MesDataViewModel mes = new MesDataViewModel();
+                var mes = new MesDataViewModel();
 
-                MachineInfoModel machine = allMachines.FirstOrDefault(w => w.Id == dataMachine.MachineId);
+                var machine = allMachines.FirstOrDefault(w => w.Id == dataMachine.MachineId);
 
                 if (machine?.Type == null || machine.Model == null)
                 {
@@ -55,12 +55,12 @@ namespace FomMonitoringBLL.ViewServices
                     machineName = machine.MachineName,
                     icon = machine.Type.Image,
                     expired = dataMachine.Expired,
-                    id_mtype = machine.Type != null ? machine.Type.Id : 0,
+                    id_mtype = machine.Type?.Id ?? 0,
                     serial = machine.Serial
                 };
 
 
-                MesUserMachinesModel data = dataAllMachines.FirstOrDefault(w => w.MachineId == machine.Id);
+                var data = dataAllMachines.FirstOrDefault(w => w.MachineId == machine.Id);
 
                 if (data == null)
                 {

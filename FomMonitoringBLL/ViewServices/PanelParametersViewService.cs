@@ -135,9 +135,7 @@ namespace FomMonitoringBLL.ViewServices
         private ToolsFmcLmxParameterVueModel GetToolsFmcLmxVueModel(MachineInfoModel context, int panel)
         {
             var par = _parameterMachineService.GetParameters(context, panel);
-            bool xmodule = false;
-            if(panel == (int)enPanel.XmuToolsLmx)
-                xmodule = true;
+            bool xmodule = panel == (int)enPanel.XmuToolsLmx;
             var tools = _toolsService.GetTools(context, xmodule).Where(n => n.IsActive);
             var dtos = tools.Select(n => new ToolParameterMachineValueModel
             {

@@ -5,7 +5,6 @@ using FomMonitoringCore.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoringBLL.ViewServices
 {
@@ -20,14 +19,14 @@ namespace FomMonitoringBLL.ViewServices
 
         public UserManagerViewModel GetUsers(ContextModel context)
         {
-            UserManagerViewModel userManager = new UserManagerViewModel();
+            var userManager = new UserManagerViewModel();
             string usernameCustomer = null;
 
             if (context.User.Role != enRole.Administrator)
                 usernameCustomer = context.User.Username;
 
             // users
-            List<UserModel> usersModel = _userManagerService.GetUsers(usernameCustomer);
+            var usersModel = _userManagerService.GetUsers(usernameCustomer);
             userManager.users = usersModel.Select(s => new UserViewModel
             {
                 ID = s.ID,
@@ -46,7 +45,7 @@ namespace FomMonitoringBLL.ViewServices
             }).ToList();
 
             //roles
-            List<RoleModel> rolesModel = _userManagerService.GetRoles();
+            var rolesModel = _userManagerService.GetRoles();
             userManager.roles = rolesModel.Select(s => new UserRoleViewModel
             {
                 Code = s.Code,
@@ -61,12 +60,12 @@ namespace FomMonitoringBLL.ViewServices
             //machines
             if (context.User.Role == enRole.Customer)
             {
-                List<MachineInfoModel> machinesModel = _userManagerService.GetCustomerMachines(usernameCustomer);
+                var machinesModel = _userManagerService.GetCustomerMachines(usernameCustomer);
                 userManager.machines = machinesModel.Select(s => new UserMachineViewModel { Id = s.Id, Serial = s.Serial, MachineName = s.MachineName }).ToList();
             }
 
             //languages
-            List<Languages> languagesModel = _userManagerService.GetLanguages();
+            var languagesModel = _userManagerService.GetLanguages();
             userManager.languages = languagesModel.Select(s => new UserLanguageViewModel { Id = s.ID, Name = s.Name }).ToList();
 
             return userManager;
@@ -74,14 +73,14 @@ namespace FomMonitoringBLL.ViewServices
 
         public UserManagerViewModel GetUser(string idUser)
         {
-            UserManagerViewModel result = new UserManagerViewModel();
+            var result = new UserManagerViewModel();
 
             Guid userId;
             if (Guid.TryParse(idUser, out userId))
             {
                 //user
-                UserModel userModel = _userManagerService.GetUser(userId);
-                UserViewModel user = new UserViewModel();
+                var userModel = _userManagerService.GetUser(userId);
+                var user = new UserViewModel();
 
                 user.ID = userModel.ID;
                 user.Username = userModel.Username;
@@ -111,7 +110,7 @@ namespace FomMonitoringBLL.ViewServices
         {
             try
             {
-                UserModel user = new UserModel
+                var user = new UserModel
                 {
                     ID = userModel.ID,
                     Username = userModel.Username,
@@ -146,39 +145,30 @@ namespace FomMonitoringBLL.ViewServices
                 if (ex is InvalidOperationException)
                     return false;
 
-                throw ex;
+                throw;
             }
         }
 
         public List<UserMachineViewModel> GetMachinesByCustomer(string name, bool includeExpired = true)
         {
-            try
-            {
-                List<UserMachineViewModel> result = new List<UserMachineViewModel>();
+            var result = new List<UserMachineViewModel>();
 
-                List<MachineInfoModel> machinesModel = _userManagerService.GetCustomerMachines(name);
+            var machinesModel = _userManagerService.GetCustomerMachines(name);
 
-                if (!includeExpired)
-                    machinesModel = machinesModel
-                        .Where(m => m.ExpirationDate == null || m.ExpirationDate > DateTime.UtcNow).ToList();
+            if (!includeExpired)
+                machinesModel = machinesModel
+                    .Where(m => m.ExpirationDate == null || m.ExpirationDate > DateTime.UtcNow).ToList();
 
-                if (machinesModel != null)
-                    result = machinesModel
-                        .Select(s => new UserMachineViewModel { Id = s.Id, Serial = s.Serial, MachineName = s.MachineName }).ToList();
+            if (machinesModel != null)
+                result = machinesModel
+                    .Select(s => new UserMachineViewModel { Id = s.Id, Serial = s.Serial, MachineName = s.MachineName }).ToList();
 
-                return result;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            return result;
         }
 
         public bool EditUser(UserViewModel userModel, ContextModel context)
         {
-            try
-            {
-                UserModel user = new UserModel
+                var user = new UserModel
                 {
                     ID = userModel.ID,
                     Username = userModel.Username,
@@ -205,11 +195,6 @@ namespace FomMonitoringBLL.ViewServices
                 return _userManagerService.ModifyUser(user, email);
 
 
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
 
         public bool ChangePassword(ContextModel context, ChangePasswordViewModel changePasswordInfo)
@@ -219,13 +204,13 @@ namespace FomMonitoringBLL.ViewServices
 
         public bool ResetUserPassword(string userId)
         {
-            Guid id = Guid.Parse(userId);
+            var id = Guid.Parse(userId);
             return _userManagerService.ResetPassword(id);
         }
 
         public bool DeleteUser(string userId)
         {
-            Guid id = Guid.Parse(userId);
+            var id = Guid.Parse(userId);
             return _userManagerService.DeleteUser(id);
         }
 

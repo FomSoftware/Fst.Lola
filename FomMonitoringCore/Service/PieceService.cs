@@ -1,23 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.SqlServer;
-using FomMonitoringCore.SqlServer.Repository;
-using Mapster;
 
 namespace FomMonitoringCore.Service
 {
     public class PieceService : IPieceService
     {
         private readonly IFomMonitoringEntities _context;
-        private readonly IHistoryPieceRepository _historyPieceRepository;
 
-        public PieceService(IFomMonitoringEntities context, IHistoryPieceRepository historyPieceRepository)
+        public PieceService(IFomMonitoringEntities context)
         {
             _context = context;
-            _historyPieceRepository = historyPieceRepository;
         }
 
 
@@ -157,7 +154,7 @@ namespace FomMonitoringCore.Service
             {
                 var errMessage = string.Format(ex.GetStringLog(),
                     machine.Id.ToString(),
-                    string.Concat(period.StartDate.ToString(), " - ", period.EndDate.ToString(), " - ",
+                    string.Concat(period.StartDate.ToString(CultureInfo.InvariantCulture), " - ", period.EndDate.ToString(CultureInfo.InvariantCulture), " - ",
                         period.Aggregation.ToString(),
                         dataType.ToString()));
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
@@ -201,70 +198,7 @@ namespace FomMonitoringCore.Service
 
         #endregion
 
-        #region HISTORY 
-
-        /// <summary>
-        ///     Ritorna i dettagli dei pezzi dato l'ID della macchina
-        /// </summary>
-        /// <param name="machineId"></param>
-        /// <param name="dateFrom"></param>
-        /// <param name="dateTo"></param>
-        /// <param name="typePeriod"></param>
-        /// <returns>Lista dei dettagli dei pezzi</returns>
-        public List<HistoryPieceModel> GetAllHistoryPiecesByMachineId(int machineId, DateTime dateFrom, DateTime dateTo,
-            enAggregation typePeriod)
-        {
-            var result = new List<HistoryPieceModel>();
-            try
-            {
-                var historyPieceList = _historyPieceRepository.Get(w => w.MachineId == machineId && w.Period != null &&
-                                                                        w.Period.Value.PeriodToDate(typePeriod) >=
-                                                                        dateFrom &&
-                                                                        w.Period.Value.PeriodToDate(typePeriod) <=
-                                                                        dateTo).ToList();
-                result = historyPieceList.Adapt<List<HistoryPieceModel>>();
-            }
-            catch (Exception ex)
-            {
-                var errMessage = string.Format(ex.GetStringLog(), machineId.ToString(), dateFrom.ToString(),
-                    dateTo.ToString(), typePeriod.ToString());
-                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        ///     Ritorna i dettagli dei pezzi del sistema specificato dato l'ID della macchina
-        /// </summary>
-        /// <param name="machineId"></param>
-        /// <param name="system"></param>
-        /// <param name="dateFrom"></param>
-        /// <param name="dateTo"></param>
-        /// <param name="typePeriod"></param>
-        /// <returns>Lista dei dettagli dei pezzi</returns>
-        public List<HistoryPieceModel> GetAllHistoryPiecesByMachineIdSystem(int machineId, string system,
-            DateTime dateFrom, DateTime dateTo, enAggregation typePeriod)
-        {
-            var result = new List<HistoryPieceModel>();
-            try
-            {
-                var historyPieceList = _historyPieceRepository.Get(w => w.MachineId == machineId && w.Period != null &&
-                                                                        w.Period.Value.PeriodToDate(typePeriod) >=
-                                                                        dateFrom &&
-                                                                        w.Period.Value.PeriodToDate(typePeriod) <=
-                                                                        dateTo && w.System == system).ToList();
-                result = historyPieceList.Adapt<List<HistoryPieceModel>>();
-            }
-            catch (Exception ex)
-            {
-                var errMessage = string.Format(ex.GetStringLog(), machineId.ToString(), system, dateFrom.ToString(),
-                    dateTo.ToString(), typePeriod.ToString());
-                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-            }
-
-            return result;
-        }
+        #region HISTORY
 
         #endregion
     }
