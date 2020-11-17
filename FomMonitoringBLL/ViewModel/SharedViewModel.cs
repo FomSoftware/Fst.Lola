@@ -101,4 +101,10 @@ namespace FomMonitoringBLL.ViewModel
 
         public CalendarI18nModel labels { get; set; }
     }
+
+    public class LoadConfigurationModel
+    {
+        public bool? success { get; set; }
+        public string errors { get; set; }
+    }
 }

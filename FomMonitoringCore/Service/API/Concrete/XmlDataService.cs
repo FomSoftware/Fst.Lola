@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,6 +36,36 @@ namespace FomMonitoringCore.Service.API.Concrete
 
             await _context.SaveChangesAsync();
             
+        }
+
+
+        public bool CheckMachineModelCode(int ModelCodeV997)
+        {
+            var machineModel = _context.Set<MachineModel>().FirstOrDefault(mac => mac.ModelCodev997 == ModelCodeV997);
+            if (machineModel == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool CheckVarNumber(int ModelCodeV997, string varnumber)
+        {
+            if (!(ModelCodeV997 > 0)) return false;
+            return _context.Set<ParameterMachine>()
+                .Any(p => p.ModelCode == ModelCodeV997.ToString() && p.VarNumber == varnumber);
+        }
+
+        public bool CheckPanelId(int? panelId)
+        {
+            if (!(panelId > 0)) return true;
+            return _context.Set<Panel>().Find(panelId) != null;
+        }
+
+        public bool CheckMachineGroup(string machineGroup)
+        {
+            if (string.IsNullOrWhiteSpace(machineGroup)) return false;
+            return _context.Set<MachineGroup>().Find(Int32.Parse(machineGroup)) != null;
         }
     }
 }
