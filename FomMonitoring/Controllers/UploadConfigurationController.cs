@@ -63,7 +63,7 @@ namespace FomMonitoring.Controllers
                             else
                             {
                                 ViewBag.success = false;
-                                ViewBag.errors = LocalizationService.GetResource("FileNotValid");
+                                ViewBag.errors = "File non valido";
                                 if (errors.Count > 0)
                                 {
                                     foreach (var ee in errors)
@@ -82,13 +82,13 @@ namespace FomMonitoring.Controllers
                     var errMessage = string.Format(ex.GetStringLog());
                     LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
                     ViewBag.success = false;
-                    ViewBag.errors = LocalizationService.GetResource("ErrorLoadXml") + "\\n" + ex.Message;
+                    ViewBag.errors = "Caricamento XML Fallito \\n" + ex.Message;
                     return View("Index");
                 }
             else
             {
                 ViewBag.success = false;
-                ViewBag.errors = LocalizationService.GetResource("ErrorLoadXml") + "\\n" + LocalizationService.GetResource("FileNotFound");
+                ViewBag.errors ="Caricamento XML Fallito \\n File non trovato";
                 return View("Index");
             }
             ViewBag.success = true;
@@ -102,11 +102,11 @@ namespace FomMonitoring.Controllers
 
             if (!(machineModelXml.ModelCodeV997 > 0))
             {
-                errors.Add($"ModelCodeV997: {machineModelXml.ModelCodeV997} { LocalizationService.GetResource("NotExists")}");
+                errors.Add($"ModelCodeV997: {machineModelXml.ModelCodeV997} inesistente");
             }
             else if(!_xmlDataService.CheckMachineModelCode(machineModelXml.ModelCodeV997))
             {
-                errors.Add($"ModelCodeV997: {machineModelXml.ModelCodeV997} { LocalizationService.GetResource("NotExists")}" );
+                errors.Add($"ModelCodeV997: {machineModelXml.ModelCodeV997} inesistente" );
             }
 
             if (errors.Count() == 0)
@@ -117,7 +117,7 @@ namespace FomMonitoring.Controllers
                 {
                     foreach (var row in wrongVarNumber)
                     {
-                        errors.Add($"VarNumber {LocalizationService.GetResource("NotExists")}: {row.VAR_NUMBER} (keyword: {row.KEYWORD})");
+                        errors.Add($"VarNumber inesistente: {row.VAR_NUMBER} (keyword: {row.KEYWORD})");
                     }
                 }
             }
@@ -129,7 +129,7 @@ namespace FomMonitoring.Controllers
             {
                 foreach (var row in wrongIdPanel)
                 {
-                    errors.Add($"PANEL_ID {LocalizationService.GetResource("NotExists")}: {row.PANEL_ID} (keyword: {row.KEYWORD})");
+                    errors.Add($"PANEL_ID inesistente: {row.PANEL_ID} (keyword: {row.KEYWORD})");
                 }
             }
 
@@ -139,7 +139,7 @@ namespace FomMonitoring.Controllers
             {
                 foreach (var row in wrongMachineGroup)
                 {
-                    errors.Add($"MACHINE_GROUP {LocalizationService.GetResource("NotExists")}: {row.MACHINE_GROUP} (keyword: {row.KEYWORD})");
+                    errors.Add($"MACHINE_GROUP inesistente: {row.MACHINE_GROUP} (keyword: {row.KEYWORD})");
                 }
             }
 
