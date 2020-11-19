@@ -30,6 +30,7 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.GroupName, src => src.MessagesIndex.MachineGroup.MachineGroupName)
                 .Map(dest => dest.Type, src => src.MessagesIndex.MessageTypeId)
                 .Map(dest => dest.IsPeriodicMsg, src => src.MessagesIndex.IsPeriodicM)
+                .Map(dest => dest.PeriodicSpan, src => src.MessagesIndex.PeriodicSpan)
                 .Map(dest => dest.Description, src => src.GetDescription((int)MapContext.Current.Parameters["idLanguage"]));
 
             config.NewConfig<Bar, BarModel>();
