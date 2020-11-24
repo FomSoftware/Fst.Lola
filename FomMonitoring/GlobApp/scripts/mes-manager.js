@@ -287,7 +287,7 @@
                         'icofom-pause': state.code == 'pause',
                         'icofom-manual': state.code == 'manual',
                         'fa-exclamation-triangle': state.code == 'error',
-                        'fa-times': state.code == 'off'
+                        'fa-power-off': state.code == 'off'
                     }
                 },
                 iconMachine: function(machine)

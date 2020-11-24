@@ -546,9 +546,6 @@
   <data name="Messages" xml:space="preserve">
     <value>Messaggi</value>
   </data>
-  <data name="Offline" xml:space="preserve">
-    <value>Offline</value>
-  </data>
   <data name="Disclamer" xml:space="preserve">
     <value>Termini e condizioni</value>
   </data>
@@ -1257,5 +1254,8 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
   </data>
   <data name="Execution" xml:space="preserve">
     <value>Esecuzione</value>
+  </data>
+  <data name="Offline" xml:space="preserve">
+    <value>Power Off</value>
   </data>
 </root>

@@ -540,9 +540,6 @@
   <data name="Messages" xml:space="preserve">
     <value>Messages</value>
   </data>
-  <data name="Offline" xml:space="preserve">
-    <value>Offline</value>
-  </data>
   <data name="Disclamer" xml:space="preserve">
     <value>Terms and conditions</value>
   </data>
@@ -1259,5 +1256,8 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   </data>
   <data name="Execution" xml:space="preserve">
     <value>Execution</value>
+  </data>
+  <data name="Offline" xml:space="preserve">
+    <value>Power Off</value>
   </data>
 </root>
