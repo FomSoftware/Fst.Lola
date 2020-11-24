@@ -1582,7 +1582,7 @@ td.td-axes {
     }
 }
 @media (max-width: 1024px) {
-    #maintenanceSlimscroll, #maintenanceSlimscroll2 {
+    #maintenanceSlimscroll, #maintenanceSlimscroll2, maintenanceSlimscroll3 {
         height: 94% !important;
     }
 

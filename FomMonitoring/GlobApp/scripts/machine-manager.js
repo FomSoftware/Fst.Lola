@@ -124,7 +124,7 @@
                 hh = hh - headerHeight;
             }
 
-            if ($(this).attr('id') == "maintenanceSlimscroll" || $(this).attr('id') == "maintenanceSlimscroll2"  )
+            if ($(this).attr('id') == "maintenanceSlimscroll" || $(this).attr('id') == "maintenanceSlimscroll2" || $(this).attr('id') == "maintenanceSlimscroll3" )
                 hh = '100%';
             else if ($(this).attr('id') == "sensorSlimscroll")
                 hh = '100%';
@@ -279,6 +279,16 @@
 
 
             setGroupActive(group, ".slide-history");
+        });
+
+        $('.slide-kpi').click(function (e) {
+            e.preventDefault();
+            var group = $(this).data('group');
+            if (group == 'maintenance') {
+                showStandardPeriod("#CardMaintenance");
+                swiper_maintenance.slideTo(2, 300);
+            }
+            setGroupActive(group, ".slide-kpi");
         });
 
         $('.slide-operator').click(function (e)

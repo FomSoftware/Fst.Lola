@@ -1248,4 +1248,10 @@ La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;
   <data name="PlantManager" xml:space="preserve">
     <value>Administrador de plant</value>
   </data>
+  <data name="Notice" xml:space="preserve">
+    <value>Aviso</value>
+  </data>
+  <data name="Execution" xml:space="preserve">
+    <value>Ejecución</value>
+  </data>
 </root>

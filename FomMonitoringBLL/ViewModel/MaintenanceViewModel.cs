@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Reflection.Emit;
 
 namespace FomMonitoringBLL.ViewModel
 {
@@ -9,6 +10,8 @@ namespace FomMonitoringBLL.ViewModel
         public MaintenceVueModel vm_messages { get; set; }
 
         public MaintenceVueModel ignored_messages { get; set; }
+
+        public MaintenceVueModel kpi_messages { get; set; }
 
         public string timeZone { get; set; }
 
@@ -24,6 +27,9 @@ namespace FomMonitoringBLL.ViewModel
     public class ManteinanceDataModel
     {
         public int id { get; set; }
+        public DateTime day { get; set; }
+        public DateTime ignoreDate { get; set; }
+        public double dateDiff { get; set; }
         public string machineName { get; set; }
         public string machineModel { get; set; }
         public string machineSerial { get; set; }

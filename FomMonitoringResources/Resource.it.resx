@@ -1252,4 +1252,10 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
   <data name="PlantManager" xml:space="preserve">
     <value>Gestione Plant</value>
   </data>
+  <data name="Notice" xml:space="preserve">
+    <value>Avviso</value>
+  </data>
+  <data name="Execution" xml:space="preserve">
+    <value>Esecuzione</value>
+  </data>
 </root>

@@ -91,6 +91,15 @@
 .icofom-sensoristica:before {
   content: "\e900";
 }
+.icofom-sort-amount-desc1:before {
+    content: "\ea4e";
+}
+.icofom-calendar-check:before {
+    content: "\e906";
+}
+.icofom-calendar-day:before {
+    content: "\e907";
+}
 .icofom-sort-amount-desc:before {
   content: "\ea4d";
 }

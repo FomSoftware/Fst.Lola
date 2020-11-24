@@ -394,7 +394,10 @@ namespace FomMonitoringCore.Service
                         data = (DateTime) machine.ActivationDate?.AddHours((long) messaggio.PeriodicSpan);
 
                         if (mess == null)
-                            InsertMessageMachine(machine, messaggio.MessageCode, data);
+                        {
+                            if (DateTime.UtcNow > data)
+                                InsertMessageMachine(machine, messaggio.MessageCode, data);
+                        }
                         else if (mess.IgnoreDate != null)
                         {
                             DateTime nd = (DateTime) mess.IgnoreDate?.AddHours((long) messaggio.PeriodicSpan);

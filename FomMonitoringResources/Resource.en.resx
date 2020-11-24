@@ -1254,4 +1254,10 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   <data name="PlantManager" xml:space="preserve">
     <value>Plant Manager</value>
   </data>
+  <data name="Notice" xml:space="preserve">
+    <value>Notice</value>
+  </data>
+  <data name="Execution" xml:space="preserve">
+    <value>Execution</value>
+  </data>
 </root>
