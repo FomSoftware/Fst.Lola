@@ -1253,7 +1253,7 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
     <value>Avviso</value>
   </data>
   <data name="Execution" xml:space="preserve">
-    <value>Esecuzione</value>
+    <value>Esecuz.</value>
   </data>
   <data name="Offline" xml:space="preserve">
     <value>Power Off</value>
