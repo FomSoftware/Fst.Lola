@@ -101,7 +101,7 @@ namespace FomMonitoringBLL.ViewServices
         {
             var result = new PlantManagerViewModel();
             var plantModel = _plantManagerService.GetPlantByMachine(id);
-
+            if (plantModel == null) return result;
             var plant = new PlantViewModel
             {
                 Id = plantModel.Id,

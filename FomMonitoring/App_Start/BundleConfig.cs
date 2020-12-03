@@ -113,7 +113,8 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/xtools/lmx.js",
                         "~/GlobApp/scripts/machine/image-manager-fmc.js",
                         "~/GlobApp/scripts/machine/image-manager-lmx.js",
-                        "~/GlobApp/scripts/machine/image-manager-blitz.js"
+                        "~/GlobApp/scripts/machine/image-manager-blitz.js",
+                        "~/GlobApp/scripts/machine/image-manager-axel.js"
 
                       ));
 

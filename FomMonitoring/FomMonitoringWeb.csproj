@@ -426,6 +426,7 @@
     <Content Include="GlobApp\scripts\machine\axes\lmx.js" />
     <Content Include="GlobApp\scripts\machine\electrospindle\electrospindle.js" />
     <Content Include="GlobApp\scripts\machine\image-manager-blitz.js" />
+    <Content Include="GlobApp\scripts\machine\image-manager-axel.js" />
     <Content Include="GlobApp\scripts\machine\image-manager-lmx.js" />
     <Content Include="GlobApp\scripts\machine\image-manager-fmc.js" />
     <Content Include="GlobApp\scripts\machine\jobs\other-machines.js" />
@@ -475,6 +476,10 @@
     <Content Include="Images\logo\Powered_by_FOM-350x200px.png" />
     <Content Include="Images\logo\TEXTURE-FOM-WEB-2-01.png" />
     <Content Include="Images\multispindle\bottone-posizione.svg" />
+    <Content Include="Images\panels\AXEL-CARD-AXES_220x220px.svg" />
+    <Content Include="Images\panels\AXEL-CARD-TOOLS-220x220px-2.svg" />
+    <Content Include="Images\panels\AXEL-CARD_SPINDLE_220X220px.svg" />
+    <Content Include="Images\panels\AXEL-immagine_macchina-4-1410x400.svg" />
     <Content Include="Images\panels\BLITZ-CARD-AXES.svg" />
     <Content Include="Images\panels\BLITZ-CARD-DOUBLE_HEADS_220x220px.svg" />
     <Content Include="Images\panels\BLITZ-IMMAGINE_MACCHINA-CORTA-3.svg" />
@@ -1492,6 +1497,7 @@
     <Content Include="Scripts\moment.min.js.map" />
     <Content Include="Scripts\moment-with-locales.min.js.map" />
     <Content Include="Views\UploadConfiguration\Index.cshtml" />
+    <Content Include="Views\Machine\Model\_AXEL.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
