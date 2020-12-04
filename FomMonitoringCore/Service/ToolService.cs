@@ -29,7 +29,7 @@ namespace FomMonitoringCore.Service
                 List<ToolMachine> query = null;                   
                 if (machine.Type.Id == (int)enMachineType.LineaTaglioLavoro)
                 {
-                    Regex regex = new Regex(@"^[1-2]\d{2}$");
+                    Regex regex = new Regex(@"^[1-2]\d{3}$");
                     if (xmodule)
                     {
                         query = _context.Set<ToolMachine>().Where(w => w.MachineId == machine.Id).ToList().Where(w => regex.IsMatch(w.Code)).OrderBy(w => w.CodeAsInt).ThenByDescending(w => w.CurrentLife).ToList();
