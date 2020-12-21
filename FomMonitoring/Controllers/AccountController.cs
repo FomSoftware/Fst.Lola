@@ -6,11 +6,20 @@ using FomMonitoringCore.Service.APIClient.Concrete;
 using FomMonitoringResources;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using FomMonitoringBLL.ViewModel;
+using FomMonitoringBLL.ViewServices;
 using FomMonitoringCore.SqlServer;
+using Newtonsoft.Json;
+using System.Net.Mail;
+using System.Net.Mime;
 
 namespace FomMonitoring.Controllers
 {
@@ -20,27 +29,31 @@ namespace FomMonitoring.Controllers
         private readonly IFomMonitoringEntities _dbContext;
         private readonly IAccountService _accountService;
         private readonly IJsonAPIClientService _jsonApiClientService;
+        private readonly IUserManagerService _userManagerService;
 
-        public AccountController(IContextService contextService, IFomMonitoringEntities dbContext, IAccountService accountService, IJsonAPIClientService jsonApiClientService)
+        public AccountController(IContextService contextService, IUserManagerService userManagerService,
+            IFomMonitoringEntities dbContext, IAccountService accountService, IJsonAPIClientService jsonApiClientService)
         {
             _contextService = contextService;
             _dbContext = dbContext;
             _accountService = accountService;
             _jsonApiClientService = jsonApiClientService;
+            _userManagerService = userManagerService;
         }
+
 
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl, int exception = 0)
         {
-
-
             var isDemo = bool.Parse(ApplicationSettingService.GetWebConfigKey("DemoMode"));
             ActionResult result = null;
 
+            LoginModel model = new LoginModel();
+            setInitialModel(model);
+
             if (isDemo)
             {
-                LoginModel model = new LoginModel();
                 model.Username = ApplicationSettingService.GetWebConfigKey("DemoUsername");
                 model.Password = ApplicationSettingService.GetWebConfigKey("DemoPassword");
                 model.RememberMe = true;
@@ -65,11 +78,42 @@ namespace FomMonitoring.Controllers
                     default:
                         break;
                 }
+
+                if (returnUrl == null)
+                {
+                    return View(model);
+                }
+
                 ViewBag.ReturnUrl = returnUrl;
                 result = View();
             }
 
             return result;
+        }
+
+        private void setInitialModel(LoginModel model)
+        {
+            model.AllLanguages = _userManagerService.GetLanguages().OrderBy(o => o.IdLanguage).ToList();
+
+            string lang = (string)Request.RequestContext.RouteData.Values["lang"];
+            if (lang != null)
+            {
+                foreach (var lingua in model.AllLanguages)
+                {
+                    if (lingua.InitialsLanguage == lang)
+                    {
+                        model.ActualLanguage = lingua;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                model.ActualLanguage = model.AllLanguages.FirstOrDefault();
+            }
+
+            model.ExternalFaqs = _dbContext.Set<Faq>().Where(f => f.IsVisible == true).OrderBy(f => f.Order).ToList();
+
         }
 
         [HttpPost]
@@ -83,6 +127,7 @@ namespace FomMonitoring.Controllers
                 return View(model);
             }
 
+            setInitialModel(model);
             var result = Connect(model, returnUrl);
             return result;
         }
@@ -256,7 +301,75 @@ namespace FomMonitoring.Controllers
 
             return result;
         }
-
         #endregion
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("Account/InviaSupportReq")]
+        public ActionResult InviaSupportReq(SupportViewModel supportReq)
+        {
+            try
+            {
+                string body = $"<b>Nome e Cognome: </b> {supportReq.Nome} <br>";
+                body += $"<b>Azienda: </b>{supportReq.Azienda} <br>";
+                body += $"<b>Telefono: </b>{supportReq.Prefisso} {supportReq.Telefono}<br>";
+                body += $"<b>Email: </b>{supportReq.Email}<br>";
+                body += $"<b>Nome Macchina: </b>{supportReq.NomeMacchina} <br>";
+                body += $"<b>Seriale: </b>{supportReq.Seriale} <br>";
+                body += $"<b>Testo: </b>{supportReq.Testo} <br>";
+                var message = new MailMessage(ApplicationSettingService.GetWebConfigKey("EmailFromAddress"),
+                    ApplicationSettingService.GetWebConfigKey("EmailSupportAddress"),
+                    "Richiesta di supporto LOLA", body );
+                message.IsBodyHtml = true;
+                
+                //invio copia all'utente per ricevuta
+                var message2 = new MailMessage(ApplicationSettingService.GetWebConfigKey("EmailFromAddress"),
+                    supportReq.Email,
+                    "Richiesta di supporto a LOLA inviata",
+                    "Hai inviato la seguente richiesta di supporto: <br>" + body);
+                message2.IsBodyHtml = true;
+                
+                if (supportReq.File != null && supportReq.File.Length > 0 && supportReq.File[0] != null)
+                {
+                    if (supportReq.File[0].ContentLength > 3 * 1024 * 1024 ||
+                        !(supportReq.File[0].FileName.ToLower().EndsWith(".jpg") ||
+                          supportReq.File[0].FileName.ToLower().EndsWith(".jpeg") ||
+                          supportReq.File[0].FileName.ToLower().EndsWith(".png") ||
+                          supportReq.File[0].FileName.ToLower().EndsWith(".doc") ||
+                          supportReq.File[0].FileName.ToLower().EndsWith(".docx")))
+                    {
+                        return Json(new
+                        {
+                            result = false,
+                            msg = Resource.FileNotValid
+                        }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    Attachment attachment = new Attachment(supportReq.File[0].InputStream, supportReq.File[0].FileName);
+                    message.Attachments.Add(attachment);
+                    message2.Attachments.Add(attachment);
+
+                }
+                EmailSender.SendEmail(message);
+                EmailSender.SendEmail(message2);
+
+                object returnObj = new
+                {
+                    result = true
+                };
+                
+                return Json(returnObj, JsonRequestBehavior.AllowGet);
+            }
+            catch (InvalidOperationException ex)
+            {
+                object returnObj = new
+                {
+                    result = false,
+                    msg = ex.Message
+                };
+
+                return Json(returnObj, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

@@ -1266,4 +1266,67 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   <data name="Offline" xml:space="preserve">
     <value>Power Off</value>
   </data>
+  <data name="RichiestaInviata" xml:space="preserve">
+    <value>Request sent</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="Prefix" xml:space="preserve">
+    <value>Prefix</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="MachineName" xml:space="preserve">
+    <value>MachineName</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="TextMax" xml:space="preserve">
+    <value>TextMax</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="AskCredentialTitle" xml:space="preserve">
+    <value>AskCredentialTitle</value>
+  </data>
+  <data name="AskCredentialBody" xml:space="preserve">
+    <value>AskCredentialBody</value>
+  </data>
+  <data name="NoMachineVisibleTitle" xml:space="preserve">
+    <value>NoMachineVisibleTitle</value>
+  </data>
+  <data name="NoMachineVisibleTitle2" xml:space="preserve">
+    <value>NoMachineVisibleTitle2</value>
+  </data>
+  <data name="NoDataFromMachineTitle" xml:space="preserve">
+    <value>NoDataFromMachineTitle</value>
+  </data>
+  <data name="NoMachineVisibleBody" xml:space="preserve">
+    <value>NoMachineVisibleBody</value>
+  </data>
+  <data name="NoMachineVisibleBody2" xml:space="preserve">
+    <value>NoMachineVisibleBody2</value>
+  </data>
+  <data name="NoDataFromMachineBody" xml:space="preserve">
+    <value>NoDataFromMachineBody</value>
+  </data>
+  <data name="HowToUseTitle" xml:space="preserve">
+    <value>HowToUseTitle</value>
+  </data>
+  <data name="HowToUseBody" xml:space="preserve">
+    <value>HowToUseBody</value>
+  </data>
+  <data name="OtherProblemTitle" xml:space="preserve">
+    <value>OtherProblemTitle</value>
+  </data>
+  <data name="OtherProblemBody" xml:space="preserve">
+    <value>OtherProblemBody</value>
+  </data>
+  <data name="FileNotValid" xml:space="preserve">
+    <value>FileNotValid</value>
+  </data>
 </root>

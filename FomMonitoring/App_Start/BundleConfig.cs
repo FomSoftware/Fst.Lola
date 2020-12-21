@@ -136,7 +136,9 @@ namespace FomMonitoring.App_Start
 
             bundles.Add(new ScriptBundle("~/Scripts/FomMonitoringScriptsLOGIN").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/bootstrap.bundle.js"
+                        "~/Scripts/bootstrap.bundle.js",
+                        "~/GlobApp/plugins/sweet-alert/sweetalert.min.js",
+                        "~/GlobApp/scripts/login-manager.js"
                       ));
 
             #endregion

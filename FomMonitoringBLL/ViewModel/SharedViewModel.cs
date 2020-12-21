@@ -7,6 +7,7 @@ using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoringBLL.ViewModel
 {
+
     public class HeaderViewModel
     {
         public string ControllerPage { get; set; }

@@ -1,4 +1,6 @@
 ﻿@{Layout = null;}
+@model FomMonitoringCore.Framework.Model.LoginModel
+@using FomMonitoringCore.Service
 @using FomMonitoringResources
 <!DOCTYPE html>
 
@@ -22,64 +24,201 @@
             <i class="fa fa-refresh fa-2x"></i>
         </button>
     </div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 col-12">
-            <div class="row container-login">
-                <div class="header col-12 col-sm-6 col-md-6 col-lg-12">
-                    <div class="col-12">Welcome</div>
-                    <img class="logo" src="~/Images/logo/Lola-lg.png">
-                    @*<div class="title-small">Dashboard</div>*@
-                    <img class="logo2" src="~/Images/logo/Log_On_Live_Automation-600x100px.png">
-                </div>
-                <div class="content col-12 col-sm-6 col-md-6 col-lg-12">
-                    @using (Html.BeginForm("Login", "Account", new {ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post, new {@class = "login-form"}))
-                    {
-                        @Html.AntiForgeryToken()
-                        <div class="form-group">
-                            <i class="fa fa-user-o fa-lg" aria-hidden="true"></i>
-                            <input class="form-control username" type="text" placeholder="Username" name="username"/>
-                        </div>
-                        <div class="form-group">
-                            <i class="icon-lock fa-lg" aria-hidden="true"></i>
-                            <input class="form-control password" type="password" placeholder="Password" name="password"/>
-                        </div>
-                        if (ViewData.ModelState.Keys.Any(k => ViewData.ModelState[k].Errors.Any()))
+    <div class="login_burger_menu  js-open-menu" >
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </div>
+<nav id="mobile-login-menu" class="mobile-login-menu">
+    <a href="javascript:void(0)" class="close-btn js-close-menu">&times;</a>
+    <ul class="main-menu">
+        <li class="dd-logo">
+            <img class="logo" src="~/Images/logo/Icon-35.png">
+            <img class="scritta" src="~/Images/logo/Lola-35.png">
+        </li>
+        <li>
+            <a href="#">
+                <img class="flag" src="@Url.Content("~/Images/flags/" + (Model.ActualLanguage.InitialsLanguage) + ".png")" />
+                <span>@Html.Raw(Model.ActualLanguage.Name)</span>
+                <i class="icon-arrow-down"></i>
+            </a>
+            <ul class="sub-menu">
+                @foreach (var Lang in Model.AllLanguages)
+                {
+                    <li class="@((Model.ActualLanguage.ID == Lang.ID ? "display-none" : ""))">
+                        <a class="dd-item" href="@Url.Action("Login","Account", null, CultureInfo.CreateSpecificCulture(Lang.DotNetCulture))">
+                            <img class="flag" src="@Url.Content("~/Images/flags/" + (Lang.InitialsLanguage) + ".png")" />
+                            <div>@Lang.Name</div>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </li>
+        <li>
+            <a class="dd-item" href="#">
+                <i class="fa fa-question fa-lg color-corporate"></i>
+                <div class="js-open-faq">F.A.Q.</div>
+            </a>
+        </li>
+
+        <li>
+            <a class="dd-item dd-item-longtext" href="#">
+                <i class="fa fa-life-ring color-corporate fa-lg"></i>
+                <div class="js-open-support">Support</div>
+            </a>
+
+        </li>
+
+    </ul>
+</nav>
+<nav id="support-menu" class="mobile-login-menu support-menu">
+    <a href="javascript:void(0)" class="close-btn js-close-support">&times;</a>
+    <div class="dd-logo">
+        <img class="logo" src="~/Images/logo/Icon-35.png">
+        <img class="scritta" src="~/Images/logo/Lola-35.png">
+    </div>
+    <h3>
+        Support
+    </h3>
+    <div class="content col-12 col-sm-6 col-md-6 col-lg-12">
+        <form id="supportForm">
+            <div class="form-group">
+                <input class="form-control" onchange="LoginManager.validateSupportForm(this)" type="text" 
+                       placeholder="@Resource.FirstName @Resource.LastName*" id="nome_cognome" name="Nome" required />
+            </div>
+            <div class="form-group">
+                <input class="form-control" onchange="LoginManager.validateSupportForm(this)" type="text" 
+                       placeholder="@Resource.Company *" id="azienda" name="Azienda" required />
+            </div>
+            <div class="form-group">
+                <input class="form-control" onchange="LoginManager.validateSupportForm(this)" type="text" 
+                       placeholder="Email *" id="email" name="Email" required />
+            </div>
+            <div class="form-group" style="display: inline-flex; width: 100%">
+                <input class="form-control" onchange="LoginManager.validateSupportForm(this)" style="width: 45%" type="text" 
+                       placeholder="@Resource.Prefix *" name="Prefisso" id="prefisso" required />
+                <input class="form-control" onchange="LoginManager.validateSupportForm(this)" style="margin-left: 10px" type="text" 
+                       placeholder="@Resource.Phone *" name="Telefono" id="telefono" required />
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" 
+                       placeholder="@Resource.MachineName" name="NomeMacchina" id="nome_macchina" />
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" 
+                       placeholder="@Resource.Serial" name="Seriale" id="seriale" />
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" onchange="LoginManager.validateSupportForm(this)" 
+                          placeholder="@Resource.Text *" rows="4" cols="50" name="Testo" id="testo" maxlength="500" required></textarea>
+                <p style="color: #818181; text-align: left; margin: 5px; font-size: 11px">@Resource.TextMax * </p>
+            </div>
+            <div class="form-group">
+                <input class="form-control" onchange="LoginManager.checkFileSize(this)" type="file" 
+                       placeholder="file" name="File" id="file" accept=".jpg,.jpeg,.png,.doc,.docx"></input>
+                <p style="color: #818181; text-align: left; margin: 5px; font-size: 11px">.png, .jpg, .doc, .docx (MAX 3MB) </p>
+            </div>
+            <div class="form-group">
+                <p style="color: #818181; text-align: left; margin: 5px; font-size: 11px">@Resource.FieldRequired * </p>
+            </div>
+            <div class="form-group text-center">
+                <button type="button" disabled="true" id="inviaBtn" class="support-btn" style="height: 3em; padding: 5px 20px">@Resource.Send</button>
+            </div>
+        </form>
+    </div>
+</nav>
+<nav id="faq-menu" class="mobile-login-menu faq-menu">
+    <a href="javascript:void(0)" class="close-btn js-close-faq">&times;</a>
+    <div class="dd-logo">
+        <img class="logo" src="~/Images/logo/Icon-35.png">
+        <img class="scritta" src="~/Images/logo/Lola-35.png">
+    </div>
+    <h3>
+        F.A.Q. - Frequently Asked Question
+    </h3>
+    <div class="content col-12 col-sm-6 col-md-6 col-lg-12">
+    @foreach (var faq in Model.ExternalFaqs)
+    {
+        <li class="faq-item">
+            <a href="#">
+                <span style="min-width: 98%">@faq.Order) @Html.Raw(LocalizationService.GetResource(faq.Title))</span>
+                <span style="float: right" class="js-open-faq-item"><i class="icon-arrow-down" id="down_@faq.Id"></i></span>
+                <span style="float: right" class="js-close-faq-item"><i class="icon-arrow-up" style="display: none" id="up_@faq.Id"></i></span>
+            </a>
+            <div class="sub-menu faq-menu-item-@faq.Id">
+                <span>@Html.Raw(LocalizationService.GetResource(faq.Body))</span>
+
+            </div>
+        </li>
+    }
+    </div>
+</nav>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 col-12">
+                <div class="row container-login">
+                    <div class="header col-12 col-sm-6 col-md-6 col-lg-12">
+                        <div class="col-12">Welcome</div>
+                        <img class="logo" src="~/Images/logo/Lola-lg.png">
+                        @*<div class="title-small">Dashboard</div>*@
+                        <img class="logo2" src="~/Images/logo/Log_On_Live_Automation-600x100px.png">
+                    </div>
+                    <div class="content col-12 col-sm-6 col-md-6 col-lg-12">
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form" }))
                         {
-                            <div class="alert validation">
-                                @Html.ValidationSummary(true, "", new {@class = "alert-danger ptb-10"})
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <i class="fa fa-user-o fa-lg" aria-hidden="true"></i>
+                                <input class="form-control username" type="text" placeholder="Username" name="username" />
+                            </div>
+                            <div class="form-group">
+                                <i class="icon-lock fa-lg" aria-hidden="true"></i>
+                                <input class="form-control password" type="password" placeholder="Password" name="password" />
+                            </div>
+                            if (ViewData.ModelState.Keys.Any(k => ViewData.ModelState[k].Errors.Any()))
+                            {
+                                <div class="alert validation">
+                                    @Html.ValidationSummary(true, "", new { @class = "alert-danger ptb-10" })
+                                </div>
+                            }
+
+                            <div class="row justify-content-center">
+                                <div class="col-7 col-sm-6 col-md-6 logo-login">
+                                    <img class="img-fluid" src="~/Images/logo/Powered_by_FOM-350x200px.png" />
+                                </div>
+                                <div class="form-actions col-5 col-sm-6" style="margin-top: 0; align-self: center;">
+                                    <button type="submit">LOGIN</button>
+                                </div>
                             </div>
                         }
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-12 justify-content-md-start" style="padding-left: 0; padding-right: 0; top: -10px">
 
-                        <div class="row justify-content-center">
-                            <div class="col-7 col-sm-6 col-md-6 logo-login">
-                                <img class="img-fluid" src="~/Images/logo/Powered_by_FOM-350x200px.png"/>
-                            </div>
-                            <div class="form-actions col-5 col-sm-6" style="margin-top: 0; align-self: center;">
-                                <button type="submit">LOGIN</button>
-                            </div>
-                        </div>
-                    }
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-12 justify-content-md-start" style="padding-left: 0; padding-right: 0; top: -10px">
-
-                    <a id="disclamerTextLink" class="btn btn-link btn-block text-center" data-toggle="modal" data-target="#disclamer-modal" style="white-space: unset;color: inherit;">
-                        @Html.Raw(Resource.DisclaimerLogin)
-                    </a>
+                        <a id="disclamerTextLink" class="btn btn-link btn-block text-center" data-toggle="modal" data-target="#disclamer-modal" style="white-space: unset; color: inherit;">
+                            @Html.Raw(Resource.DisclaimerLogin)
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-@Html.Partial("Modals/_Disclaimer")
-<script type="text/javascript">
+    @Html.Partial("Modals/_Disclaimer")
+    <script type="text/javascript">
 
-    $(function() {
-        var $window = $(window);
-        var width = $window.width();
+        $(document).ready(function () {
+            var resource = {
+                ErrorOccurred: '@LocalizationService.GetResourceForJs("ErrorOccurred")',
+                RichiestaInviata: '@LocalizationService.GetResourceForJs("RichiestaInviata")'
+            };
 
-        setInterval(function() {
+            LoginManager.initLogin("@ViewBag.BaseUrl", resource);
+        });
+
+        $(function () {
+            var $window = $(window);
+            var width = $window.width();
+
+            setInterval(function () {
                 if (width !== $window.width()) {
 
                     var diffWidth = Math.abs(width - $window.width());
@@ -93,13 +232,13 @@
 
                 }
             },
-            300);
+                300);
 
-        $("#button-refresh-page, #alert-refresh-page").click(function() {
-            location.reload();
+            $("#button-refresh-page, #alert-refresh-page").click(function () {
+                location.reload();
+            });
         });
-    });
 
-</script>
+    </script>
 </body>
 </html>

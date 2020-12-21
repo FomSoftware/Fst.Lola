@@ -450,6 +450,7 @@
     <Content Include="GlobApp\scripts\notification-manager.js" />
     <Content Include="GlobApp\scripts\plant-manager.js" />
     <Content Include="GlobApp\scripts\plantmessages.js" />
+    <Content Include="GlobApp\scripts\login-manager.js" />
     <Content Include="GlobApp\scripts\shared-manager.js" />
     <Content Include="GlobApp\scripts\machine-manager.js" />
     <Content Include="GlobApp\scripts\machine\jobs\fmc-lmx.js" />
@@ -462,6 +463,7 @@
     <Content Include="GlobApp\scripts\waitme-manager.js" />
     <Content Include="Images\email\background-min.jpg" />
     <Content Include="Images\email\Logo_email.jpg" />
+    <Content Include="Images\faq\faq1.png" />
     <Content Include="Images\flags\de.png" />
     <Content Include="Images\flags\en.png" />
     <Content Include="Images\flags\es.png" />

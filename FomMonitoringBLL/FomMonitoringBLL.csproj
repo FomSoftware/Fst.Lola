@@ -51,6 +51,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,6 +77,7 @@
     <Compile Include="ViewModel\PlantManagerViewModel.cs" />
     <Compile Include="ViewModel\PlantMessagesViewModel.cs" />
     <Compile Include="ViewModel\MesViewModel.cs" />
+    <Compile Include="ViewModel\SupportViewModel.cs" />
     <Compile Include="ViewModel\PlantViewModel.cs" />
     <Compile Include="ViewModel\SharedViewModel.cs" />
     <Compile Include="ViewModel\I18nViewModel.cs" />

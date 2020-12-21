@@ -1254,4 +1254,79 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
   <data name="Offline" xml:space="preserve">
     <value>Hors tension</value>
   </data>
+  <data name="RichiestaInviata" xml:space="preserve">
+    <value>Demande envoyée</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Entreprise</value>
+  </data>
+  <data name="Prefix" xml:space="preserve">
+    <value>Préfixe</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Téléphone</value>
+  </data>
+  <data name="MachineName" xml:space="preserve">
+    <value>Nom de la machine</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Texte</value>
+  </data>
+  <data name="TextMax" xml:space="preserve">
+    <value>Texte max 500 caractères</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Soumettre</value>
+  </data>
+  <data name="AskCredentialTitle" xml:space="preserve">
+    <value>Je ne parviens pas à accéder à LOLA, j’ai oublié le nom d’utilisateur et le mot de passe</value>
+  </data>
+  <data name="AskCredentialBody" xml:space="preserve">
+    <value>Si vous êtes un utilisateur de rôle « Customer » (utilisateur VIPAREA Fom Industrie), utilisez les identifiants d’accès que vous avez reçus par e-mail. Si vous avez oublié le mot de passe, ouvrez l’URL ci-dessous et cliquez sur LOST PASSWORD :   &lt;br&gt;
+&lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;&lt;br&gt;
+&lt;br&gt;
+Si vous êtes un utilisateur LOLA de rôle Opérateur/Chef d’Atelier, vérifiez que vous avez bien reçu de votre responsable un e-mail et/ou un imprimé de ce type, contenant le nom d’utilisateur et le mot de passe provisoire pour l’accès.&lt;br&gt; &lt;img class="faqImg" src="/FomMonitoringWeb/Images/faq/faq1.png"&gt;</value>
+  </data>
+  <data name="HowToUseTitle" xml:space="preserve">
+    <value>J’accède à LOLA, mais je ne sais pas comment l’utiliser</value>
+  </data>
+  <data name="HowToUseBody" xml:space="preserve">
+    <value>Accéder à la VIPAREA FOM Industrie et télécharger le manuel utilisateur LOLA, pour votre machine-outil.&lt;br&gt;
+&lt;a  class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;</value>
+  </data>
+  <data name="NoDataFromMachineTitle" xml:space="preserve">
+    <value>J’ai vérifié les points 1, 2, 3 mais je continue à ne pas recevoir les données de la machine</value>
+  </data>
+  <data name="NoDataFromMachineBody" xml:space="preserve">
+    <value>Si le problème persiste, appelez le support LOLA :
+&lt;ul&gt;&lt;li&gt; En téléphonant au numéro + 39 0541 832 777 (hotline Service FOM)&lt;/li&gt;
+&lt;li&gt; Par e-mail à l’adresse support@fomservice.com&lt;/li&gt;&lt;/ul&gt;
+en indiquant : 
+&lt;ol&gt;&lt;li&gt; votre nom d’utilisateur VIPAREA ex. usr0043&lt;/li&gt;
+&lt;li&gt; matricule (série) de la machine pour laquelle vous avez activé la licence LOLA&lt;/li&gt;
+&lt;li&gt; les plages horaires de contact souhaitées&lt;/li&gt;&lt;/ol&gt;</value>
+  </data>
+  <data name="NoMachineVisibleTitle" xml:space="preserve">
+    <value>J’accède à LOLA, mais je ne vois aucune machine</value>
+  </data>
+  <data name="NoMachineVisibleTitle2" xml:space="preserve">
+    <value>J’accède à LOLA, le PC de ma machine est connecté à internet, le logiciel est ouvert, mais je ne vois aucune machine dans LOLA</value>
+  </data>
+  <data name="NoMachineVisibleBody" xml:space="preserve">
+    <value>Si vous venez d’activer la licence, assurez-vous que le PC de votre machine-outil Fom Industrie est connecté à internet et que le SW-HMI (FST CUT ou FST CAM ou FST LINE) est ouvert sur le PC de la machine. Autrement, connectez-vous à internet, démarrez le SW FST et vérifiez de nouveau dans LOLA la visibilité des données.</value>
+  </data>
+  <data name="NoMachineVisibleBody2" xml:space="preserve">
+    <value>Si l’activation de la licence LOLA de votre machine n’est pas récente, assurez-vous qu’elle n’est pas expirée. Si vous avez acheté plusieurs licences, vérifiez la date d’expiration de la licence LOLA pour chaque machine, en accédant à VIPAREA : &lt;br&gt; 
+&lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;&lt;br&gt;
+Si la licence est expirée pour une ou plusieurs machines, achetez ou renouvelez la licence LOLA, en sélectionnant la machine de référence et en réglant la licence. À la fin, accédez de nouveau à LOLA pour la vérification.</value>
+  </data>
+  <data name="OtherProblemTitle" xml:space="preserve">
+    <value>Mon problème ne figure pas parmi ceux énumérés</value>
+  </data>
+  <data name="OtherProblemBody" xml:space="preserve">
+    <value>Envoyez une demande d’assistance en remplissant le formulaire à la rubrique “Support” du menu et en annexant éventuellement une capture d’écran pour décrire le problème.</value>
+  </data>
+  <data name="FileNotValid" xml:space="preserve">
+    <value>Fichier non valide</value>
+  </data>
 </root>

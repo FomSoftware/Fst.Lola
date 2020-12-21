@@ -11,6 +11,7 @@ namespace FomMonitoringBLL.ViewServices
 {
     public class SharedViewService
     {
+
         public static HeaderViewModel GetHeader(ContextModel context)
         {
             HeaderViewModel header = new HeaderViewModel();
