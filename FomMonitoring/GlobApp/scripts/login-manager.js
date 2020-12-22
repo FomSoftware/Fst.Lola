@@ -39,6 +39,7 @@
                     successSwal(resource.RichiestaInviata);
                     var dim = '-' + $('#support-menu').width() + 'px';
                     $('#support-menu').css('right', dim);
+                    $('#supportForm')[0].reset();
                 } else {
                     errorSwal(out.msg);
                 }

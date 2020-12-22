@@ -38,6 +38,10 @@
     z-index: 50;
 }
 
+.color-corporate {
+    color: #B33157;
+}
+
 .mobile-login-menu {
     width: 20%;
     right: -20%;
@@ -47,7 +51,7 @@
     background-color: #EEE;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 10px;
+    padding-top: 15px;
     border: solid 1px #DDD;
     box-shadow: 0px 2px 7px rgba(0,0,0,0.25);
 }
@@ -113,11 +117,12 @@
 
 .faq-menu {
     background-color: #cbcaca;
+    padding-top: 15px;
 }
 
     .faq-menu .faq-item {
        
-        font-size: 16px;
+        font-size: 14px;
         background-color: #bebebe;
         padding: 16px 18px;
         text-align: left;
@@ -133,6 +138,7 @@
 .faqImg {
     margin: 0 auto;
     width: 50%;
+    padding-top: 15px;
 }
 
 .faq-item .sub-menu {
@@ -147,15 +153,15 @@
     text-decoration: revert;
 }
 
-    .mobile-login-menu .main-menu a {
-        display: block;
-        text-decoration: none;
-        padding: 10px 15px 10px 25px;
-        color: #777;
-        font-size: 13px;
-        transition: 0.3s;
-        border-bottom: solid 1px #ddd;
-    }
+.mobile-login-menu .main-menu a {
+    display: block;
+    text-decoration: none;
+    padding: 10px 15px 10px 25px;
+    color: #707070;
+    font-size: 13px;
+    transition: 0.3s;
+    border-bottom: solid 1px #ddd;
+}
 
         .mobile-login-menu .main-menu a:hover {
             background-color: #ddd;

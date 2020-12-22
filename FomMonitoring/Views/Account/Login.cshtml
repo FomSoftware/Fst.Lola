@@ -109,15 +109,15 @@
             <div class="form-group">
                 <textarea class="form-control" onchange="LoginManager.validateSupportForm(this)" 
                           placeholder="@Resource.Text *" rows="4" cols="50" name="Testo" id="testo" maxlength="500" required></textarea>
-                <p style="color: #818181; text-align: left; margin: 5px; font-size: 11px">@Resource.TextMax * </p>
+                <p style="text-align: left; margin: 5px; font-size: 11px">@Resource.TextMax * </p>
             </div>
             <div class="form-group">
                 <input class="form-control" onchange="LoginManager.checkFileSize(this)" type="file" 
                        placeholder="file" name="File" id="file" accept=".jpg,.jpeg,.png,.doc,.docx"></input>
-                <p style="color: #818181; text-align: left; margin: 5px; font-size: 11px">.png, .jpg, .doc, .docx (MAX 3MB) </p>
+                <p style="text-align: left; margin: 5px; font-size: 11px">.png, .jpg, .doc, .docx (MAX 3MB) </p>
             </div>
             <div class="form-group">
-                <p style="color: #818181; text-align: left; margin: 5px; font-size: 11px">@Resource.FieldRequired * </p>
+                <p style="text-align: left; margin: 5px; font-size: 11px">@Resource.FieldRequired * </p>
             </div>
             <div class="form-group text-center">
                 <button type="button" disabled="true" id="inviaBtn" class="support-btn" style="height: 3em; padding: 5px 20px">@Resource.Send</button>
