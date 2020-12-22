@@ -1,0 +1,28 @@
+﻿@using FomMonitoringCore.Service
+
+<nav id="faq-menu" class="mobile-login-menu faq-menu">
+    <a href="javascript:void(0)" class="close-btn js-close-faq">&times;</a>
+    <div class="dd-logo">
+        <img class="logo" src="~/Images/logo/Icon-35.png">
+        <img class="scritta" src="~/Images/logo/Lola-35.png">
+    </div>
+    <h3>
+        F.A.Q. - Frequently Asked Question
+    </h3>
+    <div class="content col-12 col-sm-6 col-md-6 col-lg-12" style="padding: 0">
+        @foreach (var faq in Model.ExternalFaqs)
+        {
+            <li class="faq-item">
+                <a href="#">
+                    <span style="min-width: 98%">@faq.Order) @Html.Raw(LocalizationService.GetResource(faq.Title))</span>
+                    <span style="float: right" class="js-open-faq-item"><i class="icon-arrow-down" id="down_@faq.Id"></i></span>
+                    <span style="float: right" class="js-close-faq-item"><i class="icon-arrow-up" style="display: none" id="up_@faq.Id"></i></span>
+                </a>
+                <div class="sub-menu faq-menu-item-@faq.Id">
+                    <span>@Html.Raw(LocalizationService.GetResource(faq.Body).Replace("[BASIC_URL_HOST]", @Url.Content("~/")))</span>
+
+                </div>
+            </li>
+        }
+    </div>
+</nav>

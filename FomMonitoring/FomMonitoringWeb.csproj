@@ -1500,6 +1500,8 @@
     <Content Include="Scripts\moment-with-locales.min.js.map" />
     <Content Include="Views\UploadConfiguration\Index.cshtml" />
     <Content Include="Views\Machine\Model\_AXEL.cshtml" />
+    <Content Include="Views\Shared\_FaqPage.cshtml" />
+    <Content Include="Views\Shared\_SupportPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
