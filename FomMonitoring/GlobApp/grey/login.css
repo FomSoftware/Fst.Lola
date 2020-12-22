@@ -122,12 +122,18 @@
         padding: 16px 18px;
         text-align: left;
         font-weight: 600;
+        margin-bottom: 5px;
     }
     .faq-item a {
         text-decoration: none;
         color: #676767;
         display: flex;
     }
+
+.faqImg {
+    margin: 0 auto;
+    width: 50%;
+}
 
 .faq-item .sub-menu {
     display: none;
@@ -520,6 +526,11 @@ input:-webkit-autofill:focus input:-webkit-autofill {
 
         .form-group {
             margin-bottom: 5px;
+        }
+
+        .faqImg {
+            margin: inherit;
+            width: 50%;
         }
     }
 

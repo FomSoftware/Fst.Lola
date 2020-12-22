@@ -1283,7 +1283,7 @@ Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt
   <data name="AskCredentialBody" xml:space="preserve">
     <value>Bei einem Benutzerkonto in der Rolle „Customer“ (bei VIPAREA Fom Industrie registrierter Benutzer) sind die per E-Mail erhaltenen Login-Daten zu verwenden.  Falls Sie das Passwort vergessen haben, rufen Sie folgende URL auf und klicken Sie dort auf die Option LOST PASSWORD: &lt;br&gt; 
 &lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;&lt;br&gt;
-Bei einem LOLA-Benutzerkonto (mit der Rolle Bediener/Werkstattleiter) ist zu prüfen, ob eine E-Mail und/oder ein Ausdruck dieser Art vom zuständigen Leiter erhalten wurde, in denen der Benutzername und das vorläufige Passwort für den Zugriff enthalten sind.&lt;br&gt; &lt;img class="faqImg" src="/FomMonitoringWeb/Images/faq/faq1.png"&gt;</value>
+Bei einem LOLA-Benutzerkonto (mit der Rolle Bediener/Werkstattleiter) ist zu prüfen, ob eine E-Mail und/oder ein Ausdruck dieser Art vom zuständigen Leiter erhalten wurde, in denen der Benutzername und das vorläufige Passwort für den Zugriff enthalten sind.&lt;br&gt;&lt;div class="faqImg"&gt; &lt;img  src="/FomMonitoringWeb/Images/faq/faq1.png"&gt;&lt;/div&gt;</value>
   </data>
   <data name="HowToUseTitle" xml:space="preserve">
     <value>Ich verfüge über Zugriff auf LOLA, weiß aber nicht, wie das Programm angewendet wird.</value>

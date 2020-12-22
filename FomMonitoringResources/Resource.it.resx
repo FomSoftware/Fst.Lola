@@ -1289,7 +1289,7 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
     <value>Se si dispone di un’utenza di ruolo “Customer” (utente VIPAREA Fom Industrie), utilizzare le credenziali di accesso ricevute via mail. Nel caso in cui non si ricordi la password, aprire il seguente URL e cliccare sulla voce LOST PASSWORD:   &lt;br&gt;
 &lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;&lt;br&gt;
 &lt;br&gt;
-Se si dispone di un’utenza LOLA (ruolo Operatore/Capo Officina), verificare di aver ricevuto dal proprio responsabile una mail e/o una stampa di questo tipo, contenente utente e password provvisoria di accesso.&lt;br&gt; &lt;img class="faqImg" src="/FomMonitoringWeb/Images/faq/faq1.png"&gt;</value>
+Se si dispone di un’utenza LOLA (ruolo Operatore/Capo Officina), verificare di aver ricevuto dal proprio responsabile una mail e/o una stampa di questo tipo, contenente utente e password provvisoria di accesso.&lt;br&gt;&lt;div class="faqImg"&gt; &lt;img src="/FomMonitoringWeb/Images/faq/faq1.png"&gt;&lt;/div&gt;</value>
   </data>
   <data name="HowToUseTitle" xml:space="preserve">
     <value>Ho accesso a LOLA ma non so come utilizzarlo</value>
