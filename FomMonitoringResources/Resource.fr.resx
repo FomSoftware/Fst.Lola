@@ -1285,7 +1285,7 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
     <value>Si vous êtes un utilisateur de rôle « Customer » (utilisateur VIPAREA Fom Industrie), utilisez les identifiants d’accès que vous avez reçus par e-mail. Si vous avez oublié le mot de passe, ouvrez l’URL ci-dessous et cliquez sur LOST PASSWORD :   &lt;br&gt;
 &lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;&lt;br&gt;
 &lt;br&gt;
-Si vous êtes un utilisateur LOLA de rôle Opérateur/Chef d’Atelier, vérifiez que vous avez bien reçu de votre responsable un e-mail et/ou un imprimé de ce type, contenant le nom d’utilisateur et le mot de passe provisoire pour l’accès.&lt;br&gt; &lt;div class="faqImg"&gt;&lt;img src="/FomMonitoringWeb/Images/faq/faq1.png"&gt;&lt;/div&gt;</value>
+Si vous êtes un utilisateur LOLA de rôle Opérateur/Chef d’Atelier, vérifiez que vous avez bien reçu de votre responsable un e-mail et/ou un imprimé de ce type, contenant le nom d’utilisateur et le mot de passe provisoire pour l’accès.&lt;br&gt; &lt;div class="faqImg"&gt;&lt;img src="[BASIC_URL_HOST]Images/faq/faq1.png"&gt;&lt;/div&gt;</value>
   </data>
   <data name="HowToUseTitle" xml:space="preserve">
     <value>J’accède à LOLA, mais je ne sais pas comment l’utiliser</value>
