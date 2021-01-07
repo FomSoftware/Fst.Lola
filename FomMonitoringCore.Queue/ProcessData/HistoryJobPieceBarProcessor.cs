@@ -219,7 +219,7 @@ namespace FomMonitoringCore.Queue.ProcessData
 
 
             var historyBars = context.Set<Bar>()
-                .Where(p => p.StartTime >= maxHpDate && p.MachineId == idMachine).ToList()
+                .Where(p => p.StartTime != null && p.StartTime >= maxHpDate && p.MachineId == idMachine).ToList()
                 .GroupBy(g => g.StartTime.Value.Date)
                 .Select(n => new HistoryBar
                 {
