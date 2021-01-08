@@ -1329,4 +1329,7 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   <data name="FileNotValid" xml:space="preserve">
     <value>FileNotValid</value>
   </data>
+  <data name="MaxFileSizeError" xml:space="preserve">
+    <value>MaxFileSizeError</value>
+  </data>
 </root>

@@ -42,115 +42,11 @@
     color: #B33157;
 }
 
-.mobile-login-menu {
-    width: 20%;
-    right: -20%;
-    position: fixed;
-    z-index: 100;
-    top: 0;
-    background-color: #EEE;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 15px;
-    border: solid 1px #DDD;
-    box-shadow: 0px 2px 7px rgba(0,0,0,0.25);
-}
 
-.support-menu, .faq-menu {
-    height: 100%;
-    width: 35%;
-    right: -35%;
-    text-align: center;
-    background-color: #bebebe;
-}
-    .support-menu h3, .faq-menu h3{
-        font-size: 21px;
-        font-weight: bold;
-        color: #707070;
-        line-height: 2;
-    }
-
-.support-btn {
-    border: solid 1px;
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin: 10px;
-}
-
-#file {
-    line-height: 1.7em;
-} 
-
-.support-menu .form-group .form-control {
-    font-size: 11px;
-    padding: 5px;
-    line-height: 2em;
-    color: #707070;
-}
-
-
-.missingField {
-    border-color: red !important;
-}
-
-.mobile-login-menu .close-btn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-    text-decoration: none;
-    color: #818181;
-    transition: 0.3s;
-}
-
-        .mobile-login-menu .close-btn:hover {
-            color: #3a3a3a;
-        }
-
-
-.mobile-login-menu .main-menu, .faq-menu, .sub-menu {
+.mobile-login-menu .main-menu {
     list-style: none;
     padding: 0;
     margin: 0;
-}
-
-.faq-menu {
-    background-color: #cbcaca;
-    padding-top: 15px;
-}
-
-    .faq-menu .faq-item {
-       
-        font-size: 14px;
-        background-color: #bebebe;
-        padding: 16px 18px;
-        text-align: left;
-        font-weight: 600;
-        margin-bottom: 5px;
-    }
-    .faq-item a {
-        text-decoration: none;
-        color: #676767;
-        display: flex;
-    }
-
-.faqImg {
-    margin: 0 auto;
-    width: 50%;
-    padding-top: 15px;
-}
-
-.faq-item .sub-menu {
-    display: none;
-}
-
-        .mobile-login-menu .main-menu .dd-item-user {
-            padding: 10px 15px 20px 15px;
-        }
-
-.sub-menu a.faqLink {
-    text-decoration: revert;
 }
 
 .mobile-login-menu .main-menu a {
@@ -163,9 +59,9 @@
     border-bottom: solid 1px #ddd;
 }
 
-        .mobile-login-menu .main-menu a:hover {
-            background-color: #ddd;
-        }
+.mobile-login-menu .main-menu a:hover {
+    background-color: #ddd;
+}
 
 .mobile-login-menu .main-menu li:hover .sub-menu {
     display: block;
@@ -184,49 +80,34 @@
     transition: all 0.5s ease-out;
 }
 
-.faq-item div.sub-menu {
-    background-color: white;
-    font-size: 13px;
-    font-weight: normal;
-    padding: 5px;
-    margin-top: 10px;
-    max-height: 40vh;
-    overflow-y: auto;
-}
+    .mobile-login-menu .main-menu .sub-menu a {
+        background-color: #e6e6e6;
+        padding: 13px 35px;
+    }
 
-.js-open-faq-item .icon-arrow-down, .js-close-faq-item .icon-arrow-up {
-    font-size: 12px;
-}
+        .mobile-login-menu.main-menu .sub-menu a:active {
+            background-color: rgba(179, 49, 87, 0.2);
+            color: #555;
+        }
 
-.mobile-login-menu .main-menu .sub-menu a {
-    background-color: #e6e6e6;
-    padding: 13px 35px;
-}
-
-.mobile-login-menu.main-menu .sub-menu a:active {
-    background-color: rgba(179, 49, 87, 0.2);
-    color: #555;
-}
-
-.mobile-login-menu .main-menu .sub-menu li.active a,
-.mobile-login-menu .main-menu .sub-menu li:hover a {
-    background-color: #ddd;
-}
+    .mobile-login-menu .main-menu .sub-menu li.active a,
+    .mobile-login-menu .main-menu .sub-menu li:hover a {
+        background-color: #ddd;
+    }
 
 .main-menu .dd-item {
     position: relative;
 }
 
-.main-menu .dd-item i {
-    width: 15px;
-    text-align: center;
-    vertical-align: top;
-}
+    .main-menu .dd-item i {
+        width: 15px;
+        text-align: center;
+        vertical-align: top;
+    }
 
-.main-menu .dd-item div {
-    display: inline-block;
-}
-
+    .main-menu .dd-item div {
+        display: inline-block;
+    }
 
 /* end login menu*/
 
@@ -519,10 +400,6 @@ input:-webkit-autofill:focus input:-webkit-autofill {
             margin-top: 30px;
         }
 
-        .mobile-login-menu {
-            width: 60%;
-            right: -60%;
-        }
 
         #disclamerTextLink {
             padding-top: 0;
@@ -551,31 +428,12 @@ input:-webkit-autofill:focus input:-webkit-autofill {
         }
     }
 
-@media(max-width: 1199px) {
-    .support-menu, .faq-menu {
-        right: -95%;
-        width: 95%;
-    }
-
-    .faq-item a {
-        display: inherit;
-    }
-}
 
 @media(max-height: 420px) {
     .login_burger_menu {
         right: 0.5em;
     }
 
-    .mobile-login-menu {
-        width: 30%;
-        right: -30%;
-    }
-
-    .support-menu, .faq-menu {
-        right: -95%;
-        width: 95%;
-    }
 }
     /* Small devices (tablets, 768px and up) */
     /* Medium devices (desktops, 992px and up) */

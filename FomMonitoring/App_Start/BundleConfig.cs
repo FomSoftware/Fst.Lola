@@ -64,7 +64,8 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/grey/machine.css",
                         "~/GlobApp/grey/mes.css",
                         "~/GlobApp/grey/user-manager.css",
-                        "~/GlobApp/grey/utilities.css"
+                        "~/GlobApp/grey/utilities.css",
+                        "~/GlobApp/grey/faq-support.css"
                      ));
 
 
@@ -114,9 +115,9 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/image-manager-fmc.js",
                         "~/GlobApp/scripts/machine/image-manager-lmx.js",
                         "~/GlobApp/scripts/machine/image-manager-blitz.js",
-                        "~/GlobApp/scripts/machine/image-manager-axel.js"
-
-                      ));
+                        "~/GlobApp/scripts/machine/image-manager-axel.js", 
+                        "~/GlobApp/scripts/faq-support-manager.js"
+            ));
 
             #endregion
 
@@ -129,7 +130,8 @@ namespace FomMonitoring.App_Start
                       "~/Content/icomoon-icons.css",
                       "~/Content/font-awesome.min.css",
                       "~/Content/simple-line-icons.css",
-                      "~/GlobApp/grey/login.css"
+                      "~/GlobApp/grey/login.css",
+                      "~/GlobApp/grey/faq-support.css"
                     ));
 
 
@@ -138,7 +140,7 @@ namespace FomMonitoring.App_Start
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/bootstrap.bundle.js",
                         "~/GlobApp/plugins/sweet-alert/sweetalert.min.js",
-                        "~/GlobApp/scripts/login-manager.js"
+                        "~/GlobApp/scripts/faq-support-manager.js"
                       ));
 
             #endregion

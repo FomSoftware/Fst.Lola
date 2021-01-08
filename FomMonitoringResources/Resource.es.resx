@@ -1329,4 +1329,7 @@ En caso de caducidad para una o varias máquinas, tendrás que pagar la compra o
   <data name="FileNotValid" xml:space="preserve">
     <value>Archivo inválido</value>
   </data>
+  <data name="MaxFileSizeError" xml:space="preserve">
+    <value>El tamaño máximo del archivo debe ser de 3 MB</value>
+  </data>
 </root>

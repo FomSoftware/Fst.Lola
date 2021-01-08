@@ -2173,6 +2173,17 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to MaxFileSizeError.
+        /// </summary>
+        public static string MaxFileSizeError
+        {
+            get
+            {
+                return ResourceManager.GetString("MaxFileSizeError", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Messages.
         /// </summary>
         public static string Messages

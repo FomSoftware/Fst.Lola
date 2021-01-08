@@ -34,223 +34,249 @@
             </div>
         </div>
     </div>
-    <div class="pull-right">
-        <!-- #region desktop menu -->
-        <div class="btn-group-menu desktop-menu display-none">
-            <div class="dropdown" onclick="SharedManager.handlerDropdown($(this))">
-                <div class="button btn btn-menu">
-                    <img class="flag" src="@Url.Content("~/Images/flags/" + (Model.ActualLanguage.InitialsLanguage) + ".png")" />
-                    <span>@Html.Raw(Model.ActualLanguage.Name)</span>
-                    <span class="icon-arrow-down"></span>
-                </div>
-                <div class="dropdown-content">
-                    @foreach (var Lang in Model.AllLanguages)
-                    {
-                        <a href="@Url.Action(Model.ActionPage, Model.ControllerPage, null, CultureInfo.CreateSpecificCulture(Lang.DotNetCulture))"
-                           class="@("dd-item " + (Model.ActualLanguage.ID == Lang.ID ? "active" : ""))">
-                            <img class="flag" src="@Url.Content("~/Images/flags/" + (Lang.InitialsLanguage) + ".png")" />
-                            <span>@Lang.Name</span>
-                        </a>
-                    }
-                </div>
-            </div>
-            <div class="dropdown" onclick="SharedManager.handlerDropdown($(this))">
-                <div class="button btn btn-menu">
-                    <i class="fa fa-user fa-lg color-corporate"></i>
-                    <span>@Resource.User</span>
-                    <span class="icon-arrow-down"></span>
-                </div>
-                <div class="dropdown-content right">
-                    <div class="dd-item-user">
-                        <table class="table">
-                            <tr>
-                                <td>
-                                    <div>@Html.Raw(Model.User.FirstName)</div>
-                                    <div class="title-small">@Resource.FirstName</div>
-                                </td>
-                                <td>
-                                    <div>@Html.Raw(Model.User.LastName)</div>
-                                    <div class="title-small">@Resource.LastName</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div>@Html.Raw(Model.User.Username)</div>
-                                    <div class="title-small">@Resource.Username</div>
-                                </td>
-                                <td>
-                                    <div>@Html.Raw(Model.User.Role.ToString())</div>
-                                    <div class="title-small">@Resource.Role</div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="main-menu">
-                        @if (Model.User.Role != enRole.Operator)
-                        {
-                            <a class="dd-item" href="@Url.Action("Index", "Mes")">
-                                <i class="fa fa-home fa-lg color-corporate"></i>
-                                <span>@Resource.Home</span>
-                            </a>
-                        }
-                        @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer)
-                        {
-                            <a class="dd-item dd-item-longtext" href="@Url.Action("UserManager", "Admin")">
-                                <i class="fa fa-user fa-lg color-corporate"></i>
-                                <div><span>@Resource.UserManager</span></div>
-                            </a>
-                        }
-                        @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer)
-                        {
-                            <a class="dd-item dd-item-longtext" href="@Url.Action("PlantManager", "Plant")">
-                                <i class="fa fa-industry fa-lg color-corporate"></i>
-                                <div><span>@Resource.PlantManager</span></div>
-                            </a>
-                        }
-                        @if (Model.User.Role == enRole.Administrator)
-                        {
-                            <a class="dd-item dd-item-longtext" href="@Url.Action("Index", "UploadConfiguration")">
-                                <i class="fa fa-upload fa-lg color-corporate"></i>
-                                <div><span>Upload configuration</span></div>
-                            </a>
-                        }
-                        <a class="dd-item dd-item-longtext" href="@Url.Action("Index", "UserSetting")">
-                                <i class="fa fa-clock-o fa-lg color-corporate"></i>
-                                <div><span>@Resource.Header_TimeZone_Setting</span></div>
-                            </a>
-
-                                @if (Model.User.Role != enRole.Customer)
-                                {
-                                    <div class="dd-item" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
-                                        <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
-                                        <div><span>@Resource.ChangePassword</span></div>
-                                    </div>
-                                }
-                                <div class="dd-item dd-item-longtext" data-toggle="modal" onclick="UserManager.openDisclamerModal()">
-                                    <i class="fa fa-handshake-o color-corporate fa-sm"></i>
-                                    <div><span>@Resource.Disclamer</span></div>
-                                </div>
-                                <a class="dd-item" href="@Url.Action("Logout", "Account")">
-                                    <i class="fa fa-power-off color-corporate fa-lg"></i>
-                                    <div><span>@Resource.Logout</span></div>
-                                </a>
-                            </div>
-                </div>
-            </div>
+<div class="pull-right">
+<!-- #region desktop menu -->
+<div class="btn-group-menu desktop-menu display-none">
+    <div class="dropdown" onclick="SharedManager.handlerDropdown($(this))">
+        <div class="button btn btn-menu">
+            <img class="flag" src="@Url.Content("~/Images/flags/" + (Model.ActualLanguage.InitialsLanguage) + ".png")" />
+            <span>@Html.Raw(Model.ActualLanguage.Name)</span>
+            <span class="icon-arrow-down"></span>
         </div>
-        <!-- #endregion -->
-        <!-- #region mobile right menu -->
-        <div class="btn btn-menu btn-mobile js-open-menu display-none">
-            <i class="fa fa-bars fa-lg"></i>
+        <div class="dropdown-content">
+            @foreach (var Lang in Model.AllLanguages)
+            {
+                <a href="@Url.Action(Model.ActionPage, Model.ControllerPage, null, CultureInfo.CreateSpecificCulture(Lang.DotNetCulture))"
+                   class="@("dd-item " + (Model.ActualLanguage.ID == Lang.ID ? "active" : ""))">
+                    <img class="flag" src="@Url.Content("~/Images/flags/" + (Lang.InitialsLanguage) + ".png")" />
+                    <span>@Lang.Name</span>
+                </a>
+            }
         </div>
-
-        <nav id="mobile-menu" class="mobile-menu">
-            <a href="javascript:void(0)" class="close-btn js-close-menu">&times;</a>
-            <ul class="main-menu">
-                <li class="dd-logo">
-                    <img class="logo" src="~/Images/logo/Icon-35.png">
-                    <img class="scritta" src="~/Images/logo/Lola-35.png">
-                </li>
-                <li class="dd-item-user">
-                    <table class="table">
-                        <tr>
-                            <td>
-                                <div>@Html.Raw(Model.User.FirstName)</div>
-                                <div class="title-small">@Resource.FirstName</div>
-                            </td>
-                            <td>
-                                <div>@Html.Raw(Model.User.LastName)</div>
-                                <div class="title-small">@Resource.LastName</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div>@Html.Raw(Model.User.Username)</div>
-                                <div class="title-small">@Resource.Username</div>
-                            </td>
-                            <td>
-                                <div>@Html.Raw(Model.User.Role.ToString())</div>
-                                <div class="title-small">@Resource.Role</div>
-                            </td>
-                        </tr>
-                    </table>
-                </li>
-                <li>
-                    <a href="#">
-                        <img class="flag" src="@Url.Content("~/Images/flags/" + (Model.ActualLanguage.InitialsLanguage) + ".png")" />
-                        <span>@Html.Raw(Model.ActualLanguage.Name)</span>
-                        <i class="icon-arrow-down"></i>
-                    </a>
-                    <ul class="sub-menu">
-                        @foreach (var Lang in Model.AllLanguages)
-                        {
-                            <li class="@((Model.ActualLanguage.ID == Lang.ID ? "display-none" : ""))">
-                                <a class="dd-item" href="@Url.Action(Model.ActionPage, Model.ControllerPage, null, CultureInfo.CreateSpecificCulture(Lang.DotNetCulture))">
-                                    <img class="flag" src="@Url.Content("~/Images/flags/" + (Lang.InitialsLanguage) + ".png")" />
-                                    <div>@Lang.Name</div>
-                                </a>
-                            </li>
-                        }
-                    </ul>
-                </li>
+    </div>
+    <div class="dropdown" onclick="SharedManager.handlerDropdown($(this))">
+        <div class="button btn btn-menu">
+            <i class="fa fa-user fa-lg color-corporate"></i>
+            <span>@Resource.User</span>
+            <span class="icon-arrow-down"></span>
+        </div>
+        <div class="dropdown-content right">
+            <div class="dd-item-user">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <div>@Html.Raw(Model.User.FirstName)</div>
+                            <div class="title-small">@Resource.FirstName</div>
+                        </td>
+                        <td>
+                            <div>@Html.Raw(Model.User.LastName)</div>
+                            <div class="title-small">@Resource.LastName</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>@Html.Raw(Model.User.Username)</div>
+                            <div class="title-small">@Resource.Username</div>
+                        </td>
+                        <td>
+                            <div>@Html.Raw(Model.User.Role.ToString())</div>
+                            <div class="title-small">@Resource.Role</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="main-menu">
                 @if (Model.User.Role != enRole.Operator)
                 {
-                    <li>
-                        <a class="dd-item" href="@Url.Action("Index", "Mes")">
-                            <i class="fa fa-home fa-lg color-corporate"></i>
-                            <div>@Resource.Home</div>
-                        </a>
-                    </li>
+                    <a class="dd-item" href="@Url.Action("Index", "Mes")">
+                        <i class="fa fa-home fa-lg color-corporate"></i>
+                        <span>@Resource.Home</span>
+                    </a>
                 }
                 @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer)
                 {
-                    <li>
-                        <a class="dd-item dd-item-longtext" href="@Url.Action("UserManager", "Admin")">
-                            <i class="fa fa-user color-corporate fa-lg"></i>
-                            <div>@Resource.UserManager</div>
-                        </a>
-                    </li>
+                    <a class="dd-item dd-item-longtext" href="@Url.Action("UserManager", "Admin")">
+                        <i class="fa fa-user fa-lg color-corporate"></i>
+                        <div><span>@Resource.UserManager</span></div>
+                    </a>
                 }
                 @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer)
                 {
-                    <li>
-                        <a class="dd-item dd-item-longtext" href="@Url.Action("PlantManager", "Plant")">
-                            <i class="fa fa-industry fa-lg color-corporate"></i>
-                            <div>@Resource.PlantManager</div>
-                        </a>
-                    </li>
+                    <a class="dd-item dd-item-longtext" href="@Url.Action("PlantManager", "Plant")">
+                        <i class="fa fa-industry fa-lg color-corporate"></i>
+                        <div><span>@Resource.PlantManager</span></div>
+                    </a>
                 }
-                <li>
+                @if (Model.User.Role == enRole.Administrator)
+                {
+                    <a class="dd-item dd-item-longtext" href="@Url.Action("Index", "UploadConfiguration")">
+                        <i class="fa fa-upload fa-lg color-corporate"></i>
+                        <div><span>Upload configuration</span></div>
+                    </a>
+                }
                 <a class="dd-item dd-item-longtext" href="@Url.Action("Index", "UserSetting")">
                     <i class="fa fa-clock-o fa-lg color-corporate"></i>
                     <div><span>@Resource.Header_TimeZone_Setting</span></div>
                 </a>
-                </li>
-                    @if (Model.User.Role != enRole.Customer)
-                    {
-                    <li>
-                        <a class="dd-item" href="#" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
-                            <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
-                            <div>@Resource.ChangePassword</div>
+                @if (Model.User.Role != enRole.Customer)
+                {
+                    <div class="dd-item" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
+                        <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
+                        <div><span>@Resource.ChangePassword</span></div>
+                    </div>
+                }
+                <div class="dd-item dd-item-longtext" data-toggle="modal" onclick="UserManager.openDisclamerModal()">
+                    <i class="fa fa-handshake-o color-corporate fa-sm"></i>
+                    <div><span>@Resource.Disclamer</span></div>
+                </div>
+                <a class="dd-item js-open-faq" href="#">
+                    <i class="fa fa-question fa-lg color-corporate"></i>
+                    <div>F.A.Q.</div>
+                </a>
+                   
+                <a class="dd-item js-open-support" href="#">
+                    <i class="fa fa-life-ring color-corporate fa-lg"></i>
+                    <div>Support</div>
+                </a>
+                <a class="dd-item" href="@Url.Action("Logout", "Account")">
+                    <i class="fa fa-power-off color-corporate fa-lg"></i>
+                    <div><span>@Resource.Logout</span></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #endregion -->
+<!-- #region mobile right menu -->
+<div class="btn btn-menu btn-mobile js-open-menu display-none">
+    <i class="fa fa-bars fa-lg"></i>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu">
+    <a href="javascript:void(0)" class="close-btn js-close-menu">&times;</a>
+    <ul class="main-menu">
+        <li class="dd-logo">
+            <img class="logo" src="~/Images/logo/Icon-35.png">
+            <img class="scritta" src="~/Images/logo/Lola-35.png">
+        </li>
+        <li class="dd-item-user">
+            <table class="table">
+                <tr>
+                    <td>
+                        <div>@Html.Raw(Model.User.FirstName)</div>
+                        <div class="title-small">@Resource.FirstName</div>
+                    </td>
+                    <td>
+                        <div>@Html.Raw(Model.User.LastName)</div>
+                        <div class="title-small">@Resource.LastName</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>@Html.Raw(Model.User.Username)</div>
+                        <div class="title-small">@Resource.Username</div>
+                    </td>
+                    <td>
+                        <div>@Html.Raw(Model.User.Role.ToString())</div>
+                        <div class="title-small">@Resource.Role</div>
+                    </td>
+                </tr>
+            </table>
+        </li>
+        <li>
+            <a href="#">
+                <img class="flag" src="@Url.Content("~/Images/flags/" + (Model.ActualLanguage.InitialsLanguage) + ".png")" />
+                <span>@Html.Raw(Model.ActualLanguage.Name)</span>
+                <i class="icon-arrow-down"></i>
+            </a>
+            <ul class="sub-menu">
+                @foreach (var Lang in Model.AllLanguages)
+                {
+                    <li class="@((Model.ActualLanguage.ID == Lang.ID ? "display-none" : ""))">
+                        <a class="dd-item" href="@Url.Action(Model.ActionPage, Model.ControllerPage, null, CultureInfo.CreateSpecificCulture(Lang.DotNetCulture))">
+                            <img class="flag" src="@Url.Content("~/Images/flags/" + (Lang.InitialsLanguage) + ".png")" />
+                            <div>@Lang.Name</div>
                         </a>
                     </li>
                 }
-                    <li>
-                        <a class="dd-item dd-item-longtext" href="#" data-toggle="modal" onclick="UserManager.openDisclamerModal()">
-                            <i class="fa fa-handshake-o color-corporate fa-sm"></i>
-                            <div>@Resource.Disclamer</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dd-item" href="@Url.Action("Logout", "Account")">
-                            <i class="fa fa-power-off color-corporate fa-lg"></i>
-                            <div>@Resource.Logout</div>
-                        </a>
-                    </li>
-                </ul>
-        </nav>
-        <!-- #endregion -->
-    </div>
+            </ul>
+        </li>
+        @if (Model.User.Role != enRole.Operator)
+        {
+            <li>
+                <a class="dd-item" href="@Url.Action("Index", "Mes")">
+                    <i class="fa fa-home fa-lg color-corporate"></i>
+                    <div>@Resource.Home</div>
+                </a>
+            </li>
+        }
+        @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer)
+        {
+            <li>
+                <a class="dd-item dd-item-longtext" href="@Url.Action("UserManager", "Admin")">
+                    <i class="fa fa-user color-corporate fa-lg"></i>
+                    <div>@Resource.UserManager</div>
+                </a>
+            </li>
+        }
+        @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer)
+        {
+            <li>
+                <a class="dd-item dd-item-longtext" href="@Url.Action("PlantManager", "Plant")">
+                    <i class="fa fa-industry fa-lg color-corporate"></i>
+                    <div>@Resource.PlantManager</div>
+                </a>
+            </li>
+        }
+        <li>
+            <a class="dd-item dd-item-longtext" href="@Url.Action("Index", "UserSetting")">
+                <i class="fa fa-clock-o fa-lg color-corporate"></i>
+                <div><span>@Resource.Header_TimeZone_Setting</span></div>
+            </a>
+        </li>
+        @if (Model.User.Role != enRole.Customer)
+        {
+            <li>
+                <a class="dd-item" href="#" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
+                    <i class="fa fa-unlock-alt color-corporate fa-lg"></i>
+                    <div>@Resource.ChangePassword</div>
+                </a>
+            </li>
+        }
+        <li>
+            <a class="dd-item dd-item-longtext" href="#" data-toggle="modal" onclick="UserManager.openDisclamerModal()">
+                <i class="fa fa-handshake-o color-corporate fa-sm"></i>
+                <div>@Resource.Disclamer</div>
+            </a>
+        </li>
+        <li>
+            <a class="dd-item js-open-faq" href="#">
+                <i class="fa fa-question fa-lg color-corporate"></i>
+                <div>F.A.Q.</div>
+            </a>
+        </li>
+
+        <li>
+            <a class="dd-item js-open-support" href="#">
+                <i class="fa fa-life-ring color-corporate fa-lg"></i>
+                <div>Support</div>
+            </a>
+
+        </li>
+        <li>
+            <a class="dd-item" href="@Url.Action("Logout", "Account")">
+                <i class="fa fa-power-off color-corporate fa-lg"></i>
+                <div>@Resource.Logout</div>
+            </a>
+        </li>
+                
+    </ul>
+</nav>
+<!-- #endregion -->
+</div>
+
+@Html.Partial("_SupportPage")
+@Html.Partial("_FaqPage")
 </div>
 
 <script type="text/javascript">
@@ -270,13 +296,16 @@
             PasswordSamePrevious: '@LocalizationService.GetResourceForJs("PasswordSamePrevious")',
             PasswordPolicy: '@LocalizationService.GetResourceForJs("PasswordPolicy")',
             PasswordNotChanged: '@LocalizationService.GetResourceForJs("PasswordNotChanged")',
-            TimezoneSuccessfullyModify:'@LocalizationService.GetResourceForJs("TimezoneSuccessfullyModify")'
+            TimezoneSuccessfullyModify: '@LocalizationService.GetResourceForJs("TimezoneSuccessfullyModify")',
+            ErrorOccurred: '@LocalizationService.GetResourceForJs("ErrorOccurred")',
+            RichiestaInviata: '@LocalizationService.GetResourceForJs("RichiestaInviata")',
+            MaxFileSizeError: '@LocalizationService.GetResourceForJs("MaxFileSizeError")'
         };
 
         UserManager.initChangePassword(user, "@ViewBag.BaseUrl", resource);
         SharedManager.initHeader(data.LastUpdate);
         UserManager.checkFirstLogin(user);
-
+        FaqSupportManager.initLogin("@ViewBag.BaseUrl", resource);
     });
 
 </script>

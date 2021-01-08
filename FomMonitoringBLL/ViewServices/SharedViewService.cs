@@ -6,12 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
 using FomMonitoringCore.Service;
+using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoringBLL.ViewServices
 {
     public class SharedViewService
     {
-
         public static HeaderViewModel GetHeader(ContextModel context)
         {
             HeaderViewModel header = new HeaderViewModel();
@@ -21,7 +21,6 @@ namespace FomMonitoringBLL.ViewServices
             header.User = context.User;
             header.AllLanguages = context.AllLanguages;
             header.ActualLanguage = context.ActualLanguage;
-
             return header;
         }
 
@@ -107,5 +106,6 @@ namespace FomMonitoringBLL.ViewServices
 
             return plants;
         }
+
     }
 }

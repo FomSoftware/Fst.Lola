@@ -1329,4 +1329,7 @@ Si la licence est expirée pour une ou plusieurs machines, achetez ou renouvelez
   <data name="FileNotValid" xml:space="preserve">
     <value>Fichier non valide</value>
   </data>
+  <data name="MaxFileSizeError" xml:space="preserve">
+    <value>La taille maximale du fichier doit être de 3 MB</value>
+  </data>
 </root>

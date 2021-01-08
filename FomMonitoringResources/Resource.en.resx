@@ -1335,4 +1335,7 @@ indicating:
   <data name="FileNotValid" xml:space="preserve">
     <value>Invalid File</value>
   </data>
+  <data name="MaxFileSizeError" xml:space="preserve">
+    <value>Max file size should be 3MB</value>
+  </data>
 </root>

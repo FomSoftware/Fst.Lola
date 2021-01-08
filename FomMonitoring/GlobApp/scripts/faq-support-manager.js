@@ -1,4 +1,4 @@
-﻿var LoginManager = function ()
+﻿var FaqSupportManager = function ()
 {
     var resource;
     var baseApiUrl;
@@ -159,7 +159,7 @@
             // Here you can ask your users to load correct file
             $('#' + e.id).addClass("missingField");
             $('#inviaBtn').prop('disabled', true);
-            errorSwal("Max file size should be 3MB");
+            errorSwal(resource.MaxFileSizeError);
         } else {
             $('#' + e.id).removeClass("missingField");
         }

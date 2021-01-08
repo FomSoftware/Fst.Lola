@@ -30,15 +30,18 @@ namespace FomMonitoring.Controllers
         private readonly IAccountService _accountService;
         private readonly IJsonAPIClientService _jsonApiClientService;
         private readonly IUserManagerService _userManagerService;
+        private readonly IFaqService _faqService;
 
         public AccountController(IContextService contextService, IUserManagerService userManagerService,
-            IFomMonitoringEntities dbContext, IAccountService accountService, IJsonAPIClientService jsonApiClientService)
+            IFomMonitoringEntities dbContext, IAccountService accountService, IJsonAPIClientService jsonApiClientService,
+            IFaqService faqService)
         {
             _contextService = contextService;
             _dbContext = dbContext;
             _accountService = accountService;
             _jsonApiClientService = jsonApiClientService;
             _userManagerService = userManagerService;
+            _faqService = faqService;
         }
 
 
@@ -112,7 +115,7 @@ namespace FomMonitoring.Controllers
                 model.ActualLanguage = model.AllLanguages.FirstOrDefault();
             }
 
-            model.ExternalFaqs = _dbContext.Set<Faq>().Where(f => f.IsVisible == true).OrderBy(f => f.Order).ToList();
+            model.Faqs = _faqService.GetFaqs();
 
         }
 

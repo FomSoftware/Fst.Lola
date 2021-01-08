@@ -264,10 +264,12 @@
     <Compile Include="Service\BarService.cs" />
     <Compile Include="Service\CacheService.cs" />
     <Compile Include="Service\ContextService.cs" />
+    <Compile Include="Service\FaqService.cs" />
     <Compile Include="Service\IAccountService.cs" />
     <Compile Include="Service\IBarService.cs" />
     <Compile Include="Service\IContextService.cs" />
     <Compile Include="Service\IJobService.cs" />
+    <Compile Include="Service\IFaqService.cs" />
     <Compile Include="Service\ILanguageService.cs" />
     <Compile Include="Service\IUserManagerService.cs" />
     <Compile Include="Service\LocalizationService.cs" />

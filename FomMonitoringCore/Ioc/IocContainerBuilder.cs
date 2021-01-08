@@ -72,6 +72,7 @@ namespace FomMonitoringCore.Ioc
                 builder.RegisterType<UserServices>().As<IUserServices>(),
                 builder.RegisterType<LoggedUserServices>().As<ILoggedUserServices>(),
                 builder.RegisterType<Users>().As<IUsers>(),
+                builder.RegisterType<FaqService>().As<IFaqService>(),
                 builder.RegisterGeneric(typeof(Mongo.Repository.GenericRepository<>)).As(typeof(Mongo.Repository.IGenericRepository<>))
             };
 

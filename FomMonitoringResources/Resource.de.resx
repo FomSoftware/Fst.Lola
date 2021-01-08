@@ -1327,4 +1327,7 @@ unter Angabe:
   <data name="FileNotValid" xml:space="preserve">
     <value>Ungültige Datei</value>
   </data>
+  <data name="MaxFileSizeError" xml:space="preserve">
+    <value>Die maximale Dateigröße sollte 3 MB betragen</value>
+  </data>
 </root>

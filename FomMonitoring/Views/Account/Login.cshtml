@@ -130,10 +130,11 @@
         $(document).ready(function () {
             var resource = {
                 ErrorOccurred: '@LocalizationService.GetResourceForJs("ErrorOccurred")',
-                RichiestaInviata: '@LocalizationService.GetResourceForJs("RichiestaInviata")'
+                RichiestaInviata: '@LocalizationService.GetResourceForJs("RichiestaInviata")',
+                MaxFileSizeError: '@LocalizationService.GetResourceForJs("MaxFileSizeError")'
             };
 
-            LoginManager.initLogin("@ViewBag.BaseUrl", resource);
+            FaqSupportManager.initLogin("@ViewBag.BaseUrl", resource);
         });
 
         $(function () {

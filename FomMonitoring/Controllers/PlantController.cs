@@ -13,10 +13,12 @@ namespace FomMonitoring.Controllers
     public class PlantController : Controller
     {
         private IContextService _contextService;
+        private IFaqService _faqService;
 
-        public PlantController (IContextService contextService)
+        public PlantController (IContextService contextService, IFaqService faqService)
         {
             _contextService = contextService;
+            _faqService = faqService;
         }
         // GET: Plant
         [Route("{lang}/PlantManager")]
@@ -26,7 +28,7 @@ namespace FomMonitoring.Controllers
 
             ContextModel context = _contextService.GetContext();
             HeaderViewModel header = SharedViewService.GetHeader(context);
-
+            header.Faqs = _faqService.GetInternalFaqs();
             _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
 
             return View(header);

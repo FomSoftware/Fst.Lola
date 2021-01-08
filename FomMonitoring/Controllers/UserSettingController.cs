@@ -15,10 +15,12 @@ namespace FomMonitoring.Controllers
     public class UserSettingController : Controller
     {
         private readonly IContextService _contextService;
+        private readonly IFaqService _faqService;
 
-        public UserSettingController(IContextService contextService)
+        public UserSettingController(IContextService contextService, IFaqService faqService)
         {
             _contextService = contextService;
+            _faqService = faqService;
         }
 
         // GET: UserSetting
@@ -29,7 +31,7 @@ namespace FomMonitoring.Controllers
 
             var context = _contextService.GetContext();
             var header = SharedViewService.GetHeader(context);
-
+            header.Faqs = _faqService.GetInternalFaqs();
             _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
             return View(header);
         }

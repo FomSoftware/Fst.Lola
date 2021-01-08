@@ -1333,4 +1333,7 @@ In caso di licenza scaduta per una o più macchine, procedere ad acquistare e/o 
   <data name="FileNotValid" xml:space="preserve">
     <value>File non valido</value>
   </data>
+  <data name="MaxFileSizeError" xml:space="preserve">
+    <value>La dimensione massima del file è di 3 MB</value>
+  </data>
 </root>

@@ -21,6 +21,6 @@ namespace FomMonitoringCore.Framework.Model
 
         public Languages ActualLanguage { get; set; }
 
-        public List<Faq> ExternalFaqs { get; set; }
+        public List<Faq> Faqs { get; set; }
     }
 }
