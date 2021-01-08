@@ -203,12 +203,9 @@
     {
         // update vue model
         var vm_tools = data.vm_tools;
-        if (vmTools) {
+        if (vm_tools != null && vmTools != null) {
             vmTools.tools = vm_tools.tools;
             vmTools.sorting = vm_tools.sorting;
-        }
-        else {
-            initVueModel(data.vm_tools);
         }
     }
 

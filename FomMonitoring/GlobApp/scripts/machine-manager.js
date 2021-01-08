@@ -71,19 +71,22 @@
             buildRequest(urls.urlMaintenance, filters),
             buildRequest(urls.urlMessages, filters),
             buildRequest(urls.urlXTools, filters),
-            buildRequest(urls.urlTools, filters))
-            .done(function(efficiency, productivity, job, maintenance, messages, xTools, tools) {
+            buildRequest(urls.urlTools, filters)
+            )
+            .done(function (efficiency, productivity, job, maintenance, messages,
+                xTools,
+                tools
+            ) {
                 $(".slimscroll").slimScroll({ destroy: true });
-
                 Efficiency.update(efficiency[0]);
                 Productivity.update(productivity[0]);
-                ToolsBlitz.update(xTools[0]);
-                Tools.update(tools[0]);
-                XTools.update(xTools[0]);
                 Jobs.update(job[0]);
                 OtherMachinesJobs.update(job[0]);
-                Messages.update(messages[0]);
                 Maintenance.update(maintenance[0]);
+                Messages.update(messages[0]);
+                ToolsBlitz.update(xTools[0]);
+                XTools.update(xTools[0]);
+                Tools.update(tools[0]);
 
                 Vue.nextTick(function () {
                     initProgressBar();
@@ -95,6 +98,7 @@
             }).always(function() {
                 WaitmeManager.end("body");
             });
+
 
     };
 

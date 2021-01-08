@@ -37,7 +37,7 @@ namespace FomMonitoringBLL.ViewServices
 
             if (dataTools.Count == 0)
                 return result;
-
+            var lan = _contextService.GetContext().ActualLanguage.InitialsLanguage;
             List<ToolDataModel> tools = dataTools.Select(t => new ToolDataModel()
             {
                 code = t.Code,
@@ -51,7 +51,7 @@ namespace FomMonitoringBLL.ViewServices
                     historical = dataHistorical.Where(w => w.Code == t.Code).Select(h => new HistoricalModel()
                     {
                         date = h.DateReplaced.ToString(),
-                        type = CommonViewService.GetTypeTool(h).ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage),
+                        type = CommonViewService.GetTypeTool(h).ToLocalizedString(lan),
                         color_type = CommonViewService.GetTypeTool(h).GetDescription(),
                         duration = CommonViewService.getTimeViewModel(h.CurrentLife)
                     }).OrderByDescending(o => o.date).ToList()
