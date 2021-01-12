@@ -358,13 +358,13 @@
                     //text: 'Produttività (p/h)',
                     text: options.yTitle2,
                     style: {
-                        color: '#a2f3f0',
+                        color: '#588FA4',
                     },
                     x: -5
                 },
                 labels: {
                     style: {
-                        color: '#a2f3f0',
+                        color: '#588FA4',
                     },
                     x: 3,
                     y: 4

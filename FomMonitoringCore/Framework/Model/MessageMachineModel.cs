@@ -32,5 +32,7 @@ namespace FomMonitoringCore.Framework.Model
         public string Description { get; set; }
 
         public string UserId { get; set; }
+        public int? MessagesIndexId { get; set; }
+        public long? PeriodicSpan { get; set; }
     }
 }

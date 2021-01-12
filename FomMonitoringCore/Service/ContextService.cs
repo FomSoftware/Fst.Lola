@@ -117,7 +117,7 @@ namespace FomMonitoringCore.Service
 
             if (context.AllPlants.Any())
             {
-                if(context.ActualPlant == null)
+                if(context.ActualPlant == null || context.AllPlants.FirstOrDefault(p => p.Id == context.ActualPlant.Id ) == null)
                     context.ActualPlant = context.AllPlants.FirstOrDefault();
 
                 if (context.User.Role == enRole.Administrator)

@@ -6,8 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Http.Results;
 using System.Web.Mvc;
 using System.Xml.Serialization;
+using FomMonitoringBLL.ViewModel;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model.Xml;
 using FomMonitoringCore.Service;
@@ -29,7 +31,7 @@ namespace FomMonitoring.Controllers
             _contextService = contextService;
         }
         // GET: UploadConfiguration
-        public ActionResult Index(bool? success)
+        public ActionResult Index(LoadConfigurationModel success)
         {
             if (!_contextService.InitializeUploadConfigurationLevel())
                 return RedirectToAction("Logout", "Account", new { returnUrl = string.Empty, exception = 4 });
@@ -53,13 +55,24 @@ namespace FomMonitoring.Controllers
                         using (var memStream = new MemoryStream(Encoding.UTF8.GetBytes(contents)))
                         {
                             var resultingMessage = (ParametersMachineModelXml)serializer.Deserialize(memStream);
-                            if (ValidateLolaXml(resultingMessage))
+                            List<string> errors = new List<string>();
+                            if (ValidateLolaXml(resultingMessage, out errors))
                             {
                                 await _xmlDataService.AddOrUpdateMachineParameterAsync(resultingMessage);
                             }
                             else
                             {
-                                throw new Exception("Validazione LOLA.xml Fallita");
+                                ViewBag.success = false;
+                                ViewBag.errors = "File non valido";
+                                if (errors.Count > 0)
+                                {
+                                    foreach (var ee in errors)
+                                    {
+                                        ViewBag.errors += $"\\n {ee}";
+                                    }
+                                }
+                                //throw new Exception("Validazione LOLA.xml Fallita");
+                                return View("Index");
                             }
                         }
                     }
@@ -68,26 +81,69 @@ namespace FomMonitoring.Controllers
                 {
                     var errMessage = string.Format(ex.GetStringLog());
                     LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
-                    return RedirectToAction("Index", new { success = false });
+                    ViewBag.success = false;
+                    ViewBag.errors = "Caricamento XML Fallito \\n" + ex.Message;
+                    return View("Index");
                 }
             else
             {
-                return RedirectToAction("Index", new { success = false });
+                ViewBag.success = false;
+                ViewBag.errors ="Caricamento XML Fallito \\n File non trovato";
+                return View("Index");
             }
-            return RedirectToAction("Index", new { success = true});
+            ViewBag.success = true;
+            return View("Index");
         }
 
 
-        private bool ValidateLolaXml(ParametersMachineModelXml machineModelXml)
+        private bool ValidateLolaXml(ParametersMachineModelXml machineModelXml, out List<string> errors)
         {
+            errors = new List<string>();
+
             if (!(machineModelXml.ModelCodeV997 > 0))
             {
-                return false;
+                errors.Add($"ModelCodeV997: {machineModelXml.ModelCodeV997} inesistente");
             }
-            if (machineModelXml.Parameters.Parameter.Any(n => string.IsNullOrWhiteSpace(n.VAR_NUMBER)))
+            else if(!_xmlDataService.CheckMachineModelCode(machineModelXml.ModelCodeV997))
             {
-                return false;
+                errors.Add($"ModelCodeV997: {machineModelXml.ModelCodeV997} inesistente" );
             }
+
+            if (errors.Count() == 0)
+            {
+                var wrongVarNumber = machineModelXml.Parameters.Parameter.Where(n => string.IsNullOrWhiteSpace(n.VAR_NUMBER) ||
+                                                                                     !_xmlDataService.CheckVarNumber(machineModelXml.ModelCodeV997, n.VAR_NUMBER)).ToList();
+                if (wrongVarNumber.Count() > 0)
+                {
+                    foreach (var row in wrongVarNumber)
+                    {
+                        errors.Add($"VarNumber inesistente: {row.VAR_NUMBER} (keyword: {row.KEYWORD})");
+                    }
+                }
+            }
+                
+
+            var wrongIdPanel = machineModelXml.Parameters.Parameter.Where(n => !(n.PANEL_ID > 0) ||
+                                                                                 !_xmlDataService.CheckPanelId(n.PANEL_ID)).ToList();
+            if (wrongIdPanel.Count() > 0)
+            {
+                foreach (var row in wrongIdPanel)
+                {
+                    errors.Add($"PANEL_ID inesistente: {row.PANEL_ID} (keyword: {row.KEYWORD})");
+                }
+            }
+
+            var wrongMachineGroup = machineModelXml.Parameters.Parameter.Where(n => string.IsNullOrWhiteSpace(n.MACHINE_GROUP) ||
+                                                                               !_xmlDataService.CheckMachineGroup(n.MACHINE_GROUP)).ToList();
+            if (wrongMachineGroup.Count() > 0)
+            {
+                foreach (var row in wrongMachineGroup)
+                {
+                    errors.Add($"MACHINE_GROUP inesistente: {row.MACHINE_GROUP} (keyword: {row.KEYWORD})");
+                }
+            }
+
+            if (errors.Count() > 0) return false;
             return true;
         }
     }

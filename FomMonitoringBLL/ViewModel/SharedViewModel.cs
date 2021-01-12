@@ -7,6 +7,7 @@ using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoringBLL.ViewModel
 {
+
     public class HeaderViewModel
     {
         public string ControllerPage { get; set; }
@@ -20,6 +21,8 @@ namespace FomMonitoringBLL.ViewModel
         public List<Languages> AllLanguages { get; set; }
 
         public Languages ActualLanguage { get; set; }
+
+        public List<Faq> Faqs { get; set; }
 
     }
 
@@ -100,5 +103,11 @@ namespace FomMonitoringBLL.ViewModel
         public string initial { get; set; }
 
         public CalendarI18nModel labels { get; set; }
+    }
+
+    public class LoadConfigurationModel
+    {
+        public bool? success { get; set; }
+        public string errors { get; set; }
     }
 }

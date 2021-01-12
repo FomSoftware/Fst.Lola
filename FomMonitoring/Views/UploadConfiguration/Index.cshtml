@@ -1,12 +1,8 @@
-﻿@model bool?
+﻿
 @{
     ViewBag.Title = "Upload Configuration";
     Layout = "~/Views/Shared/_LayoutApp.cshtml";
 }
-
-
-
-
 
 @using (Html.BeginForm("SaveConfiguration",
     "UploadConfiguration",
@@ -37,30 +33,35 @@
             color: #b33157;
             text-transform: uppercase;
         }
+        .swal-modal {
+            width: 40vw;
+        }
     </style>
     <script>
     $(document).ready(function() {
-        @if (Model == true)
-        {
-            <text>
-            swal(
-            {
-                title: "",
-                text: "import succed",
-                icon:"success",
-                allowOutsideClick: true,
-                closeModal: true
-            });
-
-            </text>
-        }
-        @if (Model == false)
+        @if (ViewBag.success == true)
         {
             <text>
                 swal(
                     {
                         title: "",
-                        text: "import failed",
+                        text: "import succed",
+                        icon:"success",
+                        allowOutsideClick: true,
+                        closeModal: true
+                    });
+
+            </text>
+        }
+        @if (ViewBag.success == false && ViewBag.errors != null)
+        {
+
+            <text>
+
+            swal(
+                    {
+                title: "",
+                        text: "@(ViewBag.errors ?? String.Empty)",
                         icon:"error",
                         allowOutsideClick: true,
                         closeModal: true

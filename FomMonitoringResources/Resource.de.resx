@@ -543,9 +543,6 @@
   <data name="Messages" xml:space="preserve">
     <value>Beiträge</value>
   </data>
-  <data name="Offline" xml:space="preserve">
-    <value>Offline</value>
-  </data>
   <data name="Disclamer" xml:space="preserve">
     <value>Allgemeine Geschäftsbedingungen</value>
   </data>
@@ -1246,5 +1243,91 @@ Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt
   </data>
   <data name="PlantManager" xml:space="preserve">
     <value> Verwaltung Produktionsanlage</value>
+  </data>
+  <data name="Notice" xml:space="preserve">
+    <value>Melde</value>
+  </data>
+  <data name="Execution" xml:space="preserve">
+    <value>Ausfüh.</value>
+  </data>
+  <data name="Offline" xml:space="preserve">
+    <value>Ausgeschaltet</value>
+  </data>
+  <data name="RichiestaInviata" xml:space="preserve">
+    <value>Anfrage geschickt</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Unternehmen</value>
+  </data>
+  <data name="Prefix" xml:space="preserve">
+    <value>Präfix</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="MachineName" xml:space="preserve">
+    <value>Maschinenname</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="TextMax" xml:space="preserve">
+    <value>Text maximal 500 Zeichen</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Senden</value>
+  </data>
+  <data name="AskCredentialTitle" xml:space="preserve">
+    <value>Ich kann mich nicht mehr bei LOLA einloggen, da ich Benutzername und Passwort vergessen habe.</value>
+  </data>
+  <data name="AskCredentialBody" xml:space="preserve">
+    <value>Bei einem Benutzerkonto in der Rolle „Customer“ (bei VIPAREA Fom Industrie registrierter Benutzer) sind die per E-Mail erhaltenen Login-Daten zu verwenden.  Falls Sie das Passwort vergessen haben, rufen Sie folgende URL auf und klicken Sie dort auf die Option LOST PASSWORD: &lt;br&gt; 
+&lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;&lt;br&gt;
+Bei einem LOLA-Benutzerkonto (mit der Rolle Bediener/Werkstattleiter) ist zu prüfen, ob eine E-Mail und/oder ein Ausdruck dieser Art vom zuständigen Leiter erhalten wurde, in denen der Benutzername und das vorläufige Passwort für den Zugriff enthalten sind.&lt;br&gt;&lt;div class="faqImg"&gt; &lt;img  src="[BASIC_URL_HOST]Images/faq/faq1.png"&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="HowToUseTitle" xml:space="preserve">
+    <value>Ich verfüge über Zugriff auf LOLA, weiß aber nicht, wie das Programm angewendet wird.</value>
+  </data>
+  <data name="HowToUseBody" xml:space="preserve">
+    <value>VIPAREA FOM Industrie aufrufen und von der Website das LOLA-Benutzerhandbuch für die eigene Werkzeugmaschine herunterladen.&lt;br&gt;
+&lt;a  class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;</value>
+  </data>
+  <data name="NoMachineVisibleTitle" xml:space="preserve">
+    <value>Ich habe mich erfolgreich bei LOLA eingeloggt, sehe aber keine Maschine</value>
+  </data>
+  <data name="NoMachineVisibleTitle2" xml:space="preserve">
+    <value>Ich habe mich erfolgreich bei LOLA eingeloggt, der PC meiner Maschine ist an Internet angeschlossen und die SW wurde gestartet, dennoch ist in LOLA keine Maschine zu sehen</value>
+  </data>
+  <data name="NoMachineVisibleBody" xml:space="preserve">
+    <value>Falls die Lizenz gerade erst aktiviert worden ist, überprüfen Sie, ob der PC Ihrer Werkzeugmaschine von Fom Industrie über einen Internetanschluss verfügt und ob die HMI-SW (FST CUT oder FST CAM oder FST LINE) am PC der Maschine aufgerufen worden ist.  Andernfalls den Internetanschluss herstellen, die FST-SW starten und anschließend erneut die Anzeige der Daten in LOLA kontrollieren.</value>
+  </data>
+  <data name="NoMachineVisibleBody2" xml:space="preserve">
+    <value>Falls die Aktivierung der LOLA-Lizenz Ihrer Maschine bereits eine Weile zurückliegt, prüfen Sie, ob diese möglicherweise abgelaufen ist. Falls mehrere Lizenzen erworben worden sind, das Ablaufdatum der LOLA-Lizenz für jede Maschine prüfen, indem Sie sich bei VIPAREA einloggen: &lt;br&gt; 
+&lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;&lt;br&gt;
+Falls die Lizenz für eine oder mehrere Maschinen abgelaufen ist, kann die LOLA-Lizenz erworben und/oder verlängert werden, indem die Bezugsmaschine selektiert und die Zahlung der Lizenz vorgenommen wird. Danach erneut LOLA aufrufen, um die Situation zu prüfen.</value>
+  </data>
+  <data name="NoDataFromMachineTitle" xml:space="preserve">
+    <value>Ich habe die Punkte 1, 2 und 3 kontrolliert, erhalte aber weiterhin keine Daten von der Maschine</value>
+  </data>
+  <data name="NoDataFromMachineBody" xml:space="preserve">
+    <value>Falls die Probleme fortbestehen, setzen Sie sich bitte mit dem LOLA-Kundendienst in Verbindung:
+&lt;ul&gt;&lt;li&gt; per Telefon unter der Nummer + 39 0541 832 777 (FOM-Servicehotline)&lt;/li&gt;
+&lt;li&gt; per E-Mail unter der Adresse support@fomservice.com&lt;/li&gt;&lt;/ul&gt;
+unter Angabe: 
+&lt;ol&gt;&lt;li&gt; des eigenen VIPAREA-Usernames z.B. usr0043&lt;/li&gt;
+&lt;li&gt; der Seriennummer der Maschine, für welche die LOLA-Lizenz aktiviert wurde&lt;/li&gt;
+&lt;li&gt; ggf. der bevorzugten Uhrzeit für die Kontaktaufnahme&lt;/li&gt;&lt;/ol&gt;</value>
+  </data>
+  <data name="OtherProblemTitle" xml:space="preserve">
+    <value>Mein Problem befindet sich nicht in der Liste</value>
+  </data>
+  <data name="OtherProblemBody" xml:space="preserve">
+    <value>Bitte senden Sie eine Kundendienstanfrage auf dem Formular, das unter dem Menü „Support“ aufgerufen werden kann, dem ggf. Screenshots zur Beschreibung des Problems beizulegen sind.</value>
+  </data>
+  <data name="FileNotValid" xml:space="preserve">
+    <value>Ungültige Datei</value>
+  </data>
+  <data name="MaxFileSizeError" xml:space="preserve">
+    <value>Die maximale Dateigröße sollte 3 MB betragen</value>
   </data>
 </root>

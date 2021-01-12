@@ -68,7 +68,7 @@ namespace FomMonitoringCore.Queue.ProcessData
                 }
                 catch (Exception ex)
                 {
-                    unitOfWork.CommitTransaction();
+                    unitOfWork.RollbackTransaction();
                     throw ex;
                 }
             }

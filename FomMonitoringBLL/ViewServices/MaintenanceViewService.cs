@@ -3,7 +3,9 @@ using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace FomMonitoringBLL.ViewServices
 {
@@ -23,7 +25,17 @@ namespace FomMonitoringBLL.ViewServices
             var result = new MaintenanceViewModel();
 
             result.vm_messages = GetVueModel(context.ActualMachine, context.ActualPeriod);
-            result.ignored_messages = GetIgnoredVueModel(context.ActualMachine, context.ActualPeriod);
+            var data = _messageService.GetOldMaintenanceMessages(context.ActualMachine, context.ActualPeriod);
+            if (data.Count == 0)
+            {
+                result.ignored_messages = new MaintenceVueModel();
+                result.kpi_messages = new MaintenceVueModel();
+            }
+            else
+            {
+                result.ignored_messages = GetIgnoredVueModel(data, context.ActualMachine);
+                result.kpi_messages = GetKpiVueModel(data, context.ActualMachine);
+            }
 
             if (context.User.Role == enRole.Customer && context.ActualMachine.TimeZone != null)
             {
@@ -36,14 +48,33 @@ namespace FomMonitoringBLL.ViewServices
             return result;
         }
 
-        private MaintenceVueModel GetIgnoredVueModel(MachineInfoModel machine, PeriodModel period)
+        private MaintenceVueModel GetKpiVueModel(List<MessageMachineModel> data, MachineInfoModel machine)
         {
             var result = new MaintenceVueModel();
-            var data = _messageService.GetOldMaintenanceMessages(machine, period);
+            var messages = data.Select(a =>
+                new ManteinanceDataModel
+                {
+                    id = a.Id,
+                    day = (DateTime)a.Day?.Date,
+                    ignoreDate = (DateTime)a.IgnoreDate?.Date,
+                    dateDiff = ((TimeSpan)(a.IgnoreDate?.Date - a.Day?.Date)).TotalDays,
+                    utc = machine.UTC,
+                    description = a.Description,
+                    user = _userManagerViewService.GetUser(a.UserId)
 
-            if (data.Count == 0)
-                return result;
+                }).ToList();
 
+            result.messages = messages.OrderByDescending(o => o.day).ToList();
+            var sorting = new SortingViewModel();
+            sorting.user = enSorting.Descending.GetDescription();
+            sorting.dateDiff = enSorting.Descending.GetDescription();
+            result.sorting = sorting;
+            return result;
+        }
+
+        private MaintenceVueModel GetIgnoredVueModel(List<MessageMachineModel> data, MachineInfoModel machine)
+        {
+            var result = new MaintenceVueModel();
             var messages = data.Select(a =>
                 new ManteinanceDataModel
                 {

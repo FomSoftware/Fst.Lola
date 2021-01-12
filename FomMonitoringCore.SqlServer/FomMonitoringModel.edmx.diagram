@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="18596681dd484d628aa4119a757b6bfb" Name="Diagram1" ZoomLevel="65">
+      <Diagram DiagramId="18596681dd484d628aa4119a757b6bfb" Name="Diagram1" ZoomLevel="85">
         <EntityTypeShape EntityType="FomMonitoringModel.AuditLogin" Width="1.5" PointX="10.5" PointY="17.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FomMonitoringModel.Bar" Width="1.5" PointX="7.5" PointY="23.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FomMonitoringModel.CurrentState" Width="2.125" PointX="13.5" PointY="32.125" IsExpanded="true" />
@@ -82,6 +82,7 @@
         <AssociationConnector Association="FomMonitoringModel.FK_UserCustomerMapping_Users" ManuallyRouted="false" />
         <AssociationConnector Association="FomMonitoringModel.FK_UserMachineMapping_Users" ManuallyRouted="false" />
         <AssociationConnector Association="FomMonitoringModel.FK_ParameterResetValue_Machine" />
+        <EntityTypeShape EntityType="FomMonitoringModel.Faq" Width="1.5" PointX="7.375" PointY="8" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

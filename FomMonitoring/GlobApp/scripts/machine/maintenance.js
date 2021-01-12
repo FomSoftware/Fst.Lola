@@ -18,8 +18,11 @@
                 sorting: data.vm_messages.sorting,
                 sortingIgnoredMessages: data.ignored_messages.sorting,
                 ignoredMessages: data.ignored_messages.messages,
+                kpiMessages: data.kpi_messages.messages,
+                sortingKpiMessages: data.kpi_messages.sorting,
                 show: {
-                    historical: (data.ignored_messages.messages != null)
+                    historical: (data.ignored_messages.messages != null),
+                    kpi: (data.kpi_messages.messages != null)
                 },
                 timeZone: data.timeZone,
                 showed: true
@@ -34,6 +37,15 @@
                     else
                         m = m.add(utc, 'hour');
                     var str = m.format('L') + " " + m.format('HH:mm:ss');
+                    return str;
+                },
+                convert_date: function (timestamp, utc) {
+                    var m = moment.utc(timestamp);
+                    if (this.timeZone && this.timeZone !== "")
+                        m = m.tz(this.timeZone);
+                    else
+                        m = m.add(utc, 'hour');
+                    var str = m.format('L');
                     return str;
                 },
                 sortTimestamp: function () {
@@ -80,7 +92,34 @@
                         return;
                     }
                 },
+                sortDateDiff: function () {
+                    console.log(this.$data);
+                    if (this.sortingKpiMessages.dateDiff == 'desc') {
+                        this.$data.kpiMessages = _.sortBy(this.$data.kpiMessages, function (message) { return message.dateDiff; });
+                        this.sortingKpiMessages.dateDiff = 'asc';
+                        return;
+                    }
 
+                    if (this.sortingKpiMessages.dateDiff == 'asc' || this.sortingKpiMessages.dateDiff == null) {
+                        this.$data.kpiMessages = _.sortBy(this.$data.kpiMessages, function (message) { return message.dateDiff; }).reverse();
+                        this.sortingKpiMessages.dateDiff = 'desc';
+                        return;
+                    }
+                },
+                sortKpiMessagesUser: function () {
+                    console.log(this.$data);
+                    if (this.sortingKpiMessages.user == 'desc') {
+                        this.$data.kpiMessages = _.sortBy(this.$data.kpiMessages, function (message) { return message.user; });
+                        this.sortingIgnoredMessages.user = 'asc';
+                        return;
+                    }
+
+                    if (this.sortingKpiMessages.user == 'asc' || this.sortingKpiMessages.user == null) {
+                        this.$data.kpiMessages = _.sortBy(this.$data.kpiMessages, function (message) { return message.user; }).reverse();
+                        this.sortingKpiMessages.user = 'desc';
+                        return;
+                    }
+                },
                 ignoreMessage: function ignoreMessage(messageId, event) {
                     var icon = event.currentTarget.getElementsByClassName('red-square-icon')[0];
                     if (icon) {
@@ -148,6 +187,7 @@
         // update vue model
         var vm_messages = data.vm_messages;
         var vm_ignored_messages = data.ignored_messages;
+        var vm_kpiMessages = data.kpi_messages;
         vmMessages.timeZone = data.timeZone;
         if (vm_messages) {
             vmMessages.messages = vm_messages.messages;
@@ -155,11 +195,15 @@
         }
         if (vm_ignored_messages) {
             vmMessages.ignoredMessages = vm_ignored_messages.messages;
+            vmMessages.kpiMessages = vm_kpiMessages.messages;
             vmMessages.sortingIgnoredMessages = vm_ignored_messages.sorting;
+            vmMessages.sortingKpiMessages = vm_kpiMessages.sorting;
             vmMessages.show.historical = true;
-        }
-        else
+            vmMessages.show.kpi = true;
+        } else {
             vmMessages.show.historical = false;
+            vmMessages.show.kpi = false;
+        }
     }
 
     return {

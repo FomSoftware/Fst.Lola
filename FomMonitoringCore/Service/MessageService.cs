@@ -200,16 +200,11 @@ namespace FomMonitoringCore.Service
         {
             if (mm.IsPeriodicMsg == true)
             {
-                var cat = _context.Set<Machine>().Find(mm.MachineId)?.MachineModel.MessageCategoryId;
-                var msg = _context.Set<MessagesIndex>().FirstOrDefault(f =>
-                    f.MessageCode == mm.Code && f.MessageCategoryId == cat);
-                if (msg == null) return null;
-
                 //caso dei messaggi arrivati da json, non hanno span, vanno visualizzati subito
-                if (msg.PeriodicSpan == null && mm.IgnoreDate == null)
+                if (mm.PeriodicSpan == null && mm.IgnoreDate == null)
                     return DateTime.UtcNow.Subtract(mm.Day.Value).Ticks;
 
-                var span = msg.PeriodicSpan ?? 0;
+                var span = mm.PeriodicSpan ?? 0;
                 var initTime = _context.Set<Machine>().Find(mm.MachineId).ActivationDate?.AddHours(span);
                 if (mm.IgnoreDate != null)
                 {
@@ -399,7 +394,10 @@ namespace FomMonitoringCore.Service
                         data = (DateTime) machine.ActivationDate?.AddHours((long) messaggio.PeriodicSpan);
 
                         if (mess == null)
-                            InsertMessageMachine(machine, messaggio.MessageCode, data);
+                        {
+                            if (DateTime.UtcNow > data)
+                                InsertMessageMachine(machine, messaggio.MessageCode, data);
+                        }
                         else if (mess.IgnoreDate != null)
                         {
                             DateTime nd = (DateTime) mess.IgnoreDate?.AddHours((long) messaggio.PeriodicSpan);

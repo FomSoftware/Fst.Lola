@@ -1,0 +1,58 @@
+﻿@using FomMonitoringResources
+
+<nav id="support-menu" class="mobile-login-menu support-menu">
+    <a href="javascript:void(0)" class="close-btn js-close-support">&times;</a>
+    <div class="dd-logo">
+        <img class="logo" src="~/Images/logo/Icon-35.png">
+        <img class="scritta" src="~/Images/logo/Lola-35.png">
+    </div>
+    <h3>
+        Support
+    </h3>
+    <div class="content col-12 col-sm-12 col-md-12 col-lg-12">
+        <form id="supportForm">
+            <div class="form-group">
+                <input class="form-control" onchange="FaqSupportManager.validateSupportForm(this)" type="text"
+                       placeholder="@Resource.FirstName @Resource.LastName*" id="nome_cognome" name="Nome" required />
+            </div>
+            <div class="form-group">
+                <input class="form-control" onchange="FaqSupportManager.validateSupportForm(this)" type="text"
+                       placeholder="@Resource.Company *" id="azienda" name="Azienda" required />
+            </div>
+            <div class="form-group">
+                <input class="form-control" onchange="FaqSupportManager.validateSupportForm(this)" type="text"
+                       placeholder="Email *" id="email" name="Email" required />
+            </div>
+            <div class="form-group" style="display: inline-flex; width: 100%">
+                <input class="form-control" onchange="FaqSupportManager.validateSupportForm(this)" style="width: 45%" type="text"
+                       placeholder="@Resource.Prefix *" name="Prefisso" id="prefisso" required />
+                <input class="form-control" onchange="FaqSupportManager.validateSupportForm(this)" style="margin-left: 10px" type="text"
+                       placeholder="@Resource.Phone *" name="Telefono" id="telefono" required />
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text"
+                       placeholder="@Resource.MachineName" name="NomeMacchina" id="nome_macchina" />
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text"
+                       placeholder="@Resource.Serial" name="Seriale" id="seriale" />
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" onchange="FaqSupportManager.validateSupportForm(this)"
+                          placeholder="@Resource.Text *" rows="4" cols="50" name="Testo" id="testo" maxlength="500" required></textarea>
+                <p style="text-align: left; margin: 5px; font-size: 11px">@Resource.TextMax * </p>
+            </div>
+            <div class="form-group">
+                <input class="form-control" onchange="FaqSupportManager.checkFileSize(this)" type="file"
+                       placeholder="file" name="File" id="file" accept=".jpg,.jpeg,.png,.doc,.docx"></input>
+                <p style="text-align: left; margin: 5px; font-size: 11px">.png, .jpg, .doc, .docx (MAX 3MB) </p>
+            </div>
+            <div class="form-group">
+                <p style="text-align: left; margin: 5px; font-size: 11px">@Resource.FieldRequired * </p>
+            </div>
+            <div class="form-group text-center">
+                <button type="button" disabled="true" id="inviaBtn" class="support-btn" style="height: 3em; padding: 5px 20px">@Resource.Send</button>
+            </div>
+        </form>
+    </div>
+</nav>

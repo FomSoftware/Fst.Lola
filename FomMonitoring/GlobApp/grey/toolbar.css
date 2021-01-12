@@ -46,7 +46,7 @@
 
 @media (max-width: 768px) {
     .btn-toolbar .title-btn {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     .btn-toolbar {
@@ -112,7 +112,7 @@
         }
 
 #calendar.btn-toolbar .title-btn {
-    line-height: 0.85;
+    line-height: 1.0;
 }
 
 /*#region info macchina */

@@ -71,20 +71,22 @@
             buildRequest(urls.urlMaintenance, filters),
             buildRequest(urls.urlMessages, filters),
             buildRequest(urls.urlXTools, filters),
-            buildRequest(urls.urlTools, filters),
-            buildRequest(urls.urlToolsBlitz, filters))
-            .done(function(efficiency, productivity, job, maintenance, messages, xTools, tools, toolsBlitz) {
+            buildRequest(urls.urlTools, filters)
+            )
+            .done(function (efficiency, productivity, job, maintenance, messages,
+                xTools,
+                tools
+            ) {
                 $(".slimscroll").slimScroll({ destroy: true });
-
                 Efficiency.update(efficiency[0]);
                 Productivity.update(productivity[0]);
-                ToolsBlitz.update(toolsBlitz[0]);
-                Tools.update(tools[0]);
-                XTools.update(xTools[0]);
                 Jobs.update(job[0]);
                 OtherMachinesJobs.update(job[0]);
-                Messages.update(messages[0]);
                 Maintenance.update(maintenance[0]);
+                Messages.update(messages[0]);
+                ToolsBlitz.update(xTools[0]);
+                XTools.update(xTools[0]);
+                Tools.update(tools[0]);
 
                 Vue.nextTick(function () {
                     initProgressBar();
@@ -96,6 +98,7 @@
             }).always(function() {
                 WaitmeManager.end("body");
             });
+
 
     };
 
@@ -125,7 +128,7 @@
                 hh = hh - headerHeight;
             }
 
-            if ($(this).attr('id') == "maintenanceSlimscroll" || $(this).attr('id') == "maintenanceSlimscroll2"  )
+            if ($(this).attr('id') == "maintenanceSlimscroll" || $(this).attr('id') == "maintenanceSlimscroll2" || $(this).attr('id') == "maintenanceSlimscroll3" )
                 hh = '100%';
             else if ($(this).attr('id') == "sensorSlimscroll")
                 hh = '100%';
@@ -280,6 +283,16 @@
 
 
             setGroupActive(group, ".slide-history");
+        });
+
+        $('.slide-kpi').click(function (e) {
+            e.preventDefault();
+            var group = $(this).data('group');
+            if (group == 'maintenance') {
+                showStandardPeriod("#CardMaintenance");
+                swiper_maintenance.slideTo(2, 300);
+            }
+            setGroupActive(group, ".slide-kpi");
         });
 
         $('.slide-operator').click(function (e)

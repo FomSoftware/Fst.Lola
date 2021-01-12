@@ -25,5 +25,6 @@ namespace FomMonitoringCore.Service
         /// Logouts the user.
         /// </summary>
         void Logout();
+
     }
 }

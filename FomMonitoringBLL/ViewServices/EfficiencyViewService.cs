@@ -1,10 +1,12 @@
-﻿using FomMonitoringBLL.ViewModel;
+﻿using System;
+using FomMonitoringBLL.ViewModel;
 using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.Service;
 using FomMonitoringResources;
 using System.Collections.Generic;
 using System.Linq;
+using FomMonitoringCore.Extensions;
 
 namespace FomMonitoringBLL.ViewServices
 {
@@ -180,40 +182,74 @@ namespace FomMonitoringBLL.ViewServices
             var serieProd = new SerieViewModel();
             serieProd.name = enState.Production.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieProd.color = CommonViewService.GetColorState(enState.Production);
-            serieProd.data = Common.ConvertElapsedByMeasurement(days.Select(d =>
-                data.Where(w => w.enState == enState.Production && w.Day.Value == d)
-                    .Select(s => s.ElapsedTime ?? 0).DefaultIfEmpty(0).First()).ToList(), measurement);
+            List<long> lista = GetDataGroup(data, days, granularity, enState.Production);
+            serieProd.data = Common.ConvertElapsedByMeasurement(lista, measurement);
             series.Add(serieProd);
 
 
             var serieManual = new SerieViewModel();
             serieManual.name = enState.Manual.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieManual.color = CommonViewService.GetColorState(enState.Manual);
-            serieManual.data = Common.ConvertElapsedByMeasurement(days.Select(d =>
-                data.Where(w => w.enState == enState.Manual && w.Day.Value == d)
-                    .Select(s => s.ElapsedTime ?? 0).DefaultIfEmpty(0).First()).ToList(), measurement);
+            serieManual.data = Common.ConvertElapsedByMeasurement(GetDataGroup(data, days, granularity, enState.Manual), measurement);
             series.Add(serieManual);
 
             var seriePause = new SerieViewModel();
             seriePause.name = enState.Pause.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             seriePause.color = CommonViewService.GetColorState(enState.Pause);
-            seriePause.data = Common.ConvertElapsedByMeasurement(days.Select(d =>
-                data.Where(w => w.enState == enState.Pause && w.Day.Value == d)
-                    .Select(s => s.ElapsedTime ?? 0).DefaultIfEmpty(0).First()).ToList(), measurement);
+            seriePause.data = Common.ConvertElapsedByMeasurement(GetDataGroup(data, days, granularity, enState.Pause), measurement);
             series.Add(seriePause);
 
             var serieError = new SerieViewModel();
             serieError.name = enState.Error.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieError.color = CommonViewService.GetColorState(enState.Error);
-            
-            serieError.data = Common.ConvertElapsedByMeasurement(days.Select(d => 
-                data.Where(w => w.enState == enState.Error && w.Day.Value == d)
-                .Select(s => s.ElapsedTime ?? 0).DefaultIfEmpty(0).First()).ToList(), measurement);
+            serieError.data = Common.ConvertElapsedByMeasurement(GetDataGroup(data, days, granularity, enState.Error), measurement);
             series.Add(serieError);
 
             options.series = series;
 
             return options;
+        }
+
+        private List<long> GetDataGroup(List<HistoryStateModel> data, List<DateTime> days, enAggregation granularity, enState state)
+        {
+            List<long> lista = new List<long>();
+
+            switch (granularity)
+            {
+                case enAggregation.Day:
+                    lista = days.Select(d =>
+                        data.Where(w => w.enState == state && w.Day.Value == d)
+                            .Select(s => s.ElapsedTime ?? 0).DefaultIfEmpty(0).First()).ToList();
+                    break;
+                case enAggregation.Week:
+                    var weeks = data.Where(w => w.enState == state).GroupBy(a => a.Day.Value.GetWeekNumber())
+                        .Select(n => new { week = n.Key, somma = n.Sum(o => o.ElapsedTime ?? 0) }).ToList();
+                    lista = days.Select(s => s.GetWeekNumber()).Distinct().ToList()
+                        .Select(d => weeks.Where(l => l.week == d).FirstOrDefault()?.somma ?? 0).ToList();
+                    break;
+                case enAggregation.Month:
+                    var months = data.Where(w => w.enState == state).GroupBy(a => a.Day.Value.Month)
+                        .Select(n => new { month = n.Key, somma = n.Sum(o => o.ElapsedTime ?? 0) }).ToList();
+                    lista = days.Select(s => s.Month).Distinct().ToList()
+                        .Select(d => months.Where(l => l.month == d).FirstOrDefault()?.somma ?? 0).ToList();
+                    break;
+                case enAggregation.Quarter:
+                    var quarters = data.Where(w => w.enState == state).GroupBy(a => a.Day.Value.GetQuarter() + (a.Day.Value.Year * 10))
+                        .Select(n => new { quarter = n.Key, somma = n.Sum(o => o.ElapsedTime ?? 0) }).ToList();
+                    lista = days.Select(s => s.GetQuarter() + (s.Year * 10)).Distinct().ToList()
+                        .Select(d => quarters.Where(l => l.quarter == d).FirstOrDefault()?.somma ?? 0).ToList();
+                    break;
+                case enAggregation.Year:
+                    var years = data.Where(w => w.enState == state).GroupBy(a => a.Day.Value.Year)
+                        .Select(n => new { year = n.Key, somma = n.Sum(o => o.ElapsedTime ?? 0) }).ToList();
+                    lista = days.Select(s => s.Year).Distinct().ToList()
+                        .Select(d => years.Where(l => l.year == d).FirstOrDefault()?.somma ?? 0).ToList();
+                    break;
+                default:
+                    break;
+            }
+
+            return lista;
         }
 
         private long CalculateEfficiencyOperator(string operatorName, IList<HistoryStateModel> states, MachineInfoModel machine)

@@ -139,10 +139,11 @@ namespace FomMonitoringCore.Queue.ProcessData
 
         public void HistoricizingPieces(IFomMonitoringEntities context, int idMachine)
         {
-            var maxHpDate = context.Set<HistoryPiece>().Where(hp => hp.MachineId == idMachine)
+            var maxHpDate = DateTime.MinValue;
+            if(context.Set<HistoryPiece>().Any(hp => hp.MachineId == idMachine))
+                maxHpDate = context.Set<HistoryPiece>().Where(hp => hp.MachineId == idMachine)
                 .Max(a => a.Day).Date;
             
-
             var historyPieces = context.Set<Piece>()
                 .Where(p => p.Day >= maxHpDate && p.MachineId == idMachine).ToList()
                 .GroupBy(g => new {g.Day.Value.Date, g.Operator})
@@ -212,13 +213,13 @@ namespace FomMonitoringCore.Queue.ProcessData
 
         public void HistoricizingBars(IFomMonitoringEntities context, int idMachine)
         {
-            var maxHpDate = context.Set<HistoryBar>().Where(hp => hp.MachineId == idMachine)
-                .Max(a => a.Day);
+            DateTime? maxHpDate = DateTime.MinValue;
+            if(context.Set<HistoryBar>().Any(hp => hp.MachineId == idMachine))
+                maxHpDate = context.Set<HistoryBar>().Where(hp => hp.MachineId == idMachine).Max(a => a.Day);
 
-            maxHpDate = maxHpDate?.Date ?? DateTime.MinValue;
 
             var historyBars = context.Set<Bar>()
-                .Where(p => p.StartTime >= maxHpDate && p.MachineId == idMachine).ToList()
+                .Where(p => p.StartTime != null && p.StartTime >= maxHpDate && p.MachineId == idMachine).ToList()
                 .GroupBy(g => g.StartTime.Value.Date)
                 .Select(n => new HistoryBar
                 {

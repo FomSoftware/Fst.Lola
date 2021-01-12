@@ -65,6 +65,9 @@
     <Compile Include="CurrentState.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Faq.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="FomMonitoringModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

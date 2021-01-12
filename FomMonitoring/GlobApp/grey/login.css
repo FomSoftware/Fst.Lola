@@ -4,7 +4,7 @@
     line-height: 1.2;
     font-weight: 300;
     /*color: #fff;*/
-    background: #676767;
+    background: #818181;
     /*background: linear-gradient(to bottom, #6a8790, #2A373B);*/
 }
 
@@ -29,13 +29,94 @@
     border: solid 1px #ddd;*/
 }
 
+.login_burger_menu {
+    position: fixed;
+    top: 10px;
+    right: 1em;
+    font-size: 2.5em;
+    color: #A61646;
+    z-index: 50;
+}
+
+.color-corporate {
+    color: #B33157;
+}
+
+
+.mobile-login-menu .main-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-login-menu .main-menu a {
+    display: block;
+    text-decoration: none;
+    padding: 10px 15px 10px 25px;
+    color: #707070;
+    font-size: 13px;
+    transition: 0.3s;
+    border-bottom: solid 1px #ddd;
+}
+
+.mobile-login-menu .main-menu a:hover {
+    background-color: #ddd;
+}
+
+.mobile-login-menu .main-menu li:hover .sub-menu {
+    display: block;
+    max-height: 220px;
+}
+
+.mobile-login-menu .main-menu .dd-logo {
+    padding: 10px 20px;
+    border-bottom: solid 1px #ddd;
+}
+
+.mobile-login-menu .main-menu .sub-menu {
+    overflow: hidden;
+    max-height: 0;
+    -webkit-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+
+    .mobile-login-menu .main-menu .sub-menu a {
+        background-color: #e6e6e6;
+        padding: 13px 35px;
+    }
+
+        .mobile-login-menu.main-menu .sub-menu a:active {
+            background-color: rgba(179, 49, 87, 0.2);
+            color: #555;
+        }
+
+    .mobile-login-menu .main-menu .sub-menu li.active a,
+    .mobile-login-menu .main-menu .sub-menu li:hover a {
+        background-color: #ddd;
+    }
+
+.main-menu .dd-item {
+    position: relative;
+}
+
+    .main-menu .dd-item i {
+        width: 15px;
+        text-align: center;
+        vertical-align: top;
+    }
+
+    .main-menu .dd-item div {
+        display: inline-block;
+    }
+
+/* end login menu*/
+
 .row {
     height: 100%;
 }
 
 
 .col-sm-12 {
-    padding: 0;
     height: 100%;
 }
 
@@ -250,89 +331,113 @@ input:-webkit-autofill:focus input:-webkit-autofill {
     }
 }
 
-
-@media (max-width: 576px) {
-    .header {
-        font-size: 30px;
-        margin-bottom: 5px;
-        margin-top: 0;
+@media (max-width: 768px) {
+    .login_burger_menu {
+        right: 0.7em;
+    }
+    
+    element.style {
+        right: 0px;
+    }
+    .mobile-login-menu {
+        width: 30%;
+        right: -30%;
+    }
+    .mobile-login-menu .dd-logo .logo {
+        width: 30px
+    }
+    .mobile-login-menu .dd-logo .scritta {
+        width: 96px
     }
 
-        .header img.logo {
-            height: 83px;
+}
+    @media (max-width: 576px) {
+        .header {
+            font-size: 30px;
+            margin-bottom: 5px;
+            margin-top: 0;
         }
 
-        .header img.logo2 {
-            width: 260px;
+            .header img.logo {
+                height: 83px;
+            }
+
+            .header img.logo2 {
+                width: 260px;
+            }
+
+        .container-login .content {
+            padding: 0 !important;
         }
 
-    .container-login .content {
-        padding: 0 !important;
-    }
-
-    .logo-login {
-        padding: 0;
-        top: -10px;
-    }
-
-        .logo-login .img-fluid {
-            width: 146px;
+        .logo-login {
+            padding: 0;
+            top: -10px;
         }
 
-    .form-actions {
-        padding: 0;
-        text-align: left;
+            .logo-login .img-fluid {
+                width: 146px;
+            }
+
+        .form-actions {
+            padding: 0;
+            text-align: left;
+        }
+
+            .form-actions button {
+                font-size: 14px;
+                padding: 9px 27px;
+            }
+
+        .container-login {
+            width: 315px;
+            height: 458px !important;
+            padding: 10px 20px !important;
+        }
+
+        .row {
+            margin-top: 30px;
+        }
+
+
+        #disclamerTextLink {
+            padding-top: 0;
+            font-size: 10px;
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 5px;
+        }
+
+        .faqImg {
+            margin: inherit;
+            width: 50%;
+        }
     }
 
-        .form-actions button {
+    @media(max-width: 1023px) {
+        .form-group i {
+            top: 8px;
+        }
+
+        .form-group .form-control {
+            height: 32px;
             font-size: 14px;
-            padding: 9px 27px;
         }
-
-    .container-login {
-        width: 315px;
-        height: 458px !important;
-        padding: 10px 20px !important;
-    }
-
-    .row {
-        margin-top: 10px;
     }
 
 
-    #disclamerTextLink {
-        padding-top: 0;
-        font-size: 10px;
-        margin-top: 0;
+@media(max-height: 420px) {
+    .login_burger_menu {
+        right: 0.5em;
     }
 
-    .form-group {
-        margin-bottom: 5px;
-    }
 }
-
-@media(max-width: 1023px) {
-    .form-group i {
-        top: 8px;
-    }
-
-    .form-group .form-control {
-        height: 32px;
-        font-size: 14px;
-    }
-}
-/* Small devices (tablets, 768px and up) */
-
-
-/* Medium devices (desktops, 992px and up) */
-
-
-
-
-
-/*#region alert validation */
-
-.alert {
+    /* Small devices (tablets, 768px and up) */
+    /* Medium devices (desktops, 992px and up) */
+    /*#region alert validation */
+    .alert {
     padding: 0 1.25rem 0.6rem;
 }
 

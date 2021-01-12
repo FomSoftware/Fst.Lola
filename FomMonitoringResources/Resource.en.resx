@@ -540,9 +540,6 @@
   <data name="Messages" xml:space="preserve">
     <value>Messages</value>
   </data>
-  <data name="Offline" xml:space="preserve">
-    <value>Offline</value>
-  </data>
   <data name="Disclamer" xml:space="preserve">
     <value>Terms and conditions</value>
   </data>
@@ -1253,5 +1250,92 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   </data>
   <data name="PlantManager" xml:space="preserve">
     <value>Plant Manager</value>
+  </data>
+  <data name="Notice" xml:space="preserve">
+    <value>Notice</value>
+  </data>
+  <data name="Execution" xml:space="preserve">
+    <value>Execut.</value>
+  </data>
+  <data name="Offline" xml:space="preserve">
+    <value>Power Off</value>
+  </data>
+  <data name="RichiestaInviata" xml:space="preserve">
+    <value>Request sent</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="Prefix" xml:space="preserve">
+    <value>Prefix</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="MachineName" xml:space="preserve">
+    <value>Machine Name</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="TextMax" xml:space="preserve">
+    <value>Max text 500 characters</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="AskCredentialTitle" xml:space="preserve">
+    <value>I can’t access LOLA, I can’t remember my username and password</value>
+  </data>
+  <data name="AskCredentialBody" xml:space="preserve">
+    <value>If you are a user with a “Customer” role (Fom Industrie VIPAREA user), use the access credentials you received by email. If you do not remember your password, open the URL below and click on LOST PASSWORD: &lt;br&gt;
+&lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;&lt;br&gt;
+&lt;br&gt;
+If you are a LOLA user (Operator/Head Workshop role), check that your manager has sent you an email and/or printout of this type, containing your username and provisional access password.&lt;br&gt;&lt;div class="faqImg"&gt; &lt;img src="[BASIC_URL_HOST]Images/faq/faq1.png"&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="HowToUseTitle" xml:space="preserve">
+    <value>I can access LOLA but I don't know how to use it</value>
+  </data>
+  <data name="HowToUseBody" xml:space="preserve">
+    <value>Access the FOM Industrie VIPAREA and download the LOLA user manual for your machine tool.&lt;br&gt;
+&lt;a  class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;</value>
+  </data>
+  <data name="NoMachineVisibleBody" xml:space="preserve">
+    <value>If the license has only just been activated, make sure that your Fom Industrie machine tool’s PC is connected to the internet and that the HMI SW (FST CUT or FST CAM or FST LINE) is open on the machine’s PC. If not, connect to the internet and run the FST SW, then check LOLA again to see if the data is visible.</value>
+  </data>
+  <data name="NoMachineVisibleTitle" xml:space="preserve">
+    <value>I can access LOLA but I can’t see any machines</value>
+  </data>
+  <data name="NoMachineVisibleTitle2" xml:space="preserve">
+    <value>I can access LOLA, my machine’s PC is connected to the internet, the SW is open, but I can’t see any machines in LOLA</value>
+  </data>
+  <data name="NoMachineVisibleBody2" xml:space="preserve">
+    <value>If your machine’s LOLA license was not activated recently, check that it has not expired. If more than one license has been purchased, check the expiry date of the LOLA license for each machine, by accessing VIPAREA: &lt;br&gt; 
+&lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;&lt;br&gt;
+If the license for one or more machines has expired, purchase and/or renew the LOLA license by selecting the machine in question and then proceeding to payment of the license. After this has been done, access LOLA again to check.</value>
+  </data>
+  <data name="NoDataFromMachineTitle" xml:space="preserve">
+    <value>I have checked points 1, 2 and 3 but I am still not receiving data from the machine</value>
+  </data>
+  <data name="NoDataFromMachineBody" xml:space="preserve">
+    <value>If the problems persist, please send a LOLA support request:
+&lt;ul&gt;&lt;li&gt; by telephone on + 39 0541 832 777 (FOM Service hotline) &lt;/li&gt;
+&lt;li&gt; by sending an e-mail to support@fomservice.com&lt;/li&gt;&lt;/ul&gt;
+indicating: 
+&lt;ol&gt;&lt;li&gt; your VIPAREA username, e.g. usr0043&lt;/li&gt;
+&lt;li&gt; serial number of the machine for which the LOLA license has been activated&lt;/li&gt;
+&lt;li&gt; preferred time you wish to be contacted&lt;/li&gt;&lt;/ol&gt;</value>
+  </data>
+  <data name="OtherProblemTitle" xml:space="preserve">
+    <value>My problem is not among the ones listed</value>
+  </data>
+  <data name="OtherProblemBody" xml:space="preserve">
+    <value>Send a service request by filling in the form found in the menu under the item “Support”, if possible attaching a screenshot to describe the problem.</value>
+  </data>
+  <data name="FileNotValid" xml:space="preserve">
+    <value>Invalid File</value>
+  </data>
+  <data name="MaxFileSizeError" xml:space="preserve">
+    <value>Max file size should be 3MB</value>
   </data>
 </root>

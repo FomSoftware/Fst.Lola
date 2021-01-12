@@ -168,7 +168,9 @@
         $('#calendar .text-period').html(getLabelCalendar(start, end, formatCalendar));
 
         // init calendar
+        var nowDate = new Date();
         $('#calendar').daterangepicker({
+            minDate: new Date(nowDate.getFullYear() -1, nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0),
             startDate: start,
             endDate: end,
             ranges: ranges,

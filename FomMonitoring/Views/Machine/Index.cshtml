@@ -12,6 +12,10 @@
     {
         @Html.Partial("Model/_FMC", Model);
     }
+    else if (Model.MachineInfo.modelCode == 550 || Model.MachineInfo.modelCode == 560)
+    {
+        @Html.Partial("Model/_AXEL", Model);
+    }
     else if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)
     {
         @Html.Partial("Model/_LMX_650", Model);
