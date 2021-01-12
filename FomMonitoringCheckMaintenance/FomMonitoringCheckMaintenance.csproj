@@ -142,6 +142,10 @@
     <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FomMonitoringCore.SqlServer\FomMonitoringCore.SqlServer.csproj">
+      <Project>{814936aa-1607-4a90-bcf5-b13ab3af8f98}</Project>
+      <Name>FomMonitoringCore.SqlServer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FomMonitoringCore\FomMonitoringCore.csproj">
       <Project>{e28ab72b-8e73-4a94-94b4-85c23498dda0}</Project>
       <Name>FomMonitoringCore</Name>

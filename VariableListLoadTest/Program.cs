@@ -28,7 +28,6 @@ namespace VariableListLoadTest
             var container = builder.Build();
 
             var repository = container.Resolve<IGenericRepository<State>>();
-            var repositoryInfo = container.Resolve<IGenericRepository<Info>>();
             var repositoryHistoryJobPieceBar = container.Resolve<IGenericRepository<Tool>>();
             var repositoryMessage = container.Resolve<IGenericRepository<Message>>();
             var repositoryVariablesList = container.Resolve<IGenericRepository<VariablesList>>();

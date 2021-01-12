@@ -4,6 +4,7 @@ using System.Text;
 using FomMonitoringCore.Mongo.Repository;
 using FomMonitoringCore.Queue.Connection;
 using FomMonitoringCore.Queue.Events;
+using FomMonitoringCore.Queue.Notifier;
 using FomMonitoringCore.Queue.ProcessData;
 using FomMonitoringCore.Service;
 using Newtonsoft.Json;
@@ -77,16 +78,25 @@ namespace FomMonitoringCore.Queue.QueueConsumer
                     }
                     else
                     {
-                        _queueConnection.ChannelTool.BasicNack(ea.DeliveryTag, false, true);
+                        if (data.DateEndElaboration == null)
+                        {
+                            FailedJsonProcessorNotifier.Notify(data.Id, "Tool");
+                        }
+                        data.DateEndElaboration = DateTime.UtcNow;
+                        data.ElaborationSuccesfull = false;
+                        _queueConnection.ChannelHistoryJobPieceBar.BasicAck(ea.DeliveryTag, false);
                         throw new Exception("Errore elaborazione json senza eccezioni");
                     }
                 }
                 catch (Exception ex)
                 {
+                    if (data.DateEndElaboration == null)
+                    {
+                        FailedJsonProcessorNotifier.Notify(data.Id, "Tool");
+                    }
                     data.DateEndElaboration = DateTime.UtcNow;
                     data.ElaborationSuccesfull = false;
-
-                    _queueConnection.ChannelTool.BasicNack(ea.DeliveryTag, false, true);
+                    _queueConnection.ChannelHistoryJobPieceBar.BasicAck(ea.DeliveryTag, false);
                     LogService.WriteLog(
                         $"Finita elaborazione con errori json tool {DateTime.UtcNow:O} tempo trascorso {elapsedTime} ", LogService.TypeLevel.Error, ex);
 

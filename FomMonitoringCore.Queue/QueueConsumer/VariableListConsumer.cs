@@ -4,6 +4,7 @@ using System.Text;
 using FomMonitoringCore.Mongo.Repository;
 using FomMonitoringCore.Queue.Connection;
 using FomMonitoringCore.Queue.Events;
+using FomMonitoringCore.Queue.Notifier;
 using FomMonitoringCore.Queue.ProcessData;
 using FomMonitoringCore.Service;
 using Newtonsoft.Json;
@@ -71,7 +72,7 @@ namespace FomMonitoringCore.Queue.QueueConsumer
                         elapsedTime = $"{ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}.{ts.Milliseconds:00}";
                         Log?.Invoke(this, new LoggerEventsQueue
                         {
-                            Message = $"Finita elaborazione VariableLists {data.Id.ToString()} - { DateTime.UtcNow:O} tempo trascorso { elapsedTime }",
+                            Message = $"Finita elaborazione VariableLists {data.Id} - { DateTime.UtcNow:O} tempo trascorso { elapsedTime }",
                             Exception = null,
                             TypeLevel = LogService.TypeLevel.Info,
                             Type = TypeEvent.Variable
@@ -79,17 +80,25 @@ namespace FomMonitoringCore.Queue.QueueConsumer
                     }
                     else
                     {
-                        _queueConnection.ChannelVariableList.BasicNack(ea.DeliveryTag, false, true);
+                        if (data.DateEndElaboration == null)
+                        {
+                            FailedJsonProcessorNotifier.Notify(data.Id, "VariableList");
+                        }
+                        data.DateEndElaboration = DateTime.UtcNow;
+                        data.ElaborationSuccesfull = false;
+                        _queueConnection.ChannelHistoryJobPieceBar.BasicAck(ea.DeliveryTag, false);
                         throw new Exception("Errore elaborazione json senza eccezioni");
                     }
                 }
                 catch (Exception ex)
                 {
-
+                    if (data.DateEndElaboration == null)
+                    {
+                        FailedJsonProcessorNotifier.Notify(data.Id, "VariableList");
+                    }
                     data.DateEndElaboration = DateTime.UtcNow;
                     data.ElaborationSuccesfull = false;
-
-                    _queueConnection.ChannelVariableList.BasicNack(ea.DeliveryTag, false, true);
+                    _queueConnection.ChannelHistoryJobPieceBar.BasicAck(ea.DeliveryTag, false);
 
                     Log?.Invoke(this, new LoggerEventsQueue
                     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Text;
-using FomMonitoringCore.Mongo;
 using FomMonitoringCore.Mongo.Repository;
 using FomMonitoringCore.Queue.Connection;
 using FomMonitoringCore.Queue.Events;
+using FomMonitoringCore.Queue.Notifier;
 using FomMonitoringCore.Queue.ProcessData;
 using FomMonitoringCore.Service;
 using Newtonsoft.Json;
@@ -14,7 +14,7 @@ using State = FomMonitoringCore.Queue.Dto.State;
 
 namespace FomMonitoringCore.Queue.QueueConsumer
 {
-    public class StateConsumer : IConsumer<Dto.State>
+    public class StateConsumer : IConsumer<State>
     {
         private readonly IProcessor<State> _processor;
         private readonly IQueueConnection _queueConnection;
@@ -84,19 +84,29 @@ namespace FomMonitoringCore.Queue.QueueConsumer
                     }
                     else
                     {
-                        _queueConnection.ChannelState.BasicNack(ea.DeliveryTag, false, true);
+                        if (data.DateEndElaboration == null)
+                        {
+                            FailedJsonProcessorNotifier.Notify(data.Id, "State");
+                        }
+                        data.DateEndElaboration = DateTime.UtcNow;
+                        data.ElaborationSuccesfull = false;
+                        _queueConnection.ChannelHistoryJobPieceBar.BasicAck(ea.DeliveryTag, false);
                         throw new Exception("Errore elaborazione json senza eccezioni");
                     }
                 }
                 catch (Exception ex)
                 {
+                    if (data.DateEndElaboration == null)
+                    {
+                        FailedJsonProcessorNotifier.Notify(data.Id, "State");
+                    }
                     data.DateEndElaboration = DateTime.UtcNow;
                     data.ElaborationSuccesfull = false;
-                    _queueConnection.ChannelState.BasicNack(ea.DeliveryTag, false, true);
+                    _queueConnection.ChannelHistoryJobPieceBar.BasicAck(ea.DeliveryTag, false);
 
                     Log?.Invoke(this, new LoggerEventsQueue
                     {
-                        Message = $"Finita elaborazione  State {data.Id.ToString()} con errori - {DateTime.UtcNow:O} tempo trascorso {elapsedTime}",
+                        Message = $"Finita elaborazione  State {data.Id} con errori - {DateTime.UtcNow:O} tempo trascorso {elapsedTime}",
                         Exception = ex,
                         TypeLevel = LogService.TypeLevel.Error,
                         Type = TypeEvent.Info

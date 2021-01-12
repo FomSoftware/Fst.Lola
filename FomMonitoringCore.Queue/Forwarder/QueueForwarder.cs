@@ -46,7 +46,6 @@ namespace FomMonitoringCore.Queue.Forwarder
             _variablesGenericRepository;
 
         private readonly IGenericRepository<Unknown> _unknownGenericRepository;
-        private readonly IGenericRepository<Mongo.Dto.Info> _infoGenericRepository;
 
         public QueueForwarder(IProducer<VariablesList> variablesProducer,
             IProducer<HistoryJobPieceBar> historyJobPieceBarProducer,
@@ -60,7 +59,6 @@ namespace FomMonitoringCore.Queue.Forwarder
             IGenericRepository<Mongo.Dto.Message> messageGenericRepository,
             IGenericRepository<Mongo.Dto.State> stateGenericRepository,
             IGenericRepository<Mongo.Dto.Tool> toolGenericRepository,
-            IGenericRepository<Mongo.Dto.Info> infoGenericRepository,
             IGenericRepository<Unknown> unknownGenericRepository
         )
         {
@@ -77,7 +75,6 @@ namespace FomMonitoringCore.Queue.Forwarder
             _toolGenericRepository = toolGenericRepository;
             _variablesGenericRepository = variablesGenericRepository;
             _unknownGenericRepository = unknownGenericRepository;
-            _infoGenericRepository = infoGenericRepository;
         }
 
         public bool Forward(string json)
@@ -103,19 +100,10 @@ namespace FomMonitoringCore.Queue.Forwarder
                 }
                 data.DateSendedQueue = DateTime.UtcNow;
                 data.DateReceived = DateTime.UtcNow;
-                var infoMongo = new Mongo.Dto.Info
-                {
-                    info = data.info,
-                    DateReceived = data.DateReceived,
-                    DateSendedQueue = data.DateSendedQueue,
-                    IsCumulative = data.IsCumulative
-                };
 
-                _infoGenericRepository.Create(infoMongo);
 
                 _infoProducer.Send(new Info
                 {
-                    ObjectId = infoMongo.Id,
                     InfoMachine = data.info
                 });
 
@@ -152,19 +140,10 @@ namespace FomMonitoringCore.Queue.Forwarder
                 }
                 data.DateSendedQueue = DateTime.UtcNow;
                 data.DateReceived = DateTime.UtcNow;
-                var infoMongo = new Mongo.Dto.Info
-                {
-                    info = data.info,
-                    DateReceived = data.DateReceived,
-                    DateSendedQueue = data.DateSendedQueue,
-                    IsCumulative = data.IsCumulative
-                };
 
-                _infoGenericRepository.Create(infoMongo);
 
                 _infoProducer.Send(new Info
                 {
-                    ObjectId = infoMongo.Id,
                     InfoMachine = data.info
                 });
 
@@ -201,19 +180,11 @@ namespace FomMonitoringCore.Queue.Forwarder
                 }
                 data.DateSendedQueue = DateTime.UtcNow;
                 data.DateReceived = DateTime.UtcNow;
-                var infoMongo = new Mongo.Dto.Info
-                {
-                    info = data.info,
-                    DateReceived = data.DateReceived,
-                    DateSendedQueue = data.DateSendedQueue,
-                    IsCumulative = data.IsCumulative
-                };
 
-                _infoGenericRepository.Create(infoMongo);
+
 
                 _infoProducer.Send(new Info
                 {
-                    ObjectId = infoMongo.Id,
                     InfoMachine = data.info
                 });
                 
@@ -251,19 +222,9 @@ namespace FomMonitoringCore.Queue.Forwarder
 
                 data.DateSendedQueue = DateTime.UtcNow;
                 data.DateReceived = DateTime.UtcNow;
-                var infoMongo = new Mongo.Dto.Info
-                {
-                    info = data.info,
-                    DateReceived = data.DateReceived,
-                    DateSendedQueue = data.DateSendedQueue,
-                    IsCumulative = data.IsCumulative
-                };
-
-                _infoGenericRepository.Create(infoMongo);
 
                 _infoProducer.Send(new Info
                 {
-                    ObjectId = infoMongo.Id,
                     InfoMachine = data.info
                 });
 
@@ -313,19 +274,9 @@ namespace FomMonitoringCore.Queue.Forwarder
 
                 data.DateSendedQueue = DateTime.UtcNow;
                 data.DateReceived = DateTime.UtcNow;
-                var infoMongo = new Mongo.Dto.Info
-                {
-                    info = data.info,
-                    DateReceived = data.DateReceived,
-                    DateSendedQueue = data.DateSendedQueue,
-                    IsCumulative = data.IsCumulative
-                };
-
-                _infoGenericRepository.Create(infoMongo);
 
                 _infoProducer.Send(new Info
                 {
-                    ObjectId = infoMongo.Id,
                     InfoMachine = data.info
                 });
 

@@ -418,10 +418,12 @@ namespace FomMonitoringCore.Service
                     };
 
 
-                    var body = FomMonitoringCore.Renderer.RazorViewToString.RenderRazorEmailChangedPasswordViewToString(modelEmail);
+                    var body = Renderer.RazorViewToString.RenderRazorEmailChangedPasswordViewToString(modelEmail);
                     var message = new MailMessage(ApplicationSettingService.GetWebConfigKey("EmailFromAddress"),
-                        email, subject, body);
-                    message.IsBodyHtml = true;
+                        email, subject, body)
+                    {
+                        IsBodyHtml = true
+                    };
                     EmailSender.SendEmail(message);
                     return true;
                 
@@ -494,32 +496,32 @@ namespace FomMonitoringCore.Service
 
                     }
                     
-                        // Update user customer
-                        var userCustomer = _fomMonitoringEntities.Set<UserCustomerMapping>().FirstOrDefault(f => f.UserId == user.ID);
-                        if (userCustomer != null)
-                            userCustomer.CustomerName = user.CustomerName;
-                        else
-                            _fomMonitoringEntities.Set<UserCustomerMapping>().Add(new UserCustomerMapping() { UserId = user.ID, CustomerName = user.CustomerName });
+                    // Update user customer
+                    var userCustomer = _fomMonitoringEntities.Set<UserCustomerMapping>().FirstOrDefault(f => f.UserId == user.ID);
+                    if (userCustomer != null)
+                        userCustomer.CustomerName = user.CustomerName;
+                    else
+                        _fomMonitoringEntities.Set<UserCustomerMapping>().Add(new UserCustomerMapping() { UserId = user.ID, CustomerName = user.CustomerName });
 
-                        // Update user machines
-                        if (user.Machines.Count > 0)
+                    // Update user machines
+                    if (user.Machines.Count > 0)
+                    {
+                        var machineIds = user.Machines.Select(s => s.Id).ToList();
+                        var userMachines = _fomMonitoringEntities.Set<UserMachineMapping>().Where(w => w.UserId == user.ID).ToList();
+
+                        // Elimino le macchine non più associate
+                        var machineToDelete = userMachines.Where(w => !machineIds.Contains(w.MachineId)).ToList();
+                        if (machineToDelete.Count > 0) _fomMonitoringEntities.Set<UserMachineMapping>().RemoveRange(machineToDelete);
+
+                        // Aggiungo le macchine mancanti
+                        foreach (var machine in user.Machines)
                         {
-                            var machineIds = user.Machines.Select(s => s.Id).ToList();
-                            var userMachines = _fomMonitoringEntities.Set<UserMachineMapping>().Where(w => w.UserId == user.ID).ToList();
-
-                            // Elimino le macchine non più associate
-                            var machineToDelete = userMachines.Where(w => !machineIds.Contains(w.MachineId)).ToList();
-                            if (machineToDelete.Count > 0) _fomMonitoringEntities.Set<UserMachineMapping>().RemoveRange(machineToDelete);
-
-                            // Aggiungo le macchine mancanti
-                            foreach (var machine in user.Machines)
-                            {
-                                if (userMachines.All(a => a.MachineId != machine.Id))
-                                    _fomMonitoringEntities.Set<UserMachineMapping>().Add(new UserMachineMapping() { UserId = user.ID, MachineId = machine.Id});
-                            }
+                            if (userMachines.All(a => a.MachineId != machine.Id))
+                                _fomMonitoringEntities.Set<UserMachineMapping>().Add(new UserMachineMapping() { UserId = user.ID, MachineId = machine.Id});
                         }
+                    }
 
-                        _fomMonitoringEntities.SaveChanges();
+                    _fomMonitoringEntities.SaveChanges();
 
                     if (modifiedPsw && email != null)
                         SendPassword(email, updUser.ID, "ModifyUserEmailSubject", "ModifyUserEmailBody");

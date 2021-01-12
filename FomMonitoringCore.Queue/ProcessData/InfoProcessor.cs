@@ -21,7 +21,7 @@ namespace FomMonitoringCore.Queue.ProcessData
             
             using (var threadLifetime = _parentScope.BeginLifetimeScope())
             using (var context = threadLifetime.Resolve<IFomMonitoringEntities>())
-                {
+            {
 
                     var machineService = threadLifetime.Resolve<IMachineService>();
                     foreach (var machineData in data.InfoMachine)
@@ -98,7 +98,7 @@ namespace FomMonitoringCore.Queue.ProcessData
                     context.SaveChanges();
 
                     return true;
-                }
+            }
                 
         }
 

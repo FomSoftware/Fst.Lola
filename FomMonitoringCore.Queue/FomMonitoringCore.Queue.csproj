@@ -116,9 +116,11 @@
     <Compile Include="Dto\Value.cs" />
     <Compile Include="Dto\VariablesList.cs" />
     <Compile Include="Events\LoggerEvents.cs" />
+    <Compile Include="Forwarder\IReForwarder.cs" />
     <Compile Include="Forwarder\QueueForwarder.cs" />
-    <Compile Include="Forwarder\UnknownForwarder.cs" />
+    <Compile Include="Forwarder\ReForwarder.cs" />
     <Compile Include="Ioc\IocContainerBuilder.cs" />
+    <Compile Include="Notifier\FailedJsonProcessorNotifier.cs" />
     <Compile Include="ProcessData\HistoryJobPieceBarProcessor.cs" />
     <Compile Include="ProcessData\InfoProcessor.cs" />
     <Compile Include="ProcessData\IProcessor.cs" />
@@ -170,6 +172,7 @@
     <None Include="JsonSchemas\variablesList.json" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets" Condition="Exists('..\packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

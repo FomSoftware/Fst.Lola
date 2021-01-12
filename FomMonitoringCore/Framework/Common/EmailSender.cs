@@ -6,9 +6,8 @@ namespace FomMonitoringCore.Framework.Common
     {
         public static void SendEmail(MailMessage message)
         {
-            SmtpClient mSmtpClient = new SmtpClient();          
+            var mSmtpClient = new SmtpClient();          
             mSmtpClient.Send(message);
-            ;
         }
 
     }

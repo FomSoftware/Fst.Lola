@@ -5,6 +5,7 @@ using FomMonitoringCore.Mongo.Repository;
 using FomMonitoringCore.Queue.Connection;
 using FomMonitoringCore.Queue.Dto;
 using FomMonitoringCore.Queue.Events;
+using FomMonitoringCore.Queue.Notifier;
 using FomMonitoringCore.Queue.ProcessData;
 using FomMonitoringCore.Service;
 using Newtonsoft.Json;
@@ -91,18 +92,28 @@ namespace FomMonitoringCore.Queue.QueueConsumer
                     }
                     else
                     {
-                        _queueConnection.ChannelMessages.BasicNack(ea.DeliveryTag, false, true);
+                        if (data.DateEndElaboration == null)
+                        {
+                            FailedJsonProcessorNotifier.Notify(data.Id, "Message");
+                        }
+                        data.DateEndElaboration = DateTime.UtcNow;
+                        data.ElaborationSuccesfull = false;
+                        _queueConnection.ChannelHistoryJobPieceBar.BasicAck(ea.DeliveryTag, false);
                         throw new Exception("Errore elaborazione json senza eccezioni");
                     }
                 }
                 catch (Exception ex)
                 {
+                    if (data.DateEndElaboration == null)
+                    {
+                        FailedJsonProcessorNotifier.Notify(data.Id, "Message");
+                    }
                     data.DateEndElaboration = DateTime.UtcNow;
                     data.ElaborationSuccesfull = false;
-                    _queueConnection.ChannelMessages.BasicNack(ea.DeliveryTag, false, true);
+                    _queueConnection.ChannelHistoryJobPieceBar.BasicAck(ea.DeliveryTag, false);
                     Log?.Invoke(this, new LoggerEventsQueue
                     {
-                        Message = $"Finita elaborazione Messages {data.Id.ToString()} con errori - {DateTime.UtcNow:O} tempo trascorso {elapsedTime}",
+                        Message = $"Finita elaborazione Messages {data.Id} con errori - {DateTime.UtcNow:O} tempo trascorso {elapsedTime}",
                         Exception = ex,
                         TypeLevel = LogService.TypeLevel.Error,
                         Type = TypeEvent.Messages

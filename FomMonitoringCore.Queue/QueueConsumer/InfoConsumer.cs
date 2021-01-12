@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Text;
-using FomMonitoringCore.Mongo.Repository;
 using FomMonitoringCore.Queue.Connection;
 using FomMonitoringCore.Queue.Events;
 using FomMonitoringCore.Queue.ProcessData;
@@ -17,16 +16,13 @@ namespace FomMonitoringCore.Queue.QueueConsumer
     {
         private readonly IProcessor<Info> _processor;
         private readonly IQueueConnection _queueConnection;
-        private readonly IGenericRepository<Mongo.Dto.Info> _infoGenericRepository;
-        private EventingBasicConsumer consumer;
+        private EventingBasicConsumer _consumer;
 
         public InfoConsumer(IProcessor<Info> processor, 
-            IQueueConnection queueConnection, 
-            IGenericRepository<Mongo.Dto.Info> infoGenericRepository)
+            IQueueConnection queueConnection)
         {
             _processor = processor;
             _queueConnection = queueConnection;
-            _infoGenericRepository = infoGenericRepository;
         }
         
 
@@ -35,10 +31,10 @@ namespace FomMonitoringCore.Queue.QueueConsumer
         public void Init()
         {
 
-            consumer = new EventingBasicConsumer(_queueConnection.ChannelInfo);
-            consumer.Received += ConsumerOnReceived();
+            _consumer = new EventingBasicConsumer(_queueConnection.ChannelInfo);
+            _consumer.Received += ConsumerOnReceived();
 
-            _queueConnection.ChannelInfo.BasicConsume("Info", false, consumer);
+            _queueConnection.ChannelInfo.BasicConsume("Info", false, _consumer);
 
         }
 
@@ -49,22 +45,15 @@ namespace FomMonitoringCore.Queue.QueueConsumer
                 var elapsedTime = string.Empty;
                 var stopWatch = new Stopwatch();
                 stopWatch.Start();
-                var data = new Mongo.Dto.Info();
                 try
                 {
                     var body = ea.Body;
                     var message = Encoding.UTF8.GetString(body);
                     var ii = JsonConvert.DeserializeObject<Info>(message);
 
-                    data = _infoGenericRepository.Find(ii.ObjectId);
-                    data.DateStartElaboration = DateTime.UtcNow;
 
                     if (_processor.ProcessData(ii))
                     {
-                        data.DateEndElaboration = DateTime.UtcNow;
-                        data.ElaborationSuccesfull = true;
-
-                        
 
                         stopWatch.Stop();
                         var ts = stopWatch.Elapsed;
@@ -74,7 +63,7 @@ namespace FomMonitoringCore.Queue.QueueConsumer
 
                         Log?.Invoke(this, new LoggerEventsQueue
                         {
-                            Message = $"Finita elaborazione Info {data.Id.ToString()} - { DateTime.UtcNow:O} tempo trascorso { elapsedTime }",
+                            Message = $"Finita elaborazione Info  - { DateTime.UtcNow:O} tempo trascorso { elapsedTime }",
                             Exception = null,
                             TypeLevel = LogService.TypeLevel.Info,
                             Type = TypeEvent.Info
@@ -88,13 +77,10 @@ namespace FomMonitoringCore.Queue.QueueConsumer
                 }
                 catch (Exception ex)
                 {
-                    data.DateEndElaboration = DateTime.UtcNow;
-                    data.ElaborationSuccesfull = false;
-
                     _queueConnection.ChannelInfo.BasicNack(ea.DeliveryTag, false, true);
                     Log?.Invoke(this, new LoggerEventsQueue
                     {
-                        Message = $"Finita elaborazione Info {data.Id.ToString()} con errori - {DateTime.UtcNow:O} tempo trascorso {elapsedTime}",
+                        Message = $"Finita elaborazione Info con errori - {DateTime.UtcNow:O} tempo trascorso {elapsedTime}",
                         Exception = ex,
                         TypeLevel = LogService.TypeLevel.Error,
                         Type = TypeEvent.Info
@@ -102,16 +88,12 @@ namespace FomMonitoringCore.Queue.QueueConsumer
 
 
                 }
-                finally
-                {
-                    _infoGenericRepository.Update(data);
-                }
             };
         }
 
         public void Dispose()
         {
-            consumer.Received -= ConsumerOnReceived();
+            _consumer.Received -= ConsumerOnReceived();
             _processor?.Dispose();
         }
     }

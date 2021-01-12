@@ -44,7 +44,7 @@ namespace FomMonitoringQueueApplication
         {
             if (_aTimerQueue == null)
             {
-                _aTimerQueue = new Timer(180000);
+                _aTimerQueue = new Timer(1800000);
                 // Hook up the Elapsed event for the timer. 
                 _aTimerQueue.Elapsed += OnTimedQueueEvent;
                 _aTimerQueue.AutoReset = true;
@@ -53,7 +53,7 @@ namespace FomMonitoringQueueApplication
 
             if (_aTimerUnknown == null)
             {
-                _aTimerUnknown = new Timer(180000);
+                _aTimerUnknown = new Timer(60000);
                 // Hook up the Elapsed event for the timer. 
                 _aTimerUnknown.Elapsed += OnTimedUnknownEvent;
                 _aTimerUnknown.AutoReset = true;

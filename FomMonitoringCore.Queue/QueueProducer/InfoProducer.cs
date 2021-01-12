@@ -17,7 +17,7 @@ namespace FomMonitoringCore.Queue.QueueProducer
         public bool Send(Info model)
         {
             var message = JsonConvert.SerializeObject(model);
-            var body = Encoding.UTF8.GetBytes((string) message);
+            var body = Encoding.UTF8.GetBytes(message);
             var props = _queueConnection.ChannelInfo.CreateBasicProperties();
             props.Persistent = true;
 

@@ -111,7 +111,7 @@ namespace FomMonitoringCore.Queue.QueueConsumer
 
         public void ElaborateUnknown()
         {
-            _scopeUnknown.Resolve<IUnknownForwarder>().ReForward();
+            _scopeUnknown.Resolve<IReForwarder>().ReForward();
         }
     }
 }
