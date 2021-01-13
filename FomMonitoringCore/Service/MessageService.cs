@@ -378,14 +378,14 @@ namespace FomMonitoringCore.Service
                         .Get(mi => mi.MessageCategoryId == cat && 
                                    mi.IsPeriodicM && mi.PeriodicSpan != null &&
                                    mi.IsDisabled == false &&
-                                   mi.IsVisibleLOLA == true).ToList();
+                                   mi.IsVisibleLOLA).ToList();
 
                     foreach (var messaggio in messaggi)
                     {
                         //messaggi periodici in base alla data di attivazione e allo span specificato nel messageIndex
                         var mess = _messageMachineRepository.Get(mm =>
                             mm.MachineId == machine.Id && mm.MessagesIndex.IsPeriodicM &&
-                            mm.MessagesIndex.MessageCode == messaggio.MessageCode, o => o.OrderByDescending(i => i.Id)).FirstOrDefault();
+                            mm.MessagesIndexId == messaggio.Id, o => o.OrderByDescending(i => i.Id)).FirstOrDefault();
 
                         // i messaggi delle macchine al cui modello è associato un messaggio di default 
                         // hanno come data la data di attivazione della macchina
@@ -416,9 +416,9 @@ namespace FomMonitoringCore.Service
                             
                         }
 
-                        _context.SaveChanges();
                     }
                 }
+                _context.SaveChanges();
             }
             catch (Exception ex)
             {

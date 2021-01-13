@@ -18,7 +18,7 @@ namespace FomMonitoringCore.Queue.Forwarder
 {
     public interface IQueueForwarder
     {
-        bool Forward(string json);
+        bool Forward(string json, bool addToUnknown = true);
     }
 
     public class QueueForwarder : IQueueForwarder
@@ -77,7 +77,7 @@ namespace FomMonitoringCore.Queue.Forwarder
             _unknownGenericRepository = unknownGenericRepository;
         }
 
-        public bool Forward(string json)
+        public bool Forward(string json, bool addToUnknown = true)
         {
             var pathSchemas = ConfigurationManager.AppSettings["PathSchemaLOLA"];
             var schemaDataVariablesList =
@@ -294,6 +294,9 @@ namespace FomMonitoringCore.Queue.Forwarder
                 return true;
             }
 
+            if (!addToUnknown) 
+                return true;
+
             var dataUnknown = JsonConvert.DeserializeObject<BaseModel>(json);
             var en = new Unknown(dataUnknown)
             {
@@ -315,6 +318,8 @@ namespace FomMonitoringCore.Queue.Forwarder
                     StringComparer.OrdinalIgnoreCase)
             };
             _unknownGenericRepository.Create(en);
+
+
             return true;
         }
 

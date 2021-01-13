@@ -8,11 +8,11 @@ namespace FomMonitoringCore.Queue.Forwarder
     {
         private readonly IGenericRepository<Unknown> _unknownGenericRepository;
         private readonly IQueueForwarder _queueForwarder;
-        private IGenericRepository<HistoryJobPieceBar> _historyJobPieceBarGenericRepository;
-        private IGenericRepository<State> _stateGenericRepository;
-        private IGenericRepository<Message> _messageGenericRepository;
-        private IGenericRepository<Tool> _toolGenericRepository;
-        private IGenericRepository<VariablesList> _variableListGenericRepository;
+        private readonly IGenericRepository<HistoryJobPieceBar> _historyJobPieceBarGenericRepository;
+        private readonly IGenericRepository<State> _stateGenericRepository;
+        private readonly IGenericRepository<Message> _messageGenericRepository;
+        private readonly IGenericRepository<Tool> _toolGenericRepository;
+        private readonly IGenericRepository<VariablesList> _variableListGenericRepository;
 
         public ReForwarder(
             IGenericRepository<Unknown> unknownGenericRepository,
@@ -63,9 +63,9 @@ namespace FomMonitoringCore.Queue.Forwarder
             var unSuccessJson = _historyJobPieceBarGenericRepository.Query(n => n.ElaborationSuccesfull == false)
                 .ToList();
 
-            foreach (var jsonString in unSuccessJson.Select(Newtonsoft.Json.JsonConvert.SerializeObject).ToList())
+            foreach (var json in unSuccessJson.ToList())
             {
-                _queueForwarder.Forward(jsonString);
+                _queueForwarder.Forward(Newtonsoft.Json.JsonConvert.SerializeObject(json), false);
             }
         }
 
@@ -74,9 +74,9 @@ namespace FomMonitoringCore.Queue.Forwarder
             var unSuccessJson = _messageGenericRepository.Query(n => n.ElaborationSuccesfull == false)
                 .ToList();
 
-            foreach (var jsonString in unSuccessJson.Select(Newtonsoft.Json.JsonConvert.SerializeObject).ToList())
+            foreach (var json in unSuccessJson.ToList())
             {
-                _queueForwarder.Forward(jsonString);
+                _queueForwarder.Forward(Newtonsoft.Json.JsonConvert.SerializeObject(json), false);
             }
         }
 
@@ -85,9 +85,9 @@ namespace FomMonitoringCore.Queue.Forwarder
             var unSuccessJson = _stateGenericRepository.Query(n => n.ElaborationSuccesfull == false)
                 .ToList();
 
-            foreach (var jsonString in unSuccessJson.Select(Newtonsoft.Json.JsonConvert.SerializeObject).ToList())
+            foreach (var json in unSuccessJson.ToList())
             {
-                _queueForwarder.Forward(jsonString);
+                _queueForwarder.Forward(Newtonsoft.Json.JsonConvert.SerializeObject(json), false);
             }
         }
 
@@ -96,11 +96,11 @@ namespace FomMonitoringCore.Queue.Forwarder
             var unSuccessJson = _toolGenericRepository.Query(n => n.ElaborationSuccesfull == false)
                 .ToList();
 
-            foreach (var jsonString in unSuccessJson.Select(Newtonsoft.Json.JsonConvert.SerializeObject).ToList())
+            foreach (var json in unSuccessJson.ToList())
             {
-                _queueForwarder.Forward(jsonString);
+                _queueForwarder.Forward(Newtonsoft.Json.JsonConvert.SerializeObject(json), false);
             }
-            
+
         }
 
         private void ReForwardVariableList()
@@ -108,9 +108,9 @@ namespace FomMonitoringCore.Queue.Forwarder
             var unSuccessJson = _variableListGenericRepository.Query(n => n.ElaborationSuccesfull == false)
                 .ToList();
 
-            foreach (var jsonString in unSuccessJson.Select(Newtonsoft.Json.JsonConvert.SerializeObject).ToList())
+            foreach (var json in unSuccessJson.ToList())
             {
-                _queueForwarder.Forward(jsonString);
+                _queueForwarder.Forward(Newtonsoft.Json.JsonConvert.SerializeObject(json), false);
             }
         }
     }

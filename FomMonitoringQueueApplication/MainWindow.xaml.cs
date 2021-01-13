@@ -16,8 +16,8 @@ namespace FomMonitoringQueueApplication
     {
         private static Timer _aTimerQueue;
         public static ConsumerInitializer ConsumerInitializer;
-        private static Timer _aTimerUnknown;
-        private static Timer _aTimerNotElaborated;
+        //private static Timer _aTimerUnknown;
+        //private static Timer _aTimerNotElaborated;
         private static MyViewModel _viewModel;
 
         public MainWindow()
@@ -51,14 +51,14 @@ namespace FomMonitoringQueueApplication
                 _aTimerQueue.Enabled = true;
             }
 
-            if (_aTimerUnknown == null)
-            {
-                _aTimerUnknown = new Timer(60000);
-                // Hook up the Elapsed event for the timer. 
-                _aTimerUnknown.Elapsed += OnTimedUnknownEvent;
-                _aTimerUnknown.AutoReset = true;
-                _aTimerUnknown.Enabled = true;
-            }
+            //if (_aTimerUnknown == null)
+            //{
+            //    _aTimerUnknown = new Timer(60000);
+            //    // Hook up the Elapsed event for the timer. 
+            //    _aTimerUnknown.Elapsed += OnTimedUnknownEvent;
+            //    _aTimerUnknown.AutoReset = true;
+            //    _aTimerUnknown.Enabled = true;
+            //}
         }
         private static void OnTimedQueueEvent(object source, ElapsedEventArgs e)
         {

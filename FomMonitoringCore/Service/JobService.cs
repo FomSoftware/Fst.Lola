@@ -101,5 +101,23 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
+        public void CleanHistoryJobs()
+        {
+            //elimino solo quelli degli ultimi 10 giorni che non hanno piece 
+            //perchè altrimenti andrebbe sempre su tutta la tabella e sarebbe sempre più lenta
+            //quando si avvia il task si fa una prima pulizia generale.
+            DateTime start = DateTime.UtcNow.AddDays(Int32.Parse(System.Configuration.ConfigurationManager.AppSettings.Get("CleanInterval")));
+            List<HistoryJob> toDelete = _context.Set<HistoryJob>().Where(j => DbFunctions.TruncateTime(j.Day) >= start.Date).ToList()
+                .Where(j => _context.Set<Piece>().Any(p => p.JobId == j.Id
+                                                           && p.MachineId == j.MachineId
+                                                           && DbFunctions.TruncateTime(p.Day) == DbFunctions.TruncateTime(j.Day)) == false)
+                .ToList();
+            if (toDelete.Any())
+            {
+                _context.Set<HistoryJob>().RemoveRange(toDelete);
+                _context.SaveChanges();
+            }
+
+        }
     }
 }

@@ -222,7 +222,7 @@ namespace FomMonitoringCore.Service
         {
             try
             {
-                var machines = _context.Set<Machine>().Where(m => m.CurrentState.FirstOrDefault() != null && 
+                var machines = _context.Set<Machine>().Include("CurrentState").Where(m => m.CurrentState.FirstOrDefault() != null && 
                                                             m.CurrentState.FirstOrDefault().StateId != (int)enState.Offline).ToList();
 
                 foreach (var machine in machines)

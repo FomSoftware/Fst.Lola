@@ -35,8 +35,8 @@ namespace VariableListLoadTest
             //var reforwarder = container.Resolve<IUnknownForwarder>();
             //reforwarder.ReForward();
 
-            var jsonsMessage = repositoryMessage.Query().ToList().OrderByDescending(n => n.DateReceived).Take(1000).ToList();
-            var jsonsMessagevar = repositoryVariablesList.Query().ToList().OrderByDescending(n => n.DateReceived).Take(1000).ToList();
+            var jsonsMessage = repositoryHistoryJobPieceBar.Query().ToList().OrderByDescending(n => n.DateReceived).Take(10).ToList();
+            //var jsonsMessagevar = repositoryVariablesList.Query().ToList().OrderByDescending(n => n.DateReceived).Take(1000).ToList();
 
 
             foreach (var data in jsonsMessage)
@@ -44,10 +44,10 @@ namespace VariableListLoadTest
                 forwarder.Forward(JsonConvert.SerializeObject(data));
             }
 
-            foreach (var data in jsonsMessagevar)
-            {
-                forwarder.Forward(JsonConvert.SerializeObject(data));
-            }
+            //foreach (var data in jsonsMessagevar)
+            //{
+            //    forwarder.Forward(JsonConvert.SerializeObject(data));
+            //}
             //var x = new TimeSpan(13400000000);
             Console.ReadKey();
             

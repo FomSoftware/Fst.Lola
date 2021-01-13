@@ -54,7 +54,6 @@ namespace FomMonitoringBLL.ViewServices
                     perc = Common.GetPercentage(t.CurrentLife, t.ExpectedLife),
                     changes = new ChangeModel()
                     {
-                        //total = (t.BrokenEventsCount ?? 0) + (t.RevisedEventsCount ?? 0),
                         breaking = 0,
                         replacement = 0,
                         historical = dataHistorical.Where(w => w.Code == t.Code).Select(h => new HistoricalModel()
