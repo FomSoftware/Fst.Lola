@@ -197,8 +197,8 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                                     UserId = user.ID,
                                     CustomerName = user.Username
                                 };
-                            _context.Set<UserCustomerMapping>().Add(userCustomer);
-                            _context.SaveChanges();
+                                _context.Set<UserCustomerMapping>().Add(userCustomer);
+                                _context.SaveChanges();
                             }
 
                             //Prendo la lista delle macchine esistenti nel DB a partire da quelle arrivate da JSON

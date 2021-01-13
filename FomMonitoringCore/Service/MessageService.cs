@@ -267,7 +267,7 @@ namespace FomMonitoringCore.Service
 
             try
             {
-                var query = _context.Set<MessageMachine>().Where(m => m.MachineId == machine.Id &&
+                var query = _context.Set<MessageMachine>().Include("MessagesIndex").Include("MessagesIndex.MessageTranslation").Where(m => m.MachineId == machine.Id &&
                                                                       m.Machine.ActivationDate != null &&
                                                                       m.MessagesIndex.IsPeriodicM )
                 .ToList().GroupBy(g => g.MessagesIndexId)
@@ -367,25 +367,29 @@ namespace FomMonitoringCore.Service
             {
                 var machines = _machineRepository.Get(m =>
                     m.ExpirationDate != null && m.ExpirationDate >= DateTime.UtcNow &&
-                    m.ActivationDate != null && m.ActivationDate <= DateTime.UtcNow).ToList();
+                    m.ActivationDate != null && m.ActivationDate <= DateTime.UtcNow, null, "MachineModel").ToList();
+
+                var messaggi = _messagesIndexRepository
+                    .Get(mi => 
+                               mi.IsPeriodicM && mi.PeriodicSpan != null &&
+                               mi.IsDisabled == false &&
+                               mi.IsVisibleLOLA).ToList();
+
+                var messMachines = _messageMachineRepository.Get(mm => mm.MessagesIndex.IsPeriodicM, o => o.OrderByDescending(i => i.Day), "MessagesIndex").ToList();
+
+
 
                 foreach (var machine in machines)
                 {
                     MachinId = machine.Id.ToString();
                     var cat = _machineRepository.GetByID(machine.Id).MachineModel.MessageCategoryId;
 
-                    var messaggi = _messagesIndexRepository
-                        .Get(mi => mi.MessageCategoryId == cat && 
-                                   mi.IsPeriodicM && mi.PeriodicSpan != null &&
-                                   mi.IsDisabled == false &&
-                                   mi.IsVisibleLOLA).ToList();
+                    var messaggiCategoria = messaggi.Where(m => m.MessageCategoryId == cat).ToList();
 
-                    foreach (var messaggio in messaggi)
+
+                    foreach (var messaggio in messaggiCategoria)
                     {
-                        //messaggi periodici in base alla data di attivazione e allo span specificato nel messageIndex
-                        var mess = _messageMachineRepository.Get(mm =>
-                            mm.MachineId == machine.Id && mm.MessagesIndex.IsPeriodicM &&
-                            mm.MessagesIndexId == messaggio.Id, o => o.OrderByDescending(i => i.Id)).FirstOrDefault();
+                        var mess = messMachines.FirstOrDefault(n => n.MessagesIndexId == messaggio.Id);
 
                         // i messaggi delle macchine al cui modello è associato un messaggio di default 
                         // hanno come data la data di attivazione della macchina
@@ -396,14 +400,14 @@ namespace FomMonitoringCore.Service
                         if (mess == null)
                         {
                             if (DateTime.UtcNow > data)
-                                InsertMessageMachine(machine, messaggio.MessageCode, data);
+                                InsertMessageMachine(machine, messaggio, data);
                         }
                         else if (mess.IgnoreDate != null)
                         {
                             DateTime nd = (DateTime) mess.IgnoreDate?.AddHours((long) messaggio.PeriodicSpan);
                             if (DateTime.UtcNow > nd)
                             {
-                                InsertMessageMachine(machine, messaggio.MessageCode, nd);
+                                InsertMessageMachine(machine, messaggio, nd);
                             }
                         }
                         else if (messaggio.PeriodicSpan > 0)
@@ -411,7 +415,7 @@ namespace FomMonitoringCore.Service
                             DateTime next = (DateTime)mess.Day?.AddHours((long)messaggio.PeriodicSpan);
                             if (DateTime.UtcNow > next)
                             {
-                                InsertMessageMachine(machine, messaggio.MessageCode, next);
+                                InsertMessageMachine(machine, messaggio, next);
                             }
                             
                         }
@@ -428,17 +432,14 @@ namespace FomMonitoringCore.Service
             }
         }
 
-        public void InsertMessageMachine(Machine machine, string code, DateTime day)
+        public void InsertMessageMachine(Machine machine, MessagesIndex msgIndex, DateTime day)
         {
-            if (string.IsNullOrWhiteSpace(code)) return;
-            var msgIndex = _context.Set<MessagesIndex>().FirstOrDefault(mi =>
-                mi.MessageCode == code && mi.MessageCategory.Id == machine.MachineModel.MessageCategoryId);
             if (msgIndex == null) return;
             var msg = new MessageMachine
             {
                 MachineId = machine.Id,
                 Day = day,
-                MessagesIndexId = msgIndex?.Id,
+                MessagesIndexId = msgIndex.Id,
                 MessagesIndex = msgIndex
             };
             _context.Set<MessageMachine>().Add(msg);

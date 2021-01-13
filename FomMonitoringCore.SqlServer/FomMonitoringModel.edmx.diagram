@@ -83,6 +83,7 @@
         <AssociationConnector Association="FomMonitoringModel.FK_UserMachineMapping_Users" ManuallyRouted="false" />
         <AssociationConnector Association="FomMonitoringModel.FK_ParameterResetValue_Machine" />
         <EntityTypeShape EntityType="FomMonitoringModel.Faq" Width="1.5" PointX="7.375" PointY="8" />
+        <AssociationConnector Association="FomMonitoringModel.FK_Piece_HistoryJob" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

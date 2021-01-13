@@ -232,14 +232,14 @@ namespace FomMonitoringCore.Queue.ProcessData
                     mm.MachineId == machine.Id && mm.MessagesIndex != null &&
                     mm.MessagesIndex.Id == par.MessagesIndex.Id);
                 if (mes == null)
-                    messageService.InsertMessageMachine(machine, par.MessagesIndex.MessageCode, utcDatetime);
+                    messageService.InsertMessageMachine(machine, par.MessagesIndex, utcDatetime);
                 else if (oldValue != null)
                     if (mes.Day < utcDatetime)
                     {
                         //verifico se il precedente valore era sotto la soglia inserisco un nuovo messaggio
                         if (oldValue >= min && oldValue <= max)
                         {
-                            messageService.InsertMessageMachine(machine, par.MessagesIndex.MessageCode, utcDatetime);
+                            messageService.InsertMessageMachine(machine, par.MessagesIndex, utcDatetime);
                         }
                         //in questo caso ero sopra la soglia e continuo ad essere sopra la soglia
                         // controllo se il valore del parametro ha superato il prossimo multiplo del valore max
@@ -252,7 +252,7 @@ namespace FomMonitoringCore.Queue.ProcessData
                                 var multiploOld = Math.Floor(valOld / max);
                                 var multiploNew = Math.Floor((valNew ?? 0) / max);
                                 if (multiploNew > multiploOld)
-                                    messageService.InsertMessageMachine(machine, par.MessagesIndex.MessageCode, utcDatetime);
+                                    messageService.InsertMessageMachine(machine, par.MessagesIndex, utcDatetime);
                             }
                         }
                     }

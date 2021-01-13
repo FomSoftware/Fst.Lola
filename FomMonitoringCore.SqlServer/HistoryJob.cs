@@ -14,6 +14,12 @@ namespace FomMonitoringCore.SqlServer
     
     public partial class HistoryJob
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public HistoryJob()
+        {
+            this.Piece = new HashSet<Piece>();
+        }
+    
         public int Id { get; set; }
         public string Code { get; set; }
         public Nullable<System.DateTime> Day { get; set; }
@@ -25,5 +31,7 @@ namespace FomMonitoringCore.SqlServer
         public string TypeHistory { get; set; }
     
         public virtual Machine Machine { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Piece> Piece { get; set; }
     }
 }

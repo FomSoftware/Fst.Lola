@@ -116,11 +116,13 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                     context.SaveChanges();
 
-                    HistoricizingPieces(context, mac.Id);
                     HistoricizingBars(context, mac.Id);
 
                     context.SaveChanges();
 
+
+                    HistoricizingPieces(context, mac.Id);
+                    context.SaveChanges();
                     unitOfWork.CommitTransaction();
                     return true;
 

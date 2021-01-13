@@ -34,5 +34,6 @@ namespace FomMonitoringCore.SqlServer
     
         public virtual Bar Bar { get; set; }
         public virtual Machine Machine { get; set; }
+        public virtual HistoryJob HistoryJob { get; set; }
     }
 }

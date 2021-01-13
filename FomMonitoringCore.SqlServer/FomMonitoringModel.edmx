@@ -873,6 +873,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Piece_HistoryJob">
+          <End Role="HistoryJob" Type="Self.HistoryJob" Multiplicity="0..1" />
+          <End Role="Piece" Type="Self.Piece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HistoryJob">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Piece">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Piece_Machine">
           <End Role="Machine" Type="Self.Machine" Multiplicity="0..1" />
           <End Role="Piece" Type="Self.Piece" Multiplicity="*" />
@@ -1162,6 +1174,10 @@
             <End Role="Bar" EntitySet="Bar" />
             <End Role="Piece" EntitySet="Piece" />
           </AssociationSet>
+          <AssociationSet Name="FK_Piece_HistoryJob" Association="Self.FK_Piece_HistoryJob">
+            <End Role="HistoryJob" EntitySet="HistoryJob" />
+            <End Role="Piece" EntitySet="Piece" />
+          </AssociationSet>
           <AssociationSet Name="FK_Piece_Machine" Association="Self.FK_Piece_Machine">
             <End Role="Machine" EntitySet="Machine" />
             <End Role="Piece" EntitySet="Piece" />
@@ -1288,6 +1304,7 @@
           <Property Name="TotalPieces" Type="Int32" />
           <Property Name="TypeHistory" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Machine" Relationship="Self.FK_HistoryJob_Machine" FromRole="HistoryJob" ToRole="Machine" />
+          <NavigationProperty Name="Piece" Relationship="FomMonitoringModel.FK_Piece_HistoryJob" FromRole="HistoryJob" ToRole="Piece" />
         </EntityType>
         <EntityType Name="HistoryMessage">
           <Key>
@@ -1626,6 +1643,7 @@
           <Property Name="ElapsedTimeTrim" Type="Int64" />
           <NavigationProperty Name="Bar" Relationship="Self.FK_Piece_Bar" FromRole="Piece" ToRole="Bar" />
           <NavigationProperty Name="Machine" Relationship="Self.FK_Piece_Machine" FromRole="Piece" ToRole="Machine" />
+          <NavigationProperty Name="HistoryJob" Relationship="FomMonitoringModel.FK_Piece_HistoryJob" FromRole="Piece" ToRole="HistoryJob" />
         </EntityType>
         <EntityType Name="Plant">
           <Key>
@@ -2468,6 +2486,10 @@
             <End Role="ParameterResetValue" EntitySet="ParameterResetValue" />
           </AssociationSet>
           <EntitySet Name="Faq" EntityType="FomMonitoringModel.Faq" />
+          <AssociationSet Name="FK_Piece_HistoryJob" Association="FomMonitoringModel.FK_Piece_HistoryJob">
+            <End Role="HistoryJob" EntitySet="HistoryJob" />
+            <End Role="Piece" EntitySet="Piece" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_ParameterResetValue_Machine">
           <End Type="FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
@@ -2492,6 +2514,18 @@
           <Property Name="IsInternalMenu" Type="Boolean" />
           <Property Name="IsVisible" Type="Boolean" />
         </EntityType>
+        <Association Name="FK_Piece_HistoryJob">
+          <End Type="FomMonitoringModel.HistoryJob" Role="HistoryJob" Multiplicity="0..1" />
+          <End Type="FomMonitoringModel.Piece" Role="Piece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HistoryJob">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Piece">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
