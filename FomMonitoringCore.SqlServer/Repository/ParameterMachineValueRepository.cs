@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace FomMonitoringCore.SqlServer.Repository
@@ -12,7 +13,7 @@ namespace FomMonitoringCore.SqlServer.Repository
 
         public IEnumerable<ParameterMachineValue> GetByParameters(int idMachine, int? idPanel = null, int? idCluster = null)
         {
-            var query = dbSet.Include("ParameterMachine").Where(m => m.MachineId == idMachine);
+            var query = dbSet.Where(m => m.MachineId == idMachine);
             if (idPanel != null)
             {
                 query = query.Where(p => p.ParameterMachine.PanelId == idPanel);
@@ -23,7 +24,7 @@ namespace FomMonitoringCore.SqlServer.Repository
                 query = query.Where(p => p.ParameterMachine.Cluster == idCluster.ToString());
             }
 
-            query = query.GroupBy(p => p.VarNumber).Select(t => t.OrderByDescending(i => i.UtcDateTime).FirstOrDefault());
+            query = query.GroupBy(p => p.VarNumber).Select(t => t.OrderByDescending(i => i.UtcDateTime).FirstOrDefault()).Include("ParameterMachine");
 
             return query.ToList();
         }

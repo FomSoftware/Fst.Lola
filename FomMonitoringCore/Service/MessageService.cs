@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations.Sql;
 using System.Linq;
 using FomMonitoringCore.Extensions;
 using FomMonitoringCore.Framework.Common;
@@ -267,10 +268,12 @@ namespace FomMonitoringCore.Service
 
             try
             {
-                var query = _context.Set<MessageMachine>().Include("MessagesIndex").Include("MessagesIndex.MessageTranslation").Where(m => m.MachineId == machine.Id &&
+                var query = _context.Set<MessageMachine>().Where(m => m.MachineId == machine.Id &&
                                                                       m.Machine.ActivationDate != null &&
-                                                                      m.MessagesIndex.IsPeriodicM )
-                .ToList().GroupBy(g => g.MessagesIndexId)
+                                                                      m.MessagesIndex.IsPeriodicM && m.IgnoreDate == null)
+                .ToList();
+                    
+                query = query.GroupBy(g => g.MessagesIndexId)
                     .Select(s => new MessageMachine
                     {
                         Day = s.Max(i => i.Day),
@@ -281,7 +284,7 @@ namespace FomMonitoringCore.Service
                         MachineId = machine.Id,
                         Machine = _context.Set<Machine>().Find(machine.Id)
                     }).ToList()
-                    .OrderByDescending(o => o.Day).ToList();
+                .OrderByDescending(o => o.Day).ToList();
                 
                 query = query.Where(m =>
                 {
@@ -289,9 +292,9 @@ namespace FomMonitoringCore.Service
                     if (msg == null) return false;
                     var span = msg.PeriodicSpan ?? 0;
                     m.MessagesIndex = msg;
-                    return m.IgnoreDate == null && span > 0 &&
+                    return span > 0 &&
                            m.Machine.ActivationDate?.AddHours(span) <= DateTime.UtcNow ||
-                           m.IgnoreDate == null && span == 0;
+                           span == 0;
                 }).ToList();
 
                 var cl = _languageService.GetCurrentLanguage() ?? 0;

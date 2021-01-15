@@ -4,6 +4,7 @@ using FomMonitoringCore.Framework.Model;
 using Mapster;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using FomMonitoringCore.SqlServer;
 
@@ -117,11 +118,11 @@ namespace FomMonitoringCore.Service
         private MachineMesDataModel CreateMesMachineDto(Machine machine)
         {
             var date = DateTime.UtcNow.Date;
-            var currentState = machine.CurrentState.FirstOrDefault(cs => cs.LastUpdated.HasValue && cs.LastUpdated.Value.Date == date);
-            var historyMessage = machine.HistoryMessage.Where(cs => cs.Day.HasValue && cs.Day.Value.Date == date && cs.MessagesIndex?.MessageTypeId == 11).ToList();
-            var historyPiece = machine.HistoryPiece.Where(cs => cs.Day.Date == date && cs.Shift == null && cs.Operator == null).ToList();
-            var historyEfficiency = machine.HistoryState.Where(cs => cs.Day.HasValue && cs.Day.Value.Date == date && cs.Shift == null && cs.Operator == null).ToList();
-            var stateMachine = machine.StateMachine.Where(cs => cs.Day.HasValue && cs.Day.Value.Date == date)
+            var currentState = _context.Set<CurrentState>().FirstOrDefault(cs => machine.Id == cs.MachineId && cs.LastUpdated != null && DbFunctions.TruncateTime(cs.LastUpdated) == DbFunctions.TruncateTime(date));
+            var historyMessage = _context.Set<HistoryMessage>().Where(cs => machine.Id == cs.MachineId && cs.Day != null && DbFunctions.TruncateTime(cs.Day) == DbFunctions.TruncateTime(date) && cs.MessagesIndex != null && cs.MessagesIndex.MessageTypeId == 11).ToList();
+            var historyPiece = _context.Set<HistoryPiece>().Where(cs => machine.Id == cs.MachineId && DbFunctions.TruncateTime(cs.Day) == DbFunctions.TruncateTime(date) && cs.Shift == null && cs.Operator == null).ToList();
+            var historyEfficiency = _context.Set<HistoryState>().Where(cs => machine.Id == cs.MachineId && cs.Day != null && DbFunctions.TruncateTime(cs.Day) == DbFunctions.TruncateTime(date) && cs.Shift == null && cs.Operator == null).ToList();
+            var stateMachine = _context.Set<StateMachine>().Where(cs => machine.Id == cs.MachineId && cs.Day != null && DbFunctions.TruncateTime(cs.Day) == DbFunctions.TruncateTime(date))
                 .OrderByDescending(s => s.StartTime).FirstOrDefault();
 
             var m = new MachineMesDataModel

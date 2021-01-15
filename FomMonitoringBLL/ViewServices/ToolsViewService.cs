@@ -42,7 +42,7 @@ namespace FomMonitoringBLL.ViewServices
                 var data = _toolService.GetTools(machine, xmodule).ToList();
 
                 var dataTools = data.Where(w => w.IsActive).ToList();
-                var dataHistorical = data.Where(w => w.IsActive == false).ToList();
+                //var dataHistorical = data.Where(w => w.IsActive == false).ToList();
 
                 if (dataTools.Count == 0)
                     return result;
@@ -56,13 +56,13 @@ namespace FomMonitoringBLL.ViewServices
                     {
                         breaking = 0,
                         replacement = 0,
-                        historical = dataHistorical.Where(w => w.Code == t.Code).Select(h => new HistoricalModel()
-                        {
-                            date = h.DateReplaced.ToString(),
-                            type = CommonViewService.GetTypeTool(h).ToLocalizedString(lan),
-                            color_type = CommonViewService.GetTypeTool(h).GetDescription(),
-                            duration = CommonViewService.getTimeViewModel(h.CurrentLife)
-                        }).OrderByDescending(o => o.date).ToList()
+                        //historical = dataHistorical.Where(w => w.Code == t.Code).Select(h => new HistoricalModel()
+                        //{
+                        //    date = h.DateReplaced.ToString(),
+                        //    type = CommonViewService.GetTypeTool(h).ToLocalizedString(lan),
+                        //    color_type = CommonViewService.GetTypeTool(h).GetDescription(),
+                        //    duration = CommonViewService.getTimeViewModel(h.CurrentLife)
+                        //}).OrderByDescending(o => o.date).ToList()
                     },
                     time = CommonViewService.getTimeViewModel((t.ExpectedLife ?? 0) - (t.CurrentLife ?? 0))
                 }).ToList();

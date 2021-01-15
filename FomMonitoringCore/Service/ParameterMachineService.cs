@@ -22,7 +22,7 @@ namespace FomMonitoringCore.Service
             var result = new List<ParameterMachineValueModel>();
 
             //var parametersValues = _parameterMachineValueRepository.Get(p => p.MachineId == machine.Id, tracked: false).GroupBy(g => g.VarNumber);
-            var parametersValues = _parameterMachineValueRepository.GetByParameters(machine.Id).Where(p => p.ParameterMachine.PanelId == idPanel && p.ParameterMachine.Cluster == idCluster?.ToString());
+            var parametersValues = _parameterMachineValueRepository.GetByParameters(machine.Id, idPanel, idCluster);
 
             var varNums = new Dictionary<string, ParameterMachineValueModel>();
             foreach(var i in parametersValues)
@@ -33,7 +33,7 @@ namespace FomMonitoringCore.Service
             //se ci sono dati cerco tutti i parametri di quel modello per avere almeno le descrizioni
             //if(varNums.Any())
             {
-                var parametri = _parameterMachineRepository.GetByParameters(machine.MachineModelId ?? 0).Where(p => p.PanelId == idPanel && p.Cluster == idCluster?.ToString()).OrderBy(pp => pp.VarNumber).ToList();
+                var parametri = _parameterMachineRepository.GetByParameters(machine.MachineModelId ?? 0).Where(p => p.PanelId == idPanel && (idCluster == null || p.Cluster == idCluster.ToString())).OrderBy(pp => pp.VarNumber).ToList();
 
 
                 foreach(var pm in parametri)
