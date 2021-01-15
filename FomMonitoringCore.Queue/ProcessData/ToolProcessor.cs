@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using Autofac;
 using FomMonitoringCore.Queue.Dto;
@@ -41,28 +42,32 @@ namespace FomMonitoringCore.Queue.ProcessData
                             tool.DateLoaded = tool.DateLoaded.HasValue && tool.DateLoaded.Value.Year < 1900 ? null : tool.DateLoaded;
                             tool.DateReplaced = tool.DateReplaced.HasValue && tool.DateReplaced.Value.Year < 1900 ? null : tool.DateReplaced;
 
-                            var toolToRemove = context.Set<ToolMachine>().FirstOrDefault(t =>
-                                t.MachineId == mac.Id && tool.Code == t.Code && tool.DateLoaded == t.DateLoaded);
-                            //var removeTools = data.ToolMachine.Join(_context.Set<ToolMachine>(), to => to.Code, from => from.Code, (to, from) => new { From = from, To = to })
-                            //    .Where(w => w.From.MachineId == mac.Id && w.From.Code == w.To.Code && w.From.DateLoaded == w.To.DateLoaded).Select(s => s.From).ToList();
-                            if (toolToRemove == null)
-                                continue;
-                            context.Set<ToolMachine>().Remove(toolToRemove);
+                            var tools = context.Set<ToolMachine>().Where(t =>
+                                t.MachineId == mac.Id && tool.Code == t.Code).OrderByDescending(t => t.DateReplaced);
+
+                                
+                            if (tools.Count() > 1)
+                            {
+                                var toolToRemove = tools.Skip(1).ToList();
+                                context.Set<ToolMachine>().RemoveRange(toolToRemove);
+
+                                context.SaveChanges();
+                            }
+
+                            var toolToUpdate = tools.FirstOrDefault() ?? new ToolMachine();
+                            toolToUpdate.DateReplaced = tool.DateReplaced;
+                            toolToUpdate.DateLoaded = tool.DateLoaded;
+                            toolToUpdate.Code = tool.Code;
+                            toolToUpdate.MachineId = mac.Id;
+                            toolToUpdate.ExpectedLife = tool.ExpectedLife;
+                            toolToUpdate.CurrentLife = tool.CurrentLife;
+                            toolToUpdate.Description = tool.Description;
+                            toolToUpdate.IsActive = true;
+                            context.Set<ToolMachine>().AddOrUpdate(toolToUpdate);
                             context.SaveChanges();
                         }
 
-                        var tools = data.ToolMachine.BuildAdapter().AddParameters("machineId", mac.Id).AdaptToType<List<ToolMachine>>();
-
-                        var modifyTools = context.Set<ToolMachine>().Where(w => w.MachineId == mac.Id && w.IsActive).ToList();
-                        foreach (var modifyTool in modifyTools)
-                        {
-                            modifyTool.IsActive = false;
-                        }
-                        context.SaveChanges();
-
-                        context.Set<ToolMachine>().AddRange(tools);
                     }
-                    context.SaveChanges();
                     unitOfWork.CommitTransaction();
                     return true;
                 }
