@@ -543,10 +543,24 @@
   <data name="Disclamer" xml:space="preserve">
     <value>Terms and conditions</value>
   </data>
-  <data name="DisclamerBody" xml:space="preserve">
-    <value>&lt;H4&gt;DISCLAIMER&lt;/H4&gt;&lt;p&gt;The data acquired by Fom Industrie s.r.l. using the LO.LA application will be stored and handled for statistical purposes only, and will not be passed on to third parties. As this is not personal information, it is not subject to the contents of EU Regulation 2016/679.
-&lt;br&gt;&lt;br&gt;
-Customers are informed that the reliability of the statistics obtained from the data collected (need for periodic and/or special maintenance, wear in components such as electrospindles, tools, mechanical and/or pneumatic components in use on the article), is only guaranteed if the customer makes use of the official components and spare parts recommended by FOM Industrie s.r.l..&lt;/p&gt;</value>
+  <data name="DisclamerINT" xml:space="preserve">
+    <value>LOLA has been optimised for mobile usage on the following devices: Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px), iPad2 (768x1024 px). Web browsers: Google Chrome for Windows and Safari for iOS &lt;/br&gt;
+&lt;/br&gt;The data acquired by Fom Industrie s.r.l. using the LO.LA application will be stored and handled for statistical purposes only, and will not be passed on to third parties. As this is not personal information, it is not subject to the contents of EU Regulation 2016/679.&lt;/br&gt;
+&lt;/br&gt;&lt;b&gt;LIMITS OF LIABILITY&lt;/b&gt;&lt;/br&gt;
+&lt;/br&gt;The reliability of the statistics obtained from the data collected by the LOLA software (periodic and/or special maintenance notifications, wear in components, including electrospindles, tools, mechanical, electronic and/or pneumatic components, used in the machine) is only guaranteed if the Licensee uses official components and spare parts supplied and recommended by the manufacturer FOM Industrie s.r.l..&lt;/br&gt;
+&lt;/br&gt;The reliability of information displayed in LOLA is also conditional on the Licensee “resetting” the counter values if these play an independent role in the replacement of a machine component. Consequently, when management and maintenance of so-called consumable components/components subject to wear is carried out by the licensee (for example replacement of tools, changing or sharpening blades, changing labelling unit rolls, etc.), reset of the indicators must be carried out by the Licensee when the associated physical component is replaced.  Consequently, the Licensor shall not be considered responsible in any way in the event of missing and/or late warnings by the LOLA software if the data indicated above has not been duly reset in the machine software by the Licensee. Instructions on how to carry out the “reset” can be found in the LOLA user manual.&lt;/br&gt;
+&lt;/br&gt;The Licensor is, likewise, not to be held liable in any way for breakages, machine stoppage, production stoppage, etc., in the event that the Licensee decides not to carry out the operations recommended by the LOLA software, indicated by means of ordinary and/or predictive maintenance notices (e.g. changing oil and lubricants). &lt;/br&gt;
+&lt;/br&gt;In any case the Licensor shall not be held liable in any way for the information, data and content handled in any way by the Licensee while using the Service.&lt;/br&gt;
+&lt;/br&gt;The Licensor provides no guarantee that the Service will be suitable for particular purposes: no liability shall be assigned him if supply of the Service, with the precise characteristics requested by the Licensee, is conditional to Third Party or Licensee events. &lt;/br&gt;
+&lt;/br&gt;The program incorporates a database containing technical information detected by the numerical control for the specific machine, identified using its production number (serial number). The Licensor cannot exclude the presence of errors or omissions and is not responsible for any damage caused to the Licensee or to third parties as a result of said errors or omissions. In any event the Licensee is invited to report any problems, malfunctions, inabilities to access the service to the e-mail address support@fomservice.com&lt;/br&gt;
+&lt;/br&gt;The Licensor shall not be liable in any way for damage suffered by the Licensee, either directly or indirectly, as a result of using the Service or of failure to carry out ordinary maintenance as indicated in the User and Maintenance Manual and/or suggested by the Licensor on the machine in which the Service is installed, except in the case of wilful misconduct or gross negligence.&lt;/br&gt;
+&lt;/br&gt;The Licensor engages to ensure that the Service operates as well as possible, but does not take on any responsibility for delays, suspensions and/or interruptions in delivery of the update services due to causes that cannot be attributed to him, a non-limiting example of which might be:&lt;/br&gt;
+&lt;/br&gt;a) accident, catastrophic events and force majeure;&lt;/br&gt;
+&lt;/br&gt;b) malfunction or non conformity of the connection equipment used by the Licensee;&lt;/br&gt;
+&lt;/br&gt;c) tampering or interventions on the equipment carried out by the Licensee or by third parties;&lt;/br&gt;
+&lt;/br&gt;d) incorrect or non-conform use of the Service by the Licensee.&lt;/br&gt;
+&lt;/br&gt;In these cases the Licensor will not be liable for any loss, damage and injury suffered or to be suffered by the Licensee.&lt;/br&gt;
+&lt;/br&gt;The SLA (Service Level Agreement) percentages applied, which the Licensee expressly acknowledges and accepts, are the ones indicated in art. 4.</value>
   </data>
   <data name="XSpindles" xml:space="preserve">
     <value>Spindles XModule/XMU</value>
@@ -560,8 +574,17 @@ Customers are informed that the reliability of the statistics obtained from the 
   <data name="DisclaimerLogin" xml:space="preserve">
     <value>LOLA has been optimised for mobile usage. &lt;br /&gt;For a list of devices, please see the section &lt;br /&gt;"Terms &amp; Conditions". </value>
   </data>
-  <data name="DisclaimerMobileDevices" xml:space="preserve">
-    <value>LOLA has been optimised for mobile usage on the following devices: Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px), iPad2 (768x1024 px). Web browsers: Google Chrome for Windows and Safari for iOS</value>
+  <data name="DisclaimerEXT" xml:space="preserve">
+    <value>LOLA has been optimised for mobile usage on the following devices: Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px), iPad2 (768x1024 px). Web browsers: Google Chrome for Windows and Safari for iOS.&lt;br/&gt;
+&lt;br/&gt;&lt;b&gt;LIMITS OF LIABILITY&lt;/b&gt;&lt;br/&gt;
+&lt;br/&gt;The data acquired by Fom Industrie s.r.l. using the LO.LA application will be stored and handled for statistical purposes only, and will not be passed on to third parties. As this is not personal information, it is not subject to the contents of EU Regulation 2016/679.&lt;br/&gt;
+&lt;br/&gt;The Licensor engages to ensure that the Service operates as well as possible, but does not take on any responsibility for delays, suspensions and/or interruptions in delivery of the update services due to causes that cannot be attributed to him, a non-limiting example of which might be:&lt;br/&gt;
+&lt;br/&gt;a) accident, catastrophic events and force majeure;&lt;br/&gt;
+&lt;br/&gt;b) malfunction or non conformity of the connection equipment used by the Licensee;&lt;br/&gt;
+&lt;br/&gt;c) tampering or interventions on the equipment carried out by the Licensee or by third parties;&lt;br/&gt;
+&lt;br/&gt;d) incorrect or non-conform use of the Service by the Licensee.&lt;br/&gt;
+&lt;br/&gt;In these cases the Licensor will not be liable for any loss, damage and injury suffered or to be suffered by the Licensee.&lt;br/&gt;
+&lt;br/&gt;The SLA (Service Level Agreement) percentages applied, which the Licensee expressly acknowledges and accepts, are the ones indicated in art. 4.</value>
   </data>
   <data name="AxisMotors" xml:space="preserve">
     <value>Motors/Axes</value>

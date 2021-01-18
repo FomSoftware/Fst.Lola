@@ -549,10 +549,24 @@
   <data name="Disclamer" xml:space="preserve">
     <value>Termini e condizioni</value>
   </data>
-  <data name="DisclamerBody" xml:space="preserve">
-    <value>&lt;H4&gt;NOTE LEGALI&lt;/H4&gt;&lt;p&gt;I dati acquisiti da Fom Industrie s.r.l. mediante l'applicazione LO.LA verranno archiviati e trattati a meri fini statistici e gli stessi non verranno comunicati a terzi. Non trattandosi di dati personali non sono soggetti alla normativa di cui al Regolamento UE 2016/679.
-&lt;br&gt;&lt;br&gt;
-Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati raccolti (necessità di manutenzione periodica e/o straordinaria, usura dei componenti tipo elettromandrini, utensili, componenti meccanici e/o pneumatici in uso sul bene), è garantita soltanto se il cliente si avvale di componentistica e ricambi ufficiali forniti e consigliati da FOM Industrie s.r.l..&lt;/p&gt;</value>
+  <data name="DisclamerINT" xml:space="preserve">
+    <value>LOLA è stato ottimizzato per la fruibilità mobile sulle seguenti/dispositivi: Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px), iPad2 (768x1024 px). Browser: Google Chrome su Windows e Safari su iOS.&lt;br/&gt;
+&lt;br/&gt;I dati acquisiti da Fom Industrie s.r.l. mediante l'applicazione LO.LA verranno archiviati e trattati a meri fini statistici e gli stessi non verranno comunicati a terzi. Non trattandosi di dati personali non sono soggetti alla normativa di cui al Regolamento UE 2016/679.&lt;br/&gt;
+&lt;br/&gt;&lt;b&gt;LIMITAZIONI DI RESPONSABILITÀ&lt;/b&gt;&lt;br/&gt;
+&lt;br/&gt;L'attendibilità delle statistiche rilevate dai dati raccolti dal software LOLA (notifiche di manutenzione periodica e/o straordinaria, usura dei componenti, tra cui elettromandrini, utensili, componenti meccanici, elettronici e/o pneumatici, in uso sulla macchina) è garantita solamente se il Licenziatario si avvale di componentistica e ricambi ufficiali forniti e consigliati dal produttore FOM Industrie s.r.l..&lt;br/&gt;
+&lt;br/&gt;L’attendibilità delle informazioni visualizzate in LOLA è, inoltre, subordinata al "reset" da parte del Licenziatario dei valori dei contatori nei casi in cui questi possa agire autonomamente nell’atto di sostituzione di un componente della macchina. Pertanto, in caso di gestione e manutenzione dei componenti c.d. consumabili/usurabili da parte del licenziatario (a titolo esemplificativo ma non esaustivo, si fa riferimento a sostituzione utensili, sostituzione lame, o loro affilatura, sostituzione rotolo etichettatrice, etc.), il reset degli indicatori deve essere eseguito dal Licenziatario contestualmente alla sostituzione del componente fisico associato.  Pertanto, il Licenziante è sollevato da qualsiasi responsabilità nel caso di mancati e/o tardivi warning da parte del software LOLA se i dati sopra indicati non sono opportunamente resettati sul software macchina da parte del Licenziatario. Le istruzioni per le modalità di "reset" sono consultabili nel manuale utente LOLA.&lt;br/&gt;
+&lt;br/&gt;Il Licenziante è, altresì, sollevato da qualsiasi responsabilità per rotture, fermi macchina, fermi produzione, ecc. nel caso in cui il Licenziatario decida di non eseguire quanto consigliato dal software LOLA, segnalato mediante notifiche di manutenzione ordinaria e/o predittiva (es. sostituzione olio e lubrificanti). &lt;br/&gt;
+&lt;br/&gt;Il Licenziante non assume in ogni caso alcuna responsabilità per le informazioni, i dati e i contenuti comunque trattati dal Licenziatario nell’utilizzo del Servizio.&lt;br/&gt;
+&lt;br/&gt;Il Licenziante non fornisce alcuna garanzia sull’adattarsi del Servizio a scopi particolari: alcuna responsabilità potrà esserle imputata qualora la fornitura del Servizio, con le precise caratteristiche richieste dal Licenziatario, sia condizionata dal fatto del Terzo o del Licenziatario. &lt;br/&gt;
+&lt;br/&gt;Il programma incorpora una banca dati contenente informazioni tecniche rilevate dal controllo numerico della specifica macchina, identificata tramite seriale di produzione (matricola). Il Licenziante non può escludere la presenza di errori od omissioni e non è responsabile per eventuali danni cagionati al Licenziatario o a terzi in forza dei suddetti errori od omissioni. Si invita in ogni caso il Licenziatario a segnalare eventuali anomalie, malfunzionamenti, impossibilità di accesso al servizio all'indirizzo email support@fomservice.com.&lt;br/&gt;
+&lt;br/&gt;Il Licenziante non risponde in alcun modo dei danni subiti dal Licenziatario, direttamente o indirettamente, in conseguenza dell’utilizzo del Servizio o della mancata manutenzione ordinaria secondo quanto indicato dal Manuale Uso Manutenzione e/o suggerita dal Licenziante sulla macchina presso cui è installato il Servizio, salvo in caso di dolo o colpa grave.&lt;br/&gt;
+&lt;br/&gt;Il Licenziante si impegna ad assicurare la migliore funzionalità del Servizio, ma non si assume alcuna responsabilità per ritardi, sospensioni e/o interruzioni nell’erogazione dei servizi di aggiornamento che siano determinati da causa ad esso non imputabile, quali a titolo meramente esemplificativo:&lt;br/&gt;
+&lt;br/&gt;a)    caso fortuito, eventi catastrofici e forza maggiore;&lt;br/&gt;
+&lt;br/&gt;b)    malfunzionamento o non conformità degli apparecchi di connessione dal Licenziatario utilizzati;&lt;br/&gt;
+&lt;br/&gt;c)    manomissione o interventi sulle apparecchiature eseguiti dal Licenziatario o da parte di soggetti terzi;&lt;br/&gt;
+&lt;br/&gt;d)    errato o non conforme utilizzo del Servizio da parte da parte del Licenziatario.&lt;br/&gt;
+&lt;br/&gt;In tali casi il Licenziante non risponderà di alcuna perdita, danno e lesione subiti o subendi dal Licenziatario.&lt;br/&gt;
+&lt;br/&gt;Le percentuali di SLA (Service Level Agreement) applicate, che il Licenziatario espressamente dichiara di conoscere ed accettare, sono quelle indicate nell'art. 4 del contratto SW accettato in fase di attivazione licenza/trial.</value>
   </data>
   <data name="XSpindles" xml:space="preserve">
     <value>Mandrini XModule/XMU</value>
@@ -566,8 +580,17 @@ Si informano i clienti che l'attendibilità delle statistiche rilevate dai dati 
   <data name="DisclaimerLogin" xml:space="preserve">
     <value>LOLA è stato ottimizzato per la fruibilità mobile.&lt;br /&gt; Per la lista dei dispositivi, consultare la sezione &lt;br /&gt;"Terms &amp; Conditions</value>
   </data>
-  <data name="DisclaimerMobileDevices" xml:space="preserve">
-    <value>LOLA è stato ottimizzato per la fruibilità mobile sui seguenti dispositivi: Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px), iPad2 (768x1024 px). Browser: Google Chrome su Windows e Safari su iOS.</value>
+  <data name="DisclaimerEXT" xml:space="preserve">
+    <value>LOLA è stato ottimizzato per la fruibilità mobile sulle seguenti/dispositivi: Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px), iPad2 (768x1024 px). Browser: Google Chrome su Windows e Safari su iOS.&lt;br/&gt;
+&lt;b&gt;LIMITAZIONI DI RESPONSABILITA’&lt;/b&gt;&lt;br/&gt;
+I dati acquisiti da Fom Industrie s.r.l. mediante l'applicazione LO.LA verranno archiviati e trattati a meri fini statistici e gli stessi non verranno comunicati a terzi. Non trattandosi di dati personali non sono soggetti alla normativa di cui al Regolamento UE 2016/679.&lt;br/&gt;
+&lt;br/&gt;Il Licenziante si impegna ad assicurare la migliore funzionalità del Servizio, ma non si assume alcuna responsabilità per ritardi, sospensioni e/o interruzioni nell’erogazione dei servizi di aggiornamento che siano determinati da causa ad esso non imputabile, quali a titolo meramente esemplificativo:&lt;br/&gt;
+&lt;br/&gt; a) caso fortuito, eventi catastrofici e forza maggiore;&lt;br/&gt;
+&lt;br/&gt; b) malfunzionamento o non conformità degli apparecchi di connessione dal Licenziatario utilizzati;&lt;br/&gt;
+&lt;br/&gt; c) manomissione o interventi sulle apparecchiature eseguiti dal Licenziatario o da parte di soggetti terzi; &lt;br/&gt;
+&lt;br/&gt; d) errato o non conforme utilizzo del Servizio da parte da parte del Licenziatario. &lt;br/&gt;
+&lt;br/&gt;In tali casi il Licenziante non risponderà di alcuna perdita, danno e lesione subiti o subendi dal Licenziatario.&lt;br/&gt;
+&lt;br/&gt;Le percentuali di SLA (Service Level Agreement) applicate, che il Licenziatario espressamente dichiara di conoscere ed accettare, sono quelle indicate nell'art. 4 del contratto SW accettato in fase di attivazione licenza/trial.</value>
   </data>
   <data name="AxisMotors" xml:space="preserve">
     <value>Motori/Assi</value>

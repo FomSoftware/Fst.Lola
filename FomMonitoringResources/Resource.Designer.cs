@@ -664,6 +664,17 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to DisclaimerEXT.
+        /// </summary>
+        public static string DisclaimerEXT
+        {
+            get
+            {
+                return ResourceManager.GetString("DisclaimerEXT", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to LOLA has been optimised for mobile usage. &lt;br /&gt;For a list of devices, please see the section &lt;br /&gt;&quot;Terms &amp; Conditions&quot;. .
         /// </summary>
         public static string DisclaimerLogin
@@ -671,17 +682,6 @@ namespace FomMonitoringResources
             get
             {
                 return ResourceManager.GetString("DisclaimerLogin", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to LOLA has been optimised for mobile usage on the following devices: Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px), iPad2 (768x1024 px). Web browsers: Google Chrome for Windows and Safari for iOS.
-        /// </summary>
-        public static string DisclaimerMobileDevices
-        {
-            get
-            {
-                return ResourceManager.GetString("DisclaimerMobileDevices", resourceCulture);
             }
         }
 
@@ -697,15 +697,13 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to &lt;H4&gt;DISCLAIMER&lt;/H4&gt;&lt;p&gt;The data acquired by Fom Industrie s.r.l. using the LO.LA application will be stored and handled for statistical purposes only, and will not be passed on to third parties. As this is not personal information, it is not subject to the contents of EU Regulation 2016/679.
-        ///&lt;br&gt;&lt;br&gt;
-        ///Customers are informed that the reliability of the statistics obtained from the data collected (need for periodic and/or special maintenance, wear in components such as electrospindles, tools, mechanical and/o [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to DisclamerINT.
         /// </summary>
-        public static string DisclamerBody
+        public static string DisclamerINT
         {
             get
             {
-                return ResourceManager.GetString("DisclamerBody", resourceCulture);
+                return ResourceManager.GetString("DisclamerINT", resourceCulture);
             }
         }
 

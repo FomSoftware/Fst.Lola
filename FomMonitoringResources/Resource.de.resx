@@ -546,9 +546,24 @@
   <data name="Disclamer" xml:space="preserve">
     <value>Allgemeine Geschäftsbedingungen</value>
   </data>
-  <data name="DisclamerBody" xml:space="preserve">
-    <value>&lt;H4&gt;RECHTLICHE HINWEISE&lt;/H4&gt;&lt;p&gt;Die von FOM Industrie s.r.l. durch die Anwendung LO.LA. erhobenen Daten werden allein für statistische Zwecke gespeichert und verarbeitet und nicht an Dritte weitergeleitet. Da es sich nicht um personenbezogene Daten handelt, unterliegen sie nicht den Vorschriften gemäß Verordnung (EU) 2016/679. &lt;br&gt; &lt;br&gt;
-Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den erhobenen Daten abgeleiteten Statistik (planmäßiger und/oder außerplanmäßiger Wartungsbedarf, Verschleiß von Komponenten wie Elektrospindel, Werkzeuge, mechanische und/oder pneumatische Komponenten, die am Produkt verwendet werden) nur garantiert ist, wenn der Kunde die offiziellen, von FOM Industrie s.r.l. gelieferten und empfohlenen Teile verwendet.&lt;/p&gt;</value>
+  <data name="DisclamerINT" xml:space="preserve">
+    <value>LOLA wurde für die mobile Nutzung mit folgenden Geräten und Browsern optimiert: Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px), iPad2 (768x1024 px). Browser: Google Chrome unter Windows und Safari unter iOS. &lt;br/&gt;
+&lt;br/&gt;Die von Fom Industrie s.r.l. über die Anwendung LO.LA erhobenen Daten werden abgespeichert und für rein statistische Zwecke verarbeitet. Auf keinen Fall werden sie an Dritte weitergeleitet. Da es sich nicht um personenbezogene Daten handelt, unterliegt ihre Verarbeitung nicht den Bestimmungen von Verordnung (EU) 2016/679. &lt;br/&gt;
+&lt;br/&gt;&lt;b&gt;HAFTUNGSBESCHRÄNKUNG &lt;/b&gt;&lt;br/&gt;
+&lt;br/&gt;Die Zuverlässigkeit der Statistiken, die aus den mit der Software LOLA erhobenen Daten (Meldungen in Verbindung mit der planmäßigen und/oder außerplanmäßigen Wartung, bei Verschleiß von an der Maschine verwendeten Komponenten, darunter Elektrospindeln, Werkzeuge, mechanische, elektronische und/oder pneumatische Teile) erarbeitet werden, ist nur garantiert, wenn der Lizenznehmer die offiziellen, vom Hersteller FOM Industrie s.r.l. gelieferten und empfohlenen Komponenten und Ersatzteile benutzt. &lt;br/&gt;
+&lt;br/&gt;Die Zuverlässigkeit der unter LOLA angezeigten Informationen ist ferner davon abhängig, dass der Lizenznehmer in den Fällen, in denen der selbständige Austausch von Maschinenteilen zulässig ist, die Zähler vorschriftsgemäß zurücksetzt. Daher wird bei Verwaltung und Wartung der als Verbrauchs-/Verschleißteile bezeichneten Komponenten durch den Lizenznehmer (rein beispielsweise und ohne Anspruch auf Vollständigkeit wird auf den Austausch von Werkzeugen, Sägeblättern oder deren Schärfen, den Austausch der Etikettenrollen usw. verwiesen) hat dieser das Reset der Zähler zeitgleich mit dem Austausch der dazugehörenden Komponente vorzunehmen. Daher ist der Lizenzgeber von jeder Haftung freigestellt, wenn eine Warnung durch die LOLA-Software ausfällt oder verspätet angezeigt wird, falls der Lizenznehmer oben genannte Daten nicht vorschriftsgemäß an der Maschinensoftware zurückgesetzt hat. Die Anweisungen zur Vornahme des „Resets“ können im Benutzerhandbuch von LOLA nachgeschlagen werden. &lt;br/&gt;
+&lt;br/&gt;Der Lizenzgeber wird weiter ebenfalls von jeglicher Haftung für Brüche, Maschinenstillstand, Produktionsstillstand usw. freigestellt, falls der Lizenznehmer beschließt, den durch die Meldungen zur planmäßigen und/oder vorausschauenden Wartung erteilten Empfehlungen der LOLA-Software (z.B. Öl- und Schmierstoffwechsel) nicht Folge zu leisten. &lt;br/&gt;
+&lt;br/&gt;Der Lizenzgeber übernimmt ferner keinerlei Haftung für die vom Lizenznehmer bei der Nutzung des Services verarbeiteten Informationen, Daten und Inhalte. &lt;br/&gt;
+&lt;br/&gt;Der Lizenzgeber übernimmt keinerlei Garantie für die Anpassung des Services an bestimmte Zwecke: Ihm kann keine Verantwortung zugewiesen werden, wenn die Erbringung des Services mit den vom Lizenznehmer verlangten speziellen Eigenschaften durch Umstände, die dem Dritten oder dem Lizenznehmer zuzuschreiben sind, beeinflusst wird. &lt;br/&gt;
+&lt;br/&gt;Das Programm umfasst eine Datenbank mit technischen Informationen, die von der numerischen Steuerung der jeweiligen, durch die Produktionsseriennummer identifizierten Maschine erfasst werden. Der Lizenzgeber kann das Vorhandensein von Fehlern oder Unterlassungen nicht ausschließen und haftet nicht für etwaige Schäden, die beim Lizenznehmer oder Dritten aufgrund solcher Fehler oder Unterlassungen entstehen. Auf jeden Fall wird der Lizenznehmer aufgefordert, etwaige Anomalien, Betriebsstörungen, Schwierigkeiten beim Zugriff auf den Service bei der E-Mail-Adresse support@fomservice.com zu melden. &lt;br/&gt;
+&lt;br/&gt;Der Lizenzgeber haftet in keiner Weise für Schäden, die vom Lizenznehmer direkt oder indirekt infolge der Nutzung des Services oder der mangelnden planmäßigen Wartung entsprechend den Angaben des Wartungshandbuchs und/oder Empfehlung des Lizenzgebers an der Maschine, an welcher der Service installiert ist, erfahren werden, es sei denn, es liege ein Fall von Vorsatz oder grober Fahrlässigkeit vor. &lt;br/&gt;
+&lt;br/&gt;Der Lizenzgeber verpflichtet sich dazu, die bestmögliche Funktionstüchtigkeit des Services zu sichern, kann jedoch keine Haftung für Verspätungen, Verzögerungen und/oder Unterbrechungen bei der Erbringung des Update-Services übernehmen, wenn diese auf Ursachen zurückzuführen sind, die ihm nicht zugeschrieben werden können, wie rein beispielsweise: &lt;br/&gt;
+&lt;br/&gt;a) Zufall, Katastrophenfälle und höhere Gewalt; &lt;br/&gt;
+&lt;br/&gt;b) Betriebsstörungen oder Konformitätsmängel der vom Lizenznehmer verwendeten Verbindungsgeräte; &lt;br/&gt;
+&lt;br/&gt;c) Manipulation oder Eingriffe an den Geräten, die vom Lizenznehmer oder Dritten vorgenommen worden sind; &lt;br/&gt;
+&lt;br/&gt;d) fehlerhafte oder nicht vorschriftsmäßige Nutzung des Services durch den Lizenznehmer. &lt;br/&gt;
+&lt;br/&gt;In diesen Fällen haftet der Lizenzgeber nicht für Verluste, Schäden und Verletzungen, die vom Lizenznehmer erlitten worden sind oder erlitten werden. &lt;br/&gt;
+&lt;br/&gt;Die angewandten SLA-Prozentsätze (Service Level Agreement), welche der Lizenznehmer ausdrücklich zu kennen und zu akzeptieren erklärt, sind die in Art. 4 des SW-Vertrags angegebenen, der bei der Aktivierung der Lizenz/Probelizenz akzeptiert wurde.</value>
   </data>
   <data name="XSpindles" xml:space="preserve">
     <value>Spindel XModule/XMU</value>
@@ -565,8 +580,17 @@ Hiermit wird der Kunde darauf hingewiesen, dass die Zuverlässigkeit der aus den
   <data name="DisclaimerLogin" xml:space="preserve">
     <value>LOLA wurde für die Mobilfunknutzung optimiert. &lt;br /&gt;Für die Liste den Abschnitt &lt;br /&gt;„Terms &amp; Conditions“ konsultieren</value>
   </data>
-  <data name="DisclaimerMobileDevices" xml:space="preserve">
-    <value>LOLA wurde für die Mobilfunknutzung auf folgenden Geräten optimiert: Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px), iPad2 (768x1024 px). Mit Webbrowser Google Chrome auf Windows und Safari auf iOS.</value>
+  <data name="DisclaimerEXT" xml:space="preserve">
+    <value>LOLA wurde für die mobile Nutzung mit folgenden Geräten und Browsern optimiert: Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px), iPad2 (768x1024 px). Browser: Google Chrome unter Windows und Safari unter iOS. &lt;br/&gt;
+&lt;br/&gt;&lt;b&gt;HAFTUNGSBESCHRÄNKUNG &lt;/b&gt;&lt;br/&gt;
+&lt;br/&gt;Die von Fom Industrie s.r.l. über die Anwendung LO.LA erhobenen Daten werden abgespeichert und für rein statistische Zwecke verarbeitet. Auf keinen Fall werden sie an Dritte weitergeleitet. Da es sich nicht um personenbezogene Daten handelt, unterliegt ihre Verarbeitung nicht den Bestimmungen von Verordnung (EU) 2016/679. &lt;br/&gt;
+&lt;br/&gt;Der Lizenzgeber verpflichtet sich dazu, die bestmögliche Funktionstüchtigkeit des Services zu sichern, kann jedoch keine Haftung für Verspätungen, Verzögerungen und/oder Unterbrechungen bei der Erbringung des Update-Services übernehmen, wenn diese auf Ursachen zurückzuführen sind, die ihm nicht zugeschrieben werden können, wie rein beispielsweise: &lt;br/&gt;
+&lt;br/&gt;a) Zufall, Katastrophenfälle und höhere Gewalt; &lt;br/&gt;
+&lt;br/&gt;b) Betriebsstörungen oder Konformitätsmängel der vom Lizenznehmer verwendeten Verbindungsgeräte; &lt;br/&gt;
+&lt;br/&gt;c) Manipulation oder Eingriffe an den Geräten, die vom Lizenznehmer oder Dritten vorgenommen worden sind; &lt;br/&gt;
+&lt;br/&gt;d) fehlerhafte oder nicht vorschriftsmäßige Nutzung des Services durch den Lizenznehmer. &lt;br/&gt;
+&lt;br/&gt;In diesen Fällen haftet der Lizenzgeber nicht für Verluste, Schäden und Verletzungen, die vom Lizenznehmer erlitten worden sind oder erlitten werden. &lt;br/&gt;
+&lt;br/&gt;Die angewandten SLA-Prozentsätze (Service Level Agreement), welche der Lizenznehmer ausdrücklich zu kennen und zu akzeptieren erklärt, sind die in Art. 4 des SW-Vertrags angegebenen, der bei der Aktivierung der Lizenz/Probelizenz akzeptiert wurde.</value>
   </data>
   <data name="AxisMotors" xml:space="preserve">
     <value>Motoren/Achsen</value>

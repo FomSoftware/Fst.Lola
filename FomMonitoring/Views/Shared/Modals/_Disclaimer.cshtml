@@ -1,16 +1,24 @@
 ﻿@using FomMonitoringResources
+@Model string
 
 <!--#region modal disclamer-->
-<div class="modal fade" id="disclamer-modal" tabindex="-1" role="dialog" style="font-size: 1.90vh;">
+<div class="modal fade" id="disclamer-modal" tabindex="-1" role="dialog" style="font-size: 1.1vh;">
     <div class="modal-dialog modal-disclaimer" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title pull-left margin-top-5">@Resource.Disclamer</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close"><span aria-hidden="true">&times;</span></button>
             </div>
-            <div class="modal-body" style="padding: 15px;">@Html.Raw(Resource.DisclamerBody) 
-                <br /><br />@Html.Raw(Resource.DisclaimerMobileDevices)
-                </div>
+            <div class="modal-body" style="padding: 15px;">
+                @if (Model == "internal")
+                {
+                    <br />@Html.Raw(Resource.DisclamerINT)
+                }
+                else if (Model == "external")
+                {
+                    <br />@Html.Raw(Resource.DisclaimerEXT)
+                }
+            </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-annulla">@Resource.Cancel</button>
             </div>

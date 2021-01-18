@@ -546,10 +546,24 @@
   <data name="Disclamer" xml:space="preserve">
     <value>Termes et conditions</value>
   </data>
-  <data name="DisclamerBody" xml:space="preserve">
-    <value>&lt;H4&gt;MENTIONS LÉGALES&lt;/H4&gt;&lt;p&gt;Les données collectées par Fom Industrie s.r.l. via l'application LO.LA seront archivées et traitées uniquement à des fins statistiques et ne seront pas divulguées à des tiers. Ne s’agissant pas de données à caractère personnel, leur traitement n’est pas soumis au règlement UE 2016/679.
-&lt;br&gt;&lt;br&gt;
-Nous informons nos clients que la fiabilité des statistiques réalisées à partir des données collectées (nécessité d’entretien périodique et/ou exceptionnel, usure des composants tels que les électrobroches, les outils, les composants mécaniques et/ou pneumatiques montés sur le produit) n’est garantie que si le client utilise les pièces détachées et les composants officiels fournis et conseillés par FOM Industrie s.r.l.&lt;/p&gt;</value>
+  <data name="DisclamerINT" xml:space="preserve">
+    <value>LOLA a été optimisé pour une utilisation mobile sur les dispositifs suivants : Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px) et iPad2 (768x1024 px). Navigateur : Google Chrome sur Windows et Safari sur iOS. &lt;br/&gt;
+&lt;br/&gt;Les données collectées par Fom Industrie s.r.l. via l'application LOLA seront archivées et traitées uniquement à des fins statistiques et ne seront pas communiquées à des tiers. Ne s’agissant pas de données à caractère personnel, leur traitement n’est pas soumis au règlement UE 2016/679. &lt;br/&gt;
+&lt;br/&gt;&lt;b&gt;LIMITATIONS DE RESPONSABILITÉ &lt;/b&gt;&lt;br/&gt;
+&lt;br/&gt;La fiabilité des statistiques obtenues à partir des données collectées par le logiciel LOLA (avis d’entretien périodique et/ou exceptionnel, usure des composants, y compris électrobroches, outils, composants mécaniques, électroniques et/ou pneumatiques, utilisés sur la machine) n'est garantie que si le preneur de licence utilise des composants et des pièces détachées d’origine fournis et recommandés par le fabricant FOM Industrie s.r.l. &lt;br/&gt;
+&lt;br/&gt;En outre, la fiabilité des informations affichées dans LOLA est soumise au "reset" par le preneur de licence des valeurs des compteurs dans les cas où celui-ci est en mesure d’effectuer lui-même le remplacement d’un composant de la machine. Par conséquent, en cas de gestion et d’entretien des composants dits consommables/pièces d’usure par le preneur de licence (à titre d'exemple, mais sans s'y limiter, citons le remplacement des outils, le remplacement des lames ou leur affûtage, le remplacement des rouleaux des étiqueteuses, etc.), le reset des indicateurs doit être effectué par le preneur de licence en même temps que le remplacement du composant physique associé. Par conséquent, le donneur de licence est dégagé de toute responsabilité en cas de manque d’avertissements et/ou d’avertissements tardifs de la part du logiciel LOLA, si les données susmentionnées n’ont pas été correctement réinitialisées par le preneur de licence sur le logiciel de la machine. Pour les modes de "reset", voir les instructions dans le manuel de l’utilisateur LOLA. &lt;br/&gt;
+&lt;br/&gt;En outre, le donneur de licence est dégagé de toute responsabilité en cas de ruptures, d’arrêt machine, d’immobilisation de la machine, d’arrêt de la production, etc., au cas où le preneur de licence déciderait de ne pas exécuter ce qui est recommandé par le logiciel LOLA, indiqué par des notifications d’entretien ordinaire et/ou prédictif (ex. vidange huile et lubrifiants). &lt;br/&gt;
+&lt;br/&gt;Le donneur de licence n'assume aucune responsabilité par rapport aux informations, aux données et aux contenus traités par le preneur de licence dans l'utilisation du service. &lt;br/&gt;
+&lt;br/&gt;Le donneur de licence ne fournit aucune garantie quant à l'adaptation du Service à des finalités particulières : aucune responsabilité ne pourra être retenue à son encontre au cas où la fourniture du service, avec les caractéristiques précises requises par le preneur de licence, serait conditionnée par le Tiers ou par le preneur de licence. &lt;br/&gt;
+&lt;br/&gt;Le programme intègre une base de données contenant des informations techniques relevées par la commande numérique de la machine spécifique, identifiée par son numéro de série de fabrication (matricule). Le donneur de licence ne peut exclure la présence d'erreurs ou d'omissions et n'est pas responsable des dommages éventuellement causés au preneur de licence ou à des tiers) à la suite d’erreurs ou d’omissions. Dans tous les cas, le preneur de licence est invité à signaler toute anomalie, dysfonctionnement et impossibilité d'accéder au service à l'adresse mail support@fomservice.com&lt;br/&gt;
+&lt;br/&gt;Le donneur de licence n'est en aucun cas responsable des dommages subis, directement ou indirectement, par le preneur de licence en conséquence de l'utilisation du Service ou du manque d'entretien ordinaire conformément aux indications figurant dans le Manuel d’utilisation et d’entretien et/ou suggérées par le donneur de licence sur la machine sur laquelle le Service est installé, sauf en cas de faute intentionnelle ou de faute grave. &lt;br/&gt;
+&lt;br/&gt;Le donneur de licence s'engage à assurer la meilleure fonctionnalité du Service, mais n'assume aucune responsabilité pour les retards, suspensions et/ou interruptions dans la fourniture des services de mise à jour qui seraient dus à des causes qui ne lui sont pas imputables, tels que, à titre d'exemple uniquement : &lt;br/&gt;
+&lt;br/&gt;a) cas fortuits, événements catastrophiques et cas de force majeure ; &lt;br/&gt;
+&lt;br/&gt;b) dysfonctionnement ou non -conformité des appareils de connexion utilisés par le preneur de licence ; &lt;br/&gt;
+&lt;br/&gt;c) altérations ou interventions sur les appareils effectuées par le preneur de licence ou par des tiers ; &lt;br/&gt;
+&lt;br/&gt;d) utilisation erronée ou non conforme au Service de la part du preneur de licence. &lt;br/&gt;
+&lt;br/&gt;Dans ces cas, le donneur de licence ne sera responsable d’aucune perte, dommage et lésion subis ou qui seront subis par le preneur de licence. &lt;br/&gt;
+&lt;br/&gt;Les pourcentages de SLA (Service Level Agreement) appliqués, que le preneur de licence déclare expressément connaître et accepter, sont ceux indiqués à l'art. 4 du contrat SW accepté lors de l’activation de la licence ou de l’essai.</value>
   </data>
   <data name="XSpindles" xml:space="preserve">
     <value>Broche XModule/XMU</value>
@@ -566,8 +580,17 @@ Nous informons nos clients que la fiabilité des statistiques réalisées à par
   <data name="DisclaimerLogin" xml:space="preserve">
     <value>LOLA a été optimisé pour une utilisation mobile.&lt;br /&gt; Pour la liste, voir la section &lt;br /&gt;« Termes &amp; Conditions »</value>
   </data>
-  <data name="DisclaimerMobileDevices" xml:space="preserve">
-    <value>LOLA a été optimisé pour une utilisation mobile sur les dispositifs suivants : Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px), iPad2 (768x1024 px). Navigateur: Google Chrome sous Windows et Safari sous iOS.</value>
+  <data name="DisclaimerEXT" xml:space="preserve">
+    <value>LOLA a été optimisé pour une utilisation mobile sur les dispositifs suivants : Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px) et iPad2 (768x1024 px). Navigateur : Google Chrome sur Windows et Safari sur iOS. &lt;br/&gt;
+&lt;br/&gt;&lt;b&gt;LIMITATIONS DE RESPONSABILITÉ &lt;/b&gt;&lt;br/&gt;
+&lt;br/&gt;Les données collectées par Fom Industrie s.r.l. via l'application LOLA seront archivées et traitées uniquement à des fins statistiques et ne seront pas communiquées à des tiers. Ne s’agissant pas de données à caractère personnel, leur traitement n’est pas soumis au règlement UE 2016/679. &lt;br/&gt;
+&lt;br/&gt;Le donneur de licence s'engage à assurer la meilleure fonctionnalité du Service, mais n'assume aucune responsabilité pour les retards, suspensions et/ou interruptions dans la fourniture des services de mise à jour qui seraient dus à des causes qui ne lui sont pas imputables, tels que, à titre d'exemple uniquement : &lt;br/&gt;
+&lt;br/&gt;a) cas fortuits, événements catastrophiques et cas de force majeure ; &lt;br/&gt;
+&lt;br/&gt;b) dysfonctionnement ou non -conformité des appareils de connexion utilisés par le preneur de licence ; &lt;br/&gt;
+&lt;br/&gt;c) altérations ou interventions sur les appareils effectuées par le preneur de licence ou par des tiers ; &lt;br/&gt;
+&lt;br/&gt;d) utilisation erronée ou non conforme au Service de la part du preneur de licence. &lt;br/&gt;
+&lt;br/&gt;Dans ces cas, le donneur de licence ne sera responsable d’aucune perte, dommage et lésion subis ou qui seront subis par le preneur de licence. &lt;br/&gt;
+&lt;br/&gt;Les pourcentages de SLA (Service Level Agreement) appliqués, que le preneur de licence déclare expressément connaître et accepter, sont ceux indiqués à l'art. 4 du contrat SW accepté lors de l’activation de la licence ou de l’essai.</value>
   </data>
   <data name="AxisMotors" xml:space="preserve">
     <value>Moteurs/Axes</value>

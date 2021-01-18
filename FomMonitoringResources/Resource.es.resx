@@ -546,10 +546,24 @@
   <data name="Disclamer" xml:space="preserve">
     <value>Términos y condiciones</value>
   </data>
-  <data name="DisclamerBody" xml:space="preserve">
-    <value>&lt;H4&gt;AVISO LEGAL&lt;/H4&gt;&lt;p&gt;Los datos adquiridos por Fom Industrie s.r.l. a través de la aplicación LO.LA serán guardados y tratados con meros fines estadísticos, absolutamente sin comunicarlos a terceros. De todos modos, no tratándose de datos personales, no están sujetos a la normativa relacionada con el Reglamento UE 2016/679.
-&lt;br&gt;&lt;br&gt;
-Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultantes de los datos recopilados (necesidad de mantenimiento ordinario y/o extraordinario, desgaste de componentes como electromandriles, herramientas, piezas mecánicas y/o neumáticas utilizadas en el bien) solo se garantiza si el cliente se sirve de componentes y recambios oficiales provistos y recomendados por FOM Industrie s.r.l.&lt;/p&gt;</value>
+  <data name="DisclamerINT" xml:space="preserve">
+    <value>LOLA ha sido optimizado para los siguientes dispositivos móviles:  Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px), iPad2 (768x1024 px). Navegadores: Google Chrome en Windows y Safari en iOS. &lt;/br&gt;
+&lt;/br&gt;Los datos obtenidos por FOM Industrie S.r.l. mediante la aplicación LO.LA serán guardados y tratados con meros fines estadísticos y no serán transmitidos a terceros. Al no tratarse de datos personales, no están sujetos a la normativa en virtud del Reglamento UE 2016/679. &lt;/br&gt;
+&lt;/br&gt;&lt;b&gt;LIMITACIÓN DE RESPONSABILIDAD &lt;/b&gt;&lt;/br&gt;
+&lt;/br&gt;La fiabilidad de las estadísticas realizadas con los datos obtenidos por el programa LOLA (notificaciones de mantenimiento periódico y/o extraordinario, desgaste de componentes como electromandriles, herramientas, piezas mecánicas, electrónicas y/o neumáticas usadas en la máquina) solo se garantiza a condición de que el Licenciatario se sirva de componentes y recambios oficiales provistos y recomendados por el fabricante FOM Industrie S.r.l. &lt;/br&gt;
+&lt;/br&gt;Asimismo, la fiabilidad de los datos visualizados en LOLA depende también de la puesta a cero o restablecimiento de los valores de los contadores por parte del Licenciatario, cuando a este se le permita sustituir autónomamente un componente de la máquina. Por tanto, en caso de gestión y mantenimiento autónomo de los componentes considerados consumibles/desgastables (a título de ejemplo no exhaustivo la sustitución de herramientas, la sustitución o el afilado de discos, la sustitución del rollo de la etiquetadora, etc.), el Licenciatario debe efectuar el restablecimiento de los contadores cuando sustituye efectivamente el componente asociado. De tal modo, el Licenciante se exime de toda responsabilidad en caso de que el programa LOLA no avise –o lo haga con retraso– sobre la necesidad de cambiar los componentes si el Licenciatario no ha restablecido los mencionados valores en el programa de la máquina. Para las instrucciones sobre las modalidades de restablecimiento, remitirse al Manual para el Usuario LOLA. &lt;/br&gt;
+&lt;/br&gt;El Licenciante se exime también de toda responsabilidad ante eventuales roturas, períodos de inactividad de la máquina o de la producción, etc. en caso de que el Licenciatario decida no seguir las instrucciones que el programa LOLA señala mediante notificaciones de mantenimiento ordinario y/o predictivo (p. ej. cambio de aceite y lubricantes). &lt;/br&gt;
+&lt;/br&gt;Asimismo, el Licenciante no se asume alguna responsabilidad por la información, los datos y contenidos tratados de todos modos por el Licenciatario durante el uso del Servicio. &lt;/br&gt;
+&lt;/br&gt;El Licenciante no concede alguna garantía sobre la adaptación del Servicio a fines particulares: bajo ningún concepto se le podrá imputar alguna responsabilidad en caso de que la provisión del Servicio, con las características específicamente solicitadas por el Licenciatario, sea afectada por circunstancias de Terceros o del Licenciatario. &lt;/br&gt;
+&lt;/br&gt;El programa incluye una base de datos que contiene datos técnicos obtenidos por el control numérico de la máquina correspondiente, identificada mediante el número de serie de fabricación (matrícula). El Licenciante no puede excluir la presencia de errores u omisiones, ni se hace responsable de eventuales daños causados al Licenciatario o a terceros a raíz de tales errores u omisiones. De todos modos, se ruega al Licenciatario señalar por correo electrónico cualquier anomalía, mal funcionamiento, imposibilidad de acceso al servicio a esta dirección: support@fomservice.com. &lt;/br&gt;
+&lt;/br&gt;El Licenciante no responde en absoluto por daños sufridos directa o indirectamente por el Licenciatario a raíz del uso del Servicio o de la falta del mantenimiento ordinario indicado en el Manual de Uso y Mantenimiento y/o recomendado por el Licenciante en la máquina donde está instalado el Servicio, salvo en caso de dolo o falta grave. &lt;/br&gt;
+&lt;/br&gt;El Licenciante se compromete en garantizar el mejor funcionamiento del Servicio, sin embargo no se asume alguna responsabilidad por retrasos, suspensiones y/o interrupciones en el suministro de los servicios de actualización que hayan sido determinados por causas no imputables al mismo como, a mero título de ejemplo: &lt;/br&gt;
+&lt;/br&gt;a) caso fortuito, eventos catastróficos y fuerza mayor; &lt;/br&gt;
+&lt;/br&gt;b) mal funcionamiento o disconformidad de los aparatos de conexión utilizados por el Licenciatario; &lt;/br&gt;
+&lt;/br&gt;c) violación o intervención en los aparatos por parte del Licenciatario o de terceros; &lt;/br&gt;
+&lt;/br&gt;d) uso erróneo o disconforme del Servicio por parte del Licenciatario. &lt;/br&gt;
+&lt;/br&gt;En tales casos, el Licenciante no responderá de alguna pérdida, daño y/o lesión sufridos o que pueda sufrir el Licenciatario. &lt;/br&gt;
+&lt;/br&gt;Los porcentajes de ANS (Acuerdo de Nivel de Servicio, SLA por sus siglas en inglés) aplicados, que el Licenciatario expresamente declara conocer y aceptar, son los indicados en la cláusula 4 del contrato SW aceptado al activar la licencia de pago o de prueba.</value>
   </data>
   <data name="XSpindles" xml:space="preserve">
     <value>Husillos XModule / XMU</value>
@@ -566,8 +580,23 @@ Se informa a los Sres. Clientes que la fiabilidad de las estadísticas resultant
   <data name="DisclaimerLogin" xml:space="preserve">
     <value>LOLA ha sido optimizado para dispositivos móviles.&lt;br /&gt; Para la lista, remitirse a la sección &lt;br /&gt;"Terms &amp; Conditions". </value>
   </data>
-  <data name="DisclaimerMobileDevices" xml:space="preserve">
-    <value>LOLA ha sido optimizado para los siguientes dispositivos móviles: Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px), iPad2 (768x1024 px). Navegadores: Google Chrome en Windows y Safari en iOS.</value>
+  <data name="DisclaimerEXT" xml:space="preserve">
+    <value>LOLA ha sido optimizado para los siguientes dispositivos móviles:  Samsung S10 (360x740 px), iPhoneX (375x812 px), Samsung Galaxy S7 (360x640 px), iPhone8 (375x667 px), iPad PRO (1024x1366 px), iPad2 (768x1024 px). Navegadores: Google Chrome en Windows y Safari en iOS. &lt;br/&gt;
+&lt;br/&gt;&lt;b&gt;LIMITACIÓN DE RESPONSABILIDAD &lt;/b&gt;&lt;br/&gt;
+&lt;br/&gt;Los datos obtenidos por FOM Industrie S.r.l. mediante la aplicación LO.LA serán guardados y tratados con meros fines estadísticos y no serán transmitidos a terceros. Al no tratarse de datos personales, no están sujetos a la normativa en virtud del Reglamento UE 2016/679. &lt;br/&gt;
+&lt;br/&gt;El Licenciante se compromete en garantizar el mejor funcionamiento del Servicio, sin embargo no se asume alguna responsabilidad por retrasos, suspensiones y/o interrupciones en el suministro de los servicios de actualización que hayan sido determinados por causas no imputables al mismo como, a mero título de ejemplo: &lt;br/&gt;
+&lt;br/&gt;a) caso fortuito, eventos catastróficos y fuerza mayor; &lt;br/&gt;
+&lt;br/&gt;b) mal funcionamiento o disconformidad de los aparatos de conexión utilizados por el Licenciatario; &lt;br/&gt;
+&lt;br/&gt;c) violación o intervención en los aparatos por parte del Licenciatario o de terceros; &lt;br/&gt;
+&lt;br/&gt;d) uso erróneo o disconforme del Servicio por parte del Licenciatario. &lt;br/&gt;
+&lt;br/&gt;En tales casos, el Licenciante no responderá de alguna pérdida, daño y/o lesión sufridos o que pueda sufrir el Licenciatario. &lt;br/&gt;
+&lt;br/&gt;Los porcentajes de ANS (Acuerdo de Nivel de Servicio, SLA por sus siglas en inglés) aplicados, que el Licenciatario expresamente declara conocer y aceptar, son los indicados en la cláusula 4 del contrato SW aceptado al activar la licencia de pago o de prueba.
+
+
+
+
+
+</value>
   </data>
   <data name="AxisMotors" xml:space="preserve">
     <value>Motores/Ejes</value>

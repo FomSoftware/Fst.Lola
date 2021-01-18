@@ -103,7 +103,7 @@
 
 @Html.Partial("Modals/_ChangePassword")
     @Html.Partial("Modals/_ChangeTimeZone")
-    @Html.Partial("Modals/_Disclaimer")
+    @Html.Partial("Modals/_Disclaimer", "internal")
     <script type="text/javascript">
         @{
             var c = CultureInfo.CurrentUICulture.Name.Split('-')[0];
