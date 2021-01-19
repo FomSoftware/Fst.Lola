@@ -464,7 +464,10 @@
     <Content Include="GlobApp\scripts\waitme-manager.js" />
     <Content Include="Images\email\background-min.jpg" />
     <Content Include="Images\email\Logo_email.jpg" />
+    <Content Include="Images\faq\Accesso Manuali.png" />
     <Content Include="Images\faq\faq1.png" />
+    <Content Include="Images\faq\Lista Manuali.png" />
+    <Content Include="Images\faq\MailVIPAREA.png" />
     <Content Include="Images\flags\de.png" />
     <Content Include="Images\flags\en.png" />
     <Content Include="Images\flags\es.png" />

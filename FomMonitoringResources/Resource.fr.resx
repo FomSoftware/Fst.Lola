@@ -1306,8 +1306,8 @@ Le mot de passe doit être réinitialisé lors du premier accès à LOLA.&lt;br 
   </data>
   <data name="AskCredentialBody" xml:space="preserve">
     <value>Si vous êtes un utilisateur de rôle « Customer » (utilisateur VIPAREA Fom Industrie), utilisez les identifiants d’accès que vous avez reçus par e-mail. Si vous avez oublié le mot de passe, ouvrez l’URL ci-dessous et cliquez sur LOST PASSWORD :   &lt;br&gt;
-&lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;&lt;br&gt;
-&lt;br&gt;
+&lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;
+&lt;br/&gt;&lt;img src="[BASIC_URL_HOST]Images/faq/MailVIPAREA.png"&gt;&lt;br&gt;
 Si vous êtes un utilisateur LOLA de rôle Opérateur/Chef d’Atelier, vérifiez que vous avez bien reçu de votre responsable un e-mail et/ou un imprimé de ce type, contenant le nom d’utilisateur et le mot de passe provisoire pour l’accès.&lt;br&gt; &lt;div class="faqImg"&gt;&lt;img src="[BASIC_URL_HOST]Images/faq/faq1.png"&gt;&lt;/div&gt;</value>
   </data>
   <data name="HowToUseTitle" xml:space="preserve">
@@ -1315,7 +1315,9 @@ Si vous êtes un utilisateur LOLA de rôle Opérateur/Chef d’Atelier, vérifie
   </data>
   <data name="HowToUseBody" xml:space="preserve">
     <value>Accéder à la VIPAREA FOM Industrie et télécharger le manuel utilisateur LOLA, pour votre machine-outil.&lt;br&gt;
-&lt;a  class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;</value>
+&lt;a  class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;
+&lt;br/&gt;&lt;div&gt;&lt;img width="100%" src="[BASIC_URL_HOST]Images/faq/Accesso Manuali.png"&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img width="100%" src="[BASIC_URL_HOST]Images/faq/Lista Manuali.png"&gt;&lt;/div&gt;</value>
   </data>
   <data name="NoDataFromMachineTitle" xml:space="preserve">
     <value>J’ai vérifié les points 1, 2, 3 mais je continue à ne pas recevoir les données de la machine</value>

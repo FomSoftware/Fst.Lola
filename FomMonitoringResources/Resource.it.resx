@@ -1310,8 +1310,8 @@ Password provvisoria generata: [PASSWORD]&lt;br /&gt;La password andrà  resetta
   </data>
   <data name="AskCredentialBody" xml:space="preserve">
     <value>Se si dispone di un’utenza di ruolo “Customer” (utente VIPAREA Fom Industrie), utilizzare le credenziali di accesso ricevute via mail. Nel caso in cui non si ricordi la password, aprire il seguente URL e cliccare sulla voce LOST PASSWORD:   &lt;br&gt;
-&lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;&lt;br&gt;
-&lt;br&gt;
+&lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;
+&lt;br/&gt;&lt;img src="[BASIC_URL_HOST]Images/faq/MailVIPAREA.png"&gt;&lt;br/&gt;
 Se si dispone di un’utenza LOLA (ruolo Operatore/Capo Officina), verificare di aver ricevuto dal proprio responsabile una mail e/o una stampa di questo tipo, contenente utente e password provvisoria di accesso.&lt;br&gt;&lt;div class="faqImg"&gt; &lt;img src="[BASIC_URL_HOST]Images/faq/faq1.png"&gt;&lt;/div&gt;</value>
   </data>
   <data name="HowToUseTitle" xml:space="preserve">
@@ -1319,7 +1319,9 @@ Se si dispone di un’utenza LOLA (ruolo Operatore/Capo Officina), verificare di
   </data>
   <data name="HowToUseBody" xml:space="preserve">
     <value>Accedere alla VIPAREA FOM Industrie e scaricare il manuale utente LOLA, per la propria macchina utensile.&lt;br&gt;
-&lt;a  class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;</value>
+&lt;a  class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;
+&lt;br/&gt;&lt;div&gt;&lt;img width="100%" src="[BASIC_URL_HOST]Images/faq/Accesso Manuali.png"&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img width="100%" src="[BASIC_URL_HOST]Images/faq/Lista Manuali.png"&gt;&lt;/div&gt;</value>
   </data>
   <data name="NoDataFromMachineBody" xml:space="preserve">
     <value>In caso di persistenza di problemi, aprire una chiamata al supporto LOLA:
@@ -1334,7 +1336,12 @@ indicando:
     <value>Ho verificato i punti 1, 2, 3 ma continuo a non ricevere dati dalla macchina.</value>
   </data>
   <data name="NoMachineVisibleBody" xml:space="preserve">
-    <value>Se è stata appena attivata la licenza, assicurarsi che il PC della propria macchina utensile Fom Industrie sia connesso a rete internet e che il SW-HMI (FST CUT o FST CAM o FST LINE) sia aperto sul PC della macchina. In caso contrario provvedere alla connessione internet e all’avvio del SW FST e verificare nuovamente in LOLA la visibilità dei dati.</value>
+    <value>Se è stata appena attivata la licenza, assicurarsi che il PC della propria macchina utensile Fom Industrie sia connesso a rete internet e che il SW-HMI (FST CUT o FST CAM o FST LINE) sia aperto sul PC della macchina.
+&lt;br/&gt;Contattare il proprio Amministratore di rete per abilitare, dalla macchina, la raggiungibilità ai seguenti siti:
+&lt;br/&gt;&lt;a class='faqLink' target='blank' href="https://viparea.fomindustrie.com"&gt;https://viparea.fomindustrie.com&lt;/a&gt;
+&lt;br/&gt;&lt;a class='faqLink' target='blank' href="https://lola.fomindustrie.com"&gt;https://lola.fomindustrie.com&lt;/a&gt;
+&lt;br/&gt;&lt;a class='faqLink' target='blank' href="https://lolaapi.fomindustrie.com"&gt;https://lolaapi.fomindustrie.com&lt;/a&gt;
+&lt;br/&gt;In caso contrario provvedere alla connessione internet e all’avvio del SW FST e verificare nuovamente in LOLA la visibilità dei dati.</value>
   </data>
   <data name="NoMachineVisibleBody2" xml:space="preserve">
     <value>Se l’attivazione di licenza LOLA della propria macchina non è recente, assicurarsi che non sia scaduta. In caso di acquisto di più licenze, verificare la data di scadenza della licenza LOLA per ciascuna macchina, accedendo alla VIPAREA: &lt;br&gt; 

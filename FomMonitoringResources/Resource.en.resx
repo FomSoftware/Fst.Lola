@@ -1312,8 +1312,8 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   </data>
   <data name="AskCredentialBody" xml:space="preserve">
     <value>If you are a user with a “Customer” role (Fom Industrie VIPAREA user), use the access credentials you received by email. If you do not remember your password, open the URL below and click on LOST PASSWORD: &lt;br&gt;
-&lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;&lt;br&gt;
-&lt;br&gt;
+&lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;
+&lt;br/&gt;&lt;img src="[BASIC_URL_HOST]Images/faq/MailVIPAREA.png"&gt;&lt;br/&gt;
 If you are a LOLA user (Operator/Head Workshop role), check that your manager has sent you an email and/or printout of this type, containing your username and provisional access password.&lt;br&gt;&lt;div class="faqImg"&gt; &lt;img src="[BASIC_URL_HOST]Images/faq/faq1.png"&gt;&lt;/div&gt;</value>
   </data>
   <data name="HowToUseTitle" xml:space="preserve">
@@ -1321,7 +1321,9 @@ If you are a LOLA user (Operator/Head Workshop role), check that your manager ha
   </data>
   <data name="HowToUseBody" xml:space="preserve">
     <value>Access the FOM Industrie VIPAREA and download the LOLA user manual for your machine tool.&lt;br&gt;
-&lt;a  class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;</value>
+&lt;a  class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;
+&lt;br/&gt;&lt;div&gt;&lt;img width="100%" src="[BASIC_URL_HOST]Images/faq/Accesso Manuali.png"&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img width="100%" src="[BASIC_URL_HOST]Images/faq/Lista Manuali.png"&gt;&lt;/div&gt;</value>
   </data>
   <data name="NoMachineVisibleBody" xml:space="preserve">
     <value>If the license has only just been activated, make sure that your Fom Industrie machine tool’s PC is connected to the internet and that the HMI SW (FST CUT or FST CAM or FST LINE) is open on the machine’s PC. If not, connect to the internet and run the FST SW, then check LOLA again to see if the data is visible.</value>

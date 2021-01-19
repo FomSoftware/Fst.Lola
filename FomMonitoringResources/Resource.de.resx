@@ -1306,7 +1306,8 @@ Das Passwort muss beim ersten Zugriff auf LOLA zurückgesetzt werden.&lt;br /&gt
   </data>
   <data name="AskCredentialBody" xml:space="preserve">
     <value>Bei einem Benutzerkonto in der Rolle „Customer“ (bei VIPAREA Fom Industrie registrierter Benutzer) sind die per E-Mail erhaltenen Login-Daten zu verwenden.  Falls Sie das Passwort vergessen haben, rufen Sie folgende URL auf und klicken Sie dort auf die Option LOST PASSWORD: &lt;br&gt; 
-&lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;&lt;br&gt;
+&lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;
+&lt;br/&gt;&lt;img src="[BASIC_URL_HOST]Images/faq/MailVIPAREA.png"&gt;&lt;br/&gt;
 Bei einem LOLA-Benutzerkonto (mit der Rolle Bediener/Werkstattleiter) ist zu prüfen, ob eine E-Mail und/oder ein Ausdruck dieser Art vom zuständigen Leiter erhalten wurde, in denen der Benutzername und das vorläufige Passwort für den Zugriff enthalten sind.&lt;br&gt;&lt;div class="faqImg"&gt; &lt;img  src="[BASIC_URL_HOST]Images/faq/faq1.png"&gt;&lt;/div&gt;</value>
   </data>
   <data name="HowToUseTitle" xml:space="preserve">
@@ -1314,7 +1315,9 @@ Bei einem LOLA-Benutzerkonto (mit der Rolle Bediener/Werkstattleiter) ist zu pr�
   </data>
   <data name="HowToUseBody" xml:space="preserve">
     <value>VIPAREA FOM Industrie aufrufen und von der Website das LOLA-Benutzerhandbuch für die eigene Werkzeugmaschine herunterladen.&lt;br&gt;
-&lt;a  class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;</value>
+&lt;a  class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;
+&lt;br/&gt;&lt;div&gt;&lt;img width="100%" src="[BASIC_URL_HOST]Images/faq/Accesso Manuali.png"&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img width="100%" src="[BASIC_URL_HOST]Images/faq/Lista Manuali.png"&gt;&lt;/div&gt;</value>
   </data>
   <data name="NoMachineVisibleTitle" xml:space="preserve">
     <value>Ich habe mich erfolgreich bei LOLA eingeloggt, sehe aber keine Maschine</value>
