@@ -139,11 +139,9 @@ namespace FomMonitoringCore.Service
         public List<UserModel> GetUsers(string customerName)
         {
             List<UserModel> result = null;
-
             try
             {
-
-                    // Recupero la lista degli utenti associati al cliente
+                // Recupero la lista degli utenti associati al cliente
                     List<Guid> customerUsers = null;
                     if (customerName != null)
                     {

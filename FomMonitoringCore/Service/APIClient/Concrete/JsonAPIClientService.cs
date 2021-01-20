@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Transactions;
 using System.Xml;
+using Mapster;
 
 namespace FomMonitoringCore.Service.APIClient.Concrete
 {
@@ -123,7 +124,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
 
                     //elimino i customer non più presenti nella vip area
 
-                    var dbCustomers = _userManagerService.GetAllCustomers();
+                    var dbCustomers = _userManagerService.GetAllCustomers(); 
                     var customerNames = customers.customers.Select(j => j.username).Distinct();
                     var custmerToRemove = dbCustomers.Where(e => !customerNames.Contains(e.Username)).ToList();
 
@@ -136,13 +137,13 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
 
                         //utenti associati al customer
                         var usCust = new List<UserModel>();
-                        foreach (var item in us)
-                        {
-                            usCust.AddRange(_userManagerService.GetUsers(item.CustomerName));
-                        }
 
                         if (us.Any())
                         {
+                            foreach (var item in us)
+                            {
+                                usCust.AddRange(_userManagerService.GetUsers(item.CustomerName));
+                            }
                             _context.Set<UserCustomerMapping>().RemoveRange(us);
                             _context.SaveChanges();
                         }
@@ -161,8 +162,10 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             transactionSuppress.Complete();
                         }
                     }
-                    //pulizia della tabella UserCustomerMapping, potrebbero esserci record inseriti a mano con customerName non esistenti
-                    
+                //pulizia della tabella UserCustomerMapping, potrebbero esserci record inseriti a mano con customerName non esistenti
+
+                    var machines = _context.Set<Machine>().ToList();
+                    var users = _context.Set<Users>().ToList();
                     foreach (var customer in customers.customers)
                     {
                         try
@@ -171,7 +174,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             var user = new UserModel();
                             using (var transactionSuppress = new TransactionScope(TransactionScopeOption.Suppress))
                             {
-                                user = _userManagerService.GetUser(customer.username);
+                                user = users.FirstOrDefault(u => u.Username == customer.username)?.Adapt<Users, UserModel>();
                                 if (user == null)
                                 {
                                     user = new UserModel
@@ -203,10 +206,10 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
 
                             //Prendo la lista delle macchine esistenti nel DB a partire da quelle arrivate da JSON
                             var machinesSerial = customer.machines.Select(s => s.serial).ToList();
-                            var machines = _context.Set<Machine>().Where(w => machinesSerial.Contains(w.Serial)).ToList();
+                            var customersMachines = machines.Where(w => machinesSerial.Contains(w.Serial)).ToList();
 
                             //Rimuovo le associazioni cliente <=> macchina per macchine non più monitorate
-                            var machinesId = machines.Select(s => s.Id).ToList();
+                            var machinesId = customersMachines.Select(s => s.Id).ToList();
                             var clientUsersMachines = _context.Set<UserMachineMapping>().Where(w => machinesId.Contains(w.MachineId)).Select(s => s.UserId).Distinct().ToList();
                             var usersMachinesToRemove = _context.Set<UserMachineMapping>().Where(w => !machinesId.Contains(w.MachineId) && clientUsersMachines.Contains(w.UserId)).ToList();
                             _context.Set<UserMachineMapping>().RemoveRange(usersMachinesToRemove);
@@ -214,7 +217,7 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             var plant = _mesService.GetOrSetPlantDefaultByUser(user.ID);
 
                             //Inserisco i nuovi mapping cliente <=> macchina
-                            foreach (var machine in machines)
+                            foreach (var machine in customersMachines)
                             {
                                 var jm = customer.machines.FirstOrDefault(f => f.serial == machine.Serial);
                                 if (jm != null)
@@ -223,21 +226,10 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                                     var activationDate = jm.activationDate;
                                     var machineName = jm.machineName;
                                     var usersMachineMapped = _context.Set<UserMachineMapping>().Where(w => w.MachineId == machine.Id).ToList();
-                                    if (usersMachineMapped.Any())
-                                    {
-                                        /*foreach (UserMachineMapping userMachineMapped in usersMachineMapped)
-                                        {
-                                            userMachineMapped.ExpirationDate = expirationDate;
-                                            //userMachineMapped.ActivationDate = activationDate;
-                                            ent.SaveChanges();
-                                        }*/
-                                    }
-                                    else
+                                    if (!usersMachineMapped.Any())
                                     {
                                         var userMachine = new UserMachineMapping()
                                         {
-                                            //ExpirationDate = expirationDate,
-                                            //ActivationDate = activationDate,
                                             MachineId = machine.Id,
                                             UserId = user.ID
                                         };
