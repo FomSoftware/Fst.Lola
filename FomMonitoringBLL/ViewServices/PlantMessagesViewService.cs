@@ -54,6 +54,11 @@ namespace FomMonitoringBLL.ViewServices
 
         public List<MachineMessagesDataViewModel> GetVueModel(PlantModel plant, List<MachineInfoModel> allMachines, PeriodModel period)
         {
+            if (period.StartDate == DateTime.MinValue || period.EndDate == DateTime.MinValue)
+            {
+                period.EndDate = DateTime.UtcNow;
+                period.StartDate = DateTime.Now.AddDays(-30);
+            }
             var result = new List<MachineMessagesDataViewModel>();
 
             var dataAllMachines = _mesService.GetPlantData(plant);
