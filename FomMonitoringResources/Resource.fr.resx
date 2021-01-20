@@ -1338,7 +1338,12 @@ en indiquant :
     <value>J’accède à LOLA, le PC de ma machine est connecté à internet, le logiciel est ouvert, mais je ne vois aucune machine dans LOLA</value>
   </data>
   <data name="NoMachineVisibleBody" xml:space="preserve">
-    <value>Si vous venez d’activer la licence, assurez-vous que le PC de votre machine-outil Fom Industrie est connecté à internet et que le SW-HMI (FST CUT ou FST CAM ou FST LINE) est ouvert sur le PC de la machine. Autrement, connectez-vous à internet, démarrez le SW FST et vérifiez de nouveau dans LOLA la visibilité des données.</value>
+    <value>Si vous venez d’activer la licence, assurez-vous que le PC de votre machine-outil Fom Industrie est connecté à internet et que le SW-HMI (FST CUT ou FST CAM ou FST LINE) est ouvert sur le PC de la machine. 
+&lt;br/&gt;Contactez votre administrateur réseau pour activer, depuis la machine, l'accessibilité aux sites suivants :
+&lt;br/&gt;&lt;a class='faqLink' target='blank' href="https://viparea.fomindustrie.com"&gt;https://viparea.fomindustrie.com&lt;/a&gt;
+&lt;br/&gt;&lt;a class='faqLink' target='blank' href="https://lola.fomindustrie.com"&gt;https://lola.fomindustrie.com&lt;/a&gt;
+&lt;br/&gt;&lt;a class='faqLink' target='blank' href="https://lolaapi.fomindustrie.com"&gt;https://lolaapi.fomindustrie.com&lt;/a&gt;
+&lt;br/&gt;Autrement, connectez-vous à internet, démarrez le SW FST et vérifiez de nouveau dans LOLA la visibilité des données.</value>
   </data>
   <data name="NoMachineVisibleBody2" xml:space="preserve">
     <value>Si l’activation de la licence LOLA de votre machine n’est pas récente, assurez-vous qu’elle n’est pas expirée. Si vous avez acheté plusieurs licences, vérifiez la date d’expiration de la licence LOLA pour chaque machine, en accédant à VIPAREA : &lt;br&gt; 

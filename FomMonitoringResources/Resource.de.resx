@@ -1326,7 +1326,12 @@ Bei einem LOLA-Benutzerkonto (mit der Rolle Bediener/Werkstattleiter) ist zu pr�
     <value>Ich habe mich erfolgreich bei LOLA eingeloggt, der PC meiner Maschine ist an Internet angeschlossen und die SW wurde gestartet, dennoch ist in LOLA keine Maschine zu sehen</value>
   </data>
   <data name="NoMachineVisibleBody" xml:space="preserve">
-    <value>Falls die Lizenz gerade erst aktiviert worden ist, überprüfen Sie, ob der PC Ihrer Werkzeugmaschine von Fom Industrie über einen Internetanschluss verfügt und ob die HMI-SW (FST CUT oder FST CAM oder FST LINE) am PC der Maschine aufgerufen worden ist.  Andernfalls den Internetanschluss herstellen, die FST-SW starten und anschließend erneut die Anzeige der Daten in LOLA kontrollieren.</value>
+    <value>Falls die Lizenz gerade erst aktiviert worden ist, überprüfen Sie, ob der PC Ihrer Werkzeugmaschine von Fom Industrie über einen Internetanschluss verfügt und ob die HMI-SW (FST CUT oder FST CAM oder FST LINE) am PC der Maschine aufgerufen worden ist.  
+&lt;br/&gt;Wenden Sie sich an Ihren Netzwerkadministrator, um die Erreichbarkeit folgender Websites von der Maschine aus freigeben zu lassen:
+&lt;br/&gt;&lt;a class='faqLink' target='blank' href="https://viparea.fomindustrie.com"&gt;https://viparea.fomindustrie.com&lt;/a&gt;
+&lt;br/&gt;&lt;a class='faqLink' target='blank' href="https://lola.fomindustrie.com"&gt;https://lola.fomindustrie.com&lt;/a&gt;
+&lt;br/&gt;&lt;a class='faqLink' target='blank' href="https://lolaapi.fomindustrie.com"&gt;https://lolaapi.fomindustrie.com&lt;/a&gt;
+&lt;br/&gt;Andernfalls den Internetanschluss herstellen, die FST-SW starten und anschließend erneut die Anzeige der Daten in LOLA kontrollieren.</value>
   </data>
   <data name="NoMachineVisibleBody2" xml:space="preserve">
     <value>Falls die Aktivierung der LOLA-Lizenz Ihrer Maschine bereits eine Weile zurückliegt, prüfen Sie, ob diese möglicherweise abgelaufen ist. Falls mehrere Lizenzen erworben worden sind, das Ablaufdatum der LOLA-Lizenz für jede Maschine prüfen, indem Sie sich bei VIPAREA einloggen: &lt;br&gt; 

@@ -1344,7 +1344,12 @@ indicando:
     <value>Accedo a LOLA, el ordenador de la máquina está conectado a Internet, el programa SW está abierto, pero no veo ninguna máquina en LOLA</value>
   </data>
   <data name="NoMachineVisibleBody" xml:space="preserve">
-    <value>Si la licencia ha sido activada recientemente, controla que el ordenador de tu máquina herramienta Fom Industrie esté conectado a Internet y tenga abierto el programa SW-HMI (FST CUT, FST CAM o FST LINE). Si no es así, conecta el ordenador de la máquina a Internet y abre el programa SW FST, luego controla nuevamente si se visualizan los datos en LOLA.</value>
+    <value>Si la licencia ha sido activada recientemente, controla que el ordenador de tu máquina herramienta Fom Industrie esté conectado a Internet y tenga abierto el programa SW-HMI (FST CUT, FST CAM o FST LINE). 
+&lt;br/&gt;Contactar con el propio administrador de red para habilitar el acceso de la máquina a los siguientes sitios web:
+&lt;br/&gt;&lt;a class='faqLink' target='blank' href="https://viparea.fomindustrie.com"&gt;https://viparea.fomindustrie.com&lt;/a&gt;
+&lt;br/&gt;&lt;a class='faqLink' target='blank' href="https://lola.fomindustrie.com"&gt;https://lola.fomindustrie.com&lt;/a&gt;
+&lt;br/&gt;&lt;a class='faqLink' target='blank' href="https://lolaapi.fomindustrie.com"&gt;https://lolaapi.fomindustrie.com&lt;/a&gt;
+&lt;br/&gt;Si no es así, conecta el ordenador de la máquina a Internet y abre el programa SW FST, luego controla nuevamente si se visualizan los datos en LOLA.</value>
   </data>
   <data name="NoMachineVisibleBody2" xml:space="preserve">
     <value>Si la activación de la licencia LOLA en tu máquina no es reciente, controla que no esté caducada. En caso de tener varias licencias, controla la fecha de caducidad de la licencia LOLA para cada máquina accediendo a VIPAREA: &lt;br&gt; 

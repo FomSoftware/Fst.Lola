@@ -1326,7 +1326,12 @@ If you are a LOLA user (Operator/Head Workshop role), check that your manager ha
 &lt;div&gt;&lt;img width="100%" src="[BASIC_URL_HOST]Images/faq/Lista Manuali.png"&gt;&lt;/div&gt;</value>
   </data>
   <data name="NoMachineVisibleBody" xml:space="preserve">
-    <value>If the license has only just been activated, make sure that your Fom Industrie machine tool’s PC is connected to the internet and that the HMI SW (FST CUT or FST CAM or FST LINE) is open on the machine’s PC. If not, connect to the internet and run the FST SW, then check LOLA again to see if the data is visible.</value>
+    <value>If the license has only just been activated, make sure that your Fom Industrie machine tool’s PC is connected to the internet and that the HMI SW (FST CUT or FST CAM or FST LINE) is open on the machine’s PC. 
+&lt;br/&gt;Please contact your network Administrator to enable the following sites to be reached, from the machine:
+&lt;br/&gt;&lt;a class='faqLink' target='blank' href="https://viparea.fomindustrie.com"&gt;https://viparea.fomindustrie.com&lt;/a&gt;
+&lt;br/&gt;&lt;a class='faqLink' target='blank' href="https://lola.fomindustrie.com"&gt;https://lola.fomindustrie.com&lt;/a&gt;
+&lt;br/&gt;&lt;a class='faqLink' target='blank' href="https://lolaapi.fomindustrie.com"&gt;https://lolaapi.fomindustrie.com&lt;/a&gt;
+&lt;br/&gt;If not, connect to the internet and run the FST SW, then check LOLA again to see if the data is visible.</value>
   </data>
   <data name="NoMachineVisibleTitle" xml:space="preserve">
     <value>I can access LOLA but I can’t see any machines</value>
