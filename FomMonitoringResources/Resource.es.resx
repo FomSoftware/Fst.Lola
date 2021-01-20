@@ -1313,7 +1313,7 @@ La contraseña debe restablecerse en el primer acceso a LOLA&lt;br /&gt;
   <data name="AskCredentialBody" xml:space="preserve">
     <value>Si dispones de una cuenta de tipo “Customer” (usuario VIPAREA Fom Industrie), utiliza las credenciales de acceso recibidas por email. Si no recuerdas la contraseña, abre el siguiente enlace y selecciona la opción LOST PASSWORD:  &lt;br&gt;
 &lt;a class='faqLink' href='http://viparea.fomindustrie.com/areaVip.aspx' target='blank'&gt;http://viparea.fomindustrie.com/areaVip.aspx&lt;/a&gt;
-&lt;br/&gt;&lt;img src="[BASIC_URL_HOST]Images/faq/MailVIPAREA.png"&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;img width="100%" src="[BASIC_URL_HOST]Images/faq/MailVIPAREA.png"&gt;&lt;br/&gt;
 Si dispones de una cuenta LOLA (tipo Operador/Jefe del taller), controla si tu superior te ha enviado un email o folleto de este tipo, con las credenciales de Usuario y Contraseña provisoria para el acceso.&lt;br&gt; &lt;div class="faqImg"&gt;&lt;img src="[BASIC_URL_HOST]Images/faq/faq1.png"&gt;&lt;/div&gt;</value>
   </data>
   <data name="HowToUseTitle" xml:space="preserve">
