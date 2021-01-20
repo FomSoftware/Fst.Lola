@@ -713,7 +713,7 @@
     <value>Nombre</value>
   </data>
   <data name="PasswordPolicy" xml:space="preserve">
-    <value>La contraseña debe tener al menos 6 caracteres.</value>
+    <value>La contraseña debe tener al menos 10 caracteres.</value>
   </data>
   <data name="lw_minutiMandrinoAttivo" xml:space="preserve">
     <value>Tot. horas uso</value>

@@ -707,7 +707,7 @@
     <value>Nom</value>
   </data>
   <data name="PasswordPolicy" xml:space="preserve">
-    <value>Le mot de passe doit comporter au moins 6 caractères.</value>
+    <value>Le mot de passe doit comporter au moins 10 caractères.</value>
   </data>
   <data name="lw_minutiMandrinoAttivo" xml:space="preserve">
     <value>Heures tot. Travail</value>

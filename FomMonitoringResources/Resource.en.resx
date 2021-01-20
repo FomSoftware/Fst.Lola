@@ -710,7 +710,7 @@
     <value>Name</value>
   </data>
   <data name="PasswordPolicy" xml:space="preserve">
-    <value>The password must be at least 6 characters</value>
+    <value>The password must be at least 10 characters</value>
   </data>
   <data name="lw_minutiMandrinoAttivo" xml:space="preserve">
     <value>Tot. working hous</value>

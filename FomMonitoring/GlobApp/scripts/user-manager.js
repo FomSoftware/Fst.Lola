@@ -612,7 +612,7 @@
 
             if (action === enAction.add || (vmUsers.actual.Password || vmUsers.actual.ConfirmPassword)) {
                 if (roleUser == enRoles.Customer) {
-                    if (vmUsers.actual.Password == undefined || vmUsers.actual.Password == null || vmUsers.actual.Password.trim() == "" || vmUsers.actual.Password.length < 6) {
+                    if (vmUsers.actual.Password == undefined || vmUsers.actual.Password == null || vmUsers.actual.Password.trim() == "" || vmUsers.actual.Password.length < 10) {
                         errorSwal(resource.PasswordPolicy);
                         return false;
                     }
@@ -806,7 +806,7 @@
                 errorSwal(resourceChangePassword.PasswordNotChanged);
             else if (newPassword != repeatPassword)
                 errorSwal(resourceChangePassword.PasswordNotSame);
-            else if (newPassword.length < 6)
+            else if (newPassword.length < 10)
                 errorSwal(resourceChangePassword.PasswordPolicy);
             else
                 changePassword(data);     
