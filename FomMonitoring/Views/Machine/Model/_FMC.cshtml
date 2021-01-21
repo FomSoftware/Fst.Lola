@@ -37,6 +37,10 @@
                 {
                     @Html.Action("GetHtmlPage", "Shared", new { path = "~/images/panels/FMC_230-immagine_macchina_lunga_12.svg" })
                 }
+                else if (Model.MachineInfo.modelCode == 510)
+                {
+                    @Html.Action("GetHtmlPage", "Shared", new { path = "~/images/panels/FMC_650-immagine_macchina-3-lunga.svg" })
+                }
                 else if (Model.MachineInfo.modelCode == 508)
                 {
                     @Html.Action("GetHtmlPage", "Shared", new { path = "~/images/panels/FMC_120-immagine_macchina-5.svg" })
@@ -55,6 +59,11 @@
                 @if (Model.MachineInfo.modelCode == 507)
                 {
                     @Html.Action("GetHtmlPage", "Shared", new { path = "~/images/panels/FMC_230-immagine_macchina_lunga_12.svg" })
+
+                }
+                else if (Model.MachineInfo.modelCode == 510)
+                {
+                    @Html.Action("GetHtmlPage", "Shared", new { path = "~/images/panels/FMC_650-immagine_macchina-3_corta.svg" })
                 }
                 else if (Model.MachineInfo.modelCode == 508)
                 {
@@ -84,6 +93,21 @@
                             </button>
                             <button type="button" data-group="FMC2_spindles" class="no-borders" style="width: 220px; background-color: #cbcaca">
                                 <img class="img-button-group" src="~/Images/panels/FMC230-CARD_SPINDLE_220X220px.svg" />
+                            </button>
+                        }
+                        else if (Model.MachineInfo.modelCode == 510)
+                        {
+                            <button type="button" data-group="FMC650_axes" class="no-borders" style="width: 200px; background-color: #cbcaca">
+                                <img class="img-button-group" src="~/Images/panels/FMC650-CARD-AXES_220x220px.svg" />
+                            </button>
+                            <button type="button" data-group="FMC650_tools" class="no-borders" style="width: 200px; background-color: #cbcaca">
+                                <img class="img-button-group" src="~/Images/panels/FMC650-CARD-TOOLS-220x220px.svg" />
+                            </button>
+                            <button type="button" data-group="FMC650_spindle" class="no-borders" style="width: 200px; background-color: #cbcaca">
+                                <img class="img-button-group" src="~/Images/panels/FMC650-CARD-SPINDLE-220x220px.svg" />
+                            </button>
+                            <button type="button" data-group="FMC650_Motor_Blade" class="no-borders" style="width: 200px; background-color: #cbcaca">
+                                <img class="img-button-group" src="~/Images/panels/FMC650-CARD-MOTOR_BLADE-220x220px.svg" />
                             </button>
                         }
                         else if (Model.MachineInfo.modelCode == 508)

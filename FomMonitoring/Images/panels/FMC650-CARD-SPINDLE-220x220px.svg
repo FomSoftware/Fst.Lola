@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="FMC650_spindle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 220 220" style="enable-background:new 0 0 220 220;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#686868;}
+	.st1{fill:#4A7E68;}
+	.st2{fill:#005140;}
+</style>
+<g id="cornice">
+	<path id="Path_1932_9_" class="st0" d="M208.4,2.9c4.8,0,8.7,3.9,8.7,8.7v196.8c0,4.8-3.9,8.7-8.7,8.7H11.6c-4.8,0-8.7-3.9-8.7-8.7
+		V11.6c0-4.8,3.9-8.7,8.7-8.7l0,0H208.4 M208.4,0H11.6C5.2,0,0,5.2,0,11.6v196.8c0,6.4,5.2,11.6,11.6,11.6h196.8
+		c6.4,0,11.6-5.2,11.6-11.6V11.6C220,5.2,214.8,0,208.4,0z"/>
+</g>
+<g>
+	<polygon class="st1" points="217.1,190.2 115.7,190.2 116.7,186.9 116.7,148.6 116.7,135.2 130.3,135.2 130.3,113.6 113,113.6 
+		107,113.6 89.7,113.6 89.7,135.2 103.7,135.2 103.7,148.6 103.7,186.9 104.3,190.2 2.9,190.2 2.9,204.5 217.1,204.5 	"/>
+	<polygon class="st2" points="74.2,113.6 89.7,113.6 107,113.6 113,113.6 130.3,113.6 145.8,113.6 160,60.1 160,2.9 60,2.9 60,60.1 
+			"/>
+</g>
+</svg>
