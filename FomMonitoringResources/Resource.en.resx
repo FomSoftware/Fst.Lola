@@ -460,7 +460,7 @@
     <value>Email is not valid</value>
   </data>
   <data name="PasswordShort" xml:space="preserve">
-    <value>Password must have at least 6 characters</value>
+    <value>Password too short</value>
   </data>
   <data name="PasswordsNotSame" xml:space="preserve">
     <value>Passwords are not the same</value>
@@ -710,7 +710,7 @@
     <value>Name</value>
   </data>
   <data name="PasswordPolicy" xml:space="preserve">
-    <value>The password must be at least 10 characters</value>
+    <value>The password must be at least 10 characters long, contain a number, a symbol and a capital letter. Allowed symbols: ! ? # @ |</value>
   </data>
   <data name="lw_minutiMandrinoAttivo" xml:space="preserve">
     <value>Tot. working hous</value>

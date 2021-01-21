@@ -710,7 +710,7 @@
     <value>Name</value>
   </data>
   <data name="PasswordPolicy" xml:space="preserve">
-    <value>Das Kennwort muss aus mindestens 10 Zeichen bestehen</value>
+    <value>Das Passwort muss mindestens 10 Zeichen enthalten, eine Zahl, ein Symbol und eine Mayúscula enthalten. Symbole erlaubt: ! ? # @ |</value>
   </data>
   <data name="lw_minutiMandrinoAttivo" xml:space="preserve">
     <value>Gesamtarbeitsst.</value>

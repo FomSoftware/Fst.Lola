@@ -9,6 +9,7 @@
     // change password
     var dataPassword;
     var resourceChangePassword;
+    var policy = /^(?=.*\d)(?=.*[A-Z])(?=.*[@!?#|])(?=.*[^a-zA-Z0-9]).{10,}$/;
 
     var enRoles = {
         Administrator: 0,
@@ -619,7 +620,9 @@
 
             if (action === enAction.add || (vmUsers.actual.Password || vmUsers.actual.ConfirmPassword)) {
                 if (roleUser == enRoles.Customer) {
-                    if (vmUsers.actual.Password == undefined || vmUsers.actual.Password == null || vmUsers.actual.Password.trim() == "" || vmUsers.actual.Password.length < 10) {
+                    //min. 10 caratteri, almeno 1 numero, almeno 1 maiuscola e almeno un simbolo tra @!?#|
+                    
+                    if (vmUsers.actual.Password == undefined || vmUsers.actual.Password == null || vmUsers.actual.Password.trim() == "" || vmUsers.actual.Password.match(policy) == null) {
                         errorSwal(resource.PasswordPolicy);
                         return false;
                     }
@@ -813,7 +816,7 @@
                 errorSwal(resourceChangePassword.PasswordNotChanged);
             else if (newPassword != repeatPassword)
                 errorSwal(resourceChangePassword.PasswordNotSame);
-            else if (newPassword.length < 10)
+            else if (newPassword.match(policy) == null)
                 errorSwal(resourceChangePassword.PasswordPolicy);
             else
                 changePassword(data);     

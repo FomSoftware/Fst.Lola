@@ -466,7 +466,7 @@
     <value>Email inválido</value>
   </data>
   <data name="PasswordShort" xml:space="preserve">
-    <value>Password must have at least 6 characters</value>
+    <value>Contraseña demasiado corta</value>
   </data>
   <data name="PasswordsNotSame" xml:space="preserve">
     <value>Las contraseñas ingresadas no son las mismas</value>
@@ -713,7 +713,7 @@
     <value>Nombre</value>
   </data>
   <data name="PasswordPolicy" xml:space="preserve">
-    <value>La contraseña debe tener al menos 10 caracteres.</value>
+    <value>La contraseña debe contener al menos 10 caracteres, contener un número, un símbolo y una mayúscula. Símbolos permitidos: ! ? # @ |</value>
   </data>
   <data name="lw_minutiMandrinoAttivo" xml:space="preserve">
     <value>Tot. horas uso</value>

@@ -707,7 +707,7 @@
     <value>Nome</value>
   </data>
   <data name="PasswordPolicy" xml:space="preserve">
-    <value>La password deve essere almeno di 10 caratteri</value>
+    <value>La password deve essere di almeno 10 caratteri, contenere un numero, un simbolo ed una lettera maiuscola. Simboli consentiti: ! ? # @ |</value>
   </data>
   <data name="lw_minutiMandrinoAttivo" xml:space="preserve">
     <value>Ore lavoro tot.</value>
