@@ -108,7 +108,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="front" style="height: unset;" v-else>
                         <offline-machine v-if="isOffline(machine) && !isExpired(machine)"></offline-machine>
                         <expired-machine v-if="isExpired(machine)"></expired-machine>
@@ -195,7 +194,31 @@
                         <offline-machine></offline-machine>
                     </div>
                 </div>
-                <div class="slide-portlet visible-xs d-block d-sm-none">
+            <div class="slide-portlet visible-xs d-block d-sm-none">
+                <div class="row">
+                    <div class="col-3 text-right">
+                        <span class="fa-stack fa-lg" v-if="machine.state != null">
+                            <i class="fa fa-square fa-stack-2x" v-bind:class="'cr-' + machine.state.code"></i>
+                            <i class="fa fa-stack-1x fa-inverse" v-bind:class="iconState(machine.state)"></i>
+                        </span>
+                        <span class="fa-stack fa-lg" v-else>
+                            <i class="fa fa-square fa-stack-2x color-default"></i>
+                            <i class="fa fa-stack-1x color-aaa fa-remove"></i>
+                        </span>
+                    </div>
+                    <div class="col-9 padding-left-5">
+                        <div class="item-label clearfix" v-if="machine.state != null">
+                            <div class="pull-left">
+                                <div>{{ machine.state.text}}</div>
+                            </div>
+                            <div v-if="machine.state.code == 'error'" class="pull-right text-right">
+                                <div>{{ machine.error}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                   
+                <div v-bind:id="'kpi-' + machine.info.id" class="collapse">
                     <div class="row">
                         <div class="col-3 text-right">
                             <span class="fa-stack fa-lg" v-if="machine.job != null">
@@ -218,29 +241,6 @@
                             </div>
                         </div>
                     </div>
-                    <div v-bind:id="'kpi-' + machine.info.id" class="collapse">
-                        <div class="row">
-                            <div class="col-3 text-right">
-                                <span class="fa-stack fa-lg" v-if="machine.state != null">
-                                    <i class="fa fa-square fa-stack-2x" v-bind:class="'cr-' + machine.state.code"></i>
-                                    <i class="fa fa-stack-1x fa-inverse" v-bind:class="iconState(machine.state)"></i>
-                                </span>
-                                <span class="fa-stack fa-lg" v-else>
-                                    <i class="fa fa-square fa-stack-2x color-default"></i>
-                                    <i class="fa fa-stack-1x color-aaa fa-remove"></i>
-                                </span>
-                            </div>
-                            <div class="col-9 padding-left-5">
-                                <div class="item-label clearfix" v-if="machine.state != null">
-                                    <div class="pull-left">
-                                        <div>{{ machine.state.text}}</div>
-                                    </div>
-                                    <div v-if="machine.state.code == 'error'" class="pull-right text-right">
-                                        <div>{{ machine.error}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-3 text-right">
                                 <span class="fa-stack fa-lg" v-if="machine.operator != null">
