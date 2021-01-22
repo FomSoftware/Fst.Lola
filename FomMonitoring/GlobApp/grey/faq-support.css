@@ -34,6 +34,7 @@
     right: -35%;
     text-align: center;
     background-color: #bebebe;
+    z-index: 10000;
 }
     .support-menu h3, .faq-menu h3{
         font-size: 21px;
