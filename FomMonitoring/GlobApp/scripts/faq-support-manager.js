@@ -110,24 +110,23 @@
         $('.js-open-faq-item').click(function (e) {
             e.preventDefault();
             var id = e.target.id.substring(5);
-            $('.faq-item i.icon-arrow-up').css('display', 'none');
-            $('.faq-item i.icon-arrow-down').css('display', 'block');
-            $('.faq-item div.sub-menu').css('display', 'none');
 
-            $('#down_' + id).css('display', 'none');
-            $('#up_' + id).css('display', 'block');
-            var classe = '.faq-menu-item-' + id;
-            $(classe).css('display', 'block');
-        });
+            if ($('#up_' + id).css('display') === "block") {
+                $('#up_' + id).css('display', 'none');
+                $('#down_' + id).css('display', 'block');
+                var classe1 = '.faq-menu-item-' + id;
+                $(classe1).css('display', 'none');
+            } else {
+                $('.faq-item i.icon-arrow-up').css('display', 'none');
+                $('.faq-item i.icon-arrow-down').css('display', 'block');
+                $('.faq-item div.sub-menu').css('display', 'none');
 
-        $('.js-close-faq-item').click(function (e) {
-            e.preventDefault();
-            var id = e.target.id.substring(3);
+                $('#down_' + id).css('display', 'none');
+                $('#up_' + id).css('display', 'block');
+                var classe = '.faq-menu-item-' + id;
+                $(classe).css('display', 'block');
+            }
             
-            $('#up_' + id).css('display', 'none');
-            $('#down_' + id).css('display', 'block');
-            var classe = '.faq-menu-item-' + id;
-            $(classe).css('display', 'none');
         });
 
         $("#inviaBtn").click(function (e) {

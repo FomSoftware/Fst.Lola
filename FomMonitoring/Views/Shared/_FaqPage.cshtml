@@ -14,9 +14,9 @@
         {
             <li class="faq-item">
                 <a href="#">
-                    <span style="min-width: 98%">@faq.Order) @Html.Raw(LocalizationService.GetResource(faq.Title))</span>
-                    <span style="float: right" class="js-open-faq-item"><i class="icon-arrow-down" id="down_@faq.Id"></i></span>
-                    <span style="float: right" class="js-close-faq-item"><i class="icon-arrow-up" style="display: none" id="up_@faq.Id"></i></span>
+                    <span style="min-width: 98%" class="js-open-faq-item" id="link_@faq.Id">@faq.Order) @Html.Raw(LocalizationService.GetResource(faq.Title))</span>
+                    <span style="float: right" ><i class="icon-arrow-down" id="down_@faq.Id"></i></span>
+                    <span style="float: right"><i class="icon-arrow-up" style="display: none" id="up_@faq.Id"></i></span>
                 </a>
                 <div class="sub-menu faq-menu-item-@faq.Id">
                     <span>@Html.Raw(LocalizationService.GetResource(faq.Body).Replace("[BASIC_URL_HOST]", @Url.Content("~/")))</span>

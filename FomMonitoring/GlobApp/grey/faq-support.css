@@ -123,7 +123,7 @@
     overflow-y: auto;
 }
 
-.js-open-faq-item .icon-arrow-down, .js-close-faq-item .icon-arrow-up {
+.js-open-faq-item .icon-arrow-down, .icon-arrow-up {
     font-size: 12px;
 }
 
