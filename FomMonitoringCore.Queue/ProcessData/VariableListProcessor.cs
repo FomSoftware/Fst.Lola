@@ -37,7 +37,7 @@ namespace FomMonitoringCore.Queue.ProcessData
                     if (mac == null)
                         return false;
 
-                    var pms = context.Set<ParameterMachine>().Where(p =>
+                    var pms = context.Set<ParameterMachine>().Include("ParameterMachineThreshold").Where(p =>
                         p.MachineModelId == mac.MachineModelId).ToList();
 
                     var maxDate = context.Set<ParameterMachineValue>().Where(p =>
