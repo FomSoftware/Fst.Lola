@@ -612,7 +612,7 @@
                 data: _.map(options.series, function (opt) { return {innerRadius: 40, radius: 65, y: Math.round(opt.y) };}),
 
                 dataLabels: {
-                    format: '<div style="text-align:center;margin-left:10px"><span style="font-size:8px;color:' +
+                    format: '<div class="labelKpiEfficiency"><span style="font-size:8px;color:' +
                         ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">' + localizations.efficiency + '</span><br /><span style="font-size:8px;color:' +
                         ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span>' +
                         '<span style="font-size:8px;">%</span></div>'
