@@ -35,11 +35,11 @@ namespace VariableListLoadTest
             //var reforwarder = container.Resolve<IUnknownForwarder>();
             //reforwarder.ReForward();
 
-            var jsonsMessage = repositoryHistoryJobPieceBar.Query().ToList().OrderByDescending(n => n.DateReceived).Take(10).ToList();
-            //var jsonsMessagevar = repositoryVariablesList.Query().ToList().OrderByDescending(n => n.DateReceived).Take(1000).ToList();
+            //var jsonsMessage = repositoryHistoryJobPieceBar.Query().ToList().OrderByDescending(n => n.DateReceived).Take(10).ToList();
+            var jsonsMessagevar = repositoryVariablesList.Query(n => n.info[0].MachineSerial == "A1400013").OrderBy(n => n.variablesList[0].UtcDateTime).ToList().OrderByDescending(n => n.DateReceived).Take(1000).ToList();
 
 
-            foreach (var data in jsonsMessage)
+            foreach (var data in jsonsMessagevar)
             {
                 forwarder.Forward(JsonConvert.SerializeObject(data));
             }
