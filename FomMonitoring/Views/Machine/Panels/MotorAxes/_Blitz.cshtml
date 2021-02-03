@@ -80,11 +80,11 @@
                                     <tr>
                                         <td class="td-tool">
                                             <label style="font-size: 0.7rem;"><i class="fa icofom-assekm fa-2x" aria-hidden="true"></i></label>
-                                            <label v-if="axes[1] != null && axes[1].Description != null" class="label-tools" v-html="axes[1].Description"></label>
+                                            <label v-if="axes[1] != null && axes[1].Description != null" class="label-tools" v-html="axes[0].Description"></label>
                                         </td>
                                         <td class="td-tool tool-border-left">
                                             <label style="font-size: 0.7rem;"><i class="fa icofom-assekm fa-2x" aria-hidden="true"></i></label>
-                                            <label v-if="axes[0] != null" class="label-tools" v-html="axes[0].Description"></label>
+                                            <label v-if="axes[0] != null" class="label-tools" v-html="axes[1].Description"></label>
                                         </td>
                                         <td class="td-tool">
                                             <label style="font-size: 0.7rem;"><i class="fa icofom-assekm fa-2x" aria-hidden="true"></i></label>
@@ -93,10 +93,10 @@
                                     </tr>
                                     <tr>
                                         <td class="td-tool">
-                                            <label v-if="axes[1] != null && axes[1].Value != null" class="label-tools-value text-center" v-html="axes[1].Value"></label>
+                                            <label v-if="axes[1] != null && axes[1].Value != null" class="label-tools-value text-center" v-html="axes[0].Value"></label>
                                         </td>
                                         <td class="td-tool tool-border-left">
-                                            <label v-if="axes[0] != null && axes[0].Value != null" class="label-tools-value text-center" v-html="axes[0].Value"></label>
+                                            <label v-if="axes[0] != null && axes[0].Value != null" class="label-tools-value text-center" v-html="axes[1].Value"></label>
                                         </td>
                                         <td class="td-tool">
                                             <label v-if="axes[2] != null && axes[2].Value != null" class="label-tools-value text-center" v-html="axes[2].Value"></label>
