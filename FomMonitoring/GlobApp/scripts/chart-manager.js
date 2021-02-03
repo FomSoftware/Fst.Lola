@@ -421,18 +421,20 @@
             yAxis: [{
                 title: {
                     //text: 'Efficienza (%)',
-                    text: options.yTitle,
-                    style: {
+                    //text: options.yTitle,
+                    text: ''
+                    /*style: {
                         color: '#8EBF36',
-                    }
+                    }*/
                 },
                 labels: {
                     style: {
                         color: '#8EBF36',
                     },
                     x: 0,
-                    y: 11
+                    y: -5
                 },
+                opposite: true,
                 min: 0,
                 max: 100,
                 tickInterval: 20,
@@ -444,16 +446,16 @@
                     style: {
                         color: '#588FA4',
                     },
-                    y: 15
+                    y: 0
                 },
                 labels: {
                     style: {
                         color: '#588FA4',
                     },
                     x: 0,
-                    y: -5
+                    y: 15
                 },
-                opposite: true,
+                opposite: false,
                 min: 0,
                 //max: 100,
                 tickInterval: 20,
