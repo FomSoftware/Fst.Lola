@@ -505,11 +505,11 @@
     <Content Include="Images\panels\FMC650-CARD-MOTOR_BLADE-220x220px.svg" />
     <Content Include="Images\panels\FMC650-CARD-SPINDLE-220x220px.svg" />
     <Content Include="Images\panels\FMC650-CARD-TOOLS-220x220px.svg" />
-    <Content Include="Images\panels\FMC_650-immagine_macchina-3-lunga.svg" />
+    <Content Include="Images\panels\FMC_650-immagine_macchina-3_corta.svg" />
     <Content Include="Images\panels\FMC_120-immagine_macchina-5.svg" />
     <Content Include="Images\panels\FMC_230-immagine_macchina_corta_11.svg" />
     <Content Include="Images\panels\FMC_230-immagine_macchina_lunga_12.svg" />
-    <Content Include="Images\panels\FMC_650-immagine_macchina-3_corta.svg" />
+    <Content Include="Images\panels\FMC_650-immagine_macchina-3-lunga.svg" />
     <Content Include="Images\panels\LMX-immagine_macchina_CORTA.svg" />
     <Content Include="Images\panels\LMX-immagine_macchina_LUNGA.svg" />
     <Content Include="Images\panels\LMX_650-MM-CARD_MOBILE.svg" />
