@@ -75,13 +75,22 @@
 
 <script type="text/x-template" id="time-span-efficiency">
     <span v-if="duration != null">
-        <span v-if="duration.days != null">
+        <span v-if="duration.days != null && duration.days < 10">
+            0{{ duration.days }}<em>d</em>
+        </span>
+        <span v-else-if="duration.days != null">
             {{ duration.days }}<em>d</em>
         </span>
-        <span v-if="duration.hours != null">
+        <span v-if="duration.hours != null && duration.hours < 10">
+            0{{ duration.hours }}<em>h</em>
+        </span>
+        <span v-else-if="duration.hours != null">
             {{ duration.hours }}<em>h</em>
         </span>
-        <span v-if="duration.minutes">
+        <span v-if="duration.minutes != null && duration.minutes < 10">
+            0{{ duration.minutes }}<em>m</em>
+        </span>
+        <span v-else-if="duration.minutes">
             {{ duration.minutes }}<em>m</em>
         </span>
         <span v-if="duration.seconds != null && duration.seconds < 10">
