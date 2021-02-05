@@ -73,6 +73,27 @@
         </span>
     </script>
 
+<script type="text/x-template" id="time-span-manu">
+    <span v-if="duration != null">
+        <span v-if="duration.days != null">
+            {{ duration.days }}<em>d</em>
+        </span>
+        <br />
+        <span v-if="duration.hours != null">
+            {{ duration.hours }}<em>h</em>
+        </span>
+        <span v-if="duration.minutes != null" v-show="showMinutes">
+            {{ duration.minutes }}<em>min</em>
+        </span>
+        <span v-if="duration.seconds != null" v-show="showSeconds">
+            {{ duration.seconds }}<em>s</em>
+        </span>
+    </span>
+    <span v-else>
+        0<em>s</em>
+    </span>
+</script>
+
 <script type="text/x-template" id="time-span-efficiency">
     <span v-if="duration != null">
         <span v-if="duration.days != null && duration.days < 10">
@@ -120,6 +141,7 @@
         moment.locale("@c");
         VueManager.initTimeSpanComponent();
         VueManager.initTimeSpanEfficiencyComponent();
+        VueManager.initTimeSpanManutenzioneComponent();
     </script>
 <script type="text/javascript">
 

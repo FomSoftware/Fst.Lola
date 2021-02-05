@@ -50,7 +50,8 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 5%;text-align: center"><i class="fa fa-check"></i></th>
-                                        <th style="width: 35%;">
+                                        <th style="width: 8%;" class="value-title testo-abbreviato">@LocalizationService.GetResource("Type")</th>
+                                        <th style="width: 50%;">
                                             <i class="fa fa-list"></i>
                                             <span class="value-title testo-abbreviato">
                                                 @LocalizationService.GetResource("Tasks")
@@ -62,7 +63,7 @@
                                                 @LocalizationService.GetResource("Timestamp")
                                             </span>
                                         </th>
-                                        <th style="width:18%">
+                                        <th style="width:15%">
                                             <i class="fa fa-clock-o color-aaa"></i>
                                             <span class="value-title testo-abbreviato">
                                                 @LocalizationService.GetResource("MsgExpiredTime")
@@ -82,10 +83,17 @@
                                                     <i class="fa fa-check fa-stack-1x fa-inverse" style="top: 0;"></i>
                                                 </span>
                                             </td>
-                                            <td style="width:35%">{{ message.description }}</td>
-                                            <td style="width:22%">{{ convert_timestamp(message.timestamp, message.utc) }}</td>
-                                            <td style="min-width:80px;width:18%">
-                                                <time-span v-bind:duration="message.expiredSpan"></time-span>
+                                            <td style="width: 8%; vertical-align: middle">
+                                                <span class="fa-stack fa btn" style="border:none" >
+                                                    <i class="fa fa-square fa-stack-2x fa-inverse" style="top: 0;"></i>
+                                                    <i v-bind:class="iconClass(message.icon)" style="top: 0;"></i>
+                                                </span>
+                                           
+                                            </td>
+                                            <td style="width:50%">{{ message.description }}</td>
+                                            <td style="width:22%"><div>{{ convert_date(message.timestamp, message.utc) }}</div><div>{{ convert_time(message.timestamp, message.utc) }}</div></td>
+                                            <td style="width:15%">
+                                                <time-span-manu v-bind:duration="message.expiredSpan"></time-span-manu>
                                             </td>
                                         </tr>
                                     </tbody>

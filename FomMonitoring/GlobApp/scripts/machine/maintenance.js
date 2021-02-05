@@ -39,6 +39,15 @@
                     var str = m.format('L') + " " + m.format('HH:mm:ss');
                     return str;
                 },
+                convert_time: function (timestamp, utc) {
+                    var m = moment.utc(timestamp);
+                    if (this.timeZone && this.timeZone !== "")
+                        m = m.tz(this.timeZone);
+                    else
+                        m = m.add(utc, 'hour');
+                    var str = m.format('HH:mm:ss');
+                    return str;
+                },
                 convert_date: function (timestamp, utc) {
                     var m = moment.utc(timestamp);
                     if (this.timeZone && this.timeZone !== "")
@@ -139,7 +148,20 @@
                         else
                             icon.className = icon.className.replace(className, 'red-square-icon');
                     }
-                }
+                },
+                iconClass: function (icon) {
+                    if (icon == "periodica") {
+                        return "fa icofom-tools fa-stack-1x";
+                    }
+                    else if (icon == "ordinaria") {
+                        return "fa icofom-fill-drip fa-stack-1x";
+                    }
+                    else if (icon == "predittiva") {
+                        return "fa icofom-man-predittiva fa-stack-1x";
+                    }
+                    return "";
+                   
+                },
 
             }
         });

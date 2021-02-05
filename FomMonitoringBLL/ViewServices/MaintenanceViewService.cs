@@ -119,7 +119,8 @@ namespace FomMonitoringBLL.ViewServices
                 timestamp = DateTime.SpecifyKind(a.Day ?? DateTime.MinValue, DateTimeKind.Utc),
                 utc = machine.UTC,
                 expiredSpan = CommonViewService.getTimeViewModel(_messageService.GetExpiredSpan(a)),
-                description = a.Description
+                description = a.Description,
+                icon = GetIcon(a) 
 
             }).ToList();
 
@@ -134,6 +135,24 @@ namespace FomMonitoringBLL.ViewServices
 
             return result;
         }
+
+    private string GetIcon(MessageMachineModel m)
+    {
+        if (m.Type == 14 && m.PeriodicSpan != null && m.IsPeriodicMsg == true)
+        {
+            return "periodica";
+        }
+        else if (m.Type == 14 && m.PeriodicSpan == null && m.IsPeriodicMsg == true)
+        {
+            return "ordinaria";
+        }
+        else if (m.Type != 14 && m.PeriodicSpan == null && m.IsPeriodicMsg == true)
+        {
+            return "predittiva";
+        }
+
+        return "";
+    }
 
         public bool IgnoreMessage(int messageId)
         {
