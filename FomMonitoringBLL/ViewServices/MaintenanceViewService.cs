@@ -142,11 +142,11 @@ namespace FomMonitoringBLL.ViewServices
         {
             return "periodica";
         }
-        else if (m.Type == 14 && m.PeriodicSpan == null && m.IsPeriodicMsg == true)
+        else if (m.Type != 14 && m.PeriodicSpan == null && m.IsPeriodicMsg == true)
         {
             return "ordinaria";
         }
-        else if (m.Type != 14 && m.PeriodicSpan == null && m.IsPeriodicMsg == true)
+        else if (m.Type == 14 && m.PeriodicSpan == null && m.IsPeriodicMsg == true)
         {
             return "predittiva";
         }

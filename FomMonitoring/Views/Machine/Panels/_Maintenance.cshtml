@@ -49,9 +49,9 @@
                             <table class="table table-alerts table-header">
                                 <thead>
                                     <tr>
-                                        <th style="width: 5%;text-align: center"><i class="fa fa-check"></i></th>
-                                        <th style="width: 8%;" class="value-title testo-abbreviato">@LocalizationService.GetResource("Type")</th>
-                                        <th style="width: 50%;">
+                                        <th style="width: 8%;padding-left: 10px;"><i class="fa fa-check"></i></th>
+                                        <th style="width: 10%;" class="value-title testo-abbreviato">@LocalizationService.GetResource("Type")</th>
+                                        <th style="width: 45%;">
                                             <i class="fa fa-list"></i>
                                             <span class="value-title testo-abbreviato">
                                                 @LocalizationService.GetResource("Tasks")
@@ -76,20 +76,20 @@
                                 <table class="table table-alerts">
                                     <tbody>
                                         <tr v-for="message in messages">
-                                            <td style="width: 5%;vertical-align: middle">
+                                            <td style="width: 8%;vertical-align: middle">
                                                 <span class="fa-stack fa btn" style="border:none" v-on:click="ignoreMessage(message.id, $event)"
                                                       v-on:mouseover="changeIconColor('red-square-icon', $event)" v-on:mouseleave="changeIconColor('green-square-icon', $event)">
                                                     <i class="fa fa-square fa-stack-2x red-square-icon" style="top: 0;"></i>
                                                     <i class="fa fa-check fa-stack-1x fa-inverse" style="top: 0;"></i>
                                                 </span>
                                             </td>
-                                            <td style="width: 8%; vertical-align: middle">
+                                            <td style="width: 10%; vertical-align: middle">
                                                 <span class="fa-stack fa" style="border:none" >
                                                     <i v-bind:title="iconTitle(message.icon)" v-bind:class="iconClass(message.icon)" style="top: 0;"></i>
                                                 </span>
                                            
                                             </td>
-                                            <td style="width:50%">{{ message.description }}</td>
+                                            <td style="width:45%">{{ message.description }}</td>
                                             <td style="width:22%"><div>{{ convert_date(message.timestamp, message.utc) }}</div><div>{{ convert_time(message.timestamp, message.utc) }}</div></td>
                                             <td style="width:15%">
                                                 <time-span-manu v-bind:duration="message.expiredSpan"></time-span-manu>
