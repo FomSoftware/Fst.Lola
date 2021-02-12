@@ -728,7 +728,7 @@
     <value>Anz. Zyklen XFLOW</value>
   </data>
   <data name="oreVitaMacchina" xml:space="preserve">
-    <value>Lebensdauer Maschine</value>
+    <value>Maschinenverarbeitungsstunden</value>
   </data>
   <data name="durataIngrassatura" xml:space="preserve">
     <value>Stunden seit letzter Schmierung</value>
@@ -824,7 +824,7 @@
     <value>ANDERE MASCHINENDATEN</value>
   </data>
   <data name="ore1_Stat" xml:space="preserve">
-    <value>Lebensdauer Maschine</value>
+    <value>Maschinenverarbeitungsstunden</value>
   </data>
   <data name="n_barrecaricate_Stat" xml:space="preserve">
     <value>Aufgeladene Stangen Step-In</value>
@@ -1361,5 +1361,14 @@ unter Angabe:
   </data>
   <data name="MaxFileSizeError" xml:space="preserve">
     <value>Die maximale Dateigröße sollte 3 MB betragen</value>
+  </data>
+  <data name="ManOrdinaria" xml:space="preserve">
+    <value>Ordentliche Wartung</value>
+  </data>
+  <data name="ManPeriodica" xml:space="preserve">
+    <value>Regelmäßige Wartung</value>
+  </data>
+  <data name="ManPredittiva" xml:space="preserve">
+    <value>Vorausschauende Wartung</value>
   </data>
 </root>

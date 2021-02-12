@@ -824,7 +824,7 @@
     <value>OTHER MACHINE DATA</value>
   </data>
   <data name="ore1_Stat" xml:space="preserve">
-    <value>Machine Working Hours</value>
+    <value>Machine working hours</value>
   </data>
   <data name="n_barrecaricate_Stat" xml:space="preserve">
     <value>Step-In bars loaded</value>
@@ -1367,5 +1367,14 @@ indicating:
   </data>
   <data name="MaxFileSizeError" xml:space="preserve">
     <value>Max file size should be 3MB</value>
+  </data>
+  <data name="ManOrdinaria" xml:space="preserve">
+    <value>Ordinary maintenance</value>
+  </data>
+  <data name="ManPeriodica" xml:space="preserve">
+    <value>Periodic maintenance</value>
+  </data>
+  <data name="ManPredittiva" xml:space="preserve">
+    <value>Predictive maintenance</value>
   </data>
 </root>

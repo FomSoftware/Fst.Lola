@@ -84,9 +84,8 @@
                                                 </span>
                                             </td>
                                             <td style="width: 8%; vertical-align: middle">
-                                                <span class="fa-stack fa btn" style="border:none" >
-                                                    <i class="fa fa-square fa-stack-2x fa-inverse" style="top: 0;"></i>
-                                                    <i v-bind:class="iconClass(message.icon)" style="top: 0;"></i>
+                                                <span class="fa-stack fa" style="border:none" >
+                                                    <i v-bind:title="iconTitle(message.icon)" v-bind:class="iconClass(message.icon)" style="top: 0;"></i>
                                                 </span>
                                            
                                             </td>
@@ -107,13 +106,13 @@
                             <table class="table table-alerts table-header">
                                 <thead>
                                     <tr>
-                                        <th style="width:20%" class="th-duration sorting" v-bind:class="sorting != null ? sorting.timestamp : ''" v-on:click="sortIgnoredMessagesTimestamp()">
+                                        <th style="width:30%" class="th-duration sorting" v-bind:class="sorting != null ? sorting.timestamp : ''" v-on:click="sortIgnoredMessagesTimestamp()">
                                             <i class="fa fa-clock-o color-aaa"></i>
                                             <span class="value-title testo-abbreviato">
                                                 @LocalizationService.GetResource("Timestamp")
                                             </span>
                                         </th>
-                                        <th style="width:20%" class="th-duration sorting" v-bind:class="sorting != null ? sorting.user : ''" v-on:click="sortIgnoredMessagesUser()">
+                                        <th style="width:30%" class="th-duration sorting" v-bind:class="sorting != null ? sorting.user : ''" v-on:click="sortIgnoredMessagesUser()">
                                             <i class="fa fa-user"></i>
                                             <span class="value-title testo-abbreviato">
                                                 @LocalizationService.GetResource("User")
@@ -132,9 +131,9 @@
                                 <table class="table table-alerts">
                                     <tbody>
                                         <tr v-for="message in ignoredMessages">
-                                            <td style="width:20%">{{ convert_timestamp(message.timestamp, message.utc) }}</td>
-                                            <td style="width: 20%"><span v-if="message.user != null && message.user.user != null">{{ message.user.user.Username }} ({{message.user.user.RoleName}})</span></td>
-                                            <td style="width: 35%">{{ message.description }}</td>
+                                            <td style="width:30%">{{ convert_timestamp(message.timestamp, message.utc) }}</td>
+                                            <td style="width: 30%"><span v-if="message.user != null && message.user.user != null">{{ message.user.user.Username }} ({{message.user.user.RoleName}})</span></td>
+                                            <td style="width: 40%">{{ message.description }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -147,13 +146,13 @@
                             <table class="table table-alerts table-header">
                                 <thead>
                                     <tr>
-                                        <th style="width:15%">
+                                        <th class="thMinW">
                                             <i class="fa icofom-calendar-day color-aaa" style="margin-left: 5px;"></i>
                                             <span class="value-title testo-abbreviato">
                                                 @LocalizationService.GetResource("Notice")
                                             </span>
                                         </th>
-                                        <th style="width: 15%">
+                                        <th class="thMinW">
                                             <i class="fa icofom-calendar-check color-aaa"></i>
                                             <span class="value-title testo-abbreviato">
                                                 @LocalizationService.GetResource("Execution")
@@ -162,7 +161,7 @@
                                         <th style="width:7%" class="th-duration sorting" v-bind:class="sorting != null ? sorting.dateDiff : ''" v-on:click="sortDateDiff()">
                                             <i class="fa fa-wrench color-aaa"></i>
                                         </th>
-                                        <th style="width: 18%" class="th-duration sorting" v-bind:class="sorting != null ? sorting.user : ''" v-on:click="sortKpiMessagesUser()">
+                                        <th class="th-duration sorting thMinW" v-bind:class="sorting != null ? sorting.user : ''" v-on:click="sortKpiMessagesUser()">
                                             <i class="fa fa-user"></i>
                                             <span class="value-title testo-abbreviato">
                                                 @LocalizationService.GetResource("User")
@@ -181,8 +180,8 @@
                                 <table class="table table-alerts">
                                     <tbody>
                                         <tr v-for="message in kpiMessages">
-                                            <td style="width:15%">{{ convert_date(message.day, message.utc) }}</td>
-                                            <td style="width: 15%">{{ convert_date(message.ignoreDate, message.utc) }}</td>
+                                            <td style="width:17%">{{ convert_date(message.day, message.utc) }}</td>
+                                            <td style="width: 18%">{{ convert_date(message.ignoreDate, message.utc) }}</td>
                                             <td style="width: 7%">{{ message.dateDiff }}d</td>
                                             <td style="width: 18%"><span v-if="message.user != null && message.user.user != null">{{ message.user.user.Username }}</span></td>
                                             <td style="width: 40%">{{ message.description }}</td>
@@ -203,10 +202,16 @@
 
     $(document).ready(function ()
     {
+        var resource = {
+            ManutenzioneOrdinaria: '@LocalizationService.GetResourceForJs("ManOrdinaria")',
+            ManutenzionePeriodica: '@LocalizationService.GetResourceForJs("ManPeriodica")',
+            ManutenzionePredittiva: '@LocalizationService.GetResourceForJs("ManPredittiva")'
+        };
+
         var data = @Html.Raw(Json.Encode(Model));
         var urlIgnoreMessageAPI =
             '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "IgnoreMessage" })';
-        Maintenance.init(data, urlIgnoreMessageAPI);        
+        Maintenance.init(data, urlIgnoreMessageAPI, resource);        
 
     });
 

@@ -76,7 +76,9 @@ body {
     padding: 2px 2px 0 14px;
 }
 
-
+th.thMinW {
+    width: 17%;
+}
 
 .title-kpi {
     display: inline-block;
@@ -1828,7 +1830,9 @@ td.td-axes {
     .overfeed .overfeed-progress {
         height: 170px;
     }
-
+    th.thMinW {
+        width:83px;
+    }
 }
 
 @media (max-height: 767px) {

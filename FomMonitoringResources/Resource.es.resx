@@ -731,7 +731,7 @@
     <value>Nº ciclos XFLOW</value>
   </data>
   <data name="oreVitaMacchina" xml:space="preserve">
-    <value>Horas vida máquina</value>
+    <value>Horas procesamiento de la máquina</value>
   </data>
   <data name="durataIngrassatura" xml:space="preserve">
     <value>Horas desde último engrase</value>
@@ -827,7 +827,7 @@
     <value>OTROS DATOS MÁQUINA</value>
   </data>
   <data name="ore1_Stat" xml:space="preserve">
-    <value>Horas vida máquina</value>
+    <value>Horas procesamiento de la máquina</value>
   </data>
   <data name="n_barrecaricate_Stat" xml:space="preserve">
     <value>Barras cargadas Step-In</value>
@@ -1367,5 +1367,14 @@ En caso de caducidad para una o varias máquinas, tendrás que pagar la compra o
   </data>
   <data name="MaxFileSizeError" xml:space="preserve">
     <value>El tamaño máximo del archivo debe ser de 3 MB</value>
+  </data>
+  <data name="ManOrdinaria" xml:space="preserve">
+    <value>Mantenimiento ordinario</value>
+  </data>
+  <data name="ManPeriodica" xml:space="preserve">
+    <value>Mantenimiento periódico</value>
+  </data>
+  <data name="ManPredittiva" xml:space="preserve">
+    <value>Mantenimiento predictivo</value>
   </data>
 </root>

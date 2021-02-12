@@ -725,7 +725,7 @@
     <value>N. cicli XFLOW</value>
   </data>
   <data name="oreVitaMacchina" xml:space="preserve">
-    <value>Ore vita macchina</value>
+    <value>Ore di lavoro macchina</value>
   </data>
   <data name="durataIngrassatura" xml:space="preserve">
     <value>Ore da ultimo ingrassaggio</value>
@@ -821,7 +821,7 @@
     <value>ALTRI DATI MACCHINA</value>
   </data>
   <data name="ore1_Stat" xml:space="preserve">
-    <value>Ore Vita Macchina</value>
+    <value>Ore di lavoro macchina</value>
   </data>
   <data name="n_barrecaricate_Stat" xml:space="preserve">
     <value>Barre caricate Step-In</value>
@@ -1365,5 +1365,14 @@ In caso di licenza scaduta per una o più macchine, procedere ad acquistare e/o 
   </data>
   <data name="MaxFileSizeError" xml:space="preserve">
     <value>La dimensione massima del file è di 3 MB</value>
+  </data>
+  <data name="ManOrdinaria" xml:space="preserve">
+    <value>Manutenzione ordinaria </value>
+  </data>
+  <data name="ManPeriodica" xml:space="preserve">
+    <value>Manutenzione periodica </value>
+  </data>
+  <data name="ManPredittiva" xml:space="preserve">
+    <value>Manutenzione predittiva</value>
   </data>
 </root>

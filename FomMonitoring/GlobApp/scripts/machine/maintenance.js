@@ -2,9 +2,11 @@
 {
     var vmMessages;
     var urlIgnoreMessageAPI;
+    var resource;
 
-    var init = function (data, url)
+    var init = function (data, url, resourceText)
     {
+        resource = resourceText;
         initVueModel(data);
         urlIgnoreMessageAPI = url;      
     }
@@ -161,6 +163,19 @@
                     }
                     return "";
                    
+                },
+                iconTitle: function (icon) {
+                    if (icon == "periodica") {
+                        return resource.ManutenzionePeriodica;
+                    }
+                    else if (icon == "ordinaria") {
+                        return resource.ManutenzioneOrdinaria;
+                    }
+                    else if (icon == "predittiva") {
+                        return resource.ManutenzionePredittiva;
+                    }
+                    return "";
+
                 },
 
             }

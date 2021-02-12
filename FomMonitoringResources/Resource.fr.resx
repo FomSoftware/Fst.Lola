@@ -725,7 +725,7 @@
     <value>Nb cycles XFLOW</value>
   </data>
   <data name="oreVitaMacchina" xml:space="preserve">
-    <value>Heures de vie machine</value>
+    <value>Heures de traitement de la machine</value>
   </data>
   <data name="durataIngrassatura" xml:space="preserve">
     <value>Heures depuis dernier graissage</value>
@@ -821,7 +821,7 @@
     <value>AUTRES DONNÉES MACHINE</value>
   </data>
   <data name="ore1_Stat" xml:space="preserve">
-    <value>Heures de vie machine</value>
+    <value>Heures de traitement de la machine</value>
   </data>
   <data name="n_barrecaricate_Stat" xml:space="preserve">
     <value>Barres chargées Step-In</value>
@@ -1361,5 +1361,14 @@ Si la licence est expirée pour une ou plusieurs machines, achetez ou renouvelez
   </data>
   <data name="MaxFileSizeError" xml:space="preserve">
     <value>La taille maximale du fichier doit être de 3 MB</value>
+  </data>
+  <data name="ManOrdinaria" xml:space="preserve">
+    <value>Entretien ordinaire</value>
+  </data>
+  <data name="ManPeriodica" xml:space="preserve">
+    <value>Maintenance périodique</value>
+  </data>
+  <data name="ManPredittiva" xml:space="preserve">
+    <value>Maintenance prédictive</value>
   </data>
 </root>

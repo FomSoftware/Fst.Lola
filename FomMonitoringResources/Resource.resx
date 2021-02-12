@@ -802,7 +802,7 @@
     <value>OTHER MACHINE DATA</value>
   </data>
   <data name="ore1_Stat" xml:space="preserve">
-    <value>Machine Working Hours</value>
+    <value>Machine working hours</value>
   </data>
   <data name="n_barrecaricate_Stat" xml:space="preserve">
     <value>Step-In bars loaded</value>
@@ -1329,5 +1329,14 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   </data>
   <data name="MaxFileSizeError" xml:space="preserve">
     <value>MaxFileSizeError</value>
+  </data>
+  <data name="ManOrdinaria" xml:space="preserve">
+    <value>ManOrdinaria</value>
+  </data>
+  <data name="ManPeriodica" xml:space="preserve">
+    <value>ManPeriodica</value>
+  </data>
+  <data name="ManPredittiva" xml:space="preserve">
+    <value>ManPredittiva</value>
   </data>
 </root>

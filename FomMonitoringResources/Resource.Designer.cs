@@ -2149,6 +2149,39 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to ManOrdinaria.
+        /// </summary>
+        public static string ManOrdinaria
+        {
+            get
+            {
+                return ResourceManager.GetString("ManOrdinaria", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to ManPeriodica.
+        /// </summary>
+        public static string ManPeriodica
+        {
+            get
+            {
+                return ResourceManager.GetString("ManPeriodica", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to ManPredittiva.
+        /// </summary>
+        public static string ManPredittiva
+        {
+            get
+            {
+                return ResourceManager.GetString("ManPredittiva", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Manual production.
         /// </summary>
         public static string Manual
@@ -2780,7 +2813,7 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Machine Working Hours.
+        ///   Looks up a localized string similar to Machine working hours.
         /// </summary>
         public static string ore1_Stat
         {
@@ -2956,7 +2989,7 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to The password must be at least 6 characters.
+        ///   Looks up a localized string similar to PasswordPolicy.
         /// </summary>
         public static string PasswordPolicy
         {
@@ -2978,7 +3011,7 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Password must have at least 6 characters.
+        ///   Looks up a localized string similar to PasswordShort.
         /// </summary>
         public static string PasswordShort
         {

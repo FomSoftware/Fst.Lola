@@ -120,7 +120,7 @@ namespace FomMonitoringBLL.ViewServices
                 utc = machine.UTC,
                 expiredSpan = CommonViewService.getTimeViewModel(_messageService.GetExpiredSpan(a)),
                 description = a.Description,
-                icon = GetIcon(a) 
+                icon = GetIcon(a)
 
             }).ToList();
 
