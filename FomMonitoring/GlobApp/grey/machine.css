@@ -1552,7 +1552,11 @@ td.td-axes {
 }
 
 .perc-fontsize {
-    font-size: 16px;
+    font-size: 12px;
+}
+
+.table-jobs > tbody {
+    font-size: 12px;
 }
 
 @media (max-width: 1396px) {
