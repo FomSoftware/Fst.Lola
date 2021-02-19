@@ -408,11 +408,11 @@ th.thMinW {
 
     .use-states .progress-label .progress-time .title-time {
         color: #403D3D;
-        font-size: 16px;
+        font-size: 12px;
         text-transform: uppercase;
         letter-spacing: 1px;
         font-family: 'Lato', sans-serif;
-        font-weight: 600;
+        font-weight: 800;
     }
 
     .use-states .progress-label .progress-time .value-time {
@@ -656,7 +656,7 @@ th.thMinW {
         color: #403D3D;
         font-family: 'Lato', sans-serif;
         font-weight: 700;
-        font-size: 16px;
+        font-size: 12px;
         text-transform: uppercase;
         letter-spacing: 1px;
     }
