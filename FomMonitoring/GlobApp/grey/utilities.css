@@ -776,6 +776,11 @@ table.dataTable .nowrap {
     .modal-header {
         padding-left: 25px;
     }
+
+    #timezone-input > option {
+        font-size: 7.5px;
+        font-variant-caps: small-caps;
+    }
 }
 
 #toast-container > div {
