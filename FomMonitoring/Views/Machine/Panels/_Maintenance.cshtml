@@ -183,7 +183,7 @@
                                             <td style="width:17%">{{ convert_date(message.day, message.utc) }}</td>
                                             <td style="width: 17%">{{ convert_date(message.ignoreDate, message.utc) }}</td>
                                             <td style="width: 7%">{{ message.dateDiff }}d</td>
-                                            <td style="width: 17%"><span v-if="message.user != null && message.user.user != null">{{ message.user.user.Username }}</span></td>
+                                            <td style="width: 19%"><p class="testo-a-capo" style="min-width: 60px" v-if="message.user != null && message.user.user != null">{{ message.user.user.Username }}</p></td>
                                             <td style="width: 40%">{{ message.description }}</td>
                                         </tr>
                                     </tbody>
