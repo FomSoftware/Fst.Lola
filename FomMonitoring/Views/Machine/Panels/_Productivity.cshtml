@@ -43,7 +43,7 @@
         <div class="portlet-body border-panel" v-bind:class="colorKPI">
             <div class="card-portlet card-productivity" style="padding: 2px 10px;" v-cloak>
 
-                <div class="swiper-container productivity">
+                <div class="swiper-container productivity" v-bind:class="enableSwiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div v-if="showDashboard">

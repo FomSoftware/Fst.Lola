@@ -42,7 +42,7 @@
     </div>
     <div class="portlet-body border-panel" style="border-top-color:cornflowerblue">
         <div class="card-portlet card-maintenance" style="height:100%" v-cloak>
-            <div class="swiper-container maintenance">
+            <div class="swiper-container maintenance" v-bind:class="enableSwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div v-if="messages != null" class="table-container" style="height:100%">

@@ -200,23 +200,31 @@
 
         var swiper_efficiency = new Swiper('.swiper-container.efficiency', {
             direction: 'horizontal',
+            noSwiping: true,
+            noSwipingClass: 'swiper-disabled',
             loop: false
         });
 
         var swiper_productivity = new Swiper('.swiper-container.productivity', {
             direction: 'horizontal',
+            noSwiping: true,
+            noSwipingClass: 'swiper-disabled',
             loop: false
         });
 
 
         var swiper_message = new Swiper('.swiper-container.messages', {
             direction: 'horizontal',
+            noSwiping: true,
+            noSwipingClass: 'swiper-disabled',
             loop: false
         });
         swiper_msg = swiper_message;
 
         var swiper_maintenance = new Swiper('.swiper-container.maintenance', {
             direction: 'horizontal',
+            noSwiping: true,
+            noSwipingClass: 'swiper-disabled',
             loop: false
         });
 

@@ -38,7 +38,7 @@
         </div>
         <div class="portlet-body border-panel" v-bind:class="colorKPI">
             <div class="card-portlet card-efficiency" style="padding: 5px 10px;" v-cloak>
-                <div class="swiper-container efficiency">
+                <div class="swiper-container efficiency" v-bind:class="enableSwiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="row" style="height: 100%;margin-bottom: 0" v-if="states != null">

@@ -29,7 +29,12 @@
                 timeZone: data.timeZone,
                 showed: true
             },
-            computed: {                
+            computed: {       
+                enableSwiper: function () {
+                    if (this.show.historical)
+                        return "";
+                    else return "swiper-disabled";
+                }
             },
             methods: {       
                 convert_timestamp: function (timestamp, utc) {
@@ -176,7 +181,7 @@
                     }
                     return "";
 
-                },
+                }
 
             }
         });

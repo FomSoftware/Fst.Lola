@@ -18,6 +18,7 @@
 
     }
 
+
     var initVueModel = function (data)
     {
         vmMessages = new Vue({
@@ -54,7 +55,12 @@
                         color = 'color-yellow';
 
                     return color;
-                }
+                },
+                enableSwiper: function () {
+                    if (this.show.historical === true)
+                        return "";
+                    else return "swiper-disabled";
+                },
             },
             methods: {
                 convert_timestamp: function (timestamp, utc) {

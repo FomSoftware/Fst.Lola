@@ -80,6 +80,11 @@
                     else
                         return false;
                 },
+                enableSwiper: function () {
+                    if (this.show.historical || this.show.operators)
+                        return "";
+                    else return "swiper-disabled";
+                },
                 colorKPI: function ()
                 {
                     var kpi = this.kpi;

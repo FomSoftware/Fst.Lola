@@ -98,6 +98,11 @@
                     else
                         return false;
                 },
+                enableSwiper: function() {
+                    if (this.show.historical || this.show.operators)
+                        return "";
+                    else return "swiper-disabled";
+                },
                 getCol: function () {
                     if (this.type != 'Troncatrice')
                         return "col-11 col-sm-11 col-md-5 col-lg-5 col-xl-6 larger";
