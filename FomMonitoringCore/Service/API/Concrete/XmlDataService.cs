@@ -52,8 +52,7 @@ namespace FomMonitoringCore.Service.API.Concrete
         public bool CheckVarNumber(int ModelCodeV997, string varnumber)
         {
             //controllo solo se esiste il model code, permetto di inserire nuove variabili che non esistono
-            if (!(ModelCodeV997 > 0)) return false;
-            return false;
+            return ModelCodeV997 > 0;
             /*return _context.Set<ParameterMachine>()
                 .Any(p => p.ModelCode == ModelCodeV997.ToString() && p.VarNumber == varnumber);*/
         }
@@ -61,7 +60,7 @@ namespace FomMonitoringCore.Service.API.Concrete
         public bool CheckPanelId(int? panelId)
         {
             //se non c'è il panel lo inserisco null, non sarà visualizzato
-            if (panelId == null) return false;
+            if (panelId == null) return true;
             return _context.Set<Panel>().Find(panelId) != null;
         }
 

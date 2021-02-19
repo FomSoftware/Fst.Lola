@@ -123,8 +123,7 @@ namespace FomMonitoring.Controllers
             }
                 
 
-            var wrongIdPanel = machineModelXml.Parameters.Parameter.Where(n => !(n.PANEL_ID > 0) ||
-                                                                                 !_xmlDataService.CheckPanelId(n.PANEL_ID)).ToList();
+            var wrongIdPanel = machineModelXml.Parameters.Parameter.Where(n => !_xmlDataService.CheckPanelId(n.PANEL_ID)).ToList();
             if (wrongIdPanel.Count() > 0)
             {
                 foreach (var row in wrongIdPanel)
