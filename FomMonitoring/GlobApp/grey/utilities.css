@@ -769,6 +769,10 @@ table.dataTable .nowrap {
         margin-right: 0;
         margin-left: 0;
     }
+    #timezone-input > option {
+        font-size: 0.7em;
+        font-variant-caps: small-caps;
+    }
 }
 
 @media screen and (max-width: 640px) {
