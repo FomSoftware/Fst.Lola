@@ -86,9 +86,12 @@ namespace FomMonitoring.Controllers
                 {
                     return View(model);
                 }
-
+                else if(ModelState.IsValid && _contextService.GetContext() == null)
+                {
+                    ModelState.AddModelError("", Resource.SessionTimeout);
+                }
                 ViewBag.ReturnUrl = returnUrl;
-                result = View();
+                result = View(model);
             }
 
             return result;
