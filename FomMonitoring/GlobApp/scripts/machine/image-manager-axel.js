@@ -25,9 +25,11 @@ ImageManAxel.prototype.checkModello = function (machineGroupSelected) {
     if (machineGroupSelected == 'AXEL_tools' ||
         machineGroupSelected == 'AXEL_tools' ||
         machineGroupSelected == 'AXEL_tools') {
-            ToolsFmcLmx.show();
-        } else {
-            ToolsFmcLmx.hide();
+        ToolsFmcLmx.show();
+        ToolsWarehouseAxel.show();
+    } else {
+        ToolsFmcLmx.hide();
+        ToolsWarehouseAxel.hide();
         }
 
 };

@@ -8,13 +8,18 @@
 
 <div id="MachineLevel" class="row">
 
-    @if (Model.MachineInfo.model.Contains("FMC"))
+
+    @if (Model.MachineInfo.id_mtype == (int)enMachineType.CentroLavoro)
     {
-        @Html.Partial("Model/_FMC", Model);
-    }
-    else if (Model.MachineInfo.modelCode == 550 || Model.MachineInfo.modelCode == 560)
-    {
-        @Html.Partial("Model/_AXEL", Model);
+        if (Model.MachineInfo.modelCode == 505 || Model.MachineInfo.modelCode == 506 || Model.MachineInfo.modelCode == 507
+             || Model.MachineInfo.modelCode == 508 || Model.MachineInfo.modelCode == 510)
+        {
+            @Html.Partial("Model/_FMC", Model);
+        }
+        else if (Model.MachineInfo.modelCode == 550 || Model.MachineInfo.modelCode == 560)
+        {
+            @Html.Partial("Model/_AXEL", Model);
+        }
     }
     else if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)
     {
@@ -24,11 +29,14 @@
     {
         @Html.Partial("Model/_BLITZ", Model);
     }
+    else if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglio)
+    {
+        @Html.Partial("Model/_Default", Model);
+    }
     else
     {
         @Html.Partial("Model/_Default", Model);
     }
-
 </div>
 
 

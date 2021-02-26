@@ -40,7 +40,6 @@ namespace FomMonitoringBLL.ViewServices
                 if (panels.Contains((int) enPanel.LinearAxesLMX))
                     result.vm_axes_lmx = GetLinearAxesLmxVueModel(context.ActualMachine);
             }
-
             if (panels.Contains((int) enPanel.Electrospindle) ||
                 panels.Contains((int) enPanel.XSpindles))
                 result.vm_electro_spindle = GetElectroSpindleVueModel(context.ActualMachine);
@@ -65,6 +64,17 @@ namespace FomMonitoringBLL.ViewServices
             if (panels.Contains((int)enPanel.OtherMachineDataLmx))
                 result.vm_other_data_lmx = GetOtherDataLmxVueModel(context.ActualMachine);
 
+            /*if (panels.Contains((int)enPanel.AXEL5_Axes))
+                result.vm_other_data_lmx = GetOtherDataLmxVueModel(context.ActualMachine);
+            if (panels.Contains((int)enPanel.AXEL5_MachineData))
+                result.vm_other_data_lmx = GetOtherDataLmxVueModel(context.ActualMachine);
+            if (panels.Contains((int)enPanel.AXEL_Sp_Sensors))
+                result.vm_other_data_lmx = GetOtherDataLmxVueModel(context.ActualMachine);
+            if (panels.Contains((int)enPanel.AXEL_Spindle))
+                result.vm_other_data_lmx = GetOtherDataLmxVueModel(context.ActualMachine);*/
+            if (panels.Contains((int)enPanel.AXEL_ToolW))
+                result.vm_toolsW_axel = GetToolsWarehouseAxelVueModel(context.ActualMachine);
+
 
             result.vm_machine_info = new MachineInfoViewModel
             {
@@ -74,6 +84,22 @@ namespace FomMonitoringBLL.ViewServices
                 machineName = context.ActualMachine.MachineName
             };
 
+            return result;
+        }
+
+        private ToolWarehouseVueModel GetToolsWarehouseAxelVueModel(MachineInfoModel machine)
+        {
+            var par = _parameterMachineService.GetParameters(machine, (int)enPanel.AXEL_ToolW);
+            var lista = par.Select(n => new ToolWarehouseValueModel
+            {
+                Code = n.Cluster,
+                Value = n.ConvertedValue
+            }).ToList();
+
+            var result = new ToolWarehouseVueModel
+            {
+                toolsWharehouse = lista
+            };
             return result;
         }
 

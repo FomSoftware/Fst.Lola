@@ -105,7 +105,18 @@ namespace FomMonitoringCore.Framework.Common
         [Description("linearAxesLMX")]
         LinearAxesLMX = 42,
         [Description("tiltingMSAxesLMX")]
-        TiltingMSAxesLMX = 43
+        TiltingMSAxesLMX = 43,
+        [Description("AXEL_Spindle")]
+        AXEL_Spindle = 44,
+        [Description("AXEL_ToolW")]
+        AXEL_ToolW = 45,
+        [Description("AXEL_Sp_Sensors")]
+        AXEL_Sp_Sensors = 46,
+        [Description("AXEL5_Axes")]
+        AXEL5_Axes = 47,
+        [Description("AXEL5_MachineData")]
+        AXEL5_MachineData = 48
+
     }
 
     public enum enDataType

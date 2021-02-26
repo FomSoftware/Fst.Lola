@@ -73,14 +73,14 @@
 
         @if (Model.MachineInfo.id_mtype == (int)enMachineType.Troncatrice)
         {
-            @Html.Partial("Panels/Jobs/_OtherMachines", Model.Jobs, new ViewDataDictionary
+            @Html.Partial("Panels/Jobs/_Troncatrici", Model.Jobs, new ViewDataDictionary
             {
                 { "Classes", "col-12" }
             })
         }
         else
         {
-            @Html.Partial("Panels/Jobs/_FMC_LMX", Model.Jobs, new ViewDataDictionary
+            @Html.Partial("Panels/Jobs/_OtherMachineTypes", Model.Jobs, new ViewDataDictionary
             {
                 { "Classes", "col-12" }
             })

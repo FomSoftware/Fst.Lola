@@ -443,6 +443,7 @@
     <Content Include="GlobApp\scripts\machine\rotaryaxes\rotaryaxes.js" />
     <Content Include="GlobApp\scripts\machine\sensorspindles\sensorspindles.js" />
     <Content Include="GlobApp\scripts\machine\tiltingaxes\tiltingaxes.js" />
+    <Content Include="GlobApp\scripts\machine\toolswarehouse\axel.js" />
     <Content Include="GlobApp\scripts\machine\tools\fmcLmx.js" />
     <Content Include="GlobApp\scripts\machine\tools\blitz.js" />
     <Content Include="GlobApp\scripts\machine\xtools.js" />
@@ -1372,7 +1373,7 @@
     <Content Include="Views\Machine\Panels\_Efficiency.cshtml" />
     <Content Include="Views\Machine\Panels\_Productivity.cshtml" />
     <Content Include="Views\Machine\Panels\_Tools.cshtml" />
-    <Content Include="Views\Machine\Panels\Jobs\_FMC_LMX.cshtml" />
+    <Content Include="Views\Machine\Panels\Jobs\_OtherMachineTypes.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Mes\Mes.cshtml" />
     <Content Include="Views\Shared\_Toolbar.cshtml" />
@@ -1408,7 +1409,7 @@
     <Content Include="Views\Machine\Panels\SensorSpindles\_LMX650.cshtml" />
     <Content Include="Views\Machine\Panels\Motor\_LMX_650.cshtml" />
     <Content Include="Views\Machine\Panels\OtherMachineData\_LMX650.cshtml" />
-    <Content Include="Views\Machine\Panels\Jobs\_OtherMachines.cshtml" />
+    <Content Include="Views\Machine\Panels\Jobs\_Troncatrici.cshtml" />
     <Content Include="Views\Machine\Panels\XTools\_Lmx.cshtml" />
     <Content Include="Views\Machine\Model\_BLITZ.cshtml" />
     <Content Include="Views\EmailTemplates\ChangedPassword.cshtml" />
@@ -1512,6 +1513,7 @@
     <Content Include="Views\Machine\Model\_AXEL.cshtml" />
     <Content Include="Views\Shared\_FaqPage.cshtml" />
     <Content Include="Views\Shared\_SupportPage.cshtml" />
+    <Content Include="Views\Machine\Panels\ToolsWarehouse\_Axel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

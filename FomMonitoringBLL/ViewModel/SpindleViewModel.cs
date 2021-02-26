@@ -21,6 +21,7 @@ namespace FomMonitoringBLL.ViewModel
         public ToolsFmcLmxParameterVueModel vm_xtools_lmx { get; set; }
 
         public OtherDataLmxParameterVueModel vm_other_data_lmx { get; set; }
+        public ToolWarehouseVueModel vm_toolsW_axel { get; set; }
     }
 
     public class OtherDataLmxParameterVueModel
@@ -123,6 +124,16 @@ namespace FomMonitoringBLL.ViewModel
     {
         public IEnumerable<ToolParameterMachineValueModel> ToolsInfo { get; set; } = new List<ToolParameterMachineValueModel>();
         public int PanelId { get; set; }
+    }
+
+    public class ToolWarehouseVueModel
+    {
+        public IEnumerable<ToolWarehouseValueModel> toolsWharehouse { get; set; } = new List<ToolWarehouseValueModel>();
+    }
+    public class ToolWarehouseValueModel
+    {
+        public string Code { get; set; }
+        public string Value { get; set; }
     }
 
     public class ToolParameterMachineValueModel

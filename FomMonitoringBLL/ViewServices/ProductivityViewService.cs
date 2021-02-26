@@ -146,6 +146,7 @@ namespace FomMonitoringBLL.ViewServices
             switch (machine.MachineTypeId)
             {
                 case (int)enMachineType.Troncatrice:
+                case (int)enMachineType.LineaTaglio:
                     var cut = new ProdDataModel();
                     cut.text = Resource.Cut;
                     cut.perc = Common.GetPercentage(netTime, grossTime);
