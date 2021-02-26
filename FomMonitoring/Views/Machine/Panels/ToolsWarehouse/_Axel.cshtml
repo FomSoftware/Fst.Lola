@@ -46,13 +46,13 @@
                                             </td>
                                             <td>
                                                 <label style="vertical-align: top; width: 20px" v-if="tools[index + 1]"><i class="fa fa-unlock fa-2x" aria-hidden="true"></i></label>
-                                                <label class="label-tools">{{tools[index +1] ? 'Pos.' + tools[index + 1].Code : ''}}</label>
-                                                <label class="label-tools-value fmc text-center">{{tools[index +1] ? tools[index + 1].Value : ''}}</label>
+                                                <label class="label-tools" v-if="tools[index + 1]">Pos.{{tools[index + 1].Code}}</label>
+                                                <label class="label-tools-value fmc text-center" v-if="tools[index + 1]">{{tools[index + 1].Value}}</label>
                                             </td>
                                             <td>
                                                 <label style="vertical-align: top; width: 20px" v-if="tools[index + 2]"><i class="fa fa-unlock fa-2x" aria-hidden="true"></i></label>
-                                                <label class="label-tools">{{tools[index +2] ? 'Pos.' + tools[index + 2].Code : ''}}</label>
-                                                <label class="label-tools-value fmc center">{{tools[index +2] ? tools[index + 2].Value : ''}}</label>
+                                                <label class="label-tools" v-if="tools[index + 2]">Pos.{{tools[index + 2].Code}}</label>
+                                                <label class="label-tools-value fmc center" v-if="tools[index + 2]">{{tools[index + 2].Value}}</label>
                                             </td>
                                         </tr>
                                         <tr style="padding: 0; height: 2px" v-if="(index % 3) == 0">
