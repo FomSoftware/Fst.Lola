@@ -1377,4 +1377,31 @@ indicating:
   <data name="ManPredittiva" xml:space="preserve">
     <value>Predictive maintenance</value>
   </data>
+  <data name="AXEL_ToolW" xml:space="preserve">
+    <value>TOOL MAGAZINE</value>
+  </data>
+  <data name="SblocchiForchettaPortaUtensili" xml:space="preserve">
+    <value>TOOL HOLDER FORK RELEASES</value>
+  </data>
+  <data name="RotaryAxes" xml:space="preserve">
+    <value>ROTARY AXES/TOOL MAG.</value>
+  </data>
+  <data name="lw_gradiPercorsiAsseC" xml:space="preserve">
+    <value>C axis No. turns (180°)</value>
+  </data>
+  <data name="lw_gradiPercorsiAsseD" xml:space="preserve">
+    <value>D axis No. turns (180°)</value>
+  </data>
+  <data name="lw_mPercorsiVic" xml:space="preserve">
+    <value>KM Vice</value>
+  </data>
+  <data name="lw_tempiMandrinoASoglia_6" xml:space="preserve">
+    <value>Range rpm 20001-24000</value>
+  </data>
+  <data name="tempoTrascorsoRangeRpm" xml:space="preserve">
+    <value>TIME PASSED/RANGE RPM</value>
+  </data>
+  <data name="SblocchiPinza" xml:space="preserve">
+    <value>Gripper releases</value>
+  </data>
 </root>

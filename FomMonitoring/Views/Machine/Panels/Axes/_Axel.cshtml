@@ -1,0 +1,89 @@
+﻿
+@model FomMonitoringBLL.ViewModel.PanelParametersViewModel
+@using FomMonitoringCore.Service
+
+<div id="CardAxesAxel" class="@ViewData["Classes"]" v-show="showed">
+    <div class="portlet">
+    <div class="portlet-title">
+        <div class="portlet-kpi">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
+                <i class="fa icofom-assi fa-stack-1x fa-inverse" style="font-size:1.5em"></i>
+            </span>
+        </div>
+        <div class="title-kpi" style="max-width: 300px;">
+            <span class="testo-abbreviato">@LocalizationService.GetResource("Axes")</span>
+            <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
+        </div>
+    </div>
+    <div class="portlet-body text-center" style="height: 244px">
+        <div class="card-portlet">
+            <div v-if="axes != null" style="height: 244px" class="gradient-table-33">
+                <hr style="background-color: #0c3817; height: 2px; border: none"/>
+                <div style="cursor: auto; height: 100%">
+                    <table class="table-tools-fmc" style="height: 100%">
+                        <tr>
+                            <td colspan="3" class="portlet-subtitle" style="font-size: 11px;padding: 2px 2px 0 14px;">
+                                @Html.Raw(LocalizationService.GetResource("LMX650_LinearAxes"))
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label style="font-size: 0.7rem;"><i class="fa icofom-assekm fa-2x" aria-hidden="true"></i></label>
+                                <label v-if="axes.AsseX != null && axes.AsseX.Description != null" class="label-electrospindle-title" v-html="axes.AsseX.Description"></label>
+                                <label v-if="axes.AsseX != null && axes.AsseX.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.AsseX.ConvertedValue"></label>
+                            </td>
+                            <td>
+                                <label style="font-size: 0.7rem;"><i class="fa icofom-assekm fa-2x" aria-hidden="true"></i></label>
+                                <label v-if="axes.AsseY != null && axes.AsseY.Description != null" class="label-electrospindle-title" v-html="axes.AsseY.Description"></label>
+                                <label v-if="axes.AsseY != null && axes.AsseY.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.AsseY.ConvertedValue"></label>
+                            </td>
+                            <td>
+                                <label style="font-size: 0.7rem;"><i class="fa icofom-assekm fa-2x" aria-hidden="true"></i></label>
+                                <label v-if="axes.AsseZ != null && axes.AsseZ.Description != null" class="label-electrospindle-title" v-html="axes.AsseZ.Description"></label>
+                                <label v-if="axes.AsseZ != null && axes.AsseZ.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.AsseZ.ConvertedValue"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="portlet-subtitle" style="font-size: 11px;padding: 2px 2px 0 14px;">
+                                @Html.Raw(LocalizationService.GetResource("RotaryAxes"))
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label style="font-size: 0.7rem;"><i class="fa fa-openid fa-2x" aria-hidden="true"></i></label>
+                                <label v-if="axes.AsseRotA != null && axes.AsseRotA.Description != null" class="label-electrospindle-title" v-html="axes.AsseRotA.Description"></label>
+                                <label v-if="axes.AsseRotA != null && axes.AsseRotA.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.AsseRotA.ConvertedValue"></label>
+                            </td>
+                            <td>
+                                <label v-if="axes.AsseRotC" style="font-size: 0.7rem;"><i class="fa fa-openid fa-2x" aria-hidden="true"></i></label>
+                                <label v-if="axes.AsseRotC != null && axes.AsseRotC.Description != null" class="label-electrospindle-title" v-html="axes.AsseRotC.Description"></label>
+                                <label v-if="axes.AsseRotC != null && axes.AsseRotC.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.AsseRotC.ConvertedValue"></label>
+                            </td>
+                            <td>
+                                <label v-if="axes.AsseRotD" style="font-size: 0.7rem;"><i class="fa fa-openid fa-2x" aria-hidden="true"></i></label>
+                                <label v-if="axes.AsseRotD != null && axes.AsseRotD.Description != null" class="label-electrospindle-title" v-html="axes.AsseRotD.Description"></label>
+                                <label v-if="axes.AsseRotD != null && axes.AsseRotD.ConvertedValue != null" class="label-electrospindle-data-value" v-html="axes.AsseRotD.ConvertedValue"></label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <no-data v-else></no-data>
+        </div>
+    </div>
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        var data = @Html.Raw(Json.Encode(Model));
+        AxesAxel.init(data);
+    });
+
+</script>

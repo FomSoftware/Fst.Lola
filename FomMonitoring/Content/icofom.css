@@ -115,3 +115,10 @@
 .icofom-magazzino:before {
     content: "\e90b";
 }
+
+.icofom-click-isola-sx:before {
+    content: "\e90c";
+}
+.icofom-click-isola-dx:before {
+    content: "\e90d";
+}

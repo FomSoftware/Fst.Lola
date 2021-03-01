@@ -9,18 +9,22 @@ ImageManAxel.prototype.checkModello = function (machineGroupSelected) {
     if (machineGroupSelected == 'AXEL_axes' ||
         machineGroupSelected == 'AXEL_axes' ||
         machineGroupSelected == 'AXEL_axes') {
-            OtherData.show();
-        } else {
-            OtherData.hide();
-        }
+        OtherDataAxel.show();
+        AxesAxel.show();
+    } else {
+        OtherDataAxel.hide();
+        AxesAxel.hide();
+    }
 
     if (machineGroupSelected == 'AXEL_spindles' ||
         machineGroupSelected == 'AXEL_spindles' ||
         machineGroupSelected == 'AXEL_spindles') {
-            ElectroSpindle.show();
-        } else {
-            ElectroSpindle.hide();
-        }
+        ElectroSpindleAxel.show();
+        SensorsSpindleAxel.show();
+    } else {
+        ElectroSpindleAxel.hide();
+        SensorsSpindleAxel.hide();
+    }
 
     if (machineGroupSelected == 'AXEL_tools' ||
         machineGroupSelected == 'AXEL_tools' ||

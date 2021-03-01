@@ -1,0 +1,104 @@
+﻿
+@model FomMonitoringBLL.ViewModel.PanelParametersViewModel
+@using FomMonitoringCore.Service
+
+<div id="CardSensorsSpindleAxel"  class="@ViewData["Classes"]" style="overflow: hidden;margin-bottom: 10px;" v-show="showed">
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="portlet-kpi">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
+                    <i class="fa icofom-sensoristica fa-stack-1x fa-inverse" style="font-size:1.5em"></i>
+                </span>
+            </div>
+            <div class="title-kpi testo-abbreviato" style="max-width: 89%;" >
+                <span class="testo-abbreviato">@LocalizationService.GetResource("AxelSp_Sensors")</span>
+                <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
+            </div>
+        </div>
+        <div class="portlet-body text-center" >
+            <div class="card-portlet" style="height:244px">
+                <div id="sensorSlimscroll" v-if="noData() == false" style="height:100%" class="slimscroll">
+                <div style="cursor: auto;height: 100%;">
+                        <table style="height: 100%">
+                            <tr style="background-color: #0c3817; height: 2px; border: none;"><td></td></tr>
+                            <tr>
+                                <td style="padding: 0">
+                                    <table class="table-xmu-electrospindle">
+                                        <tr>
+                                            <td  colspan="2" class="portlet-subtitle" style="font-size: 11px">
+                                                @Html.Raw(LocalizationService.GetResource("Assorbimento"))
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-xmu-electrospindle">
+                                                        <label class="electro-spindle-icon spindle-sensors-icon"><i class="fa fa-clock-o  fa-lg" aria-hidden="true"></i></label>
+                                                        <label v-if="values.TempoSovraAssorbimento != null" class="label-other-title">@LocalizationService.GetResource("TabSoglieAmpereMandriniINT_1")</label>
+                                                        <label v-if="values.TempoSovraAssorbimento != null && values.TempoSovraAssorbimento.ConvertedValue" class="label-other-data-value" v-html="values.TempoSovraAssorbimento.ConvertedValue"></label>
+                                                    </td>
+                                                    <td class="td-xmu-electrospindle  xmu-electrospindle-border-left">
+                                                        <label class="electro-spindle-icon spindle-sensors-icon" ><i class="fa fa-sort-amount-asc fa-rotate-180" aria-hidden="true"></i></label>
+                                                        <label v-if="values.QtaSovrassorbimento != null" class="label-other-title">@LocalizationService.GetResource("TabSoglieAmpereContatoreINT")</label>
+                                                        <label v-if="values.QtaSovrassorbimento != null && values.QtaSovrassorbimento.ConvertedValue" class="label-other-data-value" v-html="values.QtaSovrassorbimento.ConvertedValue"></label>
+                                                    </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="portlet-subtitle" style="font-size: 11px">
+                                                @Html.Raw(LocalizationService.GetResource("TemperaturaStatore"))
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-xmu-electrospindle">
+                                                        <label class="electro-spindle-icon spindle-sensors-icon" ><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                        <label v-if="values.TempoSovraTemperatura != null" class="label-other-title">@LocalizationService.GetResource("TabTemperStatoreMinutiINT")</label>
+                                                        <label v-if="values.TempoSovraTemperatura != null && values.TempoSovraTemperatura.ConvertedValue" class="label-other-data-value" v-html="values.TempoSovraTemperatura.ConvertedValue"></label>
+                                                    </td>
+                                                    <td class="td-xmu-electrospindle  xmu-electrospindle-border-left">
+                                                        <label class="electro-spindle-icon spindle-sensors-icon" ><i class="fa fa-sort-amount-asc fa-rotate-180" aria-hidden="true"></i></label>
+                                                        <label v-if="values.QtaSovraTemperatura != null" class="label-other-title">@LocalizationService.GetResource("TabTemperStatoreContatoreINT")</label>
+                                                        <label v-if="values.QtaSovraTemperatura != null && values.QtaSovraTemperatura.ConvertedValue" class="label-other-data-value" v-html="values.QtaSovraTemperatura.ConvertedValue"></label>
+                                                    </td>
+                                                
+                                        </tr>
+                                        <tr>
+                                            <td  colspan="2" class="portlet-subtitle" style="font-size: 11px">
+                                                @Html.Raw(LocalizationService.GetResource("SblocchiPinza"))
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        
+                                                <td class="td-xmu-electrospindle">
+                                                    <label class="electro-spindle-icon spindle-sensors-icon"><i class="fa fa-bars  fa-lg" aria-hidden="true"></i></label>
+                                                    <label v-if="values.NumSblocchiPinza != null" class="label-other-title" v-html="values.NumSblocchiPinza.Description"></label>
+                                                    <label v-if="values.NumSblocchiPinza != null && values.NumSblocchiPinza.ConvertedValue" class="label-other-data-value" v-html="values.NumSblocchiPinza.ConvertedValue"></label>
+                                                </td>
+                                                <td class="td-xmu-electrospindle  xmu-electrospindle-border-left">
+                                                </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+                <no-data v-else></no-data>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        var data = @Html.Raw(Json.Encode(Model));
+        SensorsSpindleAxel.init(data);
+    });
+
+</script>
+
+

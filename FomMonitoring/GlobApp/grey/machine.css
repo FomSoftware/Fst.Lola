@@ -1219,6 +1219,9 @@ hr.axes {
     width: 100%;
     text-align: center;
 }
+#CardOtherDataMachineAxel .label-other-data-value {
+    margin-bottom: 10px;
+}
 
 #CardSensorSpindles .label-other-data-value {
     padding-top: 4px;
@@ -1334,6 +1337,11 @@ hr.tools {
     float: left;
 }
 
+.spindle-sensors-icon {
+    font-size: 16px;
+    margin-left: 4px;
+}
+
 .motor-blade-icon {
     margin-bottom: 0.2rem;
 }
@@ -1345,6 +1353,11 @@ hr.tools {
 td.td-electrospindle-data {
     width: 33.33%;
     word-break: break-word;
+}
+
+.label-electrospindle-data-value.axel-data {
+    width: 85%;
+    padding-top: 15px;
 }
 
 .front, .back {
@@ -2086,4 +2099,18 @@ td.td-axes {
         background: -webkit-linear-gradient(left, #b4b4b4 0, #b4b4b4 33%, #BEBEBE 33%, #BEBEBE 66%, #b4b4b4 66%, #b4b4b4 100%); /* Chrome10-25,Safari5.1-6 */
         background: linear-gradient(to right, #b4b4b4 0, #b4b4b4 33%, #BEBEBE 33%, #BEBEBE 66%, #b4b4b4 66%, #b4b4b4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     }
+
+.gradient-table-33-inverse {
+    background: #BEBEBE; /* Old browsers */
+    background: -moz-linear-gradient(left, #BEBEBE 0, #BEBEBE 33%, #b4b4b4 33%, #b4b4b4 66%, #BEBEBE 66%, #BEBEBE 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #BEBEBE 0, #BEBEBE 33%, #b4b4b4 33%, #b4b4b4 66%, #BEBEBE 66%, #BEBEBE 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #BEBEBE 0, #BEBEBE 33%, #b4b4b4 33%, #b4b4b4 66%, #BEBEBE 66%, #BEBEBE 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.gradient-table-50 {
+    background: #b4b4b4; /* Old browsers */
+    background: -moz-linear-gradient(left, #b4b4b4 0, #b4b4b4 50%, #BEBEBE 50%, #BEBEBE 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #b4b4b4 0, #b4b4b4 50%, #BEBEBE 50%, #BEBEBE 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #b4b4b4 0, #b4b4b4 50%, #BEBEBE 50%, #BEBEBE 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
 

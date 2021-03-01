@@ -1375,4 +1375,31 @@ In caso di licenza scaduta per una o più macchine, procedere ad acquistare e/o 
   <data name="ManPredittiva" xml:space="preserve">
     <value>Manutenzione predittiva</value>
   </data>
+  <data name="AXEL_ToolW" xml:space="preserve">
+    <value>MAGAZZINO UTENSILI</value>
+  </data>
+  <data name="SblocchiForchettaPortaUtensili" xml:space="preserve">
+    <value>SBLOCCHI FORCHETTA PORTA UTENSILI</value>
+  </data>
+  <data name="RotaryAxes" xml:space="preserve">
+    <value>ASSI ROTATIVI/MAG.UTENSILI</value>
+  </data>
+  <data name="lw_gradiPercorsiAsseC" xml:space="preserve">
+    <value>N. rotazioni (180°) asse C</value>
+  </data>
+  <data name="lw_gradiPercorsiAsseD" xml:space="preserve">
+    <value>N. rotazioni (180°) asse D</value>
+  </data>
+  <data name="lw_mPercorsiVic" xml:space="preserve">
+    <value>KM Morsa</value>
+  </data>
+  <data name="lw_tempiMandrinoASoglia_6" xml:space="preserve">
+    <value>Range rpm 20001-24000</value>
+  </data>
+  <data name="tempoTrascorsoRangeRpm" xml:space="preserve">
+    <value>TEMPO TRASCORSO/RANGE RPM</value>
+  </data>
+  <data name="SblocchiPinza" xml:space="preserve">
+    <value>Sblocchi pinza</value>
+  </data>
 </root>

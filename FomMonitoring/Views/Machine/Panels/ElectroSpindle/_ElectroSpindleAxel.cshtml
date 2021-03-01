@@ -1,0 +1,135 @@
+﻿
+@model FomMonitoringBLL.ViewModel.PanelParametersViewModel
+@using FomMonitoringCore.Service
+
+<div id="CardElectroSpindleAxel" class="@ViewData["Classes"]" v-show="showed" style="padding: 0 15px;">
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="portlet-kpi">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
+                    <i class="fa icofom-elettromandrino fa-stack-1x fa-inverse" style="font-size:1.5em"></i>
+                </span>
+            </div>
+            <div class="title-kpi" >
+                <span class="testo-abbreviato">@LocalizationService.GetResource("Electrospindle")</span>
+
+                <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
+            </div>
+        </div>
+        <div class="portlet-body text-center" style="height: 246px;background-color: #bebebe;">
+            <div class="card-portlet">
+                <hr style="background-color: #0c3817; height: 2px; border: none;width:100%">
+                <div v-if="noData() == false" style="height: 242px" class="slimscroll">
+                    <div style="cursor: auto; height: 100%;background-color: #bebebe;">
+                        <table class="table-electro-spindle">
+                            <tr>
+                                <td class="portlet-subtitle" style="font-size: 11px; padding: 2px 2px 0 14px; border: none">
+                                    @Html.Raw(LocalizationService.GetResource("tempoTrascorsoRangeRpm"))
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table style="width: 100%; height: 100%" class="gradient-table-33-inverse">
+
+                                        <tr>
+                                            <td class="td-electrospindle-data">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="values.RpmRange1500 != null" class="label-electrospindle-title" v-html="values.RpmRange1500.Description"></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px">
+                                                    <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
+                                                </label>
+                                                <label v-if="values.RpmRange1500 && values.RpmRange1500.ConvertedValue != null" class="label-electrospindle-data-value axel-data" v-html="values.RpmRange1500.ConvertedValue"></label>
+
+                                            </td>
+                                            <td class="td-electrospindle-data tool-border-left">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="values.RpmRange5500 != null" class="label-electrospindle-title" v-html="values.RpmRange5500.Description"></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px">
+                                                    <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
+                                                </label>
+                                                <label v-if="values.RpmRange5500 != null && values.RpmRange5500.ConvertedValue" class="label-electrospindle-data-value axel-data" v-html="values.RpmRange5500.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-electrospindle-data">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="values.RpmRange8000 != null" class="label-electrospindle-title" v-html="values.RpmRange8000.Description"></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px">
+                                                    <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
+                                                </label>
+                                                <label v-if="values.RpmRange8000 != null && values.RpmRange8000.ConvertedValue" class="label-electrospindle-data-value axel-data" v-html="values.RpmRange8000.ConvertedValue"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-electrospindle-data">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="values.RpmRange11500 != null" class="label-electrospindle-title" v-html="values.RpmRange11500.Description"></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px">
+                                                    <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
+                                                </label>
+                                                <label v-if="values.RpmRange11500 && values.RpmRange11500.ConvertedValue != null" class="label-electrospindle-data-value axel-data" v-html="values.RpmRange11500.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-electrospindle-data  tool-border-left">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="values.RpmRange14500 != null" class="label-electrospindle-title" v-html="values.RpmRange14500.Description"></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px">
+                                                    <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
+                                                </label>
+                                                <label v-if="values.RpmRange14500 != null && values.RpmRange14500.ConvertedValue" class="label-electrospindle-data-value axel-data" v-html="values.RpmRange14500.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-electrospindle-data">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="values.RpmRange20000 != null" class="label-electrospindle-title" v-html="values.RpmRange20000.Description"></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px">
+                                                    <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
+                                                </label>
+                                                <label v-if="values.RpmRange20000 != null && values.RpmRange20000.ConvertedValue" class="label-electrospindle-data-value axel-data" v-html="values.RpmRange20000.ConvertedValue"></label>
+                                            </td>
+                                        </tr>
+                                        <tr style="height: 2px;">
+                                            <td style="padding: 0;"></td>
+                                            <td style="padding: 0; background-color: #b4b4b4"></td>
+                                            <td style="padding: 0;"><hr align="center" width="80%" class="axes"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-electrospindle-data">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="values.RpmRange24000 != null" class="label-electrospindle-title" v-html="values.RpmRange24000.Description"></label>
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px">
+                                                    <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
+                                                </label>
+                                                <label v-if="values.RpmRange24000 != null && values.RpmRange24000.ConvertedValue" class="label-electrospindle-data-value  axel-data" v-html="values.RpmRange24000.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-electrospindle-data tool-border-left"></td>
+                                            <td class="td-electrospindle-data">
+                                                <label class="electro-spindle-icon" style="vertical-align: top; width: 20px"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label class="label-electrospindle-title-bottom">@LocalizationService.GetResource("oreMandrinoAttivo")</label>
+                                                <label v-if="values.OreLavoroTotali != null && values.OreLavoroTotali.ConvertedValue" class="label-electrospindle-data-value  axel-data" v-html="values.OreLavoroTotali.ConvertedValue"></label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+                <no-data v-else></no-data>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        var data = @Html.Raw(Json.Encode(Model));
+        ElectroSpindleAxel.init(data);
+    });
+
+</script>
+
+

@@ -1371,4 +1371,31 @@ Si la licence est expirée pour une ou plusieurs machines, achetez ou renouvelez
   <data name="ManPredittiva" xml:space="preserve">
     <value>Maintenance prédictive</value>
   </data>
+  <data name="AXEL_ToolW" xml:space="preserve">
+    <value>MAGASIN OUTILS</value>
+  </data>
+  <data name="SblocchiForchettaPortaUtensili" xml:space="preserve">
+    <value>DÉBLOCAGES FOURCHE PORTE-OUTILS</value>
+  </data>
+  <data name="RotaryAxes" xml:space="preserve">
+    <value>AXES ROTATIFS/MAG.OUTILS</value>
+  </data>
+  <data name="lw_gradiPercorsiAsseC" xml:space="preserve">
+    <value>Nb rotations (180°) axe C</value>
+  </data>
+  <data name="lw_gradiPercorsiAsseD" xml:space="preserve">
+    <value>Nb rotations (180°) axe D</value>
+  </data>
+  <data name="lw_mPercorsiVic" xml:space="preserve">
+    <value>KM Étau</value>
+  </data>
+  <data name="lw_tempiMandrinoASoglia_6" xml:space="preserve">
+    <value>Intervalle rpm 20001-24000</value>
+  </data>
+  <data name="tempoTrascorsoRangeRpm" xml:space="preserve">
+    <value>TIEMPO TRANSCURRIDO/RANGO RPM</value>
+  </data>
+  <data name="SblocchiPinza" xml:space="preserve">
+    <value>Déblocages pince</value>
+  </data>
 </root>

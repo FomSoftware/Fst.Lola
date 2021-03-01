@@ -22,6 +22,41 @@ namespace FomMonitoringBLL.ViewModel
 
         public OtherDataLmxParameterVueModel vm_other_data_lmx { get; set; }
         public ToolWarehouseVueModel vm_toolsW_axel { get; set; }
+
+        public AxisAxelVueModel vm_axes_axel { get; set; }
+        public OtheDataAxelVueModel vm_otherdata_axel { get; set; }
+        public ElectroSpindleAxelVueModel vm_electro_spindle_axel { get; set; }
+        public SensorSpindlesAxelParameterVueModel vm_sensors_axel { get; set; }
+}
+
+    public class SensorSpindlesAxelParameterVueModel
+    {
+        public ParameterMachineValueModel TempoSovraAssorbimento { get; set; }
+        public ParameterMachineValueModel TempoSovraTemperatura { get; set; }
+        public ParameterMachineValueModel QtaSovrassorbimento { get; set; }
+        public ParameterMachineValueModel QtaSovraTemperatura { get; set; }
+        public ParameterMachineValueModel NumSblocchiPinza { get; set; }
+    }
+
+    public class OtheDataAxelVueModel
+    {
+        public ParameterMachineValueModel ClickIsolaSx { get; set; }
+        public ParameterMachineValueModel ClickIsolaDx { get; set; }
+        public ParameterMachineValueModel OreVitaMacchina { get; set; }
+        public ParameterMachineValueModel OreUltimoIngrassaggio { get; set; }
+
+        public List<ParameterMachineValueModel> KmMorse { get; set; }
+
+    }
+
+    public class AxisAxelVueModel
+    {
+        public ParameterMachineValueModel AsseX { get; set; }
+        public ParameterMachineValueModel AsseY { get; set; }
+        public ParameterMachineValueModel AsseZ { get; set; }
+        public ParameterMachineValueModel AsseRotA { get; set; }
+        public ParameterMachineValueModel AsseRotC { get; set; }
+        public ParameterMachineValueModel AsseRotD { get; set; }
     }
 
     public class OtherDataLmxParameterVueModel
@@ -106,6 +141,17 @@ namespace FomMonitoringBLL.ViewModel
         public ParameterMachineValueModel RpmRange14500 { get; set; }
         public ParameterMachineValueModel RpmRange20000 { get; set; }
         public bool ShowSovrassorbimento { get; set; }
+    }
+    public class ElectroSpindleAxelVueModel
+    {
+        public ParameterMachineValueModel OreLavoroTotali { get; set; }
+        public ParameterMachineValueModel RpmRange1500 { get; set; }
+        public ParameterMachineValueModel RpmRange5500 { get; set; }
+        public ParameterMachineValueModel RpmRange8000 { get; set; }
+        public ParameterMachineValueModel RpmRange11500 { get; set; }
+        public ParameterMachineValueModel RpmRange14500 { get; set; }
+        public ParameterMachineValueModel RpmRange20000 { get; set; }
+        public ParameterMachineValueModel RpmRange24000 { get; set; }
     }
 
     public class MultiSpindleParameterVueModel

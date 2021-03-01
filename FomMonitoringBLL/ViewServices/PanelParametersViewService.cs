@@ -64,16 +64,16 @@ namespace FomMonitoringBLL.ViewServices
             if (panels.Contains((int)enPanel.OtherMachineDataLmx))
                 result.vm_other_data_lmx = GetOtherDataLmxVueModel(context.ActualMachine);
 
-            /*if (panels.Contains((int)enPanel.AXEL5_Axes))
-                result.vm_other_data_lmx = GetOtherDataLmxVueModel(context.ActualMachine);
-            if (panels.Contains((int)enPanel.AXEL5_MachineData))
-                result.vm_other_data_lmx = GetOtherDataLmxVueModel(context.ActualMachine);
-            if (panels.Contains((int)enPanel.AXEL_Sp_Sensors))
-                result.vm_other_data_lmx = GetOtherDataLmxVueModel(context.ActualMachine);
-            if (panels.Contains((int)enPanel.AXEL_Spindle))
-                result.vm_other_data_lmx = GetOtherDataLmxVueModel(context.ActualMachine);*/
             if (panels.Contains((int)enPanel.AXEL_ToolW))
                 result.vm_toolsW_axel = GetToolsWarehouseAxelVueModel(context.ActualMachine);
+            if (panels.Contains((int)enPanel.AXEL5_Axes))
+                result.vm_axes_axel = GetAxesAxelVueModel(context.ActualMachine);
+            if (panels.Contains((int)enPanel.AXEL5_MachineData))
+                result.vm_otherdata_axel = GetOtherDataAxelVueModel(context.ActualMachine);
+            if (panels.Contains((int)enPanel.AXEL_Spindle))
+                result.vm_electro_spindle_axel = GetElectroSpindleAxelVueModel(context.ActualMachine);
+            if (panels.Contains((int)enPanel.AXEL_Sp_Sensors))
+                result.vm_sensors_axel = GetSensorsAxelVueModel(context.ActualMachine);
 
 
             result.vm_machine_info = new MachineInfoViewModel
@@ -84,6 +84,75 @@ namespace FomMonitoringBLL.ViewServices
                 machineName = context.ActualMachine.MachineName
             };
 
+            return result;
+        }
+
+        private SensorSpindlesAxelParameterVueModel GetSensorsAxelVueModel(MachineInfoModel machine)
+        {
+            var par = _parameterMachineService.GetParameters(machine, (int)enPanel.AXEL_Sp_Sensors);
+            var result = new SensorSpindlesAxelParameterVueModel
+            {
+                TempoSovraAssorbimento = par.FirstOrDefault(p => p.VarNumber == 2616),
+                QtaSovrassorbimento = par.FirstOrDefault(p => p.VarNumber == 2624),
+                TempoSovraTemperatura = par.FirstOrDefault(p => p.VarNumber == 2618),
+                QtaSovraTemperatura = par.FirstOrDefault(p => p.VarNumber == 2626),
+                NumSblocchiPinza = par.FirstOrDefault(p => p.VarNumber == 103)
+            };
+            return result;
+        }
+
+        private ElectroSpindleAxelVueModel GetElectroSpindleAxelVueModel(MachineInfoModel machine)
+        {
+            var panels = _machineService.GetMachinePanels(machine.Model.Id);
+            ElectroSpindleAxelVueModel result = null;
+            if (panels.Contains((int)enPanel.AXEL_Spindle))
+            {
+                var par = _parameterMachineService.GetParameters(machine, (int)enPanel.AXEL_Spindle);
+                result = new ElectroSpindleAxelVueModel
+                {
+                    OreLavoroTotali = par.FirstOrDefault(p => p.VarNumber == 2614),
+                    RpmRange1500 = par.FirstOrDefault(p => p.VarNumber == 2650),
+                    RpmRange5500 = par.FirstOrDefault(p => p.VarNumber == 2652),
+                    RpmRange8000 = par.FirstOrDefault(p => p.VarNumber == 2654),
+                    RpmRange11500 = par.FirstOrDefault(p => p.VarNumber == 2656),
+                    RpmRange14500 = par.FirstOrDefault(p => p.VarNumber == 2658),
+                    RpmRange20000 = par.FirstOrDefault(p => p.VarNumber == 2660),
+                    RpmRange24000 = par.FirstOrDefault(p => p.VarNumber == 2662)
+                   
+                };
+            }
+
+            return result;
+        }
+
+
+        private OtheDataAxelVueModel GetOtherDataAxelVueModel(MachineInfoModel machine)
+        {
+            var par = _parameterMachineService.GetParameters(machine, (int)enPanel.AXEL5_MachineData);
+            var result = new OtheDataAxelVueModel
+            {
+                ClickIsolaSx = par.FirstOrDefault(p => p.VarNumber == 2620),
+                ClickIsolaDx = par.FirstOrDefault(p => p.VarNumber == 2622),
+                OreVitaMacchina = par.FirstOrDefault(p => p.VarNumber == 347),
+                OreUltimoIngrassaggio = par.FirstOrDefault(p => p.VarNumber == 348),
+                KmMorse = par.Where(p => p.VarNumber >= 500 && p.VarNumber <= 522).ToList()
+            };
+            return result;
+        }
+
+        private AxisAxelVueModel GetAxesAxelVueModel(MachineInfoModel machine)
+        {
+            var par = _parameterMachineService.GetParameters(machine, (int)enPanel.AXEL5_Axes);
+
+            var result = new AxisAxelVueModel
+            {
+                AsseX = par.FirstOrDefault(p => p.VarNumber == 2600),
+                AsseY = par.FirstOrDefault(p => p.VarNumber == 2602),
+                AsseZ = par.FirstOrDefault(p => p.VarNumber == 2604),
+                AsseRotA = par.FirstOrDefault(p => p.VarNumber == 2610),
+                AsseRotC = par.FirstOrDefault(p => p.VarNumber == 2606),
+                AsseRotD = par.FirstOrDefault(p => p.VarNumber == 2608)
+            };
             return result;
         }
 

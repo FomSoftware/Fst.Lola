@@ -213,6 +213,17 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to AXEL_ToolW.
+        /// </summary>
+        public static string AXEL_ToolW
+        {
+            get
+            {
+                return ResourceManager.GetString("AXEL_ToolW", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Assi.
         /// </summary>
         public static string Axes
@@ -1929,6 +1940,28 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to C axis No. turns (180°).
+        /// </summary>
+        public static string lw_gradiPercorsiAsseC
+        {
+            get
+            {
+                return ResourceManager.GetString("lw_gradiPercorsiAsseC", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to D axis No. turns (180°).
+        /// </summary>
+        public static string lw_gradiPercorsiAsseD
+        {
+            get
+            {
+                return ResourceManager.GetString("lw_gradiPercorsiAsseD", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Tot. electrosp. working hours.
         /// </summary>
         public static string lw_minutiMandrinoAttivo
@@ -1969,6 +2002,17 @@ namespace FomMonitoringResources
             get
             {
                 return ResourceManager.GetString("lw_mPercorsiAsseZ", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to lw_mPercorsiVic.
+        /// </summary>
+        public static string lw_mPercorsiVic
+        {
+            get
+            {
+                return ResourceManager.GetString("lw_mPercorsiVic", resourceCulture);
             }
         }
 
@@ -2046,6 +2090,17 @@ namespace FomMonitoringResources
             get
             {
                 return ResourceManager.GetString("lw_tempiMandrinoASoglia_5", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to lw_tempiMandrinoASoglia_6.
+        /// </summary>
+        public static string lw_tempiMandrinoASoglia_6
+        {
+            get
+            {
+                return ResourceManager.GetString("lw_tempiMandrinoASoglia_6", resourceCulture);
             }
         }
 
@@ -3462,6 +3517,17 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to ROTARY AXES/TOOL MAG..
+        /// </summary>
+        public static string RotaryAxes
+        {
+            get
+            {
+                return ResourceManager.GetString("RotaryAxes", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to RotaryAxesXMU.
         /// </summary>
         public static string RotaryAxesXMU
@@ -3480,6 +3546,28 @@ namespace FomMonitoringResources
             get
             {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to SblocchiForchettaPortaUtensili.
+        /// </summary>
+        public static string SblocchiForchettaPortaUtensili
+        {
+            get
+            {
+                return ResourceManager.GetString("SblocchiForchettaPortaUtensili", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Gripper releases.
+        /// </summary>
+        public static string SblocchiPinza
+        {
+            get
+            {
+                return ResourceManager.GetString("SblocchiPinza", resourceCulture);
             }
         }
 
@@ -4041,6 +4129,17 @@ namespace FomMonitoringResources
             get
             {
                 return ResourceManager.GetString("tempoAttualeProgramma", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to tempoTrascorsoRangeRpm.
+        /// </summary>
+        public static string tempoTrascorsoRangeRpm
+        {
+            get
+            {
+                return ResourceManager.GetString("tempoTrascorsoRangeRpm", resourceCulture);
             }
         }
 

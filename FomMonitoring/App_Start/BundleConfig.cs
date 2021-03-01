@@ -117,7 +117,11 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/image-manager-blitz.js",
                         "~/GlobApp/scripts/machine/image-manager-axel.js", 
                         "~/GlobApp/scripts/faq-support-manager.js",
-                        "~/GlobApp/scripts/machine/toolswarehouse/axel.js"
+                        "~/GlobApp/scripts/machine/toolswarehouse/axel.js",
+                        "~/GlobApp/scripts/machine/axes/axel.js",
+                        "~/GlobApp/scripts/machine/otherdata/axel.js",
+                        "~/GlobApp/scripts/machine/electrospindle/electrospindleAxel.js",
+                        "~/GlobApp/scripts/machine/sensorspindles/axel.js"
             ));
 
             #endregion

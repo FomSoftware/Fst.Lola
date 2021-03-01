@@ -424,13 +424,16 @@
     <Content Include="GlobApp\plugins\waitMe\waitMe.min.css" />
     <Content Include="GlobApp\plugins\waitMe\waitMe.min.js" />
     <Content Include="GlobApp\scripts\machine\axes\keope.js" />
+    <Content Include="GlobApp\scripts\machine\axes\axel.js" />
     <Content Include="GlobApp\scripts\machine\axes\lmx.js" />
+    <Content Include="GlobApp\scripts\machine\electrospindle\electrospindleAxel.js" />
     <Content Include="GlobApp\scripts\machine\electrospindle\electrospindle.js" />
     <Content Include="GlobApp\scripts\machine\image-manager-blitz.js" />
     <Content Include="GlobApp\scripts\machine\image-manager-axel.js" />
     <Content Include="GlobApp\scripts\machine\image-manager-lmx.js" />
     <Content Include="GlobApp\scripts\machine\image-manager-fmc.js" />
     <Content Include="GlobApp\scripts\machine\jobs\other-machines.js" />
+    <Content Include="GlobApp\scripts\machine\otherdata\axel.js" />
     <Content Include="GlobApp\scripts\machine\otherdata\otherdataLMX.js" />
     <Content Include="GlobApp\scripts\machine\otherdata\otherdataFMC.js" />
     <Content Include="GlobApp\scripts\machine\image-manager.js" />
@@ -441,6 +444,7 @@
     <Content Include="GlobApp\scripts\machine\motor\motorbladelmx.js" />
     <Content Include="GlobApp\scripts\machine\multispindles\multispindles.js" />
     <Content Include="GlobApp\scripts\machine\rotaryaxes\rotaryaxes.js" />
+    <Content Include="GlobApp\scripts\machine\sensorspindles\axel.js" />
     <Content Include="GlobApp\scripts\machine\sensorspindles\sensorspindles.js" />
     <Content Include="GlobApp\scripts\machine\tiltingaxes\tiltingaxes.js" />
     <Content Include="GlobApp\scripts\machine\toolswarehouse\axel.js" />
@@ -1364,6 +1368,7 @@
     </Content>
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Shared\_LayoutApp.cshtml" />
     <Content Include="Views\Machine\Index.cshtml" />
@@ -1514,6 +1519,10 @@
     <Content Include="Views\Shared\_FaqPage.cshtml" />
     <Content Include="Views\Shared\_SupportPage.cshtml" />
     <Content Include="Views\Machine\Panels\ToolsWarehouse\_Axel.cshtml" />
+    <Content Include="Views\Machine\Panels\Axes\_Axel.cshtml" />
+    <Content Include="Views\Machine\Panels\OtherMachineData\_Axel.cshtml" />
+    <Content Include="Views\Machine\Panels\ElectroSpindle\_ElectroSpindleAxel.cshtml" />
+    <Content Include="Views\Machine\Panels\SensorSpindles\_Axel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

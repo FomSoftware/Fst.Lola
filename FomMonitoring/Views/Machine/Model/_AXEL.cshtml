@@ -78,21 +78,29 @@
                 {
                     {"Classes", "col-xxl-4 col-xl-6  col-lg-6 col-md-12 col-sm-12 col-12"}
                 })
-                @Html.Partial("Panels/OtherMachineData/_FMC34", Model.PanelParameter, new ViewDataDictionary
+
+                @Html.Partial("Panels/Axes/_Axel", Model.PanelParameter, new ViewDataDictionary
                 {
                     {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
                 })
+                @Html.Partial("Panels/OtherMachineData/_Axel", Model.PanelParameter, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 order-xxl-12"}
+                })
 
-                @Html.Partial("Panels/ElectroSpindle/_ElectroSpindle", Model.PanelParameter, new ViewDataDictionary
+                @Html.Partial("Panels/ElectroSpindle/_ElectroSpindleAxel", Model.PanelParameter, new ViewDataDictionary
                 {
                     {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
                 })
-
+                @Html.Partial("Panels/SensorSpindles/_Axel", Model.PanelParameter, new ViewDataDictionary
+                {
+                    {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 order-xxl-12"}
+                })
                 @Html.Partial("Panels/Tools/_FmcLmx", Model.PanelParameter, new ViewDataDictionary
                 {
                     {"Classes", "col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"}
                 })
-                
+
                 @Html.Partial("Panels/_Maintenance", Model.Maintenance, new ViewDataDictionary
                 {
                     {"Classes", "col-xxl-4 col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12 order-xl-last"}
@@ -109,7 +117,7 @@
 
                     </div>
                 </div>
-               
+
             </div>
         </div>
 

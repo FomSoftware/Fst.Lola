@@ -1377,4 +1377,31 @@ En caso de caducidad para una o varias máquinas, tendrás que pagar la compra o
   <data name="ManPredittiva" xml:space="preserve">
     <value>Mantenimiento predictivo</value>
   </data>
+  <data name="AXEL_ToolW" xml:space="preserve">
+    <value>ALMACÉN HERRAMIENTAS</value>
+  </data>
+  <data name="SblocchiForchettaPortaUtensili" xml:space="preserve">
+    <value>DESBLOQUEOS HORQUILLA PORTAHERRAMIENTAS</value>
+  </data>
+  <data name="RotaryAxes" xml:space="preserve">
+    <value>EJES ROTATIVOS/ALM.HERRAM.</value>
+  </data>
+  <data name="lw_gradiPercorsiAsseC" xml:space="preserve">
+    <value>Nº rotaciones (180°) eje C</value>
+  </data>
+  <data name="lw_gradiPercorsiAsseD" xml:space="preserve">
+    <value>Nº rotaciones (180°) eje D</value>
+  </data>
+  <data name="lw_mPercorsiVic" xml:space="preserve">
+    <value>KM Mordaza</value>
+  </data>
+  <data name="lw_tempiMandrinoASoglia_6" xml:space="preserve">
+    <value>Intervalo rpm 20001-24000</value>
+  </data>
+  <data name="tempoTrascorsoRangeRpm" xml:space="preserve">
+    <value>TIEMPO TRANSCURRIDO/RANGO RPM</value>
+  </data>
+  <data name="SblocchiPinza" xml:space="preserve">
+    <value>Desbloqueos pinza</value>
+  </data>
 </root>

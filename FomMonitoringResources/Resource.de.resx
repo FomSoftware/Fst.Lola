@@ -1371,4 +1371,31 @@ unter Angabe:
   <data name="ManPredittiva" xml:space="preserve">
     <value>Vorausschauende Wartung</value>
   </data>
+  <data name="AXEL_ToolW" xml:space="preserve">
+    <value>WERKZEUGABLAGE</value>
+  </data>
+  <data name="SblocchiForchettaPortaUtensili" xml:space="preserve">
+    <value>ENTRIEGELUNGEN WERKZEUGGABEL</value>
+  </data>
+  <data name="RotaryAxes" xml:space="preserve">
+    <value>DREHACHSEN/WERKZEUGLAGER</value>
+  </data>
+  <data name="lw_gradiPercorsiAsseC" xml:space="preserve">
+    <value>Anz. Drehungen (180°) C-Achse</value>
+  </data>
+  <data name="lw_gradiPercorsiAsseD" xml:space="preserve">
+    <value>Anz. Drehungen (180°) D-Achse</value>
+  </data>
+  <data name="lw_mPercorsiVic" xml:space="preserve">
+    <value>KM Spannvorrichtung</value>
+  </data>
+  <data name="lw_tempiMandrinoASoglia_6" xml:space="preserve">
+    <value>Reichweite rpm 20001-24000</value>
+  </data>
+  <data name="tempoTrascorsoRangeRpm" xml:space="preserve">
+    <value>VERSTRICHENE ZEIT/DREHZAHLBEREICH</value>
+  </data>
+  <data name="SblocchiPinza" xml:space="preserve">
+    <value>Entriegel. Zange</value>
+  </data>
 </root>

@@ -1,0 +1,108 @@
+﻿
+@model FomMonitoringBLL.ViewModel.PanelParametersViewModel
+@using FomMonitoringCore.Service
+
+<div id="CardOtherDataMachineAxel" class="@ViewData["Classes"]"  v-show="showed" >
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="portlet-kpi">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x" v-bind:class="colorKPI"></i>
+                    <i class="fa fa-database fa-stack-1x fa-inverse" ></i>
+                </span>
+            </div>
+            <div class="title-kpi">
+                <span class="testo-abbreviato">@LocalizationService.GetResource("OtherMachineData")</span>
+                <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
+            </div>
+        </div>
+        <div class="portlet-body text-center" style="height:244px">
+            <div class="card-portlet">
+                <div v-if="noData() == false" style="height:242px" class="slimscroll gradient-table-50">
+                    <hr style="background-color:#0c3817;height:2px;border:none" />
+                    <div style="cursor:auto;height:100%">
+                        <table class="table-other-data">
+                            <tr>
+                                <td style="width: 100%;padding: 0;">
+                                    <table style="width: 100%; height:100%">
+                                        <tr>
+                                            <td class="td-other-data">
+                                                <label style="vertical-align: top; width:20px"><i class="fa icofom-click-isola-sx fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="values.ClickIsolaSx != null" class="label-other-title" v-html="values.ClickIsolaSx.Description"></label>
+                                                <label v-if="values.ClickIsolaSx != null" class="label-other-data-value" v-html="values.ClickIsolaSx.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-other-data  tool-border-left">
+                                                <label style="vertical-align: top; width:20px;"><i class="fa icofom-click-isola-dx fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="values.ClickIsolaDx != null" class="label-other-title" v-html="values.ClickIsolaDx.Description"></label>
+                                                <label v-if="values.ClickIsolaDx != null" class="label-other-data-value" v-html="values.ClickIsolaDx.ConvertedValue"></label>
+                                            </td>
+                                        </tr>
+                                        <tr style="height:2px;padding:0">
+                                            <td style="padding: 0; background-color: #bebebe">
+                                                <hr width="70%" align="right" class="axes">
+                                            </td>
+                                            <td style="padding: 0; background-color: #b4b4b4">
+                                                <hr width="70%" align="left" class="axes">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-other-data">
+                                                <label style="vertical-align: top; width:20px;"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="values.OreVitaMacchina != null" class="label-other-title" v-html="values.OreVitaMacchina.Description"></label>
+                                                <label v-if="values.OreVitaMacchina && values.OreVitaMacchina.ConvertedValue != null" class="label-other-data-value" v-html="values.OreVitaMacchina.ConvertedValue"></label>
+                                            </td>
+                                            <td class="td-other-data tool-border-left">
+                                                <label style="vertical-align: top; width:20px;"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></label>
+                                                <label v-if="values.OreUltimoIngrassaggio != null" class="label-other-title" v-html="values.OreUltimoIngrassaggio.Description"></label>
+                                                <label v-if="values.OreUltimoIngrassaggio != null && values.OreVitaMacchina.ConvertedValue" class="label-other-data-value" v-html="values.OreUltimoIngrassaggio.ConvertedValue"></label>
+                                            </td>
+                                        </tr>
+                                        <template v-for="(item , index) in kmMorse" v-if="kmMorse != null && (index % 2) == 0 " v-cloak>
+                                            <tr style="height:2px;padding:0">
+                                                <td style="padding: 0; background-color: #bebebe">
+                                                    <hr width="70%" align="right" class="axes">
+                                                </td>
+                                                <td style="padding: 0; background-color: #b4b4b4">
+                                                    <hr width="70%" align="left" class="axes">
+                                                </td>
+                                            </tr>
+                                            <tr >
+                                                <td class="td-other-data">
+                                                    <label style="font-size: 0.7rem;"><i class="fa icofom-assekm fa-2x" aria-hidden="true"></i></label>
+                                                    <label v-if="item.Cluster != null" class="label-other-title">@LocalizationService.GetResource("lw_mPercorsiVic") {{item.Cluster}}</label>
+                                                    <label v-if="item.ConvertedValue != null" class="label-other-data-value" v-html="item.ConvertedValue"></label>
+                                                </td>
+                                                <td class="td-other-data tool-border-left">
+                                                    <label style="font-size: 0.7rem;"><i class="fa icofom-assekm fa-2x" aria-hidden="true"></i></label>
+                                                    <label v-if="kmMorse[index+1] && kmMorse[index+1].Cluster != null" class="label-other-title">@LocalizationService.GetResource("lw_mPercorsiVic") {{kmMorse[index+1].Cluster}}</label>
+                                                    <label v-if="kmMorse[index+1] && kmMorse[index+1].ConvertedValue != null" class="label-other-data-value" v-html="kmMorse[index+1].ConvertedValue"></label>
+                                                </td>
+                                            </tr>
+                                        </template>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+                <no-data v-else></no-data>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        var data = @Html.Raw(Json.Encode(Model));
+        OtherDataAxel.init(data);
+    });
+
+</script>
+
+
