@@ -1215,7 +1215,7 @@ hr.axes {
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
-    margin-bottom: 0;
+    margin-bottom: 2px;
     width: 100%;
     text-align: center;
 }
@@ -1259,7 +1259,7 @@ hr.axes {
     font-weight: 400;
     color: #403D3D;
     word-wrap: break-word;
-    margin-bottom: 0;
+    margin-bottom: 2px;
     width: 100%;
     text-align: center;
     padding-top: 3px;
