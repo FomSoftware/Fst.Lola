@@ -1402,4 +1402,7 @@ In caso di licenza scaduta per una o più macchine, procedere ad acquistare e/o 
   <data name="SblocchiPinza" xml:space="preserve">
     <value>Sblocchi pinza</value>
   </data>
+  <data name="AxelSp_Sensors" xml:space="preserve">
+    <value>SENSORISTICA ELETTROMANDRINO</value>
+  </data>
 </root>

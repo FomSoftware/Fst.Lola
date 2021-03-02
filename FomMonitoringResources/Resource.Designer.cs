@@ -224,6 +224,17 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to AxelSp_Sensors.
+        /// </summary>
+        public static string AxelSp_Sensors
+        {
+            get
+            {
+                return ResourceManager.GetString("AxelSp_Sensors", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Assi.
         /// </summary>
         public static string Axes

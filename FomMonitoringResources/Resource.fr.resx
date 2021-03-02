@@ -1398,4 +1398,7 @@ Si la licence est expirée pour une ou plusieurs machines, achetez ou renouvelez
   <data name="SblocchiPinza" xml:space="preserve">
     <value>Déblocages pince</value>
   </data>
+  <data name="AxelSp_Sensors" xml:space="preserve">
+    <value>CAPTEURS ÉLECTROBROCHE</value>
+  </data>
 </root>

@@ -1404,4 +1404,7 @@ En caso de caducidad para una o varias máquinas, tendrás que pagar la compra o
   <data name="SblocchiPinza" xml:space="preserve">
     <value>Desbloqueos pinza</value>
   </data>
+  <data name="AxelSp_Sensors" xml:space="preserve">
+    <value>ELECTROMANDRIL XMU</value>
+  </data>
 </root>

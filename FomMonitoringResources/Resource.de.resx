@@ -1398,4 +1398,7 @@ unter Angabe:
   <data name="SblocchiPinza" xml:space="preserve">
     <value>Entriegel. Zange</value>
   </data>
+  <data name="AxelSp_Sensors" xml:space="preserve">
+    <value>SENSOREN ELEKTROSPINDEL</value>
+  </data>
 </root>

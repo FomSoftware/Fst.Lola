@@ -1366,4 +1366,7 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   <data name="SblocchiPinza" xml:space="preserve">
     <value>Gripper releases</value>
   </data>
+  <data name="AxelSp_Sensors" xml:space="preserve">
+    <value>AxelSp_Sensors</value>
+  </data>
 </root>
