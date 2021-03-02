@@ -1407,4 +1407,7 @@ indicating:
   <data name="AxelSp_Sensors" xml:space="preserve">
     <value>ELECTROSPINDLE SENSORS</value>
   </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Ragione Sociale</value>
+  </data>
 </root>

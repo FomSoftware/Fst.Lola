@@ -1405,4 +1405,7 @@ In caso di licenza scaduta per una o più macchine, procedere ad acquistare e/o 
   <data name="AxelSp_Sensors" xml:space="preserve">
     <value>SENSORISTICA ELETTROMANDRINO</value>
   </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Ragione Sociale</value>
+  </data>
 </root>

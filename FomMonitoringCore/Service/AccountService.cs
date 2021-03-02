@@ -41,6 +41,7 @@ namespace FomMonitoringCore.Service
             LoggedUser.Username = User.Username;
             LoggedUser.FirstName = User.FirstName;
             LoggedUser.LastName = User.LastName;
+            LoggedUser.CompanyName = User.CompanyName;
             LoggedUser.Email = User.Email;
             LoggedUser.TimeZone = User.TimeZone;
             LoggedUser.Role = User.Roles_Users.Select(s => (enRole)s.Roles.IdRole).FirstOrDefault();

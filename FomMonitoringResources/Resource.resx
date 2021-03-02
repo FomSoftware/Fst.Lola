@@ -1369,4 +1369,7 @@ The password must be reset at the first access to LOLA.&lt;br /&gt;
   <data name="AxelSp_Sensors" xml:space="preserve">
     <value>AxelSp_Sensors</value>
   </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Ragione Sociale</value>
+  </data>
 </root>

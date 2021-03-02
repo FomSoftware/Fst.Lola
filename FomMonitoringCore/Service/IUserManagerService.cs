@@ -95,5 +95,7 @@ namespace FomMonitoringCore.Service
         bool DeleteUser(Guid userId);
 
         void ChangeTimeZone(Guid userId, string timezone);
+
+        void UpdateUserName(UserModel userModel);
     }
 }

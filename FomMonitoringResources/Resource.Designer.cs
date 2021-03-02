@@ -400,6 +400,17 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Ragione Sociale.
+        /// </summary>
+        public static string CompanyName
+        {
+            get
+            {
+                return ResourceManager.GetString("CompanyName", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Completion.
         /// </summary>
         public static string Completion

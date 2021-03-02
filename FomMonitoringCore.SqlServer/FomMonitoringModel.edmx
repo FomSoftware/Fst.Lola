@@ -486,6 +486,7 @@
           <Property Name="Domain" Type="nvarchar(max)" />
           <Property Name="LastDateUpdatePassword" Type="datetime" />
           <Property Name="TimeZone" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <Association Name="FK_AuditLogin_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1">
@@ -1779,6 +1780,7 @@
           <NavigationProperty Name="UserCustomerMapping" Relationship="Self.FK_UserCustomerMapping_Users" FromRole="Users" ToRole="UserCustomerMapping" />
           <NavigationProperty Name="UserMachineMapping" Relationship="Self.FK_UserMachineMapping_Users" FromRole="Users" ToRole="UserMachineMapping" />
           <Property Name="TimeZone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_AuditLogin_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1">
@@ -3015,6 +3017,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="FomMonitoringModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />

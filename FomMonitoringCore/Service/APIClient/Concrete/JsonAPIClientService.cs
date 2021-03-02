@@ -162,6 +162,8 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                             transactionSuppress.Complete();
                         }
                     }
+
+
                 //pulizia della tabella UserCustomerMapping, potrebbero esserci record inseriti a mano con customerName non esistenti
 
                     var machines = _context.Set<Machine>().ToList();
@@ -180,13 +182,21 @@ namespace FomMonitoringCore.Service.APIClient.Concrete
                                     user = new UserModel
                                     {
                                         Username = customer.username,
-                                        FirstName = customer.username,
-                                        LastName = customer.username,
+                                        FirstName = customer.firstName,
+                                        LastName = customer.lastName,
+                                        CompanyName = customer.companyName,
                                         Enabled = true,
                                         Role = enRole.Customer,
                                         CustomerName = customer.username
                                     };
                                     user.ID = _userManagerService.CreateUser(user);
+                                }
+                                else
+                                {
+                                    user.FirstName = customer.firstName;
+                                    user.LastName = customer.lastName;
+                                    user.CompanyName = customer.companyName;
+                                    _userManagerService.UpdateUserName(user);
                                 }
                                 transactionSuppress.Complete();
                             }

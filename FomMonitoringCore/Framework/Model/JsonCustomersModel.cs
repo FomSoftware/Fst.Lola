@@ -11,6 +11,9 @@ namespace FomMonitoringCore.Framework.Model
     public class JsonCustomer
     {
         public string username { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string companyName { get; set; }
         public List<JsonMachine> machines { get; set; }
     }
 

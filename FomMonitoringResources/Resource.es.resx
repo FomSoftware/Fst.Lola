@@ -1407,4 +1407,7 @@ En caso de caducidad para una o varias máquinas, tendrás que pagar la compra o
   <data name="AxelSp_Sensors" xml:space="preserve">
     <value>ELECTROMANDRIL XMU</value>
   </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Ragione Sociale</value>
+  </data>
 </root>

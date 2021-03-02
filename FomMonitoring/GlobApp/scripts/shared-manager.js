@@ -339,12 +339,12 @@
     {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
         {
-            $('.btn-mobile').show();
+            $('.languageOpts').show();
             $('.desktop-menu').hide();
         }
         else
         {
-            $('.btn-mobile').hide();
+            $('.languageOpts').hide();
             $('.desktop-menu').show();
         }
     }

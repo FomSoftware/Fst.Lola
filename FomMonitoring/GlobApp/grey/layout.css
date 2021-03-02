@@ -210,7 +210,7 @@ section.container-fluid {
     }
 
         .mobile-menu .main-menu .dd-item-user {
-            padding: 10px 15px 20px 15px;
+            padding: 10px 15px 0 15px;
         }
 
         .mobile-menu .main-menu a {
@@ -332,11 +332,16 @@ section.container-fluid {
     #machine-timezone-modal .modal-dialog {
         max-width: 750px;
     }
+   
 }
 
 @media (min-width: 1400px) {
     #toast-container {
         width: calc(33% - 24px);
+    }
+
+    .btn.btn-menu.js-open-menu {
+        font-size: 20px;
     }
 }
 

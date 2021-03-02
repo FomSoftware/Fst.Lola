@@ -322,6 +322,7 @@ namespace FomMonitoringCore.Service
                     Username = user.Username,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
+                    CompanyName = user.CompanyName,
                     Email = user.Email,
                     LanguageID = user.Language?.ID,
                     Enabled = user.Enabled,
@@ -458,6 +459,7 @@ namespace FomMonitoringCore.Service
                     updUser.Username = user.Username;
                     updUser.FirstName = user.FirstName;
                     updUser.LastName = user.LastName;
+                    updUser.CompanyName = user.CompanyName;
                     updUser.Email = user.Email;
                     updUser.LanguageID = user.Language.ID;
                     updUser.Enabled = user.Enabled;
@@ -652,6 +654,19 @@ namespace FomMonitoringCore.Service
             if (user != null)
                 user.TimeZone = timezone;
             _fomMonitoringEntities.SaveChanges();
+        }
+
+        public void UpdateUserName(UserModel userModel)
+        {
+            var user = _fomMonitoringEntities.Set<Users>().SingleOrDefault(s => s.ID == userModel.ID);
+            if (user != null)
+            {
+                user.FirstName = userModel.FirstName;
+                user.LastName = userModel.LastName;
+                user.CompanyName = userModel.CompanyName;
+                _fomMonitoringEntities.SaveChanges();
+            }
+           
         }
     }
 }
