@@ -256,7 +256,7 @@
     <value>Custom Range</value>
   </data>
   <data name="Historical" xml:space="preserve">
-    <value>Historical</value>
+    <value>History</value>
   </data>
   <data name="Operators" xml:space="preserve">
     <value>Operators</value>
@@ -1408,6 +1408,6 @@ indicating:
     <value>ELECTROSPINDLE SENSORS</value>
   </data>
   <data name="CompanyName" xml:space="preserve">
-    <value>Ragione Sociale</value>
+    <value>Company Name</value>
   </data>
 </root>

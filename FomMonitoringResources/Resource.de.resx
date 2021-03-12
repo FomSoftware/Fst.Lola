@@ -1402,6 +1402,6 @@ unter Angabe:
     <value>SENSOREN ELEKTROSPINDEL</value>
   </data>
   <data name="CompanyName" xml:space="preserve">
-    <value>Ragione Sociale</value>
+    <value>Firma</value>
   </data>
 </root>
