@@ -74,8 +74,8 @@ namespace FomMonitoringBLL.ViewServices
         {
              var result = new ProductivityVueModel();
 
-             if (machine.Model.Name.ToUpper().Contains("FMC") ||
-                 (machine.Model.Name.ToUpper().Contains("LMX")))
+             if (machine.MachineTypeId == (int)enMachineType.CentroLavoro || machine.MachineTypeId == (int)enMachineType.LineaTaglio ||
+                 (machine.MachineTypeId == (int)enMachineType.LineaTaglioLavoro))
              {
                  result.currentState = GetCurrentState(machine.Id);
              }

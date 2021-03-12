@@ -1061,7 +1061,7 @@
     <value>Menge Vibrationen</value>
   </data>
   <data name="TabTemperStatoreContatoreINT" xml:space="preserve">
-    <value>Menge Übertemp. Stator</value>
+    <value>Menge Übertemp.</value>
   </data>
   <data name="TabTemperCuscinettiContatoreINT" xml:space="preserve">
     <value>Menge Übertemp. Lager</value>
@@ -1378,7 +1378,7 @@ unter Angabe:
     <value>ENTRIEGELUNGEN WERKZEUGGABEL</value>
   </data>
   <data name="RotaryAxes" xml:space="preserve">
-    <value>DREHACHSEN/WERKZEUGLAGER</value>
+    <value>DREHACHSEN</value>
   </data>
   <data name="lw_gradiPercorsiAsseC" xml:space="preserve">
     <value>Anz. Drehungen (180°) C-Achse</value>
@@ -1388,9 +1388,6 @@ unter Angabe:
   </data>
   <data name="lw_mPercorsiVic" xml:space="preserve">
     <value>KM Spannvorrichtung</value>
-  </data>
-  <data name="lw_tempiMandrinoASoglia_6" xml:space="preserve">
-    <value>Reichweite rpm 20001-24000</value>
   </data>
   <data name="tempoTrascorsoRangeRpm" xml:space="preserve">
     <value>VERSTRICHENE ZEIT/DREHZAHLBEREICH</value>
@@ -1403,5 +1400,26 @@ unter Angabe:
   </data>
   <data name="CompanyName" xml:space="preserve">
     <value>Firma</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_0" xml:space="preserve">
+    <value>RPM 0-1500</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_1" xml:space="preserve">
+    <value>RPM 1501-5500</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_2" xml:space="preserve">
+    <value>RPM 5501-8000</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_3" xml:space="preserve">
+    <value>RPM 8001-11500</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_4" xml:space="preserve">
+    <value>RPM 11501-14500</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_5" xml:space="preserve">
+    <value>RPM 14501-20000</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_6" xml:space="preserve">
+    <value>RPM 20001-24000</value>
   </data>
 </root>

@@ -19,50 +19,50 @@
                 
             </div>
         </div>
-        <div class="portlet-body text-center" style="height:244px">
+        <div class="portlet-body text-center" style="height:242px">
             <div class="card-portlet">
-                <div v-if="tools != null && tools.length > 0" class="slimscroll gradient-table-33" style="height:242px;">
-                    <hr style="background-color:#0c3817;height:2px;border:none" />
-                    <div v-if="tools.length> 0 && tools.length < 3" style="width: 100%;height:100%;display: flex">
-                        <div style="background-color: #b4b4b4; width: calc(33% + 3px);height: 100%"></div>
-                        <div style="background-color: #BEBEBE; width:calc(33% + 1px);"></div>
-                        <div style="background-color: #b4b4b4; width:calc(33% + 3px);"></div>
+                <hr style="background-color:#0c3817;height:2px;border:none" />
+                <div v-if="tools != null && tools.length > 0" class="table-container">
+                    <div class="portlet-subtitle text-left" style="font-size: 11px; padding: 2px 2px 0 14px;">
+                        @Html.Raw(LocalizationService.GetResource("SblocchiForchettaPortaUtensili"))
                     </div>
-                    <table class="table-tools-fmc">
-                        <tr>
-                            <td class="portlet-subtitle" style="font-size: 11px;padding: 2px 2px 0 14px;">
-                                @Html.Raw(LocalizationService.GetResource("SblocchiForchettaPortaUtensili"))
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <table style="width: 100%; height: 100%">
-                                    <template v-for="(tool , index) in tools" v-if="(index % 3) == 0 " v-cloak>
-                                        <tr style='width: 100%;' class='row-tools-fmc'>
-                                            <td>
-                                                <label style="vertical-align: top; width: 20px"><i class="fa fa-unlock fa-2x" aria-hidden="true"></i></label>
-                                                <label class="label-tools">Pos.{{tool.Code}}</label>
-                                                <label class="label-tools-value fmc center" v-html="tool.Value"></label>
-                                            </td>
-                                            <td>
-                                                <label style="vertical-align: top; width: 20px" v-if="tools[index + 1]"><i class="fa fa-unlock fa-2x" aria-hidden="true"></i></label>
-                                                <label class="label-tools" v-if="tools[index + 1]">Pos.{{tools[index + 1].Code}}</label>
-                                                <label class="label-tools-value fmc text-center" v-if="tools[index + 1]">{{tools[index + 1].Value}}</label>
-                                            </td>
-                                            <td>
-                                                <label style="vertical-align: top; width: 20px" v-if="tools[index + 2]"><i class="fa fa-unlock fa-2x" aria-hidden="true"></i></label>
-                                                <label class="label-tools" v-if="tools[index + 2]">Pos.{{tools[index + 2].Code}}</label>
-                                                <label class="label-tools-value fmc center" v-if="tools[index + 2]">{{tools[index + 2].Value}}</label>
-                                            </td>
-                                        </tr>
-                                        <tr style="padding: 0; height: 2px" v-if="(index % 3) == 0">
-                                            <td colspan="3"><hr align="center" width="80%" class="tools"/></td>
-                                        </tr>
-                                    </template>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
+                    <div v-if="tools.length> 0 && tools.length < 3" style="width: 100%; height: 100%; display: flex">
+                        <div style="background-color: #b4b4b4; width: calc(33% + 3px); height: 100%"></div>
+                        <div style="background-color: #BEBEBE; width: calc(33% + 1px);"></div>
+                        <div style="background-color: #b4b4b4; width: calc(33% + 3px);"></div>
+                    </div>
+                    <div class="slimscroll gradient-table-33" style="height: 226px;">
+                        <table class="table-tools-fmc">
+                            <tr>
+                                <td>
+                                    <table style="width: 100%; height: 100%">
+                                        <template v-for="(tool , index) in tools" v-if="(index % 3) == 0 " v-cloak>
+                                            <tr style='width: 100%;' class='row-tools-fmc'>
+                                                <td>
+                                                    <label style="vertical-align: top; width: 20px"><i class="fa fa-unlock fa-2x" aria-hidden="true"></i></label>
+                                                    <label class="label-tools">Pos.{{tool.Code}}</label>
+                                                    <label class="label-tools-value fmc center" v-html="tool.Value"></label>
+                                                </td>
+                                                <td>
+                                                    <label style="vertical-align: top; width: 20px" v-if="tools[index + 1]"><i class="fa fa-unlock fa-2x" aria-hidden="true"></i></label>
+                                                    <label class="label-tools" v-if="tools[index + 1]">Pos.{{tools[index + 1].Code}}</label>
+                                                    <label class="label-tools-value fmc text-center" v-if="tools[index + 1]">{{tools[index + 1].Value}}</label>
+                                                </td>
+                                                <td>
+                                                    <label style="vertical-align: top; width: 20px" v-if="tools[index + 2]"><i class="fa fa-unlock fa-2x" aria-hidden="true"></i></label>
+                                                    <label class="label-tools" v-if="tools[index + 2]">Pos.{{tools[index + 2].Code}}</label>
+                                                    <label class="label-tools-value fmc center" v-if="tools[index + 2]">{{tools[index + 2].Value}}</label>
+                                                </td>
+                                            </tr>
+                                            <tr style="padding: 0; height: 2px" v-if="(index % 3) == 0">
+                                                <td colspan="3"><hr align="center" width="80%" class="tools" /></td>
+                                            </tr>
+                                        </template>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
                 <no-data v-else></no-data>
             </div>

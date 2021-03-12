@@ -40,7 +40,7 @@
             <td>{{ material.cutoff.perc | round }}<em>%</em></td>
             <td>{{ material.cutoff.number | roundDecimal(1) }}<em>m</em></td>
         </tr>
-        <tr v-if="currentState != null && machineModel.toLocaleUpperCase().includes('LMX')">
+        <tr v-if="currentState != null && (idType == 3 || idType == 2)">
             <td style="padding:0" class="testo-abbreviato">
                 <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
                 @LocalizationService.GetResource("TabTempoResiduoBarra"):

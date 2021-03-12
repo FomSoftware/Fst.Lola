@@ -37,7 +37,7 @@
             <td>{{ piece.redone.perc | round }}<em>%</em></td>
             <td>{{ piece.redone.number }}<em>pz</em></td>
         </tr>
-        <tr v-if="currentState != null && machineModel.toLocaleUpperCase().includes('FMC')">
+        <tr v-if="currentState != null && type == '@enMachineType.CentroLavoro.GetDescription()'">
             <td style="padding:0" class="testo-abbreviato">
                 <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
                 @LocalizationService.GetResource("tempoAttualeProgramma"):

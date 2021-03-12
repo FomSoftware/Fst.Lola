@@ -1061,7 +1061,7 @@
     <value>Vibrations q.ty</value>
   </data>
   <data name="TabTemperStatoreContatoreINT" xml:space="preserve">
-    <value>Stator Over-Temper. q.ty</value>
+    <value>Over-Temper. q.ty</value>
   </data>
   <data name="TabTemperCuscinettiContatoreINT" xml:space="preserve">
     <value>Bearings Over-Temper. q.ty</value>
@@ -1384,7 +1384,7 @@ indicating:
     <value>TOOL HOLDER FORK RELEASES</value>
   </data>
   <data name="RotaryAxes" xml:space="preserve">
-    <value>ROTARY AXES/TOOL MAG.</value>
+    <value>ROTARY AXES</value>
   </data>
   <data name="lw_gradiPercorsiAsseC" xml:space="preserve">
     <value>C axis No. turns (180°)</value>
@@ -1394,9 +1394,6 @@ indicating:
   </data>
   <data name="lw_mPercorsiVic" xml:space="preserve">
     <value>KM Vice</value>
-  </data>
-  <data name="lw_tempiMandrinoASoglia_6" xml:space="preserve">
-    <value>Range rpm 20001-24000</value>
   </data>
   <data name="tempoTrascorsoRangeRpm" xml:space="preserve">
     <value>TIME PASSED/RANGE RPM</value>
@@ -1409,5 +1406,26 @@ indicating:
   </data>
   <data name="CompanyName" xml:space="preserve">
     <value>Company Name</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_0" xml:space="preserve">
+    <value>rpm 0-1500</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_1" xml:space="preserve">
+    <value>rpm 1501-5500</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_2" xml:space="preserve">
+    <value>rpm 5501-8000</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_3" xml:space="preserve">
+    <value>rpm 8001-11500</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_4" xml:space="preserve">
+    <value>rpm 11501-14500</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_5" xml:space="preserve">
+    <value>rpm 14501-20000</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_6" xml:space="preserve">
+    <value>rpm 20001-24000</value>
   </data>
 </root>

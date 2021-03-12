@@ -1058,7 +1058,7 @@
     <value>Q.té vibrations</value>
   </data>
   <data name="TabTemperStatoreContatoreINT" xml:space="preserve">
-    <value>Q.té surtempér. stator</value>
+    <value>Q.té surtempér.</value>
   </data>
   <data name="TabTemperCuscinettiContatoreINT" xml:space="preserve">
     <value>Q.té surtempér. roulements</value>
@@ -1378,7 +1378,7 @@ Si la licence est expirée pour une ou plusieurs machines, achetez ou renouvelez
     <value>DÉBLOCAGES FOURCHE PORTE-OUTILS</value>
   </data>
   <data name="RotaryAxes" xml:space="preserve">
-    <value>AXES ROTATIFS/MAG.OUTILS</value>
+    <value>AXES ROTATIFS</value>
   </data>
   <data name="lw_gradiPercorsiAsseC" xml:space="preserve">
     <value>Nb rotations (180°) axe C</value>
@@ -1388,9 +1388,6 @@ Si la licence est expirée pour une ou plusieurs machines, achetez ou renouvelez
   </data>
   <data name="lw_mPercorsiVic" xml:space="preserve">
     <value>KM Étau</value>
-  </data>
-  <data name="lw_tempiMandrinoASoglia_6" xml:space="preserve">
-    <value>Intervalle rpm 20001-24000</value>
   </data>
   <data name="tempoTrascorsoRangeRpm" xml:space="preserve">
     <value>TIEMPO TRANSCURRIDO/RANGO RPM</value>
@@ -1403,5 +1400,26 @@ Si la licence est expirée pour une ou plusieurs machines, achetez ou renouvelez
   </data>
   <data name="CompanyName" xml:space="preserve">
     <value>Raison Sociale</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_0" xml:space="preserve">
+    <value>RPM (tr/min) 0-1500</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_1" xml:space="preserve">
+    <value>RPM (tr/min) 1501-5500</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_2" xml:space="preserve">
+    <value>RPM (tr/min) 5501-8000</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_3" xml:space="preserve">
+    <value>RPM (tr/min) 8001-11500</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_4" xml:space="preserve">
+    <value>RPM (tr/min) 11501-14500</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_5" xml:space="preserve">
+    <value>RPM (tr/min) 14501-20000</value>
+  </data>
+  <data name="lw_tempiMandrinoAxelSoglia_6" xml:space="preserve">
+    <value>RPM (tr/min) 20001-24000</value>
   </data>
 </root>

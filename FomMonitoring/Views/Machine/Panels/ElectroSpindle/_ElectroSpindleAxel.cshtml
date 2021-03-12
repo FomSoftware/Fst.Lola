@@ -17,17 +17,15 @@
                 <div class="sub-period">@LocalizationService.GetResource("UntilNow")</div>
             </div>
         </div>
-        <div class="portlet-body text-center" style="height: 246px;background-color: #bebebe;">
+        <div class="portlet-body text-center" style="height: 244px;background-color: #bebebe;">
             <div class="card-portlet">
                 <hr style="background-color: #0c3817; height: 2px; border: none;width:100%">
-                <div v-if="noData() == false" style="height: 242px" class="slimscroll">
-                    <div style="cursor: auto; height: 100%;background-color: #bebebe;">
+                <div v-if="noData() == false" class="table-container">
+                    <div class="portlet-subtitle text-left" style="font-size: 11px; padding: 2px 2px 0 14px; border: none">
+                        @Html.Raw(LocalizationService.GetResource("tempoTrascorsoRangeRpm"))
+                    </div>
+                    <div style="cursor: auto; height: 100%; background-color: #bebebe;height: 226px" class="slimscroll">
                         <table class="table-electro-spindle">
-                            <tr>
-                                <td class="portlet-subtitle" style="font-size: 11px; padding: 2px 2px 0 14px; border: none">
-                                    @Html.Raw(LocalizationService.GetResource("tempoTrascorsoRangeRpm"))
-                                </td>
-                            </tr>
                             <tr>
                                 <td>
                                     <table style="width: 100%; height: 100%" class="gradient-table-33-inverse">
