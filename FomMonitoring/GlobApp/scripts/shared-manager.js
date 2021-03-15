@@ -26,14 +26,13 @@
         });
     }
 
-    var initToolbar = function (data)
-    {
+    var initToolbar = function (data) {
         switch (data.page)
         {
             case enPage.mes:
                 initPlantsFilter(data);
                 if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-                    $('#plantMessagesLabel').css('display', 'none')
+                    $('#plantMessagesLabel').css('display', 'none');
                 }
                 break;
 
@@ -51,6 +50,7 @@
         Vue.nextTick(function ()
         {
             initBootstrapSelect();
+            $(".btn-menu.js-open-menu").show();
         });
     }
 
