@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8">
+
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <title>Under Maintenance</title>
+    <link rel="stylesheet" href="./Content/bootstrap.css" />
+    <script src="./Scripts/jquery-3.5.1.js"></script>
+    <script src="./Scripts/bootstrap.bundle.js"></script>
+
+    <style>
+        .offlineBody {
+            background: url(./Images/logo/manutenzione_sfondo.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        .offlineImg {
+            padding-top: 1vw;
+            height: 60vh;
+        }
+
+       
+        .offlineLogo {
+            margin-top: 2vw;
+           
+        }
+
+        .offlineLogo img {
+            height: 32vh;
+        }
+        @media(max-width: 1200px) {
+            .offlineBody {
+                background: url(./Images/logo/manutenzione_sfondo_portrait.png) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+            .offlineLogo {
+                margin-top: 6vh;
+            }
+            .offlineImg {
+                padding-top: 6vw;
+            }
+
+            .offlineImg img {
+                width: 80%;
+            }
+
+        }
+
+        @media(max-width: 992px) {
+            .offlineImg {
+                padding-top: 2vw;
+                height: 60vh;
+            }
+
+            .offlineLogo {
+                margin-top: 3vw;
+            }
+        }
+
+        @media(max-width: 576px) {
+            .offlineBody {
+                background: url(./Images/logo/manutenzione_sfondo_piccolo_portrait.png) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+
+            .offlineImg {
+                padding-top: 10vw;
+            }
+
+                .offlineImg img {
+                    width: 100%;
+                }
+
+            .offlineLogo {
+                margin-top: 2rem;
+            }
+            .offlineLogo img {
+                height: 30vh;
+            }
+        }
+        @media(max-height: 800px) {
+            .offlineImg img {
+                float: left;
+                width: 50%;
+            }
+
+            .offlineImg {
+                height: 40vh;
+            }
+
+            .offlineLogo img {
+                float: right;
+                height: 40vh;
+            }
+
+            .offlineLogo {
+                margin-top: -12vh;
+            }
+        }
+
+        @media(max-height: 750px ) and (max-width: 420px) {
+            .offlineImg img {
+                float: none;
+                width: 80%;
+            }
+            .offlineLogo img {
+                float: none;
+                height: 30vh;
+            }
+            .offlineLogo {
+                margin-top: 6rem;
+            }
+        }
+
+        @media(max-height: 500px ) {
+            .offlineBody {
+                background: url(./Images/logo/manutenzione_sfondo_piccolo_land.png) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+
+            .offlineImg {
+                height: 10vh;
+            }
+
+                .offlineImg img {
+                    height: 23rem;
+                    width: 19rem;
+                }
+
+            .offlineLogo img {
+                height: 13rem;
+            }
+            .offlineLogo {
+                margin-top: 10vh;
+            }
+        }
+
+    </style>
+</head>
+<body class="offlineBody container">
+<div class="row">
+    <div class="offlineImg col-lg-12 col-xl-12 text-center">
+        <img src="./Images/logo/manutenzione_disegno.png"/>
+    </div>
+    <div class="offlineLogo col-lg-12 col-xl-12 text-center">
+        <img src="./Images/logo/manutenzione_logo.png"/>
+    </div>
+</div>
+
+</body>
+</html>

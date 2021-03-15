@@ -484,6 +484,12 @@
     <Content Include="Images\logo\Log_On_Live_Automation-600x100px.png" />
     <Content Include="Images\logo\Lola-35.png" />
     <Content Include="Images\logo\Lola-lg.png" />
+    <Content Include="Images\logo\manutenzione_disegno.png" />
+    <Content Include="Images\logo\manutenzione_logo.png" />
+    <Content Include="Images\logo\manutenzione_sfondo.png" />
+    <Content Include="Images\logo\manutenzione_sfondo_piccolo_portrait.png" />
+    <Content Include="Images\logo\manutenzione_sfondo_portrait.png" />
+    <Content Include="Images\logo\manutenzione_sfondo_piccolo_land.png" />
     <Content Include="Images\logo\Powered_by_FOM-350x200px.png" />
     <Content Include="Images\logo\TEXTURE-FOM-WEB-2-01.png" />
     <Content Include="Images\multispindle\bottone-posizione.svg" />
@@ -648,6 +654,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Content\bootstrap-select.css.map" />
+    <Content Include="_app_offline.htm" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\lola_dev.pubxml" />
     <None Include="Properties\PublishProfiles\lola_test.pubxml" />
