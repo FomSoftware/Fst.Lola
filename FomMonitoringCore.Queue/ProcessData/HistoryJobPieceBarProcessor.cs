@@ -41,31 +41,8 @@ namespace FomMonitoringCore.Queue.ProcessData
                     if (mac == null)
                         return false;
 
-
-                    var bar = data.BarMachine.BuildAdapter().AddParameters("machineId", mac.Id)
-                        .AdaptToType<List<Bar>>();
-
-
-                    foreach (var bb in bar)
-                    {
-                        if (!(bb.StartTime > DateTime.MinValue))
-                            continue;
-
-                        var trovato = context.Set<Bar>().FirstOrDefault(m =>
-                            m.Index == bb.Index && m.JobCode == bb.JobCode && bb.MachineId == m.MachineId);
-
-                        if (trovato?.JobCode != null)
-                            continue;
-
-                        context.Set<Bar>().Add(bb);
-
-                    }
-
-                    context.SaveChanges();
-
                     var historyJob = data.HistoryJobMachine.BuildAdapter().AddParameters("machineId", mac.Id)
                         .AdaptToType<List<HistoryJob>>();
-
 
                     foreach (var jj in historyJob)
                     {
@@ -90,11 +67,29 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                         context.Set<HistoryJob>().Add(jj);
                     }
+                    context.SaveChanges();
 
+                    var bar = data.BarMachine.BuildAdapter().AddParameters("machineId", mac.Id)
+                        .AdaptToType<List<Bar>>();
+
+                    foreach (var bb in bar)
+                    {
+                        if (!(bb.StartTime > DateTime.MinValue))
+                            continue;
+
+                        var trovato = context.Set<Bar>().FirstOrDefault(m =>
+                            m.Index == bb.Index && m.JobCode == bb.JobCode && bb.MachineId == m.MachineId);
+
+                        if (trovato?.JobCode != null)
+                            continue;
+
+                        context.Set<Bar>().Add(bb);
+
+                    }
 
                     context.SaveChanges();
 
-                    var piece = data.PieceMachine.BuildAdapter().AddParameters("machineId", mac.Id)
+                    var piece = data.PieceMachine.BuildAdapter().AddParameters("machineId", mac.Id).AddParameters("listaBarre", bar)
                         .AddParameters("barService", barService).AddParameters("jobService", jobService)
                         .AddParameters("machineService", machineService)
                         .AdaptToType<List<Piece>>();

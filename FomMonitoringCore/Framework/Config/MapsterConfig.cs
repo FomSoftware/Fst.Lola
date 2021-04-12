@@ -5,6 +5,7 @@ using FomMonitoringResources;
 using Mapster;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using FomMonitoringCore.SqlServer;
 using HistoryMessage = FomMonitoringCore.SqlServer.HistoryMessage;
@@ -165,7 +166,8 @@ namespace FomMonitoringCore.Framework.Config
             config.NewConfig<DataProcessing.Dto.PieceMachine, Piece>()
                 .Ignore(dest => dest.Id)
                 .IgnoreAllVirtual()
-                .Map(dest => dest.BarId, src => ((IBarService)MapContext.Current.Parameters["barService"]).GetBarIdByBarIdOldAndMachineId(src.BarId, (int)MapContext.Current.Parameters["machineId"]))
+                //.Map(dest => dest.BarId, src => ((IBarService)MapContext.Current.Parameters["barService"]).GetBarIdByBarIdOldAndMachineId(src.BarId, (int)MapContext.Current.Parameters["machineId"],src.JobCode))
+                .Map(dest => dest.BarId, src => ((IBarService)MapContext.Current.Parameters["barService"]).GetBarId(src.BarId, (int)MapContext.Current.Parameters["machineId"], (List<Bar>)MapContext.Current.Parameters["listaBarre"], src.JobCode))
                 .Map(dest => dest.ElapsedTime, src => src.TimeSpan)
                 .Map(dest => dest.ElapsedTimeProducing, src => src.TimeSpanProducing)
                 .Map(dest => dest.IsRedone, src => src.Redone)

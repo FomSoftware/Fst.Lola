@@ -57,14 +57,18 @@ namespace FomMonitoringCore.Service
 
         #endregion
 
-        public int? GetBarIdByBarIdOldAndMachineId(int? barIdOld, int machineId)
+       /* public int? GetBarIdByBarIdOldAndMachineId(int? barIdOld, int machineId, DateTime start, DateTime end, string JCode)
         {
             int? result = null;
             try
             {                                
                     if (barIdOld.HasValue)
                     {
-                        var bar = _context.Set<Bar>().FirstOrDefault(f => f.IdOld == barIdOld.Value && f.MachineId == machineId);
+                        var bar = _context.Set<Bar>().FirstOrDefault(f => f.IdOld == barIdOld.Value 
+                                                                          && f.MachineId == machineId
+                                                                          && f.StartTime <= end 
+                                                                          && f.StartTime >= start
+                                                                          && f.JobCode == JCode);
                         result = bar?.Id;
                     }                                              
             }
@@ -74,6 +78,31 @@ namespace FomMonitoringCore.Service
                 LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
             }
             return result;
+        }*/
+
+        public int? GetBarId(int? barId, int machineId, List<Bar> listaBarre, string JCode)
+        {
+            int? result = null;
+            try
+            {
+                Bar barra = listaBarre.FirstOrDefault(b => b.IdOld == barId && b.StartTime > DateTime.MinValue && b.JobCode == JCode);
+                if (barra != null)
+                {
+                    var bar = _context.Set<Bar>().FirstOrDefault(f => f.IdOld == barId
+                                                                      && f.MachineId == machineId
+                                                                      && f.Index == barra.Index
+                                                                      && f.JobCode == JCode);
+                    result = bar?.Id;
+                }
+            }
+            catch (Exception ex)
+            {
+                string errMessage = string.Format(ex.GetStringLog(), Convert.ToString(barId), machineId.ToString());
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+            return result;
+
+
         }
 
         public void Dispose()
