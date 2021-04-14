@@ -256,7 +256,7 @@ namespace FomMonitoringCore.Queue.Forwarder
                 {
                     return false;
                 }
-                if (data.bar != null && data.bar.Any(m => !DateTimeLolaValid(m.StartTime)))
+                if (data.bar != null && data.bar.Any(m => !DateTimeLolaValid(m.StartTime)) && data.bar.Any(m => !DateTimeLolaValid(m.EndTime)))
                 {
                     return false;
                 }

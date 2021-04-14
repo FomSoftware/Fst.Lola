@@ -32,6 +32,7 @@ namespace FomMonitoringCore.SqlServer
         public Nullable<System.DateTime> StartTime { get; set; }
         public string System { get; set; }
         public string JobCode { get; set; }
+        public Nullable<System.DateTime> EndTime { get; set; }
     
         public virtual Machine Machine { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

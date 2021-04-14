@@ -33,6 +33,7 @@
           <Property Name="StartTime" Type="datetime" />
           <Property Name="System" Type="varchar" MaxLength="100" />
           <Property Name="JobCode" Type="varchar" MaxLength="100" />
+          <Property Name="EndTime" Type="datetime" />
         </EntityType>
         <EntityType Name="CurrentState">
           <Key>
@@ -1255,6 +1256,7 @@
           <Property Name="JobCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Machine" Relationship="Self.FK_Bar_Machine" FromRole="Bar" ToRole="Machine" />
           <NavigationProperty Name="Piece" Relationship="Self.FK_Piece_Bar" FromRole="Bar" ToRole="Piece" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="CurrentState">
           <Key>
@@ -2550,6 +2552,7 @@
           <EntitySetMapping Name="Bar">
             <EntityTypeMapping TypeName="FomMonitoringModel.Bar">
               <MappingFragment StoreEntitySet="Bar">
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="BadAreas" ColumnName="BadAreas" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
