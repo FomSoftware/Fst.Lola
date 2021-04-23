@@ -28,18 +28,18 @@ namespace VariableListLoadTest
             var container = builder.Build();
 
             var repository = container.Resolve<IGenericRepository<State>>();
-            var repositoryHistoryJobPieceBar = container.Resolve<IGenericRepository<Tool>>();
+            var repositoryHistoryJobPieceBar = container.Resolve<IGenericRepository<HistoryJobPieceBar>>();
             var repositoryMessage = container.Resolve<IGenericRepository<Message>>();
             var repositoryVariablesList = container.Resolve<IGenericRepository<VariablesList>>();
             var forwarder = container.Resolve<IQueueForwarder>();
             //var reforwarder = container.Resolve<IUnknownForwarder>();
             //reforwarder.ReForward();
 
-            //var jsonsMessage = repositoryHistoryJobPieceBar.Query().ToList().OrderByDescending(n => n.DateReceived).Take(10).ToList();
-            var jsonsMessagevar = repositoryVariablesList.Query(n => n.info[0].MachineSerial == "A1400013").OrderBy(n => n.variablesList[0].UtcDateTime).ToList().OrderByDescending(n => n.DateReceived).Take(1000).ToList();
+            var jsonsMessage = repositoryHistoryJobPieceBar.Query(n => n.info[0].MachineSerial == "C0800418").ToList().OrderByDescending(n => n.DateReceived).Take(1).ToList();
+            //var jsonsMessagevar = repositoryVariablesList.Query(n => n.info[0].MachineSerial == "C0800418").OrderBy(n => n.variablesList[0].UtcDateTime).ToList().OrderByDescending(n => n.DateReceived).Take(1000).ToList();
 
 
-            foreach (var data in jsonsMessagevar)
+            foreach (var data in jsonsMessage)
             {
                 forwarder.Forward(JsonConvert.SerializeObject(data));
             }

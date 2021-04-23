@@ -85,13 +85,23 @@ namespace FomMonitoringCore.Service
             int? result = null;
             try
             {
-                Bar barra = listaBarre.FirstOrDefault(b => b.IdOld == barId && b.StartTime > DateTime.MinValue && b.JobCode == JCode);
+                Bar barra = listaBarre.FirstOrDefault();
+                if (listaBarre.Count > 1)
+                {
+                    barra = listaBarre.FirstOrDefault(b => b.IdOld == barId && b.StartTime > DateTime.MinValue && b.JobCode == JCode);
+                }
                 if (barra != null)
                 {
                     var bar = _context.Set<Bar>().FirstOrDefault(f => f.IdOld == barId
                                                                       && f.MachineId == machineId
                                                                       && f.Index == barra.Index
                                                                       && f.JobCode == JCode);
+                    if (bar == null)
+                    {
+                        bar = _context.Set<Bar>().FirstOrDefault(f => f.MachineId == machineId
+                                                                      && f.Index == barra.Index
+                                                                      && f.JobCode == JCode);
+                    }
                     result = bar?.Id;
                 }
             }
