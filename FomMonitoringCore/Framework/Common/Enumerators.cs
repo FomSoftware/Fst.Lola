@@ -15,7 +15,9 @@ namespace FomMonitoringCore.Framework.Common
         [Description("Customer")]
         Customer = 4,
         [Description("UserApi")]
-        UserApi = 5
+        UserApi = 5,
+        [Description("Demo")]
+        Demo = 9,
     }
 
     public enum enPage

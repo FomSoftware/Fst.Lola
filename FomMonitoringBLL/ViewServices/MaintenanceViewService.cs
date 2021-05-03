@@ -45,6 +45,11 @@ namespace FomMonitoringBLL.ViewServices
             {
                result.timeZone = context.User.TimeZone;
             }
+
+            if (context.User.Role != null)
+            {
+                result.role = (int)context.User.Role;
+            }
             return result;
         }
 

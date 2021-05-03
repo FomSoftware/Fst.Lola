@@ -22,11 +22,17 @@ namespace FomMonitoringBLL.ViewServices
             var userManager = new UserManagerViewModel();
             string usernameCustomer = null;
 
-            if (context.User.Role != enRole.Administrator)
+            if (context.User.Role != enRole.Administrator && context.User.Role != enRole.Demo)
                 usernameCustomer = context.User.Username;
 
-            // users
             var usersModel = _userManagerService.GetUsers(usernameCustomer);
+
+            if (context.User.Role == enRole.Demo)
+            {
+                usersModel = _userManagerService.FilterRoleUsers(context.User.Role, usersModel);
+            }
+
+            // users
             userManager.users = usersModel.Select(s => new UserViewModel
             {
                 ID = s.ID,

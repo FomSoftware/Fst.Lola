@@ -18,6 +18,7 @@ namespace FomMonitoringCore.SqlServer
         public Roles()
         {
             this.Roles_Users = new HashSet<Roles_Users>();
+            this.Roles_Customer = new HashSet<Roles_Customer>();
         }
     
         public System.Guid ID { get; set; }
@@ -36,5 +37,7 @@ namespace FomMonitoringCore.SqlServer
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Roles_Users> Roles_Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Roles_Customer> Roles_Customer { get; set; }
     }
 }

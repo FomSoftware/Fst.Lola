@@ -84,6 +84,9 @@
         <AssociationConnector Association="FomMonitoringModel.FK_ParameterResetValue_Machine" />
         <EntityTypeShape EntityType="FomMonitoringModel.Faq" Width="1.5" PointX="7.375" PointY="8" />
         <AssociationConnector Association="FomMonitoringModel.FK_Piece_HistoryJob" />
+        <EntityTypeShape EntityType="FomMonitoringModel.Roles_Customer" Width="1.5" PointX="13.75" PointY="15.125" />
+        <AssociationConnector Association="FomMonitoringModel.FK_Roles_Customers_Roles" />
+        <AssociationConnector Association="FomMonitoringModel.FK_Roles_Customers_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

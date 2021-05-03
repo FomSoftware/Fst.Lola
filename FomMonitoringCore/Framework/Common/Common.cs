@@ -13,6 +13,7 @@ namespace FomMonitoringCore.Framework.Common
         public const string HeadWorkshop = "ede02f346410664d40c90884131c4ed86aa5fe2b6ea6d711b4c02d6f0282c1df";
         public const string Assistance = "1b451b10ab6a95f1e24e659edc7315c7fd2930d8db77cbeea3315fdf4fe6a5c6";
         public const string Customer = "bf3763383aaf43069885db20b386631c6d5d8b8481df2a26769e9de5fe2f9c82";
+        public const string Demo = "8a2cc0673b1c428315fe84c0138d95c3ddda30baf81e7d9aa821f1ca47098193";
 
         /// <summary>
         /// Get the startOfWeek date of the specified year and week number

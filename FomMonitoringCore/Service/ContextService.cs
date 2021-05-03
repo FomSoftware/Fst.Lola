@@ -102,6 +102,8 @@ namespace FomMonitoringCore.Service
 
             if (context.User.Role == enRole.Administrator)
                 context.AllPlants = _mesService.GetAllPlantsMachines();
+            else if (context.User.Role == enRole.Demo)
+                context.AllPlants = _mesService.GetAllPlantsRole(enRole.Demo);
             else
                 context.AllPlants = _mesService.GetUserPlants(context.User.ID);
 
@@ -122,6 +124,8 @@ namespace FomMonitoringCore.Service
 
                 if (context.User.Role == enRole.Administrator)
                     context.AllMachines = _machineService.GetAllMachines();
+                else if(context.User.Role == enRole.Demo)
+                    context.AllMachines = _machineService.GetRoleMachines(enRole.Demo);
                 else
                     context.AllMachines = _machineService.GetUserMachines(context);
 
@@ -139,6 +143,8 @@ namespace FomMonitoringCore.Service
 
             if (context.User.Role == enRole.Administrator)
                 context.AllPlants = _mesService.GetAllPlantsMachines();
+            else if (context.User.Role == enRole.Demo)
+                context.AllPlants = _mesService.GetAllPlantsRole(enRole.Demo);
             else
                 context.AllPlants = _mesService.GetUserPlants(context.User.ID);
 
@@ -155,6 +161,8 @@ namespace FomMonitoringCore.Service
 
                     if (context.User.Role == enRole.Administrator)
                         context.AllMachines = _machineService.GetAllMachines();
+                    else if (context.User.Role == enRole.Demo)
+                        context.AllMachines = _machineService.GetRoleMachines(enRole.Demo);
                     else
                         context.AllMachines = _machineService.GetUserMachines(context);
 
@@ -170,6 +178,8 @@ namespace FomMonitoringCore.Service
 
                     if (context.User.Role == enRole.Administrator)
                         context.AllMachines = _machineService.GetAllMachines();
+                    else if(context.User.Role == enRole.Demo)
+                        context.AllMachines = _machineService.GetRoleMachines(enRole.Demo);
                     else
                         context.AllMachines = _machineService.GetUserMachines(context);
 
@@ -285,6 +295,8 @@ namespace FomMonitoringCore.Service
 
                 if (context.User.Role == enRole.Administrator)
                     context.AllMachines = _machineService.GetAllMachines();
+                else if(context.User.Role == enRole.Demo)
+                    context.AllMachines = _machineService.GetRoleMachines(enRole.Demo);
                 else
                     context.AllMachines = _machineService.GetUserMachines(context);
             }

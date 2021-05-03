@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.SqlServer;
 
@@ -29,6 +30,8 @@ namespace FomMonitoringCore.Service
         /// </summary>
         /// <returns>Lista customer</returns>
         List<UserModel> GetUsers(string customerName);
+
+        List<UserModel> FilterRoleUsers(enRole idRole, List<UserModel> users);
 
         /// <summary>
         /// Ritorna la lista dei clienti

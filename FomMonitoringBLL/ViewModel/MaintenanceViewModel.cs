@@ -15,6 +15,8 @@ namespace FomMonitoringBLL.ViewModel
 
         public string timeZone { get; set; }
 
+        public int role { get; set; }
+
     }
 
     public class MaintenceVueModel

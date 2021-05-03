@@ -154,9 +154,11 @@ namespace FomMonitoringCore.Service
                             .Include("Roles_Users")
                             .Include("Roles_Users.Roles")
                             .Include("Languages").AsQueryable()
-                            .Where(w => !w.Roles_Users.Any(a => a.Roles.IdRole == (int)enRole.Administrator
+                            .Where(w => !w.Roles_Users.Any(a => a.Roles.IdRole == (int)enRole.Administrator 
+                                                                || a.Roles.IdRole == (int)enRole.Demo
                                     || a.Roles.IdRole == (int)enRole.Customer || a.Roles.IdRole == (int)enRole.UserApi)).AsQueryable();
 
+                        
                         if (customerName != null) userQuery = userQuery.Where(w => customerUsers.Contains(w.ID));
 
                         var users = userQuery.ToList();
@@ -189,6 +191,14 @@ namespace FomMonitoringCore.Service
             }
 
             return result;
+        }
+
+        public List<UserModel> FilterRoleUsers(enRole userRole , List<UserModel> users)
+        {
+            List<string> userCustomers = _fomMonitoringEntities.Set<Roles_Customer>()
+                .Include("Roles").Include("Users")
+                .Where(w => (int)w.Roles.IdRole == (int)userRole).Select(c => c.Users.Username).ToList();
+           return users.Where(u => userCustomers.Contains(u.CustomerName)).ToList();
         }
 
         /// <summary>

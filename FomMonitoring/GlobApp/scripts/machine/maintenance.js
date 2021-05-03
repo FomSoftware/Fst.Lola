@@ -3,12 +3,24 @@
     var vmMessages;
     var urlIgnoreMessageAPI;
     var resource;
+    var userRole;
+    var enRoles = {
+        Administrator: 0,
+        Operator: 1,
+        HeadWorkshop: 2,
+        Assistance: 3,
+        Customer: 4,
+        UserApi: 5,
+        Demo: 9
+    };
+
 
     var init = function (data, url, resourceText)
     {
         resource = resourceText;
         initVueModel(data);
-        urlIgnoreMessageAPI = url;      
+        urlIgnoreMessageAPI = url;
+        userRole = data.role;
     }
 
     var initVueModel = function (data)
@@ -27,6 +39,7 @@
                     kpi: (data.kpi_messages.messages != null)
                 },
                 timeZone: data.timeZone,
+                userRole: data.role,
                 showed: true
             },
             computed: {       
@@ -142,8 +155,11 @@
                         icon.className = icon.className.replace(className, "green-square-icon");
                     }
 
-                    setTimeout(function() {
-                        callAjaxIgnoreMessage(messageId);
+                    setTimeout(function () {
+                        if (userRole != enRoles.Demo) {
+                            callAjaxIgnoreMessage(messageId);
+                        }
+                       
                     }, 1000);
 
                 },
@@ -231,6 +247,7 @@
         var vm_ignored_messages = data.ignored_messages;
         var vm_kpiMessages = data.kpi_messages;
         vmMessages.timeZone = data.timeZone;
+        vmMessages.userRole = data.role;
         if (vm_messages) {
             vmMessages.messages = vm_messages.messages;
             vmMessages.sorting = vm_messages.sorting;

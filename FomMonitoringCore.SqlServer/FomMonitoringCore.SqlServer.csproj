@@ -202,6 +202,9 @@
     <Compile Include="Roles.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Roles_Customer.cs">
+      <DependentUpon>FomMonitoringModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Roles_Users.cs">
       <DependentUpon>FomMonitoringModel.tt</DependentUpon>
     </Compile>

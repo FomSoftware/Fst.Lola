@@ -45,7 +45,7 @@
                                     <input v-model="actual.Address" name="address-input" class="form-control input-md modal-input" id="address-input" type="text" placeholder="@Resource.PlantAddress" maxlength="250">
                                 </div>
                             </div>
-                            @if (Model.User.Role == enRole.Administrator)
+                            @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Demo)
                             {
                                 <!-- Select Basic -->
                                 <div class="form-group" id="form-customer-input">

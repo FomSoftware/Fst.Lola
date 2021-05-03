@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace FomMonitoring.Controllers
 {
     [SessionWeb]
-    [Authorize(Roles = Common.Administrator + "," + Common.Customer)]
+    [Authorize(Roles = Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
     public class AdminController : Controller
     {
         private IContextService _contextService;

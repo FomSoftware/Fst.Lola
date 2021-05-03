@@ -63,6 +63,7 @@ namespace FomMonitoringCore.SqlServer
         public virtual DbSet<UserMachineMapping> UserMachineMapping { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Faq> Faq { get; set; }
+        public virtual DbSet<Roles_Customer> Roles_Customer { get; set; }
     
         public virtual int usp_CleanMachineData(Nullable<int> machineId)
         {

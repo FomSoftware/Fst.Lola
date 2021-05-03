@@ -216,6 +216,27 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
+        public List<PlantModel> GetAllPlantsRole(enRole role)
+        {
+            var result = new List<PlantModel>();
+
+            try
+            {
+                var idUsers = _context.Set<Roles_Customer>().Where(e => e.Roles.IdRole == (int) role).Select(e => e.CustomerID)
+                    .ToList();
+
+                var query = _context.Set<UserMachineMapping>().Where(w => idUsers.Contains(w.UserId) && w.Machine.PlantId != null).Select(s => s.Machine.Plant).Distinct().ToList();
+                result = query.Adapt<List<PlantModel>>();
+            }
+            catch (Exception ex)
+            {
+                var errMessage = string.Format(ex.GetStringLog());
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+
+            return result;
+        }
+
         #endregion
 
 

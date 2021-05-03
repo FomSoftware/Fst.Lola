@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 
 namespace FomMonitoringCore.Service
@@ -17,5 +18,6 @@ namespace FomMonitoringCore.Service
 
         List<int> GetMachinePanels(int? MachineModelId);
         CurrentStateModel GetCurrentStateModel(int MachineID);
+        List<MachineInfoModel> GetRoleMachines(enRole role);
     }
 }

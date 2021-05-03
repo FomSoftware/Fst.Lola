@@ -303,6 +303,11 @@ namespace FomMonitoring.Controllers
                 default:
                     result = RedirectToAction("Logout", new { exception = 1 });
                     break;
+
+                case enRole.Demo:
+                    result = RedirectToAction("Index", "Mes");
+                    //result = RedirectToAction("Index", "Mes", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
+                    break;
             }
 
             return result;

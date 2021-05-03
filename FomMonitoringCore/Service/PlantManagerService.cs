@@ -65,6 +65,15 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
+
+        public List<PlantModel> FilterPlantsByRole(enRole userRole, List<PlantModel> plants)
+        {
+            List<string> userCustomers = _context.Set<Roles_Customer>()
+                .Include("Roles").Include("Users")
+                .Where(w => (int)w.Roles.IdRole == (int)userRole).Select(c => c.Users.Username).ToList();
+            return plants.Where(u => userCustomers.Contains(u.CustomerName)).ToList();
+        }
+
         public PlantModel GetPlant(int plantId)
         {
             PlantModel result = null;

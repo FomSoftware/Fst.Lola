@@ -84,7 +84,7 @@
                             </div>
                         </div>
 
-                        @if (Model.User.Role == enRole.Administrator)
+                        @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Demo)
                         {
                             <!-- Select Basic -->
                             <div class="form-group row" id="form-customer-input">

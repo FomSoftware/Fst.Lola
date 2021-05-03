@@ -26,10 +26,15 @@ namespace FomMonitoringBLL.ViewServices
             var plantManager = new PlantManagerViewModel();
             string usernameCustomer = null;
 
-            if (context.User.Role != enRole.Administrator)
+            if (context.User.Role != enRole.Administrator && context.User.Role != enRole.Demo)
                 usernameCustomer = context.User.Username;
 
             var plantsModel = _plantManagerService.GetPlants(usernameCustomer);
+            if (context.User.Role == enRole.Demo)
+            {
+                plantsModel = _plantManagerService.FilterPlantsByRole(enRole.Demo, plantsModel);
+            }
+
             plantManager.Plants = plantsModel.Where(p => !string.IsNullOrWhiteSpace(p.CustomerName)).Select(s => new PlantViewModel
             {
                 Id = s.Id,

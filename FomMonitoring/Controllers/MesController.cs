@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace FomMonitoring.Controllers
 {
     [SessionWeb]
-    [Authorize(Roles = Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+    [Authorize(Roles = Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
     public class MesController : Controller
     {
         private IPlantMessagesViewService _plantMessagesViewService;

@@ -18,7 +18,7 @@ using FomMonitoringCore.Service.API;
 namespace FomMonitoring.Controllers
 {
     [SessionWeb]
-    [Authorize(Roles =  Common.Administrator)]
+    [Authorize(Roles =  Common.Administrator + "," + Common.Demo)]
     public class UploadConfigurationController : Controller
     {
         private readonly IXmlDataService _xmlDataService;

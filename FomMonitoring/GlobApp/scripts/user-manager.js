@@ -17,7 +17,8 @@
         HeadWorkshop: 2,
         Assistance: 3,
         Customer: 4,
-        UserApi: 5
+        UserApi: 5,
+        Demo:9
     };
 
     var enAction = {
@@ -180,20 +181,29 @@
     var initDataTable = function (renderID, data) {
         data.forEach(function (elem, index) {
             elem.Name = elem.FirstName + ' ' + elem.LastName;
-            elem.Modify = '<div class="button btn-modify" data-toggle="tooltip" title="' + resource.Modify + '" onclick="UserManager.modifyClickEvent(\'' + elem.ID + '\')" data-id="' + elem.ID + '"><i class="fa fa-pencil"></i></div>';
+            elem.Modify = '<div class="button btn-modify" data-toggle="tooltip" title="' +
+                resource.Modify +
+                '" onclick="UserManager.modifyClickEvent(\'' +
+                elem.ID +
+                '\')" data-id="' +
+                elem.ID +
+                '"><i class="fa fa-pencil"></i></div>';
+
             if (elem.Enabled)
                 elem.Enabled = '<span class="btn-active btn-enabled" data-toggle="tooltip" title="' + resource.EnabledUser + '"><i class="fa fa-check" aria-hidden="true"></i></span>';
             else
                 elem.Enabled = '<span class="btn-disactive btn-enabled" data-toggle="tooltip"  title="' + resource.DisabledUser + '"><i class="fa fa-times" aria-hidden="true"></i></span>';
+            
             elem.Language = '<img class="flag" src=' + setLanguageFlag(elem.LanguageName, vmUsers.$data.baseUrl) + ' data-toggle="tooltip"  title="' + resource.Language + ": " + elem.LanguageName + '">';
-            elem.ChangePassword = '<div class="button btn-modify" data-toggle="tooltip"  title="' +
+
+           elem.ChangePassword = '<div class="button btn-modify" data-toggle="tooltip"  title="' +
                     resource.ResetPassword +
                     '" onclick="UserManager.resetPasswordClickEvent(\'' +
                     elem.ID +
                     '\')" data-id="' +
                     elem.ID +
                     '"><i class="fa fa-lock"></i></div>';
-            if (elem.RoleCode != enRoles.Administrator && elem.RoleCode != enRoles.Customer)
+           if (elem.RoleCode != enRoles.Administrator && elem.RoleCode != enRoles.Customer && elem.RoleCode != enRoles.Demo)
                 elem.Delete = '<div class="button btn-modify" data-toggle="tooltip"  title="' + resource.Delete + '" onclick="UserManager.deleteClickEvent(\'' + elem.ID + '\')" data-id="' + elem.ID + '"><i class="fa fa-trash"></i></div>';
             else
                 elem.Delete = "";
@@ -218,10 +228,12 @@
             columns.push({ title: resource.Customer, data: "CustomerName", className: "all" });
         columns.push({ title: resource.Machines, data: "Machines", className: "all" });
         columns.push({ title: "", data: 'Language', orderable: false, width: 15, className: "all" });
-        columns.push({ title: "", data: "Modify", orderable: false, className: "all" });
+        if (roleUser != enRoles.Demo)
+            columns.push({ title: "", data: "Modify", orderable: false, className: "all" });
         if (roleUser == enRoles.Administrator)
             columns.push({ title: "", data: "ChangePassword", orderable: false, className: "all" });
-        columns.push({ title: "", data: "Delete", orderable: false, className: "all" });
+        if (roleUser != enRoles.Demo)
+            columns.push({ title: "", data: "Delete", orderable: false, className: "all" });
 
 
         var config = {
@@ -280,7 +292,9 @@
         getTimeZones();
         $('#user-modal').modal('show');
         $('#user-modal .js-modify').hide();
-        $('#user-modal .js-add').show();
+        if (roleUser != enRoles.Demo) {
+            $('#user-modal .js-add').show();
+        }
     };
 
     var getTimeZones = function() {

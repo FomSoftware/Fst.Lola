@@ -149,6 +149,26 @@ namespace FomMonitoringCore.Service
 
             return result;
         }
+        public List<MachineInfoModel> GetRoleMachines(enRole role)
+        {
+            var result = new List<MachineInfoModel>();
+
+            try
+            {
+                var idUsers = _context.Set<Roles_Customer>().Where(e => e.Roles.IdRole == (int)role).Select(e => e.CustomerID)
+                    .ToList();
+
+                var query = _context.Set<UserMachineMapping>().Where(w => idUsers.Contains(w.UserId)).Select(s => s.Machine).ToList();
+                result = query.Where(w => w.LastUpdate != null).Adapt<List<MachineInfoModel>>();
+            }
+            catch (Exception ex)
+            {
+                var errMessage = string.Format(ex.GetStringLog(), role);
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+
+            return result;
+        }
 
         public List<MachineInfoModel> GetAllMachines()
         {

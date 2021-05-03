@@ -19,7 +19,9 @@ namespace FomMonitoringBLL.ViewServices
         {
             var result = new MesViewModel
             {
-                machines = GetVueModel(context.ActualPlant, context.AllMachines, !(context.User.Role == enRole.Administrator || context.User.Role == enRole.Assistance))
+                machines = GetVueModel(context.ActualPlant, context.AllMachines, !(context.User.Role == enRole.Administrator
+                                                                                    || context.User.Role == enRole.Demo
+                                                                                   || context.User.Role == enRole.Assistance))
             };
             return result;
         }

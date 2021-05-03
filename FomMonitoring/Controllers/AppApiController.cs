@@ -59,7 +59,7 @@ namespace FomMonitoring.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
         [Route("ajax/AppApi/GetMachineViewModel")]
         public HttpResponseMessage GetMachineViewModel(FilterViewModel filters)
         {
@@ -86,7 +86,7 @@ namespace FomMonitoring.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Authorize(Roles = Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
         [Route("ajax/AppApi/GetMesViewModel")]
         public HttpResponseMessage GetMesViewModel([FromBody]int plantID)
         {
@@ -104,7 +104,7 @@ namespace FomMonitoring.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Common.HeadWorkshop + "," + Common.Operator + "," + Common.Customer)]
+        [Authorize(Roles = Common.HeadWorkshop + "," + Common.Operator + "," + Common.Customer + "," + Common.Demo)]
         [Route("ajax/AppApi/GetNotificationsViewModel")]
         public HttpResponseMessage GetNotificationsViewModel()
         {
@@ -117,7 +117,7 @@ namespace FomMonitoring.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = Common.HeadWorkshop + "," + Common.Operator + "," + Common.Customer)]
+        [Authorize(Roles = Common.HeadWorkshop + "," + Common.Operator + "," + Common.Customer + "," + Common.Demo)]
         [Route("ajax/AppApi/SetNotificationRead")]
         public HttpResponseMessage SetNotificationRead([FromBody]int idNotification)
         {
@@ -132,7 +132,7 @@ namespace FomMonitoring.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
         [Route("ajax/AppApi/GetPlantMessagesViewModel")]
         public HttpResponseMessage GetPlantMessagesViewModel(FilterViewModel filters)
         {
@@ -146,7 +146,7 @@ namespace FomMonitoring.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
         [Route("ajax/AppApi/GetMachineEfficiencyViewModel")]
         public HttpResponseMessage GetMachineEfficiencyViewModel(FilterViewModel filters)
         {
@@ -163,7 +163,7 @@ namespace FomMonitoring.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
         [Route("ajax/AppApi/GetMachineProductivityViewModel")]
         public HttpResponseMessage GetMachineProductivityViewModel(FilterViewModel filters)
         {
@@ -180,7 +180,7 @@ namespace FomMonitoring.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
         [Route("ajax/AppApi/GetMachineJobViewModel")]
         public HttpResponseMessage GetMachineJobViewModel(FilterViewModel filters)
         {
@@ -197,7 +197,7 @@ namespace FomMonitoring.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
         [Route("ajax/AppApi/GetMachineMaintenanceViewModel")]
         public HttpResponseMessage GetMachineMaintenanceViewModel(FilterViewModel filters)
         {
@@ -214,7 +214,7 @@ namespace FomMonitoring.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
         [Route("ajax/AppApi/GetMachineParametersViewModel")]
         public HttpResponseMessage GetMachineParametersViewModel(FilterViewModel filters)
         {
@@ -231,7 +231,7 @@ namespace FomMonitoring.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
         [Route("ajax/AppApi/GetMachineMessagesViewModel")]
         public HttpResponseMessage GetMachineMessagesViewModel(FilterViewModel filters)
         {
@@ -249,7 +249,7 @@ namespace FomMonitoring.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
         [Route("ajax/AppApi/GetParametersValueViewModel")]
         public HttpResponseMessage GetParametersValueViewModel(FilterViewModel filters)
         {
@@ -266,7 +266,7 @@ namespace FomMonitoring.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
         [Route("ajax/AppApi/GetMachineXToolsViewModel")]
         public HttpResponseMessage GetMachineXToolsViewModel(FilterViewModel filters)
         {
@@ -285,7 +285,7 @@ namespace FomMonitoring.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
         [Route("ajax/AppApi/GetMachineToolsViewModel")]
         public HttpResponseMessage GetMachineToolsViewModel(FilterViewModel filters)
         {
@@ -303,7 +303,7 @@ namespace FomMonitoring.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
         [Route("ajax/AppApi/GetMachineToolsBlitzViewModel")]
         public HttpResponseMessage GetMachineToolsBlitzViewModel(FilterViewModel filters)
         {
@@ -321,7 +321,7 @@ namespace FomMonitoring.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer)]
+        [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
         [Route("ajax/AppApi/IgnoreMessage/{MessageID}")]
         public HttpResponseMessage IgnoreMessage(int MessageID)
         {

@@ -398,6 +398,14 @@
           <Property Name="Status" Type="int" />
           <Property Name="HomePage" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Roles_Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CustomerID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="Roles_Users">
           <Key>
             <PropertyRef Name="ID" />
@@ -899,6 +907,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Roles_Customers_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Roles_Customer" Type="Self.Roles_Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Roles_Customer">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Roles_Customers_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Roles_Customer" Type="Self.Roles_Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Roles_Customer">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Roles_Users_Roles">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Roles_Users" Type="Self.Roles_Users" Multiplicity="*" />
@@ -1041,6 +1075,7 @@
           <EntitySet Name="Piece" EntityType="Self.Piece" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Plant" EntityType="Self.Plant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles_Customer" EntityType="Self.Roles_Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles_Users" EntityType="Self.Roles_Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StateMachine" EntityType="Self.StateMachine" Schema="dbo" store:Type="Tables" />
@@ -1183,6 +1218,14 @@
           <AssociationSet Name="FK_Piece_Machine" Association="Self.FK_Piece_Machine">
             <End Role="Machine" EntitySet="Machine" />
             <End Role="Piece" EntitySet="Piece" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Roles_Customers_Roles" Association="Self.FK_Roles_Customers_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Roles_Customer" EntitySet="Roles_Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Roles_Customers_Users" Association="Self.FK_Roles_Customers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Roles_Customer" EntitySet="Roles_Customer" />
           </AssociationSet>
           <AssociationSet Name="FK_Roles_Users_Roles" Association="Self.FK_Roles_Users_Roles">
             <End Role="Roles" EntitySet="Roles" />
@@ -1676,6 +1719,7 @@
           <Property Name="Status" Type="Int32" />
           <Property Name="HomePage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Roles_Users" Relationship="Self.FK_Roles_Users_Roles" FromRole="Roles" ToRole="Roles_Users" />
+          <NavigationProperty Name="Roles_Customer" Relationship="FomMonitoringModel.FK_Roles_Customers_Roles" FromRole="Roles" ToRole="Roles_Customer" />
         </EntityType>
         <EntityType Name="Roles_Users">
           <Key>
@@ -1783,6 +1827,7 @@
           <NavigationProperty Name="UserMachineMapping" Relationship="Self.FK_UserMachineMapping_Users" FromRole="Users" ToRole="UserMachineMapping" />
           <Property Name="TimeZone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CompanyName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Roles_Customer" Relationship="FomMonitoringModel.FK_Roles_Customers_Users" FromRole="Users" ToRole="Roles_Customer" />
         </EntityType>
         <Association Name="FK_AuditLogin_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1">
@@ -2494,6 +2539,15 @@
             <End Role="HistoryJob" EntitySet="HistoryJob" />
             <End Role="Piece" EntitySet="Piece" />
           </AssociationSet>
+          <EntitySet Name="Roles_Customer" EntityType="FomMonitoringModel.Roles_Customer" />
+          <AssociationSet Name="FK_Roles_Customers_Roles" Association="FomMonitoringModel.FK_Roles_Customers_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Roles_Customer" EntitySet="Roles_Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Roles_Customers_Users" Association="FomMonitoringModel.FK_Roles_Customers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Roles_Customer" EntitySet="Roles_Customer" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_ParameterResetValue_Machine">
           <End Type="FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
@@ -2527,6 +2581,42 @@
             </Principal>
             <Dependent Role="Piece">
               <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Roles_Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="RoleID" Type="Guid" Nullable="false" />
+          <Property Name="CustomerID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Roles" Relationship="FomMonitoringModel.FK_Roles_Customers_Roles" FromRole="Roles_Customer" ToRole="Roles" />
+          <NavigationProperty Name="Users" Relationship="FomMonitoringModel.FK_Roles_Customers_Users" FromRole="Roles_Customer" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_Roles_Customers_Roles">
+          <End Type="FomMonitoringModel.Roles" Role="Roles" Multiplicity="1" />
+          <End Type="FomMonitoringModel.Roles_Customer" Role="Roles_Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Roles_Customer">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Roles_Customers_Users">
+          <End Type="FomMonitoringModel.Users" Role="Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FomMonitoringModel.Roles_Customer" Role="Roles_Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Roles_Customer">
+              <PropertyRef Name="CustomerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3052,6 +3142,15 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles_Customer">
+            <EntityTypeMapping TypeName="FomMonitoringModel.Roles_Customer">
+              <MappingFragment StoreEntitySet="Roles_Customer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

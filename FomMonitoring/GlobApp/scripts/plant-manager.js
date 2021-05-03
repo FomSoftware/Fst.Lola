@@ -19,7 +19,8 @@
         HeadWorkshop: 2,
         Assistance: 3,
         Customer: 4,
-        UserApi: 5
+        UserApi: 5,
+        Demo: 9
     }
 
     var init = function (user, baseUrl, resourceText) {
@@ -188,8 +189,11 @@
 
         columns.push({ title: resource.PlantMachines, data: "Machines", className: "all" });
 
-        columns.push({ title: "", data: "Modify", orderable: false, className: "all"});
-        columns.push({ title: "", data: "Delete", orderable: false, className: "all"});
+        if (roleUser != enRoles.Demo) {
+            columns.push({ title: "", data: "Modify", orderable: false, className: "all" });
+            columns.push({ title: "", data: "Delete", orderable: false, className: "all" });
+        }
+       
 
         var config = {
             data: data,
@@ -237,7 +241,9 @@
 
         $('#plant-modal').modal('show');
         $('#plant-modal .js-modify').hide();
-        $('#plant-modal .js-add').show();
+        if (roleUser != enRoles.Demo) {
+            $('#plant-modal .js-add').show();
+        }
     }
 
     var addPlant = function () {
