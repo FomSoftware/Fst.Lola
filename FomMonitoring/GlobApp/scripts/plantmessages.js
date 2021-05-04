@@ -71,7 +71,7 @@
                 {
                     return {
                         'fa-exclamation-triangle color-red': type == 'error',
-                        'fa-exclamation-triangle color-cn': type == 'operator',
+                        'icofom-memory color-cn': type == 'operator',
                         'fa-exclamation-circle color-orange': type == 'warning'
                     }
                 },                          
