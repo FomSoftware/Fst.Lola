@@ -10,12 +10,14 @@ namespace FomMonitoringCore.Framework.Common
         Operator = 1,
         [Description("HeadWorkshop")]
         HeadWorkshop = 2,
-        [Description("Assistance")]
+        [Description("FOMService")]
         Assistance = 3,
         [Description("Customer")]
         Customer = 4,
         [Description("UserApi")]
         UserApi = 5,
+        [Description("R&DFOM")]
+        RdFom = 6,
         [Description("Demo")]
         Demo = 9,
     }

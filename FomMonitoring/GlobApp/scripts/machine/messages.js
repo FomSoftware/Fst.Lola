@@ -52,7 +52,7 @@
                     });
 
                     if (n_operator > n_error)
-                        color = 'color-yellow';
+                        color = 'color-cn';
 
                     return color;
                 },
@@ -76,7 +76,7 @@
                 {
                     return {
                         'color-red': type == 'error',
-                        'color-yellow': type == 'operator',
+                        'color-cn': type == 'operator',
                         'color-orange': type == 'warning'
                     }
                 },
@@ -84,7 +84,7 @@
                 {
                     return {
                         'fa-exclamation-triangle color-red': type == 'error',
-                        'fa-exclamation-triangle color-yellow': type == 'operator',
+                        'icofom-memory color-cn': type == 'operator',
                         'fa-exclamation-circle color-orange': type == 'warning'
                     }
                 },

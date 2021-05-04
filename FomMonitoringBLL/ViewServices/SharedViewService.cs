@@ -74,10 +74,9 @@ namespace FomMonitoringBLL.ViewServices
 
         public static List<MachineInfoViewModel> GetListMachines(ContextModel context)
         {
-
-                var machines = context.AllMachines.Where(w => w.Id == context.ActualMachine.Id || 
+            var machines = context.AllMachines.Where(w => w.Type != null && (w.Id == context.ActualMachine.Id || 
                                                               (w.PlantId == context.ActualPlant?.Id &&
-                                                               (w.ExpirationDate == null || w.ExpirationDate >= DateTime.UtcNow))).Select(m => new MachineInfoViewModel()
+                                                               (w.ExpirationDate == null || w.ExpirationDate >= DateTime.UtcNow)))).Select(m => new MachineInfoViewModel()
                 {
                     id = m.Id,
                     serial = m.Serial,

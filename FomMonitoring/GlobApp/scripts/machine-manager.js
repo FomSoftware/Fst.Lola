@@ -384,6 +384,10 @@
                 color = '#F9ED4B';
                 break;
 
+            case 'color-cn':
+                color = '#003F87';
+                break;
+
             case 'color-green':
                 color = '#8FBF36';
                 break;

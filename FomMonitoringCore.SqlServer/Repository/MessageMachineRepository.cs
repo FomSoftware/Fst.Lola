@@ -11,13 +11,14 @@ namespace FomMonitoringCore.SqlServer.Repository
 
         }
 
-        public IEnumerable<MessageMachine> GetMachineMessages(int idMachine, DateTime start, DateTime end, int? machineGroup = null, bool includePeriodicMsg = false, bool onlyVisible = false)
+        public IEnumerable<MessageMachine> GetMachineMessages(int idMachine, DateTime start, DateTime end, int? machineGroup = null, 
+            bool includePeriodicMsg = false, bool onlyVisible = false, List<int> messTypes = null, bool timeLimit = true)
         {
             //devo eliminare i messaggi di errore più vecchi di 15 giorni
             DateTime now = DateTime.UtcNow;
             DateTime startError = start;
 
-            if ((now - start).TotalDays > 15)
+            if (timeLimit && (now - start).TotalDays > 15)
                 startError = now.AddDays(-15);
 
             var query = 
@@ -25,10 +26,11 @@ namespace FomMonitoringCore.SqlServer.Repository
                             .AsNoTracking()
                             .Include("MessagesIndex")
                             .AsNoTracking(), m => m.MachineId == idMachine 
-                                                  && ((m.Day >= startError && m.MessagesIndex.MessageTypeId == 11) || (m.Day >= start && m.MessagesIndex.MessageTypeId != 11)) 
+                                                  && m.Day >= startError
                                                   && m.Day <= end);
 
-            
+            if (messTypes != null)
+                query = query.Where(m => messTypes.Contains(m.MessagesIndex.MessageTypeId));
             
             if(includePeriodicMsg == false)
             {

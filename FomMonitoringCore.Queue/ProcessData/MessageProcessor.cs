@@ -65,12 +65,13 @@ namespace FomMonitoringCore.Queue.ProcessData
 
                     }
 
-                    //IS-754 escludere tutti quelli che hanno isLolaVisible = false && type error o warning 
+                    //IS-754 escludere tutti quelli che hanno isLolaVisible = false && type error o warning o cn
                     messageMachine = messageMachine.Where(f => f.MessagesIndex != null
                                                                && f.MessagesIndex.IsVisibleLOLA
                                                                && f.MessagesIndex.MessageType != null
                                                                && (f.MessagesIndex.MessageType.Id == 11 ||
-                                                                   f.MessagesIndex.MessageType.Id == 12)).ToList();
+                                                                   f.MessagesIndex.MessageType.Id == 12 ||
+                                                                   f.MessagesIndex.MessageType.Id == 13)).ToList();
                     if (messageMachine.Any())
                     {
                         context.Set<MessageMachine>().AddRange(messageMachine);
@@ -102,9 +103,10 @@ namespace FomMonitoringCore.Queue.ProcessData
             maxHpDate = maxHpDate?.Date ?? DateTime.MinValue;
 
             var historyMessages = context.Set<MessageMachine>()
-                .Where(p => p.Day >= maxHpDate && p.MachineId == idMachine &&
+                .Where(p => p.Day >= maxHpDate && p.MachineId == idMachine && p.MessagesIndex.IsVisibleLOLA &&
                             (p.MessagesIndex.MessageTypeId == 11 ||
-                             p.MessagesIndex.MessageTypeId == 12)).ToList()
+                             p.MessagesIndex.MessageTypeId == 12 ||
+                             p.MessagesIndex.MessageType.Id == 13)).ToList()
                 .GroupBy(g => new{ g.Day.Value.Date, g.Params, g.MessagesIndexId})
                 .Select(n => new HistoryMessage
                 {

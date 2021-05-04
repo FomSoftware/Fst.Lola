@@ -59,8 +59,17 @@ namespace FomMonitoringCore.Service
                 var machineGroup = _context.Set<MachineGroup>()
                     .FirstOrDefault(n => n.MachineGroupName == actualMachineGroup)?.Id;
 
+                List<int> messTypes = (new int[] { 11, 12 }).ToList();
+                bool limitTime = true;
+                var role = _accountService.GetLoggedUser().Role;
+                if (role == enRole.Assistance || role == enRole.RdFom || role == enRole.Administrator)
+                {
+                    messTypes.Add(13);
+                    limitTime = false;
+                }
+
                 var queryResult = _historyMessageRepository
-                    .GetHistoryMessage(machine.Id, period.StartDate, period.EndDate, machineGroup);
+                    .GetHistoryMessage(machine.Id, period.StartDate, period.EndDate, machineGroup, messTypes, limitTime);
                 switch (dataType)
                 {
                     case enDataType.Historical:
@@ -130,7 +139,7 @@ namespace FomMonitoringCore.Service
                         break;
                     case enDataType.Summary:
                         var historyMessagesSummary = _historyMessageRepository
-                            .GetHistoryMessage(machine.Id, period.StartDate, period.EndDate, machineGroup)
+                            .GetHistoryMessage(machine.Id, period.StartDate, period.EndDate, machineGroup, messTypes, limitTime)
                             .GroupBy(g => new
                             {
                                 g.MachineId,
@@ -179,8 +188,17 @@ namespace FomMonitoringCore.Service
                 var cl = _languageService.GetCurrentLanguage() ?? 0;
                 var machineGroup = _context.Set<MachineGroup>()
                     .FirstOrDefault(n => n.MachineGroupName == actualMachineGroup)?.Id;
+                List<int> messTypes = (new int[] {11, 12}).ToList();
+                bool limitTime = true;
+                var role = _accountService.GetLoggedUser().Role;
+                if (role == enRole.Assistance || role == enRole.RdFom || role == enRole.Administrator)
+                {
+                    messTypes.Add(13);
+                    limitTime = false;
+                }
+
                 var query = _messageMachineRepository
-                    .GetMachineMessages(machine.Id, period.StartDate, period.EndDate, machineGroup, false, true)
+                    .GetMachineMessages(machine.Id, period.StartDate, period.EndDate, machineGroup, false, true, messTypes, limitTime)
                     .ToList();
 
                 result = query.BuildAdapter().AddParameters("idLanguage", cl).AdaptToType<List<MessageMachineModel>>();

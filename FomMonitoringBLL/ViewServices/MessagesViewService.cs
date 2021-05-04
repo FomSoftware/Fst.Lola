@@ -27,7 +27,7 @@ namespace FomMonitoringBLL.ViewServices
                 context.ActualMachineGroup = enMachineGroup.Machine.ToString();
 
             result.vm_messages = GetVueModel(context.ActualMachine, context.ActualPeriod, context.ActualMachineGroup);
-            result.opt_historical = GetHistoricalOptions(context.ActualMachine, context.ActualPeriod, context.ActualMachineGroup);
+            result.opt_historical = GetHistoricalOptions(context.ActualMachine, context.ActualPeriod, context.User.Role, context.ActualMachineGroup);
             result.vm_details = GetMessageDetails(context.ActualMachine, context.ActualPeriod, context.ActualMachineGroup);
 
             if (context.User.Role == enRole.Customer && context.ActualMachine.TimeZone != null)
@@ -113,7 +113,7 @@ namespace FomMonitoringBLL.ViewServices
         }
 
 
-        private ChartViewModel GetHistoricalOptions(MachineInfoModel machine, PeriodModel period, string actualMachineGroup = null)
+        private ChartViewModel GetHistoricalOptions(MachineInfoModel machine, PeriodModel period, enRole role, string actualMachineGroup = null)
         {
             var options = new ChartViewModel();
 
@@ -135,6 +135,12 @@ namespace FomMonitoringBLL.ViewServices
             options.yTitle = $"{Resource.Quantity} (n)";
 
             var days = data.Where(w => w.Day != null && (w.Type == (int)enTypeAlarm.Warning || w.Type == (int)enTypeAlarm.Error)).Select(s => s.Day.Value).Distinct().ToList();
+
+            if (role == enRole.Administrator || role == enRole.RdFom || role == enRole.Assistance)
+            {
+                days = data.Where(w => w.Day != null && (w.Type == (int)enTypeAlarm.Warning || w.Type == (int)enTypeAlarm.Error || w.Type == (int)enTypeAlarm.CN)).Select(s => s.Day.Value).Distinct().ToList();
+            }
+
             options.categories = CommonViewService.GetTimeCategories(days, granularity);
 
             var series = new List<SerieViewModel>();
@@ -146,9 +152,15 @@ namespace FomMonitoringBLL.ViewServices
             var serieError = new SerieViewModel();
             serieError.name = enTypeAlarm.Error.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
             serieError.color = CommonViewService.GetColorAlarm(enTypeAlarm.Error);
-            
+
+            var serieCN = new SerieViewModel();
+            serieCN.name = enTypeAlarm.CN.ToLocalizedString(_contextService.GetContext().ActualLanguage.InitialsLanguage);
+            serieCN.color = CommonViewService.GetColorAlarm(enTypeAlarm.CN);
+
             serieOperator.data = new List<int>();
             serieError.data = new List<int>();
+            serieCN.data = new List<int>();
+
             foreach (string cat in options.categories)
             {
                 var catVal = data.Where(w => w.Type == (int)enTypeAlarm.Warning && 
@@ -157,10 +169,19 @@ namespace FomMonitoringBLL.ViewServices
                 var catVal2 = data.Where(w => w.Type == (int)enTypeAlarm.Error &&
                                              CommonViewService.GetTimeCategory((DateTime)w.Day, granularity) == cat).Select(s => s.Count ?? 0).FirstOrDefault();
                 serieError.data.Add(catVal2);
+
+                var catVal3 = data.Where(w => w.Type == (int)enTypeAlarm.CN &&
+                                              CommonViewService.GetTimeCategory((DateTime)w.Day, granularity) == cat).Select(s => s.Count ?? 0).FirstOrDefault();
+                serieCN.data.Add(catVal3);
             }
 
             series.Add(serieOperator);
             series.Add(serieError);
+            if (role == enRole.Administrator || role == enRole.RdFom || role == enRole.Assistance)
+            {
+                series.Add(serieCN);
+            }
+            
             options.series = series;
 
             return options;

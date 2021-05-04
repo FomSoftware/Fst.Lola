@@ -177,6 +177,9 @@ namespace FomMonitoringBLL.ViewServices
                 case enTypeAlarm.Error:
                     Color = "#cc3333";
                     break;
+                case enTypeAlarm.CN:
+                    Color = "#003F87";
+                    break;
                 default:
                     Color = "#aaa";
                     break;

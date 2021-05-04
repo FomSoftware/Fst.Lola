@@ -33,12 +33,10 @@ namespace FomMonitoringCore.Queue.ProcessData
                                                     LastUpdate = DateTime.UtcNow
                                                 });
 
-
                         machineData.LoginDate =
                             machineData.LoginDate.HasValue && machineData.LoginDate.Value.Year < 1900
                                 ? null
                                 : machineData.LoginDate;
-
 
                         //campi cablati che non arrivano più dal json
                         machineData.StateProductivityGreenThreshold = 63.0;
@@ -55,8 +53,6 @@ namespace FomMonitoringCore.Queue.ProcessData
                         machineData.Shift2StartMinute = 0;
                         machineData.Shift3StartHour = 16;
                         machineData.Shift3StartMinute = 0;
-
-
 
                         machineActual.Description = machineData.MachineDescription;
                         machineActual.FirmwareVersion = machineData.FirmwareVersion;
@@ -92,7 +88,6 @@ namespace FomMonitoringCore.Queue.ProcessData
                             machineData.StateProductivityYellowThreshold;
                         machineActual.UTC = machineData.UTC;
                     }
-
 
 
                     context.SaveChanges();
