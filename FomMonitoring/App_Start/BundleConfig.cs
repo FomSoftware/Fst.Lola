@@ -65,7 +65,8 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/grey/mes.css",
                         "~/GlobApp/grey/user-manager.css",
                         "~/GlobApp/grey/utilities.css",
-                        "~/GlobApp/grey/faq-support.css"
+                        "~/GlobApp/grey/faq-support.css",
+                        "~/GlobApp/grey/assistance.css"
                      ));
 
 
@@ -121,7 +122,8 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/axes/axel.js",
                         "~/GlobApp/scripts/machine/otherdata/axel.js",
                         "~/GlobApp/scripts/machine/electrospindle/electrospindleAxel.js",
-                        "~/GlobApp/scripts/machine/sensorspindles/axel.js"
+                        "~/GlobApp/scripts/machine/sensorspindles/axel.js",
+                        "~/GlobApp/scripts/assistance-manager.js"
             ));
 
             #endregion

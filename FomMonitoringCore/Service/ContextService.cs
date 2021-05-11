@@ -15,13 +15,15 @@ namespace FomMonitoringCore.Service
         private readonly IMesService _mesService;
         private readonly IAccountService _accountService;
         private readonly IUserManagerService _userManagerService;
+        private readonly IAssistanceService _assistanceService;
 
-        public ContextService(IMachineService machineService, IMesService mesService, IAccountService accountService, IUserManagerService userManagerService)
+        public ContextService(IMachineService machineService, IMesService mesService, IAccountService accountService, IUserManagerService userManagerService, IAssistanceService assistanceService)
         {
             _machineService = machineService;
             _mesService = mesService;
             _accountService = accountService;
             _userManagerService = userManagerService;
+            _assistanceService = assistanceService;
         }
 
         public bool InitializeContext()
@@ -95,6 +97,35 @@ namespace FomMonitoringCore.Service
 
         }
 
+        public bool InitializeAssistanceLevel()
+        {
+            var context = GetContext();
+            context.ActualPage = enPage.Assistance;
+
+           context.AllPlants = _mesService.GetAllPlantsMachines();
+
+           context.ActualPeriod = new PeriodModel()
+            {
+                LastUpdate = new DataUpdateModel()
+                {
+                    DateTime = DateTime.UtcNow,
+                    TimeZone = context.User.TimeZone
+                }
+            };
+
+            if (context.AllPlants.Any())
+            {
+                if (context.ActualPlant == null || context.AllPlants.FirstOrDefault(p => p.Id == context.ActualPlant.Id) == null)
+                    context.ActualPlant = context.AllPlants.FirstOrDefault();
+
+                context.AllMachines = _machineService.GetAllMachines();
+
+                SetContext(context);
+            }
+
+            return true;
+        }
+
         public bool InitializeMesLevel()
         {
             var context = GetContext();
@@ -104,6 +135,16 @@ namespace FomMonitoringCore.Service
                 context.AllPlants = _mesService.GetAllPlantsMachines();
             else if (context.User.Role == enRole.Demo)
                 context.AllPlants = _mesService.GetAllPlantsRole(enRole.Demo);
+            else if (context.User.Role == enRole.Assistance || context.User.Role == enRole.RandD)
+            {
+                if(context.AssistanceUserId != null)
+                    context.AllPlants = _assistanceService.GetCustomerPlants(new Guid(context.AssistanceUserId));
+                else if (context.AssistanceMachineId != null)
+                {
+                    context.AllPlants = new List<PlantModel>()
+                        {_mesService.GetMachinePlant(context.AssistanceMachineId)};
+                }
+            }
             else
                 context.AllPlants = _mesService.GetUserPlants(context.User.ID);
 
@@ -119,13 +160,20 @@ namespace FomMonitoringCore.Service
 
             if (context.AllPlants.Any())
             {
-                if(context.ActualPlant == null || context.AllPlants.FirstOrDefault(p => p.Id == context.ActualPlant.Id ) == null)
+                if(context.ActualPlant == null || context.AllPlants.FirstOrDefault(p => p!= null && p.Id == context.ActualPlant.Id ) == null)
                     context.ActualPlant = context.AllPlants.FirstOrDefault();
 
                 if (context.User.Role == enRole.Administrator)
                     context.AllMachines = _machineService.GetAllMachines();
                 else if(context.User.Role == enRole.Demo)
                     context.AllMachines = _machineService.GetRoleMachines(enRole.Demo);
+                else if (context.User.Role == enRole.Assistance || context.User.Role == enRole.RandD)
+                {
+                    if(context.AssistanceUserId != null)
+                        context.AllMachines = _machineService.GetUserMachines(context);
+                    else if(context.AssistanceMachineId != null)
+                        context.AllMachines = _machineService.GetPlantMachines(context);
+                }
                 else
                     context.AllMachines = _machineService.GetUserMachines(context);
 
@@ -192,12 +240,21 @@ namespace FomMonitoringCore.Service
             }
             else
             {
-                context.AllMachines = _machineService.GetUserMachines(context);
+                if (context.User.Role == enRole.Assistance || context.User.Role == enRole.RandD)
+                {
+                    if (context.AssistanceMachineId != null)
+                    {
+                        var all = new List<MachineInfoModel>(){ _machineService.GetMachineInfo((int)context.AssistanceMachineId) };
+                        context.AllMachines = all;
+                    }
+                }
+                else
+                    context.AllMachines = _machineService.GetUserMachines(context);
 
                 if (context.AllMachines.Count == 0)
                     return false;
 
-                if (machineId != null)
+                if (machineId != null )
                     context.ActualMachine = context.AllMachines.FirstOrDefault(w => w.Id == machineId.Value);
                 else
                     context.ActualMachine = context.AllMachines.FirstOrDefault();

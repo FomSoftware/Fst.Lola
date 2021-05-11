@@ -25,5 +25,7 @@ namespace FomMonitoringCore.Framework.Model
         public PeriodModel ActualPeriod { get; set; }
 
         public string ActualMachineGroup { get; set; }
+        public int? AssistanceMachineId { get; set; }
+        public string AssistanceUserId { get; set; }
     }
 }

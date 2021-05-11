@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace FomMonitoring.Controllers
 {
     [SessionWeb]
-    [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
+    [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Assistance + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo + "," + Common.Administrator + "," + Common.RandD)]
     public class MachineController : Controller
     {
         private readonly IMachineViewService _machineViewService;
@@ -30,7 +30,6 @@ namespace FomMonitoring.Controllers
         {
             try
             {
-
                 if (!_contextService.InitializeMachineLevel())
                     return RedirectToAction("Logout", "Account", new { returnUrl = string.Empty, exception = 4 });
 

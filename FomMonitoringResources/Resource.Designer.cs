@@ -488,7 +488,8 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Le informazioni contenute in questo messaggo sono riservate e confidenziali. Il loro utilizzo è consentito esclusivamente ad utenti sottoscrittori di licenza LOLA, per le finalià indicate nel messaggio stesso. Qualora Lei non fosse la persona a cui il presente messaggio èdestinato, La invitiamo ad eliminarlo dal Suo sistema ed a distruggere le varie copie o stampe, dandocene gentilmente comunicazione a questo indirizzo. The information contained in this e-mail and its attachments is intended for the exclusi [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Le informazioni contenute in questo messaggio sono riservate e confidenziali. Il loro utilizzo è consentito esclusivamente ad utenti sottoscrittori di licenza LOLA, per le finalià indicate nel messaggio stesso. Qualora Lei non fosse la persona a cui il presente messaggio è destinato, La invitiamo ad eliminarlo dal Suo sistema ed a distruggere le varie copie o stampe, dandocene gentilmente comunicazione a questo indirizzo mail supportlola@fomindustrie.com
+        ///The information contained in this message is private [rest of string was truncated]&quot;;.
         /// </summary>
         public static string CreateUserEmailBody_Footer
         {
@@ -693,6 +694,17 @@ namespace FomMonitoringResources
             get
             {
                 return ResourceManager.GetString("DisableUser", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to DisclaimerEmail.
+        /// </summary>
+        public static string DisclaimerEmail
+        {
+            get
+            {
+                return ResourceManager.GetString("DisclaimerEmail", resourceCulture);
             }
         }
 
@@ -2116,13 +2128,79 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to lw_tempiMandrinoASoglia_6.
+        ///   Looks up a localized string similar to rpm 0-1500.
         /// </summary>
-        public static string lw_tempiMandrinoASoglia_6
+        public static string lw_tempiMandrinoAxelSoglia_0
         {
             get
             {
-                return ResourceManager.GetString("lw_tempiMandrinoASoglia_6", resourceCulture);
+                return ResourceManager.GetString("lw_tempiMandrinoAxelSoglia_0", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to rpm 1501-5500.
+        /// </summary>
+        public static string lw_tempiMandrinoAxelSoglia_1
+        {
+            get
+            {
+                return ResourceManager.GetString("lw_tempiMandrinoAxelSoglia_1", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to rpm 5501-8000.
+        /// </summary>
+        public static string lw_tempiMandrinoAxelSoglia_2
+        {
+            get
+            {
+                return ResourceManager.GetString("lw_tempiMandrinoAxelSoglia_2", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to rpm 8001-11500.
+        /// </summary>
+        public static string lw_tempiMandrinoAxelSoglia_3
+        {
+            get
+            {
+                return ResourceManager.GetString("lw_tempiMandrinoAxelSoglia_3", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to rpm 11501-14500.
+        /// </summary>
+        public static string lw_tempiMandrinoAxelSoglia_4
+        {
+            get
+            {
+                return ResourceManager.GetString("lw_tempiMandrinoAxelSoglia_4", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to rpm 14501-20000.
+        /// </summary>
+        public static string lw_tempiMandrinoAxelSoglia_5
+        {
+            get
+            {
+                return ResourceManager.GetString("lw_tempiMandrinoAxelSoglia_5", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to rpm 20001-24000.
+        /// </summary>
+        public static string lw_tempiMandrinoAxelSoglia_6
+        {
+            get
+            {
+                return ResourceManager.GetString("lw_tempiMandrinoAxelSoglia_6", resourceCulture);
             }
         }
 
@@ -2384,7 +2462,8 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Le informazioni contenute in questo messaggo sono riservate e confidenziali. Il loro utilizzo è consentito esclusivamente ad utenti sottoscrittori di licenza LOLA, per le finalià indicate nel messaggio stesso. Qualora Lei non fosse la persona a cui il presente messaggio èdestinato, La invitiamo ad eliminarlo dal Suo sistema ed a distruggere le varie copie o stampe, dandocene gentilmente comunicazione a questo indirizzo. The information contained in this e-mail and its attachments is intended for the exclusi [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Le informazioni contenute in questo messaggio sono riservate e confidenziali. Il loro utilizzo è consentito esclusivamente ad utenti sottoscrittori di licenza LOLA, per le finalià indicate nel messaggio stesso. Qualora Lei non fosse la persona a cui il presente messaggio è destinato, La invitiamo ad eliminarlo dal Suo sistema ed a distruggere le varie copie o stampe, dandocene gentilmente comunicazione a questo indirizzo mail supportlola@fomindustrie.com
+        ///The information contained in this message is private [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ModifyUserEmailBody_Footer
         {
@@ -3539,7 +3618,7 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to ROTARY AXES/TOOL MAG..
+        ///   Looks up a localized string similar to ROTARY AXES.
         /// </summary>
         public static string RotaryAxes
         {
@@ -3616,6 +3695,39 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to It is necessary to select company name and/or serial number.
+        /// </summary>
+        public static string select_message
+        {
+            get
+            {
+                return ResourceManager.GetString("select_message", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select customer company name.
+        /// </summary>
+        public static string select_ragione_sociale
+        {
+            get
+            {
+                return ResourceManager.GetString("select_ragione_sociale", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select machine serial number.
+        /// </summary>
+        public static string select_serial
+        {
+            get
+            {
+                return ResourceManager.GetString("select_serial", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Send.
         /// </summary>
         public static string Send
@@ -3667,6 +3779,17 @@ namespace FomMonitoringResources
             get
             {
                 return ResourceManager.GetString("Shifts", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sign in.
+        /// </summary>
+        public static string Sign_in
+        {
+            get
+            {
+                return ResourceManager.GetString("Sign in", resourceCulture);
             }
         }
 

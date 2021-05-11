@@ -16,10 +16,14 @@ namespace FomMonitoringCore.Framework.Common
         Customer = 4,
         [Description("UserApi")]
         UserApi = 5,
-        [Description("R&DFOM")]
-        RdFom = 6,
+        [Description("RandD")]
+        RandD = 6,
         [Description("Demo")]
         Demo = 9,
+        [Description("FOMBranchService")]
+        FOMBranchService = 7,
+        [Description("FOMDealers")]
+        FOMDealers = 8
     }
 
     public enum enPage
@@ -37,7 +41,9 @@ namespace FomMonitoringCore.Framework.Common
         [Description("Index"), Controller("UserSetting")]
         UserSetting = 6,
         [Description("Index"), Controller("UploadConfiguration")]
-        UploadConfiguration = 7
+        UploadConfiguration = 7,
+        [Description("Index"), Controller("Assistance")]
+        Assistance = 8
     }
 
     

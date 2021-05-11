@@ -14,6 +14,10 @@ namespace FomMonitoringCore.Framework.Common
         public const string Assistance = "1b451b10ab6a95f1e24e659edc7315c7fd2930d8db77cbeea3315fdf4fe6a5c6";
         public const string Customer = "bf3763383aaf43069885db20b386631c6d5d8b8481df2a26769e9de5fe2f9c82";
         public const string Demo = "8a2cc0673b1c428315fe84c0138d95c3ddda30baf81e7d9aa821f1ca47098193";
+        public const string RandD = "CD681E3ED0836F8C5E562B4AE8AEF4BF2689710294F3A8D537EB2139BD007A57";
+        public const string Brach = "853F98436217D16B0CE56CDFF59139B15B1717C1759DAA0E8CC84B5F5225DA47";
+        public const string Dealers = "4151EA03CFE93F72313A4B5062FD2F1BB9531172E24DCD63F97DB0CC019B60A8";
+
 
         /// <summary>
         /// Get the startOfWeek date of the specified year and week number

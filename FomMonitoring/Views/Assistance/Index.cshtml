@@ -1,0 +1,64 @@
+﻿@using FomMonitoringResources
+@using FomMonitoringCore.Service
+@model FomMonitoringBLL.ViewModel.AssistanceViewModel
+
+
+@{
+    ViewBag.AppTitle = "Assistance";
+    Layout = "~/Views/Shared/_LayoutApp.cshtml";
+}
+
+@using (Html.BeginForm("SignInAs",
+    "Assistance",
+    FormMethod.Post,
+    new { id = "assistanceForm" }))
+{
+    <div class="row justify-content-center" style="padding-top: 30px; padding-bottom: 30px; min-height: 100px;">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-3 text-right">
+            <label class="control-label-user-timezone" style="vertical-align: middle">@Resource.select_ragione_sociale</label>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-5">
+            <select class="form-control modal-input" id="serial-filter" title="@Resource.select_ragione_sociale" onchange="AssistanceManager.changeMachine()" name="MachineId"
+                    style="color: black; margin-top: 4px;">
+                <option value=""></option>
+                <option v-cloak v-for="machine in machines"
+                        v-bind:value="machine.id" v-bind:label="machine.serial"></option>
+            </select>
+        </div>
+        <div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-4"></div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-3 text-right" style="margin-top: 30px">
+            <label class="control-label-user-timezone" style="vertical-align: middle">@Resource.select_serial</label>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-5">
+            <select class="form-control modal-input" id="company-filter" title="@Resource.select_serial" onchange="AssistanceManager.changeCompany()" name="CustomerId"
+                    style="color: black; margin-top: 30px;">
+                <option value=""></option>
+                <option v-cloak v-for="customer in customers"
+                        v-bind:value="customer.ID" v-bind:label="customer.CompanyName"></option>
+            </select>
+        </div>
+        <div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-4"></div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-3"></div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-5 text-right" style="margin-top: 30px">
+            <button type="button" class="button-adduser" onclick="AssistanceManager.validate();" style="position: relative">
+                @Resource.Sign_in
+            </button>
+        </div>
+        <div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-4"></div>
+    </div>
+}
+
+<script type="text/javascript">
+
+        $(document).ready(function ()
+    {
+        var data = @Html.Raw(Json.Encode(Model));
+        var resource = {
+            ErrorSelect: '@LocalizationService.GetResourceForJs("select_message")'
+        };
+
+        AssistanceManager.initVue(data, resource);
+
+    });
+
+</script>

@@ -97,7 +97,7 @@ namespace FomMonitoringBLL.ViewServices
 
         public static List<PlantInfoViewModel> GetListPlants(ContextModel context)
         {
-            var plants = context.AllPlants.Select(p => new PlantInfoViewModel
+            var plants = context.AllPlants.Where(p => p != null).Select(p => new PlantInfoViewModel
             {
                 id = p.Id,
                 name = p.Name

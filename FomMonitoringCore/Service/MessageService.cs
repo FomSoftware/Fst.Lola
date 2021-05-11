@@ -62,7 +62,7 @@ namespace FomMonitoringCore.Service
                 List<int> messTypes = (new int[] { 11, 12 }).ToList();
                 bool limitTime = true;
                 var role = _accountService.GetLoggedUser().Role;
-                if (role == enRole.Assistance || role == enRole.RdFom || role == enRole.Administrator)
+                if (role == enRole.Assistance || role == enRole.RandD || role == enRole.Administrator)
                 {
                     messTypes.Add(13);
                     limitTime = false;
@@ -191,7 +191,7 @@ namespace FomMonitoringCore.Service
                 List<int> messTypes = (new int[] {11, 12}).ToList();
                 bool limitTime = true;
                 var role = _accountService.GetLoggedUser().Role;
-                if (role == enRole.Assistance || role == enRole.RdFom || role == enRole.Administrator)
+                if (role == enRole.Assistance || role == enRole.RandD || role == enRole.Administrator)
                 {
                     messTypes.Add(13);
                     limitTime = false;

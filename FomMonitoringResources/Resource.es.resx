@@ -1432,4 +1432,16 @@ En caso de caducidad para una o varias máquinas, tendrás que pagar la compra o
     <value>Le informazioni contenute in questo messaggio sono riservate e confidenziali. Il loro utilizzo è consentito esclusivamente ad utenti sottoscrittori di licenza LOLA, per le finalià indicate nel messaggio stesso. Qualora Lei non fosse la persona a cui il presente messaggio èdestinato, La invitiamo ad eliminarlo dal Suo sistema ed a distruggere le varie copie o stampe, dandocene gentilmente comunicazione a questo indirizzo mail supportlola@fomindustrie.com
 The information contained in this message is private and confidential. It must only be used by LOLA license holders, for the purposes indicated in the message itself. If this message is not addressed to you, please delete it from your system and destroy all copies or print-outs, sending us notification of the fact to the e-mail address supportlola@fomindustrie.com</value>
   </data>
+  <data name="Sign in" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="select_ragione_sociale" xml:space="preserve">
+    <value> Seleccionar razón social cliente</value>
+  </data>
+  <data name="select_serial" xml:space="preserve">
+    <value>Seleccionar n.º serie (matrícula) máquina</value>
+  </data>
+  <data name="select_message" xml:space="preserve">
+    <value> Seleccionar obligatoriamente razón social y/o matrícula</value>
+  </data>
 </root>

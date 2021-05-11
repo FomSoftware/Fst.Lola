@@ -16,5 +16,6 @@ namespace FomMonitoringCore.Service
         List<PlantModel> GetAllPlantsRole(enRole role);
 
         void CheckOfflineMachines();
+        PlantModel GetMachinePlant(int? idMachine);
     }
 }

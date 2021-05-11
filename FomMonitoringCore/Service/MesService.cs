@@ -75,7 +75,7 @@ namespace FomMonitoringCore.Service
             var result = new List<PlantModel>();
 
             try
-            {               
+            {
                 var query = _context.Set<UserMachineMapping>().Where(w => w.UserId == userId && w.Machine.PlantId != null).Select(s => s.Machine.Plant).Distinct().ToList();
                 result = query.Adapt<List<PlantModel>>();                
             }
@@ -88,7 +88,13 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
-        
+        public PlantModel GetMachinePlant(int? idMachine)
+        {
+            if (idMachine == null) return null;
+            var plant = _context.Set<Machine>().Include("Plant").FirstOrDefault(m => m.Id == (int)idMachine)?.Plant;
+            if (plant == null) return null;
+            return plant.Adapt<PlantModel>();
+        }
 
         public List<MesUserMachinesModel> GetPlantData(PlantModel plant)
         {

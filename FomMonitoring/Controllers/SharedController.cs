@@ -8,7 +8,7 @@ using System.Web.Mvc;
 namespace FomMonitoring.Controllers
 {
     [SessionWeb]
-    [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo)]
+    [Authorize(Roles = Common.Operator + "," + Common.HeadWorkshop + "," + Common.Administrator + "," + Common.Customer + "," + Common.Demo + "," + Common.Assistance + "," + Common.RandD)]
     public class SharedController : Controller
     {
         private readonly IContextService _contextService;

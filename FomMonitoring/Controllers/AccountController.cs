@@ -308,6 +308,23 @@ namespace FomMonitoring.Controllers
                     result = RedirectToAction("Index", "Mes");
                     //result = RedirectToAction("Index", "Mes", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
                     break;
+
+                case enRole.Assistance:
+                    result = RedirectToAction("Index", "Assistance");
+                    //result = RedirectToAction("Index", "Mes", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
+                    break;
+                case enRole.RandD:
+                    result = RedirectToAction("Index", "Assistance");
+                    //result = RedirectToAction("Index", "Mes", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
+                    break;
+                case enRole.FOMBranchService:
+                    result = RedirectToAction("Index", "Assistance");
+                    //result = RedirectToAction("Index", "Mes", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
+                    break;
+                case enRole.FOMDealers:
+                    result = RedirectToAction("Index", "Assistance");
+                    //result = RedirectToAction("Index", "Mes", new RouteValueDictionary { { "lang", context.ActualLanguage.InitialsLanguage } });
+                    break;
             }
 
             return result;

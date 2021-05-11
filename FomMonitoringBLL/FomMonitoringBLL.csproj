@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\AssistanceViewModel.cs" />
     <Compile Include="ViewModel\AxesKeopeParameterVueModel.cs" />
     <Compile Include="ViewModel\ChangeModel.cs" />
     <Compile Include="ViewModel\CommonViewModel.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="ViewServices\IMachineViewService.cs" />
     <Compile Include="ViewServices\IMaintenanceViewService.cs" />
     <Compile Include="ViewServices\IMessagesViewService.cs" />
+    <Compile Include="ViewServices\IAssistanceViewService.cs" />
     <Compile Include="ViewServices\IMesViewService.cs" />
     <Compile Include="ViewServices\INotificationViewService.cs" />
     <Compile Include="ViewServices\IPanelParametersViewService.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="ViewServices\MaintenanceViewService.cs" />
     <Compile Include="ViewServices\MessagesViewService.cs" />
     <Compile Include="ViewModel\PanelParameterViewModel.cs" />
+    <Compile Include="ViewServices\AssistanceViewService.cs" />
     <Compile Include="ViewServices\NotificationViewService.cs" />
     <Compile Include="ViewServices\PanelParametersViewService.cs" />
     <Compile Include="ViewServices\PlantManagerViewService.cs" />

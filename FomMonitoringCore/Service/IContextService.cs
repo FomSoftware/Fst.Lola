@@ -23,5 +23,6 @@ namespace FomMonitoringCore.Service
         void SetContext(ContextModel context);
         void SetActualMachineGroup(string group);
         bool InitializeUploadConfigurationLevel();
+        bool InitializeAssistanceLevel();
     }
 }

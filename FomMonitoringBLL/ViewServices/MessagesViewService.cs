@@ -136,7 +136,7 @@ namespace FomMonitoringBLL.ViewServices
 
             var days = data.Where(w => w.Day != null && (w.Type == (int)enTypeAlarm.Warning || w.Type == (int)enTypeAlarm.Error)).Select(s => s.Day.Value).Distinct().ToList();
 
-            if (role == enRole.Administrator || role == enRole.RdFom || role == enRole.Assistance)
+            if (role == enRole.Administrator || role == enRole.RandD || role == enRole.Assistance)
             {
                 days = data.Where(w => w.Day != null && (w.Type == (int)enTypeAlarm.Warning || w.Type == (int)enTypeAlarm.Error || w.Type == (int)enTypeAlarm.CN)).Select(s => s.Day.Value).Distinct().ToList();
             }
@@ -177,7 +177,7 @@ namespace FomMonitoringBLL.ViewServices
 
             series.Add(serieOperator);
             series.Add(serieError);
-            if (role == enRole.Administrator || role == enRole.RdFom || role == enRole.Assistance)
+            if (role == enRole.Administrator || role == enRole.RandD || role == enRole.Assistance)
             {
                 series.Add(serieCN);
             }

@@ -403,6 +403,7 @@
     <Content Include="GlobApp\grey\faq-support.css" />
     <Content Include="GlobApp\grey\login.css" />
     <Content Include="GlobApp\grey\machine.css" />
+    <Content Include="GlobApp\grey\assistance.css" />
     <Content Include="GlobApp\grey\mes.css" />
     <Content Include="GlobApp\grey\plant-manager.css" />
     <Content Include="GlobApp\grey\toolbar.css" />
@@ -423,6 +424,7 @@
     <Content Include="GlobApp\plugins\waitMe\waitMe.js" />
     <Content Include="GlobApp\plugins\waitMe\waitMe.min.css" />
     <Content Include="GlobApp\plugins\waitMe\waitMe.min.js" />
+    <Content Include="GlobApp\scripts\assistance-manager.js" />
     <Content Include="GlobApp\scripts\machine\axes\keope.js" />
     <Content Include="GlobApp\scripts\machine\axes\axel.js" />
     <Content Include="GlobApp\scripts\machine\axes\lmx.js" />
@@ -1353,6 +1355,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\AppApiController.cs" />
+    <Compile Include="Controllers\AssistanceController.cs" />
     <Compile Include="Controllers\MesController.cs" />
     <Compile Include="Controllers\MachineController.cs" />
     <Compile Include="Controllers\PlantController.cs" />
@@ -1530,6 +1533,7 @@
     <Content Include="Views\Machine\Panels\OtherMachineData\_Axel.cshtml" />
     <Content Include="Views\Machine\Panels\ElectroSpindle\_ElectroSpindleAxel.cshtml" />
     <Content Include="Views\Machine\Panels\SensorSpindles\_Axel.cshtml" />
+    <Content Include="Views\Assistance\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

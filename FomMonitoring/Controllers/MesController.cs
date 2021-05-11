@@ -38,7 +38,7 @@ namespace FomMonitoring.Controllers
             return View("Mes", mes);
         }
 
-        
+
         public ActionResult PlantMessages()
         {
             _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);

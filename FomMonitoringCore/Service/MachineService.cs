@@ -133,13 +133,19 @@ namespace FomMonitoringCore.Service
             var result = new List<MachineInfoModel>();
 
             try
-            {                
-                    var query = _context.Set<UserMachineMapping>().Where(w => w.UserId == ctx.User.ID).Select(s => s.Machine).ToList();
-                    result = query.Where(w => w.LastUpdate != null).Adapt<List<MachineInfoModel>>();
-                    if (ctx.User.Role == enRole.Customer)
-                    {
-                        result.ForEach(mim => mim.TimeZone = _context.Set<UserMachineMapping>().FirstOrDefault(w => w.UserId == ctx.User.ID && w.MachineId == mim.Id)?.TimeZone);
-                    }
+            {
+                Guid id = ctx.User.ID;
+                if (ctx.AssistanceUserId != null && ctx.User.Role == enRole.Assistance || ctx.User.Role == enRole.RandD)
+                {
+                    id = new Guid(ctx.AssistanceUserId);
+                }
+
+               var query = _context.Set<UserMachineMapping>().Where(w => w.UserId == id).Select(s => s.Machine).ToList();
+                result = query.Where(w => w.LastUpdate != null).Adapt<List<MachineInfoModel>>();
+                if (ctx.User.Role == enRole.Customer)
+                {
+                    result.ForEach(mim => mim.TimeZone = _context.Set<UserMachineMapping>().FirstOrDefault(w => w.UserId == id && w.MachineId == mim.Id)?.TimeZone);
+                }
             }
             catch (Exception ex)
             {
@@ -149,6 +155,27 @@ namespace FomMonitoringCore.Service
 
             return result;
         }
+
+        public List<MachineInfoModel> GetPlantMachines(ContextModel ctx)
+        {
+            try
+            {
+                if (ctx.AssistanceMachineId != null)
+                {
+                    var plantid = _context.Set<Machine>().Include("Plant").FirstOrDefault(m => m.Id == ctx.AssistanceMachineId)?.PlantId;
+                    var machines = _context.Set<Machine>().Include("Plant").Where(m => m.PlantId == plantid);
+                    return machines.Adapt<List<MachineInfoModel>>();
+                }
+            }
+            catch (Exception ex)
+            {
+                var errMessage = string.Format(ex.GetStringLog(), ctx.User.ID.ToString());
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+
+            return null;
+        }
+
         public List<MachineInfoModel> GetRoleMachines(enRole role)
         {
             var result = new List<MachineInfoModel>();

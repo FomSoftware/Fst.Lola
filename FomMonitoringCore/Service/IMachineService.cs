@@ -19,5 +19,6 @@ namespace FomMonitoringCore.Service
         List<int> GetMachinePanels(int? MachineModelId);
         CurrentStateModel GetCurrentStateModel(int MachineID);
         List<MachineInfoModel> GetRoleMachines(enRole role);
+        List<MachineInfoModel> GetPlantMachines(ContextModel ctx);
     }
 }

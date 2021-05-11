@@ -115,12 +115,24 @@
                 </li>
                 @if (Model.User.Role != enRole.Operator)
                 {
-                    <li>
-                        <a class="dd-item" href="@Url.Action("Index", "Mes")">
-                            <i class="fa fa-home fa-lg color-corporate"></i>
-                            <div>@Resource.Home</div>
-                        </a>
-                    </li>
+                    if (Model.User.Role == enRole.Assistance || Model.User.Role == enRole.RandD)
+                    {
+                        <li>
+                            <a class="dd-item" href="@Url.Action("Index", "Assistance")">
+                                <i class="fa fa-home fa-lg color-corporate"></i>
+                                <div>@Resource.Home</div>
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a class="dd-item" href="@Url.Action("Index", "Mes")">
+                                <i class="fa fa-home fa-lg color-corporate"></i>
+                                <div>@Resource.Home</div>
+                            </a>
+                        </li>
+                    }
                 }
                 @if (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Customer || Model.User.Role == enRole.Demo)
                 {
@@ -155,7 +167,7 @@
                         <div><span>@Resource.Header_TimeZone_Setting</span></div>
                     </a>
                 </li>
-                @if (Model.User.Role != enRole.Customer && Model.User.Role != enRole.Demo)
+                @if (Model.User.Role != enRole.Customer && Model.User.Role != enRole.Demo && Model.User.Role != enRole.Assistance && Model.User.Role != enRole.RandD)
                 {
                     <li>
                         <a class="dd-item" href="#" data-toggle="modal" onclick="UserManager.openChangePasswordModal()">
@@ -164,26 +176,33 @@
                         </a>
                     </li>
                 }
-                <li>
-                    <a class="dd-item dd-item-longtext" href="#" data-toggle="modal" onclick="UserManager.openDisclamerModal()">
-                        <i class="fa fa-handshake-o color-corporate fa-sm"></i>
-                        <div>@Resource.Disclamer</div>
-                    </a>
-                </li>
+                @if (Model.User.Role != enRole.Assistance && Model.User.Role != enRole.RandD)
+                {
+                    <li>
+                        <a class="dd-item dd-item-longtext" href="#" data-toggle="modal" onclick="UserManager.openDisclamerModal()">
+                            <i class="fa fa-handshake-o color-corporate fa-sm"></i>
+                            <div>@Resource.Disclamer</div>
+                        </a>
+                    </li>
+                }
+               
                 <li>
                     <a class="dd-item js-open-faq" href="#">
                         <i class="fa fa-question fa-lg color-corporate"></i>
                         <div>F.A.Q.</div>
                     </a>
                 </li>
+                @if (Model.User.Role != enRole.Assistance && Model.User.Role != enRole.RandD)
+                {
+                    <li>
+                        <a class="dd-item js-open-support" href="#">
+                            <i class="fa fa-life-ring color-corporate fa-lg"></i>
+                            <div>Support</div>
+                        </a>
 
-                <li>
-                    <a class="dd-item js-open-support" href="#">
-                        <i class="fa fa-life-ring color-corporate fa-lg"></i>
-                        <div>Support</div>
-                    </a>
-
-                </li>
+                    </li>
+                }
+               
                 <li>
                     <a class="dd-item" href="@Url.Action("Logout", "Account")">
                         <i class="fa fa-power-off color-corporate fa-lg"></i>

@@ -1395,4 +1395,16 @@ The information contained in this message is private and confidential. It must o
   <data name="DisclaimerEmail" xml:space="preserve">
     <value>DisclaimerEmail</value>
   </data>
+  <data name="Sign in" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="select_ragione_sociale" xml:space="preserve">
+    <value>Select customer company name</value>
+  </data>
+  <data name="select_serial" xml:space="preserve">
+    <value>Select machine serial number</value>
+  </data>
+  <data name="select_message" xml:space="preserve">
+    <value>It is necessary to select company name and/or serial number</value>
+  </data>
 </root>

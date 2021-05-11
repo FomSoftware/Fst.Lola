@@ -261,11 +261,13 @@
     <Compile Include="Service\API\IJwtManager.cs" />
     <Compile Include="Service\API\IXmlDataService.cs" />
     <Compile Include="Service\ApplicationSettingService.cs" />
+    <Compile Include="Service\AssistanceService.cs" />
     <Compile Include="Service\BarService.cs" />
     <Compile Include="Service\CacheService.cs" />
     <Compile Include="Service\ContextService.cs" />
     <Compile Include="Service\FaqService.cs" />
     <Compile Include="Service\IAccountService.cs" />
+    <Compile Include="Service\IAssistanceService.cs" />
     <Compile Include="Service\IBarService.cs" />
     <Compile Include="Service\IContextService.cs" />
     <Compile Include="Service\IJobService.cs" />
