@@ -7,15 +7,19 @@ using FomMonitoringCore.Framework.Common;
 using FomMonitoringCore.Framework.Model;
 using FomMonitoringCore.SqlServer;
 using Mapster;
+using UserManager.Service;
 
 namespace FomMonitoringCore.Service
 {
     class AssistanceService : IAssistanceService
     {
         private readonly IFomMonitoringEntities _fomMonitoringEntities;
-        public AssistanceService(IFomMonitoringEntities fomMonitoringEntities)
+        private readonly IUserServices _userServices;
+
+        public AssistanceService(IFomMonitoringEntities fomMonitoringEntities, IUserServices userServices)
         {
             _fomMonitoringEntities = fomMonitoringEntities;
+            _userServices = userServices;
         }
 
         public List<UserModel> GetCustomers()
@@ -61,6 +65,22 @@ namespace FomMonitoringCore.Service
 
             return result;
         }
+
+        public UserModel GetMachineCustomer(int idMachine)
+        {
+            var plantId = _fomMonitoringEntities.Set<Machine>().Find(idMachine)?.PlantId;
+            if (plantId == null) return null;
+            var userId = _fomMonitoringEntities.Set<Plant>().Find(plantId)?.UserId;
+            if (userId == null) return null;
+            return _userServices.GetUserById(userId.ToString())?.Adapt<UserModel>();
+
+        }
+
+        public UserModel GetUser(string idUser)
+        {
+            return _userServices.GetUserById(idUser)?.Adapt<UserModel>();
+        }
+
 
     }
 }

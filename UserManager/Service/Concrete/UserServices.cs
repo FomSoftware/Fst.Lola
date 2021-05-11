@@ -29,7 +29,12 @@ namespace UserManager.Service.Concrete
         {
             return _usersGateway.GetUser(username);
         }
-        
+
+        public Users GetUserById(string Id)
+        {
+            return _usersGateway.GetUserById(new Guid(Id));
+        }
+
 
     }
 }

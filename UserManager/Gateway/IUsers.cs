@@ -12,8 +12,10 @@ namespace UserManager.Gateway
         bool LoginUserWithoutPassword(Guid userId, out string message, out FomMonitoringCore.SqlServer.Users user);
         bool ChangePassword(Guid userId, string newPassword, string oldPassword, out string message);
         FomMonitoringCore.SqlServer.Users GetUser(string username);
-        
+        FomMonitoringCore.SqlServer.Users GetUserById(Guid Id);
 
-        
+
+
+
     }
 }

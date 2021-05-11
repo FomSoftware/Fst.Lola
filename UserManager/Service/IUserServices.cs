@@ -21,6 +21,8 @@ namespace UserManager.Service
         /// <returns>User</returns>
         FomMonitoringCore.SqlServer.Users GetUser(string Username);
 
+        FomMonitoringCore.SqlServer.Users GetUserById(string Id);
+
 
 
     }

@@ -11,7 +11,8 @@
         Assistance: 3,
         Customer: 4,
         UserApi: 5,
-        Demo: 9
+        Demo: 9,
+        RandD:6
     };
 
 
@@ -156,7 +157,7 @@
                     }
 
                     setTimeout(function () {
-                        if (userRole != enRoles.Demo) {
+                        if (userRole != enRoles.Demo && userRole != enRoles.Assistance && userRole != enRoles.RandD) {
                             callAjaxIgnoreMessage(messageId);
                         }
                        

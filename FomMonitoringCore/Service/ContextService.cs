@@ -101,8 +101,10 @@ namespace FomMonitoringCore.Service
         {
             var context = GetContext();
             context.ActualPage = enPage.Assistance;
-
-           context.AllPlants = _mesService.GetAllPlantsMachines();
+            context.AssistanceUserId = null;
+            context.AssistanceMachineId = null;
+            context.CompanyName = null;
+            context.AllPlants = _mesService.GetAllPlantsMachines();
 
            context.ActualPeriod = new PeriodModel()
             {

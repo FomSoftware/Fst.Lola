@@ -146,7 +146,17 @@ namespace UserManager.Gateway
                 throw new Exception($"Errore: {ex.Message} (Error #111009)");
             }
         }
-
+        public FomMonitoringCore.SqlServer.Users GetUserById(Guid Id)
+        {
+            try
+            {
+                return _fomMonitoringEntities.Set<FomMonitoringCore.SqlServer.Users>().Find(Id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Errore: {ex.Message} (Error #111009)");
+            }
+        }
 
 
 

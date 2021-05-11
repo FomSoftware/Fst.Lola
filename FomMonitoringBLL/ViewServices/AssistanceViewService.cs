@@ -56,12 +56,14 @@ namespace FomMonitoringBLL.ViewServices
             List<MachineInfoModel> dataAllMachines = null;
             if (onlyActive)
             {
-                dataAllMachines = allMachines.Where(m => m.PlantId > 0 && (m.ExpirationDate == null || m.ExpirationDate > DateTime.UtcNow)).ToList();
+                dataAllMachines = allMachines.Where(m => m.PlantId > 0 && (m.ExpirationDate == null || m.ExpirationDate > DateTime.UtcNow)).OrderBy(m => m.Serial).ToList();
             }
             else
             {
-                dataAllMachines = allMachines.Where(p => p.PlantId > 0).ToList();
+                dataAllMachines = allMachines.Where(p => p.PlantId > 0).OrderBy(m => m.Serial).ToList();
             }
+
+            dataAllMachines.OrderBy(m => m.Serial);
             foreach (var dataMachine in dataAllMachines)
             { 
                 var machine = allMachines.FirstOrDefault(w => w.Id == dataMachine.Id);
@@ -88,6 +90,21 @@ namespace FomMonitoringBLL.ViewServices
 
             result.OrderBy(m => m.serial).ToList();
             return result;
+        }
+
+        public void SetCompanyName(ContextModel context)
+        {
+            if (context.User.Role == enRole.Assistance || context.User.Role == enRole.RandD)
+            {
+                if (context.AssistanceMachineId != null)
+                {
+                    context.CompanyName = _assistanceService.GetMachineCustomer((int)context.AssistanceMachineId).CompanyName;
+                }
+                else if (context.AssistanceUserId != null)
+                {
+                    context.CompanyName = _assistanceService.GetUser(context.AssistanceUserId).CompanyName;
+                }
+            }
         }
 
     }

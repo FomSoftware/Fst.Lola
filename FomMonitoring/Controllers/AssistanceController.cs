@@ -33,8 +33,6 @@ namespace FomMonitoring.Controllers
 
             ContextModel context = _contextService.GetContext();
             AssistanceViewModel model = _assistanceViewService.GetAssistance(context);
-            context.AssistanceUserId = null;
-            context.AssistanceMachineId = null;
             return View("Index", model);
         }
 
@@ -51,13 +49,16 @@ namespace FomMonitoring.Controllers
             {
                 int id = Int32.Parse(MachineId);
                 ctx.AssistanceMachineId = id;
+                _assistanceViewService.SetCompanyName(ctx);
                 return RedirectToAction("Index", "Machine");
             }
             else if (!String.IsNullOrEmpty(CustomerId))
             {
                 ctx.AssistanceUserId = CustomerId;
+                _assistanceViewService.SetCompanyName(ctx);
                 return RedirectToAction("Index", "Mes");
             }
+           
 
             return RedirectToAction("Index");
         }

@@ -11,5 +11,7 @@ namespace FomMonitoringCore.Service
     {
         List<UserModel> GetCustomers();
         List<PlantModel> GetCustomerPlants(Guid customerId);
+        UserModel GetMachineCustomer(int idMachine);
+        UserModel GetUser(string idUser);
     }
 }

@@ -23,6 +23,7 @@ namespace FomMonitoringBLL.ViewModel
         public Languages ActualLanguage { get; set; }
 
         public List<Faq> Faqs { get; set; }
+        public string CompanyName { get; set; }
 
     }
 

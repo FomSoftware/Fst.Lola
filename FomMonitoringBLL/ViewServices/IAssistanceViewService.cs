@@ -7,5 +7,7 @@ namespace FomMonitoringBLL.ViewServices
     public interface IAssistanceViewService
     {
         AssistanceViewModel GetAssistance(ContextModel context);
+
+        void SetCompanyName(ContextModel context);
     }
 }

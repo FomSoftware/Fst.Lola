@@ -21,6 +21,14 @@ namespace FomMonitoringBLL.ViewServices
             header.User = context.User;
             header.AllLanguages = context.AllLanguages;
             header.ActualLanguage = context.ActualLanguage;
+            if (context.User.Role == enRole.Assistance || context.User.Role == enRole.RandD)
+            {
+               header.CompanyName = context.CompanyName;
+            }
+            else
+            {
+                header.CompanyName = context.User.CompanyName;
+            }
             return header;
         }
 

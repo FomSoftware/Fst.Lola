@@ -15,22 +15,22 @@
 {
     <div class="row justify-content-center" style="padding-top: 30px; padding-bottom: 30px; min-height: 100px;">
         <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-3 text-right">
-            <label class="control-label-user-timezone" style="vertical-align: middle">@Resource.select_ragione_sociale</label>
+            <label class="control-label-user-timezone" style="vertical-align: middle">@Resource.select_serial</label>
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-5">
-            <select class="form-control modal-input" id="serial-filter" title="@Resource.select_ragione_sociale" onchange="AssistanceManager.changeMachine()" name="MachineId"
+            <select class="form-control modal-input" id="serial-filter" title="@Resource.select_serial" onchange="AssistanceManager.changeMachine()" name="MachineId"
                     style="color: black; margin-top: 4px;">
                 <option value=""></option>
                 <option v-cloak v-for="machine in machines"
-                        v-bind:value="machine.id" v-bind:label="machine.serial"></option>
+                        v-bind:value="machine.id" v-bind:label="machine.serial + ' - ' + machine.machineName"></option>
             </select>
         </div>
         <div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-4"></div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-3 text-right" style="margin-top: 30px">
-            <label class="control-label-user-timezone" style="vertical-align: middle">@Resource.select_serial</label>
+            <label class="control-label-user-timezone" style="vertical-align: middle">@Resource.select_ragione_sociale</label>
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-5">
-            <select class="form-control modal-input" id="company-filter" title="@Resource.select_serial" onchange="AssistanceManager.changeCompany()" name="CustomerId"
+            <select class="form-control modal-input" id="company-filter" title="@Resource.select_ragione_sociale" onchange="AssistanceManager.changeCompany()" name="CustomerId"
                     style="color: black; margin-top: 30px;">
                 <option value=""></option>
                 <option v-cloak v-for="customer in customers"
