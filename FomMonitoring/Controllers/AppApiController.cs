@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using FomMonitoringBLL.ViewModel;
 using FomMonitoringBLL.ViewServices;
 using FomMonitoringCore.Framework.Common;
@@ -8,6 +10,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Http;
+using FomMonitoringCore.Framework.Model;
 
 namespace FomMonitoring.Controllers
 {
@@ -27,6 +30,7 @@ namespace FomMonitoring.Controllers
         private readonly IMaintenanceViewService _maintenanceViewService;
         private readonly IXToolsViewService _xToolsViewService;
         private readonly IToolsViewService _toolsViewService;
+        private readonly IMachineService _machineService;
 
         public AppApiController(
             IMessagesViewService messagesViewService,
@@ -41,7 +45,8 @@ namespace FomMonitoring.Controllers
             IJobsViewService jobsViewService,
             IMaintenanceViewService maintenanceViewService,
             IXToolsViewService xToolsViewService,
-            IToolsViewService toolsViewService)
+            IToolsViewService toolsViewService,
+            IMachineService machineService)
         {
             _contextService = contextService;
             _plantMessagesViewService = plantMessagesViewService;
@@ -56,6 +61,7 @@ namespace FomMonitoring.Controllers
             _maintenanceViewService = maintenanceViewService;
             _xToolsViewService = xToolsViewService;
             _toolsViewService = toolsViewService;
+            _machineService = machineService;
         }
 
         [HttpPost]
@@ -334,5 +340,24 @@ namespace FomMonitoring.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, mvm, MediaTypeHeaderValue.Parse("application/json"));
 
         }
+
+        [HttpPost]
+        [Authorize(Roles = Common.Assistance + "," + Common.Administrator + "," + Common.RandD)]
+        [Route("ajax/AppApi/GetCountersReset")]
+        public HttpResponseMessage GetCountersReset([FromBody] string filter)
+        {
+            var result = new List<ParameterResetValueDataModel>();
+            var context = _contextService.GetContext();
+            _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
+            if (context.ActualMachine != null)
+            {
+                result = _machineService.GetMachineCountersReset(context.ActualMachine.Id,
+                    context.ActualLanguage.IdLanguage, filter);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, result, MediaTypeHeaderValue.Parse("application/json")); 
+
+        }
+
     }
 }

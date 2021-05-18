@@ -24,6 +24,7 @@ namespace FomMonitoringBLL.ViewModel
 
         public List<Faq> Faqs { get; set; }
         public string CompanyName { get; set; }
+        public enPage ActualPage { get; set; }
 
     }
 

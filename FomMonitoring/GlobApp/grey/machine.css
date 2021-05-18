@@ -1572,6 +1572,16 @@ td.td-axes {
     font-size: 12px;
 }
 
+.table-counters {
+    margin-top: 20px;
+    background-color: #CBCACA;
+}
+
+    .table-counters > table > thead .value-title {
+        color: #B33157;
+        font-weight: 700;
+    }
+
 @media (max-width: 1396px) {
     .icon-message-header {
         width: 6%;

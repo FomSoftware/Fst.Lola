@@ -167,6 +167,15 @@
                         <div><span>@Resource.Header_TimeZone_Setting</span></div>
                     </a>
                 </li>
+                @if (Model.ActualPage == enPage.Machine && (Model.User.Role == enRole.Administrator || Model.User.Role == enRole.Assistance || Model.User.Role == enRole.RandD))
+                {
+                    <li>
+                        <a class="dd-item dd-item-longtext" href="@Url.Action("Index", "CountersReset")" >
+                            <i class="fa fa-calendar color-corporate fa-sm"></i>
+                            <div>@Resource.CountersReset</div>
+                        </a>
+                    </li>
+                }
                 @if (Model.User.Role != enRole.Customer && Model.User.Role != enRole.Demo && Model.User.Role != enRole.Assistance && Model.User.Role != enRole.RandD)
                 {
                     <li>

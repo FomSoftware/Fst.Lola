@@ -1444,4 +1444,25 @@ The information contained in this message is private and confidential. It must o
   <data name="select_message" xml:space="preserve">
     <value> Seleccionar obligatoriamente razón social y/o matrícula</value>
   </data>
+  <data name="CountersReset" xml:space="preserve">
+    <value>Registro reset contadores</value>
+  </data>
+  <data name="CountersResetTitle" xml:space="preserve">
+    <value>Counters reset date</value>
+  </data>
+  <data name="VariableName" xml:space="preserve">
+    <value>Nombre Variable</value>
+  </data>
+  <data name="MachineGroup" xml:space="preserve">
+    <value>Grupo Máquina</value>
+  </data>
+  <data name="ResetDate" xml:space="preserve">
+    <value>Fecha Reset</value>
+  </data>
+  <data name="AnteResetDate" xml:space="preserve">
+    <value>Valor Pre Reset</value>
+  </data>
+  <data name="DefaultResetValue" xml:space="preserve">
+    <value>Valor Reset Predefinido</value>
+  </data>
 </root>

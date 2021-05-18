@@ -1438,4 +1438,25 @@ The information contained in this message is private and confidential. It must o
   <data name="select_message" xml:space="preserve">
     <value>Auswahl von Firma und/oder Seriennummer sind obligatorisch</value>
   </data>
+  <data name="CountersReset" xml:space="preserve">
+    <value>Log Zählerreset</value>
+  </data>
+  <data name="CountersResetTitle" xml:space="preserve">
+    <value>Counters reset date</value>
+  </data>
+  <data name="VariableName" xml:space="preserve">
+    <value>Name der Variablen</value>
+  </data>
+  <data name="MachineGroup" xml:space="preserve">
+    <value>Maschinengruppe</value>
+  </data>
+  <data name="ResetDate" xml:space="preserve">
+    <value>Datum des Resets</value>
+  </data>
+  <data name="AnteResetDate" xml:space="preserve">
+    <value>Wert vor Reset</value>
+  </data>
+  <data name="DefaultResetValue" xml:space="preserve">
+    <value>Standardwert nach Reset</value>
+  </data>
 </root>

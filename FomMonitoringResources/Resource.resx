@@ -1407,4 +1407,25 @@ The information contained in this message is private and confidential. It must o
   <data name="select_message" xml:space="preserve">
     <value>It is necessary to select company name and/or serial number</value>
   </data>
+  <data name="CountersReset" xml:space="preserve">
+    <value>Counters reset log</value>
+  </data>
+  <data name="CountersResetTitle" xml:space="preserve">
+    <value>CountersResetTitle</value>
+  </data>
+  <data name="VariableName" xml:space="preserve">
+    <value>VariableName</value>
+  </data>
+  <data name="MachineGroup" xml:space="preserve">
+    <value>MachineGroup</value>
+  </data>
+  <data name="ResetDate" xml:space="preserve">
+    <value>ResetDate</value>
+  </data>
+  <data name="AnteResetDate" xml:space="preserve">
+    <value>AnteResetDate</value>
+  </data>
+  <data name="DefaultResetValue" xml:space="preserve">
+    <value>DefaultResetValue</value>
+  </data>
 </root>

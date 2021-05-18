@@ -24,5 +24,6 @@ namespace FomMonitoringCore.Service
         void SetActualMachineGroup(string group);
         bool InitializeUploadConfigurationLevel();
         bool InitializeAssistanceLevel();
+        bool InitializeCountersResetLevel();
     }
 }

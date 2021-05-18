@@ -65,6 +65,7 @@
     <Compile Include="ViewModel\AxesKeopeParameterVueModel.cs" />
     <Compile Include="ViewModel\ChangeModel.cs" />
     <Compile Include="ViewModel\CommonViewModel.cs" />
+    <Compile Include="ViewModel\ContersResetViewModel.cs" />
     <Compile Include="ViewModel\EfficiencyViewModel.cs" />
     <Compile Include="ViewModel\FilterViewModel.cs" />
     <Compile Include="ViewModel\HistoricalModel.cs" />

@@ -189,6 +189,7 @@ namespace FomMonitoringCore.Framework.Config
                 .Map(dest => dest.Period, src => src.Day != null ? ((src.Day.Value.Year * 10000) + (src.Day.Value.Month * 100) + (src.Day.Value.Day)) : (int?)null)
                 .Map(dest => dest.TypeHistory, src => "d")
                 .Map(dest => dest.MachineId, src => MapContext.Current.Parameters["machineId"]);
+
         }
     }
 }

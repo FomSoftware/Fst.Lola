@@ -273,6 +273,70 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
+        public List<ParameterResetValueDataModel> GetMachineCountersReset(int MachineId, int? IdLanguage, string search = null)
+        {
+            var result = new List<ParameterResetValueDataModel>();
+            try
+            {
+                var machine = _context.Set<Machine>().Find(MachineId);
+                //lista grouppi per la macchina
+                var groups = _context.Set<ParameterMachine>().Where(m => m.MachineModelId == machine.MachineModelId).Select(m => m.VarComponent).Distinct().ToList();
+                var machineGroups = _context.Set<MessagesIndex>().Include("MessageTranslation")
+                    .Where(mi => groups.Contains(mi.MessageCode)).ToList();
+
+                //anagrafica variabili per la macchina
+                var keywords = _context.Set<ParameterMachine>().Where(m => m.MachineModelId == machine.MachineModelId).Select(m => m.Keyword).Distinct().ToList();
+                var varNames = _context.Set<MessagesIndex>().Include("MessageTranslation")
+                    .Where(mi => keywords.Contains(mi.MessageCode));
+                if (search != null)
+                {
+                    varNames = varNames.Where(v => v.MessageTranslation.Any(t =>
+                            t.MessageLanguageId == IdLanguage && t.Translation.Contains(search)));
+                }
+
+                var varNames2 = varNames.ToList();
+
+
+                var all = _context.Set<ParameterResetValue>()
+                    .Include("ParameterMachine")
+                    .Where(p => p.MachineId == MachineId).OrderByDescending(c => c.ResetDate).ToList();
+
+                foreach (var value in all)
+                {
+                    var translation = varNames2.FirstOrDefault(v => v.MessageCode.Trim() == value.ParameterMachine.Keyword.Trim())?.MessageTranslation;
+                    if (translation == null) continue;
+                    /*var VarName = translation?.FirstOrDefault(t => t.MessageLanguageId == IdLanguage)?.Translation;
+                    if (search != null)
+                    {
+                        if (!VarName.ToLower().Contains(search.ToLower())) continue;
+                    }*/
+
+                    var translationGroup = machineGroups.FirstOrDefault(v => v.MessageCode.Trim() == value.ParameterMachine.VarComponent.Trim())?.MessageTranslation;
+
+                    result.Add(new ParameterResetValueDataModel()
+                    {
+                        MachineId = value.MachineId,
+                        ResetDate = value.ResetDate,
+                        ResetValue = value.ResetValue,
+                        ValueBeforeReset = value.ValueBeforeReset,
+                        MachineGroupName = translationGroup?.FirstOrDefault(t => t.MessageLanguageId == IdLanguage)?.Translation,
+                        VariableName = translation?.FirstOrDefault(t => t.MessageLanguageId == IdLanguage)?.Translation
+                });
+                }
+
+                // if(search != null)
+                //    query.Where(p => p.ParameterMachine.Keyword.Contains("search"));
+                
+            }
+            catch (Exception ex)
+            {
+                var errMessage = string.Format(ex.GetStringLog(), MachineId.ToString());
+                LogService.WriteLog(errMessage, LogService.TypeLevel.Error, ex);
+            }
+            
+            return result;
+        }
+
         #endregion
     }
 }

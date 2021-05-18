@@ -316,6 +316,15 @@ namespace FomMonitoringCore.Service
             return true;
         }
 
+
+        public bool InitializeCountersResetLevel()
+        {
+            var context = GetContext();
+            context.ActualPage = enPage.CountersReset;
+            SetContext(context);
+            return true;
+        }
+
         public void SetActualPage(enPage page)
         {
             var context = GetContext();

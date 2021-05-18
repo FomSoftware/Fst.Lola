@@ -425,6 +425,7 @@
     <Content Include="GlobApp\plugins\waitMe\waitMe.min.css" />
     <Content Include="GlobApp\plugins\waitMe\waitMe.min.js" />
     <Content Include="GlobApp\scripts\assistance-manager.js" />
+    <Content Include="GlobApp\scripts\countersreset-manager.js" />
     <Content Include="GlobApp\scripts\machine\axes\keope.js" />
     <Content Include="GlobApp\scripts\machine\axes\axel.js" />
     <Content Include="GlobApp\scripts\machine\axes\lmx.js" />
@@ -1364,6 +1365,7 @@
     <Compile Include="Controllers\UploadConfigurationController.cs" />
     <Compile Include="Controllers\UserManagerApiController.cs" />
     <Compile Include="Controllers\UserSettingApiController.cs" />
+    <Compile Include="Controllers\CountersResetController.cs" />
     <Compile Include="Controllers\UserSettingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1534,6 +1536,7 @@
     <Content Include="Views\Machine\Panels\ElectroSpindle\_ElectroSpindleAxel.cshtml" />
     <Content Include="Views\Machine\Panels\SensorSpindles\_Axel.cshtml" />
     <Content Include="Views\Assistance\Index.cshtml" />
+    <Content Include="Views\CountersReset\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -158,6 +158,12 @@
                     <i class="fa fa-arrow-circle-left color-corporate fa-lg"></i>
                 </a>
                 }
+                else if (Model.page == enPage.CountersReset)
+                {
+                    <a class="btn btn-toolbar" href="@Url.Action("Index", "Machine")">
+                        <i class="fa fa-arrow-circle-left color-corporate fa-lg"></i>
+                    </a>
+                }
                 @if (Model.page == enPage.Machine || Model.page == enPage.PlantMessages)
                 {
 

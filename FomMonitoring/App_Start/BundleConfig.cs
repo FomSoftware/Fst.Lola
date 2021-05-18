@@ -123,7 +123,8 @@ namespace FomMonitoring.App_Start
                         "~/GlobApp/scripts/machine/otherdata/axel.js",
                         "~/GlobApp/scripts/machine/electrospindle/electrospindleAxel.js",
                         "~/GlobApp/scripts/machine/sensorspindles/axel.js",
-                        "~/GlobApp/scripts/assistance-manager.js"
+                        "~/GlobApp/scripts/assistance-manager.js",
+                        "~/GlobApp/scripts/countersreset-manager.js"
             ));
 
             #endregion

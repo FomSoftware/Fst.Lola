@@ -230,6 +230,7 @@
     <Compile Include="Framework\Model\EfficiencyStateMachineModel.cs" />
     <Compile Include="Framework\Model\OperatorStateMachineModel.cs" />
     <Compile Include="Framework\Model\ParameterMachineModel.cs" />
+    <Compile Include="Framework\Model\ParameterResetValueDataModel.cs" />
     <Compile Include="Framework\Model\Xml\ParameterMachineModelXml.cs" />
     <Compile Include="Framework\Model\Xml\ParametersListMachineModelXml.cs" />
     <Compile Include="Framework\Model\Xml\ParametersMachineModelXml.cs" />

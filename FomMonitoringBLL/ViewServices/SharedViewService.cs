@@ -21,6 +21,7 @@ namespace FomMonitoringBLL.ViewServices
             header.User = context.User;
             header.AllLanguages = context.AllLanguages;
             header.ActualLanguage = context.ActualLanguage;
+            header.ActualPage = context.ActualPage;
             if (context.User.Role == enRole.Assistance || context.User.Role == enRole.RandD)
             {
                header.CompanyName = context.CompanyName;
@@ -65,7 +66,7 @@ namespace FomMonitoringBLL.ViewServices
                 toolbar.period.end = context.ActualPeriod.EndDate;
             }
 
-            if (context.ActualPage == enPage.Machine)
+            if (context.ActualPage == enPage.Machine || context.ActualPage == enPage.CountersReset)
             {
                 toolbar.period = new PeriodViewModel();
                 toolbar.period.start = context.ActualPeriod.StartDate;

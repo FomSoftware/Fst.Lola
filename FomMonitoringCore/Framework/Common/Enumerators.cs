@@ -43,7 +43,9 @@ namespace FomMonitoringCore.Framework.Common
         [Description("Index"), Controller("UploadConfiguration")]
         UploadConfiguration = 7,
         [Description("Index"), Controller("Assistance")]
-        Assistance = 8
+        Assistance = 8,
+        [Description("Index"), Controller("CountersReset")]
+        CountersReset = 9
     }
 
     

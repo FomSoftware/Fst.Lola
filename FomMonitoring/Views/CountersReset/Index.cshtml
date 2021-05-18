@@ -1,0 +1,87 @@
+﻿@model FomMonitoringBLL.ViewModel.CountersResetViewModel
+@using FomMonitoringCore.Service
+@using FomMonitoringResources
+
+@{
+    Layout = "~/Views/Shared/_LayoutApp.cshtml";
+    var baseUrl = $"{Request.Url?.Scheme}://{Request.Url?.Authority}{Url.Content("~")}";
+
+}
+
+<div id="CardCountersReset" class="row justify-content-center" style="padding-top: 30px;padding-bottom: 30px; min-height: 100px;">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
+        <label class="control-label-user-timezone">@LocalizationService.GetResource("CountersResetTitle")</label>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8"></div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
+        <input type="text" class="form-control modal-input" placeholder='Search' id="SearchvariableInput" onchange="CountersReset.search()" title="SearchVariable" style="color: black;margin-top: 14px;"></input>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <div v-if="counters != null"  class="table-container table-counters">
+            <table class="table table-header">
+                <thead>
+                <tr>
+                    <th style="width: 40%;padding-left: 5px">
+                        <span class="value-title" style="padding-left:8px">
+                            @LocalizationService.GetResource("VariableName")
+                        </span>
+                    </th>
+                    <th style="width:20%" v-on:click="sortTimestamp()">
+                        <span class="value-title">
+                            @LocalizationService.GetResource("MachineGroup")
+                        </span>
+                    </th>
+                    <th style="width:20%;min-width: 80px;" v-on:click="sortGroup()">
+                        <span class="value-title">
+                            @LocalizationService.GetResource("ResetDate")
+                        </span>
+                    </th>
+                    <th style="width:10%">
+                        <span class="value-title" style="padding-left:8px">
+                            @LocalizationService.GetResource("AnteResetDate")
+                        </span>
+                    </th>
+                    <th style="width:10%">
+                        <span class="value-title" style="padding-left:8px">
+                            @LocalizationService.GetResource("DefaultResetValue")
+                        </span>
+                    </th>
+                </tr>
+                </thead>
+            </table>
+            <div style="height:600px">
+                <div class="slimscrollTable">
+                    <table class="table">
+                        <tbody>
+                        <tr v-for="counter in counters">
+                            <td style="width:40%">
+                                {{counter.VariableName}}
+                            </td>
+                            <td style="width:20%">
+                                {{counter.MachineGroupName}}
+                            </td>
+                            <td style="width:20%"> {{convert_date(counter.ResetDate) }}</td>
+                            <td style="width: 10%;padding-left: 20px;"> {{counter.ValueBeforeReset}}</td>
+                            <td style="width: 10%;padding-left:20px"> {{counter.ResetValue}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <no-data v-else></no-data>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        CountersReset.initVueComponents();
+
+        var data = @Html.Raw(Json.Encode(Model));
+        var url = '@Url.HttpRouteUrl("DefaultApi", new { controller = "AppApi", action = "GetCountersReset" })';
+        CountersReset.init(data, url);
+    });
+</script>

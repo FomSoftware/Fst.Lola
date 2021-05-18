@@ -136,6 +136,17 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to AnteResetDate.
+        /// </summary>
+        public static string AnteResetDate
+        {
+            get
+            {
+                return ResourceManager.GetString("AnteResetDate", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
         public static string ApplyLabel
@@ -455,6 +466,28 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Counters reset log.
+        /// </summary>
+        public static string CountersReset
+        {
+            get
+            {
+                return ResourceManager.GetString("CountersReset", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to CountersResetTitle.
+        /// </summary>
+        public static string CountersResetTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("CountersResetTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to User successfully created.
         /// </summary>
         public static string CreatedUser
@@ -628,6 +661,17 @@ namespace FomMonitoringResources
             get
             {
                 return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to DefaultResetValue.
+        /// </summary>
+        public static string DefaultResetValue
+        {
+            get
+            {
+                return ResourceManager.GetString("DefaultResetValue", resourceCulture);
             }
         }
 
@@ -2227,6 +2271,17 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to MachineGroup.
+        /// </summary>
+        public static string MachineGroup
+        {
+            get
+            {
+                return ResourceManager.GetString("MachineGroup", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to MachineName.
         /// </summary>
         public static string MachineName
@@ -3574,6 +3629,17 @@ namespace FomMonitoringResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to ResetDate.
+        /// </summary>
+        public static string ResetDate
+        {
+            get
+            {
+                return ResourceManager.GetString("ResetDate", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Reset password.
         /// </summary>
         public static string ResetPassword
@@ -4692,6 +4758,17 @@ namespace FomMonitoringResources
             get
             {
                 return ResourceManager.GetString("v_HSD_NumCollRilevate", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to VariableName.
+        /// </summary>
+        public static string VariableName
+        {
+            get
+            {
+                return ResourceManager.GetString("VariableName", resourceCulture);
             }
         }
 

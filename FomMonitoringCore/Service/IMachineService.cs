@@ -20,5 +20,6 @@ namespace FomMonitoringCore.Service
         CurrentStateModel GetCurrentStateModel(int MachineID);
         List<MachineInfoModel> GetRoleMachines(enRole role);
         List<MachineInfoModel> GetPlantMachines(ContextModel ctx);
+        List<ParameterResetValueDataModel> GetMachineCountersReset(int MachineId, int? IdLanguage, string search = null);
     }
 }
