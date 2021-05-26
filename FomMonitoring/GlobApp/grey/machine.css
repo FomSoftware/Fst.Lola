@@ -1891,6 +1891,10 @@ td.td-axes {
         font-size: 12px;
     }
 
+    .table-counters .table th, .table td {
+        padding: 0.3rem;
+    }
+
 }
 
 @media (max-height: 767px) {
