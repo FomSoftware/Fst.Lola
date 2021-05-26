@@ -7,10 +7,18 @@
         resource = resourcePage;
     };
 
-    var changeMachine = function() {
+    var changeMachine = function () {
+        if ($("#serial-filter").val() != "") {
+            $("#company-filter").prop("disabled", true);
+            $("#serial-filter").prop("disabled", false);
+        }
         $("#company-filter").val("");
     }
     var changeCompany = function () {
+        if ($("#company-filter").val() != "") {
+            $("#company-filter").prop("disabled", false);
+            $("#serial-filter").prop("disabled", true);
+        }
         $("#serial-filter").val("");
     }
 
@@ -70,13 +78,21 @@
         }
     }
 
+    function cancel() {
+        $("#serial-filter").val("");
+        $("#company-filter").val("");
+        $("#company-filter").prop("disabled", false);
+        $("#serial-filter").prop("disabled", false);
+    }
+    
 
     return {
         initVue: initVue,
         changeCompany: changeCompany,
         changeMachine: changeMachine,
-        validate: validate
-    }
+        validate: validate,
+        cancel: cancel
+}
 }();
 
 

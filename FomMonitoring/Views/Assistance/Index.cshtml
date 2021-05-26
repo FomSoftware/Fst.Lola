@@ -17,7 +17,7 @@
         <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-4 text-lg-right">
             <label class="control-label-user-timezone" style="vertical-align: middle">@Resource.select_serial</label>
         </div>
-        <div class="col-12 col-sm-12 col-md-9 col-lg-8 col-xl-6">
+        <div class="col-12 col-sm-12 col-md-9 col-lg-8 col-xl-5">
             <select class="form-control modal-input" id="serial-filter" title="@Resource.select_serial" onchange="AssistanceManager.changeMachine()" name="MachineId"
                     style="color: black; margin-top: 4px;">
                 <option value=""></option>
@@ -25,11 +25,11 @@
                         v-bind:value="machine.id" v-bind:label="machine.serial + ' - ' + machine.machineName"></option>
             </select>
         </div>
-        <div class="col-1 col-sm-1 col-md-12 col-lg-1 col-xl-2"></div>
+        <div class="col-1 col-sm-1 col-md-12 col-lg-1 col-xl-3"></div>
         <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-4 text-lg-right" style="margin-top: 30px">
             <label class="control-label-user-timezone" style="vertical-align: middle">@Resource.select_ragione_sociale</label>
         </div>
-        <div class="col-12 col-sm-12 col-md-9 col-lg-8 col-xl-6">
+        <div class="col-12 col-sm-12 col-md-9 col-lg-8 col-xl-5">
             <select class="form-control modal-input" id="company-filter" title="@Resource.select_ragione_sociale" onchange="AssistanceManager.changeCompany()" name="CustomerId"
                     style="color: black; margin-top: 30px;">
                 <option value=""></option>
@@ -37,14 +37,17 @@
                         v-bind:value="customer.ID" v-bind:label="customer.CompanyName"></option>
             </select>
         </div>
-        <div class="col-1 col-sm-1 col-md-12 col-lg-1 col-xl-2"></div>
+        <div class="col-1 col-sm-1 col-md-12 col-lg-1 col-xl-3"></div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-4"></div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 text-right" style="margin-top: 30px">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-5 text-right" style="margin-top: 30px">
+            <button type="button" class="button-adduser" onclick="AssistanceManager.cancel();" style="position: relative">
+                @Resource.CancelLabel
+            </button>
             <button type="button" class="button-adduser" onclick="AssistanceManager.validate();" style="position: relative">
                 @Resource.Sign_in
             </button>
         </div>
-        <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-2"></div>
+        <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-3"></div>
     </div>
 }
 
