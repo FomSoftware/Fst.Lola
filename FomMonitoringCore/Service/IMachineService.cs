@@ -21,5 +21,7 @@ namespace FomMonitoringCore.Service
         List<MachineInfoModel> GetRoleMachines(enRole role);
         List<MachineInfoModel> GetPlantMachines(ContextModel ctx);
         List<ParameterResetValueDataModel> GetMachineCountersReset(int MachineId, int? IdLanguage, string search = null);
+        DateTime? GetMinStateDate(int? MachineId);
+        DateTime? GetMaxStateDate(int? MachineId);
     }
 }

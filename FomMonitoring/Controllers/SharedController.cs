@@ -13,17 +13,19 @@ namespace FomMonitoring.Controllers
     {
         private readonly IContextService _contextService;
         private readonly IFaqService _faqService;
+        private readonly ISharedViewService _sharedViewService;
 
-        public SharedController(IContextService contextService, IFaqService faqService)
+        public SharedController(IContextService contextService, IFaqService faqService, ISharedViewService sharedViewService)
         {
             _contextService = contextService;
             _faqService = faqService;
+            _sharedViewService = sharedViewService;
         }
 
         public ActionResult _Header()
         {
             ContextModel context = _contextService.GetContext();
-            HeaderViewModel header = SharedViewService.GetHeader(context);
+            HeaderViewModel header = _sharedViewService.GetHeader(context);
             header.Faqs = _faqService.GetInternalFaqs();
             return PartialView(header);
         }

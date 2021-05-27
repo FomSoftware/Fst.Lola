@@ -112,6 +112,7 @@
     <Compile Include="ViewServices\IPlantManagerViewService.cs" />
     <Compile Include="ViewServices\IPlantMessagesViewService.cs" />
     <Compile Include="ViewServices\IProductivityViewService.cs" />
+    <Compile Include="ViewServices\ISharedViewService.cs" />
     <Compile Include="ViewServices\IToolsViewService.cs" />
     <Compile Include="ViewServices\IUserManagerViewService.cs" />
     <Compile Include="ViewServices\IXToolsViewService.cs" />

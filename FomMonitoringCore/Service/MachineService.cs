@@ -337,6 +337,27 @@ namespace FomMonitoringCore.Service
             return result;
         }
 
+        public DateTime? GetMinStateDate(int? MachineId)
+        {
+            if (MachineId != null)
+            {
+                var min = _context.Set<StateMachine>().Where(m => m.MachineId == MachineId).Min(a => a.Day);
+                return min;
+            }
+
+            return null;
+        }
+
+        public DateTime? GetMaxStateDate(int? MachineId)
+        {
+            if (MachineId != null)
+            {
+                var max = _context.Set<StateMachine>().Where(m => m.MachineId == MachineId).Max(a => a.Day);
+                return max;
+            }
+            return null;
+        }
+
         #endregion
     }
 }

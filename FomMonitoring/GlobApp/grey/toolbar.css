@@ -149,9 +149,16 @@
 .daterangepicker {
     border-color: #ddd;
     background-color: #eee;
+    font-family: 'Roboto Mono', monospace;
 }
 
-    .daterangepicker:before {
+    .daterangepicker .drp-selected {
+        font-size: 14px;
+        color: #676767;
+        padding-bottom: 5px;
+    }
+
+        .daterangepicker:before {
         border-bottom: 7px solid #ddd;
     }
 
@@ -196,13 +203,16 @@
         background-color: #B33157;
         color: #fff;
     }
-
+    .daterangepicker .calendar-table td, .daterangepicker .calendar-table th {
+        font-size: 16px;
+    }
     .daterangepicker td.off,
     .daterangepicker td.off.in-range,
     .daterangepicker td.off.start-date,
     .daterangepicker td.off.end-date {
         background-color: #eee;
         font-weight: 300;
+       
     }
 
     .daterangepicker td.available:hover,
@@ -212,15 +222,23 @@
         border-color: transparent;
     }
 
+.daterangepicker.show-calendar .ranges {
+    float: right;
+}
+
 .ranges li {
     background-color: #ddd;
     border: 1px solid #eee;
     color: #676767;
+    font-size: 13px !important;
+    border-radius: 4px;
+    padding: 3px 12px !important;
+    margin-bottom: 8px;
 }
 
     .ranges li:hover,
     .ranges li.active {
-        background-color: #B33157;
+        background-color: #B33157 !important;
         border: 1px solid #B33157;
         color: #fff;
     }
@@ -236,7 +254,7 @@
     border-color: #B33157;
 }
 
-    .daterangepicker .btn-success:hover {
+    .daterangepicker .btn-primary:hover {
         color: #fff;
         background-color: #B33157;
         border-color: #B33157;
@@ -252,7 +270,25 @@
         background-color: #ddd;
         border: 2px solid #676767;
     }
+.btn-group-sm > .btn, .btn-sm {
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+}
 
+.daterangepicker .drp-buttons .btn {
+    margin-left: 8px;
+    font-size: .875rem;
+    font-weight: 400;
+    padding: .25rem .5rem;
+}
+
+.daterangepicker .btn-primary {
+    color: #B33157;
+    background-color: #eee;
+    border-color: #B33157;
+}
 /*#endregion */
 
 
@@ -282,6 +318,13 @@
         grid-template-columns: 50% 50%;
     }
 
+    .daterangepicker .drp-calendar.right {
+        padding: 0;
+    }
+
+.daterangepicker.show-calendar .ranges {
+    float: none;
+}
 .ranges {
     display: flex;
     flex-wrap: wrap;

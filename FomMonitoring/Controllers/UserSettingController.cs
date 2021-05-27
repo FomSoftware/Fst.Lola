@@ -16,11 +16,13 @@ namespace FomMonitoring.Controllers
     {
         private readonly IContextService _contextService;
         private readonly IFaqService _faqService;
+        private readonly ISharedViewService _sharedViewService;
 
-        public UserSettingController(IContextService contextService, IFaqService faqService)
+        public UserSettingController(IContextService contextService, IFaqService faqService, ISharedViewService sharedViewService)
         {
             _contextService = contextService;
             _faqService = faqService;
+            _sharedViewService = sharedViewService;
         }
 
         // GET: UserSetting
@@ -30,7 +32,7 @@ namespace FomMonitoring.Controllers
                 return RedirectToAction("Logout", "Account", new {returnUrl = string.Empty, exception = 6});
 
             var context = _contextService.GetContext();
-            var header = SharedViewService.GetHeader(context);
+            var header = _sharedViewService.GetHeader(context);
             header.Faqs = _faqService.GetInternalFaqs();
             _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
             return View(header);

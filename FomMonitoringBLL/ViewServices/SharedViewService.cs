@@ -5,14 +5,21 @@ using FomMonitoringCore.Framework.Common;
 using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using FomMonitoringCore.Service;
 using FomMonitoringCore.SqlServer;
 
 namespace FomMonitoringBLL.ViewServices
 {
-    public class SharedViewService
+    public class SharedViewService: ISharedViewService
     {
-        public static HeaderViewModel GetHeader(ContextModel context)
+        private readonly IMachineService _machineService;
+
+        public SharedViewService(IMachineService machineService)
+        {
+            _machineService = machineService;
+        }
+        public HeaderViewModel GetHeader(ContextModel context)
         {
             HeaderViewModel header = new HeaderViewModel();
             header.ControllerPage = context.ActualPage.GetController();                         
@@ -22,13 +29,29 @@ namespace FomMonitoringBLL.ViewServices
             header.AllLanguages = context.AllLanguages;
             header.ActualLanguage = context.ActualLanguage;
             header.ActualPage = context.ActualPage;
-            if (context.User.Role == enRole.Assistance || context.User.Role == enRole.RandD)
+            header.MaxStateDate = new DataUpdateModel()
+            {
+                DateTime = _machineService.GetMaxStateDate(context.ActualMachine?.Id)?? DateTime.UtcNow,
+                TimeZone = context.User.TimeZone
+            };
+            
+            if (context.User.Role == enRole.Assistance || context.User.Role == enRole.RandD || context.User.Role == enRole.Administrator)
             {
                header.CompanyName = context.CompanyName;
+               header.MinStateDate = new DataUpdateModel()
+               {
+                   DateTime = _machineService.GetMinStateDate(context.ActualMachine?.Id) ?? DateTime.UtcNow.AddYears(-1),
+                   TimeZone = context.User.TimeZone
+               };
             }
             else
             {
                 header.CompanyName = context.User.CompanyName;
+                header.MinStateDate = new DataUpdateModel()
+                {
+                    DateTime = DateTime.UtcNow.AddYears(-1),
+                    TimeZone = context.User.TimeZone
+                };
             }
             return header;
         }

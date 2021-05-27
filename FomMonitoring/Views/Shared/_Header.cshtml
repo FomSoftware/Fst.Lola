@@ -241,6 +241,8 @@
         $('[data-toggle="popover"]').popover();
        
         var data = @Html.Raw(Json.Encode(Model.ActualPeriod));
+        var dataMin = @Html.Raw(Json.Encode(Model.MinStateDate));
+        var dataMax = @Html.Raw(Json.Encode(Model.MaxStateDate));
         var user = @Html.Raw(Json.Encode(Model.User));
 
         var resource = {
@@ -258,7 +260,7 @@
         };
 
         UserManager.initChangePassword(user, "@ViewBag.BaseUrl", resource);
-        SharedManager.initHeader(data.LastUpdate);
+        SharedManager.initHeader(data.LastUpdate, dataMin, dataMax);
         UserManager.checkFirstLogin(user);
         FaqSupportManager.initLogin("@ViewBag.BaseUrl", resource);
     });

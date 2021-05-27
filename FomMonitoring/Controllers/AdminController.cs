@@ -14,11 +14,13 @@ namespace FomMonitoring.Controllers
     {
         private IContextService _contextService;
         private IFaqService _faqService;
+        private ISharedViewService _sharedViewService;
 
-        public AdminController (IContextService contextService, IFaqService faqService)
+        public AdminController (IContextService contextService, IFaqService faqService, ISharedViewService sharedViewService)
         {
             _contextService = contextService;
             _faqService = faqService;
+            _sharedViewService = sharedViewService;
         }
         // GET: Account
         [Route("{lang}/UserManager")]
@@ -27,7 +29,7 @@ namespace FomMonitoring.Controllers
             _contextService.InitializeAdminLevel();
 
             ContextModel context = _contextService.GetContext();
-            HeaderViewModel header = SharedViewService.GetHeader(context);
+            HeaderViewModel header = _sharedViewService.GetHeader(context);
             header.Faqs = _faqService.GetInternalFaqs();
             _contextService.SetActualLanguage(CultureInfo.CurrentCulture.Name);
 

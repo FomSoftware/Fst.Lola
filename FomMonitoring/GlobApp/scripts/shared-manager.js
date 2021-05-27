@@ -1,6 +1,8 @@
 ﻿var SharedManager = function ()
 {
     var vmLastUpdate;
+    var vmMinDate;
+    var vmMaxDate;
 
     var enPage = {
         machine: 2,
@@ -13,7 +15,7 @@
         period: null
     };
 
-    var initHeader = function (data)
+    var initHeader = function (data, dataMin, dataMax)
     {
         initHeaderMenu();
         initMobileMenuEventHandler();
@@ -24,6 +26,8 @@
                 time: (data.TimeZone && data.TimeZone != "") ? moment.utc(data.DateTimeStr).tz(data.TimeZone).format('HH:mm:ss') : moment.utc(data.DateTime).format('HH:mm:ss') 
     }
         });
+        vmMaxDate = dataMax.Date;
+        vmMinDate = dataMin.Date;
     }
 
     var initToolbar = function (data) {
@@ -139,10 +143,6 @@
         var formatLabel = moment.localeData().longDateFormat('L');
         var formatCalendar = moment.localeData().longDateFormat('L');
 
-
-
-        
-
         var start = moment(period.start);
         var end = moment(period.end);
 
@@ -170,11 +170,20 @@
         // init calendar
         var nowDate = new Date();
         $('#calendar').daterangepicker({
-            minDate: new Date(nowDate.getFullYear() -1, nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0),
-            startDate: start,
-            endDate: end,
-            ranges: ranges,
-            locale: getLocaleCalendar(language)
+            //minDate: new Date(nowDate.getFullYear() -1, nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0),
+            "showDropdowns": true,
+            "maxSpan": {
+                "years": 1
+            },
+            "minDate": vmMinDate,
+            "maxDate": vmMaxDate,
+            "startDate": start,
+            "endDate": end,
+            "ranges": ranges,
+            "locale": getLocaleCalendar(language),
+            "alwaysShowCalendars": true,
+            "cancelClass": " btn-default float-right",
+            "showWeekNumbers": true
 
         }, function (start, end, label)
         {
