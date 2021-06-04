@@ -17,7 +17,7 @@
         <input type="text" class="form-control modal-input" placeholder='Search' id="SearchvariableInput" onchange="CountersReset.search()" title="SearchVariable" style="color: black;margin-top: 14px;"></input>
     </div>
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <div v-if="counters != null && counters.length > 0"  class="table-container table-counters">
+        <div  class="table-container table-counters">
             <table class="table table-header">
                 <thead>
                 <tr>
@@ -69,7 +69,6 @@
                 </div>
             </div>
         </div>
-        <no-data v-else></no-data>
     </div>
 </div>
 
