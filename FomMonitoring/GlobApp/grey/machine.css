@@ -1895,6 +1895,12 @@ td.td-axes {
         padding: 0.3rem;
     }
 
+    .btn-group-menu {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
 }
 
 @media (max-height: 767px) {

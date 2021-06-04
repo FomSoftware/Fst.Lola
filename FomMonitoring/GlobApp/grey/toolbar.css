@@ -358,3 +358,17 @@
 }
 }
 
+@media(max-width: 375px) {
+    .daterangepicker .calendar-table td {
+        min-width: 20px;
+        width: 20px;
+        height: 18px;
+        line-height: 20px;
+        font-size: 12px;
+    }
+
+    .ranges li {
+        font-size: 11px !important;
+    }
+}
+
