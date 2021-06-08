@@ -22,7 +22,6 @@
           "Code",
           "Description",
           "DateLoaded",
-          "DateReplaced",
           "CurrentLife",
           "ExpectedLife"
         ],
@@ -67,7 +66,7 @@
           },
           "DateReplaced": {
             "$id": "#/properties/tool/items/properties/DateReplaced",
-            "type": "string",
+            "type": "string, null",
             "title": "The Datereplaced Schema",
             "default": "",
             "examples": [

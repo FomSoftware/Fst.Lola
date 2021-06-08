@@ -35,8 +35,9 @@ namespace VariableListLoadTest
             //var reforwarder = container.Resolve<IUnknownForwarder>();
             //reforwarder.ReForward();
 
-            var jsonsMessage = repositoryHistoryJobPieceBar.Query(n => n.info[0].MachineSerial == "C0800418").ToList().OrderByDescending(n => n.DateReceived).Take(1).ToList();
+            //var jsonsMessage = repositoryHistoryJobPieceBar.Query(n => n.info[0].MachineSerial == "C0800418").ToList().OrderByDescending(n => n.DateReceived).Take(1).ToList();
             //var jsonsMessagevar = repositoryVariablesList.Query(n => n.info[0].MachineSerial == "C0800418").OrderBy(n => n.variablesList[0].UtcDateTime).ToList().OrderByDescending(n => n.DateReceived).Take(1000).ToList();
+            var jsonsMessage = repositoryMessage.Query(n => n.info[0].MachineSerial == "A1400013" && n.message[0].Code == "212").ToList().OrderByDescending(n => n.DateReceived).Take(1).ToList();
 
 
             foreach (var data in jsonsMessage)

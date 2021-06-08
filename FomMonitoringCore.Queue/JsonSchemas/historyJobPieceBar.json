@@ -238,18 +238,22 @@
             "type": "number",
             "title": "The Timespan Schema",
             "default": 0,
+            "minimum": 0,
             "examples": [
               0
-            ]
+            ],
+            "pattern": "^[0-9]*$"
           },
           "TimeSpanProducing": {
             "$id": "#/properties/piece/items/properties/TimeSpanProducing",
             "type": "number",
             "title": "The Timespanproducing Schema",
             "default": 0,
+            "minimum": 0,
             "examples": [
               0
-            ]
+            ],
+            "pattern": "^[0-9]*$"
           },
           "RemaingWorkingTime": {
             "$id": "#/properties/piece/items/properties/RemaingWorkingTime",
@@ -294,27 +298,33 @@
             "type": "number",
             "title": "The Timespancutting Schema",
             "default": 0,
+            "minimum": 0,
             "examples": [
               0
-            ]
+            ],
+            "pattern": "^[0-9]*$"
           },
           "TimeSpanWorking": {
             "$id": "#/properties/piece/items/properties/TimeSpanWorking",
             "type": "number",
             "title": "The Timespanworking Schema",
             "default": 0,
+            "minimum": 0,
             "examples": [
               0
-            ]
+            ],
+            "pattern": "^[0-9]*$"
           },
           "TimeSpanTrim": {
             "$id": "#/properties/piece/items/properties/TimeSpanTrim",
             "type": "number",
             "title": "The Timespantrim Schema",
             "default": 0,
+            "minimum": 0,
             "examples": [
               0
-            ]
+            ],
+            "pattern": "^[0-9]*$"
           }
         }
       }

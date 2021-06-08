@@ -197,6 +197,14 @@
             else if (typeof ImageManagerBlitz !== 'undefined' && ImageManagerBlitz !== null)
                 selectedGroup1 = ImageManagerBlitz.selectedGroup();
 
+
+            console.log(start);
+            console.log(end);
+            //end = end.add(1, 'day');
+            start.set('hour', 00);
+            start.set('minute', 00);
+            end.set('hour', 23);
+            end.set('minute', 59);
             var filters = {
                 period: {
                     start: start.toDate(),

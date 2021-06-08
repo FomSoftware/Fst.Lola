@@ -138,6 +138,10 @@
 
 
         var per = $('#calendar').data('daterangepicker');
+        per.startDate.set('hour', 00);
+        per.startDate.set('minute', 00);
+        per.endDate.set('hour', 23);
+        per.endDate.set('minute', 59);
         var filters = {
             period: {
                 start: per.startDate.toDate(),

@@ -197,7 +197,7 @@
                 },
                 "VariableResetDate": {
                   "$id": "#/properties/variablesList/items/properties/Values/items/properties/VariableResetDate",
-                  "type": "string",
+                  "type": "string, null",
                   "title": "The Variableresetdate Schema",
                   "default": "",
                   "examples": [

@@ -215,7 +215,7 @@ namespace FomMonitoringCore.Queue.Forwarder
                 }
 
                 if (data.tool != null && data.tool.Any(m => !DateTimeLolaValid(m.DateLoaded) ||
-                                                            !DateTimeLolaValid(m.DateReplaced)))
+                                                            (m.DateReplaced != null && !DateTimeLolaValid(m.DateReplaced))))
                 {
                     return false;
                 }
