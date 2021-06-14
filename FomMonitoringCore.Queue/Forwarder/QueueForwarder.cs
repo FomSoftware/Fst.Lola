@@ -79,6 +79,8 @@ namespace FomMonitoringCore.Queue.Forwarder
 
         public bool Forward(string json, bool addToUnknown = true)
         {
+            bool result = true;
+            string type = "";
             var pathSchemas = ConfigurationManager.AppSettings["PathSchemaLOLA"];
             var schemaDataVariablesList =
                 JsonSchema.FromFileAsync(Path.Combine(pathSchemas, "variablesList.json")).Result;
@@ -86,17 +88,18 @@ namespace FomMonitoringCore.Queue.Forwarder
 
             if (!errorDataVariablesList.Any())
             {
+                type = "variablesList";
                 var data = JsonConvert
                     .DeserializeObject<Mongo.Dto.VariablesList>(json);
 
                 //controllo delle date obbligatorie
                 if (!DateTimeLolaValid(data.info[0].LoginDate))
                 {
-                    return false;
+                    result = false;
                 }
                 if (data.variablesList!= null && data.variablesList.Any(v => !DateTimeLolaValid(v.UtcDateTime)))
                 {
-                    return false;
+                    result = false;
                 }
                 data.DateSendedQueue = DateTime.UtcNow;
                 data.DateReceived = DateTime.UtcNow;
@@ -117,7 +120,6 @@ namespace FomMonitoringCore.Queue.Forwarder
                     VariablesListMachine = data.variablesList
                 });
 
-                return true;
             }
 
 
@@ -127,16 +129,17 @@ namespace FomMonitoringCore.Queue.Forwarder
 
             if (!errorMessages.Any())
             {
+                type = "messages";
                 var data = JsonConvert.DeserializeObject<Mongo.Dto.Message>(json);
                 //controllo delle date obbligatorie
                 if (!DateTimeLolaValid(data.info[0].LoginDate))
                 {
-                    return false;
+                    result = false;
                 }
 
                 if(data.message != null && data.message.Any(m => !DateTimeLolaValid(m.Time)))
                 {
-                    return false;
+                    result = false;
                 }
                 data.DateSendedQueue = DateTime.UtcNow;
                 data.DateReceived = DateTime.UtcNow;
@@ -156,7 +159,6 @@ namespace FomMonitoringCore.Queue.Forwarder
                     MessageMachine = data.message
                 });
 
-                return true;
             }
 
 
@@ -166,17 +168,18 @@ namespace FomMonitoringCore.Queue.Forwarder
 
             if (!errorStates.Any())
             {
+                type = "state";
                 var data = JsonConvert.DeserializeObject<Mongo.Dto.State>(json);
                 //controllo delle date obbligatorie
                 if (!DateTimeLolaValid(data.info[0].LoginDate))
                 {
-                    return false;
+                    result = false;
                 }
 
                 if (data.state != null && data.state.Any(m => !DateTimeLolaValid(m.StartTime) ||
                                                                                 !DateTimeLolaValid(m.EndTime)))
                 {
-                    return false;
+                    result = false;
                 }
                 data.DateSendedQueue = DateTime.UtcNow;
                 data.DateReceived = DateTime.UtcNow;
@@ -198,7 +201,6 @@ namespace FomMonitoringCore.Queue.Forwarder
                     StateMachine = data.state
                 });
 
-                return true;
             }
 
 
@@ -208,16 +210,17 @@ namespace FomMonitoringCore.Queue.Forwarder
 
             if (!errorTool.Any())
             {
+                type = "tool";
                 var data = JsonConvert.DeserializeObject<Mongo.Dto.Tool>(json);
                 if (!DateTimeLolaValid(data.info[0].LoginDate))
                 {
-                    return false;
+                    result = false;
                 }
 
                 if (data.tool != null && data.tool.Any(m => !DateTimeLolaValid(m.DateLoaded) ||
                                                             (m.DateReplaced != null && !DateTimeLolaValid(m.DateReplaced))))
                 {
-                    return false;
+                    result = false;
                 }
 
                 data.DateSendedQueue = DateTime.UtcNow;
@@ -238,8 +241,7 @@ namespace FomMonitoringCore.Queue.Forwarder
                     InfoMachine = data.info,
                     ToolMachine = data.tool
                 });
-                
-                return true;
+         
             }
 
 
@@ -250,26 +252,27 @@ namespace FomMonitoringCore.Queue.Forwarder
 
             if (!errorHistoryJobPieceBar.Any())
             {
+                type = "historyJobPieceBar";
                 var data = JsonConvert
                     .DeserializeObject<Mongo.Dto.HistoryJobPieceBar>(json);
                 if (!DateTimeLolaValid(data.info[0].LoginDate))
                 {
-                    return false;
+                    result = false;
                 }
                 if (data.bar != null && data.bar.Any(m => !DateTimeLolaValid(m.StartTime)) && data.bar.Any(m => !DateTimeLolaValid(m.EndTime)))
                 {
-                    return false;
+                    result = false;
                 }
 
                 if (data.piece != null && data.piece.Any(m => !DateTimeLolaValid(m.StartTime) ||
                                                               !DateTimeLolaValid(m.EndTime)))
                 {
-                    return false;
+                    result = false;
                 }
 
                 if (data.historyjob != null && data.historyjob.Any(m => !DateTimeLolaValid(m.Day)))
                 {
-                    return false;
+                    result = false;
                 }
 
                 data.DateSendedQueue = DateTime.UtcNow;
@@ -291,11 +294,10 @@ namespace FomMonitoringCore.Queue.Forwarder
                     BarMachine = data.bar
                 });
                 
-                return true;
             }
 
-            if (!addToUnknown) 
-                return true;
+            if (!addToUnknown || (type != "" && result)) 
+                return result;
 
             var dataUnknown = JsonConvert.DeserializeObject<BaseModel>(json);
             var en = new Unknown(dataUnknown)
@@ -320,7 +322,7 @@ namespace FomMonitoringCore.Queue.Forwarder
             _unknownGenericRepository.Create(en);
 
 
-            return true;
+            return result;
         }
 
         private static bool DateTimeLolaValid(DateTime? date)

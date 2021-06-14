@@ -42,7 +42,11 @@ namespace VariableListLoadTest
 
             foreach (var data in jsonsMessage)
             {
-                forwarder.Forward(JsonConvert.SerializeObject(data));
+                string aa =
+                    "{\"tool\": [{\"Id\": 1,\"Code\": 1,\"Description\": \"Mill D.5 Pos.11\",\"DateLoaded\": \"2021-01-01T00:00:00Z\",\"DateReplaced\": \"\",\"CurrentLife\": 476.0,\"ExpectedLife\": 360000.0},{\"Id\": 2,\"Code\": 2,\"Description\": \"Mill D.8 Pos.12\",\"DateLoaded\": \"2021-01-01T00:00:00Z\",\"DateReplaced\": \"\",\"CurrentLife\": 911.0,\"ExpectedLife\": 360000.0},{\"Id\": 3,\"Code\": 3, \"Description\": \"Mill D.3 Pos.15\", \"DateLoaded\": \"2021-01-01T00:00:00Z\", \"DateReplaced\": \"\", \"CurrentLife\": 1155.0, \"ExpectedLife\": 360000.0}],  \"info\": [{ \"KeyId\": \"2021563044\", \"MachineSerial\": \"B0900006\", \"MachineCode\": 211, \"Product\": \"FSTLine4\", \"ProductVersion\": \"4.2.0.198\", \"FirmwareVersion\": \"1.7.2 - 8/11/2019\", \"PlcVersion\": \"1.6.3.0\", \"LoginDate\": \"2021-06-14T08:09:12.7193924Z\", \"UTC\": 0 }]}";
+
+                //aa = JsonConvert.SerializeObject(data);
+                forwarder.Forward(aa);
             }
 
             //foreach (var data in jsonsMessagevar)
