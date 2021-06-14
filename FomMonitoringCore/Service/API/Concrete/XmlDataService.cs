@@ -32,6 +32,12 @@ namespace FomMonitoringCore.Service.API.Concrete
                     i.MachineModelId = machineModel.Id;
                     _context.Set<ParameterMachine>().AddOrUpdate(i);
                 }
+
+                //elimino i record che non esistono più
+                var curparams = _context.Set<ParameterMachine>().Where(p => p.ModelCode == m.ModelCodeV997.ToString()).ToList();
+                var toDelete = curparams.Where(c => !list.Any(a => a.VarNumber == c.VarNumber.ToString())).ToList();
+                if(toDelete != null)
+                    _context.Set<ParameterMachine>().RemoveRange(toDelete);
             }
 
             await _context.SaveChangesAsync();
