@@ -288,7 +288,7 @@ namespace FomMonitoringCore.Service
             {
                 var query = _context.Set<MessageMachine>().Where(m => m.MachineId == machine.Id &&
                                                                       m.Machine.ActivationDate != null &&
-                                                                      m.MessagesIndex.IsPeriodicM && m.IgnoreDate == null)
+                                                                      m.MessagesIndex.IsPeriodicM && m.IgnoreDate == null && !m.MessagesIndex.IsDisabled)
                 .ToList();
                     
                 query = query.GroupBy(g => g.MessagesIndexId)
