@@ -36,8 +36,21 @@ namespace FomMonitoringCore.Service.API.Concrete
                 //elimino i record che non esistono più
                 var curparams = _context.Set<ParameterMachine>().Where(p => p.ModelCode == m.ModelCodeV997.ToString()).ToList();
                 var toDelete = curparams.Where(c => !list.Any(a => a.VarNumber == c.VarNumber.ToString())).ToList();
-                if(toDelete != null)
+                if (toDelete.Count > 0)
+                {
+                    var ids = toDelete.Select(a => a.Id).ToList();
+                    var values = _context.Set<ParameterMachineValue>().Where(v => ids.Contains(v.ParameterMachineId)).ToList();
+                    if(values.Count > 0)
+                        _context.Set<ParameterMachineValue>().RemoveRange(values);
+                    var resets = _context.Set<ParameterResetValue>().Where(v => ids.Contains(v.ParameterMachineId)).ToList();
+                    if (resets.Count > 0)
+                        _context.Set<ParameterResetValue>().RemoveRange(resets);
+                    var thresholds = _context.Set<ParameterMachineThreshold>().Where(v => ids.Contains(v.ParameterMachineId)).ToList();
+                    if (thresholds.Count > 0)
+                        _context.Set<ParameterMachineThreshold>().RemoveRange(thresholds);
+
                     _context.Set<ParameterMachine>().RemoveRange(toDelete);
+                }
             }
 
             await _context.SaveChangesAsync();
