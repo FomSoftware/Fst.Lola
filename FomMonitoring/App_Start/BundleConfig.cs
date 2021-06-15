@@ -29,6 +29,7 @@ namespace FomMonitoring.App_Start
 
 
             bundles.Add(new ScriptBundle("~/Scripts/FomMonitoringScriptsLIB").Include(
+                        "~/Scripts/polyfill.min.js",
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/hammer.js",
                         "~/Scripts/bootstrap.bundle.js",

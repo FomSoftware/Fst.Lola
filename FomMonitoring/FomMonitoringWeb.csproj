@@ -657,6 +657,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Content\bootstrap-select.css.map" />
+    <Content Include="Scripts\polyfill.min.js" />
     <Content Include="_app_offline.htm" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\lola_dev.pubxml" />
