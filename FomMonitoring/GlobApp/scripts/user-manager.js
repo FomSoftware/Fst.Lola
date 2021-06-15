@@ -798,8 +798,7 @@
             request.done(function (data) {
                 $('#change-timezone-modal').modal('hide');
                 var msg = successSwal(resourceChangePassword.TimezoneSuccessfullyModify);
-                msg.then(
-                    (result) => {
+                msg.then(function (result) {
                         window.location.reload();
                     });
             });

@@ -10,7 +10,7 @@
 
 
     context.buildToast = function (notification) {
-        return toastr.info(`<div><h4>${notification.panelName}</h4><h6>(${notification.machineSerial}) - ${notification.machineName}</h6><hr /><br /><p>${notification.description}</p></div>`);
+        return toastr.info('<div><h4>${notification.panelName}</h4><h6>(${notification.machineSerial}) - ${notification.machineName}</h6><hr /><br /><p>${notification.description}</p></div>');
     }
 
     context.setNotificationRead = function () {

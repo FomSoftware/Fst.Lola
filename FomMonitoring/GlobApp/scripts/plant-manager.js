@@ -62,18 +62,17 @@
             watch: {
                 activeMachines: function (machine, oldmachine) {
                     if (oldmachine != null && machine != null) {
-                        var intersection = machine.filter(x => !oldmachine.includes(x));
+                        var intersection = machine.filter(function(x) { !oldmachine.includes(x) })};
                         console.log(intersection);
                         if (intersection != null && intersection[0] != null) {
-                            requestAssociatedPlant(intersection[0]).then(r => {
+                            requestAssociatedPlant(intersection[0]).then( function(r) {
                                 if (r.Plant != null && vmPlants.actual.Id != r.Plant.Id) {
                                     var text = resource.MachineWithPlantConfirm;
                                     //"Macchina già associata al plant {0}, continuare?";
                                     text = text.replace("{0}", r.Plant.Name);
                                     var alert = alertSwal(text);
 
-                                    alert.then(
-                                        (result) => {
+                                    alert.then(function(result) {
                                             if (result != true) {
                                                 vmPlants.machines.active = oldmachine;
                                                 vmPlants.$nextTick(function () {
@@ -87,8 +86,7 @@
                         }
 
                     }
-                }
-                
+
             },
             methods: {
                 formValidation: function () {
