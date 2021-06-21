@@ -222,7 +222,8 @@ namespace FomMonitoringBLL.ViewServices
                 CountRotationA = par.FirstOrDefault(p => p.VarNumber == 3006),
                 CycleCountXFlow = par.FirstOrDefault(p => p.VarNumber == 3200),
                 OreVitaMacchina = par.FirstOrDefault(p => p.VarNumber == 369),
-                OreParzialiDaIngrassaggio = par.FirstOrDefault(p => p.VarNumber == 365)
+                OreParzialiDaIngrassaggio = par.FirstOrDefault(p => p.VarNumber == 365),
+                ModelCode = machine.Model.ModelCodev997
             };
             return result;
         }

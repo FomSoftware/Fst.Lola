@@ -127,6 +127,7 @@ namespace FomMonitoringBLL.ViewModel
         public ParameterMachineValueModel AsseYKm { get; set; }
         public ParameterMachineValueModel AsseZKm { get; set; }
         public ParameterMachineValueModel CountRotationA { get; set; }
+        public int ModelCode { get; set; }
     }
 
     public class ElectroSpindleParameterVueModel
