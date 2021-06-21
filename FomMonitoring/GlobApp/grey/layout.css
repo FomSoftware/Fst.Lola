@@ -287,6 +287,12 @@ section.container-fluid {
     cursor: pointer;
 }
 
+#alert-IE {
+    padding-bottom: 5px;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
 #toast-container {
     width: calc(100% - 28px);
 }

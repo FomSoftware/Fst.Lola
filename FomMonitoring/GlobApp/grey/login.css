@@ -527,3 +527,8 @@ input:-webkit-autofill:focus input:-webkit-autofill {
 #alert-refresh-page {
     cursor: pointer;
 }
+#alert-IE {
+    padding-bottom: 5px;
+    font-size: 1.2em;
+    font-weight: 500;
+}

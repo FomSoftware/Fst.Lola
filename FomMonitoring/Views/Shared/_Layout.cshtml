@@ -14,6 +14,9 @@
         <i class="fa fa-refresh fa-2x"></i>
     </button>
 </div>
+<div id="alert-IE" class="alert alert-primary" role="alert" style="display: none; background-color: #D1839A;border-color: #D1839A;color: white;z-index: 100;position: absolute;top: 0px;position: absolute;left: 0;right: 0;margin-left: auto;margin-right: auto;width: 60%; text-align: center; padding-top: 0.2em; padding-bottom: 0;">
+    Si sta utilizzando un browser non supportato, per favore ricaricare la pagina con Chrome o Safari.
+</div>
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -68,6 +71,14 @@
         $("#button-refresh-page, #alert-refresh-page").click(function () {
             location.reload();
         });
+
+        var ua = window.navigator.userAgent;
+        var isIE = /MSIE|Trident/.test(ua);
+
+        if (isIE) {
+            $('#alert-IE').show();
+        }
+
     });
 
 </script>

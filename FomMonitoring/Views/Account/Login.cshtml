@@ -18,12 +18,15 @@
 
 </head>
 <body>
-    <div id="alert-refresh-page" class="alert alert-primary" role="alert" style="display: none; background-color: #D1839A;border-color: #D1839A;color: white;z-index: 100;position: absolute;top: 0px;position: absolute;left: 0;right: 0;margin-left: auto;margin-right: auto;max-width: 50%; text-align: center; padding-top: 0.2em; padding-bottom: 0;">
-        Per favore ricaricare la pagina
-        <button id="button-refresh-page" type="button" class="btn btn-link" style="border: transparent; color: white;">
-            <i class="fa fa-refresh fa-2x"></i>
-        </button>
-    </div>
+<div id="alert-refresh-page" class="alert alert-primary" role="alert" style="display: none; background-color: #D1839A;border-color: #D1839A;color: white;z-index: 100;position: absolute;top: 0px;position: absolute;left: 0;right: 0;margin-left: auto;margin-right: auto;max-width: 50%; text-align: center; padding-top: 0.2em; padding-bottom: 0;">
+    Per favore ricaricare la pagina
+    <button id="button-refresh-page" type="button" class="btn btn-link" style="border: transparent; color: white;">
+        <i class="fa fa-refresh fa-2x"></i>
+    </button>
+</div>
+<div id="alert-IE" class="alert alert-primary" role="alert" style="display: none; background-color: #D1839A;border-color: #D1839A;color: white;z-index: 100;position: absolute;top: 0px;position: absolute;left: 0;right: 0;margin-left: auto;margin-right: auto;width: 60%; text-align: center; padding-top: 0.2em; padding-bottom: 0;">
+    Si sta utilizzando un browser non supportato, per favore ricaricare la pagina con Chrome o Safari.
+</div>
     <div class="login_burger_menu  js-open-menu">
         <i class="fa fa-bars" aria-hidden="true"></i>
     </div>
@@ -160,6 +163,13 @@
             $("#button-refresh-page, #alert-refresh-page").click(function () {
                 location.reload();
             });
+
+            var ua = window.navigator.userAgent;
+            var isIE = /MSIE|Trident/.test(ua);
+
+            if (isIE) {
+                $('#alert-IE').show();
+            }
         });
 
     </script>
