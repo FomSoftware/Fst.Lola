@@ -31,7 +31,8 @@
                 },
             },
             methods: {
-                noData: function() {
+                noData: function () {
+                    if (this.values == null) return true;
                     if (this.values.RpmRange1500 == null &&
                         this.values.RpmRange2500 == null &&
                         this.values.RpmRange3000 == null &&

@@ -433,6 +433,7 @@
     <Content Include="GlobApp\scripts\machine\electrospindle\electrospindle.js" />
     <Content Include="GlobApp\scripts\machine\image-manager-blitz.js" />
     <Content Include="GlobApp\scripts\machine\image-manager-axel.js" />
+    <Content Include="GlobApp\scripts\machine\image-manager-lmc.js" />
     <Content Include="GlobApp\scripts\machine\image-manager-lmx.js" />
     <Content Include="GlobApp\scripts\machine\image-manager-fmc.js" />
     <Content Include="GlobApp\scripts\machine\jobs\other-machines.js" />
@@ -524,6 +525,11 @@
     <Content Include="Images\panels\FMC_230-immagine_macchina_corta_11.svg" />
     <Content Include="Images\panels\FMC_230-immagine_macchina_lunga_12.svg" />
     <Content Include="Images\panels\FMC_650-immagine_macchina-3-lunga.svg" />
+    <Content Include="Images\panels\LMC650-immagine_macchina-corta.svg" />
+    <Content Include="Images\panels\LMC650-immagine_macchina-lunga.svg" />
+    <Content Include="Images\panels\LMC650_MM-CARD_220x220.svg" />
+    <Content Include="Images\panels\LMC650_Motor_Blade-CARD_220x220.svg" />
+    <Content Include="Images\panels\LMC650_StepIn_Out-CARD_220x220.svg" />
     <Content Include="Images\panels\LMX-immagine_macchina_CORTA.svg" />
     <Content Include="Images\panels\LMX-immagine_macchina_LUNGA.svg" />
     <Content Include="Images\panels\LMX_650-MM-CARD_MOBILE.svg" />
@@ -1538,6 +1544,7 @@
     <Content Include="Views\Machine\Panels\SensorSpindles\_Axel.cshtml" />
     <Content Include="Views\Assistance\Index.cshtml" />
     <Content Include="Views\CountersReset\Index.cshtml" />
+    <Content Include="Views\Machine\Model\_LMC_650.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -31,7 +31,8 @@
                 },
             },
             methods: {
-                noData: function() {
+                noData: function () {
+                    if (this.values == null) return true;
                     if (this.values.SoglieAmpereMandrini == null &&
                         this.values.SoglieAmpereContatore == null &&
                         this.values.AccelerometroINT_1 == null &&

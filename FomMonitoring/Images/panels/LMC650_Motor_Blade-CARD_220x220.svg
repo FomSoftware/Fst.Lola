@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="LMC650_Motor_Blade"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 220 220"
+	 style="enable-background:new 0 0 220 220;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#686868;}
+	.st1{clip-path:url(#SVGID_2_);}
+	.st2{fill:#4A7E68;}
+	.st3{fill:none;stroke:#FFFFFF;stroke-width:4.3202;stroke-miterlimit:10;}
+	.st4{fill:#005140;}
+	.st5{fill:none;stroke:#FFFFFF;stroke-width:1.4401;stroke-miterlimit:10;}
+</style>
+<path id="Path_1932_1_" class="st0" d="M208.4,2.9c4.8,0,8.7,3.9,8.7,8.7v196.8c0,4.8-3.9,8.7-8.7,8.7H11.6c-4.8,0-8.7-3.9-8.7-8.7
+	V11.6c0-4.8,3.9-8.7,8.7-8.7l0,0H208.4 M208.4,0H11.6C5.2,0,0,5.2,0,11.6v196.8c0,6.4,5.2,11.6,11.6,11.6h196.8
+	c6.4,0,11.6-5.2,11.6-11.6V11.6C220,5.2,214.8,0,208.4,0z"/>
+<g>
+	<defs>
+		<path id="SVGID_1_" d="M208.4,2.9c4.8,0,8.7,3.9,8.7,8.7v196.8c0,4.8-3.9,8.7-8.7,8.7H11.6c-4.8,0-8.7-3.9-8.7-8.7V11.6
+			c0-4.8,3.9-8.7,8.7-8.7l0,0H208.4"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+	<g id="LAMA-06" class="st1">
+		<g>
+			<path class="st2" d="M191,102.3c0,0.4,0,0.7,0,1.1H28.7c0-0.4,0-0.7,0-1.1c0-44.8,36.3-81.1,81.1-81.1
+				C154.6,21.2,191,57.5,191,102.3z"/>
+			<line class="st3" x1="62.5" y1="38.5" x2="109.4" y2="105"/>
+			
+				<ellipse transform="matrix(0.6858 -0.7278 0.7278 0.6858 -28.9463 110.5494)" class="st4" cx="113.6" cy="88.8" rx="40.1" ry="59.5"/>
+			<polygon class="st2" points="98.7,25.1 68.7,43.3 118.5,113.6 181.7,118.9 173.8,68.2 			"/>
+			<line class="st5" x1="64.4" y1="37.2" x2="111.3" y2="103.8"/>
+			<rect x="23.1" y="113.1" class="st2" width="175.7" height="74.1"/>
+		</g>
+		<polygon class="st4" points="221.1,103.2 -1.1,103.2 -1.1,219.1 29.3,219.1 29.3,132.3 190.7,132.3 190.7,219.1 221.1,219.1 		"/>
+	</g>
+</g>
+</svg>

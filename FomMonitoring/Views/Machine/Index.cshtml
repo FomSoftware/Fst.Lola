@@ -21,6 +21,10 @@
             @Html.Partial("Model/_AXEL", Model);
         }
     }
+    else if (Model.MachineInfo.modelCode == 999)
+    {
+        @Html.Partial("Model/_LMC_650", Model);
+    }
     else if (Model.MachineInfo.id_mtype == (int)enMachineType.LineaTaglioLavoro)
     {
         @Html.Partial("Model/_LMX_650", Model);

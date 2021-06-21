@@ -99,6 +99,7 @@
             },
             methods: {
                 noData: function () {
+                    if (this.values == null) return true;
                     if (this.values.RpmRange1500 == null &&
                         this.values.RpmRange3999 == null &&
                         this.values.RpmRange7999 == null &&
