@@ -51,5 +51,6 @@ namespace FomMonitoringCore.SqlServer
         public virtual ICollection<ParameterMachineValue> ParameterMachineValue { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ParameterResetValue> ParameterResetValue { get; set; }
+        public virtual MachineGroup MachineGroup1 { get; set; }
     }
 }

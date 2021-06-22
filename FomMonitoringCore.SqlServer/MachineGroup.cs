@@ -18,6 +18,7 @@ namespace FomMonitoringCore.SqlServer
         public MachineGroup()
         {
             this.MessagesIndex = new HashSet<MessagesIndex>();
+            this.ParameterMachine = new HashSet<ParameterMachine>();
         }
     
         public int Id { get; set; }
@@ -26,5 +27,7 @@ namespace FomMonitoringCore.SqlServer
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MessagesIndex> MessagesIndex { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ParameterMachine> ParameterMachine { get; set; }
     }
 }

@@ -87,6 +87,7 @@
         <EntityTypeShape EntityType="FomMonitoringModel.Roles_Customer" Width="1.5" PointX="13.75" PointY="15.125" />
         <AssociationConnector Association="FomMonitoringModel.FK_Roles_Customers_Roles" />
         <AssociationConnector Association="FomMonitoringModel.FK_Roles_Customers_Users" />
+        <AssociationConnector Association="FomMonitoringModel.FK_ParameterMachine_MachineGroup" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

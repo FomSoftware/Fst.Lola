@@ -775,6 +775,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ParameterMachine_MachineGroup">
+          <End Role="MachineGroup" Type="Self.MachineGroup" Multiplicity="0..1" />
+          <End Role="ParameterMachine" Type="Self.ParameterMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParameterMachine">
+              <PropertyRef Name="MachineGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ParameterMachine_MachineModel">
           <End Role="MachineModel" Type="Self.MachineModel" Multiplicity="1" />
           <End Role="ParameterMachine" Type="Self.ParameterMachine" Multiplicity="*" />
@@ -1175,6 +1187,10 @@
             <End Role="MessageLanguages" EntitySet="MessageLanguages" />
             <End Role="MessageTranslation" EntitySet="MessageTranslation" />
           </AssociationSet>
+          <AssociationSet Name="FK_ParameterMachine_MachineGroup" Association="Self.FK_ParameterMachine_MachineGroup">
+            <End Role="MachineGroup" EntitySet="MachineGroup" />
+            <End Role="ParameterMachine" EntitySet="ParameterMachine" />
+          </AssociationSet>
           <AssociationSet Name="FK_ParameterMachine_MachineModel" Association="Self.FK_ParameterMachine_MachineModel">
             <End Role="MachineModel" EntitySet="MachineModel" />
             <End Role="ParameterMachine" EntitySet="ParameterMachine" />
@@ -1477,6 +1493,7 @@
           <Property Name="MachineGroupCode" Type="Int32" />
           <Property Name="MachineGroupName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="MessagesIndex" Relationship="Self.FK_MessagesIndex_MachineGroup" FromRole="MachineGroup" ToRole="MessagesIndex" />
+          <NavigationProperty Name="ParameterMachine" Relationship="FomMonitoringModel.FK_ParameterMachine_MachineGroup" FromRole="MachineGroup" ToRole="ParameterMachine" />
         </EntityType>
         <EntityType Name="MachineModel">
           <Key>
@@ -1627,6 +1644,7 @@
           <NavigationProperty Name="ParameterMachineThreshold" Relationship="Self.FK_ParameterMachineThreshold_ParameterMachine" FromRole="ParameterMachine" ToRole="ParameterMachineThreshold" />
           <NavigationProperty Name="ParameterMachineValue" Relationship="Self.FK_ParameterMachineValue_ParameterMachineId" FromRole="ParameterMachine" ToRole="ParameterMachineValue" />
           <NavigationProperty Name="ParameterResetValue" Relationship="Self.FK_ParameterResetValue_ParameterMachineValue" FromRole="ParameterMachine" ToRole="ParameterResetValue" />
+          <NavigationProperty Name="MachineGroup1" Relationship="FomMonitoringModel.FK_ParameterMachine_MachineGroup" FromRole="ParameterMachine" ToRole="MachineGroup" />
         </EntityType>
         <EntityType Name="ParameterMachineThreshold">
           <Key>
@@ -2548,6 +2566,10 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Roles_Customer" EntitySet="Roles_Customer" />
           </AssociationSet>
+          <AssociationSet Name="FK_ParameterMachine_MachineGroup" Association="FomMonitoringModel.FK_ParameterMachine_MachineGroup">
+            <End Role="MachineGroup" EntitySet="MachineGroup" />
+            <End Role="ParameterMachine" EntitySet="ParameterMachine" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_ParameterResetValue_Machine">
           <End Type="FomMonitoringModel.Machine" Role="Machine" Multiplicity="0..1" />
@@ -2617,6 +2639,18 @@
             </Principal>
             <Dependent Role="Roles_Customer">
               <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParameterMachine_MachineGroup">
+          <End Type="FomMonitoringModel.MachineGroup" Role="MachineGroup" Multiplicity="0..1" />
+          <End Type="FomMonitoringModel.ParameterMachine" Role="ParameterMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParameterMachine">
+              <PropertyRef Name="MachineGroup" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
